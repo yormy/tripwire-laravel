@@ -1,0 +1,5 @@
+1' AND [RANDNUM]=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB([SLEEPTIME]00000000/2))))
+1' AND 123=LIKE('
+sqlite_version()=sqlite_version()
+last_insert_rowid()>1
+last_insert_rowid()=last_insert_rowid()

