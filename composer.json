@@ -23,7 +23,8 @@
         "illuminate/contracts": "^9.0",
         "illuminate/database": "^9.0",
         "laravel/framework": "^9",
-        "orchestra/testbench": "^7"
+        "orchestra/testbench": "^7",
+        "jenssegers/agent": "^2.6"
     },
     "require-dev": {
         "jaschilz/php-coverage-badger": "^2.0",

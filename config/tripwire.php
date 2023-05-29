@@ -18,6 +18,9 @@ return [
         'serverside_calculated' => 'x-checksum-serverside',
     ],
 
+    'cookie' => [
+        'browser_fingerprint'=> 'session_id'
+    ],
 
     /*
     |--------------------------------------------------------------------------
