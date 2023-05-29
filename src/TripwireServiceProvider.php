@@ -48,9 +48,6 @@ class TripwireServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 EncryptDbCommand::class,
-                GenerateEncryptionKeyCommand::class,
-                DecryptDbCommand::class,
-                DecryptRecordCommand::class
             ]);
         }
     }
