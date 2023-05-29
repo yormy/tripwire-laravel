@@ -5,7 +5,7 @@ namespace Yormy\TripwireLaravel\Observers\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class RequestChecksumFailedEvent implements LoggableEvent
+class TestFailedEvent implements LoggableEvent
 {
     use Dispatchable, SerializesModels;
 

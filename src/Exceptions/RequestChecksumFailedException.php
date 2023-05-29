@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitTypeHackAttempt;
 use Mexion\BedrockCore\Observers\Events\TarpitTriggerEvent;
 use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\TestFailedEvent;
 
 class RequestChecksumFailedException extends BaseException
 {
     protected function dispatchEvents(Request $request)
     {
-        event(new RequestChecksumFailedEvent());
+        event(new TestFailedEvent());
 //        event(new TarpitTriggerEvent(
 //            'HACK_ATTEMPT_EXCEPTION',
 //            new TarpitTypeHackAttempt(),

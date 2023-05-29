@@ -15,6 +15,7 @@ use jdavidbakr\MailTracker\Events\LinkClickedEvent;
 use jdavidbakr\MailTracker\Events\PermanentBouncedMessageEvent;
 use jdavidbakr\MailTracker\Events\ViewEmailEvent;
 use Illuminate\Events\Dispatcher;
+use Yormy\TripwireLaravel\Observers\Events\LoggableEvent;
 use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
 use Yormy\TripwireLaravel\Observers\Listeners\LogEvent;
 
@@ -27,8 +28,10 @@ class TripwireSubscriber
      */
     public function subscribe(Dispatcher $events)
     {
+        //https://owenconti.com/posts/how-to-handle-multiple-events-with-a-single-listener-in-laravel
+        // all events are cought by single listener
         $events->listen(
-            RequestChecksumFailedEvent::class,
+            LoggableEvent::class,
             LogEvent::class
         );
 
