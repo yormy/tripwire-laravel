@@ -22,6 +22,8 @@ class TripwireServiceProvider extends ServiceProvider
         $this->publish();
 
         $this->registerCommands();
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
