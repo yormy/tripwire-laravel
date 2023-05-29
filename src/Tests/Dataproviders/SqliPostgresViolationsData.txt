@@ -1,0 +1,7 @@
+1' || pg_sleep(10)
+5::int=5
+5::integer=5
+pg_client_encoding()=pg_client_encoding()
+get_current_ts_config()=get_current_ts_config()
+quote_literal(42.5)=quote_literal(42.5)
+current_database()=current_database()

@@ -2,12 +2,19 @@
     "name": "yormy/tripwire-laravel",
     "description": "",
     "keywords": [
-        "yormy",
+        "laravel",
         "tripwire",
-        "web application firewall",
-        "laravel"
+        "firewall",
+        "security",
+        "waf",
+        "blacklist",
+        "xss",
+        "sqli",
+        "rfi",
+        "lfi",
+        "web application firewall"
     ],
-    "homepage": "https://gitlab.com/yormy/tripwire-laravel",
+    "homepage": "https://yormy.github.io/tripwire-laravel/",
     "license": "MIT",
     "authors": [
         {
@@ -18,27 +25,18 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "illuminate/container": "^9.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/database": "^9.0",
-        "laravel/framework": "^9",
-        "orchestra/testbench": "^7"
+        "php": "^8.1|^8.2",
+        "laravel/framework": "^9|^10",
+        "jenssegers/agent": "^2.6",
+        "yormy/core-tools-laravel": "^1.0"
     },
     "require-dev": {
-        "jaschilz/php-coverage-badger": "^2.0",
-        "phpmd/phpmd": "^2.12",
-        "phpstan/phpstan": "^1.8",
-        "phpunit/phpunit": "^9.5",
-        "psalm/plugin-laravel": "^2.0",
-        "squizlabs/php_codesniffer": "^3.7",
-        "thibautselingue/local-php-security-checker-installer": "^1",
-        "vimeo/psalm": "^4.24",
-        "laravel/pint": "^0.2"
+        "yormy/dev-tools-laravel": "^1.0"
     },
+
     "autoload": {
         "psr-4": {
-            "Yormy\\CiphersweetExtLaravel\\": "src"
+            "Yormy\\TripwireLaravel\\": "src"
         }
     },
     "autoload-dev": {
@@ -54,11 +52,27 @@
         "psalm": "vendor/bin/psalm --no-diff --no-cache --report-show-info=false --report=psalm-report.txt",
         "psalm-debug": "vendor/bin/psalm --no-cache --debug --debug-by-line",
         "pint": "vendor/bin/pint",
-        "test": "vendor/bin/phpunit --colors=always --testdox",
+
+        "---------- TESTS ---------- ": "",
+        "test:all": "vendor/bin/paratest",
+        "t": "vendor/bin/phpunit --colors=always --testdox --group testnow",
+        "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
+        "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
+
+        "t:main": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",
+        "test:main": "vendor/bin/paratest --colors=always --testdox --testsuite Main",
+
+        "t:ext": "vendor/bin/phpunit --colors=always --testdox --testsuite Extensive",
+        "test:ext": "vendor/bin/paratest --colors=always --testdox --testsuite Extensive",
+
+
         "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "local-php-security-checker-installer && local-php-security-checker"
         ]
     },
     "extra": {
