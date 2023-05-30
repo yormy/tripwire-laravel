@@ -11,17 +11,23 @@ class LogRepository
 {
     public function add(Request $request)
     {
-        $data['ip'] = $request->ip();
-        $data['ips'] = json_encode($request->ips());
-
         $data['middleware'] = rand(0,99999);
 
+
+
+        $model = config('tripwire.models.log');
+        return $model::create($data);
+    }
+
+    private function addMeta(Request $request, array $data): array
+    {
+        $data['ip'] = $request->ip();
+        $data['ips'] = json_encode($request->ips());
         $data = $this->addRequest($request, $data);
         $data = $this->addUser($request, $data);
         $data = $this->addUserAgent($data);
 
-        $model = config('tripwire.models.log');
-        return $model::create($data);
+        return $data;
     }
 
     private function addRequest(Request $request, array $data): array
