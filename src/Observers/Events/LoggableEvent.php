@@ -2,19 +2,22 @@
 
 namespace Yormy\TripwireLaravel\Observers\Events;
 
-interface LoggableEvent
-{
-    /**
-     * Returns the display name of the event.
-     *
-     * @return string
-     */
-    public function getEventName(): string;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 
-    /**
-     * Returns the description of the event.
-     *
-     * @return string
-     */
-    public function getEventDescription(): string;
+class LoggableEvent implements LoggableEventInterface
+{
+    use Dispatchable, SerializesModels;
+
+    protected int $score = 10;
+
+    public function getScore(int $score = null): int
+    {
+        if ($score) {
+            return $score;
+        }
+
+        return $this->score;
+    }
 }

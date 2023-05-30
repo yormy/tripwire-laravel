@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create((new TripwireLog())->getTable(), function (Blueprint $table) {
             $table->increments('id');
             $table->string('xid')->unique(); // customizable ?
+            $table->string('event_code');
+            $table->string('event_score');
             $table->string('ip')->nullable(); // ??
             $table->json('ips')->nullable();
             $table->string('level')->default('medium');

@@ -3,17 +3,18 @@
 namespace Yormy\TripwireLaravel\Repositories;
 
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
 
 class LogRepository
 {
-    public function add(Request $request)
+    public function add(Request $request, LoggableEventInterface $event)
     {
-        $data['middleware'] = rand(0,99999);
-
-
+        $data['event_code'] = $event::CODE;
+        $data['event_score'] = $event->getScore();
+        $data = $this->addMeta($request, $data);
 
         $model = config('tripwire.models.log');
         return $model::create($data);

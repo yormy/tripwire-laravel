@@ -9,19 +9,15 @@ use LiranCo\NotificationSubscriptions\Events\NotificationSuppressed;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 
-class LogEvent
+class LogEvent extends BaseListener
 {
-//    use FirewallHelper;
-    public function __construct(private readonly Request $request)
-    { }
 
     public function handle($event)
     {
         ray('event logevent');
 
-
         $logRepository = new LogRepository();
-        $logRepository->add($this->request);
+        $logRepository->add($this->request, $event);
 
 //        $this->request = request();
 //

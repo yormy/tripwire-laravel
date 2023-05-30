@@ -2,34 +2,10 @@
 
 namespace Yormy\TripwireLaravel\Observers\Events;
 
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
-
-class TestFailedEvent implements LoggableEvent
+class TestFailedEvent extends LoggableEvent
 {
-    use Dispatchable, SerializesModels;
+    const CODE = "test";
 
-    private string $code = "REQUEST_CHECKSUM_FAILED";
+    protected int $score = 20;
 
-    private string $severity = "severe";
-
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    public function getSeverity()
-    {
-        return $this->severity;
-    }
-
-    public function getEventName(): string
-    {
-        return 'Created Application Member';
-    }
-
-    public function getEventDescription(): string
-    {
-        return 'Fired whenever a new Application Member is added to your Application.';
-    }
 }
