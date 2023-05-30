@@ -2,29 +2,44 @@
 
 namespace Yormy\TripwireLaravel\Repositories;
 
+use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
 
 class LogRepository
 {
-    public function add()
+    public function add(Request $request)
     {
-        $data = [
-            'xid' => rand(0,99999),
-            'ip' => rand(0,99999),
-            'middleware' => rand(0,99999),
-        ];
+        $data['ip'] = $request->ip();
+        $data['ips'] = json_encode($request->ips());
 
-        $data = $this->addUser($data);
+        $data['middleware'] = rand(0,99999);
+
+        $data = $this->addRequest($request, $data);
+        $data = $this->addUser($request, $data);
         $data = $this->addUserAgent($data);
 
         $model = config('tripwire.models.log');
         return $model::create($data);
     }
 
-    private function addUser(array $data): array
+    private function addRequest(Request $request, array $data): array
     {
-        $user = Auth::user();
+        $data['url'] = $request->fullUrl();
+        $data['method'] = $request->method();
+        $data['referer'] = $request->headers->get('referer');
+        $data['header'] = json_encode($request->header());
+        $data['request'] = json_encode($request->all());
+        $data['request_fingerprint'] = $this->fingerprint($request);
+
+        return $data;
+    }
+
+
+    private function addUser(Request $request, array $data): array
+    {
+        $user = $request->user();
 
         if ($user) {
             $data['user_id'] = $user->id;
@@ -42,5 +57,16 @@ class LogRepository
         $data['browser_fingerprint'] = $requestSource->getBrowserFingerprint();
 
         return $data;
+    }
+
+    function fingerprint(Request $request)
+    {
+        return HashService::create(json_encode([
+            $request->url(),
+            $request->method(),
+            $request->ips(),
+            $request->header(),
+            $request->all()
+        ]));
     }
 }

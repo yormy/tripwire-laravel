@@ -15,16 +15,21 @@ return new class extends Migration
             $table->increments('id');
             $table->string('xid')->unique(); // customizable ?
             $table->string('ip')->nullable(); // ??
+            $table->json('ips')->nullable();
             $table->string('level')->default('medium');
             $table->string('middleware')->nullable(); // ??
             $table->integer('user_id')->nullable();
             $table->string('user_type')->nullable();
             $table->string('url')->nullable();
-            $table->string('referrer')->nullable();
-            $table->text('request')->nullable();
+            $table->string('method')->nullable();
+            $table->string('referer')->nullable();
+            $table->json('header')->nullable();
+            $table->json('request')->nullable();
             $table->text('user_agent')->nullable();
             $table->text('robot_crawler')->nullable();
             $table->text('browser_fingerprint')->nullable();
+            $table->text('request_fingerprint')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 

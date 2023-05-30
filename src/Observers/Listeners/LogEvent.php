@@ -3,13 +3,17 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Akaunting\Firewall\Traits\Helper as FirewallHelper;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LiranCo\NotificationSubscriptions\Events\NotificationSuppressed;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
+
 class LogEvent
 {
 //    use FirewallHelper;
+    public function __construct(private readonly Request $request)
+    { }
 
     public function handle($event)
     {
@@ -17,7 +21,7 @@ class LogEvent
 
 
         $logRepository = new LogRepository();
-        $logRepository->add();
+        $logRepository->add($this->request);
 
 //        $this->request = request();
 //

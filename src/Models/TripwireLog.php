@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TripwireLog extends Model
 {
-//    use Xid;
+    use Xid;
 //    use DatatableSearchable;
 //    use DateFormatter;
 //    use DatabaseEncryption;
@@ -25,17 +25,21 @@ class TripwireLog extends Model
 
     protected $fillable = [
         'ip',
+        'ips',
         'xid',
         'middleware',
         'level',
         'user_id',
         'user_type',
         'url',
-        'referrer',
+        'method',
+        'referer',
+        'header',
         'request',
         'user_agent',
         'robot_crawler',
-        'browser_fingerprint'
+        'browser_fingerprint',
+        'request_fingerprint'
     ];
 
     protected $casts = [

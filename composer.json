@@ -24,7 +24,8 @@
         "illuminate/database": "^9.0",
         "laravel/framework": "^9",
         "orchestra/testbench": "^7",
-        "jenssegers/agent": "^2.6"
+        "jenssegers/agent": "^2.6",
+        "yormy/xid": "dev-master"
     },
     "require-dev": {
         "jaschilz/php-coverage-badger": "^2.0",
