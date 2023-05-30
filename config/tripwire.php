@@ -49,4 +49,30 @@ return [
             'skip_encryption',
         ]
     ],
+
+    'middleware' => [
+        'swear' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['post', 'put', 'patch'],
+
+            'routes' => [
+                'only' => [], // i.e. 'contact'
+                'except' => [], // i.e. 'admin/*'
+            ],
+
+            'inputs' => [
+                'only' => [], // i.e. 'first_name'
+                'except' => [], // i.e. 'password'
+            ],
+
+            'words' => [],
+
+            'auto_block' => [
+                'attempts' => 3,
+                'frequency' => 5 * 60, // 5 minutes
+                'period' => 30 * 60, // 30 minutes
+            ],
+        ],
+    ],
 ];
