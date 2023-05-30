@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Repositories;
 
-use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +18,8 @@ class LogRepository
         $data = $this->addUser($data);
         $data = $this->addUserAgent($data);
 
-        return TripwireLog::create($data);
+        $model = config('tripwire.models.log');
+        return $model::create($data);
     }
 
     private function addUser(array $data): array

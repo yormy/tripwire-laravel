@@ -2,6 +2,7 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 
 return [
     /*
@@ -20,6 +21,10 @@ return [
 
     'database_tables' => [
         'tripwire_log' => 'tripwire_log'
+    ],
+
+    'models' => [
+        'log' => TripwireLog::class
     ],
 
     'cookie' => [
