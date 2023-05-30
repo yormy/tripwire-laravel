@@ -9,6 +9,7 @@ use Yormy\TripwireLaravel\Console\Commands\DecryptRecordCommand;
 use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\GenerateEncryptionKeyCommand;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
+use Illuminate\Routing\Router;
 
 class TripwireServiceProvider extends ServiceProvider
 {
@@ -17,13 +18,17 @@ class TripwireServiceProvider extends ServiceProvider
     /**
      * @psalm-suppress MissingReturnType
      */
-    public function boot()
+    public function boot(Router $router)
     {
         $this->publish();
 
         $this->registerCommands();
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->registerMiddleware($router);
+
+        $this->registerListeners();
     }
 
     /**
@@ -52,5 +57,31 @@ class TripwireServiceProvider extends ServiceProvider
                 EncryptDbCommand::class,
             ]);
         }
+    }
+
+    public function registerMiddleware($router)
+    {
+//        $router->middlewareGroup('firewall.all', config('firewall.all_middleware'));
+//        $router->aliasMiddleware('firewall.agent', 'Akaunting\Firewall\Middleware\Agent');
+//        $router->aliasMiddleware('firewall.bot', 'Akaunting\Firewall\Middleware\Bot');
+//        $router->aliasMiddleware('firewall.ip', 'Akaunting\Firewall\Middleware\Ip');
+//        $router->aliasMiddleware('firewall.geo', 'Akaunting\Firewall\Middleware\Geo');
+//        $router->aliasMiddleware('firewall.lfi', 'Akaunting\Firewall\Middleware\Lfi');
+//        $router->aliasMiddleware('firewall.php', 'Akaunting\Firewall\Middleware\Php');
+//        $router->aliasMiddleware('firewall.referrer', 'Akaunting\Firewall\Middleware\Referrer');
+//        $router->aliasMiddleware('firewall.rfi', 'Akaunting\Firewall\Middleware\Rfi');
+//        $router->aliasMiddleware('firewall.session', 'Akaunting\Firewall\Middleware\Session');
+//        $router->aliasMiddleware('firewall.sqli', 'Akaunting\Firewall\Middleware\Sqli');
+        $router->aliasMiddleware('firewall.swear', 'Akaunting\Firewall\Middleware\Swear');
+//        $router->aliasMiddleware('firewall.url', 'Akaunting\Firewall\Middleware\Url');
+//        $router->aliasMiddleware('firewall.whitelist', 'Akaunting\Firewall\Middleware\Whitelist');
+//        $router->aliasMiddleware('firewall.xss', 'Akaunting\Firewall\Middleware\Xss');
+    }
+
+    public function registerListeners()
+    {
+//        $this->app['events']->listen(AttackDetected::class, BlockIp::class);
+//        $this->app['events']->listen(AttackDetected::class, NotifyUsers::class);
+//        $this->app['events']->listen(LoginFailed::class, CheckLogin::class);
     }
 }
