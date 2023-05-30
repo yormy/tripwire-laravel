@@ -18,6 +18,10 @@ return [
         'serverside_calculated' => 'x-checksum-serverside',
     ],
 
+    'database_tables' => [
+        'tripwire_log' => 'tripwire_log'
+    ],
+
     'cookie' => [
         'browser_fingerprint'=> 'session_id'
     ],

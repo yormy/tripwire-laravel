@@ -46,6 +46,13 @@ class TripwireLog extends Model
         'id', 'pivot'
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('tripwire.database_tables.tripwire_log');
+
+        parent::__construct($attributes);
+    }
+
 //    public function user()
 //    {
 //        return $this->belongsTo(Member::class, 'user_id');

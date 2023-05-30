@@ -4,12 +4,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 
 return new class extends Migration
 {
+
     public function up()
     {
-        Schema::create('tripwire_logs', function (Blueprint $table) {
+        Schema::create((new TripwireLog())->getTable(), function (Blueprint $table) {
             $table->increments('id');
             $table->string('xid')->unique(); // customizable ?
             $table->string('ip')->nullable(); // ??
