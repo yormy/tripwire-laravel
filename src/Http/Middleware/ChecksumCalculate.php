@@ -20,10 +20,6 @@ class ChecksumCalculate
      */
     public function handle(Request $request, Closure $next)
     {
-        throw new RequestChecksumFailedException();
-
-
-
         /** @psalm-suppress PossiblyInvalidArgument */
         $data = $request->except(array_keys($request->query()));
         $requestJson = json_encode($data, JSON_UNESCAPED_UNICODE);
