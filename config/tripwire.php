@@ -50,6 +50,8 @@ return [
         ]
     ],
 
+    'whitelist' => explode(',', env('TRIPWIRE_WHITELIST', '')),
+
     'middleware' => [
         'swear' => [
             'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
@@ -66,7 +68,9 @@ return [
                 'except' => [], // i.e. 'password'
             ],
 
-            'words' => [],
+            'words' => [
+                'joe'
+            ],
 
             'auto_block' => [
                 'attempts' => 3,

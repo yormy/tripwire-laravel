@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Console\Commands\DecryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\DecryptRecordCommand;
 use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\GenerateEncryptionKeyCommand;
+use Yormy\TripwireLaravel\Http\Middleware\Swear;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Illuminate\Routing\Router;
 
@@ -72,7 +73,7 @@ class TripwireServiceProvider extends ServiceProvider
 //        $router->aliasMiddleware('firewall.rfi', 'Akaunting\Firewall\Middleware\Rfi');
 //        $router->aliasMiddleware('firewall.session', 'Akaunting\Firewall\Middleware\Session');
 //        $router->aliasMiddleware('firewall.sqli', 'Akaunting\Firewall\Middleware\Sqli');
-        $router->aliasMiddleware('firewall.swear', 'Akaunting\Firewall\Middleware\Swear');
+        $router->aliasMiddleware('firewall.swear', Swear::class);
 //        $router->aliasMiddleware('firewall.url', 'Akaunting\Firewall\Middleware\Url');
 //        $router->aliasMiddleware('firewall.whitelist', 'Akaunting\Firewall\Middleware\Whitelist');
 //        $router->aliasMiddleware('firewall.xss', 'Akaunting\Firewall\Middleware\Xss');
