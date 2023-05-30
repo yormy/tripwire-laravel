@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
-class Middleware
+abstract class Middleware
 {
     use Helper;
 
@@ -17,7 +17,6 @@ class Middleware
     {
         $this->request = $request;
         $this->middleware = strtolower((new \ReflectionClass($this))->getShortName());
-        // dd($this->middleware);
         $this->user_id = auth()->id() ?: 0;
 
         $this->config = new Config($this->middleware);
@@ -28,11 +27,14 @@ class Middleware
         if ($this->skip($request)) {
             return $next($request);
         }
-        dd('kk');
 
-        if ($this->check($this->getPatterns())) {
+        $patterns = $this->getPatterns();
+        if ($this->isAttack($patterns)) {
+            // tripped
+            dd('ERROR');
             return $this->respond(config('firewall.responses.block'));
         }
+        dd('not tripped');
 
         return $next($request);
     }
@@ -58,35 +60,31 @@ class Middleware
         return false;
     }
 
-
-
     public function getPatterns()
     {
-        return config('firewall.middleware.' . $this->middleware . '.patterns', []);
+        return $this->config->patterns;
     }
 
-    public function check($patterns)
+    public function isAttack($patterns): bool
     {
-        $log = null;
+        $triggered = false;
 
         foreach ($patterns as $pattern) {
             if (! $match = $this->match($pattern, $this->request->input())) {
                 continue;
             }
 
-            $log = $this->log();
+            $this->attackFound();
 
-            event(new AttackDetected($log));
+            $triggered= true;
 
             break;
         }
 
-        if ($log) {
-            return true;
-        }
-
-        return false;
+        return $triggered;
     }
+
+    protected abstract function attackFound(): void;
 
     public function match($pattern, $input)
     {

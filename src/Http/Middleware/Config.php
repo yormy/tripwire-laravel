@@ -17,6 +17,8 @@ class Config
 
     public array $words;
 
+    public array $patterns;
+
     public function __construct(string $checker)
     {
         $data = config('tripwire.middleware.' . $checker);
@@ -27,6 +29,8 @@ class Config
         $this->inputs = $data['inputs'];
         $this->autoBlocks = $data['auto_block'];
         $this->words = $data['words'];
+
+        $this->patterns = $data['patterns'] ?? [];
 
     }
 

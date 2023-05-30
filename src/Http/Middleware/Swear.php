@@ -8,7 +8,7 @@ class Swear  extends Middleware
     {
         $patterns = [];
 
-        if (! $words = config('firewall.middleware.' . $this->middleware . '.words')) {
+        if (! $words = $this->config->words) {
             return $patterns;
         }
 
@@ -17,5 +17,13 @@ class Swear  extends Middleware
         }
 
         return $patterns;
+    }
+
+    protected function attackFound(): void
+    {
+        //$log = $this->log();
+
+        // dd('attack');
+        //event(new AttackDetected($log));
     }
 }
