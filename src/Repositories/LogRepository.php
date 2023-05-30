@@ -14,6 +14,7 @@ class LogRepository
     {
         $data['event_code'] = $event::CODE;
         $data['event_score'] = $event->getScore();
+        $data['event_comment'] = $event->getComment('test');
         $data = $this->addMeta($request, $data);
 
         $model = config('tripwire.models.log');

@@ -8,4 +8,9 @@ class TestFailedEvent extends LoggableEvent
 
     protected int $score = 20;
 
+    public function getComment(): string
+    {
+        return 'tja;';
+    }
+
 }

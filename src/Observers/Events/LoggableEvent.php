@@ -6,7 +6,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 
-class LoggableEvent implements LoggableEventInterface
+abstract class LoggableEvent implements LoggableEventInterface
 {
     use Dispatchable, SerializesModels;
 
@@ -19,5 +19,14 @@ class LoggableEvent implements LoggableEventInterface
         }
 
         return $this->score;
+    }
+
+    public function getComment(string $comment = null): string
+    {
+        if ($comment) {
+            return $comment;
+        }
+
+        return '';
     }
 }

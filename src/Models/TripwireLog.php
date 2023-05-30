@@ -26,6 +26,7 @@ class TripwireLog extends Model
     protected $fillable = [
         'event_code',
         'event_score',
+        'event_comment',
         'ip',
         'ips',
         'xid',
