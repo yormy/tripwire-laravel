@@ -31,7 +31,10 @@ class Swear  extends Middleware
             violations: $violations
         ));
 
-        // dd('attack');
-        //event(new AttackDetected($log));
+        // action to take inline
+        // or action on next request by calculation
+
+        // of process actions now ie: block account
+        // maar het geblocked zijn zie je pas in next req
     }
 }

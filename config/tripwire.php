@@ -98,6 +98,11 @@ return [
                 'period' => 30 * 60, // 30 minutes
             ],
 
+            'tarpit' => [
+
+            ],
+
+
             'response' => [
                 'block' => [
                     //'messageKey' => 'ja.hallo',
