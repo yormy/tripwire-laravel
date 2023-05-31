@@ -9,15 +9,15 @@ use Mexion\BedrockUsers\Models\Member;
 use Yormy\Dateformatter\Models\Traits\DateFormatter;
 use Yormy\Xid\Models\Traits\Xid;
 use Illuminate\Database\Eloquent\Model;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class TripwireLog extends Model
 {
     use Xid;
+    use QueryCacheable;
 //    use DatatableSearchable;
 //    use DateFormatter;
 //    use DatabaseEncryption;
-
-    protected $table = 'tripwire_logs';
 
     protected $encryptableSearch = [
         //'ip' // do not encrypt IP, this is used for determining if we need to block the ip or not

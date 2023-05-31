@@ -7,9 +7,19 @@ use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class LogRepository
 {
+    private Model $model;
+
+    public function __construct()
+    {
+        $class= config('tripwire.models.log');
+        $this->model = new $class;
+    }
+
     public function add(Request $request, LoggableEventInterface $event)
     {
         $data['event_code'] = $event::CODE;
@@ -18,8 +28,19 @@ class LogRepository
         $data['event_comment'] = $event->getComment();
         $data = $this->addMeta($request, $data);
 
-        $model = config('tripwire.models.log');
-        return $model::create($data);
+        return $this->model::create($data);
+    }
+
+    public function scoreViolationsWithin(int $minutes, array $codes): int
+    {
+        return (int)$this->queryWithinLastMinutes($minutes)
+            ->whereIn('event_code', $codes)
+            ->sum('event_score');
+    }
+
+    public function queryWithinLastMinutes(int $minutes)
+    {
+        return $this->model::where('created_at', '>=', Carbon::now()->subMinutes($minutes));
     }
 
     private function addMeta(Request $request, array $data): array
