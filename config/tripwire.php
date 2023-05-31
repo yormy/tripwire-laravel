@@ -2,7 +2,9 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
 
 return [
     /*
@@ -52,6 +54,21 @@ return [
 
     'whitelist' => explode(',', env('TRIPWIRE_WHITELIST', '')),
 
+    'block_code' => env('FIREWALL_BLOCK_CODE', 406),
+
+    'response' => [
+        'block' => [
+            //'code' => 300,//env('FIREWALL_BLOCK_CODE'),
+            'view' => env('FIREWALL_BLOCK_VIEW', null),
+            //'redirectUrl' => env('FIREWALL_BLOCK_REDIRECT', null),
+            'redirectUrl' => 'http://testapp.local/api/V1/member/account/profilenew',
+            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+            //'exception' => new RequestChecksumFailedException(),
+            'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+            'messageKey' => 'tripwide.blockie'
+        ],
+    ],
+
     'middleware' => [
         'swear' => [
             'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
@@ -77,6 +94,12 @@ return [
                 'frequency' => 5 * 60, // 5 minutes
                 'period' => 30 * 60, // 30 minutes
             ],
+
+//            'response' => [
+//                'block' => [
+//                    'messageKey' => 'ja.hallo',
+//                ],
+//            ],
         ],
     ],
 ];

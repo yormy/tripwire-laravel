@@ -30,14 +30,57 @@ abstract class Middleware
 
         $patterns = $this->getPatterns();
         if ($this->isAttack($patterns)) {
-            // tripped
-            dd('ERROR');
-            return $this->respond(config('firewall.responses.block'));
+            $configResponse = new ConfigResponse($request, $this->middleware);
+
+            if ($configResponse->asContinue()) {
+                return $next($request);
+            }
+
+            if ($request->wantsJson()) {
+                return $this->respondJson($configResponse);
+            }
+
+            return $this->respondHtml($configResponse);
         }
-        dd('not tripped');
+        //dd('not tripped');
 
         return $next($request);
     }
+
+    public function respondJson(ConfigResponse $configResponse, array $data = [])
+    {
+        $configResponse->asException();
+
+        if ($response = $configResponse->asJson()) {
+            return $response;
+        }
+
+        if ($response = $configResponse->asGeneralMessage()) {
+            return $response;
+        }
+
+        $configResponse->asGeneralAbort();
+    }
+
+    public function respondHtml(ConfigResponse $configResponse, array $data = [])
+    {
+        $configResponse->asException();
+
+        if ($response = $configResponse->asView($data)) {
+            return $response;
+        }
+
+        if ($response = $configResponse->asRedirect($data)) {
+            return $response;
+        }
+
+        if ($response = $configResponse->asGeneralMessage()) {
+            return $response;
+        }
+
+        $configResponse->asGeneralAbort();
+    }
+
 
     public function skip($request)
     {
@@ -90,11 +133,11 @@ abstract class Middleware
     {
         $result = false;
 
-        if (! is_array($input) && !is_string($input)) {
+        if ( !is_array($input) && !is_string($input)) {
             return false;
         }
 
-        if (! is_array($input)) {
+        if ( !is_array($input)) {
             $input = $this->prepareInput($input);
 
             return preg_match($pattern, $input);
@@ -113,13 +156,13 @@ abstract class Middleware
                 break;
             }
 
-            if (! $this->isInput($key)) {
+            if ( !$this->isInput($key)) {
                 continue;
             }
 
             $value = $this->prepareInput($value);
 
-            if (! $result = preg_match($pattern, $value)) {
+            if ( !$result = preg_match($pattern, $value)) {
                 continue;
             }
 
@@ -132,36 +175,5 @@ abstract class Middleware
     public function prepareInput($value)
     {
         return $value;
-    }
-
-    public function respond($response, $data = [])
-    {
-        if ($response['code'] == 200) {
-            return '';
-        }
-
-        if ($view = $response['view']) {
-            return Response::view($view, $data, $response['code']);
-        }
-
-        if ($redirect = $response['redirect']) {
-            if (($this->middleware == 'ip') && $this->request->is($redirect)) {
-                abort($response['code'], trans('firewall::responses.block.message'));
-            }
-
-            return Redirect::to($redirect);
-        }
-
-        if ($response['abort']) {
-            abort($response['code'], trans('firewall::responses.block.message'));
-        }
-
-        if (array_key_exists('exception', $response)) {
-            if ($exception = $response['exception']) {
-                throw new $exception();
-            }
-        }
-
-        return Response::make(trans('firewall::responses.block.message'), $response['code']);
     }
 }
