@@ -47,7 +47,7 @@ abstract class Middleware
 
             return $this->respondHtml($configResponse);
         }
-        //dd('not tripped');
+        dd('not tripped');
 
         return $next($request);
     }
@@ -124,7 +124,7 @@ abstract class Middleware
             $this->attackFound($violations);
         }
 
-        return empty($violations);
+        return !empty($violations);
     }
 
     protected abstract function attackFound(array $violations): void;
