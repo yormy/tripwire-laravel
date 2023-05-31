@@ -101,7 +101,7 @@ return [
             'response' => [
                 'block' => [
                     //'messageKey' => 'ja.hallo',
-                    'exception' => new RequestChecksumFailedException(),
+                    'exception' => RequestChecksumFailedException::class,
                 ],
             ],
         ],

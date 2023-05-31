@@ -20,7 +20,7 @@ class ConfigResponse
 
     public ?array $json = null;
 
-    public ?Exception $exception = null;
+    public ?string $exception = null;
 
     public ?string $message = null;
 
@@ -81,7 +81,7 @@ class ConfigResponse
     public function asException()
     {
         if ($this->exception) {
-            throw $this->exception;
+            throw new $this->exception;
         }
 
         return null;
