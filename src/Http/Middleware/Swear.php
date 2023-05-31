@@ -2,6 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
+use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
+
 class Swear  extends Middleware
 {
     public function getPatterns()
@@ -19,9 +21,15 @@ class Swear  extends Middleware
         return $patterns;
     }
 
-    protected function attackFound(): void
+    protected function attackFound(array $violations): void
     {
-        //$log = $this->log();
+        // log
+        // take action
+        $attackScore = $this->getAttackScore();
+        event(new SwearFailedEvent(
+            attackScore: $attackScore,
+            violations: $violations
+        ));
 
         // dd('attack');
         //event(new AttackDetected($log));

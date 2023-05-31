@@ -21,6 +21,15 @@ abstract class LoggableEvent implements LoggableEventInterface
         return $this->score;
     }
 
+    public function getViolationText(string $violation = null): string
+    {
+        if ($violation) {
+            return $violation;
+        }
+
+        return '';
+    }
+
     public function getComment(string $comment = null): string
     {
         if ($comment) {

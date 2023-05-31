@@ -19,6 +19,8 @@ class Config
 
     public array $patterns;
 
+    public int $attackScore;
+
     public function __construct(string $checker)
     {
         $data = config('tripwire.middleware.' . $checker);
@@ -31,6 +33,7 @@ class Config
         $this->words = $data['words'];
 
         $this->patterns = $data['patterns'] ?? [];
+        $this->attackScore = $data['attack_score'];
 
     }
 

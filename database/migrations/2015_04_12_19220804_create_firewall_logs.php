@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('xid')->unique(); // customizable ?
             $table->string('event_code');
             $table->integer('event_score');
+            $table->string('event_violation')->nullalbe();
             $table->string('event_comment')->nullable();
             $table->string('ip')->nullable(); // ??
             $table->json('ips')->nullable();

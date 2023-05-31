@@ -22,6 +22,11 @@ abstract class Middleware
         $this->config = new Config($this->middleware);
     }
 
+    protected function getAttackScore(): int
+    {
+        return $this->config->attackScore;
+    }
+
     public function handle(Request $request, Closure $next)
     {
         if ($this->skip($request)) {
@@ -110,26 +115,21 @@ abstract class Middleware
 
     public function isAttack($patterns): bool
     {
-        $triggered = false;
-
+        $violations = [];
         foreach ($patterns as $pattern) {
-            if (! $match = $this->match($pattern, $this->request->input())) {
-                continue;
-            }
-
-            $this->attackFound();
-
-            $triggered= true;
-
-            break;
+            $this->matchResults($pattern, $this->request->input(), $violations);
         }
 
-        return $triggered;
+        if (!empty($violations))  {
+            $this->attackFound($violations);
+        }
+
+        return empty($violations);
     }
 
-    protected abstract function attackFound(): void;
+    protected abstract function attackFound(array $violations): void;
 
-    public function match($pattern, $input)
+    public function matchResults($pattern, $input, &$violations)
     {
         $result = false;
 
@@ -149,11 +149,9 @@ abstract class Middleware
             }
 
             if (is_array($value)) {
-                if (!$result = $this->match($pattern, $value)) {
-                    continue;
+                if ($result = $this->matchResults($pattern, $value, $matches)) {
+                    $violations[] = $matches[0];
                 }
-
-                break;
             }
 
             if ( !$this->isInput($key)) {
@@ -162,11 +160,9 @@ abstract class Middleware
 
             $value = $this->prepareInput($value);
 
-            if ( !$result = preg_match($pattern, $value)) {
-                continue;
+            if ( $result = preg_match($pattern, $value, $matches)) {
+                $violations[] = $matches[0];
             }
-
-            break;
         }
 
         return $result;

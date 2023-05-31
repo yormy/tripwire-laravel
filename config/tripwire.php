@@ -75,6 +75,8 @@ return [
 
             'methods' => ['post', 'put', 'patch'],
 
+            'attack_score' => 55,
+
             'routes' => [
                 'only' => [], // i.e. 'contact'
                 'except' => [], // i.e. 'admin/*'
@@ -86,7 +88,8 @@ return [
             ],
 
             'words' => [
-                'joe'
+                'joe',
+                'no'
             ],
 
             'auto_block' => [
@@ -95,11 +98,12 @@ return [
                 'period' => 30 * 60, // 30 minutes
             ],
 
-//            'response' => [
-//                'block' => [
-//                    'messageKey' => 'ja.hallo',
-//                ],
-//            ],
+            'response' => [
+                'block' => [
+                    //'messageKey' => 'ja.hallo',
+                    'exception' => new RequestChecksumFailedException(),
+                ],
+            ],
         ],
     ],
 ];
