@@ -19,3 +19,11 @@ Blocks before user is known
 belocks after user is known
 
 listen to login events and take actiosn
+
+Blocked response:
+Zelfde structure als response in-request, maar mogelijk andere variablen
+, of zet ik dat in de database en doe ik een response zoals in de swear staat ?
+render view
+render json
+redirect
+
