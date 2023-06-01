@@ -38,6 +38,7 @@ class Config
         $this->attackScore = $data['attack_score'];
 
         $this->punish = $data['punish'];
+        // validate that $penaltySeconds cannot be 1, 0 or 2 is ok, 5  1 will lead to non logaritmic penalty
 
     }
 

@@ -22,8 +22,8 @@ return [
     ],
 
     'database_tables' => [
-        'tripwire_log' => 'tripwire_log',
-        'tripwire_tarpit' => 'tripwire_tarpit'
+        'tripwire_logs' => 'tripwire_logs',
+        'tripwire_blocks' => 'tripwire_blocks'
     ],
 
     'models' => [
@@ -102,7 +102,9 @@ return [
             'punish' => [
                 'score' => 100,
                 'within_minutes' => 60 * 24,
-                'penalty' => ''
+                // note this will log increase on every violation that leads to a block
+                // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+                'penalty_seconds' => '5'
             ],
 
 

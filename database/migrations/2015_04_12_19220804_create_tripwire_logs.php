@@ -4,14 +4,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Yormy\TripwireLaravel\Models\TripwireLog;
 
 return new class extends Migration
 {
 
     public function up()
     {
-        Schema::create((new TripwireLog())->getTable(), function (Blueprint $table) {
+        $tablename = config('tripwire.database_tables.tripwire_logs');
+        Schema::create($tablename, function (Blueprint $table) {
             $table->increments('id');
             $table->string('xid')->unique(); // customizable ?
             $table->string('event_code');
@@ -31,13 +31,14 @@ return new class extends Migration
             $table->json('request')->nullable();
             $table->text('user_agent')->nullable();
             $table->text('robot_crawler')->nullable();
-            $table->text('browser_fingerprint')->nullable();
-            $table->text('request_fingerprint')->nullable();
+            $table->string('browser_fingerprint')->nullable();
+            $table->string('request_fingerprint')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('ip');
+            $table->index('browser_fingerprint');
         });
     }
 
