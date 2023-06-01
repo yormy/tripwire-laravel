@@ -5,7 +5,11 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/facade/ignition/run-php-tests?label=Tests)
 ![Alt text](./coverage.svg)
 
-# Goal
+# Tripwire
+```a wire stretched close to the ground, working a trap, explosion, or alarm when disturbed and serving to detect or prevent people or animals entering an area.```
+
+```a comparatively weak military force employed as a first line of defence, engagement with which will trigger the intervention of stronger forces.```
+
 A easy to use comprehensive and secure firewall to prevent hackers getting into your system and frustrates the heck out of them while trying
 
 # Installation
