@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
+use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
@@ -35,6 +36,8 @@ class Swear  extends Middleware
 //            violations: $violations
 //        ));
 
+
+
         $logRepository = new LogRepository();
 
         $punishableTimeframe = (int)$this->config->punish['within_minutes'];
@@ -43,16 +46,41 @@ class Swear  extends Middleware
 
         $userId = User::getId($this->request);
         $userType = User::getType($this->request);
-        $scoreByUser = $logRepository->scoreViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+        $scoreByUser = 0;
+        if ($userId) {
+            $scoreByUser = $logRepository->scoreViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+        }
 
         $browserFingerprint = (new RequestSource())->getBrowserFingerprint();
-        $scoreByBrowser = $logRepository->scoreViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+        $scoreByBrowser = 0;
+        if ($browserFingerprint) {
+            $scoreByBrowser = $logRepository->scoreViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+        }
+
+
+        // do action
+        // place in block table
+        $blockRepository = new BlockRepository();
+        $penaltySeconds = 5;
+        $blockItem = $blockRepository->add(
+            penaltySeconds : $penaltySeconds,
+            ipAddress : $ipAddress,
+            userId : $userId,
+            userType : $userType,
+            browserFingerprint :$browserFingerprint,
+        );
+
+        // update log with tarpidid
+//        $blockItem->id
+
+        dd('added', $blockItem);
 
 
         $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
         if ($maxScore > (int)$this->config->punish['score'])
         {
             dd('punish', $maxScore);
+            // block only those who score higher than limit
         }
 
         dd('no punish');
@@ -68,14 +96,5 @@ class Swear  extends Middleware
         // tarpit on ip / user/ browser ?
         // no details of logs is needed as that is in the log itself
         // add tarpit id to log to indicate that the punishment has been taken effect on these log items
-
-
-        // count action is based on what ?
-        // same violation? or calculated of itme
-        // ie 1x xss 1x sql 1x swear?
-
-        // action to take inline
-
-        // maar het geblocked zijn zie je pas in next req
     }
 }
