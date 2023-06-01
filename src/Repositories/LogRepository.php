@@ -9,6 +9,7 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Yormy\TripwireLaravel\Services\User;
 
 class LogRepository
 {
@@ -31,17 +32,38 @@ class LogRepository
         return $this->model::create($data);
     }
 
-    public function scoreViolationsWithin(int $minutes, array $codes): int
+    public function scoreViolationsByIp(int $withinMinutes, array $violations, string $ipAddress): int
     {
-        return (int)$this->queryWithinLastMinutes($minutes)
-            ->whereIn('event_code', $codes)
+        // current user? current ip // current browserfinger
+        return (int)$this->queryScoreViolations($withinMinutes, $violations)
+            ->byIp($ipAddress)
             ->sum('event_score');
     }
 
-    public function queryWithinLastMinutes(int $minutes)
+    public function scoreViolationsByUser(int $withinMinutes, array $violations, $userId, $userType): int
     {
-        return $this->model::where('created_at', '>=', Carbon::now()->subMinutes($minutes));
+        // current user? current ip // current browserfinger
+        return (int)$this->queryScoreViolations($withinMinutes, $violations)
+            ->byUserId($userId)
+            ->byUserType($userType)
+            ->sum('event_score');
     }
+
+    public function scoreViolationsByBrowser(int $withinMinutes, array $violations, string $browserFingerprint): int
+    {
+        // current user? current ip // current browserfinger
+        return (int)$this->queryScoreViolations($withinMinutes, $violations)
+            ->byBrowser($browserFingerprint)
+            ->sum('event_score');
+    }
+
+    private function queryScoreViolations(int $withinMinutes, array $violations)
+    {
+       return $this->model
+           ->within($withinMinutes)
+           ->types($violations);
+    }
+
 
     private function addMeta(Request $request, array $data): array
     {
@@ -69,12 +91,11 @@ class LogRepository
 
     private function addUser(Request $request, array $data): array
     {
-        $user = $request->user();
+        $userId = User::getId($request);
+        $userType = User::getType($request);
 
-        if ($user) {
-            $data['user_id'] = $user->id;
-            $data['user_type'] = get_class($user);
-        }
+        $data['user_id'] = $userId ?? null;
+        $data['user_type'] = $userType  ?? null;
 
         return $data;
     }

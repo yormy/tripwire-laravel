@@ -10,11 +10,13 @@ use Yormy\Dateformatter\Models\Traits\DateFormatter;
 use Yormy\Xid\Models\Traits\Xid;
 use Illuminate\Database\Eloquent\Model;
 use Rennokki\QueryCache\Traits\QueryCacheable;
+use Yormy\TripwireLaravel\Models\Traits\LogScope;
 
 class TripwireLog extends Model
 {
     use Xid;
     use QueryCacheable;
+    use LogScope;
 //    use DatatableSearchable;
 //    use DateFormatter;
 //    use DatabaseEncryption;

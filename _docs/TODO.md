@@ -11,3 +11,5 @@ config: log database name
 publish migrations
 $table->string('xid')->unique(); // customizable ?
 
+requestsource to static functions
+user + ip address to changable function in config

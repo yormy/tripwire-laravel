@@ -22,7 +22,8 @@ return [
     ],
 
     'database_tables' => [
-        'tripwire_log' => 'tripwire_log'
+        'tripwire_log' => 'tripwire_log',
+        'tripwire_tarpit' => 'tripwire_tarpit'
     ],
 
     'models' => [
@@ -98,8 +99,10 @@ return [
                 'period' => 30 * 60, // 30 minutes
             ],
 
-            'tarpit' => [
-
+            'punish' => [
+                'score' => 100,
+                'within_minutes' => 60 * 24,
+                'penalty' => ''
             ],
 
 

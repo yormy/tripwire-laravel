@@ -4,6 +4,9 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
+use Yormy\TripwireLaravel\Services\IpAddress;
+use Yormy\TripwireLaravel\Services\RequestSource;
+use Yormy\TripwireLaravel\Services\User;
 
 class Swear  extends Middleware
 {
@@ -33,12 +36,32 @@ class Swear  extends Middleware
 //        ));
 
         $logRepository = new LogRepository();
-        //$logRepository->get();
 
-        $score = $logRepository->scoreViolationsWithin(200, ['1', 'test', 'SWEAR']);
+        $punishableTimeframe = (int)$this->config->punish['within_minutes'];
+        $ipAddress = IpAddress::get($this->request);
+        $scoreByIp = $logRepository->scoreViolationsByIp($punishableTimeframe, ['test', 'SWEAR'], $ipAddress);
+
+        $userId = User::getId($this->request);
+        $userType = User::getType($this->request);
+        $scoreByUser = $logRepository->scoreViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+
+        $browserFingerprint = (new RequestSource())->getBrowserFingerprint();
+        $scoreByBrowser = $logRepository->scoreViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+
+
+        $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
+        if ($maxScore > (int)$this->config->punish['score'])
+        {
+            dd('punish', $maxScore);
+        }
+
+        dd('no punish');
+
+
+
+
+
         dd($score);
-
-
         // determine if action is needed based on log
         //ie if > 3 then action
         // place / update tarpit

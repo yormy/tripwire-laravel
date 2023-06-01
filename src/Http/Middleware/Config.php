@@ -15,6 +15,8 @@ class Config
 
     public array $autoBlocks;
 
+    public array $punish;
+
     public array $words;
 
     public array $patterns;
@@ -34,6 +36,8 @@ class Config
 
         $this->patterns = $data['patterns'] ?? [];
         $this->attackScore = $data['attack_score'];
+
+        $this->punish = $data['punish'];
 
     }
 
