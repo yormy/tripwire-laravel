@@ -8,6 +8,8 @@ use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use Yormy\TripwireLaravel\Services\User;
 
@@ -32,32 +34,27 @@ class LogRepository
         return $this->model::create($data);
     }
 
-    public function scoreViolationsByIp(int $withinMinutes, array $violations, string $ipAddress): int
+    public function queryViolationsByIp(int $withinMinutes, array $violations, string $ipAddress): Builder
     {
-        // current user? current ip // current browserfinger
-        return (int)$this->queryScoreViolations($withinMinutes, $violations)
-            ->byIp($ipAddress)
-            ->sum('event_score');
+        return $this->queryScoreViolations($withinMinutes, $violations)
+            ->byIp($ipAddress);
+
     }
 
-    public function scoreViolationsByUser(int $withinMinutes, array $violations, $userId, $userType): int
+    public function queryViolationsByUser(int $withinMinutes, array $violations, $userId, $userType): Builder
     {
-        // current user? current ip // current browserfinger
-        return (int)$this->queryScoreViolations($withinMinutes, $violations)
+        return $this->queryScoreViolations($withinMinutes, $violations)
             ->byUserId($userId)
-            ->byUserType($userType)
-            ->sum('event_score');
+            ->byUserType($userType);
     }
 
-    public function scoreViolationsByBrowser(int $withinMinutes, array $violations, string $browserFingerprint): int
+    public function queryViolationsByBrowser(int $withinMinutes, array $violations, string $browserFingerprint): Builder
     {
-        // current user? current ip // current browserfinger
-        return (int)$this->queryScoreViolations($withinMinutes, $violations)
-            ->byBrowser($browserFingerprint)
-            ->sum('event_score');
+        return $this->queryScoreViolations($withinMinutes, $violations)
+            ->byBrowser($browserFingerprint);
     }
 
-    private function queryScoreViolations(int $withinMinutes, array $violations)
+    private function queryScoreViolations(int $withinMinutes, array $violations): Builder
     {
        return $this->model
            ->within($withinMinutes)

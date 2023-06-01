@@ -14,7 +14,7 @@ class RequestChecksumFailedException extends BaseException
 {
     protected function dispatchEvents(Request $request)
     {
-        event(new TestFailedEvent());
+      //  event(new TestFailedEvent());
 //        BlockIpAction::exec();
 
 //        event(new TarpitTriggerEvent(

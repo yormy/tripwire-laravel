@@ -26,75 +26,67 @@ class Swear  extends Middleware
         return $patterns;
     }
 
-    protected function attackFound(array $violations): void
+    protected function blockIfNeeded()
     {
-        // log
-        // take action
-        $attackScore = $this->getAttackScore();
-//        event(new SwearFailedEvent(
-//            attackScore: $attackScore,
-//            violations: $violations
-//        ));
-
-
-
         $logRepository = new LogRepository();
 
         $punishableTimeframe = (int)$this->config->punish['within_minutes'];
         $ipAddress = IpAddress::get($this->request);
-        $scoreByIp = $logRepository->scoreViolationsByIp($punishableTimeframe, ['test', 'SWEAR'], $ipAddress);
+
+        $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, ['test', 'SWEAR'], $ipAddress);
+        $scoreByIp = $violationsByIp->get()->sum('event_score');
 
         $userId = User::getId($this->request);
         $userType = User::getType($this->request);
         $scoreByUser = 0;
+
+        $violationsByUser = null;
         if ($userId) {
-            $scoreByUser = $logRepository->scoreViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+            $violationsByUser = $logRepository->queryViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+            $scoreByUser = $violationsByUser->get()->sum('event_score');
         }
 
         $browserFingerprint = (new RequestSource())->getBrowserFingerprint();
         $scoreByBrowser = 0;
+        $violationsByBrowser = null;
         if ($browserFingerprint) {
-            $scoreByBrowser = $logRepository->scoreViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+            $violationsByBrowser = $logRepository->queryViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+            $scoreByBrowser = $violationsByBrowser->get()->sum('event_score');
         }
-
-
-        // do action
-        // place in block table
-        $blockRepository = new BlockRepository();
-        $penaltySeconds = 5;
-        $blockItem = $blockRepository->add(
-            penaltySeconds : $penaltySeconds,
-            ipAddress : $ipAddress,
-            userId : $userId,
-            userType : $userType,
-            browserFingerprint :$browserFingerprint,
-        );
-
-        // update log with tarpidid
-//        $blockItem->id
-
-        dd('added', $blockItem);
-
 
         $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
-        if ($maxScore > (int)$this->config->punish['score'])
-        {
-            dd('punish', $maxScore);
-            // block only those who score higher than limit
+        if ($maxScore > (int)$this->config->punish['score']) {
+            $blockRepository = new BlockRepository();
+            $penaltySeconds = 5; // from config
+            $blockItem = $blockRepository->add(
+                penaltySeconds: $penaltySeconds,
+                ipAddress: $ipAddress,
+                userId: $userId,
+                userType: $userType,
+                browserFingerprint: $browserFingerprint,
+            );
+
+            $violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
+            $violationsByUser?->update('tripwire_block_id', $blockItem->id);
+            $violationsByBrowser?->update('tripwire_block_id', $blockItem->id);
+
+            return $blockItem;
         }
 
-        dd('no punish');
+        return null;
+    }
 
 
+    protected function attackFound(array $violations): void
+    {
+        $attackScore = $this->getAttackScore();
 
+        event(new SwearFailedEvent(
+            attackScore: $attackScore,
+            violations: $violations
+        ));
 
+        $this->blockIfNeeded();
 
-        dd($score);
-        // determine if action is needed based on log
-        //ie if > 3 then action
-        // place / update tarpit
-        // tarpit on ip / user/ browser ?
-        // no details of logs is needed as that is in the log itself
-        // add tarpit id to log to indicate that the punishment has been taken effect on these log items
     }
 }

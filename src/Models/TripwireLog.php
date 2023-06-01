@@ -45,7 +45,8 @@ class TripwireLog extends Model
         'user_agent',
         'robot_crawler',
         'browser_fingerprint',
-        'request_fingerprint'
+        'request_fingerprint',
+        'tripwire_block_id'
     ];
 
     protected $casts = [
