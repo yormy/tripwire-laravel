@@ -10,9 +10,9 @@
 
 ```a comparatively weak military force employed as a first line of defence, engagement with which will trigger the intervention of stronger forces.```
 
-A easy to use comprehensive and secure firewall to prevent hackers getting into your system and frustrates the heck out of them while trying
 
 # Installation
+Tripwire-Laravel is an easy yet comprehensive and extendable way to add a security layer around laravel. All in order to prevent hackers getting into your system and frustrates the heck out of them while trying
 ```
 composer require yormy/tripwire-laravel
 
