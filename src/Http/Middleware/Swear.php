@@ -67,8 +67,13 @@ class Swear  extends Middleware
             );
 
             $violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
-            $violationsByUser?->update('tripwire_block_id', $blockItem->id);
-            $violationsByBrowser?->update('tripwire_block_id', $blockItem->id);
+            if (!$violationsByUser) {
+                $violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
+            }
+
+            if ($violationsByBrowser) {
+                $violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
+            }
 
             return $blockItem;
         }

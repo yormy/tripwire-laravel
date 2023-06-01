@@ -41,6 +41,15 @@ class BlockRepository
         return $this->model::create($data);
     }
 
+    public function isIpBlocked(string $ipAddress)
+    {
+        $blocked =  $this->model->where('blocked_ip', $ipAddress)->where('blocked_until', '>', Carbon::now())->latest()->first();
+
+        $message = $blocked->response_message  ."-". $blocked->blocked_until;
+
+        return $message;
+    }
+
     private function getBlockedUntil(
         int $penaltySeconds,
         int $repeaterCount
