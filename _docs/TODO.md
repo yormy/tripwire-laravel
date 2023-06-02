@@ -27,6 +27,7 @@ field encryption
 
 
 # Unit test cases
+hmm... have someone create multiple examples of triggers
 SQLi:
 ```
 (union select)
