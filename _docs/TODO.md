@@ -1,7 +1,7 @@
 # TODO
 disable middleware on certain routes
 Abstraction o/ or groups of checkers easy include in kernel
-
+BOT checker is not on input level, but on all levels so should be logically in the first steps of the request.
 
 
 Extend tripwires:

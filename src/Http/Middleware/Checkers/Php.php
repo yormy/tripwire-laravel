@@ -2,13 +2,15 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\PhpFailedEvent;
+use Jenssegers\Agent\Agent;
 
-class Swear  extends BaseChecker
+class Php extends BaseChecker
 {
+
     protected function attackFound(array $violations): void
     {
-        event(new SwearFailedEvent(
+        event(new PhpFailedEvent(
             attackScore: $this->getAttackScore(),
             violations: $violations
         ));
@@ -16,16 +18,14 @@ class Swear  extends BaseChecker
         $this->blockIfNeeded();
     }
 
-    public function getPatterns()
+    public function getPatterns(): array
     {
         $patterns = [];
 
         foreach ($this->config->words as $word) {
-            $patterns[] = '#\b' . $word . '\b#i';
+            $patterns[] = '#' . $word . '#i';
         }
 
         return $patterns;
     }
-
-
 }

@@ -303,5 +303,31 @@ return [
             ],
 
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | PHP
+        |--------------------------------------------------------------------------
+        */
+        'php' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_PHP_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['get', 'post', 'delete','put'],
+
+            'attack_score' => 9,
+
+            'words' => [
+                'bzip2://',
+                'expect://',
+                'glob://',
+                'phar://',
+                'php://',
+                'ogg://',
+                'rar://',
+                'ssh2://',
+                'zip://',
+                'zlib://',
+            ],
+        ],
     ],
 ];
