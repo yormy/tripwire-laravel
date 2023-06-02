@@ -13,8 +13,6 @@ class Config
 
     public array $inputs;
 
-    public array $autoBlocks;
-
     public array $punish;
 
     public array $words;
@@ -31,7 +29,6 @@ class Config
         $this->methods = $data['methods'];
         $this->routes = $data['routes'];
         $this->inputs = $data['inputs'];
-        $this->autoBlocks = $data['auto_block'];
         $this->words = $data['words'];
 
         $this->patterns = $data['patterns'] ?? [];

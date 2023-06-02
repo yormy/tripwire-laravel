@@ -140,12 +140,6 @@ return [
                 'no'
             ],
 
-            'auto_block' => [
-                'attempts' => 3,
-                'frequency' => 5 * 60, // 5 minutes
-                'period' => 30 * 60, // 30 minutes
-            ],
-
             'punish' => [
                 'score' => 8000,
                 'within_minutes' => 60 * 24,
