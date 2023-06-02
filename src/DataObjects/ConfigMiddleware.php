@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
+use Yormy\TripwireLaravel\Services\Routes;
 
 class ConfigMiddleware
 {
@@ -79,27 +80,7 @@ class ConfigMiddleware
 
     public function skipRoute(Request $request): bool
     {
-        if ( !$this->routes) {
-            return false;
-        }
-
-        foreach ($this->routes['except'] as $ex) {
-            if (! $request->is($ex)) {
-                continue;
-            }
-
-            return true;
-        }
-
-        foreach ($this->routes['only'] as $on) {
-            if ($request->is($on)) {
-                continue;
-            }
-
-            return true;
-        }
-
-        return false;
+        return Routes::skipRoute($request, $this->routes);
     }
 
     public function skipInput(string $key): bool
