@@ -297,7 +297,7 @@ return [
             'attack_score' => 9,
 
             // https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
-            'crawlers' => [
+            'guards' => [
                 'allow' => ['s'], // i.e. 'GoogleSites', 'GuzzleHttp'
                 'block' => [], // i.e. 'Holmes'
             ],
@@ -347,7 +347,25 @@ return [
             ],
 
             'exceptions' => [
-                'https://example.com'
+                'https://example.com' // to guards
+            ],
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | REFERER
+        |--------------------------------------------------------------------------
+        */
+        'referer' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_REFERRER_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['all'],
+
+            'attack_score' => 9,
+
+            'guards' => [
+                'allow' => [],
+                'block' => ['s'],
             ],
         ],
     ],

@@ -12,6 +12,7 @@ other priportal / bounty scanners
 walk through akunetics
 null byte checker
 file checker
+protect an url from being included
 
 # Management:
 Way of reset for hackers, how

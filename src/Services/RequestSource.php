@@ -11,6 +11,11 @@ class RequestSource
         return $_SERVER['HTTP_USER_AGENT'];
     }
 
+    public static function getReferer(): string
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
     public static function isRobot(): bool
     {
         $agent = new Agent();

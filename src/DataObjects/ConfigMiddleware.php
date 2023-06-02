@@ -15,7 +15,7 @@ class ConfigMiddleware
 
     public array $inputs;
 
-    public array $crawlers;
+    public array $guards;
 
     public array $exceptions;
 
@@ -46,7 +46,7 @@ class ConfigMiddleware
             $this->punish = new ConfigPunish(config('tripwire.punish'));
         }
 
-        $this->crawlers = $data['crawlers'] ?? [];
+        $this->guards = $data['guards'] ?? [];
         $this->exceptions = $data['exceptions'] ?? [];
 
     }
