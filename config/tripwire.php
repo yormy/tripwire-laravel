@@ -242,10 +242,9 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Local File Inclusion
+        | SESSION
         |--------------------------------------------------------------------------
         */
-
         'session' => [
             'enabled' => env('FIREWALL_MIDDLEWARE_SESSION_ENABLED', env('FIREWALL_ENABLED', true)),
 
@@ -258,6 +257,31 @@ return [
                 '@[\|:]a:\d{1,}:{@i',
             ],
 
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | XSS
+        |--------------------------------------------------------------------------
+        */
+        'xss' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_XSS_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['post', 'put', 'patch', 'put'],
+
+            'attack_score' => 9,
+
+            'patterns' => [
+                // Evil starting attributes
+                '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
+
+                // javascript:, livescript:, vbscript:, mocha: protocols
+                '!((java|live|vb)script|mocha|feed|data):(\w)*!iUu',
+                '#-moz-binding[\x00-\x20]*:#u',
+
+                // Unneeded tags
+                '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i'
+            ],
         ],
     ],
 ];

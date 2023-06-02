@@ -41,3 +41,8 @@ session:
 ```
 :a:9:{
 ```
+
+XSS
+```
+#-moz-binding:#u
+```
