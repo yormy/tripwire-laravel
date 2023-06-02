@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class Config
 {
@@ -49,6 +50,21 @@ class Config
         return !$this->enabled;
     }
 
+    public function isWhitelist(Request $request): bool
+    {
+        $ipAddressClass = config('tripwire.services.ip_address');
+        $ipAddress = $ipAddressClass::get($request);
+
+        $whitelisted = config('tripwire.whitelist.ips');
+
+        if (empty($whitelisted)) {
+            return false;
+        }
+
+        return IpUtils::checkIp($ipAddress, $whitelisted);
+
+    }
+
     public function skipMethod(Request $request): bool
     {
         if ( !$this->methods) {
@@ -82,6 +98,19 @@ class Config
                 continue;
             }
 
+            return true;
+        }
+
+        return false;
+    }
+
+    public function skipInput(string $key): bool
+    {
+        if (in_array($key, $this->inputs['except'])) {
+            return true;
+        }
+
+        if ( !empty($this->inputs['only']) && in_array($key, $this->inputs['only'])) {
             return true;
         }
 

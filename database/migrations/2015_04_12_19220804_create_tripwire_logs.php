@@ -30,9 +30,9 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('method')->nullable();
             $table->string('referer')->nullable();
-            $table->json('header')->nullable();
+            $table->text('header', 500)->nullable();
 
-            $table->json('request')->nullable();
+            $table->text('request', 500)->nullable();
             $table->text('user_agent')->nullable();
 
             $table->text('robot_crawler')->nullable();

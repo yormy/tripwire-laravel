@@ -68,7 +68,9 @@ return [
         ]
     ],
 
-    'whitelist' => explode(',', env('TRIPWIRE_WHITELIST', '')),
+    'whitelist' => [
+        'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
+    ],
 
     'block_code' => env('FIREWALL_BLOCK_CODE', 406),
 

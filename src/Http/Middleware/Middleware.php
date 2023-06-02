@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
+use Yormy\TripwireLaravel\DataObjects\Config;
 
 abstract class Middleware
 {
-    use Helper;
-
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -79,7 +78,7 @@ abstract class Middleware
             return true;
         }
 
-        if ($this->isWhitelist()) {
+        if ($this->config->isWhitelist($request)) {
             return true;
         }
 
@@ -140,8 +139,8 @@ abstract class Middleware
                 }
             }
 
-            if ( !$this->isInput($key)) {
-                continue;
+            if ($this->config->skipInput($key)) {
+                return true;
             }
 
             $value = $this->prepareInput($value);
