@@ -31,7 +31,7 @@ class ConfigMiddleware
         $this->methods = $data['methods'];
         $this->routes = $data['routes'];
         $this->inputs = $data['inputs'];
-        $this->words = $data['words'];
+        $this->words = $data['words'] ?? [];
 
         $this->patterns = $data['patterns'] ?? [];
         $this->attackScore = $data['attack_score'];
@@ -70,7 +70,7 @@ class ConfigMiddleware
             return true;
         }
 
-        if (in_array('all', $this->methods)) {
+        if (in_array('all', $this->methods) || in_array('*', $this->methods)) {
             return false;
         }
 

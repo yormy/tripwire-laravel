@@ -1,4 +1,8 @@
 # TODO
+disable middleware on certain routes
+Abstraction o/ or groups of checkers easy include in kernel
+
+
 
 Extend tripwires:
 listen to login events and take actiosn
@@ -20,3 +24,11 @@ field encryption
 # Unit tests
 
 # Documentation
+
+
+# Unit test cases
+SQLi:
+```
+(union select)
+```
+  

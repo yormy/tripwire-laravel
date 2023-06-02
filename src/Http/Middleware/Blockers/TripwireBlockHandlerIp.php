@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Http\Middleware;
+namespace Yormy\TripwireLaravel\Http\Middleware\Blockers;
 
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Carbon\Carbon;

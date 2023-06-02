@@ -7,22 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
-class Swear  extends Middleware
+class Sqli extends Middleware
 {
-    public function getPatterns()
-    {
-        $patterns = [];
-
-        if (! $words = $this->config->words) {
-            return $patterns;
-        }
-
-        foreach ((array) $words as $word) {
-            $patterns[] = '#\b' . $word . '\b#i';
-        }
-
-        return $patterns;
-    }
 
     protected function attackFound(array $violations): void
     {
@@ -95,4 +81,7 @@ class Swear  extends Middleware
 
         return null;
     }
+
+
+
 }

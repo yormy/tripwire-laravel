@@ -1,14 +1,11 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Http\Middleware;
+namespace Yormy\TripwireLaravel\Http\Middleware\Blockers;
 
 
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
-use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Closure;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\Services\IpAddress;
-use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Carbon\Carbon;
 use Yormy\TripwireLaravel\Services\Routes;

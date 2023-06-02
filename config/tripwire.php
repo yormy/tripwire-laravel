@@ -123,6 +123,11 @@ return [
     ],
 
     'middleware' => [
+        /*
+        |--------------------------------------------------------------------------
+        | SWEAR words
+        |--------------------------------------------------------------------------
+        */
         'swear' => [
             'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
 
@@ -141,8 +146,8 @@ return [
             ],
 
             'words' => [
-                'joe',
-                'no'
+//                'joe',
+//                'no'
             ],
 
             'punish' => [
@@ -153,6 +158,52 @@ return [
                 'penalty_seconds' => 5
             ],
 
+
+            'trigger_response' => [
+                'json' => [
+                    'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+                ],
+                'html' => [
+                    'exception' => new RequestChecksumFailedException(),
+                ],
+            ],
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | SQL Injection
+        |--------------------------------------------------------------------------
+        */
+        'sqli' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_SQLI_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['put'],
+
+            'attack_score' => 7,
+
+            'routes' => [
+                'only' => [], // i.e. 'contact'
+                'except' => [], // i.e. 'admin/*'
+            ],
+
+            'inputs' => [
+                'only' => [], // i.e. 'first_name'
+                'except' => [], // i.e. 'password'
+            ],
+
+            'patterns' => [
+                '#[\d\W](bounty)[\d\W]#is',
+                '#[\d\W](union select|union join|union distinct)[\d\W]#is',
+                '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#is',
+            ],
+
+            'punish' => [
+                'score' => 8000,
+                'within_minutes' => 60 * 24,
+                // note this will log increase on every violation that leads to a block
+                // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+                'penalty_seconds' => 5
+            ],
 
             'trigger_response' => [
                 'json' => [

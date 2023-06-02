@@ -22,31 +22,6 @@ abstract class Middleware
         $this->config = new ConfigMiddleware($this->middleware);
     }
 
-    protected function getAttackScore(): int
-    {
-        return $this->config->attackScore;
-    }
-
-    private function getConfig(Request $request, ?string $checker = null): ConfigResponse
-    {
-        $configName = 'trigger_response';
-        if ($request->wantsJson()) {
-            $configName .='.json';
-        } else {
-            $configName .='.html';
-        }
-
-        $generalResponse = config("tripwire.$configName");
-        $triggerResponse = $generalResponse;
-        if ($checker) {
-            $checkerResponse = config('tripwire.middleware.' . $checker. '.'. "$configName", false);
-            if (is_array($checkerResponse)) {
-                $triggerResponse = $checkerResponse;
-            }
-        }
-
-        return new ConfigResponse($request, $triggerResponse);
-    }
 
     public function handle(Request $request, Closure $next)
     {
@@ -71,6 +46,32 @@ abstract class Middleware
         dd('not tripped');
 
         return $next($request);
+    }
+
+    protected function getAttackScore(): int
+    {
+        return $this->config->attackScore;
+    }
+
+    private function getConfig(Request $request, ?string $checker = null): ConfigResponse
+    {
+        $configName = 'trigger_response';
+        if ($request->wantsJson()) {
+            $configName .='.json';
+        } else {
+            $configName .='.html';
+        }
+
+        $generalResponse = config("tripwire.$configName");
+        $triggerResponse = $generalResponse;
+        if ($checker) {
+            $checkerResponse = config('tripwire.middleware.' . $checker. '.'. "$configName", false);
+            if (is_array($checkerResponse)) {
+                $triggerResponse = $checkerResponse;
+            }
+        }
+
+        return new ConfigResponse($request, $triggerResponse);
     }
 
     public function skip($request)
@@ -105,11 +106,12 @@ abstract class Middleware
 
     public function isAttack($patterns): bool
     {
+
         $violations = [];
         foreach ($patterns as $pattern) {
             $this->matchResults($pattern, $this->request->input(), $violations);
         }
-
+        //dd('c', $violations);
         if (!empty($violations))  {
             $this->attackFound($violations);
         }
@@ -122,15 +124,13 @@ abstract class Middleware
     public function matchResults($pattern, $input, &$violations)
     {
         $result = false;
-
         if ( !is_array($input) && !is_string($input)) {
             return false;
         }
 
         if ( !is_array($input)) {
             $input = $this->prepareInput($input);
-
-            return preg_match($pattern, $input);
+            return preg_match($pattern, $input, $matches);
         }
 
         foreach ($input as $key => $value) {
@@ -148,9 +148,11 @@ abstract class Middleware
                 return true;
             }
 
+
             $value = $this->prepareInput($value);
 
             if ( $result = preg_match($pattern, $value, $matches)) {
+
                 $violations[] = $matches[0];
             }
         }
