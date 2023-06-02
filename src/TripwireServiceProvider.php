@@ -30,6 +30,8 @@ class TripwireServiceProvider extends ServiceProvider
         $this->registerMiddleware($router);
 
         $this->registerListeners();
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tripwire-laravel');
     }
 
     /**
@@ -48,6 +50,10 @@ class TripwireServiceProvider extends ServiceProvider
             $this->publishes([
                 self::CONFIG_FILE => config_path('tripwire.php'),
             ], 'config');
+
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-laravel'),
+            ]);
         }
     }
 

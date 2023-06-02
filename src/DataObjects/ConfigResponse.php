@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response as View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -87,7 +88,7 @@ class ConfigResponse
         return null;
     }
 
-    public function asView(array $data): ?Response
+    public function asView(array $data): ?View
     {
         if ($this->view) {
             return Response::view($this->view, $data, $this->code);

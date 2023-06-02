@@ -32,3 +32,5 @@ Signed-dated url per user
 record resets
 how to generate / give out ?
 
+Make all config, dataobjects
+

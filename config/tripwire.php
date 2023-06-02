@@ -69,7 +69,7 @@ return [
             'abort' => env('FIREWALL_BLOCK_ABORT', false),
         ],
         'html' => [
-           'exception' => new RequestChecksumFailedException(),
+            'view' => 'tripwire-laravel::blocked'
         ],
     ],
 
