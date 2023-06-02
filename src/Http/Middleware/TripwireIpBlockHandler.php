@@ -17,7 +17,8 @@ class TripwireIpBlockHandler
      */
     public function handle(Request $request, Closure $next)
     {
-        $ipAddress = IpAddress::get($request);
+        $ipAddressClass = config('tripwire.services.ip_address');
+        $ipAddress = $ipAddressClass::get($request);
 
         $blockRepository = new BlockRepository();
         if (!$blockedUntil = $blockRepository->isIpBlockedUntil($ipAddress)) {

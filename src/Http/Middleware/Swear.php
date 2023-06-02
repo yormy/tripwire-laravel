@@ -44,13 +44,16 @@ class Swear  extends Middleware
         $logRepository = new LogRepository();
 
         $punishableTimeframe = (int)$this->config->punish['within_minutes'];
-        $ipAddress = IpAddress::get($this->request);
+
+        $ipAddressClass = config('tripwire.services.ip_address');
+        $ipAddress = $ipAddressClass::get($this->request);
 
         $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, ['test', 'SWEAR'], $ipAddress);
         $scoreByIp = $violationsByIp->get()->sum('event_score');
 
-        $userId = User::getId($this->request);
-        $userType = User::getType($this->request);
+        $userClass = config('tripwire.services.user');
+        $userId = $userClass::getId($this->request);
+        $userType = $userClass::getType($this->request);
         $scoreByUser = 0;
 
         $violationsByUser = null;
@@ -59,8 +62,8 @@ class Swear  extends Middleware
             $scoreByUser = $violationsByUser->get()->sum('event_score');
         }
 
-        $requestSource = config('tripwire.actions.request_source');
-        $browserFingerprint =$requestSource::getBrowserFingerprint();
+        $requestSourceClass = config('tripwire.services.request_source');
+        $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
         $scoreByBrowser = 0;
         $violationsByBrowser = null;
         if ($browserFingerprint) {

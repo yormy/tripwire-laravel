@@ -5,7 +5,9 @@ use Mexion\BedrockUsers\Models\Admin;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
+use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
+use Yormy\TripwireLaravel\Services\User;
 
 return [
     /*
@@ -35,8 +37,10 @@ return [
         'browser_fingerprint'=> 'session_id'
     ],
 
-    'actions' => [
-        'request_source' => RequestSource::class
+    'services' => [
+        'request_source' => RequestSource::class,
+        'user' => User::class,
+        'ip_address' => IpAddress::class
     ],
     /*
     |--------------------------------------------------------------------------

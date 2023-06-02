@@ -88,8 +88,9 @@ class LogRepository
 
     private function addUser(Request $request, array $data): array
     {
-        $userId = User::getId($request);
-        $userType = User::getType($request);
+        $userClass = config('tripwire.services.user');
+        $userId = $userClass::getId($request);
+        $userType = $userClass::getType($request);
 
         $data['user_id'] = $userId ?? null;
         $data['user_type'] = $userType  ?? null;
@@ -99,10 +100,10 @@ class LogRepository
 
     private function addUserAgent(array $data): array
     {
-        $requestSource = config('tripwire.actions.request_source');
-        $data['user_agent'] = $requestSource::getUserAgent();
-        $data['robot_crawler'] = $requestSource::getRobot();
-        $data['browser_fingerprint'] = $requestSource::getBrowserFingerprint();
+        $requestSourceClass = config('tripwire.services.request_source');
+        $data['user_agent'] = $requestSourceClass::getUserAgent();
+        $data['robot_crawler'] = $requestSourceClass::getRobot();
+        $data['browser_fingerprint'] = $requestSourceClass::getBrowserFingerprint();
 
         return $data;
     }

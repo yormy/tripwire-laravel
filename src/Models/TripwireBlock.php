@@ -78,9 +78,9 @@ class TripwireBlock extends Model
             $tarpit->reasons = json_encode($reasons);
         }
 
-        $requestSource = config('tripwire.actions.request_source');
-        $tarpit->user_agent = $requestSource::getUserAgent();
-        $tarpit->browser_fingerprint = $requestSource::getBrowserFingerprint();
+        $requestSourceClass = config('tripwire.services.request_source');
+        $tarpit->user_agent = $requestSourceClass::getUserAgent();
+        $tarpit->browser_fingerprint = $requestSourceClass::getBrowserFingerprint();
 
         $tarpit->message = $message;
 
