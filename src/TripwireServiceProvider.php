@@ -49,10 +49,14 @@ class TripwireServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 self::CONFIG_FILE => config_path('tripwire.php'),
-            ], 'config');
+            ], 'tripwire-config');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-laravel'),
+                __DIR__.'/../database/migrations/' => database_path('migrations')
+            ], 'tripwire-migrations');
+
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-views'),
             ]);
         }
     }
