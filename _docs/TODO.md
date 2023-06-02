@@ -2,10 +2,10 @@
 Blocks before user is known
 Blocks after user is known
 BlockFingerpinthandler + BlockUserHAndler
+if (Routes::skipRoute($request, config('tripwire.routes'))) {
+normalize roiutes global and in swear -> config?
 
-field encryption
 
-'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
 
 Extend tripwires:
 listen to login events and take actiosn
@@ -21,6 +21,8 @@ Way of reset for hackers, how
 -record resets
 -how to generate / give out ?
 $table->string('xid')->unique(); // customizable ? // still neeeded ?
+
+field encryption
 
 # Unit tests
 

@@ -74,6 +74,11 @@ return [
 
     'block_code' => env('FIREWALL_BLOCK_CODE', 406),
 
+    'routes' => [
+        'only' => [], // i.e. 'contact'
+        'except' => ['logout'], // i.e. 'admin/*', no leading /
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Block Response

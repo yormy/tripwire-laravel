@@ -11,18 +11,22 @@ use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Carbon\Carbon;
+use Yormy\TripwireLaravel\Services\Routes;
 
 abstract class TripwireBlockHandler
 {
 
     protected abstract function isBlockedUntil(Request $request): ?Carbon;
 
-
     /**
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
+        if (Routes::skipRoute($request, config('tripwire.routes'))) {
+            return  $next($request);
+        }
+
         if (!$blockedUntil = $this->isBlockedUntil($request)) {
             return  $next($request);
         }

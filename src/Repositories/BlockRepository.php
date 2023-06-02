@@ -59,6 +59,22 @@ class BlockRepository
         return $blocked?->blocked_until;
     }
 
+    public function isUserBlockedUntil(int $userId, string $userType): ?Carbon
+    {
+        if (!$userId) {
+            return null;
+        }
+
+        $blocked =  $this->model
+            ->where('blocked_user_id', $userId)
+            ->where('blocked_user_type', $userType)
+            ->where('blocked_until', '>', Carbon::now())
+            ->latest()
+            ->first();
+
+        return $blocked?->blocked_until;
+    }
+
     private function getBlockedUntil(
         int $penaltySeconds,
         int $repeaterCount
