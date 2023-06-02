@@ -3,7 +3,9 @@ disable middleware on certain routes
 Abstraction o/ or groups of checkers easy include in kernel
 BOT checker is not on input level, but on all levels so should be logically in the first steps of the request.
 LOG referer ?
-training mode, log, but no blocks
+training mode, log, but no blocks, or blocks are not activated => but blocks are recorded
+Whitelist ip: do not check, or only those ips are allowed in the system
+Update system env variables for geo ip keys //env('IPSTACK_KEY') (ip lookup)
 
 Extend tripwires:
 listen to login events and take actiosn

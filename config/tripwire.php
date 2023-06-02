@@ -384,7 +384,7 @@ return [
             'attack_score' => 9,
 
             // https://github.com/jenssegers/agent
-            'agents' => [
+            'custom' => [
                 'browsers' => [
                     'block' => [], // i.e. 'IE', 'CHROME', 'FIREFOX'
                 ],
@@ -402,6 +402,46 @@ return [
                     'block' => [], // i.e. 'AppleWebKit'
                 ],
             ]
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | GEO
+        |--------------------------------------------------------------------------
+        */
+        'geo' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_GEO_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['all'],
+
+            'attack_score' => 9,
+
+            'custom' => [
+                // ipapi, extremeiplookup, ipstack, ipdata, ipinfo, ipregistry
+                'service' => 'ipstack',
+
+                'continents' => [
+                    'allow' => [], // i.e. 'Africa'
+                    'block' => [], // i.e. 'Europe'
+                ],
+
+                'regions' => [
+                    'allow' => [], // i.e. 'California'
+                    'block' => [], // i.e. 'Nevada'
+                ],
+
+                'countries' => [
+                    'allow' => [], // i.e. 'Albania'
+                    'block' => [], // i.e. 'Madagascar'
+                ],
+
+                'cities' => [
+                    'allow' => [], // i.e. 'Istanbul'
+                    'block' => [], // i.e. 'London'
+                ],
+
+            ]
+
         ],
     ],
 ];
