@@ -394,7 +394,7 @@ return [
                 ],
 
                 'devices' => [
-                    'block' => [], // ie DESTOP, TABLET, MOBILE
+                    'block' => [], // ie DESTOP, TABLET, MOBILE, PHONE
                 ],
 
                 'properties' => [

@@ -32,6 +32,11 @@ class RequestSource
         return (new Agent())->isMobile();
     }
 
+    public static function isPhone(): bool
+    {
+        return (new Agent())->isPhone();
+    }
+
     public static function isDesktop(): bool
     {
         return (new Agent())->isDesktop();

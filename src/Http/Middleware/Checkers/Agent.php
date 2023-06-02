@@ -42,6 +42,11 @@ class Agent extends BaseChecker
             $violations[] = $blocked;
         }
 
+        if($maliciousAgent = $this->isMaliciousAgent()) {
+            $violations[] = $maliciousAgent;
+        }
+
+
         if (!empty($violations))  {
             $this->attackFound($violations);
         }
@@ -51,6 +56,12 @@ class Agent extends BaseChecker
 
     private function isDeviceBlocked(array $devices): ?string
     {
+        if (RequestSource::isPhone()) {
+            if (in_array('PHONE', $devices)) {
+                return 'PHONE';
+            }
+        }
+
         if (RequestSource::isMobile()) {
             if (in_array('MOBILE', $devices)) {
                 return 'MOBILE';
@@ -66,6 +77,30 @@ class Agent extends BaseChecker
         if (RequestSource::isDesktop()) {
             if (in_array('DESKTOP', $devices)) {
                 return 'DESKTOP';
+            }
+        }
+
+        return null;
+    }
+
+
+    protected function isMaliciousAgent()
+    {
+        $agent = RequestSource::getUserAgent();
+
+        if (empty($agent) || ($agent == '-') || strstr($agent, '<?')) {
+            return [];
+        }
+
+        $patterns = [
+            '@"feed_url@',
+            '@}__(.*)|O:@',
+            '@J?Simple(p|P)ie(Factory)?@',
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $agent, $matches)) {
+                return $matches[0];
             }
         }
 
