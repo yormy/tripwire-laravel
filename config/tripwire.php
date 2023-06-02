@@ -422,7 +422,7 @@ return [
 
                 'continents' => [
                     'allow' => [], // i.e. 'Africa'
-                    'block' => [], // i.e. 'Europe'
+                    'block' => ['Europe'], // i.e. 'Europe'
                 ],
 
                 'regions' => [

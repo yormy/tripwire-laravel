@@ -21,21 +21,21 @@ class Geo extends BaseChecker
 
     public function isAttack($patterns): bool
     {
-//        $places = ['continents', 'regions', 'countries', 'cities'];
+        $places = ['continents', 'regions', 'countries', 'cities'];
 
         if (! $location = $this->getLocation()) {
             return false;
         }
 
+        $location = new \StdClass();
+        $location->continent ='Europe';
 
+        $continent = 'Europe';
+        $continentsGuards = $this->config->custom['continents'];
 
-
-
-
-
-        $agents = $this->config->agents;
-        if (empty($agents)) {
-            return false;
+        $violations = [];
+        if($this->isGuardAttack($continent, $continentsGuards)) {
+            $violations[] = $continent;
         }
 
         if (!empty($violations)) {
@@ -48,12 +48,11 @@ class Geo extends BaseChecker
     protected function getLocation()
     {
         $service = $this->config->custom['service'];
-        $apiKey = '';
+        $service ='ipstack';
+        $apiKey = '9a1d0cfade29c56ac41dc33da9ac4358';
         //env('IPSTACK_KEY')
         //env('IPINFO_KEY')
         $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
         $location = $ipLookup->get();
-        dd($location);
-        dd('ooooo');
     }
 }
