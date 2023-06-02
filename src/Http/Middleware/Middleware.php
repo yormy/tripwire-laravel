@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
-use Yormy\TripwireLaravel\DataObjects\Config;
+use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 
 abstract class Middleware
 {
@@ -18,7 +18,7 @@ abstract class Middleware
         $this->middleware = strtolower((new \ReflectionClass($this))->getShortName());
         $this->user_id = auth()->id() ?: 0;
 
-        $this->config = new Config($this->middleware);
+        $this->config = new ConfigMiddleware($this->middleware);
     }
 
     protected function getAttackScore(): int

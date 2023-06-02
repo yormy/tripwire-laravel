@@ -3,8 +3,6 @@ Blocks before user is known
 Blocks after user is known
 BlockFingerpinthandler + BlockUserHAndler
 
-
-
 Make all config, dataobjects
 
 field encryption

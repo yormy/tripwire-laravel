@@ -5,7 +5,7 @@ namespace Yormy\TripwireLaravel\DataObjects;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
 
-class Config
+class ConfigMiddleware
 {
     public bool $enabled;
     public array $methods;
@@ -14,7 +14,7 @@ class Config
 
     public array $inputs;
 
-    public array $punish;
+    public ConfigPunish $punish;
 
     public array $words;
 
@@ -35,9 +35,7 @@ class Config
         $this->patterns = $data['patterns'] ?? [];
         $this->attackScore = $data['attack_score'];
 
-        $this->punish = $data['punish'];
-        // validate that $penaltySeconds cannot be 1, 0 or 2 is ok, 5  1 will lead to non logaritmic penalty
-
+        $this->punish = new ConfigPunish($data['punish']);
     }
 
     public function isEnabled(): bool

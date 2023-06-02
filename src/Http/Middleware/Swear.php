@@ -43,7 +43,7 @@ class Swear  extends Middleware
     {
         $logRepository = new LogRepository();
 
-        $punishableTimeframe = (int)$this->config->punish['within_minutes'];
+        $punishableTimeframe = (int)$this->config->punish->withinMinutes;
 
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($this->request);
@@ -73,11 +73,10 @@ class Swear  extends Middleware
 
         $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
 
-        if ($maxScore > (int)$this->config->punish['score']) {
+        if ($maxScore > (int)$this->config->punish->score) {
             $blockRepository = new BlockRepository();
-            $penaltySeconds = 5; // from config
             $blockItem = $blockRepository->add(
-                penaltySeconds: $penaltySeconds,
+                penaltySeconds: (int)$this->config->punish->penaltySeconds,
                 ipAddress: $ipAddress,
                 userId: $userId,
                 userType: $userType,
