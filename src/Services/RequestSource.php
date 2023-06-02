@@ -14,13 +14,27 @@ class RequestSource
 
     public static function getPlatform(): string
     {
-        return 'x';
         return (new Agent())->platform();
     }
 
     public static function getBrowser(): string
     {
         return (new Agent())->browser();
+    }
+
+    public static function isTablet(): bool
+    {
+        return (new Agent())->isTablet();
+    }
+
+    public static function isMobile(): bool
+    {
+        return (new Agent())->isMobile();
+    }
+
+    public static function isDesktop(): bool
+    {
+        return (new Agent())->isDesktop();
     }
 
     public static function getReferer(): string

@@ -386,18 +386,15 @@ return [
             // https://github.com/jenssegers/agent
             'agents' => [
                 'browsers' => [
-                    'allow' => [], // i.e. 'Chrome', 'Firefox'
-                    'block' => [''], // i.e. 'IE'
+                    'block' => [], // i.e. 'IE', 'CHROME', 'FIREFOX'
                 ],
 
                 'platforms' => [
-                    'allow' => [], // i.e. 'Ubuntu', 'Windows'
-                    'block' => [], // i.e. 'OS X'
+                    'block' => [], // i.e. 'OS X', 'UBUNTU', 'WINDOWS
                 ],
 
                 'devices' => [
-                    'allow' => [], // i.e. 'Desktop', 'Mobile'
-                    'block' => [], // i.e. 'Tablet'
+                    'block' => [], // ie DESTOP, TABLET, MOBILE
                 ],
 
                 'properties' => [
