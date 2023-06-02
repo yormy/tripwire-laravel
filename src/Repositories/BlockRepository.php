@@ -48,6 +48,17 @@ class BlockRepository
         return $blocked?->blocked_until;
     }
 
+    public function isBrowserBlockedUntil(string $browserFingerprint): ?Carbon
+    {
+        if (!$browserFingerprint) {
+            return null;
+        }
+
+        $blocked =  $this->model->where('blocked_browser_fingerprint', $browserFingerprint)->where('blocked_until', '>', Carbon::now())->latest()->first();
+
+        return $blocked?->blocked_until;
+    }
+
     private function getBlockedUntil(
         int $penaltySeconds,
         int $repeaterCount
