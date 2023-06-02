@@ -11,7 +11,6 @@ field encryption
 
 
 'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
-refactor helper->public function isInput($name, $middleware = null)
 
 Extend tripwires:
 listen to login events and take actiosn
