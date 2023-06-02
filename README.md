@@ -20,6 +20,7 @@ php artisan migrate
 ```
 
 # Middleware Setup
+Order of middleware is when it trips, the first tripped wire will explore, the rest will not be checked
 
 ### Start of request cycle
 ```

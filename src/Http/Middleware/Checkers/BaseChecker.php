@@ -47,7 +47,6 @@ abstract class BaseChecker
 
             return $respond->respondWithHtml();
         }
-        dd('not tripped');
 
         return $next($request);
     }

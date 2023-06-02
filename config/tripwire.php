@@ -146,8 +146,7 @@ return [
             ],
 
             'words' => [
-//                'joe',
-//                'no'
+               'blow',
             ],
 
             'punish' => [
