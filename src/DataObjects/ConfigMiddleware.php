@@ -15,6 +15,8 @@ class ConfigMiddleware
 
     public array $inputs;
 
+    public array $crawlers;
+
     public ConfigPunish $punish;
 
     public array $words;
@@ -41,6 +43,8 @@ class ConfigMiddleware
         } else {
             $this->punish = new ConfigPunish(config('tripwire.punish'));
         }
+
+        $this->crawlers = $data['crawlers'] ?? [];
 
     }
 

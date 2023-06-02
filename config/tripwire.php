@@ -283,5 +283,25 @@ return [
                 '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i'
             ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | BOT
+        |--------------------------------------------------------------------------
+        */
+        'bot' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_BOT_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['all'],
+
+            'attack_score' => 9,
+
+            // https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
+            'crawlers' => [
+                'allow' => ['s'], // i.e. 'GoogleSites', 'GuzzleHttp'
+                'block' => [], // i.e. 'Holmes'
+            ],
+
+        ],
     ],
 ];

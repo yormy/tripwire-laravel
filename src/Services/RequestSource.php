@@ -11,6 +11,12 @@ class RequestSource
         return $_SERVER['HTTP_USER_AGENT'];
     }
 
+    public static function isRobot(): bool
+    {
+        $agent = new Agent();
+        return $agent->isRobot();
+    }
+
     public static function getRobot(): string
     {
         $agent = new Agent();
