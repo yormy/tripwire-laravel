@@ -6,9 +6,21 @@ use Jenssegers\Agent\Agent;
 
 class RequestSource
 {
+
     public static function getUserAgent(): string
     {
         return $_SERVER['HTTP_USER_AGENT'];
+    }
+
+    public static function getPlatform(): string
+    {
+        return 'x';
+        return (new Agent())->platform();
+    }
+
+    public static function getBrowser(): string
+    {
+        return (new Agent())->browser();
     }
 
     public static function getReferer(): string
@@ -18,8 +30,8 @@ class RequestSource
 
     public static function isRobot(): bool
     {
-        $agent = new Agent();
-        return $agent->isRobot();
+
+        return (new Agent())->isRobot();
     }
 
     public static function getRobot(): string

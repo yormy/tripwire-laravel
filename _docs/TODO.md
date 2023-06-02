@@ -3,6 +3,7 @@ disable middleware on certain routes
 Abstraction o/ or groups of checkers easy include in kernel
 BOT checker is not on input level, but on all levels so should be logically in the first steps of the request.
 LOG referer ?
+training mode, log, but no blocks
 
 Extend tripwires:
 listen to login events and take actiosn

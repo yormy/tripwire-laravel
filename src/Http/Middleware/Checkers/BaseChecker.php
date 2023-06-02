@@ -234,7 +234,7 @@ abstract class BaseChecker
             return false;
         }
 
-        if ( empty($this->config->guards)) {
+        if ( empty($guards)) {
             return false;
         }
 

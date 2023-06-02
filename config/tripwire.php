@@ -370,5 +370,41 @@ return [
                 'block' => ['s'],
             ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | AGENT
+        |--------------------------------------------------------------------------
+        */
+        'agent' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_AGENT_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['all'],
+
+            'attack_score' => 9,
+
+            // https://github.com/jenssegers/agent
+            'agents' => [
+                'browsers' => [
+                    'allow' => [], // i.e. 'Chrome', 'Firefox'
+                    'block' => [''], // i.e. 'IE'
+                ],
+
+                'platforms' => [
+                    'allow' => [], // i.e. 'Ubuntu', 'Windows'
+                    'block' => [], // i.e. 'OS X'
+                ],
+
+                'devices' => [
+                    'allow' => [], // i.e. 'Desktop', 'Mobile'
+                    'block' => [], // i.e. 'Tablet'
+                ],
+
+                'properties' => [
+                    'allow' => [], // i.e. 'Gecko', 'Version/5.1.7'
+                    'block' => [], // i.e. 'AppleWebKit'
+                ],
+            ]
+        ],
     ],
 ];

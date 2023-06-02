@@ -17,6 +17,8 @@ class ConfigMiddleware
 
     public array $guards;
 
+    public array $agents;
+
     public ConfigPunish $punish;
 
     public array $words;
@@ -45,6 +47,7 @@ class ConfigMiddleware
         }
 
         $this->guards = $data['guards'] ?? [];
+        $this->agents = $data['agents'] ?? [];
     }
 
     public function isEnabled(): bool
