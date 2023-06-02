@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Http\Middleware;
+namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
 use Closure;
 use Illuminate\Support\Facades\Redirect;
@@ -13,7 +13,7 @@ use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\Services\Routes;
 
-abstract class Middleware
+abstract class BaseChecker
 {
     protected abstract function attackFound(array $violations): void;
 

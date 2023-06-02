@@ -2,10 +2,9 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Http\Middleware\Middleware;
 use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
 
-class Swear  extends Middleware
+class Swear  extends BaseChecker
 {
     protected function attackFound(array $violations): void
     {

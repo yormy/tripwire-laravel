@@ -2,11 +2,9 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Http\Middleware\Middleware;
 use Yormy\TripwireLaravel\Observers\Events\SqliFailedEvent;
-use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
 
-class Sqli extends Middleware
+class Sqli extends BaseChecker
 {
 
     protected function attackFound(array $violations): void
