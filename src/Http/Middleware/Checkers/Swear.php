@@ -4,11 +4,19 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
 use Yormy\TripwireLaravel\Http\Middleware\Middleware;
 use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
-use Yormy\TripwireLaravel\Repositories\BlockRepository;
-use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class Swear  extends Middleware
 {
+    protected function attackFound(array $violations): void
+    {
+        event(new SwearFailedEvent(
+            attackScore: $this->getAttackScore(),
+            violations: $violations
+        ));
+
+        $this->blockIfNeeded();
+    }
+
     public function getPatterns()
     {
         $patterns = [];
@@ -24,16 +32,5 @@ class Swear  extends Middleware
         return $patterns;
     }
 
-    protected function attackFound(array $violations): void
-    {
-        $attackScore = $this->getAttackScore();
 
-        event(new SwearFailedEvent(
-            attackScore: $attackScore,
-            violations: $violations
-        ));
-
-        $this->blockIfNeeded();
-
-    }
 }

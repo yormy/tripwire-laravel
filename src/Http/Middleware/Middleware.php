@@ -15,6 +15,8 @@ use Yormy\TripwireLaravel\Services\Routes;
 
 abstract class Middleware
 {
+    protected abstract function attackFound(array $violations): void;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -121,7 +123,6 @@ abstract class Middleware
         return !empty($violations);
     }
 
-    protected abstract function attackFound(array $violations): void;
 
     public function matchResults($pattern, $input, &$violations)
     {

@@ -12,6 +12,14 @@ abstract class LoggableEvent implements LoggableEventInterface
 
     protected int $score = 10;
 
+    public function __construct(
+        protected int $attackScore,
+        protected ?array $violations = null,
+        protected ?string $comment = null
+    ) {
+        $this->score = $attackScore;
+    }
+
     public function getScore(int $score = null): int
     {
         if ($score) {
@@ -27,6 +35,10 @@ abstract class LoggableEvent implements LoggableEventInterface
             return $violation;
         }
 
+        if (!empty($this->violations)) {
+            return implode(',', $this->violations);
+        }
+
         return '';
     }
 
@@ -36,6 +48,6 @@ abstract class LoggableEvent implements LoggableEventInterface
             return $comment;
         }
 
-        return '';
+        return $this->comment ?? '';
     }
 }
