@@ -14,9 +14,7 @@ class Routes
         }
 
         foreach ($routesConfig['except'] as $except) {
-            if ( !static::isValid($except)) {
-                throw new InvalidArgumentException('routes cannot start with leading \\');
-            }
+            static::checkValid($except);
 
             if (! $request->is($except)) {
                 continue;
@@ -26,9 +24,8 @@ class Routes
         }
 
         foreach ($routesConfig['only'] as $only) {
-            if ( !static::isValid($only)) {
-                throw new InvalidArgumentException('routes cannot start with leading \\');
-            }
+            static::checkValid($except);
+
             if ($request->is($only)) {
                 continue;
             }
@@ -39,8 +36,10 @@ class Routes
         return false;
     }
 
-    private static function isValid(string $route)
+    private static function checkValid(string $route): void
     {
-        return !str_starts_with($route, '/');
+        if (!str_starts_with($route, '/')) {
+            throw new InvalidArgumentException('routes cannot start with leading \\');
+        }
     }
 }
