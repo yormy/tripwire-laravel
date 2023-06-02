@@ -109,12 +109,11 @@ abstract class BaseChecker
 
     public function isAttack($patterns): bool
     {
-
         $violations = [];
         foreach ($patterns as $pattern) {
             $this->matchResults($pattern, $this->request->input(), $violations);
         }
-        //dd('c', $violations);
+
         if (!empty($violations))  {
             $this->attackFound($violations);
         }
@@ -150,11 +149,9 @@ abstract class BaseChecker
                 return true;
             }
 
-
             $value = $this->prepareInput($value);
 
             if ( $result = preg_match($pattern, $value, $matches)) {
-
                 $violations[] = $matches[0];
             }
         }

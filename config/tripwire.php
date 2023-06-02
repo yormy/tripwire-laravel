@@ -213,5 +213,49 @@ return [
                 ],
             ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Local File Inclusion
+        |--------------------------------------------------------------------------
+        */
+        'lfi' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_LFI_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['get', 'delete', 'put'],
+
+            'attack_score' => 5,
+
+            'routes' => [
+                'only' => [], // i.e. 'contact'
+                'except' => [], // i.e. 'admin/*'
+            ],
+
+            'inputs' => [
+                'only' => [], // i.e. 'first_name'
+                'except' => [], // i.e. 'password'
+            ],
+
+            'patterns' => [
+                '#\.\/#is',
+            ],
+
+            'punish' => [
+                'score' => 8000,
+                'within_minutes' => 60 * 24,
+                // note this will log increase on every violation that leads to a block
+                // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+                'penalty_seconds' => 5
+            ],
+
+            'trigger_response' => [
+                'json' => [
+                    'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+                ],
+                'html' => [
+                    'exception' => new RequestChecksumFailedException(),
+                ],
+            ],
+        ],
     ],
 ];
