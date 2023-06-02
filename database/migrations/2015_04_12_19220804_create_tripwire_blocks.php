@@ -29,6 +29,8 @@ return new class extends Migration
 
             $table->string('response_message')->nullable();
 
+            $table->boolean('manually_blocked')->default(false);
+
             $table->dateTime('blocked_until')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->timestamps();
