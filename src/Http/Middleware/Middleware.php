@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
+use Yormy\TripwireLaravel\Services\Routes;
 
 abstract class Middleware
 {
@@ -75,6 +76,10 @@ abstract class Middleware
     public function skip($request)
     {
         if ($this->config->isDisabled()) {
+            return true;
+        }
+
+        if (Routes::skipRoute($request, config('tripwire.whitelist.routes'))) {
             return true;
         }
 
