@@ -70,14 +70,12 @@ return [
 
     'whitelist' => [
         'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
+        'routes' => [
+            'except' => ['api/*', 'logout'], // i.e. 'admin/*', no leading /
+        ],
     ],
 
     'block_code' => env('FIREWALL_BLOCK_CODE', 406),
-
-    'routes' => [
-        'only' => [], // i.e. 'contact'
-        'except' => ['logout'], // i.e. 'admin/*', no leading /
-    ],
 
     /*
     |--------------------------------------------------------------------------

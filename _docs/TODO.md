@@ -2,8 +2,7 @@
 Blocks before user is known
 Blocks after user is known
 BlockFingerpinthandler + BlockUserHAndler
-if (Routes::skipRoute($request, config('tripwire.routes'))) {
-normalize roiutes global and in swear -> config?
+User overrides for skiproutes ?
 
 
 
