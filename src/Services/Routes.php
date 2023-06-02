@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request ;
 
 class Routes
@@ -13,24 +12,28 @@ class Routes
             return false;
         }
 
-        foreach ($routesConfig['except'] as $except) {
-            static::checkValid($except);
+        if ($routesConfig['except'] ?? false) {
+            foreach ($routesConfig['except'] as $except) {
+                static::checkValid($except);
 
-            if (! $request->is($except)) {
-                continue;
+                if (!$request->is($except)) {
+                    continue;
+                }
+
+                return true;
             }
-
-            return true;
         }
 
-        foreach ($routesConfig['only'] as $only) {
-            static::checkValid($except);
+        if ($routesConfig['only'] ?? false) {
+            foreach ($routesConfig['only'] as $only) {
+                static::checkValid($except);
 
-            if ($request->is($only)) {
-                continue;
+                if ($request->is($only)) {
+                    continue;
+                }
+
+                return true;
             }
-
-            return true;
         }
 
         return false;
@@ -38,8 +41,8 @@ class Routes
 
     private static function checkValid(string $route): void
     {
-        if (!str_starts_with($route, '/')) {
-            throw new InvalidArgumentException('routes cannot start with leading \\');
+        if (str_starts_with($route, '/')) {
+            throw new \Exception('routes cannot start with leading \\');
         }
     }
 }

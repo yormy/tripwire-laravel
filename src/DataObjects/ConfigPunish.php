@@ -2,8 +2,6 @@
 
 namespace Yormy\TripwireLaravel\DataObjects;
 
-use http\Exception\InvalidArgumentException;
-
 class ConfigPunish
 {
     public int $score;
@@ -23,7 +21,7 @@ class ConfigPunish
         // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
         if ($penaltySeconds = $data['penalty_seconds'] ?? false) {
             if ($penaltySeconds === 1) {
-                throw new InvalidArgumentException('Penalty seconds cannot be 1, this will invalidate log penaly settings and all penalties will be just 1 sec');
+                throw new \Exception('Penalty seconds cannot be 1, this will invalidate log penaly settings and all penalties will be just 1 sec');
             }
 
             $this->penaltySeconds = $penaltySeconds;
