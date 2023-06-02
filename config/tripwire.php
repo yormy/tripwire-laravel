@@ -57,9 +57,32 @@ return [
 
     'block_code' => env('FIREWALL_BLOCK_CODE', 406),
 
-    'response' => [
-        'block' => [
-            //'code' => 300,//env('FIREWALL_BLOCK_CODE'),
+    /*
+    |--------------------------------------------------------------------------
+    | Block Response
+    |--------------------------------------------------------------------------
+    | Specify how the system should handle a blocking request
+    |
+    */
+    'block_response' => [
+        'json' => [
+            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+        ],
+        'html' => [
+           'exception' => new RequestChecksumFailedException(),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Trigger response
+    |--------------------------------------------------------------------------
+    | Specify how the default response should be if a tripwire is activated. This can be overwritten for specific tripwires
+    |
+    */
+
+    /*
+//'code' => 300,//env('FIREWALL_BLOCK_CODE'),
             'view' => env('FIREWALL_BLOCK_VIEW', null),
             //'redirectUrl' => env('FIREWALL_BLOCK_REDIRECT', null),
             'redirectUrl' => 'http://testapp.local/api/V1/member/account/profilenew',
@@ -67,6 +90,14 @@ return [
             //'exception' => new RequestChecksumFailedException(),
             'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
             'messageKey' => 'tripwide.blockie'
+     */
+
+    'trigger_response' => [
+        'json' => [
+            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+        ],
+        'html' => [
+            'exception' => new RequestChecksumFailedException(),
         ],
     ],
 
@@ -108,10 +139,13 @@ return [
             ],
 
 
-            'response' => [
-                'block' => [
-                    //'messageKey' => 'ja.hallo',
-                    'exception' => RequestChecksumFailedException::class,
+            'trigger_response' => [
+                'json' => [
+                    'abort' => env('FIREWALL_BLOCK_ABORT', false),
+                ],
+                'html' => [
+                    // 'exception' => new RequestChecksumFailedException(),
+                    'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
                 ],
             ],
         ],

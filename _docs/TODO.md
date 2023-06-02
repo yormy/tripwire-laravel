@@ -27,3 +27,8 @@ render view
 render json
 redirect
 
+Way of reset for hackers, how
+Signed-dated url per user
+record resets
+how to generate / give out ?
+

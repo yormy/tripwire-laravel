@@ -3,12 +3,12 @@
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 
-use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
+use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
-use Yormy\TripwireLaravel\Services\HashService;
 use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\Services\IpAddress;
+use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 
 class TripwireIpBlockHandler
 {
@@ -20,10 +20,18 @@ class TripwireIpBlockHandler
         $ipAddress = IpAddress::get($request);
 
         $blockRepository = new BlockRepository();
-        $message = $blockRepository->isIpBlocked($ipAddress);
-        dd($message);
+        if (!$blockedUntil = $blockRepository->isIpBlockedUntil($ipAddress)) {
+            return  $next($request);
+        }
 
-        // then respond
-        return  $next($request);
+        if ($request->wantsJson()) {
+            $blockResponse = new ConfigResponse($request, config('tripwire.block_response.json'));
+            $respond = new ResponseDeterminer($blockResponse);
+            return $respond->respondWithJson();
+        }
+
+        $blockResponse = new ConfigResponse($request, config('tripwire.block_response.html'));
+        $respond = new ResponseDeterminer($blockResponse);
+        return $respond->respondWithHtml();
     }
 }

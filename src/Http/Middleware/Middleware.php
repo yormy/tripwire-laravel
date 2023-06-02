@@ -2,12 +2,11 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
-// use Akaunting\Firewall\Events\AttackDetected;
-// use Akaunting\Firewall\Traits\Helper;
 use Closure;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 
 abstract class Middleware
 {
@@ -27,6 +26,27 @@ abstract class Middleware
         return $this->config->attackScore;
     }
 
+    private function getConfig(Request $request, ?string $checker = null): ConfigResponse
+    {
+        $configName = 'trigger_response';
+        if ($request->wantsJson()) {
+            $configName .='.json';
+        } else {
+            $configName .='.html';
+        }
+
+        $generalResponse = config("tripwire.$configName");
+        $triggerResponse = $generalResponse;
+        if ($checker) {
+            $checkerResponse = config('tripwire.middleware.' . $checker. '.'. "$configName", false);
+            if (is_array($checkerResponse)) {
+                $triggerResponse = $checkerResponse;
+            }
+        }
+
+        return new ConfigResponse($request, $triggerResponse);
+    }
+
     public function handle(Request $request, Closure $next)
     {
         if ($this->skip($request)) {
@@ -35,57 +55,22 @@ abstract class Middleware
 
         $patterns = $this->getPatterns();
         if ($this->isAttack($patterns)) {
-            $configResponse = new ConfigResponse($request, $this->middleware);
-
+            $configResponse = $this->getConfig($request, $this->middleware);
+            $respond = new ResponseDeterminer($configResponse);
             if ($configResponse->asContinue()) {
                 return $next($request);
             }
 
             if ($request->wantsJson()) {
-                return $this->respondJson($configResponse);
+                return $respond->respondWithJson();
             }
 
-            return $this->respondHtml($configResponse);
+            return $respond->respondWithHtml();
         }
         dd('not tripped');
 
         return $next($request);
     }
-
-    public function respondJson(ConfigResponse $configResponse, array $data = [])
-    {
-        $configResponse->asException();
-
-        if ($response = $configResponse->asJson()) {
-            return $response;
-        }
-
-        if ($response = $configResponse->asGeneralMessage()) {
-            return $response;
-        }
-
-        $configResponse->asGeneralAbort();
-    }
-
-    public function respondHtml(ConfigResponse $configResponse, array $data = [])
-    {
-        $configResponse->asException();
-
-        if ($response = $configResponse->asView($data)) {
-            return $response;
-        }
-
-        if ($response = $configResponse->asRedirect($data)) {
-            return $response;
-        }
-
-        if ($response = $configResponse->asGeneralMessage()) {
-            return $response;
-        }
-
-        $configResponse->asGeneralAbort();
-    }
-
 
     public function skip($request)
     {

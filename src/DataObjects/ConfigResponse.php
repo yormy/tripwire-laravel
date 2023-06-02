@@ -1,12 +1,12 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Http\Middleware;
+namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
-use Exception;
 
 class ConfigResponse
 {
@@ -22,50 +22,41 @@ class ConfigResponse
 
     public ?string $exception = null;
 
-    public ?string $message = null;
+    public ?string $messageKey = null;
 
     public function __construct(
         private readonly Request $request,
-        private readonly ?string $checker = null
+        array $data
+
     ) {
-
-        $generalResponse = config('tripwire.response.block');
-        $blockResponse = $generalResponse;
-        if ($checker) {
-            $checkerResponse = config('tripwire.middleware.' . $checker. '.response.block', false);
-            if (is_array($checkerResponse)) {
-                $blockResponse = $checkerResponse;
-            }
-        }
-
-        if ($blockResponse['code'] ?? false) {
-            $this->code = $blockResponse['code'];
+        if ($data['code'] ?? false) {
+            $this->code = $data['code'];
         } else {
             $this->code = config('tripwire.block_code', 406);
         }
 
-        if ($blockResponse['view'] ?? false) {
-            $this->view = $blockResponse['view'];
+        if ($data['view'] ?? false) {
+            $this->view = $data['view'];
         }
 
-        if ($blockResponse['redirectUrl'] ?? false) {
-            $this->redirectUrl = $blockResponse['redirectUrl'];
+        if ($data['redirectUrl'] ?? false) {
+            $this->redirectUrl = $data['redirectUrl'];
         }
 
-        if ($blockResponse['abort'] ?? false) {
-            $this->abort = $blockResponse['abort'];
+        if ($data['abort'] ?? false) {
+            $this->abort = $data['abort'];
         }
 
-        if ($blockResponse['json'] ?? false) {
-            $this->json = $blockResponse['json'];
+        if ($data['json'] ?? false) {
+            $this->json = $data['json'];
         }
 
-        if ($blockResponse['exception'] ?? false) {
-            $this->exception = $blockResponse['exception'];
+        if ($data['exception'] ?? false) {
+            $this->exception = $data['exception'];
         }
 
-        if ($blockResponse['messageKey'] ?? false) {
-            $this->messageKey = $blockResponse['messageKey'];
+        if ($data['messageKey'] ?? false) {
+            $this->messageKey = $data['messageKey'];
         }
     }
 
@@ -105,7 +96,7 @@ class ConfigResponse
         return null;
     }
 
-    public function asRedirect(): ?Redirect
+    public function asRedirect(): ?RedirectResponse
     {
         if ($this->redirectUrl) {
             // prevent redir to self

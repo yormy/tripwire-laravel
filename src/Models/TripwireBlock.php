@@ -41,7 +41,7 @@ class TripwireBlock extends Model
     ];
 
     protected $casts = [
-        'blocked_until'
+        'blocked_until' => 'date'
     ];
 
     public function __construct(array $attributes = [])
