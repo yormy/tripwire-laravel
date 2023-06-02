@@ -71,7 +71,7 @@ return [
     'whitelist' => [
         'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
         'routes' => [
-            'except' => ['api/*', 'logout'], // i.e. 'admin/*', no leading /
+            'except' => ['logout'], // i.e. 'admin/*', no leading /
         ],
     ],
 
