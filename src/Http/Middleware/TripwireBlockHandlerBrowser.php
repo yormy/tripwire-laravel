@@ -3,12 +3,12 @@
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
-use Closure;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
-class TripwireBrowserBlockHandler extends TripwireBlockHandler
+class TripwireBlockHandlerBrowser extends TripwireBlockHandler
 {
-    protected function isBlockedUntil(): ?Carbon
+    protected function isBlockedUntil(Request $request): ?Carbon
     {
         $requestSourceClass = config('tripwire.services.request_source');
         $browserFingerprint =$requestSourceClass::getBrowserFingerprint();

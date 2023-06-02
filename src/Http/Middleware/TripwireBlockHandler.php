@@ -15,7 +15,7 @@ use Carbon\Carbon;
 abstract class TripwireBlockHandler
 {
 
-    protected abstract function isBlockedUntil(): ?Carbon;
+    protected abstract function isBlockedUntil(Request $request): ?Carbon;
 
 
     /**
@@ -23,7 +23,7 @@ abstract class TripwireBlockHandler
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$blockedUntil = $this->isBlockedUntil()) {
+        if (!$blockedUntil = $this->isBlockedUntil($request)) {
             return  $next($request);
         }
 
