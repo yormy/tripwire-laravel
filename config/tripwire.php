@@ -329,5 +329,26 @@ return [
                 'zlib://',
             ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | RFI
+        |--------------------------------------------------------------------------
+        */
+        'rfi' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_RFI_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['get', 'post', 'delete', 'put'],
+
+            'attack_score' => 9,
+
+            'patterns' => [
+                '#(http|ftp){1,1}(s){0,1}://.*#i',
+            ],
+
+            'exceptions' => [
+                'https://example.com'
+            ],
+        ],
     ],
 ];

@@ -10,7 +10,8 @@ throttle events
 other akunetic scanners
 other priportal / bounty scanners
 walk through akunetics
-
+null byte checker
+file checker
 
 # Management:
 Way of reset for hackers, how

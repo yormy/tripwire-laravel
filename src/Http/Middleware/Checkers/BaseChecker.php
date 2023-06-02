@@ -154,11 +154,20 @@ abstract class BaseChecker
             if ( $result = preg_match($pattern, $value, $matches)) {
                 $violations[] = $matches[0];
             }
+
+            if ($match = $this->matchAdditional($value))
+            {
+                $violations[] = $matches;
+            }
         }
 
         return $result;
     }
 
+    protected function matchAdditional($value): ?string
+    {
+        return null;
+    }
 
     protected function blockIfNeeded()
     {

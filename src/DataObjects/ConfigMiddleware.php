@@ -17,6 +17,8 @@ class ConfigMiddleware
 
     public array $crawlers;
 
+    public array $exceptions;
+
     public ConfigPunish $punish;
 
     public array $words;
@@ -45,6 +47,7 @@ class ConfigMiddleware
         }
 
         $this->crawlers = $data['crawlers'] ?? [];
+        $this->exceptions = $data['exceptions'] ?? [];
 
     }
 
