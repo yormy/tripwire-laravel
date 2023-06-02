@@ -228,6 +228,34 @@ abstract class BaseChecker
         return null;
     }
 
+    protected function isGuardAttack(string $value, array $guards): bool
+    {
+        if ( !$value) {
+            return false;
+        }
+
+        if ( empty($this->config->guards)) {
+            return false;
+        }
+
+        $attackFound = false;
+
+        if ( !empty($guards['allow']) && !in_array($value, $guards['allow'])) {
+            $attackFound = true;
+        }
+
+        if (!empty($guards['block']) && in_array($value, $guards['block'])) {
+            $attackFound = true;
+        }
+
+        if ($attackFound) {
+            $this->attackFound([$value]);
+            return true;
+        }
+
+        return false;
+    }
+
     public function prepareInput($value)
     {
         return $value;

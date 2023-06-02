@@ -25,27 +25,8 @@ class Bot extends BaseChecker
             return false;
         }
 
-        if ( empty($this->config->crawlers)) {
-            return false;
-        }
+        $robot = RequestSource::getRobot();
 
-        $crawlers = $this->config->crawlers;
-
-        $attackFound = false;
-
-        if ( !empty($crawlers['allow']) && !in_array(RequestSource::getRobot(), $crawlers['allow'])) {
-            $attackFound = true;
-        }
-
-        if (!empty($crawlers['block']) && in_array(RequestSource::getRobot(), $crawlers['block'])) {
-            $attackFound = true;
-        }
-
-        if ($attackFound) {
-            $this->attackFound([RequestSource::getRobot()]);
-            return true;
-        }
-
-        return false;
+        return $this->isGuardAttack($robot, $this->config->guards);
     }
 }
