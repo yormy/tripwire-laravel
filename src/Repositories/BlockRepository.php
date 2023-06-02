@@ -45,7 +45,7 @@ class BlockRepository
     {
         $blocked =  $this->model->where('blocked_ip', $ipAddress)->where('blocked_until', '>', Carbon::now())->latest()->first();
 
-        return $blocked->blocked_until;
+        return $blocked?->blocked_until;
     }
 
     private function getBlockedUntil(

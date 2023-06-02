@@ -99,10 +99,10 @@ class LogRepository
 
     private function addUserAgent(array $data): array
     {
-        $requestSource = new RequestSource();
-        $data['user_agent'] = $requestSource->getUserAgent();
-        $data['robot_crawler'] = $requestSource->getRobot();
-        $data['browser_fingerprint'] = $requestSource->getBrowserFingerprint();
+        $requestSource = config('tripwire.actions.request_source');
+        $data['user_agent'] = $requestSource::getUserAgent();
+        $data['robot_crawler'] = $requestSource::getRobot();
+        $data['browser_fingerprint'] = $requestSource::getBrowserFingerprint();
 
         return $data;
     }

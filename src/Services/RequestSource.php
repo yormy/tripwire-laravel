@@ -6,12 +6,12 @@ use Jenssegers\Agent\Agent;
 
 class RequestSource
 {
-    public function getUserAgent(): string
+    public static function getUserAgent(): string
     {
         return $_SERVER['HTTP_USER_AGENT'];
     }
 
-    public function getRobot(): string
+    public static function getRobot(): string
     {
         $agent = new Agent();
         if ($agent->isRobot()) {
@@ -20,7 +20,7 @@ class RequestSource
         return '';
     }
 
-    public function getBrowserFingerprint(): string
+    public static function getBrowserFingerprint(): string
     {
         $browserFingerprintKey = config('tripwire.cookie.browser_fingerprint');
         if (array_key_exists($browserFingerprintKey, $_COOKIE)) {

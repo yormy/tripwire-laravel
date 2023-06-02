@@ -26,6 +26,19 @@ class Swear  extends Middleware
         return $patterns;
     }
 
+    protected function attackFound(array $violations): void
+    {
+        $attackScore = $this->getAttackScore();
+
+        event(new SwearFailedEvent(
+            attackScore: $attackScore,
+            violations: $violations
+        ));
+
+        $this->blockIfNeeded();
+
+    }
+
     protected function blockIfNeeded()
     {
         $logRepository = new LogRepository();
@@ -46,7 +59,8 @@ class Swear  extends Middleware
             $scoreByUser = $violationsByUser->get()->sum('event_score');
         }
 
-        $browserFingerprint = (new RequestSource())->getBrowserFingerprint();
+        $requestSource = config('tripwire.actions.request_source');
+        $browserFingerprint =$requestSource::getBrowserFingerprint();
         $scoreByBrowser = 0;
         $violationsByBrowser = null;
         if ($browserFingerprint) {
@@ -55,6 +69,7 @@ class Swear  extends Middleware
         }
 
         $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
+
         if ($maxScore > (int)$this->config->punish['score']) {
             $blockRepository = new BlockRepository();
             $penaltySeconds = 5; // from config
@@ -82,16 +97,5 @@ class Swear  extends Middleware
     }
 
 
-    protected function attackFound(array $violations): void
-    {
-        $attackScore = $this->getAttackScore();
 
-        event(new SwearFailedEvent(
-            attackScore: $attackScore,
-            violations: $violations
-        ));
-
-        $this->blockIfNeeded();
-
-    }
 }

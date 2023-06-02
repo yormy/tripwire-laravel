@@ -5,6 +5,7 @@ use Mexion\BedrockUsers\Models\Admin;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
+use Yormy\TripwireLaravel\Services\RequestSource;
 
 return [
     /*
@@ -34,6 +35,9 @@ return [
         'browser_fingerprint'=> 'session_id'
     ],
 
+    'actions' => [
+        'request_source' => RequestSource::class
+    ],
     /*
     |--------------------------------------------------------------------------
     | Honeypots
@@ -66,7 +70,8 @@ return [
     */
     'block_response' => [
         'json' => [
-            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+            'code' => 506,
+            'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
         ],
         'html' => [
             'view' => 'tripwire-laravel::blocked'
@@ -94,7 +99,7 @@ return [
 
     'trigger_response' => [
         'json' => [
-            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+            'abort' => 407,// env('FIREWALL_BLOCK_ABORT', false),
         ],
         'html' => [
             'exception' => new RequestChecksumFailedException(),
@@ -107,7 +112,7 @@ return [
 
             'methods' => ['post', 'put', 'patch'],
 
-            'attack_score' => 55,
+            'attack_score' => 5,
 
             'routes' => [
                 'only' => [], // i.e. 'contact'
@@ -131,21 +136,20 @@ return [
             ],
 
             'punish' => [
-                'score' => 80,
+                'score' => 8000,
                 'within_minutes' => 60 * 24,
                 // note this will log increase on every violation that leads to a block
                 // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
-                'penalty_seconds' => '5'
+                'penalty_seconds' => 5
             ],
 
 
             'trigger_response' => [
                 'json' => [
-                    'abort' => env('FIREWALL_BLOCK_ABORT', false),
+                    'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
                 ],
                 'html' => [
-                    // 'exception' => new RequestChecksumFailedException(),
-                    'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+                    'exception' => new RequestChecksumFailedException(),
                 ],
             ],
         ],
