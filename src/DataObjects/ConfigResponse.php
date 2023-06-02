@@ -17,7 +17,7 @@ class ConfigResponse
 
     public ?string $redirectUrl  = null;
 
-    public string $abort;
+    public bool $abort;
 
     public ?array $json = null;
 

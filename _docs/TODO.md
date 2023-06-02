@@ -3,10 +3,7 @@ Blocks before user is known
 Blocks after user is known
 BlockFingerpinthandler + BlockUserHAndler
 
-Make all config, dataobjects
-
 field encryption
-
 
 'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
 

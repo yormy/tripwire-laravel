@@ -104,7 +104,7 @@ return [
             'view' => env('FIREWALL_BLOCK_VIEW', null),
             //'redirectUrl' => env('FIREWALL_BLOCK_REDIRECT', null),
             'redirectUrl' => 'http://testapp.local/api/V1/member/account/profilenew',
-            'abort' => env('FIREWALL_BLOCK_ABORT', false),
+            'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false
             //'exception' => new RequestChecksumFailedException(),
             'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
             'messageKey' => 'tripwide.blockie'
