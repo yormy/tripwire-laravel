@@ -77,9 +77,15 @@ class LogRepository
     {
         $data['url'] = $request->fullUrl();
         $data['method'] = $request->method();
-        $data['referer'] = $request->headers->get('referer');
-        $data['header'] = json_encode($request->header());
-        $data['request'] = json_encode($request->all());
+
+        $logReferer = substr($request->headers->get('referer'), 0, config('tripwire.log.max_referer_size'));
+        $data['referer'] = $logReferer;
+
+        $logHeader = substr(json_encode($request->header()), 0, config('tripwire.log.max_header_size'));
+        $data['header'] = $logHeader;
+
+        $logRequest = substr(json_encode($request->all()), 0, config('tripwire.log.max_request_size'));
+        $data['request'] = $logRequest;
         $data['request_fingerprint'] = $this->fingerprint($request);
 
         return $data;
