@@ -17,8 +17,6 @@ class ConfigMiddleware
 
     public array $guards;
 
-    public array $exceptions;
-
     public ConfigPunish $punish;
 
     public array $words;
@@ -47,8 +45,6 @@ class ConfigMiddleware
         }
 
         $this->guards = $data['guards'] ?? [];
-        $this->exceptions = $data['exceptions'] ?? [];
-
     }
 
     public function isEnabled(): bool

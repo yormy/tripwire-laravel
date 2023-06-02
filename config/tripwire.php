@@ -346,8 +346,10 @@ return [
                 '#(http|ftp){1,1}(s){0,1}://.*#i',
             ],
 
-            'exceptions' => [
-                'https://example.com' // to guards
+            'guards' => [
+                'allow' => [
+                    'https://example.com'
+                ]
             ],
         ],
 
