@@ -1,10 +1,4 @@
 # TODO
-Blocks before user is known
-Blocks after user is known
-BlockFingerpinthandler + BlockUserHAndler
-User overrides for skiproutes ?
-
-
 
 Extend tripwires:
 listen to login events and take actiosn
