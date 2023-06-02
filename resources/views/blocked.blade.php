@@ -87,6 +87,25 @@
             margin-bottom: 15px
         }
 
+        .blocked h3 {
+            font-family: montserrat, sans-serif;
+            font-size: 16px;
+            font-weight: 200;
+            text-transform: uppercase;
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 15px
+        }
+
+        .blocked p {
+            font-family: montserrat, sans-serif;
+            font-size: 14px;
+            font-weight: 200;
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 15px
+        }
+
         .blocked .primary,
         .blocked .secondary {
             font-family: montserrat, sans-serif;
@@ -164,11 +183,18 @@
     <div class="blocked-bg"></div>
     <div class="blocked">
         <div class="blocked-title">
-            <h1>Oeps</h1>
+            <h1>Oops</h1>
         </div>
         <h2>You have been blocked due to malicious activity</h2>
+        @isset($blocked_until)
+            <h3>Until {{ $blocked_until }}</h3>
+        @endif
+        <p>Hacking, pentesting, security research is not allowed on this site, we monitor and resport all users and ip addresses that violate our terms of agreement to the appropriate authorities.</p>
+        <p>When you want to research our platform make sure you stay in scope of the responsible disclosure!</p>
+
         <a href="#" class="primary">Go Home</a>
         <a href="#" class="secondary">Contact us</a>
+        <p>P.s. If you think this is an error or mistake, please let us know and we will fix it for you</p>
     </div>
 </div>
 </body>

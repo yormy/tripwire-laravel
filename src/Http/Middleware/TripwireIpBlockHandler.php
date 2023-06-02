@@ -27,11 +27,11 @@ class TripwireIpBlockHandler
         if ($request->wantsJson()) {
             $blockResponse = new ConfigResponse($request, config('tripwire.block_response.json'));
             $respond = new ResponseDeterminer($blockResponse);
-            return $respond->respondWithJson();
+            return $respond->respondWithJson(['blocked_until' => $blockedUntil]);
         }
 
         $blockResponse = new ConfigResponse($request, config('tripwire.block_response.html'));
         $respond = new ResponseDeterminer($blockResponse);
-        return $respond->respondWithHtml();
+        return $respond->respondWithHtml(['blocked_until' => $blockedUntil]);
     }
 }
