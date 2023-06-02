@@ -31,4 +31,13 @@ SQLi:
 ```
 (union select)
 ```
-  
+
+lfi
+```
+./
+```
+
+session:
+```
+:a:9:{
+```

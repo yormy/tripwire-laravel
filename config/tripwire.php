@@ -239,5 +239,25 @@ return [
                 '#\.\/#is',
             ],
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Local File Inclusion
+        |--------------------------------------------------------------------------
+        */
+
+        'session' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_SESSION_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['get', 'post', 'delete', 'put'],
+
+            'attack_score' => 7,
+
+            'patterns' => [
+                '@[\|:]O:\d{1,}:"[\w_][\w\d_]{0,}":\d{1,}:{@i',
+                '@[\|:]a:\d{1,}:{@i',
+            ],
+
+        ],
     ],
 ];
