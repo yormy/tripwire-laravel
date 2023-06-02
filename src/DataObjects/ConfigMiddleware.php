@@ -29,14 +29,19 @@ class ConfigMiddleware
 
         $this->enabled = $data['enabled'] ?? $this->tripwireEnabled();
         $this->methods = $data['methods'];
-        $this->routes = $data['routes'];
-        $this->inputs = $data['inputs'];
+        $this->routes = $data['routes'] ?? [];
+        $this->inputs = $data['inputs'] ?? [];
         $this->words = $data['words'] ?? [];
 
         $this->patterns = $data['patterns'] ?? [];
         $this->attackScore = $data['attack_score'];
 
-        $this->punish = new ConfigPunish($data['punish']);
+        if ($punishData = $data['punish'] ?? false) {
+            $this->punish = new ConfigPunish($punishData);
+        } else {
+            $this->punish = new ConfigPunish(config('tripwire.punish'));
+        }
+
     }
 
     public function isEnabled(): bool
@@ -85,6 +90,10 @@ class ConfigMiddleware
 
     public function skipInput(string $key): bool
     {
+        if (empty($this->inputs)) {
+            return false;
+        }
+
         if (in_array($key, $this->inputs['except'])) {
             return true;
         }
