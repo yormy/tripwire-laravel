@@ -37,7 +37,7 @@ abstract class BaseChecker
         if ($this->isAttack($patterns)) {
             $configResponse = $this->getConfig($request, $this->middleware);
             $respond = new ResponseDeterminer($configResponse);
-            if ($configResponse->asContinue()) {
+            if ($configResponse->asContinue() || $this->config->trainingMode) {
                 return $next($request);
             }
 
