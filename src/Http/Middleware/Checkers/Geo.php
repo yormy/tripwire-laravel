@@ -48,10 +48,7 @@ class Geo extends BaseChecker
     protected function getLocation()
     {
         $service = $this->config->custom['service'];
-        $service ='ipstack';
-        $apiKey = '9a1d0cfade29c56ac41dc33da9ac4358';
-        //env('IPSTACK_KEY')
-        //env('IPINFO_KEY')
+        $apiKey = '--';
         $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
         $location = $ipLookup->get();
     }
