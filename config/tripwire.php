@@ -88,7 +88,8 @@ return [
     |--------------------------------------------------------------------------
     | Whitelist
     |--------------------------------------------------------------------------
-    | These ips will not be checked, the entire checking is skipped
+    | These ips will not be checked
+    | When empty all ips will be checked
     |
     */
     'whitelist' => [
