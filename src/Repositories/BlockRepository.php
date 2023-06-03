@@ -27,9 +27,10 @@ class BlockRepository
         ?int $userId,
         ?string $userType,
         ?string $browserFingerprint,
+        ?bool $ignore = false
     )
     {
-        $data['ignore'] = true;
+        $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
         $data['blocked_user_id'] = $userId;
         $data['blocked_user_type'] = $userType;

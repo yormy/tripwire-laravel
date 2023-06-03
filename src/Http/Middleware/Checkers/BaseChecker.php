@@ -226,6 +226,7 @@ abstract class BaseChecker
                 userId: $sum->userId,
                 userType: $sum->userType,
                 browserFingerprint: $sum->browserFingerprint,
+                ignore: $this->config->trainingMode
             );
 
             $sum->violationsByIp->update(['tripwire_block_id' => $blockItem->id]);

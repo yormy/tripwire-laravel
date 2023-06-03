@@ -12,6 +12,30 @@ use Yormy\TripwireLaravel\Services\User;
 return [
     /*
     |--------------------------------------------------------------------------
+    | Enable the tripwire system
+    |--------------------------------------------------------------------------
+    | When disabled, nothing happens
+    |
+    */
+    'enabled' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Training mode
+    |--------------------------------------------------------------------------
+    | When enabled here the global system is in a training mode.
+    | Events are logged, database is updated, blocks are added to the database
+    |
+    | The only thing that will not happen is
+    | - requests are not blocked
+    | - the user will not be blocked
+    |
+    | In the database you can see what would have happend.
+    */
+    'training_mode' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Checksums
     |--------------------------------------------------------------------------
     | Some checksums are posted by the frontend and validated on the backend.
@@ -160,6 +184,8 @@ return [
         */
         'swear' => [
             'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+
+        //    'training_mode' => false,    // this will override the global settings, if missing the global will be used
 
             'methods' => ['post', 'put', 'patch'],
 

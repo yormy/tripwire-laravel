@@ -27,6 +27,8 @@ class ConfigMiddleware
 
     public int $attackScore;
 
+    public bool $trainingMode = false;
+
     public function __construct(string $checker)
     {
         $data = config('tripwire.middleware.' . $checker);
@@ -48,6 +50,12 @@ class ConfigMiddleware
 
         $this->guards = $data['guards'] ?? [];
         $this->custom = $data['custom'] ?? [];
+
+        if (isset($data['training_mode'])) {
+            $this->trainingMode = $data['training_mode'];
+        } else {
+            $this->trainingMode = config('tripwire.training_mode', false);
+        }
     }
 
     public function isEnabled(): bool
