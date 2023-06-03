@@ -6,34 +6,60 @@ use Illuminate\Http\Request ;
 
 class Routes
 {
+
+    private static function isInclude(Request $request, array $routes): bool
+    {
+        $onlyRoutes = $routes['only'] ?? false;
+
+        // Include route if nothing specified
+        if (empty($onlyRoutes)) {
+            return true;
+        }
+
+        foreach ($onlyRoutes as $only) {
+            static::checkValid($only);
+
+            if ($request->is($only)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static function isExcluded(Request $request, array $routes): bool
+    {
+        $exceptRoutes = $routes['except'];
+
+        // Do not exclude if nothing specified
+        if (empty($exceptRoutes)) {
+            return false;
+        }
+
+        foreach ($exceptRoutes as $exclude) {
+            static::checkValid($exclude);
+            if ($request->is($exclude)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function skipRoute(Request $request, array $routesConfig): bool
     {
         if ( !$routesConfig) {
             return false;
         }
 
-        if ($routesConfig['except'] ?? false) {
-            foreach ($routesConfig['except'] as $except) {
-                static::checkValid($except);
-
-                if (!$request->is($except)) {
-                    continue;
-                }
-
-                return true;
-            }
+        $included = self::isInclude($request, $routesConfig);
+        if (!$included) {
+            return true;
         }
 
-        if ($routesConfig['only'] ?? false) {
-            foreach ($routesConfig['only'] as $only) {
-                static::checkValid($except);
-
-                if ($request->is($only)) {
-                    continue;
-                }
-
-                return true;
-            }
+        $excluded = self::isExcluded($request, $routesConfig);
+        if ($excluded) {
+            return true;
         }
 
         return false;

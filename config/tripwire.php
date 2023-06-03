@@ -68,10 +68,17 @@ return [
         ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Whitelist
+    |--------------------------------------------------------------------------
+    | These routes/ ips will not be checked, the entire checking is skipped
+    |
+    */
     'whitelist' => [
         'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
         'routes' => [
-            'except' => ['logout'], // i.e. 'admin/*', no leading /
+            'except' => ['*/member/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
         ],
     ],
 
