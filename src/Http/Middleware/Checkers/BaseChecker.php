@@ -83,7 +83,7 @@ abstract class BaseChecker
             return true;
         }
 
-        if (Routes::skipRoute($request, config('tripwire.whitelist.routes'))) {
+        if (Routes::skipRoute($request, config('tripwire.routes'))) {
             return true;
         }
 

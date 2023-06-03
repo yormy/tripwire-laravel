@@ -70,6 +70,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Routes
+    |--------------------------------------------------------------------------
+    | The routes to include and exclude
+    | you can use the wildcard: *
+    | urls should not start with a leading /
+    | i.e.
+    | - 'admin/*'
+    | - * /member/dashboard/*` (space between * and / here is needed as othewise it is comment in comment
+    |
+    */
+    'routes' => [
+        'except' => ['*/membfer/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Whitelist
     |--------------------------------------------------------------------------
     | These routes/ ips will not be checked, the entire checking is skipped
@@ -77,9 +93,6 @@ return [
     */
     'whitelist' => [
         'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
-        'routes' => [
-            'except' => ['*/member/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
-        ],
     ],
 
     'block_code' => env('FIREWALL_BLOCK_CODE', 406),

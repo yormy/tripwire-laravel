@@ -20,7 +20,7 @@ abstract class TripwireBlockHandler
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Routes::skipRoute($request, config('tripwire.whitelist.routes'))) {
+        if (Routes::skipRoute($request, config('tripwire.routes'))) {
             return  $next($request);
         }
 

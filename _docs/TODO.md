@@ -5,7 +5,35 @@ BOT checker is not on input level, but on all levels so should be logically in t
 LOG referer ?
 training mode, log, but no blocks, or blocks are not activated => but blocks are recorded
 Whitelist ip: do not check, or only those ips are allowed in the system
-Update system env variables for geo ip keys //env('IPSTACK_KEY') (ip lookup)
+
+Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
+Hoe spec ik dat dan in de config de score to trigger
+
+
+
+# include vs exclude
+Default include all
+include = *
+exclude = []
+Spec wat to exclude
+
+sometimes include only /members/*
+but exclude /members/dashboard/*
+
+
+
+            'routes' => [
+                'only' => [], // i.e. 'contact'
+                'except' => [], // i.e. 'admin/*'
+            ],
+
+
+
+if only = [] dan include all
+is exclude
+
+
+
 
 Extend tripwires:
 listen to login events and take actiosn
@@ -25,6 +53,7 @@ Way of reset for hackers, how
 $table->string('xid')->unique(); // customizable ? // still neeeded ?
 
 field encryption
+fix geo fencing, need working api key to ip lookup stuff
 
 # Unit tests
 
@@ -52,3 +81,7 @@ XSS
 ```
 #-moz-binding:#u
 ```
+
+
+# Extended features
+Geofencing
