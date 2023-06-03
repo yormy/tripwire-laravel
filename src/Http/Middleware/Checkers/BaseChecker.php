@@ -111,7 +111,7 @@ abstract class BaseChecker
     {
         $violations = [];
         foreach ($patterns as $pattern) {
-            $this->matchResults($pattern, $this->request->input(), $violations);
+            $this->matchResults($pattern, $this->collectInputs(), $violations);
         }
 
         if (!empty($violations))  {
@@ -121,6 +121,15 @@ abstract class BaseChecker
         return !empty($violations);
     }
 
+    private function collectInputs(): array
+    {
+        $inputs = $this->request->input();
+        $inputs[] = $this->request->fullUrl();
+        $inputs[] = $this->request->cookie();
+        $inputs[] = $this->request->header();
+
+        return $inputs;
+    }
 
     public function matchResults($pattern, $input, &$violations)
     {
@@ -139,17 +148,19 @@ abstract class BaseChecker
                 continue;
             }
 
+
             if (is_array($value)) {
-                if ($result = $this->matchResults($pattern, $value, $matches)) {
-                    $violations[] = $matches[0];
-                }
+                return $this->matchResults($pattern, $value, $violations);
             }
+
 
             if ($this->config->skipInput($key)) {
                 return true;
             }
 
             $value = $this->prepareInput($value);
+
+
 
             if ( $result = preg_match($pattern, $value, $matches)) {
                 $violations[] = $matches[0];

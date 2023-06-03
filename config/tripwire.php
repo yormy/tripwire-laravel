@@ -3,6 +3,8 @@
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
+use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
+use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
@@ -32,7 +34,7 @@ return [
     |
     | In the database you can see what would have happend.
     */
-    'training_mode' => true,
+    'training_mode' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +107,7 @@ return [
     |
     */
     'urls' => [
-        'except' => ['*/membfer/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
+        'except' => ['*/ffff/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
     ],
 
     /*
@@ -172,7 +174,7 @@ return [
             'abort' => true,// env('FIREWALL_BLOCK_ABORT', false),
         ],
         'html' => [
-            'exception' => new RequestChecksumFailedException(),
+            'exception' => new TripwireFailedException(),
         ],
     ],
 
@@ -187,7 +189,7 @@ return [
 
         //    'training_mode' => false,    // this will override the global settings, if missing the global will be used
 
-            'methods' => ['post', 'put', 'patch'],
+            'methods' => ['post', 'put', 'patch', 'get'],
 
             'attack_score' => 5,
 
@@ -206,7 +208,7 @@ return [
             ],
 
             'punish' => [
-                'score' => 6,
+                'score' => 5000,
                 'within_minutes' => 60 * 24,
                 // note this will log increase on every violation that leads to a block
                 // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
@@ -219,7 +221,7 @@ return [
                     'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
                 ],
                 'html' => [
-                    'exception' => new RequestChecksumFailedException(),
+                    'exception' => new SwearFailedException(),
                 ],
             ],
         ],
