@@ -13,14 +13,16 @@ abstract class LoggableEvent implements LoggableEventInterface
     protected int $score = 10;
 
     public function __construct(
-        protected int $attackScore,
+        protected ?int $attackScore = null,
         protected ?array $violations = null,
         protected ?string $comment = null
     ) {
-        $this->score = $attackScore;
+        if ($attackScore) {
+            $this->score = $attackScore;
+        }
     }
 
-    public function getScore(int $score = null): int
+    public function getScore(?int $score = null): int
     {
         if ($score) {
             return $score;
