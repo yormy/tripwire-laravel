@@ -38,7 +38,8 @@ class TripwireBlock extends Model
         'blocked_browser_fingerprint',
         'blocked_until',
         'blocked_repeater',
-        'manually_blocked'
+        'manually_blocked',
+        'persistent_block'
     ];
 
     protected $casts = [

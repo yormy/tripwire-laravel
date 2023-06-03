@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('response_message')->nullable();
 
             $table->boolean('manually_blocked')->default(false);
+            $table->boolean('persistent_block')->default(false)->comment('Keep this block even during cleanups');
 
             $table->dateTime('blocked_until')->default(DB::raw('CURRENT_TIMESTAMP'));
 
