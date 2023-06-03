@@ -19,6 +19,17 @@ composer require yormy/tripwire-laravel
 php artisan migrate
 ```
 
+# ExceptionsInspector
+Add to your App/Exceptions/Hander
+To allow taking action based on some system exceptions
+```
+public function render($request, Throwable $exception)
+{
+...
+ExceptionInspector::inspect($exception);
+...
+```
+
 # Middleware Setup
 Order of middleware is when it trips, the first tripped wire will explore, the rest will not be checked
 
