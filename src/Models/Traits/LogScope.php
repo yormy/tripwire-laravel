@@ -7,7 +7,9 @@ trait LogScope
 {
     public function scopeWithin($query, int $minutes)
     {
-        return $query->where('created_at', '>=', Carbon::now()->subMinutes($minutes));
+        return $query
+            ->where('created_at', '>=', Carbon::now()->subMinutes($minutes))
+            ->whereNull('tripwire_block_id');
     }
 
     public function scopeTypes($query, array $codes)
