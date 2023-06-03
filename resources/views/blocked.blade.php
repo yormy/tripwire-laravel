@@ -189,7 +189,7 @@
         @isset($blocked_until)
             <h3>Until {{ $blocked_until }}</h3>
         @endif
-        <p>Hacking, pentesting, security research is not allowed on this site, we monitor and resport all users and ip addresses that violate our terms of agreement to the appropriate authorities.</p>
+        <p>Hacking, pentesting, security research is not allowed on this site, we monitor and resport all users and ip addresses that violate our terms of agreement to the appropriate authorities. Your ipv4 and leaked ipv6 and dns settings are recorded and will be reported</p>
         <p>When you want to research our platform make sure you stay in scope of the responsible disclosure!</p>
 
         <a href="#" class="primary">Go Home</a>
