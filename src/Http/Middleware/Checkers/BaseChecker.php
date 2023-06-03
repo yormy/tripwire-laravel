@@ -169,16 +169,14 @@ abstract class BaseChecker
         return null;
     }
 
-    protected function blockIfNeeded()
+    private function getSumViolationScore(int $punishableTimeframe, array $violations = []):\StdClass
     {
         $logRepository = new LogRepository();
-
-        $punishableTimeframe = (int)$this->config->punish->withinMinutes;
 
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($this->request);
 
-        $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, ['test', 'SWEAR'], $ipAddress);
+        $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, $ipAddress, $violations);
         $scoreByIp = $violationsByIp->get()->sum('event_score');
 
         $userClass = config('tripwire.services.user');
@@ -188,7 +186,7 @@ abstract class BaseChecker
 
         $violationsByUser = null;
         if ($userId) {
-            $violationsByUser = $logRepository->queryViolationsByUser($punishableTimeframe, ['test', 'SWEAR'],  $userId, $userType);
+            $violationsByUser = $logRepository->queryViolationsByUser($punishableTimeframe, $userId, $userType, $violations);
             $scoreByUser = $violationsByUser->get()->sum('event_score');
         }
 
@@ -197,29 +195,47 @@ abstract class BaseChecker
         $scoreByBrowser = 0;
         $violationsByBrowser = null;
         if ($browserFingerprint) {
-            $violationsByBrowser = $logRepository->queryViolationsByBrowser($punishableTimeframe, ['test', 'SWEAR'],  $browserFingerprint);
+            $violationsByBrowser = $logRepository->queryViolationsByBrowser($punishableTimeframe, $browserFingerprint, $violations);
             $scoreByBrowser = $violationsByBrowser->get()->sum('event_score');
         }
 
-        $maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
+        $result = new \StdClass();
+        $result->maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
+        $result->ipAddress = $ipAddress;
+        $result->userId = $userId;
+        $result->userType = $userType;
+        $result->browserFingerprint = $browserFingerprint;
+        $result->violationsByIp = $violationsByIp;
+        $result->violationsByUser = $violationsByUser;
+        $result->violationsByBrowser = $violationsByBrowser;
 
-        if ($maxScore > (int)$this->config->punish->score) {
+        return $result;
+    }
+
+    protected function blockIfNeeded()
+    {
+        $punishableTimeframe = (int)$this->config->punish->withinMinutes;
+
+        $sum = $this->getSumViolationScore($punishableTimeframe);
+
+        if ($sum->maxScore > (int)$this->config->punish->score) {
             $blockRepository = new BlockRepository();
             $blockItem = $blockRepository->add(
                 penaltySeconds: (int)$this->config->punish->penaltySeconds,
-                ipAddress: $ipAddress,
-                userId: $userId,
-                userType: $userType,
-                browserFingerprint: $browserFingerprint,
+                ipAddress: $sum->ipAddress,
+                userId: $sum->userId,
+                userType: $sum->userType,
+                browserFingerprint: $sum->browserFingerprint,
             );
 
-            $violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
-            if (!$violationsByUser) {
-                $violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
+            $sum->violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
+
+            if (!$sum->violationsByUser) {
+                $sum->violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
             }
 
-            if ($violationsByBrowser) {
-                $violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
+            if ($sum->violationsByBrowser) {
+                $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
             }
 
             return $blockItem;

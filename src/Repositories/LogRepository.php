@@ -34,31 +34,35 @@ class LogRepository
         return $this->model::create($data);
     }
 
-    public function queryViolationsByIp(int $withinMinutes, array $violations, string $ipAddress): Builder
+    public function queryViolationsByIp(int $withinMinutes, string $ipAddress, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byIp($ipAddress);
 
     }
 
-    public function queryViolationsByUser(int $withinMinutes, array $violations, $userId, $userType): Builder
+    public function queryViolationsByUser(int $withinMinutes, $userId, $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byUserId($userId)
             ->byUserType($userType);
     }
 
-    public function queryViolationsByBrowser(int $withinMinutes, array $violations, string $browserFingerprint): Builder
+    public function queryViolationsByBrowser(int $withinMinutes, string $browserFingerprint, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byBrowser($browserFingerprint);
     }
 
-    private function queryScoreViolations(int $withinMinutes, array $violations): Builder
+    private function queryScoreViolations(int $withinMinutes, array $violations = []): Builder
     {
-       return $this->model
-           ->within($withinMinutes)
-           ->types($violations);
+       $builder = $this->model->within($withinMinutes);
+
+       if (!empty($violations)) {
+           $builder->types($violations);
+       }
+
+       return $builder;
     }
 
 
