@@ -13,7 +13,7 @@ class LoginFailedListener
 {
     public function handle($event): void
     {
-        ray('failed event in tripwire');
+        ray('failed Login event in tripwire');
 //        $this->request = request();
 //        $this->middleware = 'login';
 //        $this->user_id = 0;
