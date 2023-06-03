@@ -5,6 +5,11 @@ use Carbon\Carbon;
 
 trait BlockScope
 {
+    public function scopeNotIgnore($query)
+    {
+        return $query->where('ignore', false);
+    }
+
     public function scopeWithinDays($query, int $days)
     {
         return $query->where('created_at', '>=', Carbon::now()->subDays($days));

@@ -2,13 +2,14 @@
 disable middleware on certain routes
 Abstraction o/ or groups of checkers easy include in kernel
 BOT checker is not on input level, but on all levels so should be logically in the first steps of the request.
-LOG referer ?
-training mode, log, but no blocks, or blocks are not activated => but blocks are recorded
-Whitelist ip: do not check, or only those ips are allowed in the system
+
+
+training mode, log, but no blocks, or blocks are not activated => but blocks are recorded, globally and per service
 
 Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
 Hoe spec ik dat dan in de config de score to trigger
 
+Specify type of block:  violation is anders dan login throttle
 
 
 
@@ -23,7 +24,7 @@ file checker
 protect an url from being included
 
 Whitelist ip when specced this ip will not be checked for rules. Idea: have whitelist for allowing entry of the system, managable by the database?
-or do this with a perblock in the _blocks
+or do this with a perblock in the _blocks ie: persistent block
 
 # Management:
 Way of reset for hackers, how

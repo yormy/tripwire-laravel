@@ -32,6 +32,7 @@ class TripwireBlock extends Model
 //    ];
 
     protected $fillable = [
+        'ignore',
         'blocked_ip',
         'blocked_user_id',
         'blocked_user_type',

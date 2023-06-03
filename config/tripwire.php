@@ -180,7 +180,7 @@ return [
             ],
 
             'punish' => [
-                'score' => 8000,
+                'score' => 6,
                 'within_minutes' => 60 * 24,
                 // note this will log increase on every violation that leads to a block
                 // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour

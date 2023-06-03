@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create($tablename, function (Blueprint $table) {
             $table->id();
             $table->string('xid')->unique(); // customizable ?
+            $table->boolean('ignore')->default(false);
             $table->string('type')->default('HACK-ATTEMPT');
             $table->json('reasons')->nullable(); // ie 404, xss, swear, manual
 

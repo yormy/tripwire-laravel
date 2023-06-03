@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
+use Illuminate\Database\Eloquent\Builder;
 
 class BlockRepository
 {
@@ -28,6 +29,7 @@ class BlockRepository
         ?string $browserFingerprint,
     )
     {
+        $data['ignore'] = true;
         $data['blocked_ip'] = $ipAddress;
         $data['blocked_user_id'] = $userId;
         $data['blocked_user_type'] = $userType;
@@ -41,9 +43,20 @@ class BlockRepository
         return $this->model::create($data);
     }
 
+    private function getLatest(Builder $builder)
+    {
+        return $builder->notIgnore()
+        ->latest()
+        ->first();
+    }
+
     public function isIpBlockedUntil(string $ipAddress): ?Carbon
     {
-        $blocked =  $this->model->where('blocked_ip', $ipAddress)->where('blocked_until', '>', Carbon::now())->latest()->first();
+        $builder =  $this->model
+            ->where('blocked_ip', $ipAddress)
+            ->where('blocked_until', '>', Carbon::now());
+
+        $blocked =$this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
@@ -54,7 +67,11 @@ class BlockRepository
             return null;
         }
 
-        $blocked =  $this->model->where('blocked_browser_fingerprint', $browserFingerprint)->where('blocked_until', '>', Carbon::now())->latest()->first();
+        $builder =  $this->model
+            ->where('blocked_browser_fingerprint', $browserFingerprint)
+            ->where('blocked_until', '>', Carbon::now());
+
+        $blocked =$this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
@@ -65,12 +82,12 @@ class BlockRepository
             return null;
         }
 
-        $blocked =  $this->model
+        $builder =  $this->model
             ->where('blocked_user_id', $userId)
             ->where('blocked_user_type', $userType)
-            ->where('blocked_until', '>', Carbon::now())
-            ->latest()
-            ->first();
+            ->where('blocked_until', '>', Carbon::now());
+
+        $blocked =$this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
