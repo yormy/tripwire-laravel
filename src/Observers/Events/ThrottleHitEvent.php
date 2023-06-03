@@ -6,5 +6,5 @@ class ThrottleHitEvent extends LoggableEvent
 {
     const CODE = "THROTTLE";
 
-    protected int $score = 3;
+    protected int $score = 0;
 }
