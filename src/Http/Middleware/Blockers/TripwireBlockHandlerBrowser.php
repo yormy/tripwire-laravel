@@ -13,6 +13,10 @@ class TripwireBlockHandlerBrowser extends TripwireBlockHandler
         $requestSourceClass = config('tripwire.services.request_source');
         $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
 
+        if (!$browserFingerprint) {
+            return null;
+        }
+
         $blockRepository = new BlockRepository();
         return $blockRepository->isBrowserBlockedUntil($browserFingerprint);
     }
