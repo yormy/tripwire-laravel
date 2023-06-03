@@ -3,12 +3,38 @@
 - Abstraction o/ or groups of checkers easy include in kernel
 - BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
 
+xss test get request, headers, cookies
+exception pass to tripwire to check models and throw events, eventueel dan in config welke afvangen en wat te doen
+
 Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
 Hoe spec ik dat dan in de config de score to trigger
 
+- logout on certain actions/ blocks ?
+- 
 Specify type of block view/json:  violation is anders dan login throttle
+events:
+- Illuminate\Auth\Events\Lockout
+- trottle triggered ?
+- need to intercept 429 CORE_REQUEST_THROTTLE, to throw and event
+-         if ($exception instanceof ThrottleRequestsException) {
+          if ($exception instanceof InvalidSignatureException) {
+-
+      'exceptions' => [
+          'Illuminate\Database\Eloquent\ModelNotFoundException' => LogType::EXCEPTION_MODEL_NOT_FOUND->value,
+          'Illuminate\Http\Exceptions\ThrottleRequestsException' => LogType::EXCEPTION_TOO_MANY_REQUEST->value,
+          'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' => LogType::EXCEPTION_PAGE_NOT_FOUND->value,
+      ]
+- 
+extend rules:
+onmouseover
+onhover
+script
+hacker polyglots and examples
+role=admin
+or 1=1
+or+1=1 (+ is url encoded space)
 
-
+anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 
 Extend tripwires:
 listen to login events and take actiosn
@@ -18,6 +44,8 @@ other priportal / bounty scanners
 walk through akunetics
 null byte checker
 file checker
+extreme Large request (unless allowed)
+certain file types / sizes
 protect an url from being included
 
 Whitelist ip when specced this ip will not be checked for rules. Idea: have whitelist for allowing entry of the system, managable by the database?
