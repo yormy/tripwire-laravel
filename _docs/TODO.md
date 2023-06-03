@@ -1,12 +1,12 @@
 # TODO
-disable middleware on certain routes
-Abstraction o/ or groups of checkers easy include in kernel
-BOT checker is not on input level, but on all levels so should be logically in the first steps of the request.
+- how to disable middleware on certain routes
+- Abstraction o/ or groups of checkers easy include in kernel
+- BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
 
 Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
 Hoe spec ik dat dan in de config de score to trigger
 
-Specify type of block:  violation is anders dan login throttle
+Specify type of block view/json:  violation is anders dan login throttle
 
 
 

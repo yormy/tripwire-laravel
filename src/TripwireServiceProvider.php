@@ -9,8 +9,10 @@ use Yormy\TripwireLaravel\Console\Commands\DecryptRecordCommand;
 use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\GenerateEncryptionKeyCommand;
 use Yormy\TripwireLaravel\Http\Middleware\Swear;
+use Yormy\TripwireLaravel\Observers\Listeners\LoginFailedListener;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Auth\Events\Failed as LoginFailed;
 
 class TripwireServiceProvider extends ServiceProvider
 {
@@ -91,8 +93,6 @@ class TripwireServiceProvider extends ServiceProvider
 
     public function registerListeners()
     {
-//        $this->app['events']->listen(AttackDetected::class, BlockIp::class);
-//        $this->app['events']->listen(AttackDetected::class, NotifyUsers::class);
-//        $this->app['events']->listen(LoginFailed::class, CheckLogin::class);
+        $this->app['events']->listen(LoginFailed::class, LoginFailedListener::class);
     }
 }

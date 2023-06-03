@@ -2,10 +2,17 @@
     "name": "yormy/tripwire-laravel",
     "description": "",
     "keywords": [
-        "yormy",
+        "laravel",
         "tripwire",
-        "web application firewall",
-        "laravel"
+        "firewall",
+        "security",
+        "waf",
+        "blacklist",
+        "xss",
+        "sqli",
+        "rfi",
+        "lfi",
+        "web application firewall"
     ],
     "homepage": "https://gitlab.com/yormy/tripwire-laravel",
     "license": "MIT",
