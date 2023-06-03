@@ -11,7 +11,7 @@ use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
-use Yormy\TripwireLaravel\Services\Routes;
+use Yormy\TripwireLaravel\Services\UrlTester;
 
 abstract class BaseChecker
 {
@@ -83,7 +83,7 @@ abstract class BaseChecker
             return true;
         }
 
-        if (Routes::skipRoute($request, config('tripwire.routes'))) {
+        if (UrlTester::skipUrl($request, config('tripwire.urls'))) {
             return true;
         }
 
@@ -95,7 +95,7 @@ abstract class BaseChecker
             return true;
         }
 
-        if ($this->config->skipRoute($request)) {
+        if ($this->config->skipUrl($request)) {
             return true;
         }
 

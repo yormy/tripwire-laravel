@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Carbon\Carbon;
-use Yormy\TripwireLaravel\Services\Routes;
+use Yormy\TripwireLaravel\Services\UrlTester;
 
 abstract class TripwireBlockHandler
 {
@@ -20,7 +20,7 @@ abstract class TripwireBlockHandler
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Routes::skipRoute($request, config('tripwire.routes'))) {
+        if (UrlTester::skipUrl($request, config('tripwire.urls'))) {
             return  $next($request);
         }
 

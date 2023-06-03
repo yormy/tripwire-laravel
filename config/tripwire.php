@@ -70,9 +70,9 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Routes
+    | Urls
     |--------------------------------------------------------------------------
-    | The routes to include and exclude
+    | The urls to include and exclude
     | you can use the wildcard: *
     | urls should not start with a leading /
     | i.e.
@@ -80,7 +80,7 @@ return [
     | - * /member/dashboard/*` (space between * and / here is needed as othewise it is comment in comment
     |
     */
-    'routes' => [
+    'urls' => [
         'except' => ['*/membfer/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
     ],
 
@@ -88,7 +88,7 @@ return [
     |--------------------------------------------------------------------------
     | Whitelist
     |--------------------------------------------------------------------------
-    | These routes/ ips will not be checked, the entire checking is skipped
+    | These ips will not be checked, the entire checking is skipped
     |
     */
     'whitelist' => [
@@ -164,7 +164,7 @@ return [
 
             'attack_score' => 5,
 
-            'routes' => [
+            'urls' => [
                 'only' => [], // i.e. 'contact'
                 'except' => [], // i.e. 'admin/*'
             ],
@@ -209,7 +209,7 @@ return [
 
             'attack_score' => 7,
 
-            'routes' => [
+            'urls' => [
                 'only' => [], // i.e. 'contact'
                 'except' => [], // i.e. 'admin/*'
             ],

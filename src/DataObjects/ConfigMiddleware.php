@@ -4,14 +4,14 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
-use Yormy\TripwireLaravel\Services\Routes;
+use Yormy\TripwireLaravel\Services\UrlTester;
 
 class ConfigMiddleware
 {
     public bool $enabled;
     public array $methods;
 
-    public array $routes;
+    public array $urls;
 
     public array $inputs;
 
@@ -33,7 +33,7 @@ class ConfigMiddleware
 
         $this->enabled = $data['enabled'] ?? $this->tripwireEnabled();
         $this->methods = $data['methods'];
-        $this->routes = $data['routes'] ?? [];
+        $this->urls = $data['urls'] ?? [];
         $this->inputs = $data['inputs'] ?? [];
         $this->words = $data['words'] ?? [];
 
@@ -89,9 +89,9 @@ class ConfigMiddleware
     }
 
 
-    public function skipRoute(Request $request): bool
+    public function skipUrl(Request $request): bool
     {
-        return Routes::skipRoute($request, $this->routes);
+        return UrlTester::skipUrl($request, $this->urls);
     }
 
     public function skipInput(string $key): bool
