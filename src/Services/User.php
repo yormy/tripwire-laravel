@@ -7,13 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class User
 {
-    public static function getId(Request $request): string
+    public static function getId(Request $request): ?string
     {
-        return self::get($request)->id;
+        return self::get($request)?->id;
     }
 
-    public static function getType(Request $request): string
+    public static function getType(Request $request): ?string
     {
+        if (!self::get($request)) {
+            return null;
+        }
+
         return get_class(self::get($request));
     }
 

@@ -13,6 +13,11 @@ class TripwireBlockHandlerUser extends TripwireBlockHandler
     {
         $userClass = config('tripwire.services.user');
         $userId = $userClass::getId($request);
+
+        if (!$userId) {
+            return null;
+        }
+
         $userType = $userClass::getType($request);
 
         $blockRepository = new BlockRepository();
