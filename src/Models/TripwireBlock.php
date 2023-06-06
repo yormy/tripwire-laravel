@@ -3,7 +3,6 @@
 declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitType;
 use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitTypeAuthFailed;
@@ -15,7 +14,7 @@ use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitTypeHackAttempt;
 use Yormy\TripwireLaravel\Models\Traits\BlockScope;
 use Yormy\Xid\Models\Traits\Xid;
 
-class TripwireBlock extends Model
+class TripwireBlock extends BaseModel
 {
     //use DatabaseEncryption;
     use Xid;
