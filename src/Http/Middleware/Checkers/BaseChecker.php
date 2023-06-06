@@ -121,58 +121,55 @@ abstract class BaseChecker
         return !empty($violations);
     }
 
-    private function collectInputs(): array
+    private function removeItems(array $original, array $toRemove): array
     {
-        $inputs = $this->request->input();
-        $inputs[] = $this->request->fullUrl();
-        $inputs[] = $this->request->cookie();
-        $inputs[] = $this->request->header();
+        $filtered = [];
+        foreach ($original as $key => $value) {
+            if (!in_array($key, $toRemove)) {
+                $filtered[$key] = $value;
+            }
+        }
 
-        return $inputs;
+        return $filtered;
+    }
+    /**
+     * convert the inputs of the request to a string that can be scanned by the checkers
+     * as we do not need to know what key it was or where it came from (input or header or cookie) we can
+     * simply make 1 long string and check that with the presence of malicous input anywhere in that string
+     */
+    private function collectInputs(): string
+    {
+        $exceptInputs[] = 'remember';
+        $exceptInputs = config('tripwire.ignore.inputs', []);
+        $exceptCookies = config('tripwire.ignore.cookie', []);
+        $exceptHeaders = config('tripwire.ignore.header', []);;
+        $exceptHeaders[] = 'cookie';
+
+        $inputsGlobalFilter = $this->removeItems($this->request->input(), $exceptInputs);
+
+        $inputsLocalFilter = [];
+        foreach ($inputsGlobalFilter as $key => $value) {
+            if (!$this->config->skipInput($key)) {
+                $inputsLocalFilter[$key] = $this->prepareInput($value);
+            }
+        }
+
+        $cookies = $this->removeItems($this->request->cookie(), $exceptCookies);
+        $headers = $this->removeItems($this->request->header(), $exceptHeaders);
+        $fullUrl = $this->request->fullUrl();
+
+        $scannableValues[] = $inputsLocalFilter;
+        $scannableValues[] = $cookies;
+        $scannableValues[] = $headers;
+        $scannableValues[] = $fullUrl;
+
+        return json_encode($scannableValues);
+        return $scannableString;
     }
 
-    public function matchResults($pattern, $input, &$violations)
+    public function matchResults($pattern, string $input, &$violations)
     {
-        $result = false;
-        if ( !is_array($input) && !is_string($input)) {
-            return false;
-        }
-
-        if ( !is_array($input)) {
-            $input = $this->prepareInput($input);
-            return preg_match($pattern, $input, $matches);
-        }
-
-        foreach ($input as $key => $value) {
-            if (empty($value)) {
-                continue;
-            }
-
-
-            if (is_array($value)) {
-                return $this->matchResults($pattern, $value, $violations);
-            }
-
-
-            if ($this->config->skipInput($key)) {
-                return true;
-            }
-
-            $value = $this->prepareInput($value);
-
-
-
-            if ( $result = preg_match($pattern, $value, $matches)) {
-                $violations[] = $matches[0];
-            }
-
-            if ($match = $this->matchAdditional($value))
-            {
-                $violations[] = $matches;
-            }
-        }
-
-        return $result;
+        return preg_match($pattern, $input, $violations);
     }
 
     protected function matchAdditional($value): ?string

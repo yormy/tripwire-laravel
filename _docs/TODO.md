@@ -12,19 +12,17 @@ Hoe spec ik dat dan in de config de score to trigger
 - logout on certain actions/ blocks ?
 - 
 Specify type of block view/json:  violation is anders dan login throttle
-events:
-- Illuminate\Auth\Events\Lockout
-- trottle triggered ?
-- need to intercept 429 CORE_REQUEST_THROTTLE, to throw and event
--         if ($exception instanceof ThrottleRequestsException) {
-          if ($exception instanceof InvalidSignatureException) {
--
-      'exceptions' => [
-          'Illuminate\Database\Eloquent\ModelNotFoundException' => LogType::EXCEPTION_MODEL_NOT_FOUND->value,
-          'Illuminate\Http\Exceptions\ThrottleRequestsException' => LogType::EXCEPTION_TOO_MANY_REQUEST->value,
-          'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' => LogType::EXCEPTION_PAGE_NOT_FOUND->value,
-      ]
-- 
+
+url decode before into checkers
+str concat regex ipv recursions
+blocking in job / timing?
+
+simple text search ie nullbyte
+how to spec models/pages not found 
+
+
+
+nullbyte 
 extend rules:
 onmouseover
 onhover

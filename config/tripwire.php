@@ -77,6 +77,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Ignore
+    |--------------------------------------------------------------------------
+    | Globally ignore these input fields.
+    | The values here are ignored regardless of the individual settings per checked.
+    | If you want to ignore certain values only for a specific checker, specify it in there
+    |
+    */
+    'ignore' => [
+        'input' => [],      // i.e. locale, id,
+        'cookie' => ['session_id'],
+        'header' => [],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Honeypots
     |--------------------------------------------------------------------------
     |
@@ -204,7 +219,8 @@ return [
             ],
 
             'words' => [
-               'blow',
+               'dd6ff2f37',
+                //'GFhVjBlVmkwUm14M'
             ],
 
             'punish' => [
@@ -491,6 +507,29 @@ return [
 
             ]
 
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | TEXT
+        |--------------------------------------------------------------------------
+        | Plain text blacklist
+        | The difference between the text and word middleware is that words are separated by spaces,
+        | text can be anywhere in the content.
+        | ie xxxtestxxx
+        | text checker will tigger 'test' as it is in there
+        | word checker will not trigger as test is not a word (not surrounded by spaces)
+        */
+        'text' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_GEO_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            'methods' => ['all'],
+
+            'attack_score' => 1,
+
+            'texts' => [
+                //'GFhVjBlVmkwUm14M'
+            ],
         ],
     ],
 ];

@@ -112,7 +112,7 @@ class ConfigMiddleware
             return true;
         }
 
-        if ( !empty($this->inputs['only']) && in_array($key, $this->inputs['only'])) {
+        if ( !empty($this->inputs['only']) && !in_array($key, $this->inputs['only'])) {
             return true;
         }
 
