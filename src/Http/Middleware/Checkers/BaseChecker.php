@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
-use Yormy\TripwireLaravel\Repositories\BlockRepository;
-use Yormy\TripwireLaravel\Repositories\LogRepository;
+use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\Services\UrlTester;
@@ -177,80 +176,24 @@ abstract class BaseChecker
         return null;
     }
 
-    private function getSumViolationScore(int $punishableTimeframe, array $violations = []):\StdClass
+    protected function blockIfNeeded()
     {
-        $logRepository = new LogRepository();
-
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($this->request);
 
-        $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, $ipAddress, $violations);
-        $scoreByIp = $violationsByIp->get()->sum('event_score');
-
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($this->request);
+        $userId = $userClass::getId($this->request); //// ???
         $userType = $userClass::getType($this->request);
-        $scoreByUser = 0;
 
-        $violationsByUser = null;
-        if ($userId) {
-            $violationsByUser = $logRepository->queryViolationsByUser($punishableTimeframe, $userId, $userType, $violations);
-            $scoreByUser = $violationsByUser->get()->sum('event_score');
-        }
-
-        $requestSourceClass = config('tripwire.services.request_source');
-        $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
-        $scoreByBrowser = 0;
-        $violationsByBrowser = null;
-        if ($browserFingerprint) {
-            $violationsByBrowser = $logRepository->queryViolationsByBrowser($punishableTimeframe, $browserFingerprint, $violations);
-            $scoreByBrowser = $violationsByBrowser->get()->sum('event_score');
-        }
-
-        $result = new \StdClass();
-        $result->maxScore = max($scoreByIp, $scoreByUser, $scoreByBrowser);
-        $result->ipAddress = $ipAddress;
-        $result->userId = $userId;
-        $result->userType = $userType;
-        $result->browserFingerprint = $browserFingerprint;
-        $result->violationsByIp = $violationsByIp;
-        $result->violationsByUser = $violationsByUser;
-        $result->violationsByBrowser = $violationsByBrowser;
-
-        return $result;
-    }
-
-    protected function blockIfNeeded()
-    {
-        $punishableTimeframe = (int)$this->config->punish->withinMinutes;
-
-        $sum = $this->getSumViolationScore($punishableTimeframe);
-
-        if ($sum->maxScore > (int)$this->config->punish->score) {
-            $blockRepository = new BlockRepository();
-            $blockItem = $blockRepository->add(
-                penaltySeconds: (int)$this->config->punish->penaltySeconds,
-                ipAddress: $sum->ipAddress,
-                userId: $sum->userId,
-                userType: $sum->userType,
-                browserFingerprint: $sum->browserFingerprint,
-                ignore: $this->config->trainingMode
-            );
-
-            $sum->violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
-
-            if (!$sum->violationsByUser) {
-                $sum->violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
-            }
-
-            if ($sum->violationsByBrowser) {
-                $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
-            }
-
-            return $blockItem;
-        }
-
-        return null;
+        AddBlockJob::dispatch(
+            ipAddress: $ipAddress,
+            userId: $userId,
+            userType: $userType,
+            withinMinutes: $this->config->punish->withinMinutes,
+            thresholdScore: $this->config->punish->score,
+            penaltySeconds: $this->config->punish->penaltySeconds,
+            trainingMode: $this->config->trainingMode,
+        );
     }
 
     protected function isGuardAttack(string $value, array $guards): bool

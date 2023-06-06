@@ -8,7 +8,7 @@ class Swear extends BaseChecker
 {
     protected function attackFound(array $violations): void
     {
-        event(new TextFailedEvent(
+        event(new SwearFailedEvent(
             attackScore: $this->getAttackScore(),
             violations: $violations
         ));

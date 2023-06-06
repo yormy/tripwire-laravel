@@ -8,7 +8,7 @@ class Text extends BaseChecker
 {
     protected function attackFound(array $violations): void
     {
-        event(new SwearFailedEvent(
+        event(new TextFailedEvent(
             attackScore: $this->getAttackScore(),
             violations: $violations
         ));
