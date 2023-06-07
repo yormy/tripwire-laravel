@@ -73,7 +73,7 @@ abstract class BaseChecker
             }
         }
 
-        return new ConfigResponse($request, $triggerResponse);
+        return new ConfigResponse($triggerResponse);
     }
 
     public function skip($request)
