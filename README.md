@@ -68,8 +68,16 @@ This will block web traffic for blocked users
 
 
 
+# Events
+TripwireBlockedEvent => generic unspecified what or where but a block just happend
+This is a good case to logout the current user and redirect to login page
+
+TripwireBlockedIpEvent => when a block on ip is added
 
 
+TripwireBlockedBrowserEvent
+
+TripwireBlockedUserEvent
 
 
 ## Changelog
