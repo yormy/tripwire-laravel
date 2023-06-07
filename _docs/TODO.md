@@ -1,8 +1,7 @@
 # TODO
 - notifications:
   - slack
-  - design
-  - more details in the email ? (url / type ? (need loggable>block))
+  - more details in the email ? (url / type ? (need loggable>block)), what triggered it ?
   - prevent too many emails ?
 
 

@@ -4,20 +4,14 @@ namespace Yormy\TripwireLaravel\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Notifications\Notification;
+use Yormy\TripwireLaravel\Mailables\AttackDetectedMailable;
 
 class AttackDetected extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    /**
-     * The notification config.
-     *
-     * @var object
-     */
     public $notifications;
 
     public function __construct(
@@ -26,7 +20,7 @@ class AttackDetected extends Notification implements ShouldQueue
         private readonly string $userType,
         private readonly string $browserFingerprint,
     ) {
-        $this->notifications = config('tripwire.middleware.' . 'log->middleware' . '.notifications', config('tripwire.notifications'));
+        $this->notifications = config('tripwire.notifications');
     }
 
     public function via($notifiable)
@@ -44,10 +38,9 @@ class AttackDetected extends Notification implements ShouldQueue
         return $channels;
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail($notifiable)
     {
         $domain = request()->getHttpHost();
-
         $subject = __('tripwire::notifications.mail.subject', [
             'domain' => $domain,
         ]);
@@ -57,10 +50,16 @@ class AttackDetected extends Notification implements ShouldQueue
             'ip' => $this->ipAddress,
         ]);
 
-        $mail = (new MailMessage)
-            ->from($this->notifications['mail']['from'], $this->notifications['mail']['name'])
+        $title = $subject;
+        $mail = new AttackDetectedMailable(
+            title: $title,
+            msg: $message,
+            ipAddress: $this->ipAddress,
+            userId: $this->userId,
+        );
+        $mail
             ->subject($subject)
-            ->line($message);
+            ->to($this->notifications['mail']['from'], $this->notifications['mail']['name']);
 
         return $mail;
     }
