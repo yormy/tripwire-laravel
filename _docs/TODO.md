@@ -1,6 +1,9 @@
 # TODO
+- build in notifications (kan ik die ook per type block speccen?)
+- 
+
+
 - how to disable middleware on certain routes
-- Abstraction o/ or groups of checkers easy include in kernel
 - BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
 
 exception pass to tripwire to check models and throw events, eventueel dan in config welke afvangen en wat te doen

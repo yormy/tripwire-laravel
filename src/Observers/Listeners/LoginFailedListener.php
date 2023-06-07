@@ -3,11 +3,6 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Illuminate\Auth\Events\Login;
-//use Akaunting\Firewall\Events\AttackDetected;
-//use Akaunting\Firewall\Traits\Helper;
-//use Illuminate\Auth\Events\Failed as Event;
-//use function Akaunting\Firewall\Listeners\event;
-//use function Akaunting\Firewall\Listeners\request;
 
 class LoginFailedListener
 {
@@ -23,10 +18,6 @@ class LoginFailedListener
 //        }
 //
 //        $this->request['password'] = '******';
-//
-//        $log = $this->log();
-//
-//        event(new AttackDetected($log));
     }
 
     public function skip($event): bool
