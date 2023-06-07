@@ -3,11 +3,11 @@
   - slack
   
 - how to disable middleware on certain routes
-- BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
+- BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different
+--- or group into section ?
 
 exception pass to tripwire to check models and throw events, eventueel dan in config welke afvangen en wat te doen
 how to spec models/pages not found 
-
 
 extend rules:
 nullbyte
@@ -24,10 +24,8 @@ anonymizer, extend model, prevent callable in other namespace? in base class/ tr
 Extend tripwires:
 listen to login events and take actiosn
 throttle events
-other akunetic scanners
 other priportal / bounty scanners
 walk through akunetics
-null byte checker
 file checker
 extreme Large request (unless allowed)
 certain file types / sizes
