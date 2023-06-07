@@ -27,6 +27,8 @@ class BlockRepository
         ?int $userId,
         ?string $userType,
         ?string $browserFingerprint,
+        ?string $responseJson,
+        ?string $responseHtml,
         ?bool $ignore = false
     )
     {
@@ -40,6 +42,9 @@ class BlockRepository
         $blockedUntil = $this->getBlockedUntil($penaltySeconds, $repeaterCount);
         $data['blocked_until'] = $blockedUntil;
         $data['blocked_repeater'] = $repeaterCount;
+
+        $data['response_json'] = $responseJson;
+        $data['response_html'] = $responseHtml;
 
         return $this->model::create($data);
     }

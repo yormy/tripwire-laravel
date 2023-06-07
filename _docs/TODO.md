@@ -6,15 +6,15 @@
 
 exception pass to tripwire to check models and throw events, eventueel dan in config welke afvangen en wat te doen
 
-Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
-Hoe spec ik dat dan in de config de score to trigger
 
-- logout on certain actions/ blocks ?
-- 
-Specify type of block view/json:  violation is anders dan login throttle
+
+
+
 
 simple text search ie nullbyte
 how to spec models/pages not found 
+
+cleanup models
 
 
 
@@ -44,6 +44,12 @@ protect an url from being included
 
 Whitelist ip when specced this ip will not be checked for rules. Idea: have whitelist for allowing entry of the system, managable by the database?
 or do this with a perblock in the _blocks ie: persistent block
+
+# How to conclude a block
+Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar bv sql en swear niet.
+Hoe spec ik dat dan in de config de score to trigger
+When I know how, I could spec the result
+Specify type of block view/json:  violation is anders dan login throttle
 
 # Management:
 Way of reset for hackers, how

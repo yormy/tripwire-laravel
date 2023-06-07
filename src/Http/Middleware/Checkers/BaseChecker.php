@@ -183,7 +183,7 @@ abstract class BaseChecker
         $ipAddress = $ipAddressClass::get($this->request);
 
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($this->request); //// ???
+        $userId = $userClass::getId($this->request);
         $userType = $userClass::getType($this->request);
 
         AddBlockJob::dispatch(

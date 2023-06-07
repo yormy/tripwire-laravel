@@ -34,6 +34,8 @@ return new class extends Migration
             $table->boolean('persistent_block')->default(false)->comment('Keep this block even during cleanups');
 
             $table->dateTime('blocked_until')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->json('response_json')->nullable()->comment('The json that is returned on a block');
+            $table->string('response_html')->nullable()->comment('The view that is rendered on a block');
 
             $table->timestamps();
             $table->softDeletes();
