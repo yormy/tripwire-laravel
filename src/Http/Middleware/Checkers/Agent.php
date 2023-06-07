@@ -20,7 +20,7 @@ class Agent extends BaseChecker
 
     public function isAttack($patterns): bool
     {
-        $agents = $this->config->agents;
+        $agents = $this->config->custom;
         if (empty($agents)) {
             return false;
         }

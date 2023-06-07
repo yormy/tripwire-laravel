@@ -9,7 +9,7 @@ class RequestSource
 
     public static function getUserAgent(): string
     {
-        return $_SERVER['HTTP_USER_AGENT'];
+        return $_SERVER['HTTP_USER_AGENT'] ?? '';
     }
 
     public static function getPlatform(): string
@@ -44,7 +44,7 @@ class RequestSource
 
     public static function getReferer(): string
     {
-        return $_SERVER['HTTP_REFERER'];
+        return $_SERVER['HTTP_REFERER'] ?? '';
     }
 
     public static function isRobot(): bool
