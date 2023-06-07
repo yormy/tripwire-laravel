@@ -48,6 +48,7 @@ return [
             'from' => env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'),
             'to' => env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'),
             'template' => env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'),
+            'template_plain' => env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain'),
         ],
 
         'slack' => [

@@ -34,6 +34,7 @@ class AttackDetectedMailable extends Mailable
     {
         return new Content(
             view: config('tripwire.notifications.mail.template'),
+            text: config('tripwire.notifications.mail.template_plain'),
         );
     }
 

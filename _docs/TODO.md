@@ -1,7 +1,7 @@
 # TODO
 - notifications:
   - slack
-
+  
 - how to disable middleware on certain routes
 - BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
 
