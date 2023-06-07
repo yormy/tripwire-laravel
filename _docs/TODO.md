@@ -1,9 +1,6 @@
 # TODO
 - notifications:
   - slack
-  - more details in the email ? (url / type ? (need loggable>block)), what triggered it ?
-  - prevent too many emails ?
-
 
 - how to disable middleware on certain routes
 - BOT checker is not on input level, but on all levels so should be logically in the first steps of the request., maybe name different ?
@@ -44,6 +41,7 @@ Moet ik violations bij elkaar optellen om te punishen (bv xss + sql wel), maar b
 Hoe spec ik dat dan in de config de score to trigger
 When I know how, I could spec the result
 Specify type of block view/json:  violation is anders dan login throttle
+- more details in the email ? (url / type ? (need loggable>block)), what triggered it ?
 
 # Management:
 Way of reset for hackers, how
