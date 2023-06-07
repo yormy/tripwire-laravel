@@ -26,7 +26,6 @@ class ConfigResponse
     public ?string $messageKey = null;
 
     public function __construct(
-        private readonly Request $request,
         array $data
 
     ) {
