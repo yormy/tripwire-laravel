@@ -8,6 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Yormy\TripwireLaravel\Observers\Events\RefererFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedBrowserEvent;
+use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedIpEvent;
+use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedUserEvent;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
@@ -52,13 +56,16 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
             );
 
             $sum->violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
+            event(new TripwireBlockedIpEvent($sum->ipAddress));
 
             if (!$sum->violationsByUser) {
                 $sum->violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
+                event(new TripwireBlockedUserEvent($sum->userId, $sum->userType));
             }
 
             if ($sum->violationsByBrowser) {
                 $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
+                event(new TripwireBlockedBrowserEvent($sum->browserFingerprint));
             }
 
             return $blockItem;
