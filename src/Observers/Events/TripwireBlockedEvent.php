@@ -9,4 +9,11 @@ class TripwireBlockedEvent
 {
     use Dispatchable;
     use SerializesModels;
+
+    public function __construct(
+        public readonly string $ipAddress,
+        public readonly int $userId,
+        public readonly string $userType,
+        public readonly string $browserFingerprint,
+    ) {}
 }

@@ -14,12 +14,16 @@ use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Lfi;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Php;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Referer;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Rfi;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Session;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Xss;
+use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedEvent;
+use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedIpEvent;
 use Yormy\TripwireLaravel\Observers\Listeners\LoginFailedListener;
+use Yormy\TripwireLaravel\Observers\Listeners\NotifyUsers;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Auth\Events\Failed as LoginFailed;
@@ -44,6 +48,8 @@ class TripwireServiceProvider extends ServiceProvider
         $this->registerListeners();
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tripwire-laravel');
+
+        $this->registerTranslations();
     }
 
     /**
@@ -70,6 +76,10 @@ class TripwireServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-views'),
             ]);
+
+            $this->publishes([
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/tripwire'),
+            ], 'translations');
         }
     }
 
@@ -106,5 +116,11 @@ class TripwireServiceProvider extends ServiceProvider
     public function registerListeners()
     {
         $this->app['events']->listen(LoginFailed::class, LoginFailedListener::class);
+        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyUsers::class);
+    }
+
+    public function registerTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'tripwire');
     }
 }

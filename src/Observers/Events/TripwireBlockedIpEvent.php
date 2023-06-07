@@ -11,7 +11,7 @@ class TripwireBlockedIpEvent
     use SerializesModels;
 
     public function __construct(
-        protected readonly string $ip,
+        protected readonly string $ipAddress,
     ) {}
 
 }
