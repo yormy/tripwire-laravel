@@ -8,7 +8,17 @@ use Yormy\TripwireLaravel\Console\Commands\DecryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\DecryptRecordCommand;
 use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
 use Yormy\TripwireLaravel\Console\Commands\GenerateEncryptionKeyCommand;
-use Yormy\TripwireLaravel\Http\Middleware\Swear;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Lfi;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Php;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Referer;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Session;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Xss;
 use Yormy\TripwireLaravel\Observers\Listeners\LoginFailedListener;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Illuminate\Routing\Router;
@@ -74,21 +84,23 @@ class TripwireServiceProvider extends ServiceProvider
 
     public function registerMiddleware($router)
     {
-//        $router->middlewareGroup('firewall.all', config('firewall.all_middleware'));
-//        $router->aliasMiddleware('firewall.agent', 'Akaunting\Firewall\Middleware\Agent');
-//        $router->aliasMiddleware('firewall.bot', 'Akaunting\Firewall\Middleware\Bot');
-//        $router->aliasMiddleware('firewall.ip', 'Akaunting\Firewall\Middleware\Ip');
-//        $router->aliasMiddleware('firewall.geo', 'Akaunting\Firewall\Middleware\Geo');
-//        $router->aliasMiddleware('firewall.lfi', 'Akaunting\Firewall\Middleware\Lfi');
-//        $router->aliasMiddleware('firewall.php', 'Akaunting\Firewall\Middleware\Php');
-//        $router->aliasMiddleware('firewall.referrer', 'Akaunting\Firewall\Middleware\Referrer');
-//        $router->aliasMiddleware('firewall.rfi', 'Akaunting\Firewall\Middleware\Rfi');
-//        $router->aliasMiddleware('firewall.session', 'Akaunting\Firewall\Middleware\Session');
-//        $router->aliasMiddleware('firewall.sqli', 'Akaunting\Firewall\Middleware\Sqli');
-        $router->aliasMiddleware('firewall.swear', Swear::class);
-//        $router->aliasMiddleware('firewall.url', 'Akaunting\Firewall\Middleware\Url');
-//        $router->aliasMiddleware('firewall.whitelist', 'Akaunting\Firewall\Middleware\Whitelist');
-//        $router->aliasMiddleware('firewall.xss', 'Akaunting\Firewall\Middleware\Xss');
+        $router->middlewareGroup('tripwire.all', config('tripwire.checker_groups.all', false));
+        $router->middlewareGroup('tripwire.base', config('tripwire.checker_groups.base', false));
+        $router->middlewareGroup('tripwire.custom1', config('tripwire.checker_groups.custom1', false));
+        $router->middlewareGroup('tripwire.custom2', config('tripwire.checker_groups.custom2', false));
+
+        $router->aliasMiddleware('tripwire.agent', Agent::class);
+        $router->aliasMiddleware('tripwire.bot', Bot::class);
+        $router->aliasMiddleware('tripwire.geo', Geo::class);
+        $router->aliasMiddleware('tripwire.lfi', Lfi::class);
+        $router->aliasMiddleware('tripwire.php', Php::class);
+        $router->aliasMiddleware('tripwire.referer', Referer::class);
+        $router->aliasMiddleware('tripwire.rfi', Rfi::class);
+        $router->aliasMiddleware('tripwire.session', Session::class);
+        $router->aliasMiddleware('tripwire.sqli', Sqli::class);
+        $router->aliasMiddleware('tripwire.swear', Swear::class);
+        $router->aliasMiddleware('tripwire.text', Text::class);
+        $router->aliasMiddleware('tripwire.xss', Xss::class);
     }
 
     public function registerListeners()

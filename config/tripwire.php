@@ -156,6 +156,34 @@ return [
         ],
     ],
 
+    'checker_groups' => [
+        'all' => [
+            'tripwire.agent',
+            'tripwire.bot',
+            'tripwire.geo',
+            'tripwire.lfi',
+            'tripwire.php',
+            'tripwire.referer',
+            'tripwire.rfi',
+            'tripwire.session',
+            'tripwire.sqli',
+            'tripwire.swear',
+            'tripwire.text',
+            'tripwire.xss',
+        ],
+        'base' => [
+            'tripwire.sqli',
+            'tripwire.xss',
+        ],
+        'custom1' => [
+            'tripwire.word',
+            'tripwire.text',
+        ],
+        'custom2' => [
+            'tripwire.rfi',
+            'tripwire.lfi',
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Trigger response
