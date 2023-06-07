@@ -155,15 +155,16 @@ abstract class BaseChecker
 
         $cookies = $this->removeItems($this->request->cookie(), $exceptCookies);
         $headers = $this->removeItems($this->request->header(), $exceptHeaders);
-        $fullUrl = $this->request->fullUrl();
 
         $scannableValues[] = $inputsLocalFilter;
         $scannableValues[] = $cookies;
         $scannableValues[] = $headers;
+
+        $fullUrl = $this->request->fullUrl();
         $scannableValues[] = $fullUrl;
+        $scannableValues[] = urldecode($fullUrl);
 
         return json_encode($scannableValues);
-        return $scannableString;
     }
 
     public function matchResults($pattern, string $input, &$violations)

@@ -14,8 +14,6 @@ Hoe spec ik dat dan in de config de score to trigger
 Specify type of block view/json:  violation is anders dan login throttle
 
 url decode before into checkers
-blocking in job / timing?
-MoveFileToS3::dispatch($localFilename, $destinationDisk, $destinationName, $destinationPath);
 
 simple text search ie nullbyte
 how to spec models/pages not found 
