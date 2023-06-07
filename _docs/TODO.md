@@ -1,6 +1,9 @@
 # TODO
-- build in notifications (kan ik die ook per type block speccen?)
-- 
+- notifications:
+  - slack
+  - design
+  - more details in the email ? (url / type ? (need loggable>block))
+  - prevent too many emails ?
 
 
 - how to disable middleware on certain routes

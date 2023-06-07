@@ -38,6 +38,29 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    */
+    'notifications' => [
+        'mail' => [
+            'enabled' => env('FIREWALL_EMAIL_ENABLED', true),
+            'name' => env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'),
+            'from' => env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'),
+            'to' => env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'),
+        ],
+
+        'slack' => [
+            'enabled' => env('FIREWALL_SLACK_ENABLED', false),
+            'emoji' => env('FIREWALL_SLACK_EMOJI', ':fire:'),
+            'from' => env('FIREWALL_SLACK_FROM', 'Laravel Firewall'),
+            'to' => env('FIREWALL_SLACK_TO'), // webhook url
+            'channel' => env('FIREWALL_SLACK_CHANNEL', null), // set null to use the default channel of webhook
+        ],
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Checksums
     |--------------------------------------------------------------------------
     | Some checksums are posted by the frontend and validated on the backend.
@@ -234,7 +257,7 @@ return [
 
             'methods' => ['post', 'put', 'patch', 'get'],
 
-            'attack_score' => 5,
+            'attack_score' => 500,
 
             'urls' => [
                 'only' => [], // i.e. 'contact'
@@ -555,7 +578,7 @@ return [
 
             'attack_score' => 1,
 
-            'texts' => [
+            'words' => [
                 //'GFhVjBlVmkwUm14M'
             ],
         ],
