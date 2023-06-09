@@ -53,8 +53,8 @@ return [
 
         'slack' => [
             'enabled' => env('FIREWALL_SLACK_ENABLED', true),
-            'emoji' => env('FIREWALL_SLACK_EMOJI', ':fire:'),
-            'from' => env('FIREWALL_SLACK_FROM', 'Laravel Firewall'),
+            'emoji' => env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
+            'from' => env('FIREWALL_SLACK_FROM', 'Tripwire'),
             'to' => env('FIREWALL_SLACK_TO','https://hooks.slack.com/services/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'), // webhook url
             'channel' => env('FIREWALL_SLACK_CHANNEL', null), // set null to use the default channel of webhook
         ],

@@ -41,6 +41,7 @@ class AttackDetected extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $domain = request()->getHttpHost();
+
         $subject = __('tripwire::notifications.mail.subject', [
             'domain' => $domain,
         ]);
@@ -57,6 +58,7 @@ class AttackDetected extends Notification implements ShouldQueue
             ipAddress: $this->ipAddress,
             userId: $this->userId,
         );
+
         $mail
             ->subject($subject)
             ->to($this->notifications['mail']['from'], $this->notifications['mail']['name']);
@@ -69,7 +71,7 @@ class AttackDetected extends Notification implements ShouldQueue
         $domain = request()->getHttpHost();
 
         $message = __('tripwire::notifications.slack.message', [
-            'domain' => request()->getHttpHost(),
+            'domain' => $domain,
         ]);
 
         return (new SlackMessage)
