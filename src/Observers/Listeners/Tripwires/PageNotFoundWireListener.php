@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404Event;
 
-class PageNotFoundListenerWire extends WireBaseListener
+class PageNotFoundWireListener extends WireBaseListener
 {
     public function __construct() {
         parent::__construct('page404');

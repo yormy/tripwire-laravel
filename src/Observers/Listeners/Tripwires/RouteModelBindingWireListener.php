@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404Event;
 
-class RouteModelBindingFailedListenerWire extends WireBaseListener
+class RouteModelBindingWireListener extends WireBaseListener
 {
     public function __construct() {
         parent::__construct('model404');

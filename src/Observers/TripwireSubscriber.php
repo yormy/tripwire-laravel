@@ -7,8 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\Tripwires\PageNotFoundEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\RouteModelBindingFailedEvent;
 use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 use Yormy\TripwireLaravel\Observers\Listeners\LogEvent;
-use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\PageNotFoundListenerWire;
-use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\RouteModelBindingFailedListenerWire;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\PageNotFoundWireListener;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\RouteModelBindingWireListener;
 
 class TripwireSubscriber
 {
@@ -22,12 +22,12 @@ class TripwireSubscriber
 
         $events->listen(
             RouteModelBindingFailedEvent::class,
-            RouteModelBindingFailedListenerWire::class
+            RouteModelBindingWireListener::class
         );
 
         $events->listen(
             PageNotFoundEvent::class,
-            PageNotFoundListenerWire::class
+            PageNotFoundWireListener::class
         );
     }
 }
