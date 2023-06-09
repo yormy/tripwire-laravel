@@ -347,6 +347,7 @@ return [
         'attack_score' => 1,
 
         'tripwires' => [
+            '\x00', //nullbyte
             // ...
         ],
     ],

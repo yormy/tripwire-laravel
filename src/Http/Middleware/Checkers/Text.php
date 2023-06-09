@@ -16,15 +16,11 @@ class Text extends BaseChecker
         $this->blockIfNeeded();
     }
 
-    public function getPatterns()
+    public function matchResults($pattern, string $input, &$violations)
     {
-        $patterns = [];
-
-        foreach ($this->config->tripwires as $wire) {
-            $patterns[] = "#$wire#i";
+        if (str_contains($input, $pattern))
+        {
+            $violations [] = $pattern;
         }
-
-        return $patterns;
     }
-
 }

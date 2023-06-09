@@ -3,7 +3,12 @@
 
 Extend tripwires:
 
-other priportal / bounty scanners
+other priportal
+$value = str_replace("\x00", "", $value);
+$value = str_replace("{{", "", $value);
+
+
+/ bounty scanners
 import akunetics tests
 file checker
 extreme Large request (unless allowed)

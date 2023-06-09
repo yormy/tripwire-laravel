@@ -25,8 +25,8 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
 
     public function __construct(
         private readonly string $ipAddress,
-        private readonly int $userId,
-        private readonly string $userType,
+        private readonly ?int $userId,
+        private readonly ?string $userType,
         private readonly int $withinMinutes,
         private readonly int $thresholdScore,
         private readonly int $penaltySeconds,
