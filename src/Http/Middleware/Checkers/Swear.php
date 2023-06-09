@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\SwearFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\SwearFailedEvent;
 
 class Swear extends BaseChecker
 {

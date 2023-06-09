@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Observers\Events\General;
+namespace Yormy\TripwireLaravel\Observers\Events\Tripwires;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

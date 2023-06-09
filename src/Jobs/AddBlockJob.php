@@ -8,11 +8,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Yormy\TripwireLaravel\Observers\Events\RefererFailedEvent;
-use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedBrowserEvent;
-use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedEvent;
-use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedIpEvent;
-use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedUserEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\RefererFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedBrowserEvent;
+use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedIpEvent;
+use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedUserEvent;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 

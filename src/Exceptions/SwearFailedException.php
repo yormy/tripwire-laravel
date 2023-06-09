@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitTypeHackAttempt;
 use Mexion\BedrockCore\Observers\Events\TarpitTriggerEvent;
 use Yormy\TripwireLaravel\Actions\BlockIpAction;
-use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
-use Yormy\TripwireLaravel\Observers\Events\TestFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\RequestChecksumFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\TestFailedEvent;
 
 class SwearFailedException extends BaseException
 {

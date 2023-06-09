@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\GeoFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\GeoFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\IpLookup;
 

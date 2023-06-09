@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\TextFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\TextFailedEvent;
 
 class Text extends BaseChecker
 {

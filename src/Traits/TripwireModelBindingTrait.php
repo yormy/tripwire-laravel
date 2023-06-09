@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Traits;
 
-use Yormy\TripwireLaravel\Observers\Events\General\RouteModelBindingFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Tripwires\RouteModelBindingFailedEvent;
 use Illuminate\Http\Request;
 
 trait TripwireModelBindingTrait

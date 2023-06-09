@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\LfiFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LfiFailedEvent;
 
 class Lfi extends BaseChecker
 {

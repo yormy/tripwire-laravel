@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\AgentFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\AgentFailedEvent;
 use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Agent extends BaseChecker

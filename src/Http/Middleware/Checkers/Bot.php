@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\BotFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\BotFailedEvent;
 use Jenssegers\Agent\Agent;
 use Yormy\TripwireLaravel\Services\RequestSource;
 

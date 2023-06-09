@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Observers\Events\RequestChecksumFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\RequestChecksumFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\User;

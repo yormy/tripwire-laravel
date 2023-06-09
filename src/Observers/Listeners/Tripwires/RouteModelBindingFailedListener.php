@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
-use Yormy\TripwireLaravel\Observers\Events\Model404Event;
+use Yormy\TripwireLaravel\Observers\Events\Failed\Model404Event;
 
 class RouteModelBindingFailedListener extends BaseListener
 {

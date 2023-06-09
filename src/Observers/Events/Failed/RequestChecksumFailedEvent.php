@@ -1,6 +1,8 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Observers\Events;
+namespace Yormy\TripwireLaravel\Observers\Events\Failed;
+
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 
 class RequestChecksumFailedEvent extends LoggableEvent
 {

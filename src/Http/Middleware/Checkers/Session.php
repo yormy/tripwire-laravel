@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\SessionFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\SessionFailedEvent;
 
 class Session extends BaseChecker
 {

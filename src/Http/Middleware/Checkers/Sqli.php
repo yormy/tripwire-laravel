@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\SqliFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\SqliFailedEvent;
 
 class Sqli extends BaseChecker
 {

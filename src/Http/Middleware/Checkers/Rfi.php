@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
-use Yormy\TripwireLaravel\Observers\Events\RfiFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\RfiFailedEvent;
 use Jenssegers\Agent\Agent;
 
 class Rfi extends BaseChecker
