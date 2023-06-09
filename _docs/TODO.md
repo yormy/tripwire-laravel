@@ -1,9 +1,6 @@
 # TODO
 - how to disable middleware on certain routes
 
-
-rename all config details to tripwires ipv words/ checkers/ texts/agents
-
 extend rules:
 nullbyte
 onmouseover
