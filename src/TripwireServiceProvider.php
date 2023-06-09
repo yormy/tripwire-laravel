@@ -14,6 +14,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Lfi;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Php;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Referer;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\RequestSize;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Rfi;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Session;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
@@ -109,6 +110,7 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.swear', Swear::class);
         $router->aliasMiddleware('tripwire.text', Text::class);
         $router->aliasMiddleware('tripwire.xss', Xss::class);
+        $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
     }
 
     private function registerMiddlewareGroups($router)

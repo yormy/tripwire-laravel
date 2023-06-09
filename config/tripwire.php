@@ -187,18 +187,19 @@ return [
 
     'checker_groups' => [
         'all' => [
-            'tripwire.agent',
-            'tripwire.bot',
-            'tripwire.geo',
-            'tripwire.lfi',
-            'tripwire.php',
-            'tripwire.referer',
-            'tripwire.rfi',
-            'tripwire.session',
-            'tripwire.sqli',
-            'tripwire.swear',
-            'tripwire.text',
-            'tripwire.xss',
+//            'tripwire.agent',
+//            'tripwire.bot',
+//            'tripwire.geo',
+//            'tripwire.lfi',
+//            'tripwire.php',
+//            'tripwire.referer',
+//            'tripwire.rfi',
+//            'tripwire.session',
+//            'tripwire.sqli',
+//            'tripwire.swear',
+//            'tripwire.text',
+//            'tripwire.xss',
+            'tripwire.request_size'
         ],
         'server' => [
             'tripwire.agent',

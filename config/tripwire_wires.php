@@ -439,4 +439,24 @@ return [
 
         'attack_score' => 1,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Request size
+    |--------------------------------------------------------------------------
+    */
+    'requestsize' => [
+        'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+
+        //    'training_mode' => false,    // this will override the global settings, if missing the global will be used
+
+        'methods' => ['post', 'put', 'patch', 'get'],
+
+        'attack_score' => 3,
+
+        'tripwires' => [
+            'size' => 40    // max characters
+            //'GFhVjBlVmkwUm14M'
+        ],
+    ],
 ];

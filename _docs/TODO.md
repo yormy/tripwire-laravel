@@ -2,10 +2,10 @@
 - how to disable middleware on certain routes
 
 Extend tripwires:
+extreme Large request (unless allowed) -> how to disable ?
 
-file checker
-extreme Large request (unless allowed)
-certain file types / sizes
+
+
 
 extend rules: hacker polyglots and examples
 
@@ -71,3 +71,7 @@ Geofencing
 
 PSALM
 PINT
+
+
+# EXTEND
+file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
