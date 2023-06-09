@@ -98,6 +98,36 @@ class BlockRepository
         return $blocked?->blocked_until;
     }
 
+    public function isAnyBlockedUntil(
+        string $ipAddress,
+        ?string $browserFingerprint,
+        ?int $userId,
+        ?string $userType,
+    ): ?Carbon {
+        $builder =  $this->model
+            ->where('blocked_until', '>', Carbon::now());
+
+        $builder->where(function($query) use ($ipAddress, $browserFingerprint, $userId, $userType) {
+                $query->where('blocked_ip', $ipAddress);
+
+                if ($browserFingerprint) {
+                    $query->orWhere('blocked_browser_fingerprint', $browserFingerprint);
+                }
+
+                if ($userId) {
+                    $query->orWhere(function ($queryUser) use ($userId, $userType) {
+                        $queryUser
+                            ->where('blocked_user_id', $userId)
+                            ->where('blocked_user_type', $userType);
+                    });
+                }
+            });
+
+        $blocked = $this->getLatest($builder);
+
+        return $blocked?->blocked_until;
+    }
+
     private function getBlockedUntil(
         int $penaltySeconds,
         int $repeaterCount

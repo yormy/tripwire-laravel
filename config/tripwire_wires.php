@@ -452,11 +452,11 @@ return [
 
         'methods' => ['post', 'put', 'patch', 'get'],
 
-        'attack_score' => 3,
+        'attack_score' => 300,
 
         'urls' => [
             'only' => [], // i.e. 'contact'
-            'except' => ['api/v1/member/*'], // i.e. 'admin/*'
+            'except' => ['api/v1/meber/*'], // i.e. 'admin/*'
         ],
 
         'tripwires' => [

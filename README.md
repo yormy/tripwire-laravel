@@ -58,6 +58,9 @@ TripwireBlockHandlerUser::class
 ```
 This will block api traffic for blocked users  
 
+Another thing you can do is to add TripwireBlockHandlerAll to the area where users are validated, and that will basically do a
+TripwireBlockHandlerIp, TripwireBlockHandlerBrowser and TripwireBlockHandlerUser in one go and 1 query
+
 ### Web middleware
 Note that these needs to be added after a user has been validated
 add
