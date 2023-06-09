@@ -44,6 +44,7 @@ class TripwireServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         $this->registerMiddleware($router);
+        $this->registerMiddlewareGroups($router);
 
         $this->registerListeners();
 
@@ -94,11 +95,6 @@ class TripwireServiceProvider extends ServiceProvider
 
     public function registerMiddleware($router)
     {
-        $router->middlewareGroup('tripwire.all', config('tripwire.checker_groups.all', false));
-        $router->middlewareGroup('tripwire.base', config('tripwire.checker_groups.base', false));
-        $router->middlewareGroup('tripwire.custom1', config('tripwire.checker_groups.custom1', false));
-        $router->middlewareGroup('tripwire.custom2', config('tripwire.checker_groups.custom2', false));
-
         $router->aliasMiddleware('tripwire.agent', Agent::class);
         $router->aliasMiddleware('tripwire.bot', Bot::class);
         $router->aliasMiddleware('tripwire.geo', Geo::class);
@@ -111,6 +107,13 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.swear', Swear::class);
         $router->aliasMiddleware('tripwire.text', Text::class);
         $router->aliasMiddleware('tripwire.xss', Xss::class);
+    }
+
+    private function registerMiddlewareGroups($router)
+    {
+        foreach (config('tripwire.checker_groups', []) as $name => $items) {
+            $router->middlewareGroup("tripwire.$name", $items);
+        }
     }
 
     public function registerListeners()

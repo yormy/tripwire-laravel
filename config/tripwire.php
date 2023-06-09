@@ -196,18 +196,12 @@ return [
             'tripwire.text',
             'tripwire.xss',
         ],
-        'base' => [
-            'tripwire.sqli',
-            'tripwire.xss',
-        ],
-        'custom1' => [
-            'tripwire.word',
-            'tripwire.text',
-        ],
-        'custom2' => [
-            'tripwire.rfi',
-            'tripwire.lfi',
-        ],
+        // you can create as many groups as you want
+        //'custom' => [
+        //    'tripwire.text',
+        //    'tripwire.xss',
+        //],
+        // This can then be used as 'tripwire.custom' in your kernel
     ],
     /*
     |--------------------------------------------------------------------------
