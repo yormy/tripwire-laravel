@@ -639,6 +639,11 @@ return [
 
             'attack_score' => 1,
 
+            'urls' => [
+                'only' => [], // i.e. 'contact'
+                'except' => ['member/*'], // i.e. 'admin/*'
+            ],
+
             'tripwires' => [
                 'Mexion\BedrockUsers\Models\Member', //?? only / except
                 //'GFhVjBlVmkwUm14M'
