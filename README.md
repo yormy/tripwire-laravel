@@ -88,6 +88,13 @@ TripwireBlockedUserEvent
 - copy webhook and paste into your .env
 
 
+# Catch Model Binding
+When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
+
+Add to your model that you want to protect
+```
+use TripwireModelBindingTrait
+```
 
 
 ## Changelog

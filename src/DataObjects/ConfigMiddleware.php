@@ -27,6 +27,8 @@ class ConfigMiddleware
 
     public int $attackScore;
 
+    public array $tripwires;
+
     public bool $trainingMode = false;
 
     public function __construct(string $checker)
@@ -50,6 +52,7 @@ class ConfigMiddleware
 
         $this->guards = $data['guards'] ?? [];
         $this->custom = $data['custom'] ?? [];
+        $this->tripwires = $data['tripwires'] ?? [];
 
         if (isset($data['training_mode'])) {
             $this->trainingMode = $data['training_mode'];

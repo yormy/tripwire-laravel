@@ -61,6 +61,7 @@ return [
 
     ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Checksums
@@ -593,6 +594,34 @@ return [
 
             'words' => [
                 //'GFhVjBlVmkwUm14M'
+            ],
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Model Missing
+        |--------------------------------------------------------------------------
+        */
+        'model404' => [
+            'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+
+            //    'training_mode' => false,    // this will override the global settings, if missing the global will be used
+
+            'methods' => ['post', 'put', 'patch', 'get'],
+
+            'attack_score' => 1,
+
+            'tripwires' => [
+                'Mexion\BedrockUsers\Models\Member',
+                //'GFhVjBlVmkwUm14M'
+            ],
+
+            'punish' => [
+                'score' => 10,
+                'within_minutes' => 60 * 24,
+                // note this will log increase on every violation that leads to a block
+                // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+                'penalty_seconds' => 5
             ],
         ],
     ],

@@ -11,6 +11,7 @@ use Yormy\TripwireLaravel\Observers\Events\Page404Event;
 use Yormy\TripwireLaravel\Observers\Events\ThrottleHitEvent;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Yormy\TripwireLaravel\Tripwires\Exceptions\oldModelMissingWire;
 
 class ExceptionInspector
 {
@@ -23,8 +24,6 @@ class ExceptionInspector
         }
 
         if ($e instanceof ModelNotFoundException) {
-            ray('model 404');
-            event(new Model404Event());
         }
 
         if ($e instanceof NotFoundHttpException) {
