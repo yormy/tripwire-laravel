@@ -3,29 +3,11 @@
 
 Extend tripwires:
 
-other priportal
-$value = str_replace("\x00", "", $value);
-$value = str_replace("{{", "", $value);
-
-
-/ bounty scanners
-import akunetics tests
 file checker
 extreme Large request (unless allowed)
 certain file types / sizes
 
-
-
-
-extend rules:
-nullbyte
-onmouseover
-onhover
-script
-hacker polyglots and examples
-role=admin
-or 1=1
-or+1=1 (+ is url encoded space)
+extend rules: hacker polyglots and examples
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 
@@ -59,6 +41,8 @@ cleanup models
 
 
 # Unit test cases
+import akunetics tests
+
 hmm... have someone create multiple examples of triggers
 SQLi:
 ```

@@ -84,7 +84,7 @@ return [
         ],
 
         'tripwires' => [
-            '#[\d\W](bounty)[\d\W]#is',
+            '#[\d\W](or 1=1|or 2=2|or\+1=1||or\+2=2)[\d\W]#is',
             '#[\d\W](union select|union join|union distinct)[\d\W]#is',
             '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#is',
         ],
@@ -164,7 +164,8 @@ return [
             '#-moz-binding[\x00-\x20]*:#u',
 
             // Unneeded tags
-            '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i'
+            '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i',
+            '#(onmouseover|onhover)[^>]*>?#i'
         ],
     ],
 
