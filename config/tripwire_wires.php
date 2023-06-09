@@ -37,7 +37,7 @@ return [
             'except' => [], // i.e. 'password'
         ],
 
-        'words' => [
+        'tripwires' => [
            'blow',
             //'GFhVjBlVmkwUm14M'
         ],
@@ -83,7 +83,7 @@ return [
             'except' => [], // i.e. 'password'
         ],
 
-        'patterns' => [
+        'tripwires' => [
             '#[\d\W](bounty)[\d\W]#is',
             '#[\d\W](union select|union join|union distinct)[\d\W]#is',
             '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#is',
@@ -119,7 +119,7 @@ return [
 
         'attack_score' => 5,
 
-        'patterns' => [
+        'tripwires' => [
             '#\.\/#is',
         ],
     ],
@@ -136,7 +136,7 @@ return [
 
         'attack_score' => 7,
 
-        'patterns' => [
+        'tripwires' => [
             '@[\|:]O:\d{1,}:"[\w_][\w\d_]{0,}":\d{1,}:{@i',
             '@[\|:]a:\d{1,}:{@i',
         ],
@@ -155,7 +155,7 @@ return [
 
         'attack_score' => 9,
 
-        'patterns' => [
+        'tripwires' => [
             // Evil starting attributes
             '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
 
@@ -226,7 +226,7 @@ return [
 
         'attack_score' => 9,
 
-        'patterns' => [
+        'tripwires' => [
             '#(http|ftp){1,1}(s){0,1}://.*#i',
         ],
 
@@ -346,8 +346,8 @@ return [
 
         'attack_score' => 1,
 
-        'words' => [
-            //'GFhVjBlVmkwUm14M'
+        'tripwires' => [
+            // ...
         ],
     ],
 

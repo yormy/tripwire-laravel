@@ -20,8 +20,8 @@ class Swear extends BaseChecker
     {
         $patterns = [];
 
-        foreach ($this->config->words as $word) {
-            $patterns[] = '#\b' . $word . '\b#i';
+        foreach ($this->config->tripwires as $wire) {
+            $patterns[] = '#\b' . $wire . '\b#i';
         }
 
         return $patterns;

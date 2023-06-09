@@ -20,8 +20,8 @@ class Text extends BaseChecker
     {
         $patterns = [];
 
-        foreach ($this->config->words as $word) {
-            $patterns[] = "#$word#i";
+        foreach ($this->config->tripwires as $wire) {
+            $patterns[] = "#$wire#i";
         }
 
         return $patterns;

@@ -21,10 +21,6 @@ class ConfigMiddleware
 
     public ConfigPunish $punish;
 
-    public array $words;
-
-    public array $patterns;
-
     public int $attackScore;
 
     public array $tripwires;
@@ -39,9 +35,7 @@ class ConfigMiddleware
         $this->methods = $data['methods'];
         $this->urls = $data['urls'] ?? [];
         $this->inputs = $data['inputs'] ?? [];
-        $this->words = $data['words'] ?? [];
 
-        $this->patterns = $data['patterns'] ?? [];
         $this->attackScore = $data['attack_score'];
 
         if ($punishData = $data['punish'] ?? false) {

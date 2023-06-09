@@ -1,10 +1,6 @@
 # TODO
 - how to disable middleware on certain routes
 
-splits config in 
-- tripwire
-- tripwire_wires
-
 
 rename all config details to tripwires ipv words/ checkers/ texts/agents
 

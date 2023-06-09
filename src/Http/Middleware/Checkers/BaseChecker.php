@@ -74,7 +74,7 @@ abstract class BaseChecker
 
     public function getPatterns()
     {
-        return $this->config->patterns;
+        return $this->config->tripwires;
     }
 
     public function isAttack($patterns): bool
