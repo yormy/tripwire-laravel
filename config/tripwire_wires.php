@@ -200,7 +200,7 @@ return [
 
         'attack_score' => 9,
 
-        'words' => [
+        'tripwires' => [
             'bzip2://',
             'expect://',
             'glob://',
@@ -268,7 +268,7 @@ return [
         'attack_score' => 9,
 
         // https://github.com/jenssegers/agent
-        'custom' => [
+        'tripwires' => [
             'browsers' => [
                 'block' => [], // i.e. 'IE', 'CHROME', 'FIREFOX'
             ],
@@ -300,7 +300,7 @@ return [
 
         'attack_score' => 9,
 
-        'custom' => [
+        'tripwires' => [
             // ipapi, extremeiplookup, ipstack, ipdata, ipinfo, ipregistry
             'service' => 'ipstack',
 

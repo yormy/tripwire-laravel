@@ -31,7 +31,7 @@ class Geo extends BaseChecker
         $location->continent ='Europe';
 
         $continent = 'Europe';
-        $continentsGuards = $this->config->custom['continents'];
+        $continentsGuards = $this->config->tripwires['continents'];
 
         $violations = [];
         if($this->isGuardAttack($continent, $continentsGuards)) {
@@ -47,7 +47,7 @@ class Geo extends BaseChecker
 
     protected function getLocation()
     {
-        $service = $this->config->custom['service'];
+        $service = $this->config->tripwires['service'];
         $apiKey = '--';
         $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
         $location = $ipLookup->get();

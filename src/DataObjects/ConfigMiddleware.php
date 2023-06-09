@@ -17,8 +17,6 @@ class ConfigMiddleware
 
     public array $guards;
 
-    public array $custom;
-
     public ConfigPunish $punish;
 
     public int $attackScore;
@@ -45,7 +43,6 @@ class ConfigMiddleware
         }
 
         $this->guards = $data['guards'] ?? [];
-        $this->custom = $data['custom'] ?? [];
         $this->tripwires = $data['tripwires'] ?? [];
 
         if (isset($data['training_mode'])) {
