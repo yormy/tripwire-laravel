@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Services\UrlTester;
 
 abstract class BaseChecker
 {
-    protected abstract function attackFound(array $violations): void;
+    abstract protected function attackFound(array $violations): void;
 
     public function __construct(Request $request)
     {
