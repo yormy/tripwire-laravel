@@ -46,8 +46,8 @@ trait TripwireHelpers
         $ipAddress = $ipAddressClass::get($this->request);
 
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($this->request);
-        $userType = $userClass::getType($this->request);
+        $userId = $userClass::getId($this->request) ?? 0;
+        $userType = $userClass::getType($this->request) ?? '';
 
         AddBlockJob::dispatch(
             ipAddress: $ipAddress,
