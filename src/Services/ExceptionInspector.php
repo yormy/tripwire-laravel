@@ -19,8 +19,6 @@ class ExceptionInspector
     public static function inspect(Throwable $e, Request $request = null): void
     {
         if ($e instanceof ThrottleRequestsException) {
-            ray('throttle exception');
-            // how to check for when activated, not every hit ?
             event(new ThrottleHitEvent());
         }
 
