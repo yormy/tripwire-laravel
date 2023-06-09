@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
-use Yormy\TripwireLaravel\Mailables\AttackDetectedMailable;
+use Yormy\TripwireLaravel\Mailables\UserBlockedMailable;
 
-class AttackDetected extends Notification implements ShouldQueue
+class UserBlockedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -52,7 +52,7 @@ class AttackDetected extends Notification implements ShouldQueue
         ]);
 
         $title = $subject;
-        $mail = new AttackDetectedMailable(
+        $mail = new UserBlockedMailable(
             title: $title,
             msg: $message,
             ipAddress: $this->ipAddress,

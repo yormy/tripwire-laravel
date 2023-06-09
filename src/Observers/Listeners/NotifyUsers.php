@@ -3,7 +3,7 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Throwable;
-use Yormy\TripwireLaravel\Notifications\AttackDetected;
+use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
 use Yormy\TripwireLaravel\Observers\Events\TripwireBlockedEvent;
 
@@ -11,7 +11,7 @@ class NotifyUsers
 {
     public function handle(TripwireBlockedEvent $event)
     {
-        $message = new AttackDetected(
+        $message = new UserBlockedNotification(
             $event->ipAddress,
             $event->userId,
             $event->userType,
