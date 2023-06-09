@@ -63,31 +63,26 @@ class AttackDetected extends Notification implements ShouldQueue
 
         return $mail;
     }
-//
-//    /**
-//     * Get the Slack representation of the notification.
-//     *
-//     * @param  mixed  $notifiable
-//     * @return SlackMessage
-//     */
-//    public function toSlack($notifiable)
-//    {
-//        $message = trans('firewall::notifications.slack.message', [
-//            'domain' => request()->getHttpHost(),
-//        ]);
-//
-//        return (new SlackMessage)
-//            ->error()
-//            ->from($this->notifications['slack']['from'], $this->notifications['slack']['emoji'])
-//            ->to($this->notifications['slack']['channel'])
-//            ->content($message)
-//            ->attachment(function ($attachment) {
-//                $attachment->fields([
-//                    'IP' => $this->log->ip,
-//                    'Type' => ucfirst($this->log->middleware),
-//                    'User ID' => $this->log->user_id,
-//                    'URL' => $this->log->url,
-//                ]);
-//            });
-//    }
+
+    public function toSlack($notifiable)
+    {
+        $domain = request()->getHttpHost();
+
+        $message = __('tripwire::notifications.slack.message', [
+            'domain' => request()->getHttpHost(),
+        ]);
+
+        return (new SlackMessage)
+            ->error()
+            ->from($this->notifications['slack']['from'], $this->notifications['slack']['emoji'])
+            ->to($this->notifications['slack']['channel'])
+            ->content($message)
+            ->attachment(function ($attachment) use ($domain) {
+                $attachment->fields([
+                    'IP' => $this->ipAddress,
+                    'User ID' => $this->userId,
+                    'domain' => $domain
+                ]);
+            });
+    }
 }

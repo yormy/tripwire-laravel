@@ -79,6 +79,16 @@ TripwireBlockedBrowserEvent
 
 TripwireBlockedUserEvent
 
+# Slack integrations
+## Create slack incoming webhook
+- open your slack application
+- click apps
+- find 'Incoming WebHooks' and add to slack
+- select channel
+- copy webhook and paste into your .env
+
+
+
 
 ## Changelog
 
