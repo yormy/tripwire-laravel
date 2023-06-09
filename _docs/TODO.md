@@ -2,7 +2,7 @@
 - how to disable middleware on certain routes
 
 Extend tripwires:
-throttle events
+
 other priportal / bounty scanners
 import akunetics tests
 file checker
@@ -78,3 +78,7 @@ XSS
 
 # Extended features
 Geofencing
+
+
+PSALM
+PINT

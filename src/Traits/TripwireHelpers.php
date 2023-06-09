@@ -44,7 +44,6 @@ trait TripwireHelpers
     {
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($this->request ?? null);
-
         $userClass = config('tripwire.services.user');
 
         $userId = 0;
