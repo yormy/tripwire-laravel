@@ -14,19 +14,7 @@ class LogEvent extends BaseListener
 
     public function handle($event)
     {
-        ray('event logevent');
-
         $logRepository = new LogRepository();
         $logRepository->add($this->request, $event);
-
-//        $this->request = request();
-//
-//        $userId = 0;
-//        $user = Auth::user();
-//        if ($user) {
-//            $userId = $user->id;
-//        }
-//
-//        $this->log($event->getCode(), $userId, $event->getSeverity());
     }
 }

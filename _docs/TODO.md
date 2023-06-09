@@ -10,8 +10,6 @@ splits config in
 
 rename all config details to tripwires ipv words/ checkers/ texts/agents
 
-split events in tripwire/ general / blokcers
-
 extend rules:
 nullbyte
 onmouseover
