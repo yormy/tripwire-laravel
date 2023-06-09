@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
-abstract class BaseListener
+abstract class WireBaseListener
 {
     use TripwireHelpers;
 

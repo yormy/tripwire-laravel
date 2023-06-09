@@ -31,6 +31,7 @@ use Illuminate\Auth\Events\Failed as LoginFailed;
 class TripwireServiceProvider extends ServiceProvider
 {
     const CONFIG_FILE = __DIR__.'/../config/tripwire.php';
+    const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
 
     /**
      * @psalm-suppress MissingReturnType
@@ -59,6 +60,7 @@ class TripwireServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(static::CONFIG_FILE, 'tripwire');
+        $this->mergeConfigFrom(static::CONFIG_WIRE_FILE, 'tripwire_wires');
 
         $this->app->register(EventServiceProvider::class);
     }
@@ -68,6 +70,7 @@ class TripwireServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 self::CONFIG_FILE => config_path('tripwire.php'),
+                self::CONFIG_WIRE_FILE => config_path('tripwire_wires.php'),
             ], 'tripwire-config');
 
             $this->publishes([

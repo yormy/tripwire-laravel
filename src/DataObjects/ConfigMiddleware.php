@@ -33,7 +33,7 @@ class ConfigMiddleware
 
     public function __construct(string $checker)
     {
-        $data = config('tripwire.middleware.' . $checker);
+        $data = config('tripwire_wires.' . $checker);
 
         $this->enabled = $data['enabled'] ?? $this->tripwireEnabled();
         $this->methods = $data['methods'];
