@@ -11,10 +11,11 @@ use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\Services\UrlTester;
+use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 abstract class BaseChecker
 {
-    abstract protected function attackFound(array $violations): void;
+    use TripwireHelpers;
 
     public function __construct(Request $request)
     {
@@ -50,11 +51,6 @@ abstract class BaseChecker
         return $next($request);
     }
 
-    protected function getAttackScore(): int
-    {
-        return $this->config->attackScore;
-    }
-
     private function getConfig(Request $request, ?string $checker = null): ConfigResponse
     {
         $configName = 'trigger_response';
@@ -74,31 +70,6 @@ abstract class BaseChecker
         }
 
         return new ConfigResponse($triggerResponse);
-    }
-
-    public function skip($request)
-    {
-        if ($this->config->isDisabled()) {
-            return true;
-        }
-
-        if (UrlTester::skipUrl($request, config('tripwire.urls'))) {
-            return true;
-        }
-
-        if ($this->config->isWhitelist($request)) {
-            return true;
-        }
-
-        if ($this->config->skipMethod($request)) {
-            return true;
-        }
-
-        if ($this->config->skipUrl($request)) {
-            return true;
-        }
-
-        return false;
     }
 
     public function getPatterns()
@@ -175,26 +146,6 @@ abstract class BaseChecker
     protected function matchAdditional($value): ?string
     {
         return null;
-    }
-
-    protected function blockIfNeeded()
-    {
-        $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($this->request);
-
-        $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($this->request);
-        $userType = $userClass::getType($this->request);
-
-        AddBlockJob::dispatch(
-            ipAddress: $ipAddress,
-            userId: $userId,
-            userType: $userType,
-            withinMinutes: $this->config->punish->withinMinutes,
-            thresholdScore: $this->config->punish->score,
-            penaltySeconds: $this->config->punish->penaltySeconds,
-            trainingMode: $this->config->trainingMode,
-        );
     }
 
     protected function isGuardAttack(string $value, array $guards): bool

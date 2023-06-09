@@ -1,7 +1,5 @@
 # TODO
 - how to disable middleware on certain routes
-- 
-refactor route/middleware base functions (baselistener / basechecker)
 
 exception pass to tripwire to check models and throw events, eventueel dan in config welke afvangen en wat te doen
 how to spec models/pages not found 
