@@ -99,6 +99,9 @@ return [
         'max_request_size' => 191,
         'max_header_size' => 191,
         'max_referer_size' => 191,
+        'remove' => [
+            'password'
+        ]
     ],
 
     /*

@@ -43,11 +43,16 @@ trait TripwireHelpers
     protected function blockIfNeeded()
     {
         $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($this->request);
+        $ipAddress = $ipAddressClass::get($this->request ?? null);
 
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($this->request) ?? 0;
-        $userType = $userClass::getType($this->request) ?? '';
+
+        $userId = 0;
+        $userType = '';
+        if ($this->request ?? false) {
+            $userId = $userClass::getId($this->request);
+            $userType = $userClass::getType($this->request);
+        }
 
         AddBlockJob::dispatch(
             ipAddress: $ipAddress,

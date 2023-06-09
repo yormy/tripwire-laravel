@@ -93,15 +93,25 @@ class LogRepository
             $logHeader = substr(json_encode($request->header()), 0, config('tripwire.log.max_header_size'));
         }
         $data['header'] = $logHeader;
-
-        $logRequest = json_encode($request->all());
-        if ($logRequest) {
-            $logRequest = substr(json_encode($request->all()), 0, config('tripwire.log.max_request_size'));
-        }
-        $data['request'] = $logRequest;
+        $data['request'] = $this->getRequestString($request);
         $data['request_fingerprint'] = $this->fingerprint($request);
 
         return $data;
+    }
+
+    private function getRequestString(Request $request): string
+    {
+        $inputs = $request->all();
+        foreach(config('tripwire.log.remove', []) as $field) {
+            unset($inputs[$field]);
+        }
+
+        $logRequest = json_encode($inputs);
+        if ($logRequest) {
+            $logRequest = substr($logRequest, 0, config('tripwire.log.max_request_size'));
+        }
+
+        return $logRequest;
     }
 
 

@@ -411,4 +411,17 @@ return [
             'penalty_seconds' => 5
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Page Missing
+    |--------------------------------------------------------------------------
+    */
+    'loginfailed' => [
+        'enabled' => env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+
+        //    'training_mode' => false,    // this will override the global settings, if missing the global will be used
+
+        'attack_score' => 1,
+    ],
 ];
