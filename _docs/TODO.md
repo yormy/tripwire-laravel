@@ -1,8 +1,14 @@
 # TODO
-- how to disable middleware on certain routes
+- how to disable middleware on certain routes (ie large request)
 
 Extend tripwires:
 extreme Large request (unless allowed) -> how to disable ?
+
+Alleen requestsize is aan, toch loopt die 4x door mijn except route isExcluded heen ?
+TripwireBlockHandler called 3 times = 3x in kernel => combine ?
+
+
+encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
 
 

@@ -454,6 +454,11 @@ return [
 
         'attack_score' => 3,
 
+        'urls' => [
+            'only' => [], // i.e. 'contact'
+            'except' => ['api/v1/member/*'], // i.e. 'admin/*'
+        ],
+
         'tripwires' => [
             'size' => 40    // max characters
             //'GFhVjBlVmkwUm14M'
