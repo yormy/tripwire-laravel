@@ -1,6 +1,17 @@
 # TODO
 - how to disable middleware on certain routes
 
+Extend tripwires:
+throttle events
+other priportal / bounty scanners
+import akunetics tests
+file checker
+extreme Large request (unless allowed)
+certain file types / sizes
+
+
+
+
 extend rules:
 nullbyte
 onmouseover
@@ -13,15 +24,7 @@ or+1=1 (+ is url encoded space)
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 
-Extend tripwires:
-listen to login events and take actiosn
-throttle events
-other priportal / bounty scanners
-import akunetics tests
-file checker
-extreme Large request (unless allowed)
-certain file types / sizes
-protect an url from being included
+
 
 Whitelist ip when specced this ip will not be checked for rules. Idea: have whitelist for allowing entry of the system, managable by the database?
 or do this with a perblock in the _blocks ie: persistent block

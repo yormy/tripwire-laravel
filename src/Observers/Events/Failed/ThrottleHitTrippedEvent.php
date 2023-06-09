@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
-class ThrottleHitEvent extends LoggableEvent
+class ThrottleHitTrippedEvent extends LoggableEvent
 {
     const CODE = "THROTTLE";
 
