@@ -196,6 +196,23 @@ return [
             'tripwire.text',
             'tripwire.xss',
         ],
+        'server' => [
+            'tripwire.agent',
+            'tripwire.bot',
+            'tripwire.geo',
+            'tripwire.referer',
+            'tripwire.session',
+        ],
+        'user' => [
+            'tripwire.lfi',
+            'tripwire.php',
+            'tripwire.rfi',
+            'tripwire.sqli',
+            'tripwire.swear',
+            'tripwire.text',
+            'tripwire.xss',
+        ],
+
         // you can create as many groups as you want
         //'custom' => [
         //    'tripwire.text',
