@@ -1,3 +1,5 @@
+pagenotfound evetn exception
+
 # Management:
 response wrapper ?
 
@@ -5,6 +7,7 @@ routes in api?
 routes in web?
 
 Way of reset for hackers, how
+- allwo reset config
 -Signed-dated url per user
 -record resets
 -how to generate / give out ?

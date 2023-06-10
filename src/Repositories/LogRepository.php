@@ -2,15 +2,13 @@
 
 namespace Yormy\TripwireLaravel\Repositories;
 
-use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\Services\HashService;
-use Yormy\TripwireLaravel\Services\RequestSource;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
-use Yormy\TripwireLaravel\Services\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 
 class LogRepository
 {
@@ -42,6 +40,43 @@ class LogRepository
         $data['event_comment'] = $event->getComment();
 
         return $this->model::create($data);
+    }
+
+    private function delete(Builder $query, bool $forceDelete = false)
+    {
+        if ($forceDelete) {
+            $query->forceDelete();
+            return;
+        }
+
+        $query->delete();
+    }
+
+    public function resetIp(string $ip, bool $forceDelete = false)
+    {
+        $query = $this->model::where('ip', $ip);
+        $this->delete($query, $forceDelete);
+    }
+
+
+    public function resetBrowser(?string $browserFingerprint, bool $forceDelete = false)
+    {
+        if (!$browserFingerprint) {
+            return;
+        }
+
+        $query = $this->model::where('browser_fingerprint', $browserFingerprint);
+        $this->delete($query, $forceDelete);
+    }
+
+    public function resetUser(?int $userId, ?string $userType, bool $forceDelete = false)
+    {
+        if (!$userId) {
+            return;
+        }
+        $query = $this->model::where('user_id', $userId)
+            ->where('user_type', $userType);
+        $this->delete($query, $forceDelete);
     }
 
     public function queryViolationsByIp(int $withinMinutes, string $ipAddress, array $violations = []): Builder

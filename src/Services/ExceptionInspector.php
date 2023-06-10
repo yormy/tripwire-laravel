@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\PageNotFoundEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\ThrottleHitEvent;
-use Yormy\TripwireLaravel\Tripwires\Exceptions\oldModelMissingWire;
 
 class ExceptionInspector
 {

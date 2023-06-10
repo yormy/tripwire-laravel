@@ -2,8 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
-use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
-
 class Page404Event extends LoggableEvent
 {
     const CODE = "PAGE_404";
