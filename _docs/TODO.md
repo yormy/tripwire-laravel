@@ -30,13 +30,14 @@ Specify type of block view/json:  violation is anders dan login throttle
 # Unit test cases
 test every type of response, code, exception, view, etc at least once
 test default fallback responses
-test son
+test json
 
     /*
         if ($data['json'] ?? false) {
             $this->json = $data['json'];
         }
      */
+test all checkers? => data provider
 
 import akunetics tests
 
