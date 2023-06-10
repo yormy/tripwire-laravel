@@ -14,13 +14,9 @@ class ResponsesTest extends TestCase
     /**
      * @test
      */
-    public function trigger_as_exception_expects_exception()
+    public function respond_as_exception_expects_exception()
     {
-        $settings = [
-            "exception" => TripwireFailedException::class
-        ];
-
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        $this->setConfig(["exception" => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
@@ -31,12 +27,9 @@ class ResponsesTest extends TestCase
     /**
      * @test
      */
-    public function trigger_as_code_expects_code()
+    public function respond_as_code_expects_code()
     {
-        $settings = [
-            "code" => self::HTTP_TRIPWIRE_CODE
-        ];
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        $this->setConfig(["code" => self::HTTP_TRIPWIRE_CODE]);
 
         $startCount = TripwireLog::count();
 
@@ -51,14 +44,10 @@ class ResponsesTest extends TestCase
     /**
      * @test
      */
-    public function trigger_as_redirecturl_expects_redirecturl()
+    public function respond_as_redirecturl_expects_redirecturl()
     {
         $redirectUrl = "https://www.cccc.com";
-
-        $settings = [
-            "redirect_url" => $redirectUrl
-        ];
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        $this->setConfig(["redirect_url" => $redirectUrl]);
 
         $startCount = TripwireLog::count();
 
@@ -73,14 +62,10 @@ class ResponsesTest extends TestCase
     /**
      * @test
      */
-    public function trigger_as_view_expects_view()
+    public function respond_as_view_expects_view()
     {
         $viewName = "tripwire-laravel::blocked";
-
-        $settings = [
-            "view" => $viewName
-        ];
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        $this->setConfig(["view" => $viewName]);
 
         $startCount = TripwireLog::count();
 
@@ -91,17 +76,15 @@ class ResponsesTest extends TestCase
         $this->assertEquals($result->getOriginalContent()->name(), $viewName);
     }
 
+
+
     /**
      * @test
      */
-    public function trigger_as_message_expects_message()
+    public function respond_as_message_expects_message()
     {
         $messageKey = "message.key";
-
-        $settings = [
-            "message_key" => $messageKey
-        ];
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        $this->setConfig(["message_key" => $messageKey]);
 
         $startCount = TripwireLog::count();
 
@@ -123,5 +106,10 @@ class ResponsesTest extends TestCase
     private function assertLogAddedToDatabase($startCount)
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
+    }
+
+    private function setConfig(array $data)
+    {
+        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $data]);
     }
 }
