@@ -112,6 +112,17 @@ This way you can specify where the routes are in your path and namespaces and wh
             });
 ```
 
+
+# Reseting keys
+You can get a signed url for researched and developers to reset the logs.
+Calling that url will clear the database of logs, in the config you can specify if they are soft or hard deleted.
+
+Blocks that have the persistent flag set will not be removed. These flags need to be cleared before the blocks can be removed.
+The use case is that sometimes you want to keep certain ips to remain blocked no matter what.
+Admin first need to unpersist a block, and only then it can be deleted.
+
+
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
