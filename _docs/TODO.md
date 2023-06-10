@@ -1,6 +1,7 @@
 # TODO
 - how to disable middleware on certain routes (ie large request)
-
+- how to enable ray buggregator in testbench
+- 
 ## encryption
 encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
@@ -30,6 +31,7 @@ Specify type of block view/json:  violation is anders dan login throttle
 import akunetics tests
 
 hmm... have someone create multiple examples of triggers
+//        $r->query->set('foo', '<script>alert(123)</script>');
 SQLi:
 ```
 (union select)

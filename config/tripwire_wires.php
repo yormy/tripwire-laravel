@@ -4,12 +4,6 @@ use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
-use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Observers\Events\Failed\RequestChecksumFailedEvent;
-use Yormy\TripwireLaravel\Services\IpAddress;
-use Yormy\TripwireLaravel\Services\RequestSource;
-use Yormy\TripwireLaravel\Services\User;
 
 return [
 
@@ -156,16 +150,25 @@ return [
         'attack_score' => 9,
 
         'tripwires' => [
-            // Evil starting attributes
-            '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
-
             // javascript:, livescript:, vbscript:, mocha: protocols
             '!((java|live|vb)script|mocha|feed|data):(\w)*!iUu',
             '#-moz-binding[\x00-\x20]*:#u',
 
+            // Evil starting attributes
+            '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
+
             // Unneeded tags
             '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i',
             '#(onmouseover|onhover)[^>]*>?#i'
+        ],
+
+        'trigger_response' => [
+            'json' => [
+                'exception' => new SwearFailedException(),
+            ],
+            'html' => [
+                'exception' => new SwearFailedException(),
+            ],
         ],
     ],
 
@@ -348,8 +351,23 @@ return [
         'attack_score' => 1,
 
         'tripwires' => [
+            'aaa',
             '\x00', //nullbyte
             // ...
+        ],
+
+        'trigger_response' => [
+            'json' => [
+//            'code' => 409,
+//            'abort' => true,// env('FIREWALL_BLOCK_ABORT', false),
+                'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+            ],
+            'html' => [
+                'code' => 409,
+//                // 'exception' => new TripwireFailedException(),
+//                'messageKey' => 'this jo dude',
+//                'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
+            ],
         ],
     ],
 

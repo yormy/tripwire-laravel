@@ -275,11 +275,15 @@ return [
 
     'trigger_response' => [
         'json' => [
-            'code' => 409,
-            'abort' => true,// env('FIREWALL_BLOCK_ABORT', false),
+//            'code' => 409,
+//            'abort' => true,// env('FIREWALL_BLOCK_ABORT', false),
+            'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
         ],
         'html' => [
-            'exception' => new TripwireFailedException(),
+            'code' => 409,
+           // 'exception' => new TripwireFailedException(),
+//            'messageKey' => 'this is a message',
+//            'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
         ],
     ],
 ];

@@ -127,6 +127,6 @@ class ConfigResponse
             $message = __($this->messageKey);
         }
 
-        abort($this->code, $message);
+        return Response::make($message, $this->code);
     }
 }

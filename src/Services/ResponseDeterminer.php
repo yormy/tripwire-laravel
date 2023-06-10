@@ -42,6 +42,6 @@ class ResponseDeterminer
             return $response;
         }
 
-        $this->configResponse->asGeneralAbort();
+        return $this->configResponse->asGeneralAbort();
     }
 }
