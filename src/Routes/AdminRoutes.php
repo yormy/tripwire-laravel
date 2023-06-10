@@ -21,8 +21,9 @@ class AdminRoutes
                             ->name('admin.')
 //                            ->middleware("guest")
                             ->group(function () {
-                                Route::get('/logs', [LogController::class, 'index'])->name('logs.indexx');
-                                Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.indexx');
+                                Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
+                                Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
+                                Route::get('/blocks/{block}', [BlockController::class, 'show'])->name('blocks.show');
                             });
                     });
             });

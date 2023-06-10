@@ -1,8 +1,8 @@
 # Management:
-get all blocks
-get all logs on block id
 response wrapper ?
 
+routes in api?
+routes in web?
 
 Way of reset for hackers, how
 -Signed-dated url per user

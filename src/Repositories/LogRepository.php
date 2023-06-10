@@ -27,6 +27,11 @@ class LogRepository
         return $this->model::latest()->get();
     }
 
+    public function getByBlockId(int $blockId): Collection
+    {
+        return $this->model::where('tripwire_block_id', $blockId)->latest()->get();
+    }
+
 
     public function add(LoggableEventInterface $event, array $meta)
     {
