@@ -3,7 +3,6 @@
 namespace Yormy\TripwireLaravel\Repositories;
 
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +21,12 @@ class LogRepository
         $class= config('tripwire.models.log');
         $this->model = new $class;
     }
+
+    public function getAll(): Collection
+    {
+        return $this->model::latest()->get();
+    }
+
 
     public function add(LoggableEventInterface $event, array $meta)
     {
