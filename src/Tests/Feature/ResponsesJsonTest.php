@@ -11,6 +11,8 @@ class ResponsesJsonTest extends TestCase
 {
     private string $tripwire ='text';
     const HTTP_TRIPWIRE_CODE = 409;
+
+    CONST TRIPWIRE_TRIGGER = 'JSON-RESPONSE-TEST';
     /**
      * @test
      */
@@ -61,7 +63,7 @@ class ResponsesJsonTest extends TestCase
     private function triggerTripwire()
     {
         $request = $this->app->request; // default is as HTML
-        $request->query->set('foo', 'aaa');
+        $request->query->set('foo', self::TRIPWIRE_TRIGGER);
         $request->headers->set('Accept', 'application/json');
 
         return (new Text($request))->handle($request, $this->getNextClosure());
@@ -74,6 +76,7 @@ class ResponsesJsonTest extends TestCase
 
     private function setConfig(array $data)
     {
+        config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.json" => $data]);
     }
 }
