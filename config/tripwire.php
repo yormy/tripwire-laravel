@@ -36,6 +36,11 @@ return [
     */
     'training_mode' => false,
 
+    'datetime' => [
+        'format' => 'Y-m-d H:m:s',
+        'offset' => -2 * 60,   // Offset in minutes is you want to display in another timezone as your database. Ie.. database in UTC, Platform in New York -4
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Notifications

@@ -3,8 +3,6 @@ get all blocks
 get all logs on block id
 get all blocks/logs for specific ip
 get all blocks/logs for user
-routes
-macros
 
 
 Way of reset for hackers, how
