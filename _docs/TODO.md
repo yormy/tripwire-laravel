@@ -5,16 +5,6 @@ routes in api?
 routes in web?
 
 Way of reset for hackers, how
--Signed-dated url per user
--how to generate / give out ?
-$table->string('xid')->unique(); // customizable ? // still neeeded ?
-
-field encryption
-fix geo fencing, need working api key to ip lookup stuff
-Persistent block: do not delete / give warning to the admin before deletion, set to true when wanted
-cleanup models
-
-
 
 
 # TODO
@@ -23,9 +13,12 @@ cleanup models
 Extend tripwires:
 extreme Large request (unless allowed) -> how to disable ?
 
+## encryption
 encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
 
+
+Admin first need to unpersist a block, and only then it can be deleted.
 
 
 
@@ -93,3 +86,6 @@ extend rules: hacker polyglots and examples
 /index?search=ip ?
 ### get log/block indexed search on userid-type:
 / index?userid=1&usertype='xxxxx'
+
+## Geofencing
+fix geo fencing, need working api key to ip lookup stuff

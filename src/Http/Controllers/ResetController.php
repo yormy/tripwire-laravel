@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
+use Yormy\TripwireLaravel\Services\ResetUrl;
 
 class ResetController extends controller
 {
@@ -38,5 +39,12 @@ class ResetController extends controller
         $blockRepository->resetUser($userId, $userType, $softDelete);
 
         return response()->json(['logs cleared']);
+    }
+
+    public function getKey()
+    {
+        $url = ResetUrl::get();
+
+        return response()->json(['url' => $url]);
     }
 }
