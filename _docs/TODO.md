@@ -1,5 +1,3 @@
-reset blocks
-
 # Management:
 response wrapper ?
 
@@ -7,9 +5,7 @@ routes in api?
 routes in web?
 
 Way of reset for hackers, how
-- allwo reset config
 -Signed-dated url per user
--record resets
 -how to generate / give out ?
 $table->string('xid')->unique(); // customizable ? // still neeeded ?
 
@@ -17,8 +13,7 @@ field encryption
 fix geo fencing, need working api key to ip lookup stuff
 Persistent block: do not delete / give warning to the admin before deletion, set to true when wanted
 cleanup models
-- get records for admin 
-- 
+
 
 
 
