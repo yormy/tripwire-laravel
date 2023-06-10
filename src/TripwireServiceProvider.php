@@ -3,11 +3,7 @@
 namespace Yormy\TripwireLaravel;
 
 use Illuminate\Support\ServiceProvider;
-use Yormy\TripwireLaravel\Console\Commands\AnonymizeCommand;
-use Yormy\TripwireLaravel\Console\Commands\DecryptDbCommand;
-use Yormy\TripwireLaravel\Console\Commands\DecryptRecordCommand;
 use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
-use Yormy\TripwireLaravel\Console\Commands\GenerateEncryptionKeyCommand;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
@@ -27,6 +23,7 @@ use Yormy\TripwireLaravel\Observers\Listeners\NotifyUsers;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Auth\Events\Failed as LoginFailed;
+use Yormy\TripwireLaravel\ServiceProviders\RouteServiceProvider;
 
 class TripwireServiceProvider extends ServiceProvider
 {
@@ -63,6 +60,7 @@ class TripwireServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(static::CONFIG_WIRE_FILE, 'tripwire_wires');
 
         $this->app->register(EventServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
     }
 
     private function publish(): void

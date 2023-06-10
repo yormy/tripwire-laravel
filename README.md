@@ -99,6 +99,18 @@ Add to your model that you want to protect
 use TripwireModelBindingTrait
 ```
 
+# Admin routes
+In your routesfile specify the prefix/middelsware/group and register the tripwire routes
+Route::TripwireAdminRoutes();
+This way you can specify where the routes are in your path and namespaces and what middleware you want to apply
+
+```
+        Route::prefix('')
+            ->middleware('api')
+            ->group(function () {
+                    Route::TripwireAdminRoutes();
+            });
+```
 
 ## Changelog
 
