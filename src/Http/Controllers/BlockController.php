@@ -4,20 +4,19 @@ namespace Yormy\TripwireLaravel\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Controller;
-use Yormy\TripwireLaravel\Http\Controllers\Resources\LogCollection;
-use Yormy\TripwireLaravel\Repositories\LogRepository;
+use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockCollection;
+use Yormy\TripwireLaravel\Repositories\BlockRepository;
 
-
-class LogController extends controller
+class BlockController extends controller
 {
     public function index()
     {
-        $logRepository = new LogRepository();
-        $logs = $logRepository->getAll();
+        $blockRepository = new BlockRepository();
+        $blocks = $blockRepository->getAll();
 
-        $logs = (new LogCollection($logs))->toArray(null);
+        $blocks = (new BlockCollection($blocks))->toArray(null);
 
-        return response()->json($logs);
+        return response()->json($blocks);
     }
 
 

@@ -1,8 +1,7 @@
 # Management:
 get all blocks
 get all logs on block id
-get all blocks/logs for specific ip
-get all blocks/logs for user
+response wrapper ?
 
 
 Way of reset for hackers, how
@@ -90,3 +89,9 @@ PINT
 # EXTEND
 file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
 extend rules: hacker polyglots and examples
+
+## controllers
+### get log/block indexed search on ip:
+/index?search=ip ?
+### get log/block indexed search on userid-type:
+/ index?userid=1&usertype='xxxxx'

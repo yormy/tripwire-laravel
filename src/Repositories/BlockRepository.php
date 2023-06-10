@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class BlockRepository
 {
@@ -19,6 +20,11 @@ class BlockRepository
     {
         $this->model = new TripwireBlock();
         $this->repeatOffenderTimeframeDays = 10; // how long to look back for repeating violations
+    }
+
+    public function getAll(): Collection
+    {
+        return $this->model::latest()->get();
     }
 
     public function add(

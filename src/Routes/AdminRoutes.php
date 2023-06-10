@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Routes;
 
 use Illuminate\Support\Facades\Route;
+use Yormy\TripwireLaravel\Http\Controllers\BlockController;
 use Yormy\TripwireLaravel\Http\Controllers\LogController;
 
 class AdminRoutes
@@ -16,12 +17,12 @@ class AdminRoutes
                     ->name('tripwire.')
                     ->group(function () {
 
-                        Route::prefix('admin/logs')
-                            ->name('admin.logs.')
+                        Route::prefix('admin')
+                            ->name('admin.')
 //                            ->middleware("guest")
                             ->group(function () {
-
-                                Route::get('/', [LogController::class, 'index'])->name('indexx');
+                                Route::get('/logs', [LogController::class, 'index'])->name('logs.indexx');
+                                Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.indexx');
                             });
                     });
             });
