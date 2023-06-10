@@ -7,3 +7,5 @@ coverage
 phpunit.xml
 psalm.xml
 vendor
+
+psalm-report.txt
