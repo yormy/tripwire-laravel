@@ -4,6 +4,7 @@ use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
+use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 
 return [
 
@@ -364,8 +365,9 @@ return [
             ],
             'html' => [
                 'code' => 409,
-//                // 'exception' => new TripwireFailedException(),
-//                'messageKey' => 'this jo dude',
+                //'exception' => TripwireFailedException::class,
+                'messageKey' => 'this jouu dude',
+                'redirect_url' => 'https://www.google.com'
 //                'json' => [ 'data' => 'kkkkkk', 'err' =>'2'],
             ],
         ],

@@ -26,7 +26,8 @@ class ConfigResponse
     public ?string $messageKey = null;
 
     public function __construct(
-        array $data
+        array $data,
+        private string $currentUrl = '',
 
     ) {
         if ($data['code'] ?? false) {
@@ -39,8 +40,8 @@ class ConfigResponse
             $this->view = $data['view'];
         }
 
-        if ($data['redirectUrl'] ?? false) {
-            $this->redirectUrl = $data['redirectUrl'];
+        if ($data['redirect_url'] ?? false) {
+            $this->redirectUrl = $data['redirect_url'];
         }
 
         if ($data['abort'] ?? false) {
@@ -55,8 +56,8 @@ class ConfigResponse
             $this->exception = $data['exception'];
         }
 
-        if ($data['messageKey'] ?? false) {
-            $this->messageKey = $data['messageKey'];
+        if ($data['message_key'] ?? false) {
+            $this->messageKey = $data['message_key'];
         }
     }
 
@@ -100,8 +101,8 @@ class ConfigResponse
     {
         if ($this->redirectUrl) {
             // prevent redir to self
-            if (0 === strcasecmp($this->request->url(), $this->redirectUrl)) {
-                $this->asGeneralAbort();
+            if (0 === strcasecmp($this->currentUrl, $this->redirectUrl)) {
+                //$this->asGeneralAbort();
             }
 
             return Redirect::to($this->redirectUrl);

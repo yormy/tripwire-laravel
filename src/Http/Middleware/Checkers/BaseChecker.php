@@ -69,7 +69,7 @@ abstract class BaseChecker
             }
         }
 
-        return new ConfigResponse($triggerResponse);
+        return new ConfigResponse($triggerResponse, $request->url());
     }
 
     public function getPatterns()
