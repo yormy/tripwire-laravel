@@ -13,6 +13,7 @@ class ResponsesTest extends TestCase
     const HTTP_TRIPWIRE_CODE = 409;
 
     CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+
     /**
      * @test
      */

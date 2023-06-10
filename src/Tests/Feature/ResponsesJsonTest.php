@@ -13,6 +13,19 @@ class ResponsesJsonTest extends TestCase
     const HTTP_TRIPWIRE_CODE = 409;
 
     CONST TRIPWIRE_TRIGGER = 'JSON-RESPONSE-TEST';
+
+    /**
+     * @test
+     */
+    public function json_respond_missing_expects_default_exception()
+    {
+        $this->setDefaultConfig(["exception" => TripwireFailedException::class]);
+
+        $this->expectException(TripwireFailedException::class);
+
+        $this->triggerTripwire();
+    }
+
     /**
      * @test
      */
@@ -23,6 +36,23 @@ class ResponsesJsonTest extends TestCase
         $this->expectException(TripwireFailedException::class);
 
         $this->triggerTripwire();
+    }
+
+    /**
+     * @test
+     */
+    public function json_respond_missing_expects_default_message()
+    {
+        $messageKey = "message.key";
+        $this->setDefaultConfig(["message_key" => $messageKey]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
     /**
@@ -42,6 +72,23 @@ class ResponsesJsonTest extends TestCase
         $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
+
+    /**
+     * @test
+     */
+    public function json_respond_missing_expects_default_json()
+    {
+        $json =  ['data' => 'somedata', 'err' =>'2'];
+        $this->setDefaultConfig(["json" => $json]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getOriginalContent(), $json);
+    }
 
     /**
      * @test
@@ -78,5 +125,13 @@ class ResponsesJsonTest extends TestCase
     {
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.json" => $data]);
+    }
+
+    private function setDefaultConfig(array $data)
+    {
+        config(["tripwire_wires.$this->tripwire.trigger_response.json" => []]);
+
+        config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
+        config(["tripwire.trigger_response.json" => $data]);
     }
 }

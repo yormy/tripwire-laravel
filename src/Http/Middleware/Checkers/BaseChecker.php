@@ -64,7 +64,7 @@ abstract class BaseChecker
         $triggerResponse = $generalResponse;
         if ($checker) {
             $checkerResponse = config('tripwire_wires.' . $checker. '.'. "$configName", false);
-            if (is_array($checkerResponse)) {
+            if (!empty($checkerResponse) && is_array($checkerResponse)) {
                 $triggerResponse = $checkerResponse;
             }
         }
