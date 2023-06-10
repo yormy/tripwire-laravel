@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
 
 //        $this->setUpDatabase();
 //
-//        $this->setUpConfig();
+        $this->setUpConfig();
 //
 //        $this->artisan('vendor:publish', ['--tag' => 'firewall']);
 //        $this->artisan('migrate:refresh', ['--database' => 'testbench']);
@@ -31,6 +31,7 @@ abstract class TestCase extends BaseTestCase
 //        ];
 //    }
 //
+// dit moet toch in xml kunnen ?
 //    protected function setUpDatabase()
 //    {
 //        config(['database.default' => 'testbench']);
@@ -43,9 +44,10 @@ abstract class TestCase extends BaseTestCase
 //        ]);
 //    }
 //
-//    protected function setUpConfig()
-//    {
-//        config(['firewall' => require __DIR__ . '/../src/Config/firewall.php']);
+    protected function setUpConfig()
+    {
+        config(['tripwire' => require __DIR__ . '/../../config/tripwire.php']);
+        config(['tripwire_wires' => require __DIR__ . '/../../config/tripwire_wires.php']);
 //
 //        config(['firewall.notifications.mail.enabled' => false]);
 //        config(['firewall.middleware.ip.methods' => ['all']]);
@@ -53,12 +55,12 @@ abstract class TestCase extends BaseTestCase
 //        config(['firewall.middleware.rfi.methods' => ['all']]);
 //        config(['firewall.middleware.sqli.methods' => ['all']]);
 //        config(['firewall.middleware.xss.methods' => ['all']]);
-//    }
-//
-//    public function getNextClosure()
-//    {
-//        return function () {
-//            return 'next';
-//        };
-//    }
+    }
+
+    public function getNextClosure()
+    {
+        return function () {
+            return 'next';
+        };
+    }
 }
