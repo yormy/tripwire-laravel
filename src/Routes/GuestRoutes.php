@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Routes;
 
 use Illuminate\Support\Facades\Route;
 use Yormy\TripwireLaravel\Http\Controllers\ResetController;
+use Yormy\TripwireLaravel\Http\Middleware\ValidateSignature;
 
 class GuestRoutes
 {
@@ -19,7 +20,7 @@ class GuestRoutes
 
                             Route::prefix('guest')
                                 ->name('guest.')
-//                            ->middleware("guest") //todo signed
+                                ->middleware(ValidateSignature::class)
                                 ->group(function () {
                                     Route::get('/reset', [ResetController::class, 'reset'])->name('logs.reset');
                                 });

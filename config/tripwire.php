@@ -171,6 +171,7 @@ return [
     'reset' => [
         'allowed' => env('TRIPWIRE_WHITELIST', true),
         'soft_delete' => true, // false = delete the log/block records from the database,
+        'link_expiry_minutes' => 30,
     ],
 
 
