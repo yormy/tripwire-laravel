@@ -40,7 +40,9 @@ class BlockRepository
 
     public function resetIp(string $ip, bool $softDelete = true)
     {
-        $query = $this->model::where('blocked_ip', $ip);
+        $query = $this->model::where('blocked_ip', $ip)
+            ->where('persistent_block', false);
+
         $this->delete($query, $softDelete);
     }
 
@@ -51,7 +53,9 @@ class BlockRepository
             return;
         }
 
-        $query = $this->model::where('blocked_browser_fingerprint', $browserFingerprint);
+        $query = $this->model::where('blocked_browser_fingerprint', $browserFingerprint)
+            ->where('persistent_block', false);
+
         $this->delete($query, $softDelete);
     }
 
@@ -61,7 +65,8 @@ class BlockRepository
             return;
         }
         $query = $this->model::where('blocked_user_id', $userId)
-            ->where('blocked_user_type', $userType);
+            ->where('blocked_user_type', $userType)
+            ->where('persistent_block', false);
         $this->delete($query, $softDelete);
     }
 
