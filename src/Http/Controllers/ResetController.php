@@ -5,12 +5,17 @@ namespace Yormy\TripwireLaravel\Http\Controllers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class ResetController extends controller
 {
     public function reset(Request $request)
     {
+        if (!config('tripwire.reset.allowed')) {
+            return;
+        }
+
         $requestSourceClass = config('tripwire.services.request_source');
         $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
 
@@ -21,10 +26,16 @@ class ResetController extends controller
         $userId = $userClass::getId($request);
         $userType = $userClass::getType($request);
 
+        $softDelete = (bool)config('tripwire.reset.soft_delete');
         $logRepository = new LogRepository();
-        $logRepository->resetIp($ipAddress);
-        $logRepository->resetBrowser($browserFingerprint);
-        $logRepository->resetUser($userId, $userType);
+        $logRepository->resetIp($ipAddress, $softDelete);
+        $logRepository->resetBrowser($browserFingerprint, $softDelete);
+        $logRepository->resetUser($userId, $userType, $softDelete);
+
+        $blockRepository = new BlockRepository();
+        $blockRepository->resetIp($ipAddress, $softDelete);
+        $blockRepository->resetBrowser($browserFingerprint, $softDelete);
+        $blockRepository->resetUser($userId, $userType, $softDelete);
 
         return response()->json(['logs cleared']);
     }

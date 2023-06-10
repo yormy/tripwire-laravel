@@ -27,6 +27,44 @@ class BlockRepository
         return $this->model::latest()->get();
     }
 
+
+    private function delete(Builder $query, bool $softDelete = true)
+    {
+        if (!$softDelete) {
+            $query->forceDelete();
+            return;
+        }
+
+        $query->delete();
+    }
+
+    public function resetIp(string $ip, bool $softDelete = true)
+    {
+        $query = $this->model::where('blocked_ip', $ip);
+        $this->delete($query, $softDelete);
+    }
+
+
+    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
+    {
+        if (!$browserFingerprint) {
+            return;
+        }
+
+        $query = $this->model::where('blocked_browser_fingerprint', $browserFingerprint);
+        $this->delete($query, $softDelete);
+    }
+
+    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
+    {
+        if (!$userId) {
+            return;
+        }
+        $query = $this->model::where('blocked_user_id', $userId)
+            ->where('blocked_user_type', $userType);
+        $this->delete($query, $softDelete);
+    }
+
     public function add(
         int $penaltySeconds,
         string $ipAddress,

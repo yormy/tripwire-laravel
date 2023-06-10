@@ -5,7 +5,6 @@ namespace Yormy\TripwireLaravel\Routes;
 use Illuminate\Support\Facades\Route;
 use Yormy\TripwireLaravel\Http\Controllers\BlockController;
 use Yormy\TripwireLaravel\Http\Controllers\LogController;
-use Yormy\TripwireLaravel\Http\Controllers\ResetController;
 
 class AdminRoutes
 {
@@ -25,23 +24,6 @@ class AdminRoutes
                                 Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
                                 Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
                                 Route::get('/blocks/{block}', [BlockController::class, 'show'])->name('blocks.show');
-                            });
-                    });
-            });
-        });
-
-        Route::macro('TripwireResetRoutes', function (string $prefix = '') {
-            Route::prefix($prefix)->name($prefix ? $prefix . "." : '')->group(function () {
-
-                Route::prefix('')
-                    ->name('tripwire.')
-                    ->group(function () {
-
-                        Route::prefix('guest')
-                            ->name('guest.')
-//                            ->middleware("guest")
-                            ->group(function () {
-                                Route::get('/reset', [ResetController::class, 'reset'])->name('logs.reset');
                             });
                     });
             });

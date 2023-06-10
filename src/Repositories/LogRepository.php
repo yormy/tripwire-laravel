@@ -42,9 +42,9 @@ class LogRepository
         return $this->model::create($data);
     }
 
-    private function delete(Builder $query, bool $forceDelete = false)
+    private function delete(Builder $query, bool $softDelete = true)
     {
-        if ($forceDelete) {
+        if (!$softDelete) {
             $query->forceDelete();
             return;
         }
@@ -52,31 +52,31 @@ class LogRepository
         $query->delete();
     }
 
-    public function resetIp(string $ip, bool $forceDelete = false)
+    public function resetIp(string $ip, bool $softDelete = true)
     {
         $query = $this->model::where('ip', $ip);
-        $this->delete($query, $forceDelete);
+        $this->delete($query, $softDelete);
     }
 
 
-    public function resetBrowser(?string $browserFingerprint, bool $forceDelete = false)
+    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
     {
         if (!$browserFingerprint) {
             return;
         }
 
         $query = $this->model::where('browser_fingerprint', $browserFingerprint);
-        $this->delete($query, $forceDelete);
+        $this->delete($query, $softDelete);
     }
 
-    public function resetUser(?int $userId, ?string $userType, bool $forceDelete = false)
+    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
     {
         if (!$userId) {
             return;
         }
         $query = $this->model::where('user_id', $userId)
             ->where('user_type', $userType);
-        $this->delete($query, $forceDelete);
+        $this->delete($query, $softDelete);
     }
 
     public function queryViolationsByIp(int $withinMinutes, string $ipAddress, array $violations = []): Builder

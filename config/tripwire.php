@@ -159,6 +159,21 @@ return [
         'except' => ['*/ffff/*','logout'], // i.e. 'admin/*', no leading / */member/dashboard/*
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Reset
+    |--------------------------------------------------------------------------
+    | This is a function to allow researcher and developers to clean the logs / blocks
+    | so that they are not constantly blocked and cannot continue
+    |
+    */
+    'reset' => [
+        'allowed' => env('TRIPWIRE_WHITELIST', true),
+        'soft_delete' => true, // false = delete the log/block records from the database,
+    ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Whitelist
@@ -192,18 +207,18 @@ return [
 
     'checker_groups' => [
         'all' => [
-//            'tripwire.agent',
-//            'tripwire.bot',
-//            'tripwire.geo',
-//            'tripwire.lfi',
-//            'tripwire.php',
-//            'tripwire.referer',
-//            'tripwire.rfi',
-//            'tripwire.session',
-//            'tripwire.sqli',
-//            'tripwire.swear',
-//            'tripwire.text',
-//            'tripwire.xss',
+            'tripwire.agent',
+            'tripwire.bot',
+            'tripwire.geo',
+            'tripwire.lfi',
+            'tripwire.php',
+            'tripwire.referer',
+            'tripwire.rfi',
+            'tripwire.session',
+            'tripwire.sqli',
+            'tripwire.swear',
+            'tripwire.text',
+            'tripwire.xss',
             'tripwire.request_size'
         ],
         'server' => [
@@ -250,7 +265,7 @@ return [
      */
 
     'punish' => [
-        'score' => 8000,
+        'score' => 800,
         'within_minutes' => 60 * 24,
         // note this will log increase on every violation that leads to a block
         // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
