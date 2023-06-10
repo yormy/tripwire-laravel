@@ -45,7 +45,8 @@
         "squizlabs/php_codesniffer": "^3.7",
         "thibautselingue/local-php-security-checker-installer": "^1",
         "vimeo/psalm": "^4.24",
-        "laravel/pint": "^0.2"
+        "laravel/pint": "^0.2",
+        "spatie/laravel-ray": "^1.32"
     },
     "autoload": {
         "psr-4": {
