@@ -6,39 +6,40 @@ use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
+use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
 class TextTest extends TestCase
 {
-//    public function testShouldAllow()
-//    {
-////        $next = (new Xss($this->app->request))->handle($this->app->request, $this->getNextClosure());
-////
-////        $this->assertEquals('next', $next);
-//    }
+    use TripwireTestTrait;
 
-    public function testShouldBlock()
+    protected string $tripwire ='text';
+
+    protected $tripwireClass = Text::class;
+
+    protected array $violations = [
+        'aaa',
+        '\x00',
+        'k'
+    ];
+
+    /**
+     * @test
+     */
+    public function respond_as_code_expects_code()
     {
-       // $this->expectException(TripwireFailedException::class);
+        $this->setConfig();
 
-        $startCount = TripwireLog::count();
+        foreach ($this->violations as $violation) {
+            $startCount = TripwireLog::count();
 
-        $request = $this->app->request; // default is as HTML
-        $request->query->set('foo', 'aaa');
-        $result = (new Text($request))->handle($request, $this->getNextClosure());
+            $result = $this->triggerTripwire($violation);
 
-        $this->assertLogAddedToDatabase($startCount);
+            $this->assertLogAddedToDatabase($startCount);
 
-        $this->assertFirewallTripped($result);
-
+            $this->assertEquals($result->getStatusCode(), 409);
+        }
     }
 
-    private function assertLogAddedToDatabase($startCount)
-    {
-        $this->assertGreaterThan($startCount, TripwireLog::count());
-    }
 
-    private function assertFirewallTripped($result)
-    {
-        $this->assertEquals($result->getStatusCode(), 409);
-    }
+
 }
