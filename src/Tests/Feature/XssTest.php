@@ -17,5 +17,6 @@ class XssTest extends BaseMiddlewareTester
 
     protected array $violations = [
         "<script>",
+        '#-moz-binding:#u'
     ];
 }
