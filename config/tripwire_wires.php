@@ -115,7 +115,7 @@ return [
         'attack_score' => 5,
 
         'tripwires' => [
-            '#\.\/#is',
+            '#\.\/..\/#is',
         ],
     ],
 

@@ -16,6 +16,6 @@ class LfiTest extends BaseMiddlewareTester
     ];
 
     protected array $violations = [
-        "../../../../etc/passwd",
+        "../../etc/passwd",
     ];
 }
