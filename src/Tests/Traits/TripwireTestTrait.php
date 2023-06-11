@@ -6,7 +6,17 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 trait TripwireTestTrait
 {
-    public function provider()
+    public function accepting()
+    {
+        $providerArray = [];
+        foreach ($this->accepting as $accept)
+        {
+            $providerArray[$accept] = [$accept];
+        }
+        return $providerArray;
+    }
+
+    public function violations()
     {
         $providerArray = [];
         foreach ($this->violations as $violation)
@@ -35,6 +45,11 @@ trait TripwireTestTrait
     protected function assertLogAddedToDatabase($startCount)
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
+    }
+
+    protected function assertNotLogged($startCount)
+    {
+        $this->assertEquals($startCount, TripwireLog::count());
     }
 
     protected function assertFirewallTripped($result)
