@@ -138,7 +138,7 @@ abstract class BaseChecker
         $scannableValues[] = $fullUrl;
         $scannableValues[] = urldecode($fullUrl);
 
-        return json_encode($scannableValues);
+        return json_encode($scannableValues, JSON_UNESCAPED_SLASHES);
     }
 
     public function matchResults($pattern, string $input, &$violations)
