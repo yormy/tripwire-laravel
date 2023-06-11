@@ -28,11 +28,13 @@ class ThrottleHitWireListener extends WireBaseListener
         return true;
     }
 
-    protected function attackFound(array $violations): void
+    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
         event(new ThrottleHitTrippedEvent(
             attackScore: $this->getAttackScore(),
-            violations: $violations
+            violations: $violations,
+            triggerData: $triggerData,
+            triggerRules: $trigggerRules
         ));
 
         $this->blockIfNeeded();

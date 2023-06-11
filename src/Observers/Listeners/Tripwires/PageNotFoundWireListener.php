@@ -25,11 +25,13 @@ class PageNotFoundWireListener extends WireBaseListener
         return !empty($violations);
     }
 
-    protected function attackFound(array $violations): void
+    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
         event(new Page404Event(
             attackScore: $this->getAttackScore(),
-            violations: $violations
+            violations: $violations,
+            triggerData: $triggerData,
+            triggerRules: $trigggerRules
         ));
 
         $this->blockIfNeeded();
