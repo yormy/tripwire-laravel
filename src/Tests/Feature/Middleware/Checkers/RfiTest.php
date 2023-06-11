@@ -11,8 +11,7 @@ class RfiTest extends BaseMiddlewareTester
     protected $tripwireClass = Rfi::class;
 
     protected array $accepting = [
-        'dsfsdf',
-        'sss',
+        'random',
     ];
 
     protected array $violations = [

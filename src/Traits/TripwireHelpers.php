@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Services\UrlTester;
 
 trait TripwireHelpers
 {
-    abstract protected function attackFound(array $violations): void;
+    abstract protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void;
 
     protected function getAttackScore(): int
     {

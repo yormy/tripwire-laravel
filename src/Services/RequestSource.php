@@ -7,9 +7,9 @@ use Jenssegers\Agent\Agent;
 class RequestSource
 {
 
-    public static function getUserAgent(): string
+    public static function getUserAgent(): ?string
     {
-        return $_SERVER['HTTP_USER_AGENT'] ?? '';
+        return $_SERVER['HTTP_USER_AGENT'] ?? null;
     }
 
     public static function getPlatform(): string
