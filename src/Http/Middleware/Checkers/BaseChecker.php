@@ -81,7 +81,10 @@ abstract class BaseChecker
     {
         $violations = [];
         foreach ($patterns as $pattern) {
-            $this->matchResults($pattern, $this->collectInputs(), $violations);
+            $this->matchResults($pattern, $this->collectInputs(), $currentViolations);
+            if ($currentViolations) {
+                $violations[] = $currentViolations[0];
+            }
         }
 
         if (!empty($violations))  {
