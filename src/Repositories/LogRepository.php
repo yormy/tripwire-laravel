@@ -39,8 +39,10 @@ class LogRepository
         $data['event_violation'] = $event->getViolationText();
         $data['event_comment'] = $event->getComment();
 
-        $data['trigger_data'] = $event->getTriggerData();
-        $data['trigger_rule'] = implode(';', $event->getTriggerRules());
+        if (config('tripwire.debug', false)) {
+            $data['trigger_data'] = $event->getTriggerData();
+            $data['trigger_rule'] = implode(';', $event->getTriggerRules());
+        }
 
         return $this->model::create($data);
     }

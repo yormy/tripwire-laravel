@@ -12,7 +12,8 @@ class BaseMiddlewareTester extends TestCase
 
 
     /**
-     * test
+     * @test
+     * @group tripwire
      * @dataProvider accepting
      */
     public function should_accept(string $accept)

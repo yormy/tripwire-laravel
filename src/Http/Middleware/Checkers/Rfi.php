@@ -20,10 +20,9 @@ class Rfi extends BaseChecker
         $this->blockIfNeeded();
     }
 
-    public function prepareInput($value)
+    public function prepareInput($value): string
     {
         $exceptions = $this->config->guards['allow'];
-
         $domain = $this->request->getHost();
 
         $exceptions[] = 'http://' . $domain;

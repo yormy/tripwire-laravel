@@ -42,6 +42,7 @@ return [
     |--------------------------------------------------------------------------
     | This will log additional data to the database to diagnose false positives
     | or detailed data why a certain issue was triggered
+    | fills fields: trigger_data and trigger_rule
     */
     'debug' => true,
 

@@ -1,7 +1,18 @@
 # TODO
 - how to disable middleware on certain routes (ie large request)
 - how to enable ray buggregator in testbench
-- 
+
+when config is set for debugging:
+--store complete scanned source encodeds 64
+- store rule in base64 to prevent encoding issues
+
+RFI triggered op alle urls?
+LFI triggered al op ./ is dat niet te strak ?
+rfi: remvoe domain name = obsolete
+sqli : convert to string manually, not by json, recursive array parsing ot string
+
+
+
 ## encryption
 encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
@@ -29,6 +40,9 @@ Specify type of block view/json:  violation is anders dan login throttle
 
 # Unit test cases
 ? easy way to run all tests in client app, so that config can be validated and errors that mis certain injections are easlily spotted
+artisan command
+./vendor/bin/phpunit --colors=always --group=tripwire --testdox
+./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests ///hmmm... connection refused
 
 test ignore urls
 test ignore ips

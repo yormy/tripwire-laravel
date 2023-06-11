@@ -146,7 +146,9 @@ abstract class BaseChecker
 
         // add full url without domain name to be able to find other stuff
         $domain = $this->request->root();
+
         $fullUrl = $this->request->fullUrl();
+
         $fullUrlWithoutDomain = str_replace($domain, '', $fullUrl);
         $scannableValues[] = $fullUrlWithoutDomain;
         $scannableValues[] = urldecode($fullUrlWithoutDomain);
@@ -154,7 +156,7 @@ abstract class BaseChecker
 
         $stringed = '';
         $this->convertValuesToString($scannableValues, $stringed);
-        //dd($stringed);
+
         return $stringed;
     }
 
@@ -210,7 +212,7 @@ abstract class BaseChecker
         return false;
     }
 
-    public function prepareInput($value)
+    public function prepareInput($value): string
     {
         return $value;
     }

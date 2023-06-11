@@ -237,7 +237,7 @@ return [
 
         'guards' => [
             'allow' => [
-                'https://example.com'
+                'https://allow-includes.com'
             ]
         ],
     ],
