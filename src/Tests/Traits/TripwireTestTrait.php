@@ -6,6 +6,16 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 trait TripwireTestTrait
 {
+    public function provider()
+    {
+        $providerArray = [];
+        foreach ($this->violations as $violation)
+        {
+            $providerArray[$violation] = [$violation];
+        }
+        return $providerArray;
+    }
+
     protected function setConfig()
     {
         $settings = ['code' => 409];

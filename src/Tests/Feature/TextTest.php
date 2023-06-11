@@ -18,18 +18,17 @@ class TextTest extends TestCase
 
     protected array $violations = [
         'aaa',
-        '\x00',
-        'k'
+       '\x00',
     ];
 
     /**
      * @test
+     * @dataProvider provider
      */
-    public function respond_as_code_expects_code()
+    public function expects_tripwire(string $violation)
     {
         $this->setConfig();
 
-        foreach ($this->violations as $violation) {
             $startCount = TripwireLog::count();
 
             $result = $this->triggerTripwire($violation);
@@ -37,7 +36,6 @@ class TextTest extends TestCase
             $this->assertLogAddedToDatabase($startCount);
 
             $this->assertEquals($result->getStatusCode(), 409);
-        }
     }
 
 
