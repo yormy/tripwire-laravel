@@ -29,6 +29,8 @@ trait TripwireTestTrait
     protected function setConfig()
     {
         $settings = ['code' => 409];
+        config(["tripwire_wires.$this->tripwire.enabled" => true]);
+        config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
     }
 
