@@ -80,15 +80,18 @@ abstract class BaseChecker
     public function isAttack($patterns): bool
     {
         $violations = [];
+        $rules = [];
+        $triggerData = $this->collectInputs();
         foreach ($patterns as $pattern) {
-            $this->matchResults($pattern, $this->collectInputs(), $currentViolations);
+            $this->matchResults($pattern, $triggerData, $currentViolations);
             if ($currentViolations) {
                 $violations[] = $currentViolations[0];
+                $rules[] = $pattern;
             }
         }
 
         if (!empty($violations))  {
-            $this->attackFound($violations);
+            $this->attackFound($violations, $triggerData, $rules);
         }
 
         return !empty($violations);
@@ -105,6 +108,10 @@ abstract class BaseChecker
 
         return $filtered;
     }
+
+
+
+
     /**
      * convert the inputs of the request to a string that can be scanned by the checkers
      * as we do not need to know what key it was or where it came from (input or header or cookie) we can
@@ -127,6 +134,9 @@ abstract class BaseChecker
             }
         }
 
+        $exceptHeaders[] = 'accept-charset';
+        $exceptHeaders[] = 'accept-language';
+        $exceptHeaders[] = 'accept';
         $cookies = $this->removeItems($this->request->cookie(), $exceptCookies);
         $headers = $this->removeItems($this->request->header(), $exceptHeaders);
 
@@ -134,11 +144,32 @@ abstract class BaseChecker
         $scannableValues[] = $cookies;
         $scannableValues[] = $headers;
 
+        // add full url without domain name to be able to find other stuff
+        $domain = $this->request->root();
         $fullUrl = $this->request->fullUrl();
-        $scannableValues[] = $fullUrl;
-        $scannableValues[] = urldecode($fullUrl);
+        $fullUrlWithoutDomain = str_replace($domain, '', $fullUrl);
+        $scannableValues[] = $fullUrlWithoutDomain;
+        $scannableValues[] = urldecode($fullUrlWithoutDomain);
 
-        return json_encode($scannableValues, JSON_UNESCAPED_SLASHES);
+
+        $stringed = '';
+        $this->convertValuesToString($scannableValues, $stringed);
+        //dd($stringed);
+        return $stringed;
+    }
+
+    private function convertValuesToString(array $data, &$string)
+    {
+        foreach($data as $field => $value)
+        {
+            if (is_array($value)) {
+                $this->convertValuesToString($value, $string);
+            } else {
+                if ($value) {
+                    $string .= '-' . $value;
+                }
+            }
+        }
     }
 
     public function matchResults($pattern, string $input, &$violations)

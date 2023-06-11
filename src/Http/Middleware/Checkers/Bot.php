@@ -9,11 +9,13 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 class Bot extends BaseChecker
 {
 
-    protected function attackFound(array $violations): void
+    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
         event(new BotFailedEvent(
             attackScore: $this->getAttackScore(),
-            violations: $violations
+            violations: $violations,
+            triggerData: $triggerData,
+            triggerRules: $trigggerRules
         ));
 
         $this->blockIfNeeded();
