@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
 
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;

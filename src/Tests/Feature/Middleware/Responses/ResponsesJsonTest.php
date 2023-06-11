@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
