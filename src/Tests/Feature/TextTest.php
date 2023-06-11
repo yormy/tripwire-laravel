@@ -3,14 +3,9 @@
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
-use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Tests\TestCase;
-use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
-class TextTest extends TestCase
+class TextTest extends BaseMiddlewareTester
 {
-    use TripwireTestTrait;
-
     protected string $tripwire ='text';
 
     protected $tripwireClass = Text::class;
@@ -24,39 +19,4 @@ class TextTest extends TestCase
         'aaa',
        '\x00',
     ];
-
-    /**
-     * @test
-     * @dataProvider accepting
-     */
-    public function should_accept(string $accept)
-    {
-        $this->setConfig();
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire($accept);
-
-        $this->assertNotLogged($startCount);
-
-        $this->assertEquals('next', $result);
-    }
-
-    /**
-     * @test
-     * @dataProvider violations
-     */
-    public function should_block(string $violation)
-    {
-        $this->setConfig();
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire($violation);
-
-        $this->assertLogAddedToDatabase($startCount);
-
-        $this->assertEquals(409, $result->getStatusCode());
-    }
-
 }

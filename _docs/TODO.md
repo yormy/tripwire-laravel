@@ -28,34 +28,16 @@ Specify type of block view/json:  violation is anders dan login throttle
 
 
 # Unit test cases
-test every type of response, code, exception, view, etc at least once
-test default fallback responses
-test all checkers? => data provider
+? easy way to run all tests in client app, so that config can be validated and errors that mis certain injections are easlily spotted
 
-import akunetics tests
+test ignore urls
+test ignore ips
+test all checkers for all responses? => data provider , dan moeten eerst de triggers werken
+test blocks creating
+test blocks responses
 
-hmm... have someone create multiple examples of triggers
-//        $r->query->set('foo', '<script>alert(123)</script>');
-SQLi:
-```
-(union select)
-```
 
-lfi
-```
-./
-```
-
-session:
-```
-:a:9:{
-```
-
-XSS
-```
-#-moz-binding:#u
-```
-
+add long list of cheatsheet violations
 
 # Extended features
 Geofencing
