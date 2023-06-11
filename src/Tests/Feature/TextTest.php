@@ -29,7 +29,7 @@ class TextTest extends TestCase
      * @test
      * @dataProvider accepting
      */
-    public function expects_accept(string $accept)
+    public function should_accept(string $accept)
     {
         $this->setConfig();
 
@@ -43,10 +43,10 @@ class TextTest extends TestCase
     }
 
     /**
-     * test
+     * @test
      * @dataProvider violations
      */
-    public function expects_tripwire(string $violation)
+    public function should_block(string $violation)
     {
         $this->setConfig();
 
