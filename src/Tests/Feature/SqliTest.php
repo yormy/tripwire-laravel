@@ -17,5 +17,6 @@ class SqliTest extends BaseMiddlewareTester
 
     protected array $violations = [
         "-1+union+select+1,2,3,4,5,6,7,8,9,(SELECT+password+FROM+users+WHERE+ID=1",
+        "(union select)"
     ];
 }
