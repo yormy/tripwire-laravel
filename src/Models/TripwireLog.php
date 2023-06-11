@@ -27,6 +27,8 @@ class TripwireLog extends BaseModel
         'header',
         'request',
         'user_agent',
+        'trigger_data',
+        'trigger_rule',
         'robot_crawler',
         'browser_fingerprint',
         'request_fingerprint',

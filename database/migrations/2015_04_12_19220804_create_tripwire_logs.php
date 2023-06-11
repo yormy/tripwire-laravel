@@ -33,6 +33,8 @@ return new class extends Migration
             $table->text('header', 500)->nullable();
 
             $table->text('request', 500)->nullable();
+            $table->text('trigger_data', 500)->nullable();
+            $table->string('trigger_rule')->nullable();
             $table->text('user_agent')->nullable();
 
             $table->text('robot_crawler')->nullable();

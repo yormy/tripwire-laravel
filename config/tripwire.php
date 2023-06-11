@@ -36,6 +36,15 @@ return [
     */
     'training_mode' => false,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Debug
+    |--------------------------------------------------------------------------
+    | This will log additional data to the database to diagnose false positives
+    | or detailed data why a certain issue was triggered
+    */
+    'debug' => true,
+
     'datetime' => [
         'format' => 'Y-m-d H:m:s',
         'offset' => -2 * 60,   // Offset in minutes is you want to display in another timezone as your database. Ie.. database in UTC, Platform in New York -4
