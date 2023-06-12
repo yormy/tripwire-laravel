@@ -18,13 +18,84 @@ class ResponsesTest extends TestCase
      * @test
      * @group tripwire-response
      */
-    public function respond_as_missing_expects_default_exception()
+    public function respond_with_missing_expects_default_exception()
     {
         $this->setDefaultConfig(["exception" => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
         $this->triggerTripwire();
+    }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function respond_with_missing_expects_default_code()
+    {
+        $this->setDefaultConfig(["code" => self::HTTP_TRIPWIRE_CODE]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
+    }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function respond_with_missing_expects_default_redirecturl()
+    {
+        $redirectUrl = "https://www.cccc.com";
+        $this->setDefaultConfig(["redirect_url" => $redirectUrl]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertEquals($result->getTargetUrl(), $redirectUrl);
+        $this->assertLogAddedToDatabase($startCount);
+        $this->assertEquals($result->getStatusCode(), 302);
+    }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function respond_with_missing_expects_default_view()
+    {
+        $viewName = "tripwire-laravel::blocked";
+        $this->setDefaultConfig(["view" => $viewName]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getOriginalContent()->name(), $viewName);
+    }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function respond_with_missing_expects_default_message()
+    {
+        $messageKey = "message.key";
+        $this->setDefaultConfig(["message_key" => $messageKey]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
     /**
@@ -38,24 +109,6 @@ class ResponsesTest extends TestCase
         $this->expectException(TripwireFailedException::class);
 
         $this->triggerTripwire();
-    }
-
-
-    /**
-     * @test
-     * @group tripwire-response
-     */
-    public function respond_as_missing_expects_default_code()
-    {
-        $this->setDefaultConfig(["code" => self::HTTP_TRIPWIRE_CODE]);
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire();
-
-        $this->assertLogAddedToDatabase($startCount);
-
-        $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
     /**
@@ -73,24 +126,6 @@ class ResponsesTest extends TestCase
         $this->assertLogAddedToDatabase($startCount);
 
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
-    }
-
-    /**
-     * @test
-     * @group tripwire-response
-     */
-    public function respond_as_missing_expects_default_redirecturl()
-    {
-        $redirectUrl = "https://www.cccc.com";
-        $this->setDefaultConfig(["redirect_url" => $redirectUrl]);
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire();
-
-        $this->assertEquals($result->getTargetUrl(), $redirectUrl);
-        $this->assertLogAddedToDatabase($startCount);
-        $this->assertEquals($result->getStatusCode(), 302);
     }
 
     /**
@@ -115,24 +150,6 @@ class ResponsesTest extends TestCase
      * @test
      * @group tripwire-response
      */
-    public function respond_as_missing_expects_default_view()
-    {
-        $viewName = "tripwire-laravel::blocked";
-        $this->setDefaultConfig(["view" => $viewName]);
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire();
-
-        $this->assertLogAddedToDatabase($startCount);
-
-        $this->assertEquals($result->getOriginalContent()->name(), $viewName);
-    }
-
-    /**
-     * @test
-     * @group tripwire-response
-     */
     public function respond_as_view_expects_view()
     {
         $viewName = "tripwire-laravel::blocked";
@@ -145,24 +162,6 @@ class ResponsesTest extends TestCase
         $this->assertLogAddedToDatabase($startCount);
 
         $this->assertEquals($result->getOriginalContent()->name(), $viewName);
-    }
-
-    /**
-     * @test
-     * @group tripwire-response
-     */
-    public function respond_as_missing_expects_default_message()
-    {
-        $messageKey = "message.key";
-        $this->setDefaultConfig(["message_key" => $messageKey]);
-
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire();
-
-        $this->assertLogAddedToDatabase($startCount);
-
-        $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
     /**

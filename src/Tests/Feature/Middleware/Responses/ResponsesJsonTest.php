@@ -31,19 +31,6 @@ class ResponsesJsonTest extends TestCase
      * @test
      * @group tripwire-response
      */
-    public function json_respond_as_exception_expects_exception()
-    {
-        $this->setConfig(["exception" => TripwireFailedException::class]);
-
-        $this->expectException(TripwireFailedException::class);
-
-        $this->triggerTripwire();
-    }
-
-    /**
-     * @test
-     * @group tripwire-response
-     */
     public function json_respond_missing_expects_default_message()
     {
         $messageKey = "message.key";
@@ -57,6 +44,39 @@ class ResponsesJsonTest extends TestCase
 
         $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function json_respond_missing_expects_default_json()
+    {
+        $json =  ['data' => 'somedata', 'err' =>'2'];
+        $this->setDefaultConfig(["json" => $json]);
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire();
+
+        $this->assertLogAddedToDatabase($startCount);
+
+        $this->assertEquals($result->getOriginalContent(), $json);
+    }
+
+    /**
+     * @test
+     * @group tripwire-response
+     */
+    public function json_respond_as_exception_expects_exception()
+    {
+        $this->setConfig(["exception" => TripwireFailedException::class]);
+
+        $this->expectException(TripwireFailedException::class);
+
+        $this->triggerTripwire();
+    }
+
+
 
     /**
      * @test
@@ -77,23 +97,7 @@ class ResponsesJsonTest extends TestCase
     }
 
 
-    /**
-     * @test
-     * @group tripwire-response
-     */
-    public function json_respond_missing_expects_default_json()
-    {
-        $json =  ['data' => 'somedata', 'err' =>'2'];
-        $this->setDefaultConfig(["json" => $json]);
 
-        $startCount = TripwireLog::count();
-
-        $result = $this->triggerTripwire();
-
-        $this->assertLogAddedToDatabase($startCount);
-
-        $this->assertEquals($result->getOriginalContent(), $json);
-    }
 
     /**
      * @test
