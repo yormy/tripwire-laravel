@@ -54,8 +54,8 @@ trait TripwireTestTrait
         $this->assertEquals($startCount, TripwireLog::count());
     }
 
-    protected function assertFirewallTripped($result)
+    protected function assertFirewallTripped($result, int $expectedCode = 409)
     {
-        $this->assertEquals($result->getStatusCode(), 409);
+        $this->assertEquals($result->getStatusCode(), $expectedCode);
     }
 }

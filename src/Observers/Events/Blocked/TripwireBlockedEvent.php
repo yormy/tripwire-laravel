@@ -12,8 +12,8 @@ class TripwireBlockedEvent
 
     public function __construct(
         public readonly string $ipAddress,
-        public readonly int $userId,
-        public readonly string $userType,
-        public readonly string $browserFingerprint,
+        public readonly ?int $userId,
+        public readonly ?string $userType,
+        public readonly ?string $browserFingerprint,
     ) {}
 }

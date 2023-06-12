@@ -16,8 +16,8 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 
     public function __construct(
         private readonly string $ipAddress,
-        private readonly int $userId,
-        private readonly string $userType,
+        private readonly ?int $userId,
+        private readonly ?string $userType,
         private readonly string $browserFingerprint,
     ) {
         $this->notifications = config('tripwire.notifications');

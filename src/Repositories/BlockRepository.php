@@ -222,8 +222,12 @@ class BlockRepository
             ->count();
     }
 
-    private function repeatOffenderUser(int $userId, string $userType): int
+    private function repeatOffenderUser(?int $userId, ?string $userType): int
     {
+        if (!$userId) {
+            return 0;
+        }
+
         return $this->queryRepeatOffender()
             ->byUserId($userId)
             ->byUserType($userType)
