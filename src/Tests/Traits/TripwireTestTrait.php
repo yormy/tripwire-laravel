@@ -44,6 +44,17 @@ trait TripwireTestTrait
         return $checker->handle($request, $this->getNextClosure());
     }
 
+    protected function triggerJsonTripwire(string $input)
+    {
+        $request = $this->app->request;
+        $request->query->set('foo', $input);
+        $request->headers->set('Accept', 'application/json');
+
+        $checker = new $this->tripwireClass($request);
+
+        return $checker->handle($request, $this->getNextClosure());
+    }
+
     protected function assertLogAddedToDatabase($startCount)
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());

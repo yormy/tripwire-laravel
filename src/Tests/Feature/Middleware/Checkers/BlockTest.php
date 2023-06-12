@@ -22,7 +22,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Unblocked_Single_trigger_Block_not_added()
     {
@@ -36,7 +36,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Unblocked_Many_triggers_Block_added()
     {

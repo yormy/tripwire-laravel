@@ -24,7 +24,7 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_code()
     {
@@ -39,7 +39,7 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_redirecturl()
     {
@@ -58,7 +58,7 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_view()
     {
@@ -77,7 +77,7 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
-     * @group block
+     * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_message()
     {

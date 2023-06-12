@@ -23,7 +23,7 @@ class ResponseDeterminer
             return $response;
         }
 
-        $this->configResponse->asGeneralAbort();
+        return $this->configResponse->asGeneralAbort();
     }
 
     public function respondWithHtml(array $data = [])

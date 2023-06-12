@@ -1,7 +1,6 @@
 # TODO
 - how to disable middleware on certain routes (ie large request)
 - how to enable ray buggregator in testbench
-- LFI triggered al op ./ is dat niet te strak ?
 
 ## encryption
 encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
@@ -24,6 +23,7 @@ Specify type of block view/json:  violation is anders dan login throttle
 
 
 # Unit tests
+refactor setConfigs
 
 # Documentation
 

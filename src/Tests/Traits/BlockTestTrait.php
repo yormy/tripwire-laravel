@@ -21,6 +21,15 @@ trait BlockTestTrait
         return $blocker->handle($request, $this->getNextClosure());
     }
 
+    protected function doJsonRequest()
+    {
+        $request = $this->app->request;
+        $request->headers->set('Accept', 'application/json');
+        $blocker = new TripwireBlockHandlerAll();
+
+        return $blocker->handle($request, $this->getNextClosure());
+    }
+
     protected function resetBlockStartCount(): int
     {
         TripwireBlock::truncate();
