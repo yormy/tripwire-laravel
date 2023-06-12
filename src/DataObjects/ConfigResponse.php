@@ -102,7 +102,7 @@ class ConfigResponse
         if ($this->redirectUrl) {
             // prevent redir to self
             if (0 === strcasecmp($this->currentUrl, $this->redirectUrl)) {
-                //$this->asGeneralAbort();
+                $this->asGeneralAbort();
             }
 
             return Redirect::to($this->redirectUrl);

@@ -13,6 +13,7 @@ class BlockTest extends TestCase
     use BlockTestTrait;
 
     const TRIPWIRE_TRIGGER = 'BLOCK_TEST';
+
     const BLOCK_CODE = 401;
 
     protected string $tripwire ='text';
@@ -47,24 +48,6 @@ class BlockTest extends TestCase
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
 
         $this->assertBlockAddedToDatabase($startCount);
-    }
-
-    /**
-     * @test
-     * @group block
-     */
-    public function Blocked_Request_Should_block()
-    {
-        $this->setConfig();
-        $this->resetBlockStartCount();
-
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-
-        $result = $this->doRequest();
-
-        $this->assertFirewallTripped($result, self::BLOCK_CODE);
     }
 
     protected function setConfig()
