@@ -25,7 +25,21 @@ class InputIgnoreTest extends BaseTriggerIgnore
     public function Global_ignore_url_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire.urls.except" => ['http://localhost']]);
+        config(["tripwire.urls.except" => ['http://localhost/path/to/location']]);
+
+        $this->triggerTripwire();
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @group tripwire-ignore
+     */
+    public function Feature_ignore_url_Trigger_No_exception()
+    {
+        $this->setDefaultConfig();
+        config(["tripwire_wires.text.urls.except" => ['http://localhost/path/to/location']]);
 
         $this->triggerTripwire();
 
@@ -48,7 +62,21 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
-     * @group tripwire-ignore2
+     * @group tripwire-ignore
+     */
+    public function Feature_not_included_url_Trigger_No_exception()
+    {
+        $this->setDefaultConfig();
+        config(["tripwire_wires.text.urls.only" => ['http://xxxxx']]);
+
+        $this->triggerTripwire();
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @group tripwire-ignore
      */
     public function Global_exclude_path_Trigger_No_exception()
     {
@@ -60,4 +88,17 @@ class InputIgnoreTest extends BaseTriggerIgnore
         $this->assertTrue(true);
     }
 
+    /**
+     * @test
+     * @group tripwire-ignore
+     */
+    public function Feature_exclude_path_Trigger_No_exception()
+    {
+        $this->setDefaultConfig();
+        config(["tripwire_wires.text.urls.except" => ['path/to/*']]);
+
+        $this->triggerTripwire();
+
+        $this->assertTrue(true);
+    }
 }
