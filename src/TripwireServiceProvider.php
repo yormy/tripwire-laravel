@@ -3,7 +3,7 @@
 namespace Yormy\TripwireLaravel;
 
 use Illuminate\Support\ServiceProvider;
-use Yormy\TripwireLaravel\Console\Commands\EncryptDbCommand;
+use Yormy\TripwireLaravel\Console\Commands\TestConfigCommand;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
@@ -89,7 +89,6 @@ class TripwireServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                EncryptDbCommand::class,
             ]);
         }
     }
