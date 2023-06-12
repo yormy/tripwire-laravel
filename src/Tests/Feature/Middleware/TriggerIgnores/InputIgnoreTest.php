@@ -5,7 +5,7 @@ namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\TriggerIgnores;
 class InputIgnoreTest extends BaseTriggerIgnore
 {
     /**
-     * test
+     * @test
      * @group tripwire-ignore
      */
     public function Global_ignore_input_Trigger_No_exception()
@@ -32,5 +32,18 @@ class InputIgnoreTest extends BaseTriggerIgnore
         $this->assertTrue(true);
     }
 
+    /**
+     * @test
+     * @group tripwire-ignore
+     */
+    public function Global_not_included_url_Trigger_No_exception()
+    {
+        $this->setDefaultConfig();
+        config(["tripwire.urls.only" => ['http://xxxxx']]);
+
+        $this->triggerTripwire();
+
+        $this->assertTrue(true);
+    }
 
 }
