@@ -16,6 +16,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_missing_expects_default_exception()
     {
@@ -28,6 +29,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_as_exception_expects_exception()
     {
@@ -40,6 +42,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_missing_expects_default_message()
     {
@@ -57,6 +60,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_as_message_expects_message()
     {
@@ -75,6 +79,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_missing_expects_default_json()
     {
@@ -92,6 +97,7 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function json_respond_as_json_expects_json()
     {

@@ -16,6 +16,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_missing_expects_default_exception()
     {
@@ -28,6 +29,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_exception_expects_exception()
     {
@@ -41,6 +43,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_missing_expects_default_code()
     {
@@ -57,6 +60,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_code_expects_code()
     {
@@ -73,6 +77,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_missing_expects_default_redirecturl()
     {
@@ -90,6 +95,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_redirecturl_expects_redirecturl()
     {
@@ -107,6 +113,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_missing_expects_default_view()
     {
@@ -124,6 +131,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_view_expects_view()
     {
@@ -141,6 +149,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_missing_expects_default_message()
     {
@@ -158,6 +167,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     * @group tripwire-response
      */
     public function respond_as_message_expects_message()
     {
