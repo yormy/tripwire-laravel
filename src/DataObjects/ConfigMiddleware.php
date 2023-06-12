@@ -29,7 +29,15 @@ class ConfigMiddleware
     {
         $data = config('tripwire_wires.' . $checker);
 
-        $this->enabled = $data['enabled'] ?? $this->tripwireEnabled();
+        $this->enabled = false;
+        if ($this->tripwireEnabled())
+        {
+            if ($data['enabled'] ?? true)
+            {
+                $this->enabled = true;
+            }
+        }
+
         $this->methods = $data['methods'] ?? [];
         $this->urls = $data['urls'] ?? [];
         $this->inputs = $data['inputs'] ?? [];
