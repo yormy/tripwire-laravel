@@ -2,8 +2,12 @@
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use \Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
+use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
+use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
 
 
@@ -20,6 +24,12 @@ class ConfigBuilder implements Arrayable
 
     public MailNotificationConfig $notificationsMail;
     public SlackNotificationConfig $notificationsSlack;
+
+    public ChecksumsConfig $checksums;
+
+    public DatabaseTablesConfig $databaseTables;
+
+    public ModelsConfig $models;
 
     public function toArray(): array
     {
@@ -41,6 +51,17 @@ class ConfigBuilder implements Arrayable
             $data['not_mode'] = $this->notMode;
         }
 
+        if (isset($this->checksums)) {
+            $data['checksums'] = $this->checksums->toArray();
+        }
+
+        if (isset($this->databaseTables)) {
+            $data['database_tables'] = $this->databaseTables->toArray();
+        }
+
+        if (isset($this->models)) {
+            $data['models'] = $this->models->toArray();
+        }
         return $data;
     }
 
@@ -75,12 +96,36 @@ class ConfigBuilder implements Arrayable
         if (isset($data['notifications']['slack'])) {
             $slack = $data['notifications']['slack'];
             $config->notificationSlack(
-            $slack['enabled'],
-            $slack['from'],
-            $slack['to'],
-            $slack['emoji'],
-            $slack['channel'],
-        );
+                $slack['enabled'],
+                $slack['from'],
+                $slack['to'],
+                $slack['emoji'],
+                $slack['channel'],
+            );
+        }
+
+        if (isset($data['checksums'])) {
+            $checksums = $data['checksums'];
+            $config->checksums(
+                $checksums['posted'],
+                $checksums['timestamp'],
+                $checksums['serverside_calculated'],
+            );
+        }
+
+        if (isset($data['database_tables'])) {
+            $tables = $data['database_tables'];
+            $config->databaseTables(
+                $tables['tripwire_logs'],
+                $tables['tripwire_blocks'],
+            );
+        }
+
+        if (isset($data['models'])) {
+            $models = $data['models'];
+            $config->models(
+                $models['log'],
+            );
         }
 
         return $config;
@@ -151,6 +196,43 @@ class ConfigBuilder implements Arrayable
             $to,
             $emoji,
             $channel,
+        );
+
+        return $this;
+    }
+
+
+    public function checksums(
+        string $posted,
+        string $timestamp,
+        string $serversideCalculated,
+    ): self {
+        $this->checksums = new ChecksumsConfig(
+            $posted,
+            $timestamp,
+            $serversideCalculated,
+        );
+
+        return $this;
+    }
+
+    public function databaseTables(
+        string $tripwireLogs,
+        string $tripwireBlocks,
+    ): self {
+        $this->databaseTables = new DatabaseTablesConfig(
+            $tripwireLogs,
+            $tripwireBlocks,
+        );
+
+        return $this;
+    }
+
+    public function models(
+        string $models,
+    ): self {
+        $this->models = new ModelsConfig(
+            $models,
         );
 
         return $this;

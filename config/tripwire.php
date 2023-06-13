@@ -28,12 +28,23 @@ $res = ConfigBuilder::make()
     )
 
     ->notificationSlack(
-        env('FIREWALL_SLACK_ENABLED', true),
+        env('FIREWALL_SLACK_ENABLED', false),
         env('FIREWALL_SLACK_FROM', 'Tripwire'),
         env('FIREWALL_SLACK_TO',''),
         env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
         env('FIREWALL_SLACK_CHANNEL', 'ttt')
     )
+    ->checksums(
+        'X-Checksum',
+        'X-sand',
+        'x-checksum-serverside'
+    )
+
+    ->databaseTables(
+        'tripwire_logs',
+        'tripwire_blocks'
+    )
+    ->models(TripwireLog::class)
 
     //->notMode(false)
     ->toArray();
