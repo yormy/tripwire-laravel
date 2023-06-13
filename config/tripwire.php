@@ -88,17 +88,42 @@ $res = ConfigBuilder::make()
         JsonResponseConfig::make(506,  env('FIREWALL_BLOCK_ABORT', false)),
         HtmlResponseConfig::make(null, 'tripwire-laravel::blocked'),
         )
-/*
-    'block_response' => [
-        'json' => [
-            'code' => 506,
-            'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
-        ],
-        'html' => [
-            'view' => 'tripwire-laravel::blocked'
-        ],
-    ],
- */
+
+    ->addCheckerGroup('all', [
+            'tripwire.agent',
+            'tripwire.bot',
+            'tripwire.geo',
+            'tripwire.lfi',
+            'tripwire.php',
+            'tripwire.referer',
+            'tripwire.rfi',
+            'tripwire.session',
+            'tripwire.sqli',
+            'tripwire.swear',
+            'tripwire.text',
+            'tripwire.xss',
+            'tripwire.request_size'
+        ]
+    )
+    ->addCheckerGroup('user', [
+        'tripwire.lfi',
+        'tripwire.php',
+        'tripwire.rfi',
+        'tripwire.sqli',
+        'tripwire.swear',
+        'tripwire.text',
+        'tripwire.xss',
+    ])
+
+    ->addCheckerGroup('server', [
+        'tripwire.agent',
+        'tripwire.bot',
+        'tripwire.geo',
+        'tripwire.referer',
+        'tripwire.session',
+    ])
+
+
     //->notMode(false)
     ->toArray();
 

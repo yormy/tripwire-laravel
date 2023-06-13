@@ -5,6 +5,7 @@ use http\Url;
 use \Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
@@ -62,6 +63,8 @@ class ConfigBuilder implements Arrayable
     public WhitelistConfig $whitelist;
 
     public BlockResponseConfig $blockResponse;
+
+    public array $checkerGroups;
 
     public function toArray(): array
     {
@@ -132,6 +135,18 @@ class ConfigBuilder implements Arrayable
         if (isset($this->blockResponse)) {
             $data['block_response'] = $this->blockResponse->toArray();
         }
+
+        if (isset($this->checkerGroups)) {
+
+            foreach ($this->checkerGroups as $name => $checkerGroup) {
+//                foreach ($checkerGroup as $name => $checkers) {
+//                    $data['checker_groups'][$name] = $checkerGroup->toArray();
+//                }
+                $data['checker_groups'][$name] = $checkerGroup->toArray();
+            }
+
+        }
+
 
         return $data;
     }
@@ -212,6 +227,9 @@ class ConfigBuilder implements Arrayable
         $config->whitelist = WhitelistConfig::makeFromArray($data['whitelist'] ?? null);
 
         $config->blockResponse = BlockResponseConfig::makeFromArray($data['block_response'] ?? null);
+
+
+        $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
 
         return $config;
     }
@@ -440,6 +458,16 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function addCheckerGroup(
+        string $groupName,
+        array $checkers,
+    ): self {
+        $this->checkerGroups[$groupName] = CheckerGroupConfig::make(
+            $checkers,
+        );
+
+        return $this;
+    }
 
 
 
