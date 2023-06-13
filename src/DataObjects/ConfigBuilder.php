@@ -69,6 +69,9 @@ class ConfigBuilder implements Arrayable
 
     public array $checkerGroups;
 
+    public BlockResponseConfig $triggerResponse;
+
+
     public function toArray(): array
     {
         $data = [
@@ -151,6 +154,9 @@ class ConfigBuilder implements Arrayable
             $data['punish'] = $this->punish->toArray();
         }
 
+        if (isset($this->triggerResponse)) {
+            $data['trigger_response'] = $this->triggerResponse->toArray();
+        }
 
         return $data;
     }
@@ -236,6 +242,8 @@ class ConfigBuilder implements Arrayable
         $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
 
         $config->punish = PunishConfig::makeFromArray($data['punish'] ?? null);
+
+        $config->triggerResponse = BlockResponseConfig::makeFromArray($data['trigger_response'] ?? null);
 
         return $config;
     }
@@ -489,7 +497,17 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function triggerResponse(
+        JsonResponseConfig $jsonResponseConfig,
+        HtmlResponseConfig $htmlResponseConfig
+    ): self {
+        $this->triggerResponse = BlockResponseConfig::make(
+            $jsonResponseConfig,
+            $htmlResponseConfig
+        );
 
+        return $this;
+    }
 
 
 
