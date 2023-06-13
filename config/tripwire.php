@@ -72,6 +72,7 @@ $res = ConfigBuilder::make()
         'show_log',
         'skip_encryption',
     ])
+    ->urls(['*/ffff/*','logout'])
     //->notMode(false)
     ->toArray();
 

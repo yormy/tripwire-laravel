@@ -1,6 +1,7 @@
 <?php
 namespace Yormy\TripwireLaravel\DataObjects;
 
+use http\Url;
 use \Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
@@ -14,6 +15,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 
 
 class ConfigBuilder implements Arrayable
@@ -45,6 +47,8 @@ class ConfigBuilder implements Arrayable
     public InputIgnoreConfig $inputIgnore;
 
     public HoneypotsConfig $honeypots;
+
+    public UrlsConfig $urls;
 
     public function toArray(): array
     {
@@ -96,6 +100,10 @@ class ConfigBuilder implements Arrayable
 
         if (isset($this->honeypots)) {
             $data['honeypots'] = $this->honeypots->toArray();
+        }
+
+        if (isset($this->urls)) {
+            $data['urls'] = $this->urls->toArray();
         }
 
         return $data;
@@ -170,6 +178,7 @@ class ConfigBuilder implements Arrayable
 
         $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
         $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
+        $config->urls = UrlsConfig::makeFromArray($data['urls'] ?? null);
 
         return $config;
     }
@@ -345,7 +354,15 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function urls(
+        array $except,
+    ): self {
+        $this->urls = UrlsConfig::make(
+            $except,
+        );
 
+        return $this;
+    }
 
 
 
