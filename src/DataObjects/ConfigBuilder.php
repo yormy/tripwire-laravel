@@ -178,8 +178,9 @@ class ConfigBuilder implements Arrayable
 
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
 
-        $config->notificationMail = NotificationMailConfig::makeFromArray($data['notifications']['mail'] ?? null);
-        $config->notificationSlack = NotificationSlackConfig::makeFromArray($data['notifications']['slack'] ?? null);
+        $config->notificationsMail = NotificationMailConfig::makeFromArray($data['notifications']['mail'] ?? null);
+
+        $config->notificationsSlack = NotificationSlackConfig::makeFromArray($data['notifications']['slack'] ?? null);
 
         $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
 
@@ -188,18 +189,22 @@ class ConfigBuilder implements Arrayable
         $config->models = ModelsConfig::makeFromArray($data['models'] ?? null);
 
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
+
         $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
+
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
 
         $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
+
         $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
+
         $config->urls = UrlsConfig::makeFromArray($data['urls'] ?? null);
+
         $config->reset = ResetConfig::makeFromArray($data['reset'] ?? null);
 
         $config->whitelist = WhitelistConfig::makeFromArray($data['whitelist'] ?? null);
 
         $config->blockResponse = BlockResponseConfig::makeFromArray($data['block_response'] ?? null);
-
 
         $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
 
@@ -489,9 +494,7 @@ class ConfigBuilder implements Arrayable
 
     public static function make(): self
     {
-        $config = new self();
-
-        return $config;
+        return new self();
     }
 
     private function getArrayErrors(array $values, array $allowedValues): array
