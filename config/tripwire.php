@@ -45,6 +45,7 @@ $res = ConfigBuilder::make()
         'tripwire_blocks'
     )
     ->models(TripwireLog::class)
+    ->cookies('session_id')
 
     //->notMode(false)
     ->toArray();
@@ -142,7 +143,7 @@ return [
         'log' => TripwireLog::class
     ],
 
-    'cookie' => [
+    'cookies' => [
         'browser_fingerprint'=> 'session_id'
     ],
 
@@ -172,7 +173,7 @@ return [
     */
     'ignore' => [
         'input' => [],      // i.e. locale, id,
-        'cookie' => ['session_id'],
+        'cookies' => ['session_id'],
         'header' => [],
     ],
 

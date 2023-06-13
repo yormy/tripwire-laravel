@@ -5,6 +5,7 @@ use \Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
+use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
@@ -30,6 +31,8 @@ class ConfigBuilder implements Arrayable
     public DatabaseTablesConfig $databaseTables;
 
     public ModelsConfig $models;
+
+    public CookiesConfig $cookies;
 
     public function toArray(): array
     {
@@ -62,6 +65,14 @@ class ConfigBuilder implements Arrayable
         if (isset($this->models)) {
             $data['models'] = $this->models->toArray();
         }
+
+        if (isset($this->cookies)) {
+            $data['cookies'] = $this->cookies->toArray();
+        }
+
+
+
+
         return $data;
     }
 
@@ -128,6 +139,12 @@ class ConfigBuilder implements Arrayable
             );
         }
 
+        if (isset($data['cookies'])) {
+            $items = $data['cookies'];
+            $config->cookies(
+                $items['browser_fingerprint'],
+            );
+        }
         return $config;
     }
 
@@ -233,6 +250,16 @@ class ConfigBuilder implements Arrayable
     ): self {
         $this->models = new ModelsConfig(
             $models,
+        );
+
+        return $this;
+    }
+
+    public function cookies(
+        string $browserFingerprint,
+    ): self {
+        $this->cookies = new CookiesConfig(
+            $browserFingerprint,
         );
 
         return $this;
