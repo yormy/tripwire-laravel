@@ -7,6 +7,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\HoneypotsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
@@ -42,6 +43,8 @@ class ConfigBuilder implements Arrayable
     public LoggingConfig $logging;
 
     public InputIgnoreConfig $inputIgnore;
+
+    public HoneypotsConfig $honeypots;
 
     public function toArray(): array
     {
@@ -89,6 +92,10 @@ class ConfigBuilder implements Arrayable
 
         if (isset($this->inputIgnore)) {
             $data['input'] = $this->inputIgnore->toArray();
+        }
+
+        if (isset($this->honeypots)) {
+            $data['honeypots'] = $this->honeypots->toArray();
         }
 
         return $data;
@@ -162,6 +169,7 @@ class ConfigBuilder implements Arrayable
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
 
         $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
+        $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
 
         return $config;
     }
@@ -327,6 +335,15 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function honeypots(
+        array $mustBeMissingOrFalse,
+    ): self {
+        $this->honeypots = HoneypotsConfig::make(
+            $mustBeMissingOrFalse,
+        );
+
+        return $this;
+    }
 
 
 

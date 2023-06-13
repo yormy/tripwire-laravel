@@ -63,6 +63,15 @@ $res = ConfigBuilder::make()
         ['session_id'],
         [],
     )
+    ->honeypots([
+        'isAdmin',
+        'debug',
+        'logged_in',
+        'is_admin',
+        'is_debug',
+        'show_log',
+        'skip_encryption',
+    ])
     //->notMode(false)
     ->toArray();
 
