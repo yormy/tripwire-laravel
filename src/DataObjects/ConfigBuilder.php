@@ -4,12 +4,15 @@ namespace Yormy\TripwireLaravel\DataObjects;
 use http\Url;
 use \Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
+use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HoneypotsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
@@ -23,6 +26,8 @@ use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
 class ConfigBuilder implements Arrayable
 {
     protected bool $enabled;
+
+    public int $blockCode;
     private bool $trainingMode;
 
     private bool $debugMode;
@@ -56,6 +61,8 @@ class ConfigBuilder implements Arrayable
 
     public WhitelistConfig $whitelist;
 
+    public BlockResponseConfig $blockResponse;
+
     public function toArray(): array
     {
         $data = [
@@ -63,6 +70,8 @@ class ConfigBuilder implements Arrayable
             'training_mode' => $this->trainingMode,
             'debug_mode' => $this->debugMode ?? false,
         ];
+
+        $data['block_code'] = $this->blockCode;
 
         $data['datetime'] = $this->datetime->toArray();
 
@@ -120,6 +129,10 @@ class ConfigBuilder implements Arrayable
             $data['whitelist'] = $this->whitelist->toArray();
         }
 
+        if (isset($this->blockResponse)) {
+            $data['block_response'] = $this->blockResponse->toArray();
+        }
+
         return $data;
     }
 
@@ -130,6 +143,7 @@ class ConfigBuilder implements Arrayable
         $config = new self();
 
         $config->enabled($data['enabled']);
+        $config->blockCode($data['block_code']);
 
         if (isset($data['training_mode'])) {
             $config->trainingMode($data['training_mode']);
@@ -197,6 +211,8 @@ class ConfigBuilder implements Arrayable
 
         $config->whitelist = WhitelistConfig::makeFromArray($data['whitelist'] ?? null);
 
+        $config->blockResponse = BlockResponseConfig::makeFromArray($data['block_response'] ?? null);
+
         return $config;
     }
 
@@ -210,6 +226,13 @@ class ConfigBuilder implements Arrayable
     public function enabled(bool $enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function blockCode(int $blockCode): self
+    {
+        $this->blockCode = $blockCode;
 
         return $this;
     }
@@ -405,7 +428,17 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function blockResponse(
+        JsonResponseConfig $jsonResponseConfig,
+        HtmlResponseConfig $htmlResponseConfig
+    ): self {
+        $this->blockResponse = BlockResponseConfig::make(
+            $jsonResponseConfig,
+            $htmlResponseConfig
+        );
 
+        return $this;
+    }
 
 
 

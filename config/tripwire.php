@@ -2,6 +2,8 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
@@ -80,10 +82,23 @@ $res = ConfigBuilder::make()
     )
 
     ->whitelist(explode(',', env('TRIPWIRE_WHITELIST', '')))
+    ->blockCode(409) // refactor?
 
-
-
-
+    ->blockResponse(
+        JsonResponseConfig::make(506,  env('FIREWALL_BLOCK_ABORT', false)),
+        HtmlResponseConfig::make(null, 'tripwire-laravel::blocked'),
+        )
+/*
+    'block_response' => [
+        'json' => [
+            'code' => 506,
+            'abort' => env('FIREWALL_BLOCK_ABORT', false), // true or false, or make this a code ? or message
+        ],
+        'html' => [
+            'view' => 'tripwire-laravel::blocked'
+        ],
+    ],
+ */
     //->notMode(false)
     ->toArray();
 
@@ -277,7 +292,9 @@ return [
         'ips' => explode(',', env('TRIPWIRE_WHITELIST', '')),
     ],
 
-    'block_code' => env('FIREWALL_BLOCK_CODE', 406),
+
+    ////====
+    'block_code' => env('FIREWALL_BLOCK_CODE', 406), //?? refactor to response ?
 
     /*
     |--------------------------------------------------------------------------
