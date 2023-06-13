@@ -79,7 +79,7 @@ $res = ConfigBuilder::make()
         30,
     )
 
-
+    ->whitelist(explode(',', env('TRIPWIRE_WHITELIST', '')))
 
 
 

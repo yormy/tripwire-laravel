@@ -17,6 +17,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
 
 
 class ConfigBuilder implements Arrayable
@@ -52,6 +53,8 @@ class ConfigBuilder implements Arrayable
     public UrlsConfig $urls;
 
     public ResetConfig $reset;
+
+    public WhitelistConfig $whitelist;
 
     public function toArray(): array
     {
@@ -113,6 +116,9 @@ class ConfigBuilder implements Arrayable
             $data['reset'] = $this->reset->toArray();
         }
 
+        if (isset($this->whitelist)) {
+            $data['whitelist'] = $this->whitelist->toArray();
+        }
 
         return $data;
     }
@@ -188,6 +194,8 @@ class ConfigBuilder implements Arrayable
         $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
         $config->urls = UrlsConfig::makeFromArray($data['urls'] ?? null);
         $config->reset = ResetConfig::makeFromArray($data['reset'] ?? null);
+
+        $config->whitelist = WhitelistConfig::makeFromArray($data['whitelist'] ?? null);
 
         return $config;
     }
@@ -382,6 +390,16 @@ class ConfigBuilder implements Arrayable
             $enabled,
             $softDelete,
             $linkExpireMintues
+        );
+
+        return $this;
+    }
+
+    public function whitelist(
+        array $ips,
+    ): self {
+        $this->whitelist = WhitelistConfig::make(
+            $ips,
         );
 
         return $this;
