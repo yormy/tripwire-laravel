@@ -2,17 +2,26 @@
 
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
-use function PHPUnit\Framework\isEmpty;
-
 class SlackNotificationConfig
 {
-    public function __construct(
-        public bool   $enabled,
-        public string $from,
-        public string $to,
-        public string $emoji,
-        public ?string $channel,
-    )
+    public bool   $enabled;
+
+    public string $from;
+
+    public string $to;
+    public string $emoji;
+    public ?string $channel;
+
+    private function __construct()
+    {}
+
+    public static function make(
+        bool   $enabled,
+        string $from,
+        string $to,
+        string $emoji,
+        ?string $channel,
+    ): self
     {
         if (!$channel) {
             throw new \Exception('Slack Channel missing');
@@ -22,6 +31,32 @@ class SlackNotificationConfig
             throw new \Exception('Slack to missing');
         }
 
+        $object = new SlackNotificationConfig();
+
+        $object->enabled = $enabled;
+        $object->from = $from;
+        $object->to = $to;
+        $object->emoji = $emoji;
+        $object->channel = $channel;
+
+        return $object;
+    }
+
+    public static function makeFromArray(?array $data): ?self
+    {
+        if (!$data) {
+            return null;
+        }
+
+        $object = new SlackNotificationConfig();
+
+        $object->enabled = $data['enabled'];
+        $object->from = $data['from'];
+        $object->to = $data['to'];
+        $object->emoji = $data['emoji'];
+        $object->channel = $data['channel'];
+
+        return $object;
     }
 
     public function toArray(): array

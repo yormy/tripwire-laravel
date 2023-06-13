@@ -20,32 +20,27 @@ When I know how, I could spec the result
 Specify type of block view/json:  violation is anders dan login throttle
 - more details in the email ? (url / type ? (need loggable>block)), what triggered it ?
 
-
-
 # Unit tests
-refactor setConfigs
 
 # Documentation
-
+refactor all as in cookiemake
 
 # Unit test cases
-? easy way to run all tests in client app, so that config can be validated and errors that mis certain injections are easlily spotted
-artisan command
-./vendor/bin/phpunit --colors=always --group=tripwire --testdox
-./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests ///hmmm... connection refused
 
 test ignore urls
 test ignore ips
 test all checkers for all responses? => data provider , dan moeten eerst de triggers werken
 test blocks creating
 test blocks responses
+test training mode = no block, record
+test honeypots
 
 
+config maker
 add long list of cheatsheet violations
 
 # Extended features
 Geofencing
-
 
 PSALM
 PINT

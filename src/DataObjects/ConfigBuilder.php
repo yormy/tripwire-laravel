@@ -177,28 +177,10 @@ class ConfigBuilder implements Arrayable
         }
 
         $config->dateFormat($data['datetime']['format'], $data['datetime']['offset']);
-
-        $mail = $data['notifications']['mail'];
-        $config->notificationMail(
-            $mail['enabled'],
-            $mail['name'],
-            $mail['from'],
-            $mail['to'],
-            $mail['template_html'],
-            $mail['temmplate_plain'],
-        );
-
-        if (isset($data['notifications']['slack'])) {
-            $slack = $data['notifications']['slack'];
-            $config->notificationSlack(
-                $slack['enabled'],
-                $slack['from'],
-                $slack['to'],
-                $slack['emoji'],
-                $slack['channel'],
-            );
-        }
 //========================
+        $config->notificationMail = MailNotificationConfig::makeFromArray($data['notifications']['mail'] ?? null);
+        $config->notificationSlack = SlackNotificationConfig::makeFromArray($data['notifications']['slack'] ?? null);
+
         $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
 
         $config->databaseTables = DatabaseTablesConfig::makeFromArray($data['database_tables'] ?? null);
@@ -271,7 +253,7 @@ class ConfigBuilder implements Arrayable
         string $template,
         string $templatePlain,
     ): self {
-        $this->notificationsMail = new MailNotificationConfig(
+        $this->notificationsMail = MailNotificationConfig::make(
             $enabled,
             $name,
             $from,
@@ -294,7 +276,7 @@ class ConfigBuilder implements Arrayable
             return $this;
         }
 
-        $this->notificationsSlack = new SlackNotificationConfig(
+        $this->notificationsSlack = SlackNotificationConfig::make(
             $enabled,
             $from,
             $to,
