@@ -1,9 +1,7 @@
 <?php
 namespace Yormy\TripwireLaravel\DataObjects;
 
-use http\Url;
 use \Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Model;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
@@ -200,21 +198,13 @@ class ConfigBuilder implements Arrayable
                 $slack['channel'],
             );
         }
-
-        if (isset($data['checksums'])) {
-            $checksums = $data['checksums'];
-            $config->checksums(
-                $checksums['posted'],
-                $checksums['timestamp'],
-                $checksums['serverside_calculated'],
-            );
-        }
+//========================
+        $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
 
         $config->databaseTables = DatabaseTablesConfig::makeFromArray($data['database_tables'] ?? null);
 
         $config->models = ModelsConfig::makeFromArray($data['models'] ?? null);
 
-        //===============================================================================
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
         $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
@@ -321,7 +311,7 @@ class ConfigBuilder implements Arrayable
         string $timestamp,
         string $serversideCalculated,
     ): self {
-        $this->checksums = new ChecksumsConfig(
+        $this->checksums = ChecksumsConfig::make(
             $posted,
             $timestamp,
             $serversideCalculated,
