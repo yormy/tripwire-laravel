@@ -7,6 +7,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
@@ -39,6 +40,8 @@ class ConfigBuilder implements Arrayable
     public ServicesConfig $services;
 
     public LoggingConfig $logging;
+
+    public InputIgnoreConfig $inputIgnore;
 
     public function toArray(): array
     {
@@ -82,6 +85,10 @@ class ConfigBuilder implements Arrayable
 
         if (isset($this->logging)) {
             $data['log'] = $this->logging->toArray();
+        }
+
+        if (isset($this->inputIgnore)) {
+            $data['input'] = $this->inputIgnore->toArray();
         }
 
         return $data;
@@ -153,6 +160,8 @@ class ConfigBuilder implements Arrayable
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
         $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
+
+        $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
 
         return $config;
     }
@@ -299,6 +308,20 @@ class ConfigBuilder implements Arrayable
             $maxHeaderSize,
             $maxRefererSize,
             $remove
+        );
+
+        return $this;
+    }
+
+    public function inputIgnore(
+        array $input,
+        array $cookies,
+        array $header
+    ): self {
+        $this->inputIgnore = InputIgnoreConfig::make(
+            $input,
+            $cookies,
+            $header,
         );
 
         return $this;

@@ -58,12 +58,16 @@ $res = ConfigBuilder::make()
         193,
         ['remove']
     )
-
+    ->inputIgnore(
+        [],
+        ['session_id'],
+        [],
+    )
     //->notMode(false)
     ->toArray();
 
 $res2 = ConfigBuilder::fromArray($res);
-dd($res);
+dd($res2);
 
 dd('dsad');
 return [
