@@ -5,7 +5,7 @@ use \Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
+use Yormy\TripwireLaravel\DataObjects\Config\DatetimeConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HoneypotsConfig;
@@ -34,7 +34,7 @@ class ConfigBuilder implements Arrayable
 
     public bool $notMode;
 
-    public ConfigDatetimeOption $datetime;
+    public DatetimeConfig $datetime;
 
     public MailNotificationConfig $notificationsMail;
     public SlackNotificationConfig $notificationsSlack;
@@ -176,8 +176,8 @@ class ConfigBuilder implements Arrayable
             $config->notMode($data['not_mode']);
         }
 
-        $config->dateFormat($data['datetime']['format'], $data['datetime']['offset']);
-//========================
+        $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
+
         $config->notificationMail = MailNotificationConfig::makeFromArray($data['notifications']['mail'] ?? null);
         $config->notificationSlack = SlackNotificationConfig::makeFromArray($data['notifications']['slack'] ?? null);
 
@@ -475,7 +475,7 @@ class ConfigBuilder implements Arrayable
 
     public function dateFormat(string $format, int $offset = 0): self
     {
-        $this->datetime = new ConfigDatetimeOption($format, $offset);
+        $this->datetime = DatetimeConfig::make($format, $offset);
 
         return $this;
     }
