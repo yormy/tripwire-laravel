@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
-class SlackNotificationConfig
+class NotificationSlackConfig
 {
     public bool   $enabled;
 
@@ -31,7 +31,7 @@ class SlackNotificationConfig
             throw new \Exception('Slack to missing');
         }
 
-        $object = new SlackNotificationConfig();
+        $object = new NotificationSlackConfig();
 
         $object->enabled = $enabled;
         $object->from = $from;
@@ -48,7 +48,7 @@ class SlackNotificationConfig
             return null;
         }
 
-        $object = new SlackNotificationConfig();
+        $object = new NotificationSlackConfig();
 
         $object->enabled = $data['enabled'];
         $object->from = $data['from'];

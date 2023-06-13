@@ -13,12 +13,12 @@ use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
 
@@ -36,8 +36,8 @@ class ConfigBuilder implements Arrayable
 
     public DatetimeConfig $datetime;
 
-    public MailNotificationConfig $notificationsMail;
-    public SlackNotificationConfig $notificationsSlack;
+    public NotificationMailConfig $notificationsMail;
+    public NotificationSlackConfig $notificationsSlack;
 
     public ChecksumsConfig $checksums;
 
@@ -178,8 +178,8 @@ class ConfigBuilder implements Arrayable
 
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
 
-        $config->notificationMail = MailNotificationConfig::makeFromArray($data['notifications']['mail'] ?? null);
-        $config->notificationSlack = SlackNotificationConfig::makeFromArray($data['notifications']['slack'] ?? null);
+        $config->notificationMail = NotificationMailConfig::makeFromArray($data['notifications']['mail'] ?? null);
+        $config->notificationSlack = NotificationSlackConfig::makeFromArray($data['notifications']['slack'] ?? null);
 
         $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
 
@@ -253,7 +253,7 @@ class ConfigBuilder implements Arrayable
         string $template,
         string $templatePlain,
     ): self {
-        $this->notificationsMail = MailNotificationConfig::make(
+        $this->notificationsMail = NotificationMailConfig::make(
             $enabled,
             $name,
             $from,
@@ -276,7 +276,7 @@ class ConfigBuilder implements Arrayable
             return $this;
         }
 
-        $this->notificationsSlack = SlackNotificationConfig::make(
+        $this->notificationsSlack = NotificationSlackConfig::make(
             $enabled,
             $from,
             $to,

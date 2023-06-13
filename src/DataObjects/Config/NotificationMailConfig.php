@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
-class MailNotificationConfig
+class NotificationMailConfig
 {
     public bool $enabled;
 
@@ -26,7 +26,7 @@ class MailNotificationConfig
         ?string $templatePlain,
     ): self
     {
-        $object = new MailNotificationConfig();
+        $object = new NotificationMailConfig();
 
         $object->enabled = $enabled;
         $object->name = $name;
@@ -44,7 +44,7 @@ class MailNotificationConfig
             return null;
         }
 
-        $object = new MailNotificationConfig();
+        $object = new NotificationMailConfig();
 
         $object->enabled = $data['enabled'];
         $object->name = $data['name'];
