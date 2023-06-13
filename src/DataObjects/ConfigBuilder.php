@@ -139,12 +139,8 @@ class ConfigBuilder implements Arrayable
             );
         }
 
-        if (isset($data['cookies'])) {
-            $items = $data['cookies'];
-            $config->cookies(
-                $items['browser_fingerprint'],
-            );
-        }
+        $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
+
         return $config;
     }
 
@@ -258,7 +254,7 @@ class ConfigBuilder implements Arrayable
     public function cookies(
         string $browserFingerprint,
     ): self {
-        $this->cookies = new CookiesConfig(
+        $this->cookies = CookiesConfig::make(
             $browserFingerprint,
         );
 
