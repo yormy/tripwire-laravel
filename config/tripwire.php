@@ -2,6 +2,7 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
@@ -11,6 +12,36 @@ use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\User;
 
+$res = ConfigBuilder::make()
+    ->enabled(true)
+    ->trainingMode(env('FIREWALL_EMAIL_ENABLED', true))
+
+    ->trainingMode(false)
+    ->dateFormat('Y-m-f', 0)
+    ->notificationMail(
+        env('FIREWALL_EMAIL_ENABLED', true),
+        env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'),
+        env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'),
+        env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'),
+        env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'),
+        env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain')
+    )
+
+    ->notificationSlack(
+        env('FIREWALL_SLACK_ENABLED', true),
+        env('FIREWALL_SLACK_FROM', 'Tripwire'),
+        env('FIREWALL_SLACK_TO',''),
+        env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
+        env('FIREWALL_SLACK_CHANNEL', 'ttt')
+    )
+
+    //->notMode(false)
+    ->toArray();
+
+$res2 = ConfigBuilder::fromArray($res);
+dd($res2);
+
+dd('dsad');
 return [
     /*
     |--------------------------------------------------------------------------
@@ -62,15 +93,15 @@ return [
             'name' => env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'),
             'from' => env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'),
             'to' => env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'),
-            'template' => env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'),
+            'template_html' => env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'),
             'template_plain' => env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain'),
         ],
 
         'slack' => [
             'enabled' => env('FIREWALL_SLACK_ENABLED', true),
-            'emoji' => env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
             'from' => env('FIREWALL_SLACK_FROM', 'Tripwire'),
             'to' => env('FIREWALL_SLACK_TO',''), // webhook url
+            'emoji' => env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
             'channel' => env('FIREWALL_SLACK_CHANNEL', null), // set null to use the default channel of webhook
         ],
 

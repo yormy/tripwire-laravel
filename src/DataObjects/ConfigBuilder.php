@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\DataObjects;
 use \Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
 
 
 class ConfigBuilder implements Arrayable
@@ -18,6 +19,7 @@ class ConfigBuilder implements Arrayable
     public ConfigDatetimeOption $datetime;
 
     public MailNotificationConfig $notificationsMail;
+    public SlackNotificationConfig $notificationsSlack;
 
     public function toArray(): array
     {
@@ -30,6 +32,10 @@ class ConfigBuilder implements Arrayable
         $data['datetime'] = $this->datetime->toArray();
 
         $data['notifications']['mail'] = $this->notificationsMail->toArray();
+
+        if (isset($this->notificationsSlack)) {
+            $data['notifications']['slack'] = $this->notificationsSlack->toArray();
+        }
 
         if (isset($this->notMode)) {
             $data['not_mode'] = $this->notMode;
@@ -62,9 +68,20 @@ class ConfigBuilder implements Arrayable
             $mail['name'],
             $mail['from'],
             $mail['to'],
-            $mail['template'],
-            $mail['temmplatePlain'],
+            $mail['template_html'],
+            $mail['temmplate_plain'],
         );
+
+        if (isset($data['notifications']['slack'])) {
+            $slack = $data['notifications']['slack'];
+            $config->notificationSlack(
+            $slack['enabled'],
+            $slack['from'],
+            $slack['to'],
+            $slack['emoji'],
+            $slack['channel'],
+        );
+        }
 
         return $config;
     }
@@ -116,6 +133,29 @@ class ConfigBuilder implements Arrayable
 
         return $this;
     }
+
+    public function notificationSlack(
+        bool $enabled,
+        string $from,
+        string $to,
+        string $emoji,
+        ?string $channel,
+    ): self {
+        if (!$enabled) {
+            return $this;
+        }
+
+        $this->notificationsSlack = new SlackNotificationConfig(
+            $enabled,
+            $from,
+            $to,
+            $emoji,
+            $channel,
+        );
+
+        return $this;
+    }
+
     public function dateFormat(string $format, int $offset = 0): self
     {
         $this->datetime = new ConfigDatetimeOption($format, $offset);

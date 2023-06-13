@@ -33,7 +33,7 @@ class UserBlockedMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: config('tripwire.notifications.mail.template'),
+            view: config('tripwire.notifications.mail.template_html'),
             text: config('tripwire.notifications.mail.template_plain'),
         );
     }

@@ -9,7 +9,7 @@ class MailNotificationConfig
         public string $name,
         public string $from,
         public string $to,
-        public string $template,
+        public string $templateHtml,
         public string $templatePlain,
     )
     {
@@ -22,8 +22,8 @@ class MailNotificationConfig
             'name' => $this->name,
             'from' => $this->from,
             'to' => $this->to,
-            'template' => $this->template,
-            'temmplatePlain' => $this->templatePlain,
+            'template_html' => $this->templateHtml,
+            'temmplate_plain' => $this->templatePlain,
         ];
     }
 }
