@@ -47,6 +47,12 @@ $res = ConfigBuilder::make()
     ->models(TripwireLog::class)
     ->cookies('session_id')
 
+    ->services(
+        RequestSource::class,
+        User::class,
+        IpAddress::class
+    )
+
     //->notMode(false)
     ->toArray();
 

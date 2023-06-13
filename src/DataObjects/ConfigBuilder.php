@@ -9,6 +9,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
 
 
@@ -33,6 +34,8 @@ class ConfigBuilder implements Arrayable
     public ModelsConfig $models;
 
     public CookiesConfig $cookies;
+
+    public ServicesConfig $services;
 
     public function toArray(): array
     {
@@ -70,7 +73,9 @@ class ConfigBuilder implements Arrayable
             $data['cookies'] = $this->cookies->toArray();
         }
 
-
+        if (isset($this->services)) {
+            $data['services'] = $this->services->toArray();
+        }
 
 
         return $data;
@@ -140,6 +145,7 @@ class ConfigBuilder implements Arrayable
         }
 
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
+        $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
 
         return $config;
     }
@@ -260,6 +266,36 @@ class ConfigBuilder implements Arrayable
 
         return $this;
     }
+
+    public function services(
+        string $requestSource,
+        string $user,
+        string $ipAddress,
+    ): self {
+        $this->services = ServicesConfig::make(
+            $requestSource,
+            $user,
+            $ipAddress
+        );
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function dateFormat(string $format, int $offset = 0): self
     {
