@@ -7,6 +7,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ConfigDatetimeOption;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
@@ -36,6 +37,8 @@ class ConfigBuilder implements Arrayable
     public CookiesConfig $cookies;
 
     public ServicesConfig $services;
+
+    public LoggingConfig $logging;
 
     public function toArray(): array
     {
@@ -77,6 +80,9 @@ class ConfigBuilder implements Arrayable
             $data['services'] = $this->services->toArray();
         }
 
+        if (isset($this->logging)) {
+            $data['log'] = $this->logging->toArray();
+        }
 
         return $data;
     }
@@ -146,6 +152,7 @@ class ConfigBuilder implements Arrayable
 
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
         $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
+        $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
 
         return $config;
     }
@@ -281,8 +288,21 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function logging(
+        string $maxRequestSize,
+        string $maxHeaderSize,
+        string $maxRefererSize,
+        array $remove,
+    ): self {
+        $this->logging = LoggingConfig::make(
+            $maxRequestSize,
+            $maxHeaderSize,
+            $maxRefererSize,
+            $remove
+        );
 
-
+        return $this;
+    }
 
 
 

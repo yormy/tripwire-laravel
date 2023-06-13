@@ -52,12 +52,18 @@ $res = ConfigBuilder::make()
         User::class,
         IpAddress::class
     )
+    ->logging(
+        191,
+        192,
+        193,
+        ['remove']
+    )
 
     //->notMode(false)
     ->toArray();
 
 $res2 = ConfigBuilder::fromArray($res);
-dd($res2);
+dd($res);
 
 dd('dsad');
 return [
