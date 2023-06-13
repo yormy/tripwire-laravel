@@ -13,6 +13,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
@@ -49,6 +50,8 @@ class ConfigBuilder implements Arrayable
     public HoneypotsConfig $honeypots;
 
     public UrlsConfig $urls;
+
+    public ResetConfig $reset;
 
     public function toArray(): array
     {
@@ -105,6 +108,11 @@ class ConfigBuilder implements Arrayable
         if (isset($this->urls)) {
             $data['urls'] = $this->urls->toArray();
         }
+
+        if (isset($this->reset)) {
+            $data['reset'] = $this->reset->toArray();
+        }
+
 
         return $data;
     }
@@ -179,6 +187,7 @@ class ConfigBuilder implements Arrayable
         $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
         $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
         $config->urls = UrlsConfig::makeFromArray($data['urls'] ?? null);
+        $config->reset = ResetConfig::makeFromArray($data['reset'] ?? null);
 
         return $config;
     }
@@ -364,6 +373,19 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function reset(
+        bool $enabled,
+        bool $softDelete,
+        int $linkExpireMintues,
+    ): self {
+        $this->reset = ResetConfig::make(
+            $enabled,
+            $softDelete,
+            $linkExpireMintues
+        );
+
+        return $this;
+    }
 
 
 

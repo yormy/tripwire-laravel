@@ -73,6 +73,17 @@ $res = ConfigBuilder::make()
         'skip_encryption',
     ])
     ->urls(['*/ffff/*','logout'])
+    ->reset(
+        env('TRIPWIRE_WHITELIST', true),
+        true,
+        30,
+    )
+
+
+
+
+
+
     //->notMode(false)
     ->toArray();
 
