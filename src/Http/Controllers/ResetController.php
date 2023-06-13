@@ -13,7 +13,7 @@ class ResetController extends controller
 {
     public function reset(Request $request)
     {
-        if (!config('tripwire.reset.allowed')) {
+        if (!config('tripwire.reset.enabled')) {
             return;
         }
 

@@ -10,8 +10,8 @@ class GuestRoutes
 {
     public static function register()
     {
-        if (config('tripwire.reset.allowed')) {
-            Route::macro('TripwireResetRoutes', function (string $prefix = '') {
+        Route::macro('TripwireResetRoutes', function (string $prefix = '') {
+            if (config('tripwire.reset.enabled')) {
                 Route::prefix($prefix)->name($prefix ? $prefix . "." : '')->group(function () {
 
                     Route::prefix('')
@@ -26,8 +26,7 @@ class GuestRoutes
                                 });
                         });
                 });
-            });
-        }
-
+            }
+        });
     }
 }
