@@ -4,11 +4,37 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class DatabaseTablesConfig
 {
-    public function __construct(
-        public string $tripwireLogs,
-        public string $tripwireBlocks,
-    )
+    public string $tripwireLogs;
+    public string $tripwireBlocks;
+
+    private function __construct()
+    {}
+
+    public static function make(
+        string $tripwireLogs,
+        string $tripwireBlocks,
+        ): self
     {
+        $object = new DatabaseTablesConfig();
+
+        $object->tripwireLogs = $tripwireLogs;
+        $object->tripwireBlocks = $tripwireBlocks;
+
+        return $object;
+    }
+
+    public static function makeFromArray(?array $data): ?self
+    {
+        if (!$data) {
+            return null;
+        }
+
+        $object = new DatabaseTablesConfig();
+
+        $object->tripwireLogs = $data['tripwire_logs'];
+        $object->tripwireBlocks = $data['tripwire_blocks'];
+
+        return $object;
     }
 
     public function toArray(): array

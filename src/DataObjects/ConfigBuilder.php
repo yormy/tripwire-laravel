@@ -210,21 +210,11 @@ class ConfigBuilder implements Arrayable
             );
         }
 
-        if (isset($data['database_tables'])) {
-            $tables = $data['database_tables'];
-            $config->databaseTables(
-                $tables['tripwire_logs'],
-                $tables['tripwire_blocks'],
-            );
-        }
+        $config->databaseTables = DatabaseTablesConfig::makeFromArray($data['database_tables'] ?? null);
 
-        if (isset($data['models'])) {
-            $models = $data['models'];
-            $config->models(
-                $models['log'],
-            );
-        }
+        $config->models = ModelsConfig::makeFromArray($data['models'] ?? null);
 
+        //===============================================================================
         $config->cookies = CookiesConfig::makeFromArray($data['cookies'] ?? null);
         $config->services = ServicesConfig::makeFromArray($data['services'] ?? null);
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
@@ -344,7 +334,7 @@ class ConfigBuilder implements Arrayable
         string $tripwireLogs,
         string $tripwireBlocks,
     ): self {
-        $this->databaseTables = new DatabaseTablesConfig(
+        $this->databaseTables = DatabaseTablesConfig::make(
             $tripwireLogs,
             $tripwireBlocks,
         );
@@ -355,7 +345,7 @@ class ConfigBuilder implements Arrayable
     public function models(
         string $models,
     ): self {
-        $this->models = new ModelsConfig(
+        $this->models = ModelsConfig::make(
             $models,
         );
 

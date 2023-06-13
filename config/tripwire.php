@@ -144,7 +144,8 @@ $res = ConfigBuilder::make()
     //->notMode(false)
     ->toArray();
 
-//$res2 = ConfigBuilder::fromArray($res);
+$res2 = ConfigBuilder::fromArray($res);
+dd($res2);
 return $res;
 //
 //return [
