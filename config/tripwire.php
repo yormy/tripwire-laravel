@@ -123,6 +123,7 @@ $res = ConfigBuilder::make()
         'tripwire.session',
     ])
 
+    ->punish(800, 60*24, 5)
 
     //->notMode(false)
     ->toArray();

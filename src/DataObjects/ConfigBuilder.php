@@ -17,6 +17,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MailNotificationConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\SlackNotificationConfig;
@@ -63,6 +64,8 @@ class ConfigBuilder implements Arrayable
     public WhitelistConfig $whitelist;
 
     public BlockResponseConfig $blockResponse;
+
+    public PunishConfig $punish;
 
     public array $checkerGroups;
 
@@ -139,12 +142,13 @@ class ConfigBuilder implements Arrayable
         if (isset($this->checkerGroups)) {
 
             foreach ($this->checkerGroups as $name => $checkerGroup) {
-//                foreach ($checkerGroup as $name => $checkers) {
-//                    $data['checker_groups'][$name] = $checkerGroup->toArray();
-//                }
                 $data['checker_groups'][$name] = $checkerGroup->toArray();
             }
 
+        }
+
+        if (isset($this->punish)) {
+            $data['punish'] = $this->punish->toArray();
         }
 
 
@@ -230,6 +234,8 @@ class ConfigBuilder implements Arrayable
 
 
         $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
+
+        $config->punish = PunishConfig::makeFromArray($data['punish'] ?? null);
 
         return $config;
     }
@@ -469,7 +475,19 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    public function punish(
+        int $score,
+        int $withinMinutes,
+        int $penaltySeconds
+    ): self {
+        $this->punish = PunishConfig::make(
+            $score,
+            $withinMinutes,
+            $penaltySeconds,
+        );
 
+        return $this;
+    }
 
 
 
