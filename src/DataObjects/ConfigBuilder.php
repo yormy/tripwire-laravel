@@ -36,8 +36,8 @@ class ConfigBuilder implements Arrayable
 
     public DatetimeConfig $datetime;
 
-    public NotificationMailConfig $notificationsMail;
-    public NotificationSlackConfig $notificationsSlack;
+    public ?NotificationMailConfig $notificationsMail;
+    public ?NotificationSlackConfig $notificationsSlack;
 
     public ChecksumsConfig $checksums;
 

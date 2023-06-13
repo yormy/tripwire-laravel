@@ -17,9 +17,11 @@ class JsonResponseConfig
     private function __construct()
     {}
 
+    // TODO: how to pass and handle missing parameters
+    // like code = missing ipv 0
     public static function make(
-        int $code,
-        bool $abort,
+        ?int $code = 0,
+        ?bool $abort = false,
         ?array $json = null,
         ?string $exception = null,
         ?string $messageKey = null
@@ -27,8 +29,14 @@ class JsonResponseConfig
     {
         $object = new JsonResponseConfig();
 
-        $object->code = $code;
-        $object->abort = $abort;
+        if (isset($code)) {
+            $object->code = $code;
+        }
+
+        if (isset($abort)) {
+            $object->abort = $abort;
+        }
+
         $object->json = $json;
         $object->exception = $exception;
         $object->messageKey = $messageKey;

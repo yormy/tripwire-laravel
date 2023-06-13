@@ -2,9 +2,52 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
+
+$res = ConfigBuilderWires::make()
+    ->addCheckerDetails(
+        'swear',
+        CheckerDetailsConfig::make(
+            env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)),
+            false,
+            ['post', 'put', 'patch', 'get'],
+            500,
+            UrlsConfig::make(
+                [],
+                []
+            ),
+            InputsFilterConfig::make(
+                [],
+                [],
+            ),
+            ['blow'],
+            PunishConfig::make(
+                10,
+                60 * 24,
+                5,
+            ),
+            BlockResponseConfig::make(
+                JsonResponseConfig::make(
+                    json: [ 'data' => 'kkkkkk', 'err' =>'2']
+                ),
+                HtmlResponseConfig::make(
+                    exception: SwearFailedException::class
+                )
+            )
+        )
+    )
+    ->toArray();
+dd($res);
 
 return [
 

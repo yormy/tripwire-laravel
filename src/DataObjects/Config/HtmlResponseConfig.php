@@ -16,8 +16,8 @@ class HtmlResponseConfig
     {}
 
     public static function make(
-        ?int $code,
-        ?string $view,
+        ?int $code = 0,
+        ?string $view = null,
         ?string $exception = null,
         ?string $messageKey = null
     ): self
