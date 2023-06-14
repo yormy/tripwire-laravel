@@ -23,7 +23,17 @@ Specify type of block view/json:  violation is anders dan login throttle
 # Unit tests
 
 # Documentation
-refactor all as in cookiemake
+
+1 rename checkers to tripwires
+
+2 normalize this in wires?
+CheckerDetailsConfig::make(env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)))
+
+
+3 ??
+->addCheckerGroup('all', [
+'tripwire.agent',
+=> pass in checkergroup::make ?
 
 # Unit test cases
 

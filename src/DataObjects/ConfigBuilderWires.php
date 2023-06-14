@@ -5,11 +5,9 @@ use Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
 
-
 class ConfigBuilderWires implements Arrayable
 {
     public array $checkers;
-
 
     public function toArray(): array
     {
@@ -24,8 +22,6 @@ class ConfigBuilderWires implements Arrayable
 
         return $data;
     }
-
-
 
     public static function fromArray(array $data)
     {
@@ -45,22 +41,8 @@ class ConfigBuilderWires implements Arrayable
         return $this;
     }
 
-
     public static function make(): self
     {
         return new self();
-    }
-
-    private function getArrayErrors(array $values, array $allowedValues): array
-    {
-        $errors = [];
-        foreach ($values as $value)
-        {
-            if (!in_array($value, $allowedValues)) {
-                $errors[] = $value;
-            }
-        }
-
-        return $errors;
     }
 }

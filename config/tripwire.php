@@ -1,7 +1,7 @@
 <?php
 
-use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Mexion\BedrockUsers\Models\Member;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
@@ -11,11 +11,8 @@ use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
-use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
-use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Observers\Events\Failed\RequestChecksumFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\User;
@@ -139,8 +136,6 @@ $res = ConfigBuilder::make()
         'message.key'
         ),
     )
-
-    //->notMode(false)
     ->toArray();
 
 $res2 = ConfigBuilder::fromArray($res);

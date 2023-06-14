@@ -32,8 +32,6 @@ class ConfigBuilder implements Arrayable
 
     private bool $debugMode;
 
-    public bool $notMode;
-
     public DatetimeConfig $datetime;
 
     public ?NotificationMailConfig $notificationsMail;
@@ -72,11 +70,10 @@ class ConfigBuilder implements Arrayable
 
     public function toArray(): array
     {
-        $data = [
-            'enabled' => $this->enabled,
-            'training_mode' => $this->trainingMode,
-            'debug_mode' => $this->debugMode ?? false,
-        ];
+        $data = [];
+        $data['enabled'] = $this->enabled;
+        $data['training_mode'] = $this->trainingMode;
+        $data['debug_mode'] =$this->debugMode ?? false;
 
         $data['block_code'] = $this->blockCode;
 
@@ -86,10 +83,6 @@ class ConfigBuilder implements Arrayable
 
         if (isset($this->notificationsSlack)) {
             $data['notifications']['slack'] = $this->notificationsSlack->toArray();
-        }
-
-        if (isset($this->notMode)) {
-            $data['not_mode'] = $this->notMode;
         }
 
         if (isset($this->checksums)) {
@@ -145,7 +138,6 @@ class ConfigBuilder implements Arrayable
             foreach ($this->checkerGroups as $name => $checkerGroup) {
                 $data['checker_groups'][$name] = $checkerGroup->toArray();
             }
-
         }
 
         if (isset($this->punish)) {
@@ -170,10 +162,6 @@ class ConfigBuilder implements Arrayable
 
         if (isset($data['training_mode'])) {
             $config->trainingMode($data['training_mode']);
-        }
-
-        if (isset($data['not_mode'])) {
-            $config->notMode($data['not_mode']);
         }
 
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
@@ -336,20 +324,6 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-//    public function inputIgnore(
-//        array $input,
-//        array $cookies,
-//        array $header
-//    ): self {
-//        $this->inputIgnore = InputIgnoreConfig::make(
-//            $input,
-//            $cookies,
-//            $header,
-//        );
-//
-//        return $this;
-//    }
-
     public function honeypots(
         array $mustBeMissingOrFalse,
     ): self {
@@ -437,37 +411,15 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-
-
     public function dateFormat(string $format, int $offset = 0): self
     {
         $this->datetime = DatetimeConfig::make($format, $offset);
 
         return $this;
     }
-    public function notMode(bool $notMode): self
-    {
-        $this->notMode = $notMode;
-
-        return $this;
-    }
-
 
     public static function make(): self
     {
         return new self();
-    }
-
-    private function getArrayErrors(array $values, array $allowedValues): array
-    {
-        $errors = [];
-        foreach ($values as $value)
-        {
-            if (!in_array($value, $allowedValues)) {
-                $errors[] = $value;
-            }
-        }
-
-        return $errors;
     }
 }

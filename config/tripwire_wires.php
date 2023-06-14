@@ -24,8 +24,8 @@ $res = ConfigBuilderWires::make()
             ->punish(PunishConfig::make(10, 60 * 24, 5,))
             ->triggerResponse(
                 BlockResponseConfig::make()
-                ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-                ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
+                    ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
+                    ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
             ))
     ->toArray();
 dd($res);
