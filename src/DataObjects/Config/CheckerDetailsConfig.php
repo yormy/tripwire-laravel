@@ -12,34 +12,40 @@ class CheckerDetailsConfig
 
     public int $attackScore;
 
-    public UrlsConfig $urls;
+    public ?UrlsConfig $urls;
 
-    public InputsFilterConfig $inputs;
+    public ?InputsFilterConfig $inputs;
 
     public array $tripwires;
 
-    public PunishConfig $punish;
+    public ?PunishConfig $punish;
 
-    public BlockResponseConfig $triggerResponse;
+    public ?BlockResponseConfig $triggerResponse;
 
     private function __construct()
     {}
 
     public static function make(
         bool $enabled,
-        bool $trainingMode,
-        array $methods,
-        int $attackScore,
-        UrlsConfig $urlsConfig,
-        InputsFilterConfig $inputs,
-        array $tripwires,
-        PunishConfig $punishConfig,
-        BlockResponseConfig $triggerResponse,
+        bool $trainingMode = false,
+        array $methods = [],
+        int $attackScore = 0,
+        UrlsConfig $urlsConfig = null,
+        InputsFilterConfig $inputs  = null,
+        array $tripwires = [],
+        PunishConfig $punishConfig  = null,
+        BlockResponseConfig $triggerResponse  = null,
     ): self {
         $object = new CheckerDetailsConfig();
 
         $object->enabled = $enabled;
         $object->trainingMode = $trainingMode;
+
+        $errors = $object->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
+        if ($errors) {
+            throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+        }
+
         $object->methods = $methods;
         $object->attackScore = $attackScore;
         $object->urls = $urlsConfig;
@@ -72,6 +78,67 @@ class CheckerDetailsConfig
        return $object;
     }
 
+    public function trainingMode(bool $trainingMode): self
+    {
+        $this->trainingMode = $trainingMode;
+
+        return $this;
+    }
+
+    public function methods(array $methods): self
+    {
+        $errors = $this->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
+        if ($errors) {
+            throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+        }
+
+        $this->methods = $methods;
+
+        return $this;
+    }
+
+    public function attackScore(int $attackScore): self
+    {
+        $this->attackScore = $attackScore;
+
+        return $this;
+    }
+
+    public function urls(UrlsConfig $urls): self
+    {
+        $this->urls = $urls;
+
+        return $this;
+    }
+
+    public function inputFilter(InputsFilterConfig $inputFilter): self
+    {
+        $this->inputs = $inputFilter;
+
+        return $this;
+    }
+
+    public function tripwires(array $tripWires): self
+    {
+        $this->tripWires = $tripWires;
+
+        return $this;
+    }
+
+    public function punish(PunishConfig $punish): self
+    {
+        $this->punish = $punish;
+
+        return $this;
+    }
+
+    public function triggerResponse(BlockResponseConfig $triggerResponse): self
+    {
+        $this->triggerResponse = $triggerResponse;
+
+        return $this;
+    }
+
 
     public function toArray(): array
     {
@@ -86,5 +153,18 @@ class CheckerDetailsConfig
             'punish' => $this->punish->toArray(),
             'trigger_response' => $this->triggerResponse->toArray(),
         ];
+    }
+
+    private function getArrayErrors(array $values, array $allowedValues): array
+    {
+        $errors = [];
+        foreach ($values as $value)
+        {
+            if (!in_array($value, $allowedValues)) {
+                $errors[] = $value;
+            }
+        }
+
+        return $errors;
     }
 }
