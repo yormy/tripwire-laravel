@@ -49,6 +49,34 @@ class HtmlResponseConfig
     }
 
 
+    public function code(int $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function view(string $view): self
+    {
+        $this->view = $view;
+
+        return $this;
+    }
+
+    public function exception(string $exception): self
+    {
+        $this->exception = $exception;
+
+        return $this;
+    }
+
+    public function messageKey(string $messageKey): self
+    {
+        $this->messageKey = $messageKey;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         $data = [];

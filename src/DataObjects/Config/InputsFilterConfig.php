@@ -12,8 +12,8 @@ class InputsFilterConfig
     {}
 
     public static function make(
-        array $only,
-        array $except
+        array $only = [],
+        array $except = []
     ): self
     {
         $object = new InputsFilterConfig();
@@ -38,6 +38,19 @@ class InputsFilterConfig
        return $object;
     }
 
+    public function except(array $except): self
+    {
+        $this->except = $except;
+
+        return $this;
+    }
+
+    public function only(array $only): self
+    {
+        $this->only = $only;
+
+        return $this;
+    }
 
     public function toArray(): array
     {

@@ -4,16 +4,16 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class BlockResponseConfig
 {
-    public  JsonResponseConfig $jsonResponse;
+    public  ?JsonResponseConfig $jsonResponse;
 
-    public  HtmlResponseConfig $htmlResponse;
+    public  ?HtmlResponseConfig $htmlResponse;
 
     private function __construct()
     {}
 
     public static function make(
-        JsonResponseConfig $jsonResponse,
-        HtmlResponseConfig $htmlResponse
+        ?JsonResponseConfig $jsonResponse  = null,
+        ?HtmlResponseConfig $htmlResponse = null
     ): self
     {
         $object = new BlockResponseConfig();
@@ -38,6 +38,19 @@ class BlockResponseConfig
        return $object;
     }
 
+    public function json(JsonResponseConfig $jsonResponse): self
+    {
+        $this->jsonResponse = $jsonResponse;
+
+        return $this;
+    }
+
+    public function html(HtmlResponseConfig $htmlResponse): self
+    {
+        $this->htmlResponse = $htmlResponse;
+
+        return $this;
+    }
 
     public function toArray(): array
     {

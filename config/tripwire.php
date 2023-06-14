@@ -85,8 +85,8 @@ $res = ConfigBuilder::make()
     ->blockCode(409) // refactor?
 
     ->blockResponse(
-        JsonResponseConfig::make(506,  env('FIREWALL_BLOCK_ABORT', false)),
-        HtmlResponseConfig::make(null, 'tripwire-laravel::blocked'),
+        JsonResponseConfig::make()->code(506)->abort(env('FIREWALL_BLOCK_ABORT', false)),
+        HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
         )
 
     ->addCheckerGroup('all', [

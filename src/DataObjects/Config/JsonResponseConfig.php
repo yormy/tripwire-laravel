@@ -18,7 +18,7 @@ class JsonResponseConfig
     {}
 
     // TODO: how to pass and handle missing parameters
-    // like code = missing ipv 0
+    // like code = missing ipv 0, rename checker to wires.
     public static function make(
         ?int $code = 0,
         ?bool $abort = false,
@@ -61,6 +61,40 @@ class JsonResponseConfig
        return $object;
     }
 
+    public function code(int $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function abort(bool $abort): self
+    {
+        $this->abort = $abort;
+
+        return $this;
+    }
+
+    public function json(array $json): self
+    {
+        $this->json = $json;
+
+        return $this;
+    }
+
+    public function exception(string $exception): self
+    {
+        $this->exception = $exception;
+
+        return $this;
+    }
+
+    public function messageKey(string $messageKey): self
+    {
+        $this->messageKey = $messageKey;
+
+        return $this;
+    }
 
     public function toArray(): array
     {
