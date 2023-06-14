@@ -13,9 +13,9 @@ class InputIgnoreConfig
     {}
 
     public static function make(
-        array $input,
-        array $cookies,
-        array $header
+        array $input = [],
+        array $cookies = [],
+        array $header = []
     ): self
     {
         $object = new InputIgnoreConfig();
@@ -42,6 +42,26 @@ class InputIgnoreConfig
        return $object;
     }
 
+    public function inputs(array $inputs): self
+    {
+        $this->input = $inputs;
+
+        return $this;
+    }
+
+    public function cookies(array $cookies): self
+    {
+        $this->cookies = $cookies;
+
+        return $this;
+    }
+
+    public function headers(array $headers): self
+    {
+        $this->header = $headers;
+
+        return $this;
+    }
 
     public function toArray(): array
     {

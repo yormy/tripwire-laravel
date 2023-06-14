@@ -16,21 +16,13 @@ class NotificationSlackConfig
     {}
 
     public static function make(
-        bool   $enabled,
-        string $from,
-        string $to,
-        string $emoji,
-        ?string $channel,
+        bool $enabled,
+        string $from = '',
+        string $to = '',
+        string $emoji = '',
+        string $channel = '',
     ): self
     {
-        if (!$channel) {
-            throw new \Exception('Slack Channel missing');
-        }
-
-        if (empty($to)) {
-            throw new \Exception('Slack to missing');
-        }
-
         $object = new NotificationSlackConfig();
 
         $object->enabled = $enabled;
@@ -59,8 +51,48 @@ class NotificationSlackConfig
         return $object;
     }
 
+    public function from(string $from): self
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    public function to(string $to): self
+    {
+        $this->to = $to;
+
+        return $this;
+    }
+
+    public function emoji(string $emoji): self
+    {
+        $this->emoji = $emoji;
+
+        return $this;
+    }
+
+    public function channel(string $channel): self
+    {
+        $this->channel = $channel;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
+        if (!$this->enabled) {
+            return [];
+        }
+
+        if (!$this->channel) {
+            throw new \Exception('Slack Channel missing');
+        }
+
+        if (empty($this->to)) {
+            throw new \Exception('Slack to missing');
+        }
+
         return [
             'enabled' => $this->enabled,
             'from' => $this->from,

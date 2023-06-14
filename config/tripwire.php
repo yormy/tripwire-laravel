@@ -2,8 +2,14 @@
 
 use Mexion\BedrockUsers\Models\Member;
 use Mexion\BedrockUsers\Models\Admin;
+use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
@@ -21,25 +27,27 @@ $res = ConfigBuilder::make()
     ->trainingMode(false)
     ->dateFormat('Y-m-f', 0)
     ->notificationMail(
-        env('FIREWALL_EMAIL_ENABLED', true),
-        env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'),
-        env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'),
-        env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'),
-        env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'),
-        env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain')
+        NotificationMailConfig::make(env('FIREWALL_EMAIL_ENABLED', true))
+            ->name(env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'))
+            ->from(env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'))
+            ->to(env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'))
+            ->templatePlain(env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain'))
+            ->templateHtml(env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'))
     )
 
     ->notificationSlack(
-        env('FIREWALL_SLACK_ENABLED', false),
-        env('FIREWALL_SLACK_FROM', 'Tripwire'),
-        env('FIREWALL_SLACK_TO',''),
-        env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'),
-        env('FIREWALL_SLACK_CHANNEL', 'ttt')
+        NotificationSlackConfig::make(env('FIREWALL_SLACK_ENABLED', false))
+            ->from(env('FIREWALL_SLACK_FROM', 'Tripwire'))
+            ->to(env('FIREWALL_SLACK_TO',''))
+            ->channel(env('FIREWALL_SLACK_CHANNEL', 'ttt'))
+            ->emoji(env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'))
     )
+
     ->checksums(
-        'X-Checksum',
-        'X-sand',
-        'x-checksum-serverside'
+        ChecksumsConfig::make()
+            ->posted('X-Checksum')
+            ->timestamp('X-sand')
+            ->serversideCalculated('x-checksum-serverside')
     )
 
     ->databaseTables(
@@ -54,17 +62,8 @@ $res = ConfigBuilder::make()
         User::class,
         IpAddress::class
     )
-    ->logging(
-        191,
-        192,
-        193,
-        ['remove']
-    )
-    ->inputIgnore(
-        [],
-        ['session_id'],
-        [],
-    )
+    ->logging(LoggingConfig::make()->remove(['remove']))
+    ->inputIgnore(InputIgnoreConfig::make()->cookies(['session_id']))
     ->honeypots([
         'isAdmin',
         'debug',
@@ -76,9 +75,9 @@ $res = ConfigBuilder::make()
     ])
     ->urls(['*/ffff/*','logout'])
     ->reset(
-        env('TRIPWIRE_WHITELIST', true),
-        true,
-        30,
+        ResetConfig::make(env('TRIPWIRE_WHITELIST', true))
+            ->softDelete(true)
+            ->linkExpireMinutes(30)
     )
 
     ->whitelist(explode(',', env('TRIPWIRE_WHITELIST', '')))

@@ -251,58 +251,25 @@ class ConfigBuilder implements Arrayable
     }
 
     public function notificationMail(
-        bool   $enabled,
-        string $name,
-        string $from,
-        string $to,
-        string $template,
-        string $templatePlain,
+        NotificationMailConfig $notificationMail,
     ): self {
-        $this->notificationsMail = NotificationMailConfig::make(
-            $enabled,
-            $name,
-            $from,
-            $to,
-            $template,
-            $templatePlain,
-        );
+        $this->notificationsMail = $notificationMail;
 
         return $this;
     }
 
     public function notificationSlack(
-        bool $enabled,
-        string $from,
-        string $to,
-        string $emoji,
-        ?string $channel,
+        NotificationSlackConfig $notificationsSlack,
     ): self {
-        if (!$enabled) {
-            return $this;
-        }
-
-        $this->notificationsSlack = NotificationSlackConfig::make(
-            $enabled,
-            $from,
-            $to,
-            $emoji,
-            $channel,
-        );
-
+        $this->notificationsSlack = $notificationsSlack;
         return $this;
     }
 
 
     public function checksums(
-        string $posted,
-        string $timestamp,
-        string $serversideCalculated,
+        ChecksumsConfig $checksums,
     ): self {
-        $this->checksums = ChecksumsConfig::make(
-            $posted,
-            $timestamp,
-            $serversideCalculated,
-        );
+        $this->checksums = $checksums;
 
         return $this;
     }
@@ -354,34 +321,34 @@ class ConfigBuilder implements Arrayable
     }
 
     public function logging(
-        string $maxRequestSize,
-        string $maxHeaderSize,
-        string $maxRefererSize,
-        array $remove,
+        LoggingConfig $logging,
     ): self {
-        $this->logging = LoggingConfig::make(
-            $maxRequestSize,
-            $maxHeaderSize,
-            $maxRefererSize,
-            $remove
-        );
+        $this->logging = $logging;
 
         return $this;
     }
 
     public function inputIgnore(
-        array $input,
-        array $cookies,
-        array $header
+        InputIgnoreConfig $inputIgnore,
     ): self {
-        $this->inputIgnore = InputIgnoreConfig::make(
-            $input,
-            $cookies,
-            $header,
-        );
+        $this->inputIgnore = $inputIgnore;
 
         return $this;
     }
+
+//    public function inputIgnore(
+//        array $input,
+//        array $cookies,
+//        array $header
+//    ): self {
+//        $this->inputIgnore = InputIgnoreConfig::make(
+//            $input,
+//            $cookies,
+//            $header,
+//        );
+//
+//        return $this;
+//    }
 
     public function honeypots(
         array $mustBeMissingOrFalse,
@@ -404,15 +371,9 @@ class ConfigBuilder implements Arrayable
     }
 
     public function reset(
-        bool $enabled,
-        bool $softDelete,
-        int $linkExpireMintues,
+        ResetConfig $resetConfig,
     ): self {
-        $this->reset = ResetConfig::make(
-            $enabled,
-            $softDelete,
-            $linkExpireMintues
-        );
+        $this->reset = $resetConfig;
 
         return $this;
     }

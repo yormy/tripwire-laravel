@@ -16,10 +16,10 @@ class LoggingConfig
     }
 
     public static function make(
-        string $maxRequestSize,
-        string $maxHeaderSize,
-        string $maxRefererSize,
-        array $remove
+        int $maxRequestSize = 190,
+        int $maxHeaderSize = 190,
+        int $maxRefererSize = 190,
+        array $remove = [],
     ): self
     {
         $object = new LoggingConfig();
@@ -48,6 +48,33 @@ class LoggingConfig
         return $object;
     }
 
+    public function maxRequestSize(int $maxHeaderSize): self
+    {
+        $this->maxHeaderSize = $maxHeaderSize;
+
+        return $this;
+    }
+
+    public function maxHeaderSize(int $maxHeaderSize): self
+    {
+        $this->maxHeaderSize = $maxHeaderSize;
+
+        return $this;
+    }
+
+    public function maxRefererSize(int $maxRefererSize): self
+    {
+        $this->maxRefererSize = $maxRefererSize;
+
+        return $this;
+    }
+
+    public function remove(array $remove): self
+    {
+        $this->remove = $remove;
+
+        return $this;
+    }
 
     public function toArray(): array
     {

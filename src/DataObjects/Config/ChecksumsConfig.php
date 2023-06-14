@@ -4,17 +4,17 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class ChecksumsConfig
 {
-    public string $posted;
-    public string $timestamp;
-    public string $serversideCalculated;
+    public ?string $posted;
+    public ?string $timestamp;
+    public ?string $serversideCalculated;
 
     private function __construct()
     {}
 
     public static function make(
-        string $posted,
-        string $timestamp,
-        string $serversideCalculated,
+        string $posted = null,
+        string $timestamp  = null,
+        string $serversideCalculated  = null,
     ): self
     {
         $object = new ChecksumsConfig();
@@ -39,6 +39,27 @@ class ChecksumsConfig
         $object->serversideCalculated = $data['serverside_calculated'];
 
         return $object;
+    }
+
+    public function posted(string $posted): self
+    {
+        $this->posted = $posted;
+
+        return $this;
+    }
+
+    public function timestamp(string $timestamp): self
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    public function serversideCalculated(string $serverSideCalculated): self
+    {
+        $this->serverSideCalculated = $serverSideCalculated;
+
+        return $this;
     }
 
     public function toArray(): array

@@ -15,8 +15,8 @@ class ResetConfig
 
     public static function make(
         bool $enabled,
-        bool $softDelete,
-        int $linkExpireMintues,
+        bool $softDelete = false,
+        int $linkExpireMintues = 60 * 24 * 3,
     ): self
     {
         $object = new ResetConfig();
@@ -43,6 +43,19 @@ class ResetConfig
        return $object;
     }
 
+    public function softDelete(bool $softDelete): self
+    {
+        $this->softDelete = $softDelete;
+
+        return $this;
+    }
+
+    public function linkExpireMinutes(int $linkExpireMintues): self
+    {
+        $this->linkExpireMintues = $linkExpireMintues;
+
+        return $this;
+    }
 
     public function toArray(): array
     {
