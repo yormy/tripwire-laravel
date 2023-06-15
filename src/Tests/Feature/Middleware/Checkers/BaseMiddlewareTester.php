@@ -42,6 +42,7 @@ class BaseMiddlewareTester extends TestCase
 
         $result = $this->triggerTripwire($violation);
 
+        $this->assertNotEquals('next', $result, 'Should block but did not');
         $this->assertEquals(409, $result->getStatusCode());
 
         $this->assertLogAddedToDatabase($startCount);
