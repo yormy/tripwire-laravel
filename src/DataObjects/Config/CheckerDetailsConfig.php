@@ -18,6 +18,8 @@ class CheckerDetailsConfig
 
     public array $tripwires;
 
+    public ?array $guards;
+
     public ?PunishConfig $punish;
 
     public ?BlockResponseConfig $triggerResponse;
@@ -33,6 +35,7 @@ class CheckerDetailsConfig
         UrlsConfig $urlsConfig = null,
         InputsFilterConfig $inputs  = null,
         array $tripwires = [],
+        array $guards = [],
         PunishConfig $punishConfig  = null,
         BlockResponseConfig $triggerResponse  = null,
     ): self {
@@ -53,6 +56,7 @@ class CheckerDetailsConfig
         $object->urls = $urlsConfig;
         $object->inputs = $inputs;
         $object->tripwires = $tripwires;
+        $object->guards = $guards;
         $object->punish = $punishConfig;
         $object->triggerResponse = $triggerResponse;
 
@@ -74,6 +78,7 @@ class CheckerDetailsConfig
         $object->urls = $data['urls'];
         $object->inputs = $data['inputs'];
         $object->tripwires = $data['tripwires'];
+        $object->guards = $data['guards'];
         $object->punish = $data['punish'];
         $object->triggerResponse = $data['trigger_response'];
 
@@ -133,7 +138,14 @@ class CheckerDetailsConfig
 
     public function tripwires(array $tripWires): self
     {
-        $this->tripWires = $tripWires;
+        $this->tripwires = $tripWires;
+
+        return $this;
+    }
+
+    public function guards(array $guards): self
+    {
+        $this->guards = $guards;
 
         return $this;
     }
@@ -175,6 +187,10 @@ class CheckerDetailsConfig
         }
 
         $data['tripwires'] = $this->tripwires;
+
+        if ($this->guards) {
+            $data['guards'] = $this->guards;
+        }
 
         if ($this->punish) {
             $data['punish'] = $this->punish->toArray();

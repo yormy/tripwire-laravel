@@ -57,7 +57,7 @@ class ChecksumsConfig
 
     public function serversideCalculated(string $serverSideCalculated): self
     {
-        $this->serverSideCalculated = $serverSideCalculated;
+        $this->serversideCalculated = $serverSideCalculated;
 
         return $this;
     }
