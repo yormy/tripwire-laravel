@@ -376,11 +376,9 @@ class ConfigBuilder implements Arrayable
 
     public function addCheckerGroup(
         string $groupName,
-        array $checkers,
+        CheckerGroupConfig $checkerGroupConfig,
     ): self {
-        $this->checkerGroups[$groupName] = CheckerGroupConfig::make(
-            $checkers,
-        );
+        $this->checkerGroups[$groupName] = $checkerGroupConfig;
 
         return $this;
     }

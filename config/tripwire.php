@@ -2,6 +2,7 @@
 
 use Mexion\BedrockUsers\Models\Admin;
 use Mexion\BedrockUsers\Models\Member;
+use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
@@ -85,7 +86,8 @@ $res = ConfigBuilder::make()
         HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
         )
 
-    ->addCheckerGroup('all', [
+    ->addCheckerGroup('all',
+        CheckerGroupConfig::make([
             'tripwire.agent',
             'tripwire.bot',
             'tripwire.geo',
@@ -99,25 +101,30 @@ $res = ConfigBuilder::make()
             'tripwire.text',
             'tripwire.xss',
             'tripwire.request_size'
-        ]
+        ])
     )
-    ->addCheckerGroup('user', [
-        'tripwire.lfi',
-        'tripwire.php',
-        'tripwire.rfi',
-        'tripwire.sqli',
-        'tripwire.swear',
-        'tripwire.text',
-        'tripwire.xss',
-    ])
 
-    ->addCheckerGroup('server', [
-        'tripwire.agent',
-        'tripwire.bot',
-        'tripwire.geo',
-        'tripwire.referer',
-        'tripwire.session',
-    ])
+    ->addCheckerGroup('user',
+        CheckerGroupConfig::make([
+            'tripwire.lfi',
+            'tripwire.php',
+            'tripwire.rfi',
+            'tripwire.sqli',
+            'tripwire.swear',
+            'tripwire.text',
+            'tripwire.xss',
+        ])
+    )
+
+    ->addCheckerGroup('server',
+        CheckerGroupConfig::make([
+            'tripwire.agent',
+            'tripwire.bot',
+            'tripwire.geo',
+            'tripwire.referer',
+            'tripwire.session',
+        ])
+    )
 
     ->punish(800, 60*24, 5)
 
