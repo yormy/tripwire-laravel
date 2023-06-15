@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
@@ -28,14 +29,9 @@ class ThrottleHitWireListener extends WireBaseListener
         return true;
     }
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new ThrottleHitTrippedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new ThrottleHitTrippedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

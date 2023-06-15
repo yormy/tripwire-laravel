@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailed;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailedEvent;
 
@@ -29,14 +30,9 @@ class LoginFailedWireListener extends WireBaseListener
         return true;
     }
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new LoginFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new LoginFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }
