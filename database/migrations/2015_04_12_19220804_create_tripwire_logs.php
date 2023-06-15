@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('ip')->nullable(); // ??
             $table->json('ips')->nullable();
             $table->string('level')->default('medium');
-            $table->string('middleware')->nullable(); // ??
             $table->integer('user_id')->nullable();
             $table->string('user_type')->nullable();
 

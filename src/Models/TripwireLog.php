@@ -17,7 +17,6 @@ class TripwireLog extends BaseModel
         'ip',
         'ips',
         'xid',
-        'middleware',
         'level',
         'user_id',
         'user_type',
