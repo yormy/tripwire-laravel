@@ -6,6 +6,7 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\SqliFailedEvent;
 
 class Sqli extends BaseChecker
 {
+    public const NAME = 'sqli';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

@@ -6,6 +6,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\RequestSizeFailedEvent;
 
 class RequestSize extends BaseChecker
 {
+    public const NAME = 'request_size';
+
     public function isAttack($patterns): bool
     {
         $inputs = $this->request->input();

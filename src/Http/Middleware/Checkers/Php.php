@@ -7,6 +7,7 @@ use Jenssegers\Agent\Agent;
 
 class Php extends BaseChecker
 {
+    public const NAME = 'php';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

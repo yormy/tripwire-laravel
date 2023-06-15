@@ -6,6 +6,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\SwearFailedEvent;
 
 class Swear extends BaseChecker
 {
+    public const NAME = 'SWEARY';
+
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
         event(new SwearFailedEvent(

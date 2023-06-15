@@ -28,6 +28,9 @@ class ConfigMiddleware
     public function __construct(string $checker)
     {
         $data = config('tripwire_wires.' . $checker);
+        if (!$data) {
+            throw new \Exception('Missing configuration for tripwire_wire :'. $checker);
+        }
 
         $this->enabled = false;
         if ($this->tripwireEnabled())

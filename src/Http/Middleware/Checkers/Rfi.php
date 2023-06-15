@@ -7,6 +7,7 @@ use Jenssegers\Agent\Agent;
 
 class Rfi extends BaseChecker
 {
+    public const NAME = 'rfi';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

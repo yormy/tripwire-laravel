@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Services\IpLookup;
 
 class Geo extends BaseChecker
 {
+    public const NAME = 'geo';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

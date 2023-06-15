@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Referer extends BaseChecker
 {
+    public const NAME = 'referer';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

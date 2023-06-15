@@ -6,6 +6,7 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\SessionFailedEvent;
 
 class Session extends BaseChecker
 {
+    public const NAME = 'session';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

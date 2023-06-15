@@ -7,6 +7,7 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Agent extends BaseChecker
 {
+    public const NAME = 'agent';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

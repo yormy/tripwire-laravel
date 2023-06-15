@@ -20,10 +20,11 @@ abstract class BaseChecker
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->middleware = strtolower((new \ReflectionClass($this))->getShortName());
+        $this->middleware = static::NAME;
         $this->user_id = auth()->id() ?: 0;
 
         $this->config = new ConfigMiddleware($this->middleware);
+
     }
 
 

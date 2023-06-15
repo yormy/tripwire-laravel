@@ -6,6 +6,7 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\LfiFailedEvent;
 
 class Lfi extends BaseChecker
 {
+    public const NAME = 'lfi';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {

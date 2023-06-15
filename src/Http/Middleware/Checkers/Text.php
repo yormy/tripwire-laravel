@@ -6,6 +6,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\TextFailedEvent;
 
 class Text extends BaseChecker
 {
+    public const NAME = 'text';
+
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
         event(new TextFailedEvent(

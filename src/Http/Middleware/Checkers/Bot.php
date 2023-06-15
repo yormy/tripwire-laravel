@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Bot extends BaseChecker
 {
+    public const NAME = 'bot';
 
     protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
     {
