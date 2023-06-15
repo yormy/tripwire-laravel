@@ -224,6 +224,19 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Training mode
+    |--------------------------------------------------------------------------
+    | When enabled here the global system is in a training mode.
+    | Events are logged, database is updated, blocks are added to the database
+    |
+    | The only thing that will not happen is
+    | - requests are not blocked
+    | - the user will not be blocked
+    |
+    | In the database you can see what would have happend.
+    */
     public function trainingMode(bool $trainingMode): self
     {
         $this->trainingMode = $trainingMode;
@@ -231,6 +244,14 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Debug
+    |--------------------------------------------------------------------------
+    | This will log additional data to the database to diagnose false positives
+    | or detailed data why a certain issue was triggered
+    | fills fields: trigger_data and trigger_rule
+    */
     public function debugMode(bool $debugMode): self
     {
         $this->debugMode = $debugMode;
@@ -238,6 +259,11 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    */
     public function notificationMail(
         NotificationMailConfig $notificationMail,
     ): self {
@@ -246,6 +272,11 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    */
     public function notificationSlack(
         NotificationSlackConfig $notificationsSlack,
     ): self {
@@ -254,6 +285,14 @@ class ConfigBuilder implements Arrayable
     }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Checksums
+    |--------------------------------------------------------------------------
+    | Some checksums are posted by the frontend and validated on the backend.
+    | These header values of the config need to match with the settings of your frontend
+    |
+    */
     public function checksums(
         ChecksumsConfig $checksums,
     ): self {
@@ -316,6 +355,15 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Ignore
+    |--------------------------------------------------------------------------
+    | Globally ignore these input fields.
+    | The values here are ignored regardless of the individual settings per checked.
+    | If you want to ignore certain values only for a specific checker, specify it in there
+    |
+    */
     public function inputIgnore(
         InputIgnoreConfig $inputIgnore,
     ): self {
@@ -324,6 +372,13 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Honeypots
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
     public function honeypots(
         array $mustBeMissingOrFalse,
     ): self {
@@ -334,6 +389,18 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Urls
+    |--------------------------------------------------------------------------
+    | The urls to include and exclude
+    | you can use the wildcard: *
+    | urls should not start with a leading /
+    | i.e.
+    | - 'admin/*'
+    | - * /member/dashboard/*` (space between * and / here is needed as othewise it is comment in comment
+    |
+    */
     public function urls(
         array $except,
     ): self {
@@ -344,6 +411,14 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Reset
+    |--------------------------------------------------------------------------
+    | This is a function to allow researcher and developers to clean the logs / blocks
+    | so that they are not constantly blocked and cannot continue
+    |
+    */
     public function reset(
         ResetConfig $resetConfig,
     ): self {
@@ -352,6 +427,14 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Whitelist
+    |--------------------------------------------------------------------------
+    | These ips will not be checked
+    | When empty all ips will be checked
+    |
+    */
     public function whitelist(
         array $ips,
     ): self {
@@ -362,6 +445,13 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Block Response
+    |--------------------------------------------------------------------------
+    | Specify how the system should handle a blocking request
+    |
+    */
     public function blockResponse(
         JsonResponseConfig $jsonResponseConfig,
         HtmlResponseConfig $htmlResponseConfig
@@ -374,6 +464,13 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Checker groups
+    |--------------------------------------------------------------------------
+    | You can add as many as you want with your own names
+    |
+    */
     public function addCheckerGroup(
         string $groupName,
         CheckerGroupConfig $checkerGroupConfig,
@@ -383,6 +480,16 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Punish
+    |--------------------------------------------------------------------------
+    | punish at waht score level
+    | score reached within x minutes to punish, if score is reached over more time, no punishment
+    | Penalty block for x seconds
+    | note this will log increase on every violation that leads to a block
+    | the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+    */
     public function punish(
         int $score,
         int $withinMinutes,
@@ -397,6 +504,13 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Trigger response
+    |--------------------------------------------------------------------------
+    | Specify how the default response should be if a tripwire is activated. This can be overwritten for specific tripwires
+    |
+    */
     public function triggerResponse(
         JsonResponseConfig $jsonResponseConfig,
         HtmlResponseConfig $htmlResponseConfig

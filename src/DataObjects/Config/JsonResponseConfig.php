@@ -12,18 +12,19 @@ class JsonResponseConfig
 
     public ?string $exception;
 
+    public ?string $redirectUrl;
+
     public ?string $messageKey;
 
     private function __construct()
     {}
 
-    // TODO: how to pass and handle missing parameters
-    // like code = missing ipv 0, rename checker to wires.
     public static function make(
         ?int $code = 0,
         ?bool $abort = false,
         ?array $json = null,
         ?string $exception = null,
+        ?string $redirectUrl = null,
         ?string $messageKey = null
     ): self
     {
@@ -39,6 +40,11 @@ class JsonResponseConfig
 
         $object->json = $json;
         $object->exception = $exception;
+
+        if (isset($redirectUrl)) {
+            $object->redirectUrl = $redirectUrl;
+        }
+
         $object->messageKey = $messageKey;
 
         return $object;
@@ -56,6 +62,7 @@ class JsonResponseConfig
         $object->abort = $data['abort'];
         $object->json = $data['json'];
         $object->exception = $data['exception'];
+        $object->redirectUrl = $data['redirect_url'];
         $object->messageKey = $data['message_key'];
 
        return $object;
@@ -89,6 +96,13 @@ class JsonResponseConfig
         return $this;
     }
 
+    public function redirectUrl(string $redirectUrl): self
+    {
+        $this->redirectUrl = $redirectUrl;
+
+        return $this;
+    }
+
     public function messageKey(string $messageKey): self
     {
         $this->messageKey = $messageKey;
@@ -103,6 +117,7 @@ class JsonResponseConfig
             'abort' => $this->abort,
             'json' => $this->json,
             'exception' => $this->exception,
+            'redirect_url' => $this->redirectUrl,
             'message_key' => $this->messageKey,
         ];
     }

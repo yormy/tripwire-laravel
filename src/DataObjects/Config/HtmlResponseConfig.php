@@ -10,6 +10,8 @@ class HtmlResponseConfig
 
     public ?string $exception;
 
+    public ?string $redirectUrl;
+
     public ?string $messageKey;
 
     private function __construct()
@@ -19,6 +21,7 @@ class HtmlResponseConfig
         ?int $code = 0,
         ?string $view = null,
         ?string $exception = null,
+        ?string $redirectUrl = null,
         ?string $messageKey = null
     ): self
     {
@@ -27,6 +30,7 @@ class HtmlResponseConfig
         $object->code = $code;
         $object->view = $view;
         $object->exception = $exception;
+        $object->redirectUrl = $redirectUrl;
         $object->messageKey = $messageKey;
 
         return $object;
@@ -43,6 +47,7 @@ class HtmlResponseConfig
         $object->code = $data['code'] ?? null;
         $object->view = $data['view'];
         $object->exception = $data['exception'] ?? null;
+        $object->redirectUrl = $data['redirect_url'] ?? null;
         $object->messageKey = $data['message_key'] ?? null;
 
        return $object;
@@ -70,6 +75,14 @@ class HtmlResponseConfig
         return $this;
     }
 
+    public function redirectUrl(string $redirectUrl): self
+    {
+        $this->redirectUrl = $redirectUrl;
+
+        return $this;
+    }
+
+
     public function messageKey(string $messageKey): self
     {
         $this->messageKey = $messageKey;
@@ -92,9 +105,14 @@ class HtmlResponseConfig
             $data['exception'] = $this->exception;
         }
 
+        if ($this->redirectUrl) {
+            $data['redirect_url'] = $this->redirectUrl;
+        }
+
         if ($this->messageKey) {
             $data['message_key'] = $this->messageKey;
         }
+
         return $data;
     }
 }
