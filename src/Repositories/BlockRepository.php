@@ -212,7 +212,7 @@ class BlockRepository
         }
 
         // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
-        return pow($penaltySeconds, $repeaterCount);
+        return (int)pow($penaltySeconds, $repeaterCount);
     }
 
     private function repeatOffenderIp(string $ipAddress): int
