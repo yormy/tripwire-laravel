@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\RequestSizeFailedEvent;
 
 class RequestSize extends BaseChecker
@@ -36,14 +37,9 @@ class RequestSize extends BaseChecker
         }
     }
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new RequestSizeFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new RequestSizeFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

@@ -2,20 +2,16 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\TextFailedEvent;
 
 class Text extends BaseChecker
 {
     public const NAME = 'text';
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new TextFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new TextFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\PhpFailedEvent;
 use Jenssegers\Agent\Agent;
 
@@ -9,14 +10,9 @@ class Php extends BaseChecker
 {
     public const NAME = 'php';
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new PhpFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new PhpFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

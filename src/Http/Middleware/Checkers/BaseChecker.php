@@ -3,14 +3,11 @@
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
 use Closure;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
-use Yormy\TripwireLaravel\Jobs\AddBlockJob;
-use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
-use Yormy\TripwireLaravel\Services\UrlTester;
+use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 abstract class BaseChecker
@@ -91,7 +88,18 @@ abstract class BaseChecker
         }
 
         if (!empty($violations))  {
-            $this->attackFound($violations, $triggerData, $rules);
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->getAttackScore(),
+                violations: $violations,
+                triggerData: $triggerData,
+                triggerRules: $rules,
+                trainingMode: $this->config->trainingMode,
+                comments: '',
+            );
+
+
+
+            $this->attackFound($triggerEventData);
         }
 
         return !empty($violations);

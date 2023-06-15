@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\GeoFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\IpLookup;
@@ -10,14 +11,9 @@ class Geo extends BaseChecker
 {
     public const NAME = 'geo';
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new GeoFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new GeoFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

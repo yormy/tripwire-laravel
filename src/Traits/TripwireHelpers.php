@@ -3,12 +3,13 @@
 namespace Yormy\TripwireLaravel\Traits;
 
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
 trait TripwireHelpers
 {
-    abstract protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void;
+    abstract protected function attackFound(TriggerEventData $triggerEventData): void;
 
     protected function getAttackScore(): int
     {

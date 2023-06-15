@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\AgentFailedEvent;
 use Yormy\TripwireLaravel\Services\RequestSource;
 
@@ -9,14 +10,9 @@ class Agent extends BaseChecker
 {
     public const NAME = 'agent';
 
-    protected function attackFound(array $violations, string $triggerData = null, array $trigggerRules = null): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new AgentFailedEvent(
-            attackScore: $this->getAttackScore(),
-            violations: $violations,
-            triggerData: $triggerData,
-            triggerRules: $trigggerRules
-        ));
+        event(new AgentFailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

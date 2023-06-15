@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 
 abstract class LoggableEvent implements LoggableEventInterface
@@ -13,15 +14,11 @@ abstract class LoggableEvent implements LoggableEventInterface
     protected int $score = 10;
 
     public function __construct(
-        protected ?int $attackScore = null,
-        protected ?array $violations = null,
-        protected ?string $triggerData = null,
-        protected ?array $triggerRules = null,
-        protected ?string $comment = null,
-        protected ?bool $trainingMode = false,
+        protected TriggerEventData $triggerEventData
+
     ) {
-        if ($attackScore) {
-            $this->score = $attackScore;
+        if ($triggerEventData->attackScore) {
+            $this->score = $triggerEventData->attackScore;
         }
     }
 
@@ -40,8 +37,8 @@ abstract class LoggableEvent implements LoggableEventInterface
             return $violation;
         }
 
-        if (!empty($this->violations)) {
-            return implode(',', $this->violations);
+        if (!empty($this->triggerEventData->violations)) {
+            return implode(',', $this->triggerEventData->violations);
         }
 
         return '';
@@ -53,21 +50,21 @@ abstract class LoggableEvent implements LoggableEventInterface
             return $comment;
         }
 
-        return $this->comment ?? '';
+        return $this->triggerEventData->comment ?? '';
     }
 
     public function getTriggerData(): ?string
     {
-        return $this->triggerData;
+        return $this->triggerEventData->triggerData;
     }
 
     public function getTriggerRules(): array
     {
-        return $this->triggerRules ?? [];
+        return $this->triggerEventData->triggerRules ?? [];
     }
 
     public function getTrainingMode(): bool
     {
-        return $this->trainingMode ?? false;
+        return $this->triggerEventData->trainingMode ?? false;
     }
 }
