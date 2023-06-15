@@ -121,20 +121,27 @@ $sessionConfig = CheckerDetailsConfig::make()
 /*
 |--------------------------------------------------------------------------
 | XSS
+| Help with understanding encoded attack vectors:
+| https://dencode.com/en/
 |--------------------------------------------------------------------------
 */
 $xssConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         // javascript:, livescript:, vbscript:, mocha: protocols
-        '!((java|live|vb)script|mocha|feed|data):(\w)*!iUu',
+        '!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu',
         '#-moz-binding[\x00-\x20]*:#u',
 
         // Evil starting attributes
         '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
 
+        '(%253c|%252F)', // | /
+        '(&#97)', // a
+        '#(string.fromCharCode)#iUu', // a
+        "#(\'|\\\");(.*);//#",  /* \";???;//*/
+
         // Unneeded tags
-        '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img)[^>]*>?#i',
+        '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img|input)[^>]*>?#i',
         '#(onmouseover|onhover)[^>]*>?#i'
     ]);
 
