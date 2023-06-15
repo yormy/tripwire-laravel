@@ -8,7 +8,7 @@ class CheckerDetailsConfig
 
     public bool $trainingMode;
 
-    public array $methods;
+    public ?array $methods;
 
     public int $attackScore;
 
@@ -26,9 +26,9 @@ class CheckerDetailsConfig
     {}
 
     public static function make(
-        bool $enabled,
+        bool $enabled = true,
         bool $trainingMode = false,
-        array $methods = [],
+        array $methods = null,
         int $attackScore = 0,
         UrlsConfig $urlsConfig = null,
         InputsFilterConfig $inputs  = null,
@@ -41,9 +41,11 @@ class CheckerDetailsConfig
         $object->enabled = $enabled;
         $object->trainingMode = $trainingMode;
 
-        $errors = $object->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
-        if ($errors) {
-            throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+        if ($methods) {
+            $errors = $object->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
+            if ($errors) {
+                throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+            }
         }
 
         $object->methods = $methods;
@@ -78,6 +80,13 @@ class CheckerDetailsConfig
        return $object;
     }
 
+    public function enabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
     public function trainingMode(bool $trainingMode): self
     {
         $this->trainingMode = $trainingMode;
@@ -87,6 +96,10 @@ class CheckerDetailsConfig
 
     public function methods(array $methods): self
     {
+        if (!$methods) {
+            return $this;
+        }
+
         $errors = $this->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
         if ($errors) {
             throw new \Exception("Invalid method defined for :". implode(',', $errors) );
@@ -142,17 +155,36 @@ class CheckerDetailsConfig
 
     public function toArray(): array
     {
-        return [
-            'enabled' => $this->enabled,
-            'trainingMode' => $this->trainingMode,
-            'methods' => $this->methods,
-            'attack_score' => $this->attackScore,
-            'urls' => $this->urls->toArray(),
-            'inputs' => $this->inputs->toArray(),
-            'tripwires' => $this->tripwires,
-            'punish' => $this->punish->toArray(),
-            'trigger_response' => $this->triggerResponse->toArray(),
-        ];
+        $data = [];
+
+        $data['enabled'] = $this->enabled;
+        $data['trainingMode'] = $this->trainingMode;
+
+        if ($this->methods) {
+            $data['methods'] = $this->methods;
+        }
+
+        $data['attack_score'] = $this->attackScore;
+
+        if ($this->urls) {
+            $data['urls'] = $this->urls->toArray();
+        }
+
+        if ($this->inputs) {
+            $data['inputs'] = $this->inputs->toArray();
+        }
+
+        $data['tripwires'] = $this->tripwires;
+
+        if ($this->punish) {
+            $data['punish'] = $this->punish->toArray();
+        }
+
+        if ($this->triggerResponse) {
+            $data['trigger_response'] = $this->triggerResponse->toArray();
+        }
+
+        return $data;
     }
 
     private function getArrayErrors(array $values, array $allowedValues): array

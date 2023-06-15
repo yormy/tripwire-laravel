@@ -20,7 +20,7 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 use Yormy\TripwireLaravel\Services\User;
 
 $res = ConfigBuilder::make()
-    ->enabled(true)
+    ->enabled(env('TRIPWIRE_ENABLED', true))
     ->trainingMode(env('FIREWALL_EMAIL_ENABLED', true))
 
     ->trainingMode(false)

@@ -10,25 +10,31 @@ use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
 use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
+
+
+$swearConfig = CheckerDetailsConfig::make()
+    ->enabled(env('TRIPWIRE_SWEAR_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    //->trainingMode(false)
+    //->methods(['post', 'put', 'patch', 'get'])
+    //->attackScore(500)
+    //->urls(UrlsConfig::make())
+    //->inputFilter(InputsFilterConfig::make())
+    ->tripwires(['blow'])
+    //->punish(PunishConfig::make(10, 60 * 24, 5,))
+//    ->triggerResponse(
+//        BlockResponseConfig::make()
+//            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
+//            ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
+//    )
+;
+
 
 $res = ConfigBuilderWires::make()
-    ->addCheckerDetails(
-        'swear', // to class constant ?
-        CheckerDetailsConfig::make(env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)))
-            ->trainingMode(false)
-            //->methods(['post', 'put', 'patch', 'get'])
-            ->attackScore(500)
-            ->urls(UrlsConfig::make())
-            ->inputFilter(InputsFilterConfig::make())
-            ->tripwires(['blow'])
-            ->punish(PunishConfig::make(10, 60 * 24, 5,))
-            ->triggerResponse(
-                BlockResponseConfig::make()
-                    ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-                    ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
-            ))
+    ->addCheckerDetails(Swear::NAME, $swearConfig)
+
     ->toArray();
-//dd($res);
+dd($res);
 
 return [
 
