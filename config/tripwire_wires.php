@@ -161,6 +161,14 @@ $xssConfig = CheckerDetailsConfig::make()
         '#(<|&lt;);(IMG|layer|object|embed|link|meta|xml|html|\!--|\?|script|iframe|a href)#iUu',
         '#(<;BR SIZE)#iUu',
 
+        '#&lt;(\!--|\? |div )#iUu',
+        '#(\&quot;)#iUu',
+        '#(&lt;/br)#iUu',
+        '#(<scrscriptipt)#iUu',
+        '#(=expression\()#iUu',
+        '#(onerror=\"javascript:document)#iUu',
+        '#(<|&lt;)/(body|html)#iUu',
+
         // Unneeded tags
         '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img|input)[^>]*>?#i',
         '#(onmouseover|onhover)[^>]*>?#i'
