@@ -40,10 +40,7 @@ class JsonResponseConfig
 
         $object->json = $json;
         $object->exception = $exception;
-
-        if (isset($redirectUrl)) {
-            $object->redirectUrl = $redirectUrl;
-        }
+        $object->redirectUrl = $redirectUrl;
 
         $object->messageKey = $messageKey;
 
@@ -112,13 +109,31 @@ class JsonResponseConfig
 
     public function toArray(): array
     {
-        return [
-            'code' => $this->code,
-            'abort' => $this->abort,
-            'json' => $this->json,
-            'exception' => $this->exception,
-            'redirect_url' => $this->redirectUrl,
-            'message_key' => $this->messageKey,
-        ];
+        $data = [];
+        if ($this->code) {
+            $data['code'] = $this->code;
+        }
+
+        if ($this->abort) {
+            $data['abort'] = $this->abort;
+        }
+
+        if ($this->json) {
+            $data['json'] = $this->json;
+        }
+
+        if ($this->exception) {
+            $data['exception'] = $this->exception;
+        }
+
+        if ($this->redirectUrl) {
+            $data['redirect_url'] = $this->redirectUrl;
+        }
+
+        if ($this->messageKey) {
+            $data['message_key'] = $this->messageKey;
+        }
+
+        return $data;
     }
 }

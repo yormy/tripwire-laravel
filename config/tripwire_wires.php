@@ -13,10 +13,10 @@ use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
 
 $res = ConfigBuilderWires::make()
     ->addCheckerDetails(
-        'swear',
+        'swear', // to class constant ?
         CheckerDetailsConfig::make(env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)))
             ->trainingMode(false)
-            ->methods(['post', 'put', 'patch', 'get'])
+            //->methods(['post', 'put', 'patch', 'get'])
             ->attackScore(500)
             ->urls(UrlsConfig::make())
             ->inputFilter(InputsFilterConfig::make())
@@ -28,7 +28,7 @@ $res = ConfigBuilderWires::make()
                     ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
             ))
     ->toArray();
-dd($res);
+//dd($res);
 
 return [
 

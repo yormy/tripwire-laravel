@@ -11,6 +11,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
@@ -71,7 +72,7 @@ $res = ConfigBuilder::make()
         'show_log',
         'skip_encryption',
     ])
-    ->urls(['*/ffff/*','logout'])
+  //  ->urls(UrlsConfig::make())
     ->reset(
         ResetConfig::make(env('TRIPWIRE_WHITELIST', true))
             ->softDelete(true)

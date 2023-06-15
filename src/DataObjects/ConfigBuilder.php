@@ -402,11 +402,9 @@ class ConfigBuilder implements Arrayable
     |
     */
     public function urls(
-        array $except,
+        UrlsConfig $urls,
     ): self {
-        $this->urls = UrlsConfig::make(
-            $except,
-        );
+        $this->urls = $urls;
 
         return $this;
     }
