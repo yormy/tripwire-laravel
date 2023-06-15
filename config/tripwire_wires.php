@@ -140,6 +140,27 @@ $xssConfig = CheckerDetailsConfig::make()
         '#(string.fromCharCode)#iUu', // a
         "#(\'|\\\");(.*);//#",  /* \";???;//*/
 
+        '#&lt;(script|A|layer|object|embed|style|img|xss|link|meta|html|xml|body|iframe)( |&gt;|body)#iUu',  // &lt;???
+        '!(perl -e &apos;|perl -e &#039;|perl -e \')!iUu',
+        '#(window.alert|>><marquee)#iUu',
+        '#(" onfocus=)#iUu',
+        '#document.vulnerable=#iUu',
+        '#(1script3|1/script3)#iUu',
+        '#(dataformatas="html")#iUu',
+        '#(\\[\\\\xc0]\[\\\\xBC])#iUu',
+        '#(<;/script>|<;scrscriptipt>)#iUu',
+        '#(=\\\";&;{)#iUu',
+        '#(xss:e/\*\*/xpression)#iUu',
+        '#(\'%uff1cscript)#iUu',
+        '#(<?xml version="1.0)#iUu',
+        '#(%3cscript%3|¼script¾|%BCscript%BE|&lt;script)#iUu',     // ??script?? variations
+        '#(\';\!--\")#iUu',
+        '#(<br size|&lt;br size)#iUu',
+        '#(&lt;scrscriptipt)#iUu',
+        '#(;\';;\!--")#iUu',
+        '#(<|&lt;);(IMG|layer|object|embed|link|meta|xml|html|\!--|\?|script|iframe|a href)#iUu',
+        '#(<;BR SIZE)#iUu',
+
         // Unneeded tags
         '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img|input)[^>]*>?#i',
         '#(onmouseover|onhover)[^>]*>?#i'
