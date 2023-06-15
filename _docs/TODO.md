@@ -1,3 +1,6 @@
+config guards
+
+
 # TODO
 - how to disable middleware on certain routes (ie large request)
 - how to enable ray buggregator in testbench
@@ -24,18 +27,12 @@ Specify type of block view/json:  violation is anders dan login throttle
 
 # Documentation
 
-1 rename checkers to tripwires
-
-2 normalize this in wires?
-CheckerDetailsConfig::make(env('FIREWALL_MIDDLEWARE_SWEAR_ENABLED', env('FIREWALL_ENABLED', true)))
-
-
-3 ??
-->addCheckerGroup('all', [
-'tripwire.agent',
-=> pass in checkergroup::make ?
+1 rename checkers to tripwires 
+2 refactor configs now we have objects
 
 # Unit test cases
+add missing tests for checkers
+
 
 test ignore urls
 test ignore ips

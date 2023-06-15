@@ -130,19 +130,8 @@ $res = ConfigBuilder::make()
     ->punish(800, 60*24, 5)
 
     ->triggerResponse(
-        JsonResponseConfig::make(
-            506,
-            env('FIREWALL_BLOCK_ABORT', false),
-            ['err'=> 'l'],
-            'exception',
-            'message.key'
-        ),
-        HtmlResponseConfig::make(
-        null,
-        'tripwire-laravel::blocked',
-            TripwireFailedException::class,
-        'message.key'
-        ),
+        JsonResponseConfig::make()->exception(TripwireFailedException::class),
+        HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
     )
     ->toArray();
 

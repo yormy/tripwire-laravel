@@ -30,7 +30,7 @@ class CheckerDetailsConfig
     public static function make(
         bool $enabled = true,
         bool $trainingMode = false,
-        array $methods = null,
+        array $methods = ['*'],
         int $attackScore = 0,
         UrlsConfig $urlsConfig = null,
         InputsFilterConfig $inputs  = null,
