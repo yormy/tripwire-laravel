@@ -66,7 +66,8 @@
         "psalm": "vendor/bin/psalm --no-diff --no-cache --report-show-info=false --report=psalm-report.txt",
         "psalm-debug": "vendor/bin/psalm --no-cache --debug --debug-by-line",
         "pint": "vendor/bin/pint",
-        "test": "vendor/bin/phpunit --colors=always --testdox",
+        "test": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",
+        "test-ext": "vendor/bin/phpunit --colors=always --testdox --testsuite Extensive",
         "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "post-autoload-dump": [

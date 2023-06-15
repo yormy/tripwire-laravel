@@ -127,6 +127,7 @@ $sessionConfig = CheckerDetailsConfig::make()
 */
 $xssConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(0)
     ->tripwires([
         // javascript:, livescript:, vbscript:, mocha: protocols
         '!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu',
