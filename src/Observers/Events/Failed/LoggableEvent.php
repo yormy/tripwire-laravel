@@ -17,7 +17,8 @@ abstract class LoggableEvent implements LoggableEventInterface
         protected ?array $violations = null,
         protected ?string $triggerData = null,
         protected ?array $triggerRules = null,
-        protected ?string $comment = null
+        protected ?string $comment = null,
+        protected ?bool $trainingMode = false,
     ) {
         if ($attackScore) {
             $this->score = $attackScore;
@@ -63,5 +64,10 @@ abstract class LoggableEvent implements LoggableEventInterface
     public function getTriggerRules(): array
     {
         return $this->triggerRules ?? [];
+    }
+
+    public function getTrainingMode(): bool
+    {
+        return $this->trainingMode ?? false;
     }
 }

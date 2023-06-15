@@ -10,6 +10,7 @@ class TripwireLog extends BaseModel
     use LogScope;
 
     protected $fillable = [
+        'ignore',
         'event_code',
         'event_score',
         'event_violation',

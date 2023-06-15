@@ -36,8 +36,9 @@ class LogRepository
         $data = $meta;
         $data['event_code'] = $event::CODE;
         $data['event_score'] = $event->getScore();
-        $data['event_violation'] = $event->getViolationText();
+        $data['event_violation'] = substr($event->getViolationText(), 0, 150);
         $data['event_comment'] = $event->getComment();
+        $data['ignore'] = $event->getTrainingMode();
 
         if (config('tripwire.debug', false)) {
             $data['trigger_data'] = $event->getTriggerData();

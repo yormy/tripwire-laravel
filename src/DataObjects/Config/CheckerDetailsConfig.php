@@ -170,7 +170,7 @@ class CheckerDetailsConfig
         $data = [];
 
         $data['enabled'] = $this->enabled;
-        $data['trainingMode'] = $this->trainingMode;
+        $data['training_mode'] = $this->trainingMode;
 
         if ($this->methods) {
             $data['methods'] = $this->methods;

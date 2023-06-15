@@ -24,7 +24,6 @@ abstract class BaseChecker
         $this->user_id = auth()->id() ?: 0;
 
         $this->config = new ConfigMiddleware($this->middleware);
-
     }
 
 

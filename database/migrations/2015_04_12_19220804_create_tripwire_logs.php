@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create($tablename, function (Blueprint $table) {
             $table->increments('id');
             $table->string('xid')->unique(); // customizable ?
+            $table->boolean('ignore')->default(false);
 
             $table->string('event_code');
             $table->integer('event_score');
