@@ -1,0 +1,5 @@
+["BINARY_CHECKSUM(123)=BINARY_CHECKSUM(123)"       ,"MSSQL"],
+["@@CONNECTIONS>0"                                 ,"MSSQL"],
+["@@CONNECTIONS=@@CONNECTIONS"                     ,"MSSQL"],
+["@@CPU_BUSY=@@CPU_BUSY"                           ,"MSSQL"],
+["USER_ID(1)=USER_ID(1)"                           ,"MSSQL"],

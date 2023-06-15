@@ -1,0 +1,8 @@
+PostgreSQL (only support string concat)
+1' || pg_sleep(10)
+["5::int=5"                                        ,"POSTGRESQL"],
+["5::integer=5"                                    ,"POSTGRESQL"],
+["pg_client_encoding()=pg_client_encoding()"       ,"POSTGRESQL"],
+["get_current_ts_config()=get_current_ts_config()" ,"POSTGRESQL"],
+["quote_literal(42.5)=quote_literal(42.5)"         ,"POSTGRESQL"],
+["current_database()=current_database()"           ,"POSTGRESQL"],
