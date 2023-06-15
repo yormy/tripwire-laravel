@@ -35,7 +35,7 @@ $swearConfig = CheckerDetailsConfig::make()
     ->attackScore(500)
     //->urls(UrlsConfig::make())
     //->inputFilter(InputsFilterConfig::make())
-    ->tripwires(['blow'])
+    //->tripwires(['blow'])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
         BlockResponseConfig::make()
@@ -97,11 +97,6 @@ $lfiConfig = CheckerDetailsConfig::make()
 */
 $rfiConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_RFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->guards([
-        'allow' => [
-            'https://allow-includes.com'
-        ]
-    ])
     ->tripwires([
         '#(http|ftp){1,1}(s){0,1}://.*#i',
     ]);
@@ -271,7 +266,6 @@ $geoConfig = CheckerDetailsConfig::make()
 $textConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_TEXT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
-        'aaa',
         '\x00', //nullbyte
         // ...
     ]);
@@ -285,7 +279,7 @@ $requestSizeConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REQUESTSIZE_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
-        'size' => 40    // max characters
+        'size' => 200    // max characters
     ]);
 
 /*
@@ -335,11 +329,7 @@ $throttleHitConfig = CheckerDetailsConfig::make()
 | https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
 */
 $botConfig = CheckerDetailsConfig::make()
-    ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->guards([
-        'allow' => ['s'], // i.e. 'GoogleSites', 'GuzzleHttp'
-        'block' => [], // i.e. 'Holmes'
-    ]);
+    ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 /*
 |--------------------------------------------------------------------------
@@ -347,11 +337,7 @@ $botConfig = CheckerDetailsConfig::make()
 |--------------------------------------------------------------------------
 */
 $refererConfig = CheckerDetailsConfig::make()
-    ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->guards([
-        'allow' => [],
-        'block' => ['s'],
-    ]);
+    ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 $res = ConfigBuilderWires::make()
     ->addCheckerDetails(Swear::NAME, $swearConfig)

