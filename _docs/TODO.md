@@ -1,4 +1,24 @@
-config guards
+todo early return, or late return with all violations in training mode ?
+normalize xss settings
+
+# Documentation
+1 rename checkers to tripwires
+2 refactor configs now we have objects
+
+# Unit test cases
+2 groups of tests: normal, and extensive, docs should call both to test config
+
+add missing tests for checkers
+
+
+test ignore urls
+test ignore ips
+test all checkers for all responses? => data provider , dan moeten eerst de triggers werken
+test blocks creating
+test blocks responses
+test training mode = no block, record
+test honeypots
+extensive sql provider violators
 
 
 # TODO
@@ -25,26 +45,7 @@ Specify type of block view/json:  violation is anders dan login throttle
 
 # Unit tests
 
-# Documentation
 
-1 rename checkers to tripwires 
-2 refactor configs now we have objects
-
-# Unit test cases
-add missing tests for checkers
-
-
-test ignore urls
-test ignore ips
-test all checkers for all responses? => data provider , dan moeten eerst de triggers werken
-test blocks creating
-test blocks responses
-test training mode = no block, record
-test honeypots
-
-
-config maker
-add long list of cheatsheet violations
 
 # Extended features
 Geofencing

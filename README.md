@@ -124,8 +124,10 @@ Admin first need to unpersist a block, and only then it can be deleted.
 # config test
 Run the following command to test your config and changes to make sure all test and checkers remain working
 best is to have your application phpunit env set to use sqllite in memory
+Test extensive to run a whole list of possible attack vectors to see if they are all blocked
 ```
-./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests --testdox
+./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests --testdox --testsuite Main
+./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests --testdox --testsuite Extensive
 ```
 
 ## Changelog
