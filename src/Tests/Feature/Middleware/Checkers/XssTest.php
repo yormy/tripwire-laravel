@@ -15,9 +15,14 @@ class XssTest extends BaseMiddlewareTester
         'sss',
     ];
 
-    protected array $violations = [
-        "<script>",
-        '#-moz-binding:#u',
-        '<script>alert(123)</script>'
-    ];
+    protected array $violations;
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        $this->violations = file('./src/Tests/Dataproviders/XssViolationsData.txt');
+
+        parent::__construct($name, $data, $dataName);
+
+
+    }
 }

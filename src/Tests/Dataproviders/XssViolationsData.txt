@@ -1,0 +1,3 @@
+<script>
+#-moz-binding:#u
+<script>alert(123)</script>
