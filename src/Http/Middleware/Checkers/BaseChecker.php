@@ -84,6 +84,7 @@ abstract class BaseChecker
             if ($currentViolations) {
                 $violations[] = $currentViolations[0];
                 $rules[] = $pattern;
+                break;
             }
         }
 
@@ -96,8 +97,6 @@ abstract class BaseChecker
                 trainingMode: $this->config->trainingMode,
                 comments: '',
             );
-
-
 
             $this->attackFound($triggerEventData);
         }
