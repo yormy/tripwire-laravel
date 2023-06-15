@@ -21,6 +21,13 @@ class XssTest extends BaseMiddlewareTester
     {
         $this->violations = file('./src/Tests/Dataproviders/XssViolationsData.txt');
 
+        // ignore commented out with #
+        foreach ($this->violations as $index => $violation) {
+            if(str_starts_with($violation, '##')) {
+                unset ($this->violations[$index]);
+            }
+        }
+
         parent::__construct($name, $data, $dataName);
 
 
