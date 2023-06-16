@@ -130,6 +130,12 @@ Test extensive to run a whole list of possible attack vectors to see if they are
 ./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests --testdox --testsuite Extensive
 ```
 
+## Warning
+This is not a substitute for well validated and sanitized input.
+The ruleset is not meant to be extensive to block everything, but to recognize and punish a hack attempt as soon as possible
+Do you find that the ruleset is too restrictive or too loose, please let me know and I will adept them.
+Provide a sample of the payload if it needs to be blocked or a valid user input that does not need to be blocked
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

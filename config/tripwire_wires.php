@@ -167,6 +167,15 @@ $evilStart = Regex::forbidden([
     '&lt;scrscriptipt',
     '%253c',
     '%252F',
+    '\<script\>',
+    '%3cscript%3e',
+    '¼script¾',
+    '%BCscript%BE',
+    '&lt;script',
+    '1script3',
+    '1/script3',
+    '<;/script>',
+    '<;scrscriptipt>',
 ]);
 
 $evilStartWithHashContent = Regex::forbidden([
@@ -191,7 +200,11 @@ $evilTokens = Regex::forbidden([
     '<?xml version="1.0',
     'xss:e/\*\*/xpression',
     'document.vulnerable=',
-
+    '&lt;/br',
+    '\';\!--\"',
+    ';\';;\!--"',
+    '\&quot;',
+    '=\\\";&;{',
 ]);
 
 $orTags = Regex::or([
@@ -224,42 +237,27 @@ $xssConfig = CheckerDetailsConfig::make()
     ->tripwires([
         $evilStart,
         $evilTokens,
-        '#(\<script\>|%3cscript%3e|¼script¾|%BCscript%BE|&lt;script)#iUu',     // ??script?? variations
-
         "#&lt;(A|$orTags)( |&gt;|body)#iUu",  // &lt;???
 
         "#(<|&lt;);($orTags|\!--|\?|script|iframe|a href)#iUu",
 
         '#(<|&lt;)/(body|html)#iUu',
-        '#(&lt;/br)#iUu',
+
         '#&lt;(\!--|\? |div )#iUu',
 
-        // javascript:, livescript:, vbscript:, mocha: protocols
         '!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu',
         '#-moz-binding[\x00-\x20]*:#u',
 
-        // Evil starting attributes
         '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
 
         "#(\'|\\\");(.*);//#",  /* \";???;//*/
 
         $evilStartWithHashContent,
 
-
         '#(" onfocus=)#iUu',
-        '#(1script3|1/script3)#iUu',
 
         '#(\\[\\\\xc0]\[\\\\xBC])#iUu',
-        '#(<;/script>|<;scrscriptipt>)#iUu',
-        '#(=\\\";&;{)#iUu',
 
-        '#(\';\!--\")#iUu',
-        '#(;\';;\!--")#iUu',
-
-        '#(\&quot;)#iUu',
-
-
-        // Unneeded tags
         "#</*($orTags)[^>]*>?#i",
         '#(onmouseover|onhover)[^>]*>?#i'
     ]);

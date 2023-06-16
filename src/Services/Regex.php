@@ -7,8 +7,13 @@ use Carbon\Carbon;
 
 class Regex
 {
-    public static function forbidden(array $signatures): string
+    public static function forbidden(array $signatures, string $delim = '#'): string
     {
-        return '#('. implode('|', $signatures) .')#iUu';
+        return $delim .'('. self::or($signatures) .')'. $delim. 'iUu';
+    }
+
+    public static function or(array $signatures): string
+    {
+        return implode('|', $signatures);
     }
 }
