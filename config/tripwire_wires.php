@@ -73,6 +73,21 @@ $sqliConfig = CheckerDetailsConfig::make()
 | Local File Inclusion
 |--------------------------------------------------------------------------
 */
+$commonFiles = [
+    '/etc/issue',
+    '/etc/passwd',
+    '/etc/shadow',
+    '/etc/group',
+    '/etc/hosts',
+    '/etc/motd',
+    '/etc/mysql/my.cnf',
+    '/proc/self/environ',
+    '/proc/version',
+    '/proc/cmdline',
+
+];
+$commonFilesString = '#('. implode('|', $commonFiles) .')#iUu';
+
 $lfiConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_LFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
     //->trainingMode(false)
@@ -82,6 +97,15 @@ $lfiConfig = CheckerDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
         '#\.\/..\/#is',
+        '#(%252e%252f)#iUu',
+        '#(…)#iUu', // some wierd ... converted into 1 dot
+        '#(zip://|php://|file=expect:)#iUu',
+        '#(.. / .. /)#iUu', // todo wildcard space repeater 0 or more
+        '#(.ssh/id_rsa|/access.log|/error.log|/htpasswd|/.htpasswd|/apache2.conf|html/wp-config.php)#iUu', // common files hackers want to get
+        '#(/www/configuration.php|/inc/header.inc.php|default/settings.php|/etc/issue|/etc/passwd|/etc/shadow|/etc/group)#iUu', // common files hackers want to get
+        "#(/www/configuration.php|/inc/header.inc.php|default/settings.php|/etc/issue|/etc/passwd|/etc/shadow|/etc/group)#iUu",
+        $commonFilesString,
+        '#(http:%252f%252|data://text/plain;|php:expect://)#iUu',
     ])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
 //    ->triggerResponse(
