@@ -12,6 +12,7 @@ class SqliExtensiveTest extends BaseExtensive
 
     protected array $accepting = [
         'saaaaaaa',
+      //  'ho7'
     ];
 
     protected array $violations;

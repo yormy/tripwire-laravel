@@ -56,9 +56,10 @@ $sqliConfig = CheckerDetailsConfig::make()
     //->urls(UrlsConfig::make())
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
-        '#[\d\W](or 1=1|or 2=2|or\+1=1||or\+2=2)[\d\W]#is',
-        '#[\d\W](union select|union join|union distinct)[\d\W]#is',
-        '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#is',
+        '#[\d\W](or 1=1|or 2=2|or\+1=1||or\+2=2)[\d\W]#iUu',
+        '#[\d\W](union select|union join|union distinct)[\d\W]#iUu',
+        '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
+        '#(ROWNUM=ROWNUM)#iUu',
     ])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
