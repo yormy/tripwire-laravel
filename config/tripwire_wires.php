@@ -184,6 +184,29 @@ $evilTokens = Regex::forbidden([
     'document.vulnerable=',
 ]);
 
+$orTags = Regex::or([
+    'IMG',
+    'layer',
+    'object',
+    'embed',
+    'link',
+    'meta',
+    'xml',
+    'html',
+    'applet',
+    'blink',
+    'style',
+    'script',
+    'iframe',
+    'frame',
+    'frameset',
+    'ilayer',
+    'bgsound',
+    'title',
+    'base',
+    'input',
+]);
+
 $xssConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(0)
@@ -225,7 +248,7 @@ $xssConfig = CheckerDetailsConfig::make()
 
 
         // Unneeded tags
-        '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img|input)[^>]*>?#i',
+        "#</*($orTags)[^>]*>?#i",
         '#(onmouseover|onhover)[^>]*>?#i'
     ]);
 
