@@ -191,6 +191,7 @@ $evilTokens = Regex::forbidden([
     '<?xml version="1.0',
     'xss:e/\*\*/xpression',
     'document.vulnerable=',
+
 ]);
 
 $orTags = Regex::or([
@@ -214,6 +215,7 @@ $orTags = Regex::or([
     'title',
     'base',
     'input',
+    'body',
 ]);
 
 $xssConfig = CheckerDetailsConfig::make()
@@ -223,8 +225,11 @@ $xssConfig = CheckerDetailsConfig::make()
         $evilStart,
         $evilTokens,
         '#(\<script\>|%3cscript%3e|¼script¾|%BCscript%BE|&lt;script)#iUu',     // ??script?? variations
-        '#&lt;(script|A|layer|object|embed|style|img|xss|link|meta|html|xml|body|iframe)( |&gt;|body)#iUu',  // &lt;???
-        '#(<|&lt;);(IMG|layer|object|embed|link|meta|xml|html|\!--|\?|script|iframe|a href)#iUu',
+
+        "#&lt;(A|$orTags)( |&gt;|body)#iUu",  // &lt;???
+
+        "#(<|&lt;);($orTags|\!--|\?|script|iframe|a href)#iUu",
+
         '#(<|&lt;)/(body|html)#iUu',
         '#(&lt;/br)#iUu',
         '#&lt;(\!--|\? |div )#iUu',
