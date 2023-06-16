@@ -22,6 +22,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Xss;
+use Yormy\TripwireLaravel\Services\Regex;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +74,21 @@ $sqliConfig = CheckerDetailsConfig::make()
 | Local File Inclusion
 |--------------------------------------------------------------------------
 */
-$commonFiles = [
+$commonFilesString = Regex::forbidden([
+    '.ssh/id_rsa',
+    '/access.log',
+    '/error.log',
+    '/htpasswd',
+    '/.htpasswd',
+    '/apache2.conf',
+    'html/wp-config.php',
+    '/www/configuration.php',
+    '/inc/header.inc.php',
+    '/default/settings.php',
+    '/etc/issue',
+    '/etc/passwd',
+    '/etc/shadow',
+    '/etc/group',
     '/etc/issue',
     '/etc/passwd',
     '/etc/shadow',
@@ -84,9 +99,18 @@ $commonFiles = [
     '/proc/self/environ',
     '/proc/version',
     '/proc/cmdline',
+]);
 
-];
-$commonFilesString = '#('. implode('|', $commonFiles) .')#iUu';
+$forbiddenTokens = Regex::forbidden([
+    '%252e%252f',
+    '…',  // some wierd ... converted into 1 dot
+    'zip://',
+    'php://',
+    'file=expect:',
+    'http:%252f%252',
+    'data://text/plain;',
+    'php:expect://',
+]);
 
 $lfiConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_LFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
@@ -97,15 +121,9 @@ $lfiConfig = CheckerDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
         '#\.\/..\/#is',
-        '#(%252e%252f)#iUu',
-        '#(…)#iUu', // some wierd ... converted into 1 dot
-        '#(zip://|php://|file=expect:)#iUu',
         '#(.. / .. /)#iUu', // todo wildcard space repeater 0 or more
-        '#(.ssh/id_rsa|/access.log|/error.log|/htpasswd|/.htpasswd|/apache2.conf|html/wp-config.php)#iUu', // common files hackers want to get
-        '#(/www/configuration.php|/inc/header.inc.php|default/settings.php|/etc/issue|/etc/passwd|/etc/shadow|/etc/group)#iUu', // common files hackers want to get
-        "#(/www/configuration.php|/inc/header.inc.php|default/settings.php|/etc/issue|/etc/passwd|/etc/shadow|/etc/group)#iUu",
+        $forbiddenTokens,
         $commonFilesString,
-        '#(http:%252f%252|data://text/plain;|php:expect://)#iUu',
     ])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
 //    ->triggerResponse(
