@@ -121,7 +121,7 @@ $lfiConfig = CheckerDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
         '#\.\/..\/#is',
-        '#(.. / .. /)#iUu', // todo wildcard space repeater 0 or more
+        '#\.\.[\s]*/[\s]*\.#iUu', // ..[ ]*/[ ]*.
         $forbiddenTokens,
         $commonFilesString,
     ])
