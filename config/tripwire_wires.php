@@ -163,14 +163,36 @@ $sessionConfig = CheckerDetailsConfig::make()
 | https://dencode.com/en/
 |--------------------------------------------------------------------------
 */
+$evilStart = Regex::forbidden([
+    '&lt;scrscriptipt',
+]);
+
+$evilTokens = Regex::forbidden([
+    'string.fromCharCode',
+    'window.alert',
+    '>><marquee',
+    'dataformatas="html"',
+    '\'%uff1cscript',
+    '<scrscriptipt',
+    '=expression\(',
+        'onerror=\"javascript:document',
+    '<;BR SIZE',
+    '<br size',
+    '&lt;br size',
+    '<?xml version="1.0',
+    'xss:e/\*\*/xpression',
+    'document.vulnerable=',
+]);
+
 $xssConfig = CheckerDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(0)
     ->tripwires([
+        $evilStart,
+        $evilTokens,
         '#(\<script\>|%3cscript%3e|¼script¾|%BCscript%BE|&lt;script)#iUu',     // ??script?? variations
         '#&lt;(script|A|layer|object|embed|style|img|xss|link|meta|html|xml|body|iframe)( |&gt;|body)#iUu',  // &lt;???
         '#(<|&lt;);(IMG|layer|object|embed|link|meta|xml|html|\!--|\?|script|iframe|a href)#iUu',
-        '#(&lt;scrscriptipt)#iUu',
         '#(<|&lt;)/(body|html)#iUu',
         '#(&lt;/br)#iUu',
         '#&lt;(\!--|\? |div )#iUu',
@@ -184,32 +206,23 @@ $xssConfig = CheckerDetailsConfig::make()
 
         '(%253c|%252F)', // | /
         '(&#97)', // a
-        '#(string.fromCharCode)#iUu', // a
         "#(\'|\\\");(.*);//#",  /* \";???;//*/
 
 
         '!(perl -e &apos;|perl -e &#039;|perl -e \')!iUu',
-        '#(window.alert|>><marquee)#iUu',
+
         '#(" onfocus=)#iUu',
-        '#document.vulnerable=#iUu',
         '#(1script3|1/script3)#iUu',
-        '#(dataformatas="html")#iUu',
+
         '#(\\[\\\\xc0]\[\\\\xBC])#iUu',
         '#(<;/script>|<;scrscriptipt>)#iUu',
         '#(=\\\";&;{)#iUu',
-        '#(xss:e/\*\*/xpression)#iUu',
-        '#(\'%uff1cscript)#iUu',
-        '#(<?xml version="1.0)#iUu',
 
         '#(\';\!--\")#iUu',
-        '#(<br size|&lt;br size)#iUu',
         '#(;\';;\!--")#iUu',
-        '#(<;BR SIZE)#iUu',
 
         '#(\&quot;)#iUu',
-        '#(<scrscriptipt)#iUu',
-        '#(=expression\()#iUu',
-        '#(onerror=\"javascript:document)#iUu',
+
 
         // Unneeded tags
         '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base|img|input)[^>]*>?#i',
