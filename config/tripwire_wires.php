@@ -165,7 +165,16 @@ $sessionConfig = CheckerDetailsConfig::make()
 */
 $evilStart = Regex::forbidden([
     '&lt;scrscriptipt',
+    '%253c',
+    '%252F',
 ]);
+
+$evilStartWithHashContent = Regex::forbidden([
+    '&#97', //a
+    'perl -e &apos;',
+    'perl -e &#039;',
+    'perl -e \'',
+], '!');
 
 $evilTokens = Regex::forbidden([
     'string.fromCharCode',
@@ -227,12 +236,10 @@ $xssConfig = CheckerDetailsConfig::make()
         // Evil starting attributes
         '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
 
-        '(%253c|%252F)', // | /
-        '(&#97)', // a
         "#(\'|\\\");(.*);//#",  /* \";???;//*/
 
+        $evilStartWithHashContent,
 
-        '!(perl -e &apos;|perl -e &#039;|perl -e \')!iUu',
 
         '#(" onfocus=)#iUu',
         '#(1script3|1/script3)#iUu',
