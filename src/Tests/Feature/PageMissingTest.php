@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Tests\Traits\RequestTrait;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
@@ -18,20 +19,40 @@ class PageMissingTest extends TestCase
 
     /**
      * @test
-     * @group aaa
+     * @group tripwire-models
      */
-    public function Page_missing_log()
+    public function Page_missing_Added_log()
     {
         $startCount = TripwireLog::count();
 
         $this->setDefaultConfig();
 
         $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
 
         $this->assertLogAddedToDatabase($startCount);
+    }
 
-        // todo test response
-        // test block created if needed
+    /**
+     * @test
+     * @group tripwire-models
+     */
+    public function Page_missing_Added_block()
+    {
+        $startCount = TripwireBlock::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
+        $this->triggerPageNotFound();
+
+        $endCount = TripwireBlock::count();
+
+        $this->assertGreaterThan($startCount, $endCount);
     }
 
     private function triggerPageNotFound()

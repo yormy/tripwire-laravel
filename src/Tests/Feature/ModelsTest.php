@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
 use Yormy\TripwireLaravel\Tests\TestCase;
@@ -26,9 +27,25 @@ class ModelsTest extends TestCase
         $this->triggerModelNotFound();
 
         $this->assertLogAddedToDatabase($startCount);
+    }
 
-        // todo test response
-        // test block created if needed
+    /**
+     * @test
+     * @group tripwire-models
+     */
+    public function Model_missing_Added_block()
+    {
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerModelNotFound();
+        $this->triggerModelNotFound();
+        $this->triggerModelNotFound();
+
+        $endCount = TripwireLog::count();
+
+        $this->assertGreaterThan($startCount, $endCount);
     }
 
     private function triggerModelNotFound()
