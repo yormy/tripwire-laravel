@@ -9,8 +9,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
-use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\PageNotFoundEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\ThrottleHitEvent;
@@ -30,18 +30,21 @@ class ExceptionInspector
             if ($needsProcessing) {
                 // attack found
                 $violations = [$model];
-                $config = WireDetailsConfig::makeFromArray(config('tripwire_wires.model404'));
-                $configDefault = ConfigBuilder::fromArray(config('tripwire'));
+                $wireConfig = new WireConfig('model404');
+
                 $triggerEventData = new TriggerEventData(
-                    attackScore: $config->attackScore,
+                    attackScore: $wireConfig->attackScore(),
                     violations: $violations,
                     triggerData: implode(',', $violations),
                     triggerRules: [],
-                    trainingMode: $configDefault->trainingMode,
+                    trainingMode: $wireConfig->trainingMode(),
                     comments: '',
                 );
                 event(new Model404FailedEvent($triggerEventData));
-                // respond ?
+
+                BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode()); // where to get punish and training from global or specific wire
+
+                // Response is not needed, consumer will handle the 404, this is just an additional inspector
             }
 
 

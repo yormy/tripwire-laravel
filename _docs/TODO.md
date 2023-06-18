@@ -1,6 +1,6 @@
 Honeypot and model404 and page404 needs to be in the wires config, not in the main config
-refactor ExceptionInpector to get the right trainingmode value and responses
 Honeypot log event added not tested
+can I make 'needsProcessing' in exception inspector generic ?
 
 # Documentation
 Done:

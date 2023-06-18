@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 
 class BlockIfNeeded
 {
-    public static function run(Request $request, PunishConfig $punish, bool $trainingMode = false): void
+    public static function run(?Request $request, PunishConfig $punish, bool $trainingMode = false): void
     {
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($request ?? null);
