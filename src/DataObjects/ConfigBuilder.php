@@ -28,7 +28,8 @@ class ConfigBuilder implements Arrayable
     protected bool $enabled;
 
     public int $blockCode;
-    private bool $trainingMode;
+
+    private ?bool $trainingMode;
 
     private bool $debugMode;
 
@@ -72,7 +73,11 @@ class ConfigBuilder implements Arrayable
     {
         $data = [];
         $data['enabled'] = $this->enabled;
-        $data['training_mode'] = $this->trainingMode;
+
+        if (isset($this->trainingMode)) {
+            $data['training_mode'] = $this->trainingMode;
+        }
+
         $data['debug_mode'] =$this->debugMode ?? false;
 
         $data['block_code'] = $this->blockCode;

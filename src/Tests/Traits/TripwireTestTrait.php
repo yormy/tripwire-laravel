@@ -44,6 +44,7 @@ trait TripwireTestTrait
         return $checker->handle($request, $this->getNextClosure());
     }
 
+
     protected function triggerJsonTripwire(string $input)
     {
         $request = $this->app->request;

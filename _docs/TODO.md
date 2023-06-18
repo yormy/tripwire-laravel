@@ -2,11 +2,25 @@
 1 rename checkers to tripwires
 2 refactor configs now we have objects
 
+Done:
+default
+- ignore ip
+- ignore input fiedl
+
+todo
+default
+- ignore cookie
+- ignore header
+
+
+local ignores/ onlys
+
 # Unit test cases
 test ignore urls
 test ignore ips
 test training mode = no block, record
 test honeypots
+add model 404 filters filters
 
 # TODO
 - how to disable middleware on certain routes (ie large request)

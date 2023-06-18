@@ -6,7 +6,7 @@ class CheckerDetailsConfig
 {
     public bool $enabled;
 
-    public bool $trainingMode;
+    public ?bool $trainingMode;
 
     public ?array $methods;
 
@@ -29,7 +29,7 @@ class CheckerDetailsConfig
 
     public static function make(
         bool $enabled = true,
-        bool $trainingMode = false,
+        bool $trainingMode = null,
         array $methods = ['*'],
         int $attackScore = 0,
         UrlsConfig $urlsConfig = null,
@@ -42,7 +42,10 @@ class CheckerDetailsConfig
         $object = new CheckerDetailsConfig();
 
         $object->enabled = $enabled;
-        $object->trainingMode = $trainingMode;
+
+        if (isset($trainingMode)) {
+            $object->trainingMode = $trainingMode;
+        }
 
         if ($methods) {
             $errors = $object->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
@@ -72,7 +75,10 @@ class CheckerDetailsConfig
         $object = new CheckerDetailsConfig();
 
         $object->enabled = $data['enabled'];
-        $object->trainingMode = $data['training_mode'];
+        if (isset($data['training_mode'])) {
+            $object->trainingMode = $data['training_mode'];
+        }
+
         $object->methods = $data['methods'];
         $object->attackScore = $data['attack_score'];
         $object->urls = $data['urls'];
@@ -170,7 +176,10 @@ class CheckerDetailsConfig
         $data = [];
 
         $data['enabled'] = $this->enabled;
-        $data['training_mode'] = $this->trainingMode;
+
+        if (isset($this->trainingMode)) {
+            $data['training_mode'] = $this->trainingMode;
+        }
 
         if ($this->methods) {
             $data['methods'] = $this->methods;

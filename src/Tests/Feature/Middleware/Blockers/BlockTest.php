@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
 
+use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
@@ -43,12 +44,82 @@ class BlockTest extends TestCase
         $this->setConfig();
         $startCount = $this->resetBlockStartCount();
 
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
+        $this->triggerBlock();
 
         $this->assertBlockAddedToDatabase($startCount);
     }
+
+    /**
+     * @test
+     * @group tripwire-block
+     */
+    public function Unblocked_Normal_request_Ok()
+    {
+        $this->setConfig();
+
+        $result = $this->testBlockHandlerAll();
+        $this->assertEquals('next', $result);
+    }
+
+    /**
+     * @test
+     * @group tripwire-block
+     */
+    public function Blocked_Normal_request_Blocked()
+    {
+        $this->setConfig();
+        $this->triggerBlock();
+
+        $result = $this->testBlockHandlerAll();
+        $this->assertNotEquals('next', $result);
+    }
+
+    /**
+     * @test
+     * @group tripwire-block1
+     */
+    public function Blocked_training_Normal_request_Ok()
+    {
+        $this->setConfig();
+
+        config(["tripwire.training_mode" => true]);
+        $this->triggerBlock();
+        $result = $this->testBlockHandlerAll();
+        $this->assertContinue($result);
+
+        config(["tripwire.training_mode" => false]);
+        $this->triggerBlock();
+        $result = $this->testBlockHandlerAll();
+        $this->assertBlocked($result);
+    }
+
+    private function assertContinue($result)
+    {
+        $this->assertEquals('next', $result);
+    }
+
+    private function assertBlocked($result)
+    {
+        $this->assertNotEquals('next', $result);
+    }
+
+    protected function testBlockHandlerAll()
+    {
+        $request = $this->app->request;
+        $request->query->set('foo', 'normal input');
+
+        $checker = new TripwireBlockHandlerAll();
+
+        return $checker->handle($request, $this->getNextClosure());
+    }
+
+    private function triggerBlock()
+    {
+        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
+        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
+        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
+    }
+
 
     protected function setConfig()
     {

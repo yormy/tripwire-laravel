@@ -8,8 +8,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
-use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
-use Yormy\TripwireLaravel\Exceptions\SwearFailedException;
+use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
@@ -41,7 +40,7 @@ $swearConfig = CheckerDetailsConfig::make()
     ->triggerResponse(
         BlockResponseConfig::make()
             ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-            ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
+            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
     );
 
 /*
@@ -66,7 +65,7 @@ $sqliConfig = CheckerDetailsConfig::make()
     ->triggerResponse(
         BlockResponseConfig::make()
             ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-            ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
+            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
     );
 
 /*
@@ -129,7 +128,7 @@ $lfiConfig = CheckerDetailsConfig::make()
 //    ->triggerResponse(
 //        BlockResponseConfig::make()
 //            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-//            ->html(HtmlResponseConfig::make()->exception(SwearFailedException::class))
+//            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
 //    );
 ;
 

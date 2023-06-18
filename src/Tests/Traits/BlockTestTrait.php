@@ -36,6 +36,7 @@ trait BlockTestTrait
 
         return TripwireBlock::count();
     }
+
     protected function assertBlockAddedToDatabase($startCount)
     {
         $this->assertGreaterThan($startCount, TripwireBlock::count());

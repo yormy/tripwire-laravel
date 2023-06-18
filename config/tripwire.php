@@ -135,4 +135,5 @@ $res = ConfigBuilder::make()
     )
     ->toArray();
 
+ConfigBuilder::fromArray($res);
 return $res;
