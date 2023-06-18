@@ -3,7 +3,7 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Observers\Events\Failed\Page404Event;
+use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
 
 class PageNotFoundWireListener extends WireBaseListener
 {
@@ -28,7 +28,7 @@ class PageNotFoundWireListener extends WireBaseListener
 
     protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        event(new Page404Event($triggerEventData));
+        event(new Page404FailedEvent($triggerEventData));
 
         $this->blockIfNeeded();
     }

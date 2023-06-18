@@ -2,6 +2,7 @@
 
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
@@ -381,7 +382,9 @@ $pageMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_PAGE404_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
-        'Mexion\BedrockUsers\Models\Member', //?? only / except // this is s model not a page
+        MissingPageConfig::make()->except([
+            '/membedie',
+        ])
     ]);
 
 /*
@@ -396,7 +399,7 @@ $modelMissingConfig = WireDetailsConfig::make()
         MissingModelConfig::make()->only([
             Tripwirelog::class,
             //'member.class'
-    ])
+        ])
     ]);
 
 /*
