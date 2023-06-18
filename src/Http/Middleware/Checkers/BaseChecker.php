@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
-use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
+use Yormy\TripwireLaravel\DataObjects\ConfigChecker;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
@@ -23,7 +23,7 @@ abstract class BaseChecker
         $this->middleware = static::NAME;
         $this->user_id = auth()->id() ?: 0;
 
-        $this->config = new ConfigMiddleware($this->middleware);
+        $this->config = new ConfigChecker($this->middleware);
     }
 
 
