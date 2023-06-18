@@ -54,9 +54,16 @@ class BlockResponseConfig
 
     public function toArray(): array
     {
-        return [
-            'json' => $this->jsonResponse->toArray(),
-            'html' => $this->htmlResponse->toArray(),
-        ];
+        $data = [];
+
+        if (isset($this->jsonResponse)) {
+            $data['json'] = $this->jsonResponse->toArray();
+        }
+
+        if (isset($this->htmlResponse)) {
+            $data['html'] = $this->htmlResponse->toArray();
+        }
+
+        return $data;
     }
 }

@@ -127,27 +127,27 @@ class JsonResponseConfig
     public function toArray(): array
     {
         $data = [];
-        if ($this->code) {
+        if (isset($this->code)) {
             $data['code'] = $this->code;
         }
 
-        if ($this->abort) {
+        if (isset($this->abort)) {
             $data['abort'] = $this->abort;
         }
 
-        if ($this->json) {
+        if (isset($this->json)) {
             $data['json'] = $this->json;
         }
 
-        if ($this->exception) {
+        if (isset($this->exception)) {
             $data['exception'] = $this->exception;
         }
 
-        if ($this->redirectUrl) {
+        if (isset($this->redirectUrl)) {
             $data['redirect_url'] = $this->redirectUrl;
         }
 
-        if ($this->messageKey) {
+        if (isset($this->messageKey)) {
             $data['message_key'] = $this->messageKey;
         }
 

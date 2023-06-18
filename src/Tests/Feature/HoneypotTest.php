@@ -20,7 +20,7 @@ class HoneypotTest extends TestCase
     public function Trigger_honeypost_Block()
     {
         $this->setDefaultConfig();
-     //   $this->triggerHoneypotOke();
+        $this->triggerHoneypotOke();
 
         config(["tripwire.honeypots" => [
             'attack_score' => 10,

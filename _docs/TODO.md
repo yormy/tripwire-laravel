@@ -10,11 +10,12 @@ default
 - ignore urls
 - disabled
 - reset
+- punish
 - 
 todo
 default
 - -models
-- punish
+
 checker filter test
 local ignores/ onlys
 

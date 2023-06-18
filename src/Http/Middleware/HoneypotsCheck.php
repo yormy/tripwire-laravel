@@ -5,10 +5,12 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
+use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Failed\XssFailedEvent;
 use Yormy\TripwireLaravel\Services\Honeypot;
+use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 
 /**
  * Goal:
@@ -43,8 +45,16 @@ class HoneypotsCheck
             );
 
             event(new HoneypotFailedEvent($triggerEventData));
-dd();
-            // response
+
+            $responseConfig = new ConfigResponse($config->triggerResponse->toArray(), $request->url());
+
+            $respond = new ResponseDeterminer($responseConfig);
+
+            if ($request->wantsJson()) {
+                return $respond->respondWithJson();
+            }
+
+            return $respond->respondWithHtml();
         }
 
         $this->cleanup($request);

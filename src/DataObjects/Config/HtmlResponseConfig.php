@@ -107,23 +107,23 @@ class HtmlResponseConfig
     public function toArray(): array
     {
         $data = [];
-        if ($this->code) {
+        if (isset($this->code)) {
             $data['code'] = $this->code;
         }
 
-        if ($this->view) {
+        if (isset($this->view)) {
             $data['view'] = $this->view;
         }
 
-        if ($this->exception) {
+        if (isset($this->exception)) {
             $data['exception'] = $this->exception;
         }
 
-        if ($this->redirectUrl) {
+        if (isset($this->redirectUrl)) {
             $data['redirect_url'] = $this->redirectUrl;
         }
 
-        if ($this->messageKey) {
+        if (isset($this->messageKey)) {
             $data['message_key'] = $this->messageKey;
         }
 
