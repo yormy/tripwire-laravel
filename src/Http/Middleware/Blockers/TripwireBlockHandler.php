@@ -32,15 +32,13 @@ abstract class TripwireBlockHandler
 
         if ($request->wantsJson()) {
             $config = JsonResponseConfig::makeFromArray(config('tripwire.block_response.json'));
-            $blockResponse = new ConfigResponse($config);
-            $respond = new ResponseDeterminer($blockResponse);
+            $respond = new ResponseDeterminer($config);
 
             return $respond->respondWithJson(['blocked_until' => $blockedUntil]);
         }
 
         $config = HtmlResponseConfig::makeFromArray(config('tripwire.block_response.html'));
-        $blockResponse = new ConfigResponse($config);
-        $respond = new ResponseDeterminer($blockResponse);
+        $respond = new ResponseDeterminer($config);
 
         return $respond->respondWithHtml(['blocked_until' => $blockedUntil]);
     }

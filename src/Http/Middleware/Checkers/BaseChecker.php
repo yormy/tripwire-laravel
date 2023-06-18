@@ -35,9 +35,9 @@ abstract class BaseChecker
 
         $patterns = $this->getPatterns();
         if ($this->isAttack($patterns)) {
-            $configResponse = $this->getConfig($request, $this->middleware);
-            $respond = new ResponseDeterminer($configResponse);
-            if ($configResponse->asContinue() || $this->config->trainingMode()) {
+            $config = $this->getConfig($request, $this->middleware);
+            $respond = new ResponseDeterminer($config, $request->url());
+            if ($respond->asContinue() || $this->config->trainingMode()) {
                 return $next($request);
             }
 
@@ -51,7 +51,7 @@ abstract class BaseChecker
         return $next($request);
     }
 
-    private function getConfig(Request $request, ?string $checker = null): ConfigResponse
+    private function getConfig(Request $request, ?string $checker = null): JsonResponseConfig| HtmlResponseConfig
     {
         if ($request->wantsJson()) {
             $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
@@ -63,10 +63,10 @@ abstract class BaseChecker
         }
 
         if (isset($configChecker)) {
-            return new ConfigResponse($configChecker, $request->url());
+            return $configChecker;
         }
 
-        return new ConfigResponse($config, $request->url());
+        return $config;
     }
 
     public function getPatterns()

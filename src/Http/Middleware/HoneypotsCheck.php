@@ -53,15 +53,12 @@ class HoneypotsCheck
 
             if ($request->wantsJson()) {
                 $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
-                $responseConfig = new ConfigResponse($config, $request->url());
-                $respond = new ResponseDeterminer($responseConfig);
+                $respond = new ResponseDeterminer($config, $request->url());
                 return $respond->respondWithJson();
             }
 
-            // checker response not loaded
             $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
-            $responseConfig = new ConfigResponse($config, $request->url());
-            $respond = new ResponseDeterminer($responseConfig);
+            $respond = new ResponseDeterminer($config, $request->url());
             return $respond->respondWithHtml();
         }
 
