@@ -13,7 +13,17 @@ Currently all violations scores are added to 1 large sum. This is then used to b
 Would be nice to block hardcore (sqli) or softcore (login) and show different views/messages/emails
 How to spec what to add together to determine a block type
 
-PSALM
+# PSALM
+        <UndefinedThisPropertyFetch errorLevel="info" />
+        <UndefinedThisPropertyAssignment errorLevel="info" />
+        <UndefinedInterfaceMethod errorLevel="info" />
+        <UnusedParam errorLevel="info" />
+        <PossiblyNullReference errorLevel="info" />
+        <PossiblyNullArgument errorLevel="info" />
+        <PossiblyNullPropertyFetch errorLevel="info" />
+
+        <UndefinedPropertyFetch errorLevel="info" />
+
 PINT
 
 # Documentation 
@@ -22,6 +32,7 @@ PINT
 
 ## File validation
 - file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
+-- how to create unit test for this ?
 
 ## Geofencing
 fix geo fencing, need working api key to ip lookup stuff

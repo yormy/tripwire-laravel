@@ -10,7 +10,7 @@ use Yormy\TripwireLaravel\TripwireServiceProvider;
 abstract class TestCase extends BaseTestCase
 {
     // disable after migration to inpect db during test
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
