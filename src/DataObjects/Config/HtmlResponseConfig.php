@@ -44,11 +44,25 @@ class HtmlResponseConfig
 
         $object = new HtmlResponseConfig();
 
-        $object->code = $data['code'] ?? null;
-        $object->view = $data['view'];
-        $object->exception = $data['exception'] ?? null;
-        $object->redirectUrl = $data['redirect_url'] ?? null;
-        $object->messageKey = $data['message_key'] ?? null;
+        if (isset($data['code'])) {
+            $object->code = $data['code'];
+        }
+
+        if (isset($data['view'])) {
+            $object->view = $data['view'];
+        }
+
+        if (isset($data['exception'])) {
+            $object->exception = $data['exception'];
+        }
+
+        if (isset($data['redirect_url'])) {
+            $object->redirectUrl = $data['redirect_url'];
+        }
+
+        if (isset($data['message_key'])) {
+            $object->messageKey = $data['message_key'];
+        }
 
        return $object;
     }

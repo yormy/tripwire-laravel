@@ -1,0 +1,84 @@
+<?php
+
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
+
+use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
+use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Tests\TestCase;
+
+class FilterTest extends TestCase
+{
+    private string $tripwire ='text';
+    const HTTP_TRIPWIRE_CODE = 409;
+
+    CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+
+    /**
+     * test
+     * @group tripwire-filter
+     */
+    public function tigger_Default_ignore_ip_Oke()
+    {
+        $this->setDefaultConfig();
+        $this->triggerAssertBlock();
+
+        $currentIp = request()->ip();
+        config(["tripwire.whitelist.ips" => [$currentIp]]);
+        $this->triggerAssertOke();
+    }
+
+    /**
+     * @test
+     * @group tripwire-filter
+     */
+    public function tigger_Default_ignore_input_Oke()
+    {
+        $this->setDefaultConfig();
+//        $this->triggerAssertBlock();
+
+        config(["tripwire.ignore.inputs" => ['foo']]);
+        $this->triggerAssertOke();
+    }
+
+
+    public function triggerAssertBlock()
+    {
+        $result = $this->triggerTripwire();
+        $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
+    }
+
+    public function triggerAssertOke()
+    {
+        $result = $this->triggerTripwire();
+        $this->assertEquals('next', $result);
+    }
+
+
+    private function triggerTripwire()
+    {
+        $request = $this->app->request; // default is as HTML
+        $request->query->set('foo', self::TRIPWIRE_TRIGGER);
+
+        return (new Text($request))->handle($request, $this->getNextClosure());
+    }
+
+//    private function assertLogAddedToDatabase($startCount)
+//    {
+//        $this->assertGreaterThan($startCount, TripwireLog::count());
+//    }
+//
+//    private function setConfig(array $data)
+//    {
+//        config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
+//        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $data]);
+//    }
+
+    private function setDefaultConfig(array $data= [])
+    {
+        config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
+
+        config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
+    }
+}

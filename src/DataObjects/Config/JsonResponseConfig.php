@@ -55,12 +55,29 @@ class JsonResponseConfig
 
        $object = new JsonResponseConfig();
 
-        $object->code = $data['code'];
-        $object->abort = $data['abort'];
-        $object->json = $data['json'];
-        $object->exception = $data['exception'];
-        $object->redirectUrl = $data['redirect_url'];
-        $object->messageKey = $data['message_key'];
+        if (isset($data['code'])) {
+            $object->code = $data['code'];
+        }
+
+        if (isset($data['abort'])) {
+            $object->abort = $data['abort'];
+        }
+
+        if (isset($data['json'])) {
+            $object->json = $data['json'];
+        }
+
+        if (isset($data['exception'])) {
+            $object->exception = $data['exception'];
+        }
+
+        if (isset($data['redirect_url'])) {
+            $object->redirectUrl = $data['redirect_url'];
+        }
+
+        if (isset($data['message_key'])) {
+            $object->messageKey = $data['message_key'];
+        }
 
        return $object;
     }

@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class InputIgnoreConfig
 {
-    public array $input;
+    public array $inputs;
     public array $cookies;
 
     public array $header;
@@ -13,14 +13,14 @@ class InputIgnoreConfig
     {}
 
     public static function make(
-        array $input = [],
+        array $inputs = [],
         array $cookies = [],
         array $header = []
     ): self
     {
         $object = new InputIgnoreConfig();
 
-        $object->input = $input;
+        $object->inputs = $inputs;
         $object->cookies = $cookies;
         $object->header = $header;
 
@@ -35,16 +35,24 @@ class InputIgnoreConfig
 
        $object = new InputIgnoreConfig();
 
-        $object->input = $data['input'];
-        $object->cookies = $data['cookies'];
-        $object->header = $data['header'];
+        if (isset($data['inputs'])) {
+            $object->inputs = $data['inputs'];
+        }
+
+        if (isset($data['cookies'])) {
+            $object->cookies = $data['cookies'];
+        }
+
+        if (isset($data['header'])) {
+            $object->header = $data['header'];
+        }
 
        return $object;
     }
 
     public function inputs(array $inputs): self
     {
-        $this->input = $inputs;
+        $this->inputs = $inputs;
 
         return $this;
     }
@@ -65,10 +73,20 @@ class InputIgnoreConfig
 
     public function toArray(): array
     {
-        return [
-            'input' => $this->input,
-            'cookies' => $this->cookies,
-            'header' => $this->header,
-        ];
+        $data = [];
+
+        if (isset($this->inputs)) {
+            $data['inputs'] = $this->inputs;
+        }
+
+        if (isset($this->cookies)) {
+            $data['cookies'] = $this->cookies;
+        }
+
+        if (isset($this->header)) {
+            $data['header'] = $this->header;
+        }
+
+        return $data;
     }
 }

@@ -53,7 +53,7 @@ class ConfigBuilder implements Arrayable
 
     public HoneypotsConfig $honeypots;
 
-    public UrlsConfig $urls;
+    public ?UrlsConfig $urls;
 
     public ResetConfig $reset;
 
@@ -110,7 +110,7 @@ class ConfigBuilder implements Arrayable
         }
 
         if (isset($this->inputIgnore)) {
-            $data['input'] = $this->inputIgnore->toArray();
+            $data['ignore'] = $this->inputIgnore->toArray();
         }
 
         if (isset($this->honeypots)) {
@@ -182,7 +182,7 @@ class ConfigBuilder implements Arrayable
 
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
 
-        $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['input'] ?? null);
+        $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['ignore'] ?? null);
 
         $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
 

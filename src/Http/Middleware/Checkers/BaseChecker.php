@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -127,9 +128,11 @@ abstract class BaseChecker
     private function collectInputs(): string
     {
         $exceptInputs[] = 'remember';
-        $exceptInputs = config('tripwire.ignore.inputs', []);
-        $exceptCookies = config('tripwire.ignore.cookie', []);
-        $exceptHeaders = config('tripwire.ignore.header', []);;
+        $config = ConfigBuilder::fromArray(config('tripwire'));
+
+        $exceptInputs = $config->inputIgnore->inputs;
+        $exceptCookies = $config->inputIgnore->cookies;
+        $exceptHeaders = $config->inputIgnore->header;
         $exceptHeaders[] = 'cookie';
 
         $inputsGlobalFilter = $this->removeItems($this->request->input(), $exceptInputs);
