@@ -18,7 +18,20 @@ class DefaultFilterTest extends TestCase
      * @test
      * @group tripwire-filter
      */
-    public function tigger_Default_ignore_ip_Oke()
+    public function tigger_Default_disabled_Continue()
+    {
+        $this->setDefaultConfig();
+        $this->triggerAssertBlock();
+
+        config(["tripwire.enabled" => false]);
+        $this->triggerAssertOke();
+    }
+
+    /**
+     * @test
+     * @group tripwire-filter
+     */
+    public function tigger_Default_ignore_ip_Continue()
     {
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
@@ -32,7 +45,7 @@ class DefaultFilterTest extends TestCase
      * @test
      * @group tripwire-filter
      */
-    public function tigger_Default_ignore_input_Oke()
+    public function tigger_Default_ignore_input_Continue()
     {
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
@@ -45,7 +58,7 @@ class DefaultFilterTest extends TestCase
      * @test
      * @group tripwire-filter
      */
-    public function tigger_Default_ignore_url_only_Oke()
+    public function tigger_Default_ignore_url_only_Continue()
     {
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
@@ -58,7 +71,7 @@ class DefaultFilterTest extends TestCase
      * @test
      * @group tripwire-filter
      */
-    public function tigger_Default_ignore_url_except_Oke()
+    public function tigger_Default_ignore_url_except_Continue()
     {
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
