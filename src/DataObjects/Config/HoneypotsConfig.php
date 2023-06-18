@@ -8,10 +8,9 @@ class HoneypotsConfig
 
     public array $mustBeMissingOrFalse;
 
-
-
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(int $attackScore, array $mustBeMissingOrFalse): self
     {
@@ -25,7 +24,7 @@ class HoneypotsConfig
     public static function makeFromArray(?array $data): ?self
     {
 
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -35,7 +34,6 @@ class HoneypotsConfig
 
         return $object;
     }
-
 
     public function toArray(): array
     {

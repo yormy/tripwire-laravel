@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
@@ -32,7 +33,7 @@ class TripwireLog extends BaseModel
         'robot_crawler',
         'browser_fingerprint',
         'request_fingerprint',
-        'tripwire_block_id'
+        'tripwire_block_id',
     ];
 
     public function __construct(array $attributes = [])

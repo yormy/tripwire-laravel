@@ -3,7 +3,6 @@
 namespace Yormy\TripwireLaravel\Exceptions;
 
 use Exception;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 abstract class BaseException extends Exception
@@ -22,5 +21,6 @@ abstract class BaseException extends Exception
     abstract protected function dispatchEvents(Request $request);
 
     abstract protected function renderJson(Request $request);
+
     abstract protected function renderHtml(Request $request);
 }

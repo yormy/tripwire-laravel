@@ -25,7 +25,8 @@ class WireDetailsConfig
     public ?BlockResponseConfig $triggerResponse;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         bool $enabled = true,
@@ -33,11 +34,11 @@ class WireDetailsConfig
         array $methods = ['*'],
         int $attackScore = 0,
         UrlsConfig $urlsConfig = null,
-        InputsFilterConfig $inputs  = null,
+        InputsFilterConfig $inputs = null,
         array $tripwires = [],
         array $guards = [],
-        PunishConfig $punishConfig  = null,
-        BlockResponseConfig $triggerResponse  = null,
+        PunishConfig $punishConfig = null,
+        BlockResponseConfig $triggerResponse = null,
     ): self {
         $object = new WireDetailsConfig();
 
@@ -48,9 +49,9 @@ class WireDetailsConfig
         }
 
         if ($methods) {
-            $errors = $object->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
+            $errors = $object->getArrayErrors($methods, ['*', 'all', 'post', 'put', 'patch', 'get', 'delete']);
             if ($errors) {
-                throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+                throw new \Exception('Invalid method defined for :'.implode(',', $errors));
             }
         }
 
@@ -68,7 +69,7 @@ class WireDetailsConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -111,7 +112,7 @@ class WireDetailsConfig
             $object->triggerResponse = BlockResponseConfig::makeFromArray($data['trigger_response']);
         }
 
-       return $object;
+        return $object;
     }
 
     public function enabled(bool $enabled): self
@@ -130,13 +131,13 @@ class WireDetailsConfig
 
     public function methods(array $methods): self
     {
-        if (!$methods) {
+        if (! $methods) {
             return $this;
         }
 
-        $errors = $this->getArrayErrors($methods, ['*','all','post', 'put', 'patch', 'get','delete']);
+        $errors = $this->getArrayErrors($methods, ['*', 'all', 'post', 'put', 'patch', 'get', 'delete']);
         if ($errors) {
-            throw new \Exception("Invalid method defined for :". implode(',', $errors) );
+            throw new \Exception('Invalid method defined for :'.implode(',', $errors));
         }
 
         $this->methods = $methods;
@@ -193,7 +194,6 @@ class WireDetailsConfig
         return $this;
     }
 
-
     public function toArray(): array
     {
         $data = [];
@@ -238,9 +238,8 @@ class WireDetailsConfig
     private function getArrayErrors(array $values, array $allowedValues): array
     {
         $errors = [];
-        foreach ($values as $value)
-        {
-            if (!in_array($value, $allowedValues)) {
+        foreach ($values as $value) {
+            if (! in_array($value, $allowedValues)) {
                 $errors[] = $value;
             }
         }

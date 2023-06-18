@@ -9,18 +9,20 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 
 class ResponsesTest extends TestCase
 {
-    private string $tripwire ='text';
+    private string $tripwire = 'text';
+
     const HTTP_TRIPWIRE_CODE = 409;
 
-    CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+    const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_with_missing_expects_default_exception()
     {
-        $this->setDefaultConfig(["exception" => TripwireFailedException::class]);
+        $this->setDefaultConfig(['exception' => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
@@ -29,11 +31,12 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_with_missing_expects_default_code()
     {
-        $this->setDefaultConfig(["code" => self::HTTP_TRIPWIRE_CODE]);
+        $this->setDefaultConfig(['code' => self::HTTP_TRIPWIRE_CODE]);
 
         $startCount = TripwireLog::count();
 
@@ -46,12 +49,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_with_missing_expects_default_redirecturl()
     {
-        $redirectUrl = "https://www.cccc.com";
-        $this->setDefaultConfig(["redirect_url" => $redirectUrl]);
+        $redirectUrl = 'https://www.cccc.com';
+        $this->setDefaultConfig(['redirect_url' => $redirectUrl]);
 
         $startCount = TripwireLog::count();
 
@@ -64,12 +68,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_with_missing_expects_default_view()
     {
-        $viewName = "tripwire-laravel::blocked";
-        $this->setDefaultConfig(["view" => $viewName]);
+        $viewName = 'tripwire-laravel::blocked';
+        $this->setDefaultConfig(['view' => $viewName]);
 
         $startCount = TripwireLog::count();
 
@@ -82,12 +87,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_with_missing_expects_default_message()
     {
-        $messageKey = "message.key";
-        $this->setDefaultConfig(["message_key" => $messageKey]);
+        $messageKey = 'message.key';
+        $this->setDefaultConfig(['message_key' => $messageKey]);
 
         $startCount = TripwireLog::count();
 
@@ -100,11 +106,12 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_as_exception_expects_exception()
     {
-        $this->setConfig(["exception" => TripwireFailedException::class]);
+        $this->setConfig(['exception' => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
@@ -113,11 +120,12 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_as_code_expects_code()
     {
-        $this->setConfig(["code" => self::HTTP_TRIPWIRE_CODE]);
+        $this->setConfig(['code' => self::HTTP_TRIPWIRE_CODE]);
 
         $startCount = TripwireLog::count();
 
@@ -130,12 +138,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_as_redirecturl_expects_redirecturl()
     {
-        $redirectUrl = "https://www.cccc.com";
-        $this->setConfig(["redirect_url" => $redirectUrl]);
+        $redirectUrl = 'https://www.cccc.com';
+        $this->setConfig(['redirect_url' => $redirectUrl]);
 
         $startCount = TripwireLog::count();
 
@@ -148,12 +157,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group aaa
      */
     public function respond_as_view_expects_view()
     {
-        $viewName = "tripwire-laravel::blocked";
-        $this->setConfig(["view" => $viewName]);
+        $viewName = 'tripwire-laravel::blocked';
+        $this->setConfig(['view' => $viewName]);
 
         $startCount = TripwireLog::count();
 
@@ -166,12 +176,13 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function respond_as_message_expects_message()
     {
-        $messageKey = "message.key";
-        $this->setConfig(["message_key" => $messageKey]);
+        $messageKey = 'message.key';
+        $this->setConfig(['message_key' => $messageKey]);
 
         $startCount = TripwireLog::count();
 
@@ -206,6 +217,6 @@ class ResponsesTest extends TestCase
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(["tripwire.trigger_response.html" => $data]);
+        config(['tripwire.trigger_response.html' => $data]);
     }
 }

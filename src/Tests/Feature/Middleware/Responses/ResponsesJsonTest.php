@@ -9,18 +9,20 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 
 class ResponsesJsonTest extends TestCase
 {
-    private string $tripwire ='text';
+    private string $tripwire = 'text';
+
     const HTTP_TRIPWIRE_CODE = 409;
 
-    CONST TRIPWIRE_TRIGGER = 'JSON-RESPONSE-TEST';
+    const TRIPWIRE_TRIGGER = 'JSON-RESPONSE-TEST';
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_missing_expects_default_exception()
     {
-        $this->setDefaultConfig(["exception" => TripwireFailedException::class]);
+        $this->setDefaultConfig(['exception' => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
@@ -29,12 +31,13 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_missing_expects_default_message()
     {
-        $messageKey = "message.key";
-        $this->setDefaultConfig(["message_key" => $messageKey]);
+        $messageKey = 'message.key';
+        $this->setDefaultConfig(['message_key' => $messageKey]);
 
         $startCount = TripwireLog::count();
 
@@ -47,12 +50,13 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_missing_expects_default_json()
     {
-        $json =  ['data' => 'somedata', 'err' =>'2'];
-        $this->setDefaultConfig(["json" => $json]);
+        $json = ['data' => 'somedata', 'err' => '2'];
+        $this->setDefaultConfig(['json' => $json]);
 
         $startCount = TripwireLog::count();
 
@@ -65,27 +69,27 @@ class ResponsesJsonTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_as_exception_expects_exception()
     {
-        $this->setConfig(["exception" => TripwireFailedException::class]);
+        $this->setConfig(['exception' => TripwireFailedException::class]);
 
         $this->expectException(TripwireFailedException::class);
 
         $this->triggerTripwire();
     }
 
-
-
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_as_message_expects_message()
     {
-        $messageKey = "message.key";
-        $this->setConfig(["message_key" => $messageKey]);
+        $messageKey = 'message.key';
+        $this->setConfig(['message_key' => $messageKey]);
 
         $startCount = TripwireLog::count();
 
@@ -96,17 +100,15 @@ class ResponsesJsonTest extends TestCase
         $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
-
-
-
     /**
      * @test
+     *
      * @group tripwire-response
      */
     public function json_respond_as_json_expects_json()
     {
-        $json =  ['data' => 'somedata', 'err' =>'2'];
-        $this->setConfig(["json" => $json]);
+        $json = ['data' => 'somedata', 'err' => '2'];
+        $this->setConfig(['json' => $json]);
 
         $startCount = TripwireLog::count();
 
@@ -142,6 +144,6 @@ class ResponsesJsonTest extends TestCase
         config(["tripwire_wires.$this->tripwire.trigger_response.json" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(["tripwire.trigger_response.json" => $data]);
+        config(['tripwire.trigger_response.json' => $data]);
     }
 }

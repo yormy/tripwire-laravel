@@ -17,5 +17,6 @@ class BaseModel extends Model
 
     // Cachables
     public $cacheFor = 4 * (60 * 60); // cache time, in seconds
+
     protected static $flushCacheOnUpdate = true;
 }

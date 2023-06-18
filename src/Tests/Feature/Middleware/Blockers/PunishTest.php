@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
-use Carbon\Carbon;
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
@@ -20,12 +19,13 @@ class PunishTest extends TestCase
 
     const BLOCK_CODE = 401;
 
-    protected string $tripwire ='text';
+    protected string $tripwire = 'text';
 
     protected $tripwireClass = Text::class;
 
     /**
      * @test
+     *
      * @group tripwire-punish
      */
     public function Block_Added_Exponential_delay()
@@ -90,7 +90,6 @@ class PunishTest extends TestCase
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
 
-
     protected function setConfig()
     {
         $settings = ['code' => 409];
@@ -100,9 +99,9 @@ class PunishTest extends TestCase
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
 
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);
-        config(["tripwire.punish.score" => 21]);
-        config(["tripwire.punish.within_minutes" => 10000]);
-        config(["tripwire.punish.penalty_seconds" => 10]);
+        config(['tripwire.punish.score' => 21]);
+        config(['tripwire.punish.within_minutes' => 10000]);
+        config(['tripwire.punish.penalty_seconds' => 10]);
 
         $this->setBlockConfig();
     }

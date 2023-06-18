@@ -15,5 +15,4 @@ class Xss extends BaseWire
 
         $this->blockIfNeeded();
     }
-
 }

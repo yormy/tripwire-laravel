@@ -15,5 +15,4 @@ class Lfi extends BaseWire
 
         $this->blockIfNeeded();
     }
-
 }

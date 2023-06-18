@@ -1,14 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Repositories;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
 {
@@ -27,11 +27,11 @@ class BlockRepository
         return $this->model::latest()->get();
     }
 
-
     private function delete(Builder $query, bool $softDelete = true)
     {
-        if (!$softDelete) {
+        if (! $softDelete) {
             $query->forceDelete();
+
             return;
         }
 
@@ -46,10 +46,9 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
-
     public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
     {
-        if (!$browserFingerprint) {
+        if (! $browserFingerprint) {
             return;
         }
 
@@ -61,7 +60,7 @@ class BlockRepository
 
     public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
     {
-        if (!$userId) {
+        if (! $userId) {
             return;
         }
         $query = $this->model::where('blocked_user_id', $userId)
@@ -79,8 +78,7 @@ class BlockRepository
         ?string $responseJson,
         ?string $responseHtml,
         ?bool $ignore = false
-    )
-    {
+    ) {
         $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
         $data['blocked_user_id'] = $userId;
@@ -101,48 +99,48 @@ class BlockRepository
     private function getLatest(Builder $builder)
     {
         return $builder->notIgnore()
-        ->latest()
-        ->first();
+            ->latest()
+            ->first();
     }
 
     public function isIpBlockedUntil(string $ipAddress): ?Carbon
     {
-        $builder =  $this->model
+        $builder = $this->model
             ->where('blocked_ip', $ipAddress)
             ->where('blocked_until', '>', Carbon::now());
 
-        $blocked =$this->getLatest($builder);
+        $blocked = $this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
 
     public function isBrowserBlockedUntil(string $browserFingerprint): ?Carbon
     {
-        if (!$browserFingerprint) {
+        if (! $browserFingerprint) {
             return null;
         }
 
-        $builder =  $this->model
+        $builder = $this->model
             ->where('blocked_browser_fingerprint', $browserFingerprint)
             ->where('blocked_until', '>', Carbon::now());
 
-        $blocked =$this->getLatest($builder);
+        $blocked = $this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
 
     public function isUserBlockedUntil(int $userId, string $userType): ?Carbon
     {
-        if (!$userId) {
+        if (! $userId) {
             return null;
         }
 
-        $builder =  $this->model
+        $builder = $this->model
             ->where('blocked_user_id', $userId)
             ->where('blocked_user_type', $userType)
             ->where('blocked_until', '>', Carbon::now());
 
-        $blocked =$this->getLatest($builder);
+        $blocked = $this->getLatest($builder);
 
         return $blocked?->blocked_until;
     }
@@ -153,24 +151,24 @@ class BlockRepository
         ?int $userId,
         ?string $userType,
     ): ?Carbon {
-        $builder =  $this->model
+        $builder = $this->model
             ->where('blocked_until', '>', Carbon::now());
 
-        $builder->where(function($query) use ($ipAddress, $browserFingerprint, $userId, $userType) {
-                $query->where('blocked_ip', $ipAddress);
+        $builder->where(function ($query) use ($ipAddress, $browserFingerprint, $userId, $userType) {
+            $query->where('blocked_ip', $ipAddress);
 
-                if ($browserFingerprint) {
-                    $query->orWhere('blocked_browser_fingerprint', $browserFingerprint);
-                }
+            if ($browserFingerprint) {
+                $query->orWhere('blocked_browser_fingerprint', $browserFingerprint);
+            }
 
-                if ($userId) {
-                    $query->orWhere(function ($queryUser) use ($userId, $userType) {
-                        $queryUser
-                            ->where('blocked_user_id', $userId)
-                            ->where('blocked_user_type', $userType);
-                    });
-                }
-            });
+            if ($userId) {
+                $query->orWhere(function ($queryUser) use ($userId, $userType) {
+                    $queryUser
+                        ->where('blocked_user_id', $userId)
+                        ->where('blocked_user_type', $userType);
+                });
+            }
+        });
 
         $blocked = $this->getLatest($builder);
 
@@ -182,7 +180,7 @@ class BlockRepository
         int $repeaterCount
     ): Carbon {
         $repeaterPunishment = $this->getRepeaterPunishment($penaltySeconds, $repeaterCount);
-        $blockedUntil =  Carbon::now()->addSeconds($penaltySeconds + $repeaterPunishment);
+        $blockedUntil = Carbon::now()->addSeconds($penaltySeconds + $repeaterPunishment);
 
         $maxDate = Carbon::now()->addYears(1000);    // this prevents a buffer overflow of carbon
         if ($blockedUntil > $maxDate) {
@@ -199,20 +197,20 @@ class BlockRepository
         ?string $browserFingerprint,
     ): int {
         $repeatOffenderIp = $this->repeatOffenderIp($ipAddress);
-        $repeatOffenderUser = $this->repeatOffenderUser($userId, $userType );
-        $repeatOffenderBrowser = $this->repeatOffenderBrowser($browserFingerprint );
+        $repeatOffenderUser = $this->repeatOffenderUser($userId, $userType);
+        $repeatOffenderBrowser = $this->repeatOffenderBrowser($browserFingerprint);
 
         return max($repeatOffenderIp, $repeatOffenderUser, $repeatOffenderBrowser);
     }
 
     public function getRepeaterPunishment(int $penaltySeconds, int $repeaterCount): int
     {
-        if (!$repeaterCount) {
+        if (! $repeaterCount) {
             return 0;
         }
 
         // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
-        return (int)pow($penaltySeconds, $repeaterCount);
+        return (int) pow($penaltySeconds, $repeaterCount);
     }
 
     private function repeatOffenderIp(string $ipAddress): int
@@ -224,7 +222,7 @@ class BlockRepository
 
     private function repeatOffenderUser(?int $userId, ?string $userType): int
     {
-        if (!$userId) {
+        if (! $userId) {
             return 0;
         }
 
@@ -247,4 +245,3 @@ class BlockRepository
             ->withinDays($this->repeatOffenderTimeframeDays);
     }
 }
-

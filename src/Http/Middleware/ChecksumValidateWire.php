@@ -49,13 +49,13 @@ class ChecksumValidateWire
 
         $this->cleanup($request);
 
-        return  $next($request);
+        return $next($request);
     }
 
     private function checkTimestamp(Request $request)
     {
 
-        $timestamp = $request->header(config('tripwire.checksums.timestamp'),);
+        $timestamp = $request->header(config('tripwire.checksums.timestamp'));
 
         if ($timestamp && Carbon::now()->diffInSeconds(Carbon::parse($timestamp / 1000)) > 30) {
             throw new \RuntimeException('Service blocked! Invalid Timestamp Synchronization');

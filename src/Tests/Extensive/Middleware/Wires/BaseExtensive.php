@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 
-use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -21,8 +20,8 @@ class BaseExtensive extends TestCase
 
         // ignore commented out with #
         foreach ($this->violations as $index => $violation) {
-            if(str_starts_with($violation, '##')) {
-                unset ($this->violations[$index]);
+            if (str_starts_with($violation, '##')) {
+                unset($this->violations[$index]);
             } else {
                 $this->violations[$index] = str_replace(PHP_EOL, '', $this->violations[$index]);
             }

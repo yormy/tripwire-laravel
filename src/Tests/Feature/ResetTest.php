@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
@@ -11,13 +10,15 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 
 class ResetTest extends TestCase
 {
-    private string $tripwire ='text';
+    private string $tripwire = 'text';
+
     const HTTP_TRIPWIRE_CODE = 409;
 
-    CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+    const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
     /**
      * @test
+     *
      * @group tripwire-reset
      */
     public function tigger_Default_disabled_Continue()
@@ -39,13 +40,12 @@ class ResetTest extends TestCase
         ResetService::run($request);
 
         // counts must be zero
-        $logCounts = TripwireLog::where('id','>',0)->count(); // refresh count
+        $logCounts = TripwireLog::where('id', '>', 0)->count(); // refresh count
         $this->assertEquals(0, $logCounts);
 
-        $blockCount = TripwireBlock::where('id','>',0)->count();  // refresh count
+        $blockCount = TripwireBlock::where('id', '>', 0)->count();  // refresh count
         $this->assertEquals(0, $blockCount);
     }
-
 
     // -------- HELPERS --------
 
@@ -68,7 +68,6 @@ class ResetTest extends TestCase
         $this->assertEquals('next', $result);
     }
 
-
     private function triggerTripwire()
     {
         $request = $this->app->request; // default is as HTML
@@ -77,16 +76,16 @@ class ResetTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function setDefaultConfig(array $data= [])
+    private function setDefaultConfig(array $data = [])
     {
-        config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);
-        config(["tripwire.punish.score" => 21]);
+        config(['tripwire.punish.score' => 21]);
 
-        config(["tripwire.reset" => [
+        config(['tripwire.reset' => [
             'enabled' => true,
             'soft_delete' => false,
             'link_expiry_minutes' => 30,

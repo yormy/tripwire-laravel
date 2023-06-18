@@ -25,6 +25,4 @@ class BlockResource extends JsonResource
 
         return $fields;
     }
-
-
 }

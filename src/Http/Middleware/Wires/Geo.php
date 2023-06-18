@@ -27,21 +27,21 @@ class Geo extends BaseWire
         }
 
         $location = new \StdClass();
-        $location->continent ='Europe';
+        $location->continent = 'Europe';
 
         $continent = 'Europe';
         $continentsGuards = $this->config->tripwires['continents'];
 
         $violations = [];
-        if($this->isGuardAttack($continent, $continentsGuards)) {
+        if ($this->isGuardAttack($continent, $continentsGuards)) {
             $violations[] = $continent;
         }
 
-        if (!empty($violations)) {
+        if (! empty($violations)) {
             $this->attackFound($violations);
         }
 
-        return !empty($violations);
+        return ! empty($violations);
     }
 
     protected function getLocation()

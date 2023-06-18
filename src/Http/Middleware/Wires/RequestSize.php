@@ -15,18 +15,17 @@ class RequestSize extends BaseWire
         $violations = [];
         $this->check($inputs, $violations);
 
-        if (!empty($violations))  {
+        if (! empty($violations)) {
             $this->attackFound($violations);
         }
 
-        return !empty($violations);
+        return ! empty($violations);
     }
 
     private function check($inputs, &$violations)
     {
 
-        foreach($inputs as $field => $value)
-        {
+        foreach ($inputs as $field => $value) {
             if (is_array($value)) {
                 $this->check($value, $violations);
             }
@@ -43,5 +42,4 @@ class RequestSize extends BaseWire
 
         $this->blockIfNeeded();
     }
-
 }

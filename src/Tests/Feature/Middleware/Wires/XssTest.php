@@ -16,8 +16,8 @@ class XssTest extends BaseWireTester
     ];
 
     protected array $violations = [
-        "<script>",
+        '<script>',
         '#-moz-binding:#u',
-        '<script>alert(123)</script>'
+        '<script>alert(123)</script>',
     ];
 }

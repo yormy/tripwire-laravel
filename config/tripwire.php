@@ -1,8 +1,5 @@
 <?php
 
-use Mexion\BedrockUsers\Models\Admin;
-use Mexion\BedrockUsers\Models\Member;
-use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
@@ -11,7 +8,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
@@ -37,7 +34,7 @@ $res = ConfigBuilder::make()
     ->notificationSlack(
         NotificationSlackConfig::make(env('FIREWALL_SLACK_ENABLED', false))
             ->from(env('FIREWALL_SLACK_FROM', 'Tripwire'))
-            ->to(env('FIREWALL_SLACK_TO',''))
+            ->to(env('FIREWALL_SLACK_TO', ''))
             ->channel(env('FIREWALL_SLACK_CHANNEL', 'ttt'))
             ->emoji(env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'))
     )
@@ -75,7 +72,7 @@ $res = ConfigBuilder::make()
     ->blockResponse(
         JsonResponseConfig::make()->code(506)->abort(env('FIREWALL_BLOCK_ABORT', false)),
         HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
-        )
+    )
 
     ->addWireGroup('all',
         WireGroupConfig::make([
@@ -91,7 +88,7 @@ $res = ConfigBuilder::make()
             'tripwire.swear',
             'tripwire.text',
             'tripwire.xss',
-            'tripwire.request_size'
+            'tripwire.request_size',
         ])
     )
 
@@ -117,7 +114,7 @@ $res = ConfigBuilder::make()
         ])
     )
 
-    ->punish(800, 60*24, 5)
+    ->punish(800, 60 * 24, 5)
 
     ->triggerResponse(
         JsonResponseConfig::make()->exception(TripwireFailedException::class),
@@ -125,4 +122,5 @@ $res = ConfigBuilder::make()
     )
     ->toArray();
 ConfigBuilder::fromArray($res);
+
 return $res;

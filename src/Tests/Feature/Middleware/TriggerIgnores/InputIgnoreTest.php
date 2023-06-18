@@ -6,12 +6,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 {
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Global_ignore_input_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire.ignore.inputs" => ['foo']]);
+        config(['tripwire.ignore.inputs' => ['foo']]);
 
         $this->triggerTripwire();
 
@@ -20,12 +21,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Global_ignore_url_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire.urls.except" => ['http://localhost/path/to/location']]);
+        config(['tripwire.urls.except' => ['http://localhost/path/to/location']]);
 
         $this->triggerTripwire();
 
@@ -34,12 +36,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Feature_ignore_url_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire_wires.text.urls.except" => ['http://localhost/path/to/location']]);
+        config(['tripwire_wires.text.urls.except' => ['http://localhost/path/to/location']]);
 
         $this->triggerTripwire();
 
@@ -48,12 +51,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Global_not_included_url_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire.urls.only" => ['http://xxxxx']]);
+        config(['tripwire.urls.only' => ['http://xxxxx']]);
 
         $this->triggerTripwire();
 
@@ -62,12 +66,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Feature_not_included_url_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire_wires.text.urls.only" => ['http://xxxxx']]);
+        config(['tripwire_wires.text.urls.only' => ['http://xxxxx']]);
 
         $this->triggerTripwire();
 
@@ -76,12 +81,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Global_exclude_path_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire.urls.except" => ['path/to/*']]);
+        config(['tripwire.urls.except' => ['path/to/*']]);
 
         $this->triggerTripwire();
 
@@ -90,12 +96,13 @@ class InputIgnoreTest extends BaseTriggerIgnore
 
     /**
      * @test
+     *
      * @group tripwire-ignore
      */
     public function Feature_exclude_path_Trigger_No_exception()
     {
         $this->setDefaultConfig();
-        config(["tripwire_wires.text.urls.except" => ['path/to/*']]);
+        config(['tripwire_wires.text.urls.except' => ['path/to/*']]);
 
         $this->triggerTripwire();
 

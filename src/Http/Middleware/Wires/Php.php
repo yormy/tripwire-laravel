@@ -4,7 +4,6 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\PhpFailedEvent;
-use Jenssegers\Agent\Agent;
 
 class Php extends BaseWire
 {
@@ -22,7 +21,7 @@ class Php extends BaseWire
         $patterns = [];
 
         foreach ($this->config->tripwires as $wire) {
-            $patterns[] = '#' . $wire . '#i';
+            $patterns[] = '#'.$wire.'#i';
         }
 
         return $patterns;

@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\LogCollection;
 use Yormy\TripwireLaravel\Repositories\LogRepository;

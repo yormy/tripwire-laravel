@@ -1,4 +1,5 @@
 <?php
+
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -33,7 +34,7 @@ class ConfigBuilderWires implements Arrayable
     }
 
     public function addWireDetails(
-        string            $name,
+        string $name,
         WireDetailsConfig $wire,
     ): self {
         $this->wires[$name] = $wire;

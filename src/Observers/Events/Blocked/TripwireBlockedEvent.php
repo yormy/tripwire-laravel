@@ -15,5 +15,6 @@ class TripwireBlockedEvent
         public readonly ?int $userId,
         public readonly ?string $userType,
         public readonly ?string $browserFingerprint,
-    ) {}
+    ) {
+    }
 }

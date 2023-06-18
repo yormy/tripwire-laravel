@@ -83,7 +83,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
                 $attachment->fields([
                     'IP' => $this->ipAddress,
                     'User ID' => $this->userId,
-                    'domain' => $domain
+                    'domain' => $domain,
                 ]);
             });
     }

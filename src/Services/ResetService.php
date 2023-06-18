@@ -11,7 +11,7 @@ class ResetService
     public static function run(Request $request)
     {
         $requestSourceClass = config('tripwire.services.request_source');
-        $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
+        $browserFingerprint = $requestSourceClass::getBrowserFingerprint();
 
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($request);
@@ -20,7 +20,7 @@ class ResetService
         $userId = $userClass::getId($request);
         $userType = $userClass::getType($request);
 
-        $softDelete = (bool)config('tripwire.reset.soft_delete');
+        $softDelete = (bool) config('tripwire.reset.soft_delete');
         $logRepository = new LogRepository();
         $logRepository->resetIp($ipAddress, $softDelete);
         $logRepository->resetBrowser($browserFingerprint, $softDelete);

@@ -7,7 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('throttle');
     }
 

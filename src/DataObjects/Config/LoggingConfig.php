@@ -5,7 +5,9 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class LoggingConfig
 {
     public int $maxRequestSize;
+
     public int $maxHeaderSize;
+
     public int $maxRefererSize;
 
     public array $remove;
@@ -20,8 +22,7 @@ class LoggingConfig
         int $maxHeaderSize = 190,
         int $maxRefererSize = 190,
         array $remove = [],
-    ): self
-    {
+    ): self {
         $object = new LoggingConfig();
 
         $object->maxRequestSize = $maxRequestSize;
@@ -34,7 +35,7 @@ class LoggingConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 

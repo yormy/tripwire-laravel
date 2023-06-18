@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
 
 class LfiTest extends BaseWireTester
 {
-    protected string $tripwire ='lfi';
+    protected string $tripwire = 'lfi';
 
     protected $tripwireClass = Lfi::class;
 
@@ -16,6 +16,6 @@ class LfiTest extends BaseWireTester
     ];
 
     protected array $violations = [
-        "../../etc/passwd",
+        '../../etc/passwd',
     ];
 }

@@ -2,11 +2,9 @@
 
 namespace Yormy\TripwireLaravel\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockCollection;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\LogCollection;
-use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
@@ -24,9 +22,9 @@ class BlockController extends controller
 
     public function show($blockId)
     {
-        if (!is_numeric($blockId)) {
+        if (! is_numeric($blockId)) {
             return response()->json([]);
-        };
+        }
 
         $logRepository = new LogRepository();
         $logs = $logRepository->getByBlockId($blockId);

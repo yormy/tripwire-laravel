@@ -2,11 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\Repositories\BlockRepository;
-use Yormy\TripwireLaravel\Repositories\LogRepository;
+use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Services\ResetService;
 use Yormy\TripwireLaravel\Services\ResetUrl;
 
@@ -14,7 +11,7 @@ class ResetController extends controller
 {
     public function reset(Request $request)
     {
-        if (!config('tripwire.reset.enabled')) {
+        if (! config('tripwire.reset.enabled')) {
             return;
         }
 

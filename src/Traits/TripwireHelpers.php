@@ -2,9 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Traits;
 
-use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 use Yormy\TripwireLaravel\Services\BlockIfNeeded;
 use Yormy\TripwireLaravel\Services\UrlTester;
 

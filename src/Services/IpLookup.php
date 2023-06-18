@@ -4,12 +4,12 @@ namespace Yormy\TripwireLaravel\Services;
 
 class IpLookup
 {
-
     public function __construct(
         private readonly string $ip,
         private readonly string $service,
         private readonly string $apiKey,
-    ) {}
+    ) {
+    }
 
     public function get(): ?stdClass
     {
@@ -25,9 +25,9 @@ class IpLookup
 
     protected function ipapi($location, string $ip, string $apiKey): ?stdClass
     {
-        $response = $this->getResponse('http://ip-api.com/json/' . $ip . '?fields=continent,country,regionName,city');
+        $response = $this->getResponse('http://ip-api.com/json/'.$ip.'?fields=continent,country,regionName,city');
 
-        if (!is_object($response) || empty($response->country) || empty($response->city)) {
+        if (! is_object($response) || empty($response->country) || empty($response->city)) {
             return null;
         }
 
@@ -41,9 +41,9 @@ class IpLookup
 
     protected function extremeiplookup($location, string $ip, string $apiKey): ?stdClass
     {
-        $response = $this->getResponse('https://extreme-ip-lookup.com/json/' . $ip);
+        $response = $this->getResponse('https://extreme-ip-lookup.com/json/'.$ip);
 
-        if (!is_object($response) || empty($response->country) || empty($response->city)) {
+        if (! is_object($response) || empty($response->country) || empty($response->city)) {
             return null;
         }
 
@@ -57,9 +57,9 @@ class IpLookup
 
     protected function ipstack($location, string $ip, string $apiKey): ?stdClass
     {
-        $response = $this->getResponse('https://api.ipstack.com/' . $ip . '?access_key=' . $apiKey);
+        $response = $this->getResponse('https://api.ipstack.com/'.$ip.'?access_key='.$apiKey);
 
-        if (!is_object($response) || empty($response->country_name) || empty($response->region_name)) {
+        if (! is_object($response) || empty($response->country_name) || empty($response->region_name)) {
             return null;
         }
 
@@ -73,7 +73,7 @@ class IpLookup
 
     protected function ipdata($location, string $ip, string $apiKey): ?stdClass
     {
-        $response = $this->getResponse('https://api.ipdata.co/' . $ip . '?api-key=' . $apiKey);
+        $response = $this->getResponse('https://api.ipdata.co/'.$ip.'?api-key='.$apiKey);
 
         if (! is_object($response) || empty($response->country_name) || empty($response->region_name)) {
             return null;
@@ -89,7 +89,7 @@ class IpLookup
 
     protected function ipinfo($location, string $ip, string $apiKey): ?stdClass
     {
-        $response = $this->getResponse('https://ipinfo.io/' . $ip . '/geo?token=' . $apiKey);
+        $response = $this->getResponse('https://ipinfo.io/'.$ip.'/geo?token='.$apiKey);
 
         if (! is_object($response) || empty($response->country) || empty($response->city)) {
             return null;
@@ -104,7 +104,7 @@ class IpLookup
 
     public function ipregistry($location, string $ip, string $apiKey): ?stdClass
     {
-        $url = 'https://api.ipregistry.co/' . $ip . '?key=' . $apiKey;
+        $url = 'https://api.ipregistry.co/'.$ip.'?key='.$apiKey;
 
         $response = $this->getResponse($url);
 
@@ -123,7 +123,7 @@ class IpLookup
         $location->is_eu = $response->location->in_eu;
 
         if (! empty($response->location->language->code)) {
-            $location->language_code = $response->location->language->code . '-' . $response->location->country->code;
+            $location->language_code = $response->location->language->code.'-'.$response->location->country->code;
         }
 
         return $location;

@@ -15,5 +15,4 @@ class Session extends BaseWire
 
         $this->blockIfNeeded();
     }
-
 }

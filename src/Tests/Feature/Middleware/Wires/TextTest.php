@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 
 class TextTest extends BaseWireTester
 {
-    protected string $tripwire ='text';
+    protected string $tripwire = 'text';
 
     protected $tripwireClass = Text::class;
 
@@ -16,6 +16,6 @@ class TextTest extends BaseWireTester
     ];
 
     protected array $violations = [
-       '\x00',
+        '\x00',
     ];
 }

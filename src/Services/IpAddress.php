@@ -2,13 +2,13 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use Illuminate\Http\Request ;
+use Illuminate\Http\Request;
 
 class IpAddress
 {
     public static function get(?Request $request): string
     {
-        if (!$request) {
+        if (! $request) {
             return request()->ip();
         }
 

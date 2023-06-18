@@ -37,7 +37,7 @@ abstract class LoggableEvent implements LoggableEventInterface
             return $violation;
         }
 
-        if (!empty($this->triggerEventData->violations)) {
+        if (! empty($this->triggerEventData->violations)) {
             return implode(',', $this->triggerEventData->violations);
         }
 

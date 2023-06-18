@@ -4,7 +4,6 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\RfiFailedEvent;
-use Jenssegers\Agent\Agent;
 
 class Rfi extends BaseWire
 {
@@ -19,26 +18,25 @@ class Rfi extends BaseWire
 
     public function prepareInput($value): string
     {
-        if (!isset($this->config->guards['allow'])) {
+        if (! isset($this->config->guards['allow'])) {
             return $value;
         }
         $exceptions = $this->config->guards['allow'];
         $domain = $this->request->getHost();
 
-        $exceptions[] = 'http://' . $domain;
-        $exceptions[] = 'https://' . $domain;
+        $exceptions[] = 'http://'.$domain;
+        $exceptions[] = 'https://'.$domain;
         $exceptions[] = 'http://&';
         $exceptions[] = 'https://&';
 
         return str_replace($exceptions, '', $value);
     }
 
-
     protected function matchAdditional($value): ?string
     {
         $contents = @file_get_contents($value);
 
-        if (!empty($contents)) {
+        if (! empty($contents)) {
             if ($match = strstr($contents, '<?php')) {
                 return $match;
             }

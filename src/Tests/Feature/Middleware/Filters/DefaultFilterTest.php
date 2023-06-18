@@ -2,20 +2,20 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
-use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
 class DefaultFilterTest extends TestCase
 {
-    private string $tripwire ='text';
+    private string $tripwire = 'text';
+
     const HTTP_TRIPWIRE_CODE = 409;
 
-    CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+    const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
     /**
      * @test
+     *
      * @group tripwire-filter
      */
     public function tigger_Default_disabled_Continue()
@@ -23,12 +23,13 @@ class DefaultFilterTest extends TestCase
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
 
-        config(["tripwire.enabled" => false]);
+        config(['tripwire.enabled' => false]);
         $this->triggerAssertOke();
     }
 
     /**
      * @test
+     *
      * @group tripwire-filter
      */
     public function tigger_Default_ignore_ip_Continue()
@@ -37,12 +38,13 @@ class DefaultFilterTest extends TestCase
         $this->triggerAssertBlock();
 
         $currentIp = request()->ip();
-        config(["tripwire.whitelist.ips" => [$currentIp]]);
+        config(['tripwire.whitelist.ips' => [$currentIp]]);
         $this->triggerAssertOke();
     }
 
     /**
      * @test
+     *
      * @group tripwire-filter
      */
     public function tigger_Default_ignore_input_Continue()
@@ -50,12 +52,13 @@ class DefaultFilterTest extends TestCase
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
 
-        config(["tripwire.ignore.inputs" => ['foo']]);
+        config(['tripwire.ignore.inputs' => ['foo']]);
         $this->triggerAssertOke();
     }
 
     /**
      * @test
+     *
      * @group tripwire-filter
      */
     public function tigger_Default_ignore_url_only_Continue()
@@ -63,12 +66,13 @@ class DefaultFilterTest extends TestCase
         $this->setDefaultConfig();
         $this->triggerAssertBlock();
 
-        config(["tripwire.urls.only" => ['foo']]);
+        config(['tripwire.urls.only' => ['foo']]);
         $this->triggerAssertOke();
     }
 
     /**
      * @test
+     *
      * @group tripwire-filter
      */
     public function tigger_Default_ignore_url_except_Continue()
@@ -77,7 +81,7 @@ class DefaultFilterTest extends TestCase
         $this->triggerAssertBlock();
 
         $url = request()->url();
-        config(["tripwire.urls.except" => [$url]]);
+        config(['tripwire.urls.except' => [$url]]);
         $this->triggerAssertOke();
     }
 
@@ -93,7 +97,6 @@ class DefaultFilterTest extends TestCase
         $this->assertEquals('next', $result);
     }
 
-
     private function triggerTripwire()
     {
         $request = $this->app->request; // default is as HTML
@@ -102,9 +105,9 @@ class DefaultFilterTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function setDefaultConfig(array $data= [])
+    private function setDefaultConfig(array $data = [])
     {
-        config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);

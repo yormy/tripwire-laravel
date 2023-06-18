@@ -5,16 +5,17 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class DatabaseTablesConfig
 {
     public string $tripwireLogs;
+
     public string $tripwireBlocks;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         string $tripwireLogs,
         string $tripwireBlocks,
-        ): self
-    {
+    ): self {
         $object = new DatabaseTablesConfig();
 
         $object->tripwireLogs = $tripwireLogs;
@@ -25,7 +26,7 @@ class DatabaseTablesConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 

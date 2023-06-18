@@ -8,7 +8,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Yormy\TripwireLaravel\Observers\Events\Failed\RefererFailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedBrowserEvent;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedIpEvent;
@@ -31,8 +30,8 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         private readonly int $thresholdScore,
         private readonly int $penaltySeconds,
         private readonly bool $trainingMode = false
-    )
-    { }
+    ) {
+    }
 
     public function handle()
     {
@@ -58,7 +57,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
                 ignore: $this->trainingMode
             );
 
-            if (!$this->trainingMode) {
+            if (! $this->trainingMode) {
                 event(new TripwireBlockedEvent(
                     ipAddress: $sum->ipAddress,
                     userId: $sum->userId,
@@ -72,14 +71,14 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
 
             if ($sum->violationsByUser) {
                 $sum->violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
-                if (!$this->trainingMode) {
+                if (! $this->trainingMode) {
                     event(new TripwireBlockedUserEvent($sum->userId, $sum->userType));
                 }
             }
 
             if ($sum->violationsByBrowser) {
                 $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
-                if (!$this->trainingMode) {
+                if (! $this->trainingMode) {
                     event(new TripwireBlockedBrowserEvent($sum->browserFingerprint));
                 }
             }
@@ -90,8 +89,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         return null;
     }
 
-
-    private function getSumViolationScore(int $punishableTimeframe, array $violations = []):\StdClass
+    private function getSumViolationScore(int $punishableTimeframe, array $violations = []): \StdClass
     {
         $logRepository = new LogRepository();
 
@@ -107,7 +105,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         }
 
         $requestSourceClass = config('tripwire.services.request_source');
-        $browserFingerprint =$requestSourceClass::getBrowserFingerprint();
+        $browserFingerprint = $requestSourceClass::getBrowserFingerprint();
         $scoreByBrowser = 0;
         $violationsByBrowser = null;
         if ($browserFingerprint) {

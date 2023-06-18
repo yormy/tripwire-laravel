@@ -9,20 +9,20 @@ trait TripwireTestTrait
     public function accepting()
     {
         $providerArray = [];
-        foreach ($this->accepting as $accept)
-        {
+        foreach ($this->accepting as $accept) {
             $providerArray[$accept] = [$accept];
         }
+
         return $providerArray;
     }
 
     public function violations()
     {
         $providerArray = [];
-        foreach ($this->violations as $violation)
-        {
+        foreach ($this->violations as $violation) {
             $providerArray[$violation] = [$violation];
         }
+
         return $providerArray;
     }
 
@@ -43,7 +43,6 @@ trait TripwireTestTrait
 
         return $wire->handle($request, $this->getNextClosure());
     }
-
 
     protected function triggerJsonTripwire(string $input)
     {

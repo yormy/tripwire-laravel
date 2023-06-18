@@ -6,9 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BlockCollection extends ResourceCollection
 {
-
     public $collects = BlockResource::class;
-
 
     /**
      * Transform the resource collection into an array.

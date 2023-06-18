@@ -4,7 +4,6 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\BotFailedEvent;
-use Jenssegers\Agent\Agent;
 use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Bot extends BaseWire
@@ -20,7 +19,7 @@ class Bot extends BaseWire
 
     public function isAttack($patterns): bool
     {
-        if ( !RequestSource::isRobot()) {
+        if (! RequestSource::isRobot()) {
             return false;
         }
 

@@ -17,7 +17,8 @@ class JsonResponseConfig
     public ?string $messageKey;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         ?int $code = 0,
@@ -26,8 +27,7 @@ class JsonResponseConfig
         ?string $exception = null,
         ?string $redirectUrl = null,
         ?string $messageKey = null
-    ): self
-    {
+    ): self {
         $object = new JsonResponseConfig();
 
         if (isset($code)) {
@@ -49,11 +49,11 @@ class JsonResponseConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new JsonResponseConfig();
+        $object = new JsonResponseConfig();
 
         if (isset($data['code'])) {
             $object->code = $data['code'];
@@ -79,7 +79,7 @@ class JsonResponseConfig
             $object->messageKey = $data['message_key'];
         }
 
-       return $object;
+        return $object;
     }
 
     public function code(int $code): self

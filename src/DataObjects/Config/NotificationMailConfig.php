@@ -11,21 +11,23 @@ class NotificationMailConfig
     public string $from;
 
     public string $to;
+
     public string $templateHtml;
+
     public ?string $templatePlain;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         bool $enabled,
         string $name = '',
-        string $from  = '',
-        string $to  = '',
-        string $templateHtml  = '',
-        ?string $templatePlain  = '',
-    ): self
-    {
+        string $from = '',
+        string $to = '',
+        string $templateHtml = '',
+        ?string $templatePlain = '',
+    ): self {
         $object = new NotificationMailConfig();
 
         $object->enabled = $enabled;
@@ -40,7 +42,7 @@ class NotificationMailConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -93,7 +95,7 @@ class NotificationMailConfig
 
     public function toArray(): array
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return [];
         }
 

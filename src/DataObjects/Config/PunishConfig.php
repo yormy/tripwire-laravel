@@ -11,14 +11,14 @@ class PunishConfig
     public int $penaltySeconds;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         int $score,
         int $withinMinutes,
         int $penaltySeconds
-    ): self
-    {
+    ): self {
         $object = new PunishConfig();
 
         $object->score = $score;
@@ -30,17 +30,17 @@ class PunishConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new PunishConfig();
+        $object = new PunishConfig();
 
         $object->score = $data['score'];
         $object->withinMinutes = $data['within_minutes'];
         $object->penaltySeconds = $data['penalty_seconds'];
 
-       return $object;
+        return $object;
     }
 
     public function toArray(): array

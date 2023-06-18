@@ -4,19 +4,20 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
-use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
 class WireConfig
 {
     private ConfigBuilder $defaultConfig;
+
     private WireDetailsConfig $wireConfig;
 
     public function __construct(string $wire)
     {
         $this->defaultConfig = ConfigBuilder::fromArray(config('tripwire'));
-        $this->wireConfig = WireDetailsConfig::makeFromArray(config('tripwire_wires.' . $wire));
+        $this->wireConfig = WireDetailsConfig::makeFromArray(config('tripwire_wires.'.$wire));
     }
 
     public function attackScore(): int
@@ -30,7 +31,7 @@ class WireConfig
 
     public function isEnabled(): bool
     {
-        if (!$this->defaultConfig->enabled) {
+        if (! $this->defaultConfig->enabled) {
             return false;
         }
 
@@ -54,7 +55,7 @@ class WireConfig
 
     public function isDisabled(): bool
     {
-        return !$this->isEnabled();
+        return ! $this->isEnabled();
     }
 
     public function methods(): array
@@ -78,7 +79,7 @@ class WireConfig
     public function punish(): PunishConfig
     {
         if (isset($this->wireConfig->punish)) {
-            return  $this->wireConfig->punish;
+            return $this->wireConfig->punish;
         }
 
         return $this->defaultConfig->punish;
@@ -87,7 +88,7 @@ class WireConfig
     public function inputs(): array
     {
         if (isset($this->wireConfig->inputs)) {
-            return  $this->wireConfig->inputs->toArray();
+            return $this->wireConfig->inputs->toArray();
         }
 
         return [];
@@ -96,7 +97,7 @@ class WireConfig
     public function tripwires(): array
     {
         if (isset($this->wireConfig->tripwires)) {
-            return  $this->wireConfig->tripwires;
+            return $this->wireConfig->tripwires;
         }
 
         return [];
@@ -105,7 +106,7 @@ class WireConfig
     public function guards(): array
     {
         if (isset($this->wireConfig->guards)) {
-            return  $this->wireConfig->guards;
+            return $this->wireConfig->guards;
         }
 
         return [];
@@ -113,7 +114,7 @@ class WireConfig
 
     public function skipMethod(Request $request): bool
     {
-        if ( !$this->methods()) {
+        if (! $this->methods()) {
             return true;
         }
 
@@ -121,7 +122,7 @@ class WireConfig
             return false;
         }
 
-        return !in_array(strtolower($request->method()), $this->methods());
+        return ! in_array(strtolower($request->method()), $this->methods());
     }
 
     public function isWhitelist(Request $request): bool
@@ -137,11 +138,11 @@ class WireConfig
 
         $isWhitelisted = false;
         foreach ($whitelistedIps as $ip) {
-            if (IpUtils::checkIp($ipAddress, $ip))
-            {
+            if (IpUtils::checkIp($ipAddress, $ip)) {
                 $isWhitelisted = true;
             }
         }
+
         return $isWhitelisted;
 
     }
@@ -161,11 +162,10 @@ class WireConfig
             return true;
         }
 
-        if ( !empty($this->inputs['only']) && !in_array($key, $this->inputs['only'])) {
+        if (! empty($this->inputs['only']) && ! in_array($key, $this->inputs['only'])) {
             return true;
         }
 
         return false;
     }
-
 }

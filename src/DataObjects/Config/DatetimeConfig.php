@@ -9,13 +9,13 @@ class DatetimeConfig
     public int $offset;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         string $format,
         int $offset = 0,
-    ): self
-    {
+    ): self {
         $object = new DatetimeConfig();
 
         $object->format = $format;
@@ -26,7 +26,7 @@ class DatetimeConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -42,7 +42,7 @@ class DatetimeConfig
     {
         return [
             'format' => $this->format,
-            'offset' => $this->offset
+            'offset' => $this->offset,
         ];
     }
 }

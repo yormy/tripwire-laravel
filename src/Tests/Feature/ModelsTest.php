@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
-use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
 use Yormy\TripwireLaravel\Tests\TestCase;
@@ -16,6 +15,7 @@ class ModelsTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-models
      */
     public function Models_missing_log()
@@ -31,6 +31,7 @@ class ModelsTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-models
      */
     public function Model_missing_Added_block()
@@ -57,9 +58,9 @@ class ModelsTest extends TestCase
         }
     }
 
-    private function setDefaultConfig(array $data= [])
+    private function setDefaultConfig(array $data = [])
     {
-        config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);
-        config(["tripwire.punish.score" => 21]);
+        config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(['tripwire.punish.score' => 21]);
     }
 }

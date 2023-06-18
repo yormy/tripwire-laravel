@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
@@ -33,11 +32,11 @@ class HoneypotsWire
     {
         $wireConfig = new WireConfig('honeypots');
 
-        $honeypotsMustBeFalseOrMissing= $wireConfig->tripwires();
+        $honeypotsMustBeFalseOrMissing = $wireConfig->tripwires();
 
         $violations = Honeypot::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
 
-        if (!empty($violations)) {
+        if (! empty($violations)) {
             $triggerEventData = new TriggerEventData(
                 attackScore: $wireConfig->attackScore(),
                 violations: $violations,
@@ -52,11 +51,13 @@ class HoneypotsWire
             if ($request->wantsJson()) {
                 $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
                 $respond = new ResponseDeterminer($config, $request->url());
+
                 return $respond->respondWithJson();
             }
 
             $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
             $respond = new ResponseDeterminer($config, $request->url());
+
             return $respond->respondWithHtml();
         }
 
@@ -64,7 +65,6 @@ class HoneypotsWire
 
         return $next($request);
     }
-
 
     protected function attackFound(Request $request, TriggerEventData $triggerEventData, $config): void
     {

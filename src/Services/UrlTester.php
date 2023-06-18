@@ -2,11 +2,10 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use Illuminate\Http\Request ;
+use Illuminate\Http\Request;
 
 class UrlTester
 {
-
     private static function isInclude(Request $request, array $urlsConfig): bool
     {
         $onlyUrls = $urlsConfig['only'] ?? false;
@@ -50,12 +49,12 @@ class UrlTester
     public static function skipUrl(Request $request, ?array $urlsConfig): bool
     {
 
-        if ( !$urlsConfig) {
+        if (! $urlsConfig) {
             return false;
         }
 
         $included = self::isInclude($request, $urlsConfig);
-        if (!$included) {
+        if (! $included) {
             return true;
         }
 

@@ -11,14 +11,14 @@ class ResetConfig
     public int $linkExpireMintues;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         bool $enabled,
         bool $softDelete = false,
         int $linkExpireMintues = 60 * 24 * 3,
-    ): self
-    {
+    ): self {
         $object = new ResetConfig();
 
         $object->enabled = $enabled;
@@ -30,17 +30,17 @@ class ResetConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new ResetConfig();
+        $object = new ResetConfig();
 
         $object->enabled = $data['enabled'];
         $object->softDelete = $data['soft_delete'];
         $object->linkExpireMintues = $data['link_expiry_minutes'];
 
-       return $object;
+        return $object;
     }
 
     public function softDelete(bool $softDelete): self

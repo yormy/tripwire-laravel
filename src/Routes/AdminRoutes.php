@@ -12,7 +12,7 @@ class AdminRoutes
     public static function register()
     {
         Route::macro('TripwireAdminRoutes', function (string $prefix = '') {
-            Route::prefix($prefix)->name($prefix ? $prefix . "." : '')->group(function () {
+            Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
                 Route::prefix('')
                     ->name('tripwire.')

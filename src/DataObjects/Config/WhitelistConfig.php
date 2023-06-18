@@ -7,7 +7,8 @@ class WhitelistConfig
     public array $ips;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(array $ips): self
     {
@@ -20,22 +21,21 @@ class WhitelistConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new WhitelistConfig();
+        $object = new WhitelistConfig();
 
         $object->ips = $data['ips'];
 
-       return $object;
+        return $object;
     }
-
 
     public function toArray(): array
     {
         return [
-            'ips' => $this->ips
+            'ips' => $this->ips,
         ];
     }
 }

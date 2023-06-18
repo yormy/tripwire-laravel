@@ -1,4 +1,5 @@
 <?php
+
 namespace Yormy\TripwireLaravel\Models\Traits;
 
 use Carbon\Carbon;

@@ -18,9 +18,8 @@ class Text extends BaseWire
 
     public function matchResults($pattern, string $input, &$violations)
     {
-        if (str_contains($input, $pattern))
-        {
-            $violations [] = $pattern;
+        if (str_contains($input, $pattern)) {
+            $violations[] = $pattern;
         }
     }
 }

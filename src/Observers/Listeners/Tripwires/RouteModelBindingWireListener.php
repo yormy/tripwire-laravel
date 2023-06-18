@@ -7,7 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
 
 class RouteModelBindingWireListener extends WireBaseListener
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('model404');
     }
 
@@ -16,13 +17,13 @@ class RouteModelBindingWireListener extends WireBaseListener
         $violations = [];
         if (in_array($event->class, $this->config->tripwires)) {
             $violations[] = $event->value;
-        };
+        }
 
-        if (!empty($violations))  {
+        if (! empty($violations)) {
             $this->attackFound($violations);
         }
 
-        return !empty($violations);
+        return ! empty($violations);
     }
 
     protected function attackFound(TriggerEventData $triggerEventData): void

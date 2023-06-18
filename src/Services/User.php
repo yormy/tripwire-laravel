@@ -2,8 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use Illuminate\Http\Request ;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class User
 {
@@ -14,13 +13,12 @@ class User
 
     public static function getType(Request $request): ?string
     {
-        if (!self::get($request)) {
+        if (! self::get($request)) {
             return null;
         }
 
         return get_class(self::get($request));
     }
-
 
     private static function get(Request $request)
     {

@@ -6,9 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LogCollection extends ResourceCollection
 {
-
     public $collects = LogResource::class;
-
 
     /**
      * Transform the resource collection into an array.

@@ -7,7 +7,8 @@ class WireGroupConfig
     public array $wires;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(array $wires): self
     {
@@ -20,7 +21,7 @@ class WireGroupConfig
 
     public static function makeFromArray(?array $data): ?array
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -32,9 +33,8 @@ class WireGroupConfig
 
         }
 
-       return $wireGroups;
+        return $wireGroups;
     }
-
 
     public function toArray(): array
     {

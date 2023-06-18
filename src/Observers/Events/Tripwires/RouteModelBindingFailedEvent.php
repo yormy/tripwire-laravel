@@ -3,8 +3,8 @@
 namespace Yormy\TripwireLaravel\Observers\Events\Tripwires;
 
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
+use Illuminate\Queue\SerializesModels;
 
 class RouteModelBindingFailedEvent
 {
@@ -16,6 +16,6 @@ class RouteModelBindingFailedEvent
         public $class,
         public $value,
         public $field = null,
-    ) {}
-
+    ) {
+    }
 }

@@ -14,6 +14,7 @@ trait RequestTrait
         $files = []
     ) {
         $request = new \Illuminate\Http\Request;
+
         return $request->createFromBase(
             \Symfony\Component\HttpFoundation\Request::create(
                 $uri,

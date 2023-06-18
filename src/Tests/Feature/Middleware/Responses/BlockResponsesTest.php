@@ -2,9 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
-use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -14,16 +12,17 @@ class BlockResponsesTest extends TestCase
     use BlockTestTrait;
     use TripwireTestTrait;
 
-    private string $tripwire ='text';
+    private string $tripwire = 'text';
 
     protected $tripwireClass = Text::class;
 
     const BLOCK_CODE = 401;
 
-    CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+    const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_code()
@@ -39,14 +38,15 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_redirecturl()
     {
-        $redirectUrl = "https://www.cccc.com";
+        $redirectUrl = 'https://www.cccc.com';
         $this->setConfig();
         $settings = ['redirect_url' => $redirectUrl];
-        config(["tripwire.block_response.html" => $settings]);
+        config(['tripwire.block_response.html' => $settings]);
 
         $this->triggerBlock();
 
@@ -58,6 +58,7 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_view()
@@ -66,7 +67,7 @@ class BlockResponsesTest extends TestCase
 
         $this->setConfig();
         $settings = ['view' => $viewName];
-        config(["tripwire.block_response.html" => $settings]);
+        config(['tripwire.block_response.html' => $settings]);
 
         $this->triggerBlock();
 
@@ -77,15 +78,16 @@ class BlockResponsesTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_Request_Should_block_with_message()
     {
-        $messageKey = "message.key";
+        $messageKey = 'message.key';
 
         $this->setConfig();
         $settings = ['message_key' => $messageKey];
-        config(["tripwire.block_response.html" => $settings]);
+        config(['tripwire.block_response.html' => $settings]);
 
         $this->triggerBlock();
 
@@ -103,7 +105,7 @@ class BlockResponsesTest extends TestCase
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
 
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);
-        config(["tripwire.punish.score" => 21]);
+        config(['tripwire.punish.score' => 21]);
 
         $this->setBlockConfig();
     }
@@ -116,5 +118,4 @@ class BlockResponsesTest extends TestCase
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
-
 }

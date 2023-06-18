@@ -10,7 +10,7 @@ trait BlockTestTrait
     protected function setBlockConfig()
     {
         $settings = ['code' => self::BLOCK_CODE];
-        config(["tripwire.block_response.html" => $settings]);
+        config(['tripwire.block_response.html' => $settings]);
     }
 
     protected function doRequest()

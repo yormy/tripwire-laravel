@@ -3,8 +3,8 @@
 namespace Yormy\TripwireLaravel\Observers\Events\Tripwires;
 
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
+use Illuminate\Queue\SerializesModels;
 
 class PageNotFoundEvent
 {
@@ -13,6 +13,6 @@ class PageNotFoundEvent
 
     public function __construct(
         public Request $request,
-    ) {}
-
+    ) {
+    }
 }

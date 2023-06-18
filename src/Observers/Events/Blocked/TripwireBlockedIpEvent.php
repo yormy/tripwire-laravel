@@ -12,6 +12,6 @@ class TripwireBlockedIpEvent
 
     public function __construct(
         protected readonly string $ipAddress,
-    ) {}
-
+    ) {
+    }
 }

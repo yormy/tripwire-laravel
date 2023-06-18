@@ -5,19 +5,20 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class InputIgnoreConfig
 {
     public array $inputs;
+
     public array $cookies;
 
     public array $header;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         array $inputs = [],
         array $cookies = [],
         array $header = []
-    ): self
-    {
+    ): self {
         $object = new InputIgnoreConfig();
 
         $object->inputs = $inputs;
@@ -29,11 +30,11 @@ class InputIgnoreConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new InputIgnoreConfig();
+        $object = new InputIgnoreConfig();
 
         if (isset($data['inputs'])) {
             $object->inputs = $data['inputs'];
@@ -47,7 +48,7 @@ class InputIgnoreConfig
             $object->header = $data['header'];
         }
 
-       return $object;
+        return $object;
     }
 
     public function inputs(array $inputs): self

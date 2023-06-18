@@ -15,11 +15,10 @@ class ResponseDeterminer
     public int $code;
 
     public function __construct(
-        private readonly JsonResponseConfig | HtmlResponseConfig $config,
+        private readonly JsonResponseConfig|HtmlResponseConfig $config,
         private string $currentUrl = ''
-    )
-    {
-        if (!isset($this->config->code) || $this->config->code === 0 ) {
+    ) {
+        if (! isset($this->config->code) || $this->config->code === 0) {
             $this->code = 401;
         } else {
             $this->code = $this->config->code;
@@ -114,6 +113,7 @@ class ResponseDeterminer
     {
         if (isset($this->config->messageKey)) {
             $message = __($this->config->messageKey);
+
             return Response::make($message, $this->code);
         }
 

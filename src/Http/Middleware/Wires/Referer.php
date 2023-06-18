@@ -4,7 +4,6 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\RefererFailedEvent;
-use Jenssegers\Agent\Agent;
 use Yormy\TripwireLaravel\Services\RequestSource;
 
 class Referer extends BaseWire

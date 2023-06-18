@@ -3,7 +3,6 @@
 namespace Yormy\TripwireLaravel\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 use Yormy\TripwireLaravel\Routes\AdminRoutes;
 use Yormy\TripwireLaravel\Routes\GuestRoutes;
 

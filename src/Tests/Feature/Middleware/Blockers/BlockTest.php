@@ -18,12 +18,13 @@ class BlockTest extends TestCase
 
     const BLOCK_CODE = 401;
 
-    protected string $tripwire ='text';
+    protected string $tripwire = 'text';
 
     protected $tripwireClass = Text::class;
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Unblocked_Single_trigger_Block_not_added()
@@ -39,6 +40,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Unblocked_Many_triggers_Block_added()
@@ -54,6 +56,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Unblocked_Normal_request_Ok()
@@ -67,6 +70,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_Normal_request_Blocked()
@@ -81,6 +85,7 @@ class BlockTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-block
      */
     public function Blocked_training_Normal_request_Ok()
@@ -88,12 +93,12 @@ class BlockTest extends TestCase
         TripwireBlock::truncate();
         $this->setConfig();
 
-        config(["tripwire.training_mode" => true]);
+        config(['tripwire.training_mode' => true]);
         $this->triggerBlock();
         $result = $this->testBlockHandlerAll();
         $this->assertContinue($result);
 
-        config(["tripwire.training_mode" => false]);
+        config(['tripwire.training_mode' => false]);
         $this->triggerBlock();
         $result = $this->testBlockHandlerAll();
         $this->assertBlocked($result);
@@ -126,7 +131,6 @@ class BlockTest extends TestCase
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
 
-
     protected function setConfig()
     {
         $settings = ['code' => 409];
@@ -136,7 +140,7 @@ class BlockTest extends TestCase
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
 
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);
-        config(["tripwire.punish.score" => 21]);
+        config(['tripwire.punish.score' => 21]);
 
         $this->setBlockConfig();
     }

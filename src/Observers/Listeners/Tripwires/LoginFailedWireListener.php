@@ -3,12 +3,12 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailed;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailedEvent;
 
 class LoginFailedWireListener extends WireBaseListener
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('loginfailed');
     }
 

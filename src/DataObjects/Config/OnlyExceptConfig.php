@@ -11,13 +11,13 @@ abstract class OnlyExceptConfig
     public $model = MissingPageConfig::class;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         array $only = [],
         array $except = []
-    ): self
-    {
+    ): self {
         $model = static::MODEL;
         $object = new $model();
 
@@ -29,7 +29,7 @@ abstract class OnlyExceptConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 

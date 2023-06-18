@@ -1,14 +1,14 @@
 <?php
 
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
@@ -42,7 +42,7 @@ $swearConfig = WireDetailsConfig::make()
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
         BlockResponseConfig::make()
-            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
+            ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
             ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
     );
 
@@ -67,7 +67,7 @@ $sqliConfig = WireDetailsConfig::make()
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
         BlockResponseConfig::make()
-            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
+            ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
             ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
     );
 
@@ -126,14 +126,13 @@ $lfiConfig = WireDetailsConfig::make()
         '#\.\.[\s]*/[\s]*\.#iUu', // ..[ ]*/[ ]*.
         $forbiddenTokens,
         $commonFilesString,
-    ])
-    //->punish(PunishConfig::make(10, 60 * 24, 5,))
+    ]);
+//->punish(PunishConfig::make(10, 60 * 24, 5,))
 //    ->triggerResponse(
 //        BlockResponseConfig::make()
 //            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
 //            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
 //    );
-;
 
 /*
 |--------------------------------------------------------------------------
@@ -195,7 +194,7 @@ $evilTokens = Regex::forbidden([
     '\'%uff1cscript',
     '<scrscriptipt',
     '=expression\(',
-        'onerror=\"javascript:document',
+    'onerror=\"javascript:document',
     '<;BR SIZE',
     '<br size',
     '&lt;br size',
@@ -261,7 +260,7 @@ $xssConfig = WireDetailsConfig::make()
         '#(\\[\\\\xc0]\[\\\\xBC])#iUu',
 
         "#</*($orTags)[^>]*>?#i",
-        '#(onmouseover|onhover)[^>]*>?#i'
+        '#(onmouseover|onhover)[^>]*>?#i',
     ]);
 
 /*
@@ -370,7 +369,7 @@ $requestSizeConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REQUESTSIZE_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
-        'size' => 200    // max characters
+        'size' => 200,    // max characters
     ]);
 
 /*
@@ -385,7 +384,7 @@ $pageMissingConfig = WireDetailsConfig::make()
     ->tripwires([
         MissingPageConfig::make()->except([
             '/membedie',
-        ])
+        ]),
     ]);
 
 /*
@@ -400,7 +399,7 @@ $modelMissingConfig = WireDetailsConfig::make()
         MissingModelConfig::make()->only([
             Tripwirelog::class,
             //'member.class'
-        ])
+        ]),
     ]);
 
 /*
@@ -474,6 +473,6 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails('referer', $refererConfig)
     ->addWireDetails('honeypots', $honeypotConfig)
 
-
     ->toArray();
+
 return $res;

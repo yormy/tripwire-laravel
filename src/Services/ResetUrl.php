@@ -2,14 +2,14 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class ResetUrl
 {
     public static function get(int $expirationMinutes = null)
     {
-        if (!$expirationMinutes) {
+        if (! $expirationMinutes) {
             $expirationMinutes = config('tripwire.reset.link_expiry_minutes', 60);
         }
         $expiresAt = Carbon::now()->addMinutes($expirationMinutes);

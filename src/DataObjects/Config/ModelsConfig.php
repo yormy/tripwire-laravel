@@ -7,12 +7,12 @@ class ModelsConfig
     public string $log;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
-            string $log,
-    ): self
-    {
+        string $log,
+    ): self {
         $object = new ModelsConfig();
 
         $object->log = $log;
@@ -22,7 +22,7 @@ class ModelsConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 

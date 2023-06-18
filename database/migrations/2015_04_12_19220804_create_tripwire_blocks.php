@@ -1,15 +1,13 @@
 <?php
+
 // phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Yormy\TripwireLaravel\Models\TripwireBlock;
-use Yormy\TripwireLaravel\Models\TripwireLog;
 
 return new class extends Migration
 {
-
     public function up()
     {
         $tablename = config('tripwire.database_tables.tripwire_blocks');

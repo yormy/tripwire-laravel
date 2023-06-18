@@ -31,5 +31,4 @@ class BlockIfNeeded
             trainingMode: $trainingMode,
         );
     }
-
 }

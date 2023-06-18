@@ -9,11 +9,14 @@ class NotificationSlackConfig
     public string $from;
 
     public string $to;
+
     public string $emoji;
+
     public ?string $channel;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         bool $enabled,
@@ -21,8 +24,7 @@ class NotificationSlackConfig
         string $to = '',
         string $emoji = '',
         string $channel = '',
-    ): self
-    {
+    ): self {
         $object = new NotificationSlackConfig();
 
         $object->enabled = $enabled;
@@ -36,7 +38,7 @@ class NotificationSlackConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -81,11 +83,11 @@ class NotificationSlackConfig
 
     public function toArray(): array
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return [];
         }
 
-        if (!$this->channel) {
+        if (! $this->channel) {
             throw new \Exception('Slack Channel missing');
         }
 

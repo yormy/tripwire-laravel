@@ -5,7 +5,9 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class ServicesConfig
 {
     public string $requestSource;
+
     public string $user;
+
     public string $ipAddress;
 
     private function __construct()
@@ -17,8 +19,7 @@ class ServicesConfig
         string $requestSource,
         string $user,
         string $ipAddress,
-    ): self
-    {
+    ): self {
         $object = new ServicesConfig();
 
         $object->requestSource = $requestSource;
@@ -30,19 +31,18 @@ class ServicesConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new ServicesConfig();
+        $object = new ServicesConfig();
 
         $object->requestSource = $data['request_source'];
         $object->user = $data['user'];
         $object->ipAddress = $data['ip_address'];
 
-       return $object;
+        return $object;
     }
-
 
     public function toArray(): array
     {

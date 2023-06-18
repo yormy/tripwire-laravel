@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
@@ -21,8 +20,8 @@ class AddLogJob implements ShouldQueue, ShouldBeEncrypted
     public function __construct(
         private $event,
         private array $meta
-    )
-    { }
+    ) {
+    }
 
     public function handle()
     {

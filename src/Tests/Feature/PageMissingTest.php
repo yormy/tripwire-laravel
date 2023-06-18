@@ -4,10 +4,10 @@ namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
-use Yormy\TripwireLaravel\Tests\Traits\RequestTrait;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
 use Yormy\TripwireLaravel\Tests\TestCase;
+use Yormy\TripwireLaravel\Tests\Traits\RequestTrait;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
 class PageMissingTest extends TestCase
@@ -19,6 +19,7 @@ class PageMissingTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-models
      */
     public function Page_missing_Added_log()
@@ -38,6 +39,7 @@ class PageMissingTest extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-models
      */
     public function Page_missing_Added_block()
@@ -57,7 +59,7 @@ class PageMissingTest extends TestCase
 
     private function triggerPageNotFound()
     {
-        $request = $this->createRequest('post','', 'path/to/location');
+        $request = $this->createRequest('post', '', 'path/to/location');
         $request->url();
 
         $exception = (new NotFoundHttpException($request));
@@ -65,9 +67,9 @@ class PageMissingTest extends TestCase
 
     }
 
-    private function setDefaultConfig(array $data= [])
+    private function setDefaultConfig(array $data = [])
     {
-        config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);
-        config(["tripwire.punish.score" => 21]);
+        config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(['tripwire.punish.score' => 21]);
     }
 }

@@ -12,14 +12,16 @@ class SqliExtensiveTest extends BaseExtensive
 
     protected array $accepting = [
         'saaaaaaa',
-      //  'ho7'
+        //  'ho7'
     ];
 
     protected array $violations;
 
     /**
      * @test
+     *
      * @group tripwire-log
+     *
      * @dataProvider accepting
      */
     public function should_accept(string $accept)
@@ -29,7 +31,9 @@ class SqliExtensiveTest extends BaseExtensive
 
     /**
      * @test
+     *
      * @group tripwire-log
+     *
      * @dataProvider violations
      */
     public function should_block(string $violation)

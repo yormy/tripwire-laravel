@@ -15,5 +15,4 @@ class Sqli extends BaseWire
 
         $this->blockIfNeeded();
     }
-
 }

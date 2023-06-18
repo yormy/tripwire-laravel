@@ -15,7 +15,8 @@ class HtmlResponseConfig
     public ?string $messageKey;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(
         ?int $code = 0,
@@ -23,8 +24,7 @@ class HtmlResponseConfig
         ?string $exception = null,
         ?string $redirectUrl = null,
         ?string $messageKey = null
-    ): self
-    {
+    ): self {
         $object = new HtmlResponseConfig();
 
         $object->code = $code;
@@ -38,7 +38,7 @@ class HtmlResponseConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
@@ -64,9 +64,8 @@ class HtmlResponseConfig
             $object->messageKey = $data['message_key'];
         }
 
-       return $object;
+        return $object;
     }
-
 
     public function code(int $code): self
     {
@@ -95,7 +94,6 @@ class HtmlResponseConfig
 
         return $this;
     }
-
 
     public function messageKey(string $messageKey): self
     {

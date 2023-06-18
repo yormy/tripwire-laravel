@@ -13,6 +13,6 @@ class TripwireBlockedUserEvent
     public function __construct(
         protected readonly int $userId,
         protected readonly string $userType,
-    ) {}
-
+    ) {
+    }
 }

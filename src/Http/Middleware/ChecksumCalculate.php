@@ -2,12 +2,9 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
-
-use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
-use Yormy\TripwireLaravel\Services\HashService;
 use Closure;
 use Illuminate\Http\Request;
-
+use Yormy\TripwireLaravel\Services\HashService;
 
 /**
  * Calculate the checksum before any request modifications
@@ -28,6 +25,6 @@ class ChecksumCalculate
 
         $request->request->add([config('tripwire.checksums.serverside_calculated') => HashService::create($requestCleaned)]);
 
-        return  $next($request);
+        return $next($request);
     }
 }

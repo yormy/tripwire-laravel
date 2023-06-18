@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
@@ -18,11 +19,11 @@ class TripwireBlock extends BaseModel
         'blocked_until',
         'blocked_repeater',
         'manually_blocked',
-        'persistent_block'
+        'persistent_block',
     ];
 
     protected $casts = [
-        'blocked_until' => 'datetime'
+        'blocked_until' => 'datetime',
     ];
 
     public function __construct(array $attributes = [])

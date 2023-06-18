@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
-use Yormy\TripwireLaravel\DataObjects\WireConfig;
-use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
@@ -25,7 +24,6 @@ abstract class BaseWire
 
         $this->config = new WireConfig($this->middleware);
     }
-
 
     public function handle(Request $request, Closure $next)
     {
@@ -51,15 +49,15 @@ abstract class BaseWire
         return $next($request);
     }
 
-    private function getConfig(Request $request, ?string $wire = null): JsonResponseConfig| HtmlResponseConfig
+    private function getConfig(Request $request, ?string $wire = null): JsonResponseConfig|HtmlResponseConfig
     {
         if ($request->wantsJson()) {
             $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
-            $configChecker = JsonResponseConfig::makeFromArray(config('tripwire_wires.' . $wire. '.trigger_response.json'));
+            $configChecker = JsonResponseConfig::makeFromArray(config('tripwire_wires.'.$wire.'.trigger_response.json'));
 
         } else {
             $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
-            $configChecker = HtmlResponseConfig::makeFromArray(config('tripwire_wires.' . $wire. '.trigger_response.html'));
+            $configChecker = HtmlResponseConfig::makeFromArray(config('tripwire_wires.'.$wire.'.trigger_response.html'));
         }
 
         if (isset($configChecker)) {
@@ -88,7 +86,7 @@ abstract class BaseWire
             }
         }
 
-        if (!empty($violations))  {
+        if (! empty($violations)) {
             $triggerEventData = new TriggerEventData(
                 attackScore: $this->getAttackScore(),
                 violations: $violations,
@@ -101,23 +99,20 @@ abstract class BaseWire
             $this->attackFound($triggerEventData);
         }
 
-        return !empty($violations);
+        return ! empty($violations);
     }
 
     private function removeItems(array $original, array $toRemove): array
     {
         $filtered = [];
         foreach ($original as $key => $value) {
-            if (!in_array($key, $toRemove)) {
+            if (! in_array($key, $toRemove)) {
                 $filtered[$key] = $value;
             }
         }
 
         return $filtered;
     }
-
-
-
 
     /**
      * convert the inputs of the request to a string that can be scanned by the wire
@@ -138,7 +133,7 @@ abstract class BaseWire
 
         $inputsLocalFilter = [];
         foreach ($inputsGlobalFilter as $key => $value) {
-            if (!$this->config->skipInput($key)) {
+            if (! $this->config->skipInput($key)) {
                 $inputsLocalFilter[$key] = $this->prepareInput($value);
             }
         }
@@ -162,7 +157,6 @@ abstract class BaseWire
         $scannableValues[] = $fullUrlWithoutDomain;
         $scannableValues[] = urldecode($fullUrlWithoutDomain);
 
-
         $stringed = '';
         $this->convertValuesToString($scannableValues, $stringed);
 
@@ -171,13 +165,12 @@ abstract class BaseWire
 
     private function convertValuesToString(array $data, &$string)
     {
-        foreach($data as $field => $value)
-        {
+        foreach ($data as $field => $value) {
             if (is_array($value)) {
                 $this->convertValuesToString($value, $string);
             } else {
                 if ($value) {
-                    $string .= '-' . $value;
+                    $string .= '-'.$value;
                 }
             }
         }
@@ -195,26 +188,27 @@ abstract class BaseWire
 
     protected function isGuardAttack(string $value, array $guards): bool
     {
-        if ( !$value) {
+        if (! $value) {
             return false;
         }
 
-        if ( empty($guards)) {
+        if (empty($guards)) {
             return false;
         }
 
         $attackFound = false;
 
-        if ( !empty($guards['allow']) && !in_array($value, $guards['allow'])) {
+        if (! empty($guards['allow']) && ! in_array($value, $guards['allow'])) {
             $attackFound = true;
         }
 
-        if (!empty($guards['block']) && in_array($value, $guards['block'])) {
+        if (! empty($guards['block']) && in_array($value, $guards['block'])) {
             $attackFound = true;
         }
 
         if ($attackFound) {
             $this->attackFound([$value]);
+
             return true;
         }
 

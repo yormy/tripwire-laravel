@@ -12,6 +12,6 @@ class TripwireBlockedBrowserEvent
 
     public function __construct(
         protected readonly string $browserFingerprint,
-    ) {}
-
+    ) {
+    }
 }

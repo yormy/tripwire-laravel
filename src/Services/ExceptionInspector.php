@@ -48,7 +48,6 @@ class ExceptionInspector
                 // Response is not needed, consumer will handle the 404, this is just an additional inspector
             }
 
-
         }
 
         if ($e instanceof NotFoundHttpException) {
@@ -75,21 +74,20 @@ class ExceptionInspector
         }
     }
 
-    private static function needsProcessing(string $value, MissingModelConfig| MissingPageConfig $config)
+    private static function needsProcessing(string $value, MissingModelConfig|MissingPageConfig $config)
     {
         if (self::isInclude($value, $config)) {
             return true;
         }
 
-        if (!self::isExcluded($value, $config)) {
+        if (! self::isExcluded($value, $config)) {
             return false;
         }
 
         return true;
     }
 
-
-    private static function isInclude(string $value, MissingModelConfig| MissingPageConfig $config): bool
+    private static function isInclude(string $value, MissingModelConfig|MissingPageConfig $config): bool
     {
         if (empty($config->only)) {
             return true;
@@ -104,7 +102,7 @@ class ExceptionInspector
         return false;
     }
 
-    private static function isExcluded(string $model, MissingModelConfig| MissingPageConfig $config): bool
+    private static function isExcluded(string $model, MissingModelConfig|MissingPageConfig $config): bool
     {
         // Do not exclude if nothing specified
         if (empty($config->except)) {
@@ -119,5 +117,4 @@ class ExceptionInspector
 
         return false;
     }
-
 }

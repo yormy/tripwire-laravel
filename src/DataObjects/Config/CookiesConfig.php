@@ -7,7 +7,8 @@ class CookiesConfig
     public string $browserFingerprint;
 
     private function __construct()
-    {}
+    {
+    }
 
     public static function make(string $browserFingerprint): self
     {
@@ -20,17 +21,16 @@ class CookiesConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-        if (!$data) {
+        if (! $data) {
             return null;
         }
 
-       $object = new CookiesConfig();
+        $object = new CookiesConfig();
 
         $object->browserFingerprint = $data['browser_fingerprint'];
 
-       return $object;
+        return $object;
     }
-
 
     public function toArray(): array
     {

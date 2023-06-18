@@ -2,8 +2,9 @@
 
 namespace Yormy\TripwireLaravel;
 
+use Illuminate\Auth\Events\Failed as LoginFailed;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Yormy\TripwireLaravel\Console\Commands\TestConfigCommand;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
@@ -18,16 +19,15 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
-use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\NotifyUsers;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
-use Illuminate\Routing\Router;
-use Illuminate\Auth\Events\Failed as LoginFailed;
 use Yormy\TripwireLaravel\ServiceProviders\RouteServiceProvider;
 
 class TripwireServiceProvider extends ServiceProvider
 {
     const CONFIG_FILE = __DIR__.'/../config/tripwire.php';
+
     const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
 
     /**
@@ -72,7 +72,7 @@ class TripwireServiceProvider extends ServiceProvider
             ], 'tripwire-config');
 
             $this->publishes([
-                __DIR__.'/../database/migrations/' => database_path('migrations')
+                __DIR__.'/../database/migrations/' => database_path('migrations'),
             ], 'tripwire-migrations');
 
             $this->publishes([
@@ -125,6 +125,6 @@ class TripwireServiceProvider extends ServiceProvider
 
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'tripwire');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tripwire');
     }
 }

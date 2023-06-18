@@ -6,7 +6,6 @@ use Jenssegers\Agent\Agent;
 
 class RequestSource
 {
-
     public static function getUserAgent(): ?string
     {
         return $_SERVER['HTTP_USER_AGENT'] ?? null;
@@ -59,6 +58,7 @@ class RequestSource
         if ($agent->isRobot()) {
             return $agent->robot();
         }
+
         return '';
     }
 
@@ -68,6 +68,7 @@ class RequestSource
         if (array_key_exists($browserFingerprintKey, $_COOKIE)) {
             return $_COOKIE[$browserFingerprintKey];
         }
+
         return '';
     }
 }

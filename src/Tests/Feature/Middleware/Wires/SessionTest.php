@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Session;
 
 class SessionTest extends BaseWireTester
 {
-    protected string $tripwire ='session';
+    protected string $tripwire = 'session';
 
     protected $tripwireClass = Session::class;
 
@@ -16,6 +16,6 @@ class SessionTest extends BaseWireTester
     ];
 
     protected array $violations = [
-        ":a:9:{",
+        ':a:9:{',
     ];
 }

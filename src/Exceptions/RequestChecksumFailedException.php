@@ -3,8 +3,6 @@
 namespace Yormy\TripwireLaravel\Exceptions;
 
 use Illuminate\Http\Request;
-use Mexion\BedrockCore\DataObjects\Security\Tarpit\TarpitTypeHackAttempt;
-use Mexion\BedrockCore\Observers\Events\TarpitTriggerEvent;
 
 class RequestChecksumFailedException extends BaseException
 {
@@ -17,14 +15,14 @@ class RequestChecksumFailedException extends BaseException
     {
         //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
         $status = 400;
-        $error = "Something is wrong";
-        $help = "Contact the sales team to verify";
+        $error = 'Something is wrong';
+        $help = 'Contact the sales team to verify';
 
-        return response(["error" => $error, "help" => $help], $status);
+        return response(['error' => $error, 'help' => $help], $status);
     }
 
     protected function renderHtml(Request $request)
     {
-        return "dddd";
+        return 'dddd';
     }
 }

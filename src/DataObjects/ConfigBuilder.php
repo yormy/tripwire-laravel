@@ -1,4 +1,5 @@
 <?php
+
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -21,7 +22,6 @@ use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 
-
 class ConfigBuilder implements Arrayable
 {
     public bool $enabled;
@@ -35,6 +35,7 @@ class ConfigBuilder implements Arrayable
     public DatetimeConfig $datetime;
 
     public ?NotificationMailConfig $notificationsMail;
+
     public ?NotificationSlackConfig $notificationsSlack;
 
     public ChecksumsConfig $checksums;
@@ -65,7 +66,6 @@ class ConfigBuilder implements Arrayable
 
     public BlockResponseConfig $triggerResponse;
 
-
     public function toArray(): array
     {
         $data = [];
@@ -75,7 +75,7 @@ class ConfigBuilder implements Arrayable
             $data['training_mode'] = $this->trainingMode;
         }
 
-        $data['debug_mode'] =$this->debugMode ?? false;
+        $data['debug_mode'] = $this->debugMode ?? false;
 
         $data['block_code'] = $this->blockCode;
 
@@ -148,8 +148,6 @@ class ConfigBuilder implements Arrayable
 
         return $data;
     }
-
-
 
     public static function fromArray(array $data)
     {
@@ -277,9 +275,9 @@ class ConfigBuilder implements Arrayable
         NotificationSlackConfig $notificationsSlack,
     ): self {
         $this->notificationsSlack = $notificationsSlack;
+
         return $this;
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -449,7 +447,7 @@ class ConfigBuilder implements Arrayable
     |
     */
     public function addWireGroup(
-        string          $groupName,
+        string $groupName,
         WireGroupConfig $wireGroupConfig,
     ): self {
         $this->wireGroups[$groupName] = $wireGroupConfig;

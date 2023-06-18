@@ -3,8 +3,8 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Throwable;
-use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
+use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 
 class NotifyUsers

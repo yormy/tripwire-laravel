@@ -12,7 +12,9 @@ class BaseWireTester extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-log
+     *
      * @dataProvider accepting
      */
     public function should_accept(string $accept)
@@ -30,7 +32,9 @@ class BaseWireTester extends TestCase
 
     /**
      * @test
+     *
      * @group tripwire-log
+     *
      * @dataProvider violations
      */
     public function should_block(string $violation)

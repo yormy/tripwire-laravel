@@ -1,13 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Repositories;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Yormy\TripwireLaravel\Observers\Interfaces\LoggableEventInterface;
 
 class LogRepository
@@ -16,7 +15,7 @@ class LogRepository
 
     public function __construct()
     {
-        $class= config('tripwire.models.log');
+        $class = config('tripwire.models.log');
         $this->model = new $class;
     }
 
@@ -29,7 +28,6 @@ class LogRepository
     {
         return $this->model::where('tripwire_block_id', $blockId)->latest()->get();
     }
-
 
     public function add(LoggableEventInterface $event, array $meta)
     {
@@ -50,8 +48,9 @@ class LogRepository
 
     private function delete(Builder $query, bool $softDelete = true)
     {
-        if (!$softDelete) {
+        if (! $softDelete) {
             $query->forceDelete();
+
             return;
         }
 
@@ -64,10 +63,9 @@ class LogRepository
         $this->delete($query, $softDelete);
     }
 
-
     public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
     {
-        if (!$browserFingerprint) {
+        if (! $browserFingerprint) {
             return;
         }
 
@@ -77,7 +75,7 @@ class LogRepository
 
     public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
     {
-        if (!$userId) {
+        if (! $userId) {
             return;
         }
         $query = $this->model::where('user_id', $userId)
@@ -107,12 +105,12 @@ class LogRepository
 
     private function queryScoreViolations(int $withinMinutes, array $violations = []): Builder
     {
-       $builder = $this->model->within($withinMinutes);
+        $builder = $this->model->within($withinMinutes);
 
-       if (!empty($violations)) {
-           $builder->types($violations);
-       }
+        if (! empty($violations)) {
+            $builder->types($violations);
+        }
 
-       return $builder;
+        return $builder;
     }
 }

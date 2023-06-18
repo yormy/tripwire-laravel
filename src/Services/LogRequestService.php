@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 
 class LogRequestService
@@ -18,7 +17,6 @@ class LogRequestService
 
         return $data;
     }
-
 
     private static function addRequest(Request $request, array $data): array
     {
@@ -49,7 +47,7 @@ class LogRequestService
         $userType = $userClass::getType($request);
 
         $data['user_id'] = $userId ?? null;
-        $data['user_type'] = $userType  ?? null;
+        $data['user_type'] = $userType ?? null;
 
         return $data;
     }
@@ -73,14 +71,14 @@ class LogRequestService
             $request->method(),
             $request->ips(),
             $request->header(),
-            $request->all()
+            $request->all(),
         ]));
     }
 
     private static function getRequestString(Request $request): string
     {
         $inputs = $request->all();
-        foreach(config('tripwire.log.remove', []) as $field) {
+        foreach (config('tripwire.log.remove', []) as $field) {
             unset($inputs[$field]);
         }
 
