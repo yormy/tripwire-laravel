@@ -3,20 +3,20 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\ConfigChecker;
+use Yormy\TripwireLaravel\DataObjects\CheckerConfig;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 abstract class WireBaseListener
 {
     use TripwireHelpers;
 
-    protected ConfigChecker $config;
+    protected CheckerConfig $config;
 
     protected Request $request;
 
     public function __construct(string $tripwire)
     {
-        $this->config = new ConfigChecker($tripwire);
+        $this->config = new CheckerConfig($tripwire);
     }
 
     public function handle($event): void

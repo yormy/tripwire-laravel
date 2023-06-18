@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
-class ConfigChecker
+class CheckerConfig
 {
     private ConfigBuilder $defaultConfig;
     private CheckerDetailsConfig $checkerConfig;
