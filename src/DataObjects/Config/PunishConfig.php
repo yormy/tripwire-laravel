@@ -6,7 +6,7 @@ class PunishConfig
 {
     public int $score;
 
-    public int $withinMinues;
+    public int $withinMinutes;
 
     public int $penaltySeconds;
 
@@ -15,14 +15,14 @@ class PunishConfig
 
     public static function make(
         int $score,
-        int $withinMinues,
+        int $withinMinutes,
         int $penaltySeconds
     ): self
     {
         $object = new PunishConfig();
 
         $object->score = $score;
-        $object->withinMinues = $withinMinues;
+        $object->withinMinutes = $withinMinutes;
         $object->penaltySeconds = $penaltySeconds;
 
         return $object;
@@ -37,7 +37,7 @@ class PunishConfig
        $object = new PunishConfig();
 
         $object->score = $data['score'];
-        $object->withinMinues = $data['within_minutes'];
+        $object->withinMinutes = $data['within_minutes'];
         $object->penaltySeconds = $data['penalty_seconds'];
 
        return $object;
@@ -47,7 +47,7 @@ class PunishConfig
     {
         return [
             'score' => $this->score,
-            'within_minutes' => $this->withinMinues,
+            'within_minutes' => $this->withinMinutes,
             'penalty_seconds' => $this->penaltySeconds,
         ];
     }

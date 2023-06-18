@@ -1,6 +1,6 @@
 # Documentation
 1 rename checkers to tripwires
-2 refactor configs now we have objects
+2 refactor configs now we have objects / checkers + honeypot
 
 Done:
 default
@@ -11,7 +11,9 @@ default
 - disabled
 - reset
 - punish
-- 
+  test honeypots
+
+
 todo
 default
 - -models
@@ -20,7 +22,7 @@ checker filter test
 local ignores/ onlys
 
 # Unit test cases
-test honeypots
+
 add model 404 filters filters
 
 # TODO
