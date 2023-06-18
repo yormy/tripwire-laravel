@@ -1,6 +1,7 @@
 <?php
 
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
@@ -21,6 +22,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Sqli;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\Regex;
 
 /*
@@ -389,9 +391,12 @@ $pageMissingConfig = WireDetailsConfig::make()
 */
 $modelMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_MODEL404_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(3)
     ->tripwires([
-        'Mexion\BedrockUsers\Models\Member',
-        // except models ?
+        MissingModelConfig::make()->only([
+            Tripwirelog::class,
+            //'member.class'
+    ])
     ]);
 
 /*
