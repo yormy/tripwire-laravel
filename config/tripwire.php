@@ -63,16 +63,6 @@ $res = ConfigBuilder::make()
     )
     ->logging(LoggingConfig::make()->remove(['remove']))
     ->inputIgnore(InputIgnoreConfig::make()->cookies(['session_id']))
-    ->honeypots(10, [
-        'isAdmin',
-        'debug',
-        'logged_in',
-        'is_admin',
-        'is_debug',
-        'show_log',
-        'skip_encryption',
-    ])
-  //  ->urls(UrlsConfig::make())
     ->reset(
         ResetConfig::make(env('TRIPWIRE_WHITELIST', true))
             ->softDelete(true)

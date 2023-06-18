@@ -1,26 +1,25 @@
 <?php
 namespace Yormy\TripwireLaravel\DataObjects;
 
-use \Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\DatetimeConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\HoneypotsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\DatetimeConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\LoggingConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ModelsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ServicesConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 
 
 class ConfigBuilder implements Arrayable
@@ -51,8 +50,6 @@ class ConfigBuilder implements Arrayable
     public LoggingConfig $logging;
 
     public InputIgnoreConfig $inputIgnore;
-
-    public HoneypotsConfig $honeypots;
 
     public ?UrlsConfig $urls;
 
@@ -116,10 +113,6 @@ class ConfigBuilder implements Arrayable
 
         if (isset($this->inputIgnore)) {
             $data['ignore'] = $this->inputIgnore->toArray();
-        }
-
-        if (isset($this->honeypots)) {
-            $data['honeypots'] = $this->honeypots->toArray();
         }
 
         if (isset($this->urls)) {
@@ -188,8 +181,6 @@ class ConfigBuilder implements Arrayable
         $config->logging = LoggingConfig::makeFromArray($data['log'] ?? null);
 
         $config->inputIgnore = InputIgnoreConfig::makeFromArray($data['ignore'] ?? null);
-
-        $config->honeypots = HoneypotsConfig::makeFromArray($data['honeypots'] ?? null);
 
         $config->urls = UrlsConfig::makeFromArray($data['urls'] ?? null);
 
@@ -373,25 +364,6 @@ class ConfigBuilder implements Arrayable
         InputIgnoreConfig $inputIgnore,
     ): self {
         $this->inputIgnore = $inputIgnore;
-
-        return $this;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Honeypots
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-    public function honeypots(
-        int $attackScore,
-        array $mustBeMissingOrFalse,
-    ): self {
-        $this->honeypots = HoneypotsConfig::make(
-            $attackScore,
-            $mustBeMissingOrFalse,
-        );
 
         return $this;
     }

@@ -405,6 +405,24 @@ $modelMissingConfig = WireDetailsConfig::make()
 
 /*
 |--------------------------------------------------------------------------
+| HONEYPOTS
+|--------------------------------------------------------------------------
+*/
+$honeypotConfig = WireDetailsConfig::make()
+    ->enabled(env('TRIPWIRE_HONEYPOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(3)
+    ->tripwires([
+        'isAdmin',
+        'debug',
+        'logged_in',
+        'is_admin',
+        'is_debug',
+        'show_log',
+        'skip_encryption',
+    ]);
+
+/*
+|--------------------------------------------------------------------------
 | Login Failed
 |--------------------------------------------------------------------------
 */
@@ -454,6 +472,8 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails('loginfailed', $loginFailedConfig)
     ->addWireDetails('throttle', $throttleHitConfig)
     ->addWireDetails('referer', $refererConfig)
+    ->addWireDetails('honeypots', $honeypotConfig)
+
 
     ->toArray();
 return $res;

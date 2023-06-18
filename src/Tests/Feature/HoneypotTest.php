@@ -22,11 +22,13 @@ class HoneypotTest extends TestCase
 
         $this->setDefaultConfig();
         $this->triggerHoneypotOke();
+        config([
+            "tripwire_wires.honeypots.attack_score" => 10,
+            "tripwire_wires.honeypots.tripwires" => [
+                'foo'
+            ]
+        ]);
 
-        config(["tripwire.honeypots" => [
-            'attack_score' => 10,
-            'must_be_missing_or_false' => ['foo']
-        ]]);
         $this->triggerHoneypotBlock();
 
         $endCount = Tripwirelog::count();
@@ -45,10 +47,13 @@ class HoneypotTest extends TestCase
         $this->setDefaultConfig();
         $this->triggerHoneypotOke();
 
-        config(["tripwire.honeypots" => [
-            'attack_score' => 10,
-            'must_be_missing_or_false' => ['foo']
-        ]]);
+        config([
+            "tripwire_wires.honeypots.attack_score" => 10,
+            "tripwire_wires.honeypots.tripwires" => [
+                'foo'
+            ]
+        ]);
+
         $this->triggerHoneypotBlock();
         $this->triggerHoneypotBlock();
         $this->triggerHoneypotBlock();

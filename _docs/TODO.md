@@ -1,29 +1,5 @@
-Honeypot and model404 and page404 needs to be in the wires config, not in the main config
-
-
 # Documentation
-Done:
-default
-- ignore ip
-- ignore input fiedl
-- training mode
-- ignore urls
-- disabled
-- reset
-- punish
-  test honeypots
-
-
-todo
-default
-- -models
-
-checker filter test
-local ignores/ onlys
-
-# Unit test cases
-
-add model 404 filters filters
+test local overrides of wire settings
 
 # TODO
 - how to disable middleware on certain routes (ie large request)
@@ -47,29 +23,21 @@ When I know how, I could spec the result
 Specify type of block view/json:  violation is anders dan login throttle
 - more details in the email ? (url / type ? (need loggable>block)), what triggered it ?
 
-# Extended features
-Geofencing
 
 PSALM
 PINT
 
 
 # EXTEND
-file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
-extend rules: hacker polyglots and examples
 
-## controllers
-### get log/block indexed search on ip:
-/index?search=ip ?
-### get log/block indexed search on userid-type:
-/ index?userid=1&usertype='xxxxx'
+## File validation
+- file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
 
 ## Geofencing
 fix geo fencing, need working api key to ip lookup stuff
 
 # Management:
 response wrapper ?
-
 
 # Unit test
 - globally ignore certain cookies
