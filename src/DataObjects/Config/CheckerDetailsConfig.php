@@ -79,14 +79,37 @@ class CheckerDetailsConfig
             $object->trainingMode = $data['training_mode'];
         }
 
-        $object->methods = $data['methods'];
-        $object->attackScore = $data['attack_score'];
-        $object->urls = $data['urls'];
-        $object->inputs = $data['inputs'];
-        $object->tripwires = $data['tripwires'];
-        $object->guards = $data['guards'];
-        $object->punish = $data['punish'];
-        $object->triggerResponse = $data['trigger_response'];
+        if (isset($data['methods'])) {
+            $object->methods = $data['methods'];
+        }
+
+        if (isset($data['attack_score'])) {
+            $object->attackScore = $data['attack_score'];
+        }
+
+        if (isset($data['urls'])) {
+            $object->urls = UrlsConfig::makeFromArray($data['urls']);
+        }
+
+        if (isset($data['inputs'])) {
+            $object->inputs = $data['inputs'];
+        }
+
+        if (isset($data['tripwires'])) {
+            $object->tripwires = $data['tripwires'];
+        }
+
+        if (isset($data['guards'])) {
+            $object->guards = $data['guards'];
+        }
+
+        if (isset($data['punish'])) {
+            $object->punish = $data['punish'];
+        }
+
+        if (isset($data['trigger_response'])) {
+            $object->triggerResponse = BlockResponseConfig::makeFromArray($data['trigger_response']);
+        }
 
        return $object;
     }

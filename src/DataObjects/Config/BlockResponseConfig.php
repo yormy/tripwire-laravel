@@ -30,12 +30,17 @@ class BlockResponseConfig
             return null;
         }
 
-       $object = new BlockResponseConfig();
+        $object = new BlockResponseConfig();
 
-        $object->jsonResponse = JsonResponseConfig::makeFromArray($data['json']);
-        $object->htmlResponse = HtmlResponseConfig::makeFromArray($data['html']);
+        if (isset($data['json'])) {
+            $object->jsonResponse = JsonResponseConfig::makeFromArray($data['json']);
+        }
 
-       return $object;
+        if (isset($data['html'])) {
+            $object->htmlResponse = HtmlResponseConfig::makeFromArray($data['html']);
+        }
+
+        return $object;
     }
 
     public function json(JsonResponseConfig $jsonResponse): self

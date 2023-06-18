@@ -30,11 +30,17 @@ class UrlsConfig
             return null;
         }
 
-       $object = new UrlsConfig();
+        $object = new UrlsConfig();
 
-        $object->except = $data['except'];
+        if (isset($data['except'])) {
+            $object->except = $data['except'];
+        }
 
-       return $object;
+        if (isset($data['only'])) {
+            $object->only = $data['only'];
+        }
+
+        return $object;
     }
 
     public function only(array $only): self
@@ -53,9 +59,16 @@ class UrlsConfig
 
     public function toArray(): array
     {
-        return [
-            'only' => $this->only,
-            'except' => $this->except,
-        ];
+        $data = [];
+
+        if (isset($this->only)) {
+            $data['only'] = $this->only;
+        }
+
+        if (isset($this->except)) {
+            $data['except'] = $this->except;
+        }
+
+        return $data;
     }
 }

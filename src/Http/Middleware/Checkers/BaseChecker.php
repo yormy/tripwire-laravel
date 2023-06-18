@@ -35,7 +35,7 @@ abstract class BaseChecker
         if ($this->isAttack($patterns)) {
             $configResponse = $this->getConfig($request, $this->middleware);
             $respond = new ResponseDeterminer($configResponse);
-            if ($configResponse->asContinue() || $this->config->trainingMode) {
+            if ($configResponse->asContinue() || $this->config->trainingMode()) {
                 return $next($request);
             }
 
@@ -72,7 +72,7 @@ abstract class BaseChecker
 
     public function getPatterns()
     {
-        return $this->config->tripwires;
+        return $this->config->tripwires();
     }
 
     public function isAttack($patterns): bool
@@ -95,7 +95,7 @@ abstract class BaseChecker
                 violations: $violations,
                 triggerData: $triggerData,
                 triggerRules: $rules,
-                trainingMode: $this->config->trainingMode,
+                trainingMode: $this->config->trainingMode(),
                 comments: '',
             );
 

@@ -13,7 +13,7 @@ trait TripwireHelpers
 
     protected function getAttackScore(): int
     {
-        return $this->config->attackScore;
+        return $this->config->attackScore();
     }
 
     public function skip($request)
@@ -54,14 +54,15 @@ trait TripwireHelpers
             $userType = $userClass::getType($this->request);
         }
 
+        $punish = $this->config->punish();
         AddBlockJob::dispatch(
             ipAddress: $ipAddress,
             userId: $userId,
             userType: $userType,
-            withinMinutes: $this->config->punish->withinMinutes,
-            thresholdScore: $this->config->punish->score,
-            penaltySeconds: $this->config->punish->penaltySeconds,
-            trainingMode: $this->config->trainingMode,
+            withinMinutes: $punish->withinMinutes,
+            thresholdScore: $punish->score,
+            penaltySeconds: $punish->penaltySeconds,
+            trainingMode: $this->config->trainingMode(),
         );
     }
 }

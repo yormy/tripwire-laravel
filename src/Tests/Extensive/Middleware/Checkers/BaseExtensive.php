@@ -39,7 +39,7 @@ class BaseExtensive extends TestCase
         $startCount = TripwireLog::count();
 
         $result = $this->triggerTripwire($accept);
-        //dd($result, $accept);
+
         $this->assertNotLogged($startCount);
 
         $this->assertEquals('next', $result);
@@ -52,7 +52,6 @@ class BaseExtensive extends TestCase
         $startCount = TripwireLog::count();
 
         $result = $this->triggerTripwire($violation);
-       // dd($result, $violation);
 
         $this->assertNotEquals('next', $result, 'Should block but did not');
         $this->assertEquals(409, $result->getStatusCode());

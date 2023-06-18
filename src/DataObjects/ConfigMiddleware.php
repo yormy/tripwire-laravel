@@ -4,73 +4,124 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
+use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
 class ConfigMiddleware
 {
-    public bool $enabled;
-    public array $methods;
-
-    public array $urls;
-
-    public array $inputs;
-
-    public array $guards;
-
-    public ConfigPunish $punish;
-
-    public int $attackScore;
-
-    public array $tripwires;
-
-    public bool $trainingMode = false;
+    private ConfigBuilder $defaultConfig;
+    private CheckerDetailsConfig $checkerConfig;
 
     public function __construct(string $checker)
     {
-        $data = config('tripwire_wires.' . $checker);
-        if (!$data) {
-            throw new \Exception('Missing configuration for tripwire_wire :'. $checker);
+        $this->defaultConfig = ConfigBuilder::fromArray(config('tripwire'));
+        $this->checkerConfig = CheckerDetailsConfig::makeFromArray(config('tripwire_wires.' . $checker));
+    }
+
+    public function attackScore(): int
+    {
+        if (isset($this->checkerConfig->attackScore)) {
+            return $this->checkerConfig->attackScore;
         }
 
-        $this->enabled = false;
-        if ($this->tripwireEnabled())
-        {
-            if ($data['enabled'] ?? true)
-            {
-                $this->enabled = true;
-            }
-        }
-
-        $this->methods = $data['methods'] ?? [];
-        $this->urls = $data['urls'] ?? [];
-        $this->inputs = $data['inputs'] ?? [];
-
-        $this->attackScore = $data['attack_score'];
-
-        if ($punishData = $data['punish'] ?? false) {
-            $this->punish = new ConfigPunish($punishData);
-        } else {
-            $this->punish = new ConfigPunish(config('tripwire.punish'));
-        }
-
-        $this->guards = $data['guards'] ?? [];
-        $this->tripwires = $data['tripwires'] ?? [];
-
-        if (isset($data['training_mode'])) {
-            $this->trainingMode = $data['training_mode'];
-        } else {
-            $this->trainingMode = config('tripwire.training_mode', false);
-        }
+        return 0;
     }
 
     public function isEnabled(): bool
     {
-        return $this->enabled;
+        if (!$this->defaultConfig->enabled) {
+            return false;
+        }
+
+        if (isset($this->checkerConfig->enabled)) {
+            return $this->checkerConfig->enabled;
+        }
+
+        return true;
+    }
+
+    public function trainingMode(): bool
+    {
+        $trainingMode = $this->defaultConfig->trainingMode ?? false;
+
+        if (isset($this->checkerConfig->trainingMode)) {
+            $trainingMode = $this->checkerConfig->trainingMode;
+        }
+
+        return $trainingMode;
     }
 
     public function isDisabled(): bool
     {
-        return !$this->enabled;
+        return !$this->isEnabled();
+    }
+
+    public function methods(): array
+    {
+        if (isset($this->checkerConfig->methods)) {
+            return $this->checkerConfig->methods;
+        }
+
+        return [];
+    }
+
+    public function urls(): array
+    {
+        if (isset($this->checkerConfig->urls)) {
+            return $this->checkerConfig->urls->toArray();
+        }
+
+        return $this->defaultConfig->urls?->toArray() ?? [];
+    }
+
+    public function punish(): PunishConfig
+    {
+        if (isset($this->checkerConfig->punish)) {
+            return  $this->checkerConfig->punish;
+        }
+
+        return $this->defaultConfig->punish;
+    }
+
+    public function inputs(): array
+    {
+        if (isset($this->checkerConfig->inputs)) {
+            return  $this->checkerConfig->inputs->toArray();
+        }
+
+        return [];
+    }
+
+    public function tripwires(): array
+    {
+        if (isset($this->checkerConfig->tripwires)) {
+            return  $this->checkerConfig->tripwires;
+        }
+
+        return [];
+    }
+
+    public function guards(): array
+    {
+        if (isset($this->checkerConfig->guards)) {
+            return  $this->checkerConfig->guards;
+        }
+
+        return [];
+    }
+
+    public function skipMethod(Request $request): bool
+    {
+        if ( !$this->methods()) {
+            return true;
+        }
+
+        if (in_array('all', $this->methods()) || in_array('*', $this->methods())) {
+            return false;
+        }
+
+        return !in_array(strtolower($request->method()), $this->methods());
     }
 
     public function isWhitelist(Request $request): bool
@@ -78,33 +129,26 @@ class ConfigMiddleware
         $ipAddressClass = config('tripwire.services.ip_address');
         $ipAddress = $ipAddressClass::get($request);
 
-        $whitelisted = config('tripwire.whitelist.ips');
+        $whitelistedIps = $this->defaultConfig->whitelist->toArray();
 
-        if (empty($whitelisted)) {
+        if (empty($whitelistedIps)) {
             return false;
         }
 
-        return IpUtils::checkIp($ipAddress, $whitelisted);
+        $isWhitelisted = false;
+        foreach ($whitelistedIps as $ip) {
+            if (IpUtils::checkIp($ipAddress, $ip))
+            {
+                $isWhitelisted = true;
+            }
+        }
+        return $isWhitelisted;
 
     }
-
-    public function skipMethod(Request $request): bool
-    {
-        if ( !$this->methods) {
-            return true;
-        }
-
-        if (in_array('all', $this->methods) || in_array('*', $this->methods)) {
-            return false;
-        }
-
-        return !in_array(strtolower($request->method()), $this->methods);
-    }
-
 
     public function skipUrl(Request $request): bool
     {
-        return UrlTester::skipUrl($request, $this->urls);
+        return UrlTester::skipUrl($request, $this->urls());
     }
 
     public function skipInput(string $key): bool
@@ -124,8 +168,4 @@ class ConfigMiddleware
         return false;
     }
 
-    private function tripwireEnabled(): bool
-    {
-        return config('tripwire.enabled', true);
-    }
 }

@@ -91,7 +91,5 @@ class ResetTest extends TestCase
             'soft_delete' => false,
             'link_expiry_minutes' => 30,
         ]]);
-
-        //dd(config("tripwire.reset"));
     }
 }

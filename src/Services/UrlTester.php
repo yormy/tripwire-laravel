@@ -49,6 +49,7 @@ class UrlTester
 
     public static function skipUrl(Request $request, ?array $urlsConfig): bool
     {
+
         if ( !$urlsConfig) {
             return false;
         }
