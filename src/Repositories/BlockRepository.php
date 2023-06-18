@@ -182,7 +182,7 @@ class BlockRepository
         int $repeaterCount
     ): Carbon {
         $repeaterPunishment = $this->getRepeaterPunishment($penaltySeconds, $repeaterCount);
-        $blockedUntil =  Carbon::now()->addMinutes($penaltySeconds + $repeaterPunishment);
+        $blockedUntil =  Carbon::now()->addSeconds($penaltySeconds + $repeaterPunishment);
 
         $maxDate = Carbon::now()->addYears(1000);    // this prevents a buffer overflow of carbon
         if ($blockedUntil > $maxDate) {

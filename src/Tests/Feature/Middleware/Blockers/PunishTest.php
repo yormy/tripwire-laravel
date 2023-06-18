@@ -2,14 +2,16 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
 
+use Carbon\Carbon;
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
-class BlockTest extends TestCase
+class PunishTest extends TestCase
 {
     use TripwireTestTrait;
     use BlockTestTrait;
@@ -24,81 +26,43 @@ class BlockTest extends TestCase
 
     /**
      * @test
-     * @group tripwire-block
+     * @group tripwire-punish
      */
-    public function Unblocked_Single_trigger_Block_not_added()
+    public function Block_Added_Exponential_delay()
     {
         TripwireBlock::truncate();
-        $this->setConfig();
-        $startCount = $this->resetBlockStartCount();
-
-        $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
-
-        $this->assertNotBlocked($startCount);
-    }
-
-    /**
-     * @test
-     * @group tripwire-block
-     */
-    public function Unblocked_Many_triggers_Block_added()
-    {
-        TripwireBlock::truncate();
+        TripwireLog::truncate();
         $this->setConfig();
         $startCount = $this->resetBlockStartCount();
 
         $this->triggerBlock();
-
         $this->assertBlockAddedToDatabase($startCount);
-    }
 
-    /**
-     * @test
-     * @group tripwire-block
-     */
-    public function Unblocked_Normal_request_Ok()
-    {
-        TripwireBlock::truncate();
-        $this->setConfig();
+        $penaltyBase = config('tripwire.punish.penalty_seconds');
+        $this->assertDiffInSeconds($penaltyBase); // penalty seconds
 
-        $result = $this->testBlockHandlerAll();
-        $this->assertEquals('next', $result);
-    }
-
-    /**
-     * @test
-     * @group tripwire-block
-     */
-    public function Blocked_Normal_request_Blocked()
-    {
-        TripwireBlock::truncate();
-        $this->setConfig();
         $this->triggerBlock();
+        $penalty = $penaltyBase + pow($penaltyBase, 1);
+        $this->assertDiffInSeconds($penalty); // penalty + penalty power of 1
 
-        $result = $this->testBlockHandlerAll();
-        $this->assertNotEquals('next', $result);
+        $this->triggerBlock();
+        $penalty = $penaltyBase + pow($penaltyBase, 2);
+        $this->assertDiffInSeconds($penalty); // penalty + penalty power of 2
+
+        $this->triggerBlock();
+        $penalty = $penaltyBase + pow($penaltyBase, 3);
+        $this->assertDiffInSeconds($penalty); // penalty + penalty power of 3
     }
 
-    /**
-     * @test
-     * @group tripwire-block
-     */
-    public function Blocked_training_Normal_request_Ok()
+    private function assertDiffInSeconds(int $expectedDiff)
     {
-        TripwireBlock::truncate();
-        $this->setConfig();
-
-        config(["tripwire.training_mode" => true]);
-        $this->triggerBlock();
-        $result = $this->testBlockHandlerAll();
-        $this->assertContinue($result);
-
-        config(["tripwire.training_mode" => false]);
-        $this->triggerBlock();
-        $result = $this->testBlockHandlerAll();
-        $this->assertBlocked($result);
+        $latest = TripwireBlock::where('id', '>', 0)->orderBy('id', 'desc')->first();
+        $createdAt = $latest->created_at;
+        $diffInSeconds = $createdAt->diffInSeconds($latest->blocked_until);
+        $this->assertEquals($expectedDiff, $diffInSeconds);
     }
 
+    // ---------- HELPERS ---------
     private function assertContinue($result)
     {
         $this->assertEquals('next', $result);
@@ -137,6 +101,8 @@ class BlockTest extends TestCase
 
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);
         config(["tripwire.punish.score" => 21]);
+        config(["tripwire.punish.within_minutes" => 10000]);
+        config(["tripwire.punish.penalty_seconds" => 10]);
 
         $this->setBlockConfig();
     }
