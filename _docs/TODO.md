@@ -6,19 +6,19 @@ Done:
 default
 - ignore ip
 - ignore input fiedl
-
+- training mode
+- ignore urls
+- disabled
+- reset
+- 
 todo
 default
-- ignore cookie
-- ignore header
-
-
+- -models
+- punish
+checker filter test
 local ignores/ onlys
 
 # Unit test cases
-test ignore urls
-test ignore ips
-test training mode = no block, record
 test honeypots
 add model 404 filters filters
 
@@ -66,3 +66,10 @@ fix geo fencing, need working api key to ip lookup stuff
 
 # Management:
 response wrapper ?
+
+
+# Unit test
+- globally ignore certain cookies
+- globally ignore certain headers
+- notifications to mail
+- notifications to slack
