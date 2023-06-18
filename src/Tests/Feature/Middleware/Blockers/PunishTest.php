@@ -1,10 +1,10 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
 use Carbon\Carbon;
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
@@ -78,9 +78,9 @@ class PunishTest extends TestCase
         $request = $this->app->request;
         $request->query->set('foo', 'normal input');
 
-        $checker = new TripwireBlockHandlerAll();
+        $wite = new TripwireBlockHandlerAll();
 
-        return $checker->handle($request, $this->getNextClosure());
+        return $wite->handle($request, $this->getNextClosure());
     }
 
     private function triggerBlock()

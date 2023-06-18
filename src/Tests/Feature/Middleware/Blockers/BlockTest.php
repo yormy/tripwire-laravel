@@ -1,9 +1,9 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
@@ -114,9 +114,9 @@ class BlockTest extends TestCase
         $request = $this->app->request;
         $request->query->set('foo', 'normal input');
 
-        $checker = new TripwireBlockHandlerAll();
+        $wire = new TripwireBlockHandlerAll();
 
-        return $checker->handle($request, $this->getNextClosure());
+        return $wire->handle($request, $this->getNextClosure());
     }
 
     private function triggerBlock()

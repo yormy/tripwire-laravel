@@ -2,7 +2,7 @@
 
 use Mexion\BedrockUsers\Models\Admin;
 use Mexion\BedrockUsers\Models\Member;
-use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
@@ -87,8 +87,8 @@ $res = ConfigBuilder::make()
         HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
         )
 
-    ->addCheckerGroup('all',
-        CheckerGroupConfig::make([
+    ->addWireGroup('all',
+        WireGroupConfig::make([
             'tripwire.agent',
             'tripwire.bot',
             'tripwire.geo',
@@ -105,8 +105,8 @@ $res = ConfigBuilder::make()
         ])
     )
 
-    ->addCheckerGroup('user',
-        CheckerGroupConfig::make([
+    ->addWireGroup('user',
+        WireGroupConfig::make([
             'tripwire.lfi',
             'tripwire.php',
             'tripwire.rfi',
@@ -117,8 +117,8 @@ $res = ConfigBuilder::make()
         ])
     )
 
-    ->addCheckerGroup('server',
-        CheckerGroupConfig::make([
+    ->addWireGroup('server',
+        WireGroupConfig::make([
             'tripwire.agent',
             'tripwire.bot',
             'tripwire.geo',

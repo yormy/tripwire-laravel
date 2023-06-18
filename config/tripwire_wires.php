@@ -1,7 +1,7 @@
 <?php
 
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
@@ -9,18 +9,18 @@ use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Lfi;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Php;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\RequestSize;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Rfi;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Session;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Xss;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Php;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\RequestSize;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Rfi;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Session;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Sqli;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Services\Regex;
 
 /*
@@ -28,7 +28,7 @@ use Yormy\TripwireLaravel\Services\Regex;
 | SWEAR words
 |--------------------------------------------------------------------------
 */
-$swearConfig = CheckerDetailsConfig::make()
+$swearConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SWEAR_ENABLED', env('TRIPWIRE_ENABLED', true)))
     //->trainingMode(false)
     //->methods(['post', 'put', 'patch', 'get'])
@@ -48,7 +48,7 @@ $swearConfig = CheckerDetailsConfig::make()
 | SQL Injection
 |--------------------------------------------------------------------------
 */
-$sqliConfig = CheckerDetailsConfig::make()
+$sqliConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SQLI_ENABLED', env('TRIPWIRE_ENABLED', true)))
     //->trainingMode(false)
     //->methods(['post', 'put', 'patch', 'get'])
@@ -111,7 +111,7 @@ $forbiddenTokens = Regex::forbidden([
     'php:expect://',
 ]);
 
-$lfiConfig = CheckerDetailsConfig::make()
+$lfiConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_LFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
     //->trainingMode(false)
     //->methods(['post', 'put', 'patch', 'get'])
@@ -137,7 +137,7 @@ $lfiConfig = CheckerDetailsConfig::make()
 | RFI
 |--------------------------------------------------------------------------
 */
-$rfiConfig = CheckerDetailsConfig::make()
+$rfiConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_RFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         '#(http|ftp){1,1}(s){0,1}://.*#i',
@@ -148,7 +148,7 @@ $rfiConfig = CheckerDetailsConfig::make()
 | SESSION
 |--------------------------------------------------------------------------
 */
-$sessionConfig = CheckerDetailsConfig::make()
+$sessionConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SESSION_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         '@[\|:]O:\d{1,}:"[\w_][\w\d_]{0,}":\d{1,}:{@i',
@@ -230,7 +230,7 @@ $orTags = Regex::or([
     'body',
 ]);
 
-$xssConfig = CheckerDetailsConfig::make()
+$xssConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(0)
     ->tripwires([
@@ -266,7 +266,7 @@ $xssConfig = CheckerDetailsConfig::make()
 | PHP
 |--------------------------------------------------------------------------
 */
-$phpConfig = CheckerDetailsConfig::make()
+$phpConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_PHP_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         'bzip2://',
@@ -287,7 +287,7 @@ $phpConfig = CheckerDetailsConfig::make()
 | https://github.com/jenssegers/agent
 |--------------------------------------------------------------------------
 */
-$agentConfig = CheckerDetailsConfig::make()
+$agentConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_AGENT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         'browsers' => [
@@ -314,7 +314,7 @@ $agentConfig = CheckerDetailsConfig::make()
 |--------------------------------------------------------------------------
 | ipapi, extremeiplookup, ipstack, ipdata, ipinfo, ipregistry
 */
-$geoConfig = CheckerDetailsConfig::make()
+$geoConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_GEO_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         'service' => 'ipstack',
@@ -348,10 +348,10 @@ $geoConfig = CheckerDetailsConfig::make()
 | The difference between the text and word middleware is that words are separated by spaces,
 | text can be anywhere in the content.
 | ie xxxtestxxx
-| text checker will tigger 'test' as it is in there
-| word checker will not trigger as test is not a word (not surrounded by spaces)
+| text wire will tigger 'test' as it is in there
+| word wire will not trigger as test is not a word (not surrounded by spaces)
 */
-$textConfig = CheckerDetailsConfig::make()
+$textConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_TEXT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         '\x00', //nullbyte
@@ -363,7 +363,7 @@ $textConfig = CheckerDetailsConfig::make()
 | Request size
 |--------------------------------------------------------------------------
 */
-$requestSizeConfig = CheckerDetailsConfig::make()
+$requestSizeConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REQUESTSIZE_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
@@ -375,7 +375,7 @@ $requestSizeConfig = CheckerDetailsConfig::make()
 | Page Missing
 |--------------------------------------------------------------------------
 */
-$pageMissingConfig = CheckerDetailsConfig::make()
+$pageMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_PAGE404_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
@@ -387,7 +387,7 @@ $pageMissingConfig = CheckerDetailsConfig::make()
 | MODEL MISSING
 |--------------------------------------------------------------------------
 */
-$modelMissingConfig = CheckerDetailsConfig::make()
+$modelMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_MODEL404_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         'Mexion\BedrockUsers\Models\Member',
@@ -399,7 +399,7 @@ $modelMissingConfig = CheckerDetailsConfig::make()
 | Login Failed
 |--------------------------------------------------------------------------
 */
-$loginFailedConfig = CheckerDetailsConfig::make()
+$loginFailedConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_LOGINFAILED_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 /*
@@ -407,7 +407,7 @@ $loginFailedConfig = CheckerDetailsConfig::make()
 | Throttle Hit
 |--------------------------------------------------------------------------
 */
-$throttleHitConfig = CheckerDetailsConfig::make()
+$throttleHitConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_THROTTLEHIT_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 /*
@@ -416,7 +416,7 @@ $throttleHitConfig = CheckerDetailsConfig::make()
 |--------------------------------------------------------------------------
 | https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
 */
-$botConfig = CheckerDetailsConfig::make()
+$botConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 /*
@@ -424,27 +424,27 @@ $botConfig = CheckerDetailsConfig::make()
 | REFERER
 |--------------------------------------------------------------------------
 */
-$refererConfig = CheckerDetailsConfig::make()
+$refererConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 $res = ConfigBuilderWires::make()
-    ->addCheckerDetails(Swear::NAME, $swearConfig)
-    ->addCheckerDetails(Sqli::NAME, $sqliConfig)
-    ->addCheckerDetails(Lfi::NAME, $lfiConfig)
-    ->addCheckerDetails(Rfi::NAME, $rfiConfig)
-    ->addCheckerDetails(Session::NAME, $sessionConfig)
-    ->addCheckerDetails(Xss::NAME, $xssConfig)
-    ->addCheckerDetails(Bot::NAME, $botConfig)
-    ->addCheckerDetails(Php::NAME, $phpConfig)
-    ->addCheckerDetails(Agent::NAME, $agentConfig)
-    ->addCheckerDetails(Geo::NAME, $geoConfig)
-    ->addCheckerDetails(Text::NAME, $textConfig)
-    ->addCheckerDetails(RequestSize::NAME, $requestSizeConfig)
-    ->addCheckerDetails('page404', $pageMissingConfig)
-    ->addCheckerDetails('model404', $modelMissingConfig)
-    ->addCheckerDetails('loginfailed', $loginFailedConfig)
-    ->addCheckerDetails('throttle', $throttleHitConfig)
-    ->addCheckerDetails('referer', $refererConfig)
+    ->addWireDetails(Swear::NAME, $swearConfig)
+    ->addWireDetails(Sqli::NAME, $sqliConfig)
+    ->addWireDetails(Lfi::NAME, $lfiConfig)
+    ->addWireDetails(Rfi::NAME, $rfiConfig)
+    ->addWireDetails(Session::NAME, $sessionConfig)
+    ->addWireDetails(Xss::NAME, $xssConfig)
+    ->addWireDetails(Bot::NAME, $botConfig)
+    ->addWireDetails(Php::NAME, $phpConfig)
+    ->addWireDetails(Agent::NAME, $agentConfig)
+    ->addWireDetails(Geo::NAME, $geoConfig)
+    ->addWireDetails(Text::NAME, $textConfig)
+    ->addWireDetails(RequestSize::NAME, $requestSizeConfig)
+    ->addWireDetails('page404', $pageMissingConfig)
+    ->addWireDetails('model404', $modelMissingConfig)
+    ->addWireDetails('loginfailed', $loginFailedConfig)
+    ->addWireDetails('throttle', $throttleHitConfig)
+    ->addWireDetails('referer', $refererConfig)
 
     ->toArray();
 

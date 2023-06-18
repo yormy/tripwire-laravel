@@ -5,7 +5,7 @@ namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\TriggerIgnores;
 use Illuminate\Http\Request;
 use Mockery;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
 class BaseTriggerIgnore extends TestCase

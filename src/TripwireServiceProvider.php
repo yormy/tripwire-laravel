@@ -4,19 +4,19 @@ namespace Yormy\TripwireLaravel;
 
 use Illuminate\Support\ServiceProvider;
 use Yormy\TripwireLaravel\Console\Commands\TestConfigCommand;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Agent;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Bot;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Geo;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Lfi;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Php;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Referer;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\RequestSize;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Rfi;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Session;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Sqli;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Swear;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Xss;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Php;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Referer;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\RequestSize;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Rfi;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Session;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Sqli;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\NotifyUsers;
@@ -112,7 +112,7 @@ class TripwireServiceProvider extends ServiceProvider
 
     private function registerMiddlewareGroups($router)
     {
-        foreach (config('tripwire.checker_groups', []) as $name => $items) {
+        foreach (config('tripwire.wire_groups', []) as $name => $items) {
             $router->middlewareGroup("tripwire.$name", $items);
         }
     }

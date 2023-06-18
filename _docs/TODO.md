@@ -1,7 +1,4 @@
 # Documentation
-1 rename checkers to tripwires
-
-
 Done:
 default
 - ignore ip

@@ -2,8 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
-use Yormy\TripwireLaravel\Http\Middleware\HoneypotsCheck;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
+use Yormy\TripwireLaravel\Http\Middleware\HoneypotsWire;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
@@ -78,7 +78,7 @@ class HoneypotTest extends TestCase
         $request = $this->app->request; // default is as HTML
         $request->query->set('foo', 'non blocked test');
 
-        return (new HoneypotsCheck($request))->handle($request, $this->getNextClosure());
+        return (new HoneypotsWire($request))->handle($request, $this->getNextClosure());
     }
 
     private function setDefaultConfig(array $data= [])

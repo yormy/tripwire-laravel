@@ -2,21 +2,21 @@
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Yormy\TripwireLaravel\DataObjects\Config\CheckerDetailsConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 
 class ConfigBuilderWires implements Arrayable
 {
-    public array $checkers;
+    public array $wires;
 
     public function toArray(): array
     {
         $data = [];
 
-        if (isset($this->checkers)) {
+        if (isset($this->wires)) {
 
-            foreach ($this->checkers as $name => $checker) {
-                $data[$name] = $checker->toArray();
+            foreach ($this->wires as $name => $wire) {
+                $data[$name] = $wire->toArray();
             }
         }
 
@@ -27,16 +27,16 @@ class ConfigBuilderWires implements Arrayable
     {
         $config = new self();
 
-        $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
+        $config->wireGroups = WireGroupConfig::makeFromArray($data['wire_groups'] ?? null);
 
         return $config;
     }
 
-    public function addCheckerDetails(
-        string $name,
-        CheckerDetailsConfig $checker,
+    public function addWireDetails(
+        string            $name,
+        WireDetailsConfig $wire,
     ): self {
-        $this->checkers[$name] = $checker;
+        $this->wires[$name] = $wire;
 
         return $this;
     }

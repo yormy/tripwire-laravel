@@ -39,9 +39,9 @@ trait TripwireTestTrait
         $request = $this->app->request;
         $request->query->set('foo', $input);
 
-        $checker = new $this->tripwireClass($request);
+        $wire = new $this->tripwireClass($request);
 
-        return $checker->handle($request, $this->getNextClosure());
+        return $wire->handle($request, $this->getNextClosure());
     }
 
 
@@ -51,9 +51,9 @@ trait TripwireTestTrait
         $request->query->set('foo', $input);
         $request->headers->set('Accept', 'application/json');
 
-        $checker = new $this->tripwireClass($request);
+        $wire = new $this->tripwireClass($request);
 
-        return $checker->handle($request, $this->getNextClosure());
+        return $wire->handle($request, $this->getNextClosure());
     }
 
     protected function assertLogAddedToDatabase($startCount)

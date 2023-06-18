@@ -3,7 +3,7 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use \Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\CheckerGroupConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatetimeConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
@@ -64,7 +64,7 @@ class ConfigBuilder implements Arrayable
 
     public PunishConfig $punish;
 
-    public array $checkerGroups;
+    public array $wireGroups;
 
     public BlockResponseConfig $triggerResponse;
 
@@ -138,10 +138,10 @@ class ConfigBuilder implements Arrayable
             $data['block_response'] = $this->blockResponse->toArray();
         }
 
-        if (isset($this->checkerGroups)) {
+        if (isset($this->wireGroups)) {
 
-            foreach ($this->checkerGroups as $name => $checkerGroup) {
-                $data['checker_groups'][$name] = $checkerGroup->toArray();
+            foreach ($this->wireGroups as $name => $wireGroup) {
+                $data['wire_groups'][$name] = $wireGroup->toArray();
             }
         }
 
@@ -199,7 +199,7 @@ class ConfigBuilder implements Arrayable
 
         $config->blockResponse = BlockResponseConfig::makeFromArray($data['block_response'] ?? null);
 
-        $config->checkerGroups = CheckerGroupConfig::makeFromArray($data['checker_groups'] ?? null);
+        $config->wireGroups = WireGroupConfig::makeFromArray($data['wire_groups'] ?? null);
 
         $config->punish = PunishConfig::makeFromArray($data['punish'] ?? null);
 
@@ -366,7 +366,7 @@ class ConfigBuilder implements Arrayable
     |--------------------------------------------------------------------------
     | Globally ignore these input fields.
     | The values here are ignored regardless of the individual settings per checked.
-    | If you want to ignore certain values only for a specific checker, specify it in there
+    | If you want to ignore certain values only for a specific wire, specify it in there
     |
     */
     public function inputIgnore(
@@ -471,16 +471,16 @@ class ConfigBuilder implements Arrayable
 
     /*
     |--------------------------------------------------------------------------
-    | Checker groups
+    | Wire groups
     |--------------------------------------------------------------------------
     | You can add as many as you want with your own names
     |
     */
-    public function addCheckerGroup(
-        string $groupName,
-        CheckerGroupConfig $checkerGroupConfig,
+    public function addWireGroup(
+        string          $groupName,
+        WireGroupConfig $wireGroupConfig,
     ): self {
-        $this->checkerGroups[$groupName] = $checkerGroupConfig;
+        $this->wireGroups[$groupName] = $wireGroupConfig;
 
         return $this;
     }

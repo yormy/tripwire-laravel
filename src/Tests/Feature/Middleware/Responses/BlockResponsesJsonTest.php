@@ -3,7 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
-use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
