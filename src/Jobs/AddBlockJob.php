@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel\Jobs;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -38,7 +39,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         $this->blockIfNeeded();
     }
 
-    protected function blockIfNeeded()
+    protected function blockIfNeeded(): ?Model
     {
         $punishableTimeframe = $this->withinMinutes;
 

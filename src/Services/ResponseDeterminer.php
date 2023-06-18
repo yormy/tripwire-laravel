@@ -25,7 +25,7 @@ class ResponseDeterminer
         }
     }
 
-    public function respondWithJson(array $data = [])
+    public function respondWithJson(array $data = []): View|JsonResponse
     {
         $this->asException();
 
@@ -40,7 +40,7 @@ class ResponseDeterminer
         return $this->asGeneralAbort();
     }
 
-    public function respondWithHtml(array $data = [])
+    public function respondWithHtml(array $data = []): View|RedirectResponse
     {
         $this->asException();
 
