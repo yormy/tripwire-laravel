@@ -102,17 +102,6 @@ class DefaultFilterTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-//    private function assertLogAddedToDatabase($startCount)
-//    {
-//        $this->assertGreaterThan($startCount, TripwireLog::count());
-//    }
-//
-//    private function setConfig(array $data)
-//    {
-//        config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-//        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $data]);
-//    }
-
     private function setDefaultConfig(array $data= [])
     {
         config(["tripwire.trigger_response.html" => ['code' => self::HTTP_TRIPWIRE_CODE]]);

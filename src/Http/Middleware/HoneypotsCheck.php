@@ -4,6 +4,10 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\XssFailedEvent;
 use Yormy\TripwireLaravel\Services\Honeypot;
 
 /**
@@ -24,7 +28,24 @@ class HoneypotsCheck
     public function handle(Request $request, Closure $next)
     {
         $honeypotsMustBeFalseOrMissing = (array)config('tripwire.honeypots.must_be_missing_or_false');
-        Honeypot::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
+        $violations = Honeypot::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
+
+        $config = ConfigBuilder::fromArray(config('tripwire'));
+
+        if (!empty($violations)) {
+            $triggerEventData = new TriggerEventData(
+                attackScore: $config->honeypots->attackScore,
+                violations: $violations,
+                triggerData: implode(',', $violations),
+                triggerRules: [],
+                trainingMode: $config->trainingMode,
+                comments: '',
+            );
+
+            event(new HoneypotFailedEvent($triggerEventData));
+dd();
+            // response
+        }
 
         $this->cleanup($request);
 

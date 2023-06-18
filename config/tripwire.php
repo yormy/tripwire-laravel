@@ -63,7 +63,7 @@ $res = ConfigBuilder::make()
     )
     ->logging(LoggingConfig::make()->remove(['remove']))
     ->inputIgnore(InputIgnoreConfig::make()->cookies(['session_id']))
-    ->honeypots([
+    ->honeypots(10, [
         'isAdmin',
         'debug',
         'logged_in',
@@ -134,6 +134,5 @@ $res = ConfigBuilder::make()
         HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
     )
     ->toArray();
-
 ConfigBuilder::fromArray($res);
 return $res;

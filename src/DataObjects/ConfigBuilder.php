@@ -25,13 +25,13 @@ use Yormy\TripwireLaravel\DataObjects\Config\WhitelistConfig;
 
 class ConfigBuilder implements Arrayable
 {
-    protected bool $enabled;
+    public bool $enabled;
 
     public int $blockCode;
 
-    private ?bool $trainingMode;
+    public ?bool $trainingMode;
 
-    private bool $debugMode;
+    public bool $debugMode;
 
     public DatetimeConfig $datetime;
 
@@ -385,9 +385,11 @@ class ConfigBuilder implements Arrayable
     |
     */
     public function honeypots(
+        int $attackScore,
         array $mustBeMissingOrFalse,
     ): self {
         $this->honeypots = HoneypotsConfig::make(
+            $attackScore,
             $mustBeMissingOrFalse,
         );
 
