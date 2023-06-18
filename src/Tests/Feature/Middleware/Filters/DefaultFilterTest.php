@@ -7,7 +7,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
-class FilterTest extends TestCase
+class DefaultFilterTest extends TestCase
 {
     private string $tripwire ='text';
     const HTTP_TRIPWIRE_CODE = 409;
