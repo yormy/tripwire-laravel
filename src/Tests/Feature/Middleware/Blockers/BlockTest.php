@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Checkers;
 
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
 use Yormy\TripwireLaravel\Http\Middleware\Checkers\Text;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\BlockTestTrait;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -27,6 +28,7 @@ class BlockTest extends TestCase
      */
     public function Unblocked_Single_trigger_Block_not_added()
     {
+        TripwireBlock::truncate();
         $this->setConfig();
         $startCount = $this->resetBlockStartCount();
 
@@ -41,6 +43,7 @@ class BlockTest extends TestCase
      */
     public function Unblocked_Many_triggers_Block_added()
     {
+        TripwireBlock::truncate();
         $this->setConfig();
         $startCount = $this->resetBlockStartCount();
 
@@ -55,6 +58,7 @@ class BlockTest extends TestCase
      */
     public function Unblocked_Normal_request_Ok()
     {
+        TripwireBlock::truncate();
         $this->setConfig();
 
         $result = $this->testBlockHandlerAll();
@@ -67,6 +71,7 @@ class BlockTest extends TestCase
      */
     public function Blocked_Normal_request_Blocked()
     {
+        TripwireBlock::truncate();
         $this->setConfig();
         $this->triggerBlock();
 
@@ -80,6 +85,7 @@ class BlockTest extends TestCase
      */
     public function Blocked_training_Normal_request_Ok()
     {
+        TripwireBlock::truncate();
         $this->setConfig();
 
         config(["tripwire.training_mode" => true]);
