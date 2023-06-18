@@ -49,7 +49,7 @@ abstract class BaseWire
         return $next($request);
     }
 
-    private function getConfig(Request $request, ?string $wire = null): JsonResponseConfig|HtmlResponseConfig
+    private function getConfig(Request $request, ?string $wire = null): JsonResponseConfig|HtmlResponseConfig|null
     {
         if ($request->wantsJson()) {
             $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
@@ -163,7 +163,7 @@ abstract class BaseWire
         return $stringed;
     }
 
-    private function convertValuesToString(array $data, &$string)
+    private function convertValuesToString(array $data, string &$string): void
     {
         foreach ($data as $field => $value) {
             if (is_array($value)) {
@@ -176,6 +176,11 @@ abstract class BaseWire
         }
     }
 
+    /**
+     * @return false|int
+     *
+     * @psalm-return 0|1|false
+     */
     public function matchResults($pattern, string $input, &$violations)
     {
         return preg_match($pattern, $input, $violations);

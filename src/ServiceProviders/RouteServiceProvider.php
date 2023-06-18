@@ -16,20 +16,20 @@ class RouteServiceProvider extends ServiceProvider
 
     }
 
-    public function map()
+    public function map(): void
     {
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
     }
 
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         AdminRoutes::register();
         GuestRoutes::register();
     }
 
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
     }
 }

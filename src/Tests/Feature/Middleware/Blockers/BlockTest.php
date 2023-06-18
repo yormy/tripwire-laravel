@@ -27,7 +27,7 @@ class BlockTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Unblocked_Single_trigger_Block_not_added()
+    public function Unblocked_Single_trigger_Block_not_added(): void
     {
         TripwireBlock::truncate();
         $this->setConfig();
@@ -43,7 +43,7 @@ class BlockTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Unblocked_Many_triggers_Block_added()
+    public function Unblocked_Many_triggers_Block_added(): void
     {
         TripwireBlock::truncate();
         $this->setConfig();
@@ -59,7 +59,7 @@ class BlockTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Unblocked_Normal_request_Ok()
+    public function Unblocked_Normal_request_Ok(): void
     {
         TripwireBlock::truncate();
         $this->setConfig();
@@ -73,7 +73,7 @@ class BlockTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_Normal_request_Blocked()
+    public function Blocked_Normal_request_Blocked(): void
     {
         TripwireBlock::truncate();
         $this->setConfig();
@@ -88,7 +88,7 @@ class BlockTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_training_Normal_request_Ok()
+    public function Blocked_training_Normal_request_Ok(): void
     {
         TripwireBlock::truncate();
         $this->setConfig();
@@ -104,12 +104,12 @@ class BlockTest extends TestCase
         $this->assertBlocked($result);
     }
 
-    private function assertContinue($result)
+    private function assertContinue($result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    private function assertBlocked($result)
+    private function assertBlocked($result): void
     {
         $this->assertNotEquals('next', $result);
     }
@@ -124,14 +124,14 @@ class BlockTest extends TestCase
         return $wire->handle($request, $this->getNextClosure());
     }
 
-    private function triggerBlock()
+    private function triggerBlock(): void
     {
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
 
-    protected function setConfig()
+    protected function setConfig(): void
     {
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);

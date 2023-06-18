@@ -81,7 +81,12 @@ class Agent extends BaseWire
         return null;
     }
 
-    protected function isMaliciousAgent()
+    /**
+     * @return array|null|string
+     *
+     * @psalm-return array<never, never>|null|string
+     */
+    protected function isMaliciousAgent(): array|string|null
     {
         $agent = RequestSource::getUserAgent();
 

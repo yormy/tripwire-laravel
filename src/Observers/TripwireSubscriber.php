@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\ThrottleHitWireListener;
 
 class TripwireSubscriber
 {
-    public function subscribe(Dispatcher $events)
+    public function subscribe(Dispatcher $events): void
     {
         // Listen to all events that implement the interface
         $events->listen(

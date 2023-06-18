@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\Services;
 
 class Honeypot
 {
-    public static function checkFalseValues($request, array $honeypots = []): array
+    public static function checkFalseValues(\Illuminate\Http\Request $request, array $honeypots = []): array
     {
         $violations = [];
         foreach ($honeypots as $honeypotName) {

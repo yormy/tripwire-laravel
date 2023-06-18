@@ -23,7 +23,10 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         $this->notifications = config('tripwire.notifications');
     }
 
-    public function via($notifiable)
+    /**
+     * @psalm-return list<mixed>
+     */
+    public function via($notifiable): array
     {
         $channels = [];
 
@@ -38,7 +41,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         return $channels;
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): UserBlockedMailable
     {
         $domain = request()->getHttpHost();
 

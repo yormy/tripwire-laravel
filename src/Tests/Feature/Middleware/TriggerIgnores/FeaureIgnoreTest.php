@@ -9,7 +9,7 @@ class FeaureIgnoreTest extends BaseTriggerIgnore
      *
      * @group tripwire-ignore
      */
-    public function Package_disabled_Trigger_No_exception()
+    public function Package_disabled_Trigger_No_exception(): void
     {
         $this->setDefaultConfig();
         config(['tripwire.enabled' => false]);
@@ -24,7 +24,7 @@ class FeaureIgnoreTest extends BaseTriggerIgnore
      *
      * @group tripwire-ignore
      */
-    public function Feature_disabled_Trigger_No_exception()
+    public function Feature_disabled_Trigger_No_exception(): void
     {
         $this->setDefaultConfig();
         config(['tripwire_wires.text.enabled' => false]);

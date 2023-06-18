@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 class TripwireFailedException extends BaseException
 {
+    /**
+     * @return void
+     */
     protected function dispatchEvents(Request $request)
     {
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     protected function renderJson(Request $request)
     {
         //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
@@ -20,6 +26,11 @@ class TripwireFailedException extends BaseException
         return response(['error' => $error, 'help' => $help], $status);
     }
 
+    /**
+     * @return string
+     *
+     * @psalm-return 'dddd'
+     */
     protected function renderHtml(Request $request)
     {
         return 'dddd';

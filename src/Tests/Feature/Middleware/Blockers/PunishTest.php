@@ -28,7 +28,7 @@ class PunishTest extends TestCase
      *
      * @group tripwire-punish
      */
-    public function Block_Added_Exponential_delay()
+    public function Block_Added_Exponential_delay(): void
     {
         TripwireBlock::truncate();
         TripwireLog::truncate();
@@ -54,7 +54,7 @@ class PunishTest extends TestCase
         $this->assertDiffInSeconds($penalty); // penalty + penalty power of 3
     }
 
-    private function assertDiffInSeconds(int $expectedDiff)
+    private function assertDiffInSeconds(int $expectedDiff): void
     {
         $latest = TripwireBlock::where('id', '>', 0)->orderBy('id', 'desc')->first();
         $createdAt = $latest->created_at;
@@ -63,12 +63,12 @@ class PunishTest extends TestCase
     }
 
     // ---------- HELPERS ---------
-    private function assertContinue($result)
+    private function assertContinue($result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    private function assertBlocked($result)
+    private function assertBlocked($result): void
     {
         $this->assertNotEquals('next', $result);
     }
@@ -83,14 +83,14 @@ class PunishTest extends TestCase
         return $wite->handle($request, $this->getNextClosure());
     }
 
-    private function triggerBlock()
+    private function triggerBlock(): void
     {
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
 
-    protected function setConfig()
+    protected function setConfig(): void
     {
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);

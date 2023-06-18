@@ -31,7 +31,7 @@ class BaseExtensive extends TestCase
         parent::__construct($name, $data, $dataName);
     }
 
-    public function assertAccept(string $accept)
+    public function assertAccept(string $accept): void
     {
         $this->setConfig();
 
@@ -44,7 +44,7 @@ class BaseExtensive extends TestCase
         $this->assertEquals('next', $result);
     }
 
-    public function assertBlock(string $violation)
+    public function assertBlock(string $violation): void
     {
         $this->setConfig();
 

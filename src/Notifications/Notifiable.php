@@ -18,7 +18,7 @@ class Notifiable
         return config('tripwire.notifications.slack.to');
     }
 
-    public function getKey()
+    public function getKey(): int
     {
         return 1;
     }

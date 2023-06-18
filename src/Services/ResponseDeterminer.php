@@ -120,7 +120,7 @@ class ResponseDeterminer
         return null;
     }
 
-    public function asGeneralAbort()
+    public function asGeneralAbort(): View
     {
         $message = 'Aborted';
         if (isset($this->config->messageKey)) {

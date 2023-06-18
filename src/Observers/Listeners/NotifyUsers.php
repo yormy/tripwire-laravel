@@ -9,7 +9,7 @@ use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 
 class NotifyUsers
 {
-    public function handle(TripwireBlockedEvent $event)
+    public function handle(TripwireBlockedEvent $event): void
     {
         $message = new UserBlockedNotification(
             $event->ipAddress,

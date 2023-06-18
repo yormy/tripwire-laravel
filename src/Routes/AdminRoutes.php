@@ -9,7 +9,7 @@ use Yormy\TripwireLaravel\Http\Controllers\ResetController;
 
 class AdminRoutes
 {
-    public static function register()
+    public static function register(): void
     {
         Route::macro('TripwireAdminRoutes', function (string $prefix = '') {
             Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {

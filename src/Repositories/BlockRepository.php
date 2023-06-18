@@ -27,6 +27,9 @@ class BlockRepository
         return $this->model::latest()->get();
     }
 
+    /**
+     * @return void
+     */
     private function delete(Builder $query, bool $softDelete = true)
     {
         if (! $softDelete) {
@@ -38,7 +41,7 @@ class BlockRepository
         $query->delete();
     }
 
-    public function resetIp(string $ip, bool $softDelete = true)
+    public function resetIp(string $ip, bool $softDelete = true): void
     {
         $query = $this->model::where('blocked_ip', $ip)
             ->where('persistent_block', false);
@@ -46,6 +49,9 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
+    /**
+     * @return void
+     */
     public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
     {
         if (! $browserFingerprint) {
@@ -58,6 +64,9 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
+    /**
+     * @return void
+     */
     public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
     {
         if (! $userId) {
@@ -78,7 +87,7 @@ class BlockRepository
         ?string $responseJson,
         ?string $responseHtml,
         ?bool $ignore = false
-    ) {
+    ): Model {
         $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
         $data['blocked_user_id'] = $userId;

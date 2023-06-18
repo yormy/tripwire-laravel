@@ -10,7 +10,7 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class BlockController extends controller
 {
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $blockRepository = new BlockRepository();
         $blocks = $blockRepository->getAll();
@@ -20,7 +20,7 @@ class BlockController extends controller
         return response()->json($blocks);
     }
 
-    public function show($blockId)
+    public function show($blockId): \Illuminate\Http\JsonResponse
     {
         if (! is_numeric($blockId)) {
             return response()->json([]);

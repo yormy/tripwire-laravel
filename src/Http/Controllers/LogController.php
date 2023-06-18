@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class LogController extends controller
 {
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $logRepository = new LogRepository();
         $logs = $logRepository->getAll();

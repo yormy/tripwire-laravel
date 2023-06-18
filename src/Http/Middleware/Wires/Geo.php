@@ -20,7 +20,6 @@ class Geo extends BaseWire
 
     public function isAttack($patterns): bool
     {
-        $places = ['continents', 'regions', 'countries', 'cities'];
 
         if (! $location = $this->getLocation()) {
             return false;
@@ -44,11 +43,11 @@ class Geo extends BaseWire
         return ! empty($violations);
     }
 
-    protected function getLocation()
+    protected function getLocation(): void
     {
         $service = $this->config->tripwires['service'];
         $apiKey = '--';
         $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
-        $location = $ipLookup->get();
+        $ipLookup->get();
     }
 }

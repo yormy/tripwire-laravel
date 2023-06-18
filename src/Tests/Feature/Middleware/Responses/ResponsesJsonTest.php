@@ -20,7 +20,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_missing_expects_default_exception()
+    public function json_respond_missing_expects_default_exception(): void
     {
         $this->setDefaultConfig(['exception' => TripwireFailedException::class]);
 
@@ -34,7 +34,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_missing_expects_default_message()
+    public function json_respond_missing_expects_default_message(): void
     {
         $messageKey = 'message.key';
         $this->setDefaultConfig(['message_key' => $messageKey]);
@@ -53,7 +53,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_missing_expects_default_json()
+    public function json_respond_missing_expects_default_json(): void
     {
         $json = ['data' => 'somedata', 'err' => '2'];
         $this->setDefaultConfig(['json' => $json]);
@@ -72,7 +72,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_as_exception_expects_exception()
+    public function json_respond_as_exception_expects_exception(): void
     {
         $this->setConfig(['exception' => TripwireFailedException::class]);
 
@@ -86,7 +86,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_as_message_expects_message()
+    public function json_respond_as_message_expects_message(): void
     {
         $messageKey = 'message.key';
         $this->setConfig(['message_key' => $messageKey]);
@@ -105,7 +105,7 @@ class ResponsesJsonTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function json_respond_as_json_expects_json()
+    public function json_respond_as_json_expects_json(): void
     {
         $json = ['data' => 'somedata', 'err' => '2'];
         $this->setConfig(['json' => $json]);
@@ -128,18 +128,18 @@ class ResponsesJsonTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function assertLogAddedToDatabase($startCount)
+    private function assertLogAddedToDatabase(int $startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
     }
 
-    private function setConfig(array $data)
+    private function setConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.json" => $data]);
     }
 
-    private function setDefaultConfig(array $data)
+    private function setDefaultConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.trigger_response.json" => []]);
 

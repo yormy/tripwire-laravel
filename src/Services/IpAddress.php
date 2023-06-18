@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class IpAddress
 {
-    public static function get(?Request $request): string
+    public static function get(?Request $request): array|string|null
     {
         if (! $request) {
             return request()->ip();

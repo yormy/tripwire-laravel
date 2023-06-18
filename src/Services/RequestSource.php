@@ -11,12 +11,12 @@ class RequestSource
         return $_SERVER['HTTP_USER_AGENT'] ?? null;
     }
 
-    public static function getPlatform(): string
+    public static function getPlatform(): string|bool
     {
         return (new Agent())->platform();
     }
 
-    public static function getBrowser(): string
+    public static function getBrowser(): string|bool
     {
         return (new Agent())->browser();
     }
@@ -52,7 +52,7 @@ class RequestSource
         return (new Agent())->isRobot();
     }
 
-    public static function getRobot(): string
+    public static function getRobot(): string|bool
     {
         $agent = new Agent();
         if ($agent->isRobot()) {

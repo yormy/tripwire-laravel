@@ -15,7 +15,7 @@ trait TripwireHelpers
         return $this->config->attackScore();
     }
 
-    public function skip($request)
+    public function skip($request): bool
     {
         if ($this->config->isDisabled()) {
             return true;
@@ -40,7 +40,7 @@ trait TripwireHelpers
         return false;
     }
 
-    protected function blockIfNeeded()
+    protected function blockIfNeeded(): void
     {
         BlockIfNeeded::run($this->request, $this->config->punish(), $this->config->trainingMode());
     }

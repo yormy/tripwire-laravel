@@ -33,7 +33,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->blockIfNeeded();
     }

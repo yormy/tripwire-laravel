@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\URL;
 
 class ResetUrl
 {
-    public static function get(int $expirationMinutes = null)
+    public static function get(int $expirationMinutes = null): string
     {
         if (! $expirationMinutes) {
             $expirationMinutes = config('tripwire.reset.link_expiry_minutes', 60);

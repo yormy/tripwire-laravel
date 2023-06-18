@@ -25,6 +25,8 @@ class BlockResponsesJsonTest extends TestCase
      * @test
      *
      * @group tripwire-block
+     *
+     * @return never
      */
     public function json_blocked_Request_Should_block_with_exception()
     {
@@ -46,7 +48,7 @@ class BlockResponsesJsonTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Json_blocked_Request_Should_block_with_code()
+    public function Json_blocked_Request_Should_block_with_code(): void
     {
         $this->setConfig();
         $settings = ['code' => self::BLOCK_CODE];
@@ -64,7 +66,7 @@ class BlockResponsesJsonTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Json_blocked_Request_Should_block_with_message()
+    public function Json_blocked_Request_Should_block_with_message(): void
     {
         $messageKey = 'json.message';
 
@@ -79,7 +81,7 @@ class BlockResponsesJsonTest extends TestCase
         $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
-    private function triggerJsonBlock()
+    private function triggerJsonBlock(): void
     {
         $this->resetBlockStartCount();
 
@@ -88,7 +90,7 @@ class BlockResponsesJsonTest extends TestCase
         $this->triggerJsonTripwire(self::TRIPWIRE_TRIGGER);
     }
 
-    protected function setConfig()
+    protected function setConfig(): void
     {
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);

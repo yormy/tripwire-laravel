@@ -7,7 +7,7 @@ use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 trait BlockTestTrait
 {
-    protected function setBlockConfig()
+    protected function setBlockConfig(): void
     {
         $settings = ['code' => self::BLOCK_CODE];
         config(['tripwire.block_response.html' => $settings]);
@@ -37,12 +37,12 @@ trait BlockTestTrait
         return TripwireBlock::count();
     }
 
-    protected function assertBlockAddedToDatabase($startCount)
+    protected function assertBlockAddedToDatabase($startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireBlock::count());
     }
 
-    protected function assertNotBlocked($startCount)
+    protected function assertNotBlocked($startCount): void
     {
         $this->assertEquals($startCount, TripwireBlock::count());
     }

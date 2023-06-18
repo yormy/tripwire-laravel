@@ -29,7 +29,7 @@ class LogRepository
         return $this->model::where('tripwire_block_id', $blockId)->latest()->get();
     }
 
-    public function add(LoggableEventInterface $event, array $meta)
+    public function add(LoggableEventInterface $event, array $meta): Model
     {
         $data = $meta;
         $data['event_code'] = $event::CODE;
@@ -46,6 +46,9 @@ class LogRepository
         return $this->model::create($data);
     }
 
+    /**
+     * @return void
+     */
     private function delete(Builder $query, bool $softDelete = true)
     {
         if (! $softDelete) {
@@ -57,12 +60,15 @@ class LogRepository
         $query->delete();
     }
 
-    public function resetIp(string $ip, bool $softDelete = true)
+    public function resetIp(string $ip, bool $softDelete = true): void
     {
         $query = $this->model::where('ip', $ip);
         $this->delete($query, $softDelete);
     }
 
+    /**
+     * @return void
+     */
     public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
     {
         if (! $browserFingerprint) {
@@ -73,6 +79,9 @@ class LogRepository
         $this->delete($query, $softDelete);
     }
 
+    /**
+     * @return void
+     */
     public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
     {
         if (! $userId) {
@@ -90,7 +99,10 @@ class LogRepository
 
     }
 
-    public function queryViolationsByUser(int $withinMinutes, $userId, $userType, array $violations = []): Builder
+    /**
+     * @param null|string $userType
+     */
+    public function queryViolationsByUser(int $withinMinutes, int $userId, string|null $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byUserId($userId)

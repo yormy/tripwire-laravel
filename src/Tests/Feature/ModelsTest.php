@@ -18,7 +18,7 @@ class ModelsTest extends TestCase
      *
      * @group tripwire-models
      */
-    public function Models_missing_log()
+    public function Models_missing_log(): void
     {
         $startCount = TripwireLog::count();
 
@@ -34,7 +34,7 @@ class ModelsTest extends TestCase
      *
      * @group tripwire-models
      */
-    public function Model_missing_Added_block()
+    public function Model_missing_Added_block(): void
     {
         $startCount = TripwireLog::count();
 
@@ -49,16 +49,16 @@ class ModelsTest extends TestCase
         $this->assertGreaterThan($startCount, $endCount);
     }
 
-    private function triggerModelNotFound()
+    private function triggerModelNotFound(): void
     {
         try {
-            $failed = TripwireLog::findOrFail(999999);
+            TripwireLog::findOrFail(999999);
         } catch (\Throwable $e) {
             ExceptionInspector::inspect($e);
         }
     }
 
-    private function setDefaultConfig(array $data = [])
+    private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);

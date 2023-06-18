@@ -9,6 +9,9 @@ use Yormy\TripwireLaravel\Services\ResetUrl;
 
 class ResetController extends controller
 {
+    /**
+     * @return \Illuminate\Http\JsonResponse|null
+     */
     public function reset(Request $request)
     {
         if (! config('tripwire.reset.enabled')) {
@@ -20,7 +23,7 @@ class ResetController extends controller
         return response()->json(['logs cleared']);
     }
 
-    public function getKey()
+    public function getKey(): \Illuminate\Http\JsonResponse
     {
         $url = ResetUrl::get();
 

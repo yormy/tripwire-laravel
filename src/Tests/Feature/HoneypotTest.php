@@ -17,7 +17,7 @@ class HoneypotTest extends TestCase
      *
      * @group tripwire-honeypot
      */
-    public function Trigger_honeypot_log()
+    public function Trigger_honeypot_log(): void
     {
         $startCount = Tripwirelog::count();
 
@@ -42,7 +42,7 @@ class HoneypotTest extends TestCase
      *
      * @group tripwire-honeypot
      */
-    public function Trigger_multi_honeypost_Block()
+    public function Trigger_multi_honeypost_Block(): void
     {
         $blockCountStart = TripwireBlock::count();
 
@@ -65,13 +65,13 @@ class HoneypotTest extends TestCase
     }
 
     // -------- HELPERS --------
-    public function triggerHoneypotBlock()
+    public function triggerHoneypotBlock(): void
     {
         $result = $this->testHoneypot();
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
-    public function triggerHoneypotOke()
+    public function triggerHoneypotOke(): void
     {
         $result = $this->testHoneypot();
         $this->assertEquals('next', $result);
@@ -93,7 +93,7 @@ class HoneypotTest extends TestCase
         return (new HoneypotsWire($request))->handle($request, $this->getNextClosure());
     }
 
-    private function setDefaultConfig(array $data = [])
+    private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);

@@ -21,7 +21,7 @@ class ResetTest extends TestCase
      *
      * @group tripwire-reset
      */
-    public function tigger_Default_disabled_Continue()
+    public function tigger_Default_disabled_Continue(): void
     {
         TripwireLog::truncate();
         TripwireBlock::truncate();
@@ -49,20 +49,20 @@ class ResetTest extends TestCase
 
     // -------- HELPERS --------
 
-    private function triggerBlock()
+    private function triggerBlock(): void
     {
         $this->triggerTripwire();
         $this->triggerTripwire();
         $this->triggerTripwire();
     }
 
-    public function triggerAssertBlock()
+    public function triggerAssertBlock(): void
     {
         $result = $this->triggerTripwire();
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
-    public function triggerAssertOke()
+    public function triggerAssertOke(): void
     {
         $result = $this->triggerTripwire();
         $this->assertEquals('next', $result);
@@ -76,7 +76,7 @@ class ResetTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function setDefaultConfig(array $data = [])
+    private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);

@@ -64,7 +64,7 @@ class LogRequestService
         return $data;
     }
 
-    private static function fingerprint(Request $request)
+    private static function fingerprint(Request $request): string
     {
         return HashService::create(json_encode([
             $request->url(),

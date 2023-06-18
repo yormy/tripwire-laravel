@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class ResetService
 {
-    public static function run(Request $request)
+    public static function run(Request $request): void
     {
         $requestSourceClass = config('tripwire.services.request_source');
         $browserFingerprint = $requestSourceClass::getBrowserFingerprint();

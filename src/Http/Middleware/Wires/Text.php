@@ -16,6 +16,9 @@ class Text extends BaseWire
         $this->blockIfNeeded();
     }
 
+    /**
+     * @return void
+     */
     public function matchResults($pattern, string $input, &$violations)
     {
         if (str_contains($input, $pattern)) {

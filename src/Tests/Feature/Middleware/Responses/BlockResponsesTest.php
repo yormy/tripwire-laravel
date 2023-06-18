@@ -25,7 +25,7 @@ class BlockResponsesTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_Request_Should_block_with_code()
+    public function Blocked_Request_Should_block_with_code(): void
     {
         $this->setConfig();
 
@@ -41,7 +41,7 @@ class BlockResponsesTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_Request_Should_block_with_redirecturl()
+    public function Blocked_Request_Should_block_with_redirecturl(): void
     {
         $redirectUrl = 'https://www.cccc.com';
         $this->setConfig();
@@ -61,7 +61,7 @@ class BlockResponsesTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_Request_Should_block_with_view()
+    public function Blocked_Request_Should_block_with_view(): void
     {
         $viewName = 'tripwire-laravel::blocked';
 
@@ -81,7 +81,7 @@ class BlockResponsesTest extends TestCase
      *
      * @group tripwire-block
      */
-    public function Blocked_Request_Should_block_with_message()
+    public function Blocked_Request_Should_block_with_message(): void
     {
         $messageKey = 'message.key';
 
@@ -96,7 +96,7 @@ class BlockResponsesTest extends TestCase
         $this->assertEquals($result->getOriginalContent(), $messageKey);
     }
 
-    protected function setConfig()
+    protected function setConfig(): void
     {
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
@@ -110,7 +110,7 @@ class BlockResponsesTest extends TestCase
         $this->setBlockConfig();
     }
 
-    private function triggerBlock()
+    private function triggerBlock(): void
     {
         $this->resetBlockStartCount();
 

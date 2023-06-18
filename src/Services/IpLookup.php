@@ -129,7 +129,7 @@ class IpLookup
         return $location;
     }
 
-    protected function getResponse($url)
+    protected function getResponse(string $url)
     {
         try {
             $ch = curl_init();
@@ -142,7 +142,6 @@ class IpLookup
 
             $response = json_decode($content);
         } catch (\ErrorException $e) {
-            $response = null;
             throw new $e;
         }
 

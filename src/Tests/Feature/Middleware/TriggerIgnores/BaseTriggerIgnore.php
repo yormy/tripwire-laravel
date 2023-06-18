@@ -28,7 +28,7 @@ class BaseTriggerIgnore extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    protected function setDefaultConfig()
+    protected function setDefaultConfig(): void
     {
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
 

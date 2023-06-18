@@ -13,7 +13,7 @@ class JsonResource extends BaseJsonResource
         $this->withoutWrapping();
     }
 
-    protected function formatDate(Carbon $date)
+    protected function formatDate(Carbon $date): string
     {
         return $date
             ->clone()

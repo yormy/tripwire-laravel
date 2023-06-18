@@ -20,7 +20,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_with_missing_expects_default_exception()
+    public function respond_with_missing_expects_default_exception(): void
     {
         $this->setDefaultConfig(['exception' => TripwireFailedException::class]);
 
@@ -34,7 +34,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_with_missing_expects_default_code()
+    public function respond_with_missing_expects_default_code(): void
     {
         $this->setDefaultConfig(['code' => self::HTTP_TRIPWIRE_CODE]);
 
@@ -52,7 +52,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_with_missing_expects_default_redirecturl()
+    public function respond_with_missing_expects_default_redirecturl(): void
     {
         $redirectUrl = 'https://www.cccc.com';
         $this->setDefaultConfig(['redirect_url' => $redirectUrl]);
@@ -71,7 +71,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_with_missing_expects_default_view()
+    public function respond_with_missing_expects_default_view(): void
     {
         $viewName = 'tripwire-laravel::blocked';
         $this->setDefaultConfig(['view' => $viewName]);
@@ -90,7 +90,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_with_missing_expects_default_message()
+    public function respond_with_missing_expects_default_message(): void
     {
         $messageKey = 'message.key';
         $this->setDefaultConfig(['message_key' => $messageKey]);
@@ -109,7 +109,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_as_exception_expects_exception()
+    public function respond_as_exception_expects_exception(): void
     {
         $this->setConfig(['exception' => TripwireFailedException::class]);
 
@@ -123,7 +123,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_as_code_expects_code()
+    public function respond_as_code_expects_code(): void
     {
         $this->setConfig(['code' => self::HTTP_TRIPWIRE_CODE]);
 
@@ -141,7 +141,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_as_redirecturl_expects_redirecturl()
+    public function respond_as_redirecturl_expects_redirecturl(): void
     {
         $redirectUrl = 'https://www.cccc.com';
         $this->setConfig(['redirect_url' => $redirectUrl]);
@@ -160,7 +160,7 @@ class ResponsesTest extends TestCase
      *
      * @group aaa
      */
-    public function respond_as_view_expects_view()
+    public function respond_as_view_expects_view(): void
     {
         $viewName = 'tripwire-laravel::blocked';
         $this->setConfig(['view' => $viewName]);
@@ -179,7 +179,7 @@ class ResponsesTest extends TestCase
      *
      * @group tripwire-response
      */
-    public function respond_as_message_expects_message()
+    public function respond_as_message_expects_message(): void
     {
         $messageKey = 'message.key';
         $this->setConfig(['message_key' => $messageKey]);
@@ -201,18 +201,18 @@ class ResponsesTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function assertLogAddedToDatabase($startCount)
+    private function assertLogAddedToDatabase(int $startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
     }
 
-    private function setConfig(array $data)
+    private function setConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => $data]);
     }
 
-    private function setDefaultConfig(array $data)
+    private function setDefaultConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
 

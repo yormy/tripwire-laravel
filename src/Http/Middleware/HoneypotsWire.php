@@ -66,14 +66,14 @@ class HoneypotsWire
         return $next($request);
     }
 
-    protected function attackFound(Request $request, TriggerEventData $triggerEventData, $config): void
+    protected function attackFound(Request $request, TriggerEventData $triggerEventData, WireConfig $config): void
     {
         event(new HoneypotFailedEvent($triggerEventData));
 
         BlockIfNeeded::run($request, $config->punish(), $config->trainingMode());
     }
 
-    protected function cleanup(Request $request, $wireConfig): void
+    protected function cleanup(Request $request, WireConfig $wireConfig): void
     {
         foreach ($wireConfig->tripwires() as $field) {
             $request->request->remove($field);

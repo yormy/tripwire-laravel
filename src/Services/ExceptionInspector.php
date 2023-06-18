@@ -74,7 +74,7 @@ class ExceptionInspector
         }
     }
 
-    private static function needsProcessing(string $value, MissingModelConfig|MissingPageConfig $config)
+    private static function needsProcessing(string $value, MissingModelConfig|MissingPageConfig $config): bool
     {
         if (self::isInclude($value, $config)) {
             return true;

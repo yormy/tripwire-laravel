@@ -23,7 +23,7 @@ class AddLogJob implements ShouldQueue, ShouldBeEncrypted
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $logRepository = new LogRepository();
         $logRepository->add($this->event, $this->meta);

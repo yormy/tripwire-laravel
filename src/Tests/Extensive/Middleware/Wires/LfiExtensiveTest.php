@@ -23,7 +23,7 @@ class LfiExtensiveTest extends BaseExtensive
      *
      * @dataProvider accepting
      */
-    public function should_accept(string $accept)
+    public function should_accept(string $accept): void
     {
         $this->assertAccept($accept);
     }
@@ -35,7 +35,7 @@ class LfiExtensiveTest extends BaseExtensive
      *
      * @dataProvider violations
      */
-    public function should_block(string $violation)
+    public function should_block(string $violation): void
     {
         $this->assertBlock($violation);
     }

@@ -7,6 +7,9 @@ use Yormy\TripwireLaravel\Services\LogRequestService;
 
 class LogEvent extends BaseListener
 {
+    /**
+     * @return void
+     */
     public function handle($event)
     {
         $meta = LogRequestService::getMeta($this->request);

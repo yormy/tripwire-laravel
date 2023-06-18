@@ -93,7 +93,7 @@ class TripwireServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerMiddleware($router)
+    public function registerMiddleware(Router $router): void
     {
         $router->aliasMiddleware('tripwire.agent', Agent::class);
         $router->aliasMiddleware('tripwire.bot', Bot::class);
@@ -110,20 +110,20 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
     }
 
-    private function registerMiddlewareGroups($router)
+    private function registerMiddlewareGroups(Router $router): void
     {
         foreach (config('tripwire.wire_groups', []) as $name => $items) {
             $router->middlewareGroup("tripwire.$name", $items);
         }
     }
 
-    public function registerListeners()
+    public function registerListeners(): void
     {
         $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class);
         $this->app['events']->listen(TripwireBlockedEvent::class, NotifyUsers::class);
     }
 
-    public function registerTranslations()
+    public function registerTranslations(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tripwire');
     }

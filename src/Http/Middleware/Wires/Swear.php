@@ -16,6 +16,11 @@ class Swear extends BaseWire
         $this->blockIfNeeded();
     }
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return list{0?: string,...}
+     */
     public function getPatterns()
     {
         $patterns = [];

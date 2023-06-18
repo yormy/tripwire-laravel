@@ -6,7 +6,12 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 trait TripwireTestTrait
 {
-    public function accepting()
+    /**
+     * @return array[]
+     *
+     * @psalm-return array<list{mixed}>
+     */
+    public function accepting(): array
     {
         $providerArray = [];
         foreach ($this->accepting as $accept) {
@@ -16,7 +21,12 @@ trait TripwireTestTrait
         return $providerArray;
     }
 
-    public function violations()
+    /**
+     * @return array[]
+     *
+     * @psalm-return array<list{mixed}>
+     */
+    public function violations(): array
     {
         $providerArray = [];
         foreach ($this->violations as $violation) {
@@ -26,7 +36,7 @@ trait TripwireTestTrait
         return $providerArray;
     }
 
-    protected function setConfig()
+    protected function setConfig(): void
     {
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
@@ -55,17 +65,17 @@ trait TripwireTestTrait
         return $wire->handle($request, $this->getNextClosure());
     }
 
-    protected function assertLogAddedToDatabase($startCount)
+    protected function assertLogAddedToDatabase($startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
     }
 
-    protected function assertNotLogged($startCount)
+    protected function assertNotLogged($startCount): void
     {
         $this->assertEquals($startCount, TripwireLog::count());
     }
 
-    protected function assertFirewallTripped($result, int $expectedCode = 409)
+    protected function assertFirewallTripped($result, int $expectedCode = 409): void
     {
         $this->assertEquals($result->getStatusCode(), $expectedCode);
     }

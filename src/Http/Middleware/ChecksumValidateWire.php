@@ -52,6 +52,9 @@ class ChecksumValidateWire
         return $next($request);
     }
 
+    /**
+     * @return void
+     */
     private function checkTimestamp(Request $request)
     {
 

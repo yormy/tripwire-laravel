@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Http\Middleware\ValidateSignature;
 
 class GuestRoutes
 {
-    public static function register()
+    public static function register(): void
     {
         Route::macro('TripwireResetRoutes', function (string $prefix = '') {
             if (config('tripwire.reset.enabled')) {

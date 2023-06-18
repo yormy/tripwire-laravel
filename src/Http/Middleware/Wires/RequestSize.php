@@ -22,7 +22,7 @@ class RequestSize extends BaseWire
         return ! empty($violations);
     }
 
-    private function check($inputs, &$violations)
+    private function check(array $inputs, array &$violations): void
     {
 
         foreach ($inputs as $field => $value) {

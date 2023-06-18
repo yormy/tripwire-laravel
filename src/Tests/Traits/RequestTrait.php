@@ -12,7 +12,7 @@ trait RequestTrait
         $parameters = [],
         $cookies = [],
         $files = []
-    ) {
+    ): \Illuminate\Http\Request {
         $request = new \Illuminate\Http\Request;
 
         return $request->createFromBase(
