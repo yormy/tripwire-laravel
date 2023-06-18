@@ -3,6 +3,8 @@
 namespace Yormy\TripwireLaravel\Http\Middleware\Blockers;
 
 
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Closure;
 use Illuminate\Http\Request;
@@ -29,14 +31,17 @@ abstract class TripwireBlockHandler
         }
 
         if ($request->wantsJson()) {
-            $blockResponse = new ConfigResponse(config('tripwire.block_response.json'));
+            $config = JsonResponseConfig::makeFromArray(config('tripwire.block_response.json'));
+            $blockResponse = new ConfigResponse($config);
             $respond = new ResponseDeterminer($blockResponse);
 
             return $respond->respondWithJson(['blocked_until' => $blockedUntil]);
         }
 
-        $blockResponse = new ConfigResponse(config('tripwire.block_response.html'));
+        $config = HtmlResponseConfig::makeFromArray(config('tripwire.block_response.html'));
+        $blockResponse = new ConfigResponse($config);
         $respond = new ResponseDeterminer($blockResponse);
+
         return $respond->respondWithHtml(['blocked_until' => $blockedUntil]);
     }
 }

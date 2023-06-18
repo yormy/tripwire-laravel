@@ -1,6 +1,10 @@
 # Documentation
 1 rename checkers to tripwires
 2 refactor configs now we have objects / checkers + honeypot
+$config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
+$responseConfig = new ConfigResponse($config, $request->url());
+$respond = new ResponseDeterminer($responseConfig);
+
 
 Done:
 default

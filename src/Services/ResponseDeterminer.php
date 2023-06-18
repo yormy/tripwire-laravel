@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 
 class ResponseDeterminer

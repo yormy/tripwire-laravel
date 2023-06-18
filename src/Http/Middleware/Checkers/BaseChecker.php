@@ -4,6 +4,8 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Checkers;
 
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\ConfigMiddleware;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
@@ -51,23 +53,20 @@ abstract class BaseChecker
 
     private function getConfig(Request $request, ?string $checker = null): ConfigResponse
     {
-        $configName = 'trigger_response';
         if ($request->wantsJson()) {
-            $configName .='.json';
+            $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
+            $configChecker = JsonResponseConfig::makeFromArray(config('tripwire_wires.' . $checker. '.trigger_response.json'));
+
         } else {
-            $configName .='.html';
+            $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
+            $configChecker = HtmlResponseConfig::makeFromArray(config('tripwire_wires.' . $checker. '.trigger_response.html'));
         }
 
-        $generalResponse = config("tripwire.$configName");
-        $triggerResponse = $generalResponse;
-        if ($checker) {
-            $checkerResponse = config('tripwire_wires.' . $checker. '.'. "$configName", false);
-            if (!empty($checkerResponse) && is_array($checkerResponse)) {
-                $triggerResponse = $checkerResponse;
-            }
+        if (isset($configChecker)) {
+            return new ConfigResponse($configChecker, $request->url());
         }
 
-        return new ConfigResponse($triggerResponse, $request->url());
+        return new ConfigResponse($config, $request->url());
     }
 
     public function getPatterns()

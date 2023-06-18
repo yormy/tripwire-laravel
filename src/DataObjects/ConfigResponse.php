@@ -8,62 +8,28 @@ use Illuminate\Http\Response as View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 
 class ConfigResponse
 {
     public int $code;
 
-    public ?string $view = null;
-
-    public ?string $redirectUrl  = null;
-
-    public bool $abort;
-
-    public ?array $json = null;
-
-    public ?string $exception = null;
-
-    public ?string $messageKey = null;
-
     public function __construct(
-        array $data,
-        private string $currentUrl = '',
-
+        private HtmlResponseConfig|JsonResponseConfig $config,
+        private string $currentUrl = ''
     ) {
-        if ($data['code'] ?? false) {
-            $this->code = $data['code'];
+
+        if (!isset($this->config->code) || $this->config->code === 0 ) {
+            $this->code = 401;
         } else {
-            $this->code = config('tripwire.block_code', 406);
-        }
-
-        if ($data['view'] ?? false) {
-            $this->view = $data['view'];
-        }
-
-        if ($data['redirect_url'] ?? false) {
-            $this->redirectUrl = $data['redirect_url'];
-        }
-
-        if ($data['abort'] ?? false) {
-            $this->abort = $data['abort'];
-        }
-
-        if ($data['json'] ?? false) {
-            $this->json = $data['json'];
-        }
-
-        if ($data['exception'] ?? false) {
-            $this->exception = $data['exception'];
-        }
-
-        if ($data['message_key'] ?? false) {
-            $this->messageKey = $data['message_key'];
+            $this->code = $this->config->code;
         }
     }
 
     public function asContinue(): bool
     {
-        if ($this->code === 200) {
+        if (isset($this->config->code) && $this->config->code === 200) {
             return true;
         }
 
@@ -72,8 +38,8 @@ class ConfigResponse
 
     public function asException()
     {
-        if ($this->exception) {
-            throw new $this->exception;
+        if (isset($this->config->exception)) {
+            throw new $this->config->exception;
         }
 
         return null;
@@ -81,8 +47,8 @@ class ConfigResponse
 
     public function asJson(): ?JsonResponse
     {
-        if ($this->json) {
-            return Response::json($this->json, $this->code);
+        if (isset($this->config->json)) {
+            return Response::json($this->config->json, $this->code);
         }
 
         return null;
@@ -90,8 +56,8 @@ class ConfigResponse
 
     public function asView(array $data): ?View
     {
-        if ($this->view) {
-            return Response::view($this->view, $data, $this->code);
+        if (isset($this->config->view)) {
+            return Response::view($this->config->view, $data, $this->code);
         }
 
         return null;
@@ -99,13 +65,13 @@ class ConfigResponse
 
     public function asRedirect(): ?RedirectResponse
     {
-        if ($this->redirectUrl) {
+        if (isset($this->config->redirectUrl)) {
             // prevent redir to self
-            if (0 === strcasecmp($this->currentUrl, $this->redirectUrl)) {
+            if (0 === strcasecmp($this->currentUrl, $this->config->redirectUrl)) {
                 $this->asGeneralAbort();
             }
 
-            return Redirect::to($this->redirectUrl);
+            return Redirect::to($this->config->redirectUrl);
         }
 
         return null;
@@ -113,8 +79,8 @@ class ConfigResponse
 
     public function asGeneralMessage(string $message = null): ?\Illuminate\Http\Response
     {
-        if ($this->messageKey) {
-            $message = __($this->messageKey);
+        if (isset($this->config->messageKey)) {
+            $message = __($this->config->messageKey);
             return Response::make($message, $this->code);
         }
 
@@ -124,8 +90,8 @@ class ConfigResponse
     public function asGeneralAbort()
     {
         $message = 'Aborted';
-        if ($this->messageKey) {
-            $message = __($this->messageKey);
+        if (isset($this->config->messageKey)) {
+            $message = __($this->config->messageKey);
         }
 
         return Response::make($message, $this->code);

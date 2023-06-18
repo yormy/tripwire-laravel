@@ -148,7 +148,7 @@ class ResponsesTest extends TestCase
 
     /**
      * @test
-     * @group tripwire-response
+     * @group aaa
      */
     public function respond_as_view_expects_view()
     {

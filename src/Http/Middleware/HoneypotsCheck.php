@@ -4,6 +4,8 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -49,14 +51,17 @@ class HoneypotsCheck
 
             $this->attackFound($request, $triggerEventData, $config);
 
-            $responseConfig = new ConfigResponse($config->triggerResponse->toArray(), $request->url());
-
-            $respond = new ResponseDeterminer($responseConfig);
-
             if ($request->wantsJson()) {
+                $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
+                $responseConfig = new ConfigResponse($config, $request->url());
+                $respond = new ResponseDeterminer($responseConfig);
                 return $respond->respondWithJson();
             }
 
+            // checker response not loaded
+            $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
+            $responseConfig = new ConfigResponse($config, $request->url());
+            $respond = new ResponseDeterminer($responseConfig);
             return $respond->respondWithHtml();
         }
 
