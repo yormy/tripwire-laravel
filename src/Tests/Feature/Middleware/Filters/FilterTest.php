@@ -15,7 +15,7 @@ class FilterTest extends TestCase
     CONST TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
     /**
-     * test
+     * @test
      * @group tripwire-filter
      */
     public function tigger_Default_ignore_ip_Oke()
@@ -35,12 +35,38 @@ class FilterTest extends TestCase
     public function tigger_Default_ignore_input_Oke()
     {
         $this->setDefaultConfig();
-//        $this->triggerAssertBlock();
+        $this->triggerAssertBlock();
 
         config(["tripwire.ignore.inputs" => ['foo']]);
         $this->triggerAssertOke();
     }
 
+    /**
+     * @test
+     * @group tripwire-filter
+     */
+    public function tigger_Default_ignore_url_only_Oke()
+    {
+        $this->setDefaultConfig();
+        $this->triggerAssertBlock();
+
+        config(["tripwire.urls.only" => ['foo']]);
+        $this->triggerAssertOke();
+    }
+
+    /**
+     * @test
+     * @group tripwire-filter
+     */
+    public function tigger_Default_ignore_url_except_Oke()
+    {
+        $this->setDefaultConfig();
+        $this->triggerAssertBlock();
+
+        $url = request()->url();
+        config(["tripwire.urls.except" => [$url]]);
+        $this->triggerAssertOke();
+    }
 
     public function triggerAssertBlock()
     {
