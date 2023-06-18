@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\HoneypotsWire;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
 class HoneypotTest extends TestCase
@@ -17,6 +18,8 @@ class HoneypotTest extends TestCase
      */
     public function Trigger_honeypot_log()
     {
+        $startCount = Tripwirelog::count();
+
         $this->setDefaultConfig();
         $this->triggerHoneypotOke();
 
@@ -25,6 +28,10 @@ class HoneypotTest extends TestCase
             'must_be_missing_or_false' => ['foo']
         ]]);
         $this->triggerHoneypotBlock();
+
+        $endCount = Tripwirelog::count();
+
+        $this->assertGreaterThan($startCount, $endCount);
     }
 
     /**
