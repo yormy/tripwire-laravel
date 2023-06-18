@@ -7,15 +7,11 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
-use Yormy\TripwireLaravel\DataObjects\ConfigResponse;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Jobs\AddBlockJob;
 use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
-use Yormy\TripwireLaravel\Observers\Events\Failed\TextFailedEvent;
-use Yormy\TripwireLaravel\Observers\Events\Failed\XssFailedEvent;
+use Yormy\TripwireLaravel\Services\BlockIfNeeded;
 use Yormy\TripwireLaravel\Services\Honeypot;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
-use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 /**
  * Goal:
@@ -72,32 +68,7 @@ class HoneypotsCheck
     {
         event(new HoneypotFailedEvent($triggerEventData));
 
-        $this->blockIfNeeded($request, $config);
-    }
-
-    // todo : normalize with other blockifneeded function
-    protected function blockIfNeeded(Request $request, $config)
-    {
-        $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($this->request ?? null);
-        $userClass = config('tripwire.services.user');
-
-        $userId = 0;
-        $userType = '';
-        if ($this->request ?? false) {
-            $userId = $userClass::getId($request);
-            $userType = $userClass::getType($request);
-        }
-
-        AddBlockJob::dispatch(
-            ipAddress: $ipAddress,
-            userId: $userId,
-            userType: $userType,
-            withinMinutes: $config->punish->withinMinutes,
-            thresholdScore: $config->punish->score,
-            penaltySeconds: $config->punish->penaltySeconds,
-            trainingMode: $config->trainingMode,
-        );
+        BlockIfNeeded::run($request, $config->punish, $config->trainingMode);
     }
 
     protected function cleanup(Request $request): void

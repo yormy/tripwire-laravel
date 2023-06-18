@@ -1,6 +1,6 @@
 # Documentation
 1 rename checkers to tripwires
-2 refactor configs now we have objects / checkers + honeypot
+
 
 Done:
 default

@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel\Traits;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Jobs\AddBlockJob;
+use Yormy\TripwireLaravel\Services\BlockIfNeeded;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
 trait TripwireHelpers
@@ -43,26 +44,6 @@ trait TripwireHelpers
 
     protected function blockIfNeeded()
     {
-        $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($this->request ?? null);
-        $userClass = config('tripwire.services.user');
-
-        $userId = 0;
-        $userType = '';
-        if ($this->request ?? false) {
-            $userId = $userClass::getId($this->request);
-            $userType = $userClass::getType($this->request);
-        }
-
-        $punish = $this->config->punish();
-        AddBlockJob::dispatch(
-            ipAddress: $ipAddress,
-            userId: $userId,
-            userType: $userType,
-            withinMinutes: $punish->withinMinutes,
-            thresholdScore: $punish->score,
-            penaltySeconds: $punish->penaltySeconds,
-            trainingMode: $this->config->trainingMode(),
-        );
+        BlockIfNeeded::run($this->request, $this->config->punish(), $this->config->trainingMode());
     }
 }
