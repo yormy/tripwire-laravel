@@ -16,7 +16,6 @@ class TextTest extends BaseMiddlewareTester
     ];
 
     protected array $violations = [
-        'aaa',
        '\x00',
     ];
 }

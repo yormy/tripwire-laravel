@@ -19,6 +19,9 @@ class Rfi extends BaseChecker
 
     public function prepareInput($value): string
     {
+        if (!isset($this->config->guards['allow'])) {
+            return $value;
+        }
         $exceptions = $this->config->guards['allow'];
         $domain = $this->request->getHost();
 
