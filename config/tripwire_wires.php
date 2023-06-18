@@ -375,7 +375,7 @@ $requestSizeConfig = WireDetailsConfig::make()
 
 /*
 |--------------------------------------------------------------------------
-| Page Missing
+| PAGE MISSING
 |--------------------------------------------------------------------------
 */
 $pageMissingConfig = WireDetailsConfig::make()
@@ -456,6 +456,4 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails('referer', $refererConfig)
 
     ->toArray();
-
-//dd($lfiConfig);
 return $res;
