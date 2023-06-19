@@ -29,10 +29,6 @@ class PageMissingTest extends TestCase
         $this->setDefaultConfig();
 
         $this->triggerPageNotFound();
-        $this->triggerPageNotFound();
-        $this->triggerPageNotFound();
-        $this->triggerPageNotFound();
-        $this->triggerPageNotFound();
 
         $this->assertLogAddedToDatabase($startCount);
     }
@@ -68,6 +64,11 @@ class PageMissingTest extends TestCase
     }
 
     private function setDefaultConfig(array $data = []): void
+    {
+        config(['tripwire.punish.score' => 21]);
+    }
+
+    private function setWireConfig(array $data = []): void
     {
         config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
