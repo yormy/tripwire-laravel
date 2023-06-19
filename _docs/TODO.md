@@ -1,7 +1,5 @@
 # Documentation
-test local overrides of wire settings
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
-
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 
@@ -25,7 +23,7 @@ PINT
 
 # Documentation 
 ### TODO
-- how to disable middleware on certain routes (ie large request)
+app-test - how to disable middleware on certain routes (ie large request)
 
 # EXTEND
 
