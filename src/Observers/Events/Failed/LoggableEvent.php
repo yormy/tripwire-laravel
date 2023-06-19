@@ -67,4 +67,9 @@ abstract class LoggableEvent implements LoggableEventInterface
     {
         return $this->triggerEventData->trainingMode ?? false;
     }
+
+    public function getDebugMode(): bool
+    {
+        return $this->triggerEventData->debugMode ?? false;
+    }
 }

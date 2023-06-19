@@ -34,6 +34,6 @@ class RequestChecksumFailedException extends BaseException
      */
     protected function renderHtml(Request $request)
     {
-        return 'dddd';
+        return 'Request checksum failed renderer';
     }
 }

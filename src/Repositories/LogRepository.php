@@ -38,7 +38,7 @@ class LogRepository
         $data['event_comment'] = $event->getComment();
         $data['ignore'] = $event->getTrainingMode();
 
-        if (config('tripwire.debug', false)) {
+        if ($event->getDebugMode()) {
             $data['trigger_data'] = $event->getTriggerData();
             $data['trigger_rule'] = implode(';', $event->getTriggerRules());
         }

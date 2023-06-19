@@ -43,6 +43,7 @@ class HoneypotsWire
                 triggerData: implode(',', $violations),
                 triggerRules: [],
                 trainingMode: $wireConfig->trainingMode(),
+                debugMode: $wireConfig->debugMode(),
                 comments: '',
             );
 

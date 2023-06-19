@@ -40,6 +40,7 @@ class ExceptionInspector
                     triggerData: implode(',', $violations),
                     triggerRules: [],
                     trainingMode: $wireConfig->trainingMode(),
+                    debugMode: $wireConfig->debugMode(),
                     comments: '',
                 );
                 event(new Model404FailedEvent($triggerEventData));
@@ -64,6 +65,7 @@ class ExceptionInspector
                     triggerData: implode(',', $violations),
                     triggerRules: [],
                     trainingMode: $wireConfig->trainingMode(),
+                    debugMode: $wireConfig->debugMode(),
                     comments: '',
                 );
                 event(new Page404FailedEvent($triggerEventData));

@@ -45,7 +45,7 @@ class Geo extends BaseWire
 
     protected function getLocation(): void
     {
-        $service = $this->config->tripwires['service'];
+        $service = $this->config->tripwires()['service'];
         $apiKey = '--';
         $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
         $ipLookup->get();

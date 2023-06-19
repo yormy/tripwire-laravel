@@ -53,6 +53,11 @@ class WireConfig
         return $trainingMode;
     }
 
+    public function debugMode(): bool
+    {
+        return $this->defaultConfig->debugMode ?? false;
+    }
+
     public function isDisabled(): bool
     {
         return ! $this->isEnabled();

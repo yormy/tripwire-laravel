@@ -10,6 +10,7 @@ class TriggerEventData
         public string $triggerData,
         public array $triggerRules,
         public bool $trainingMode,
+        public bool $debugMode,
         public string $comments,
     ) {
     }

@@ -1,5 +1,21 @@
+Unit tests ?
+- reset route missing if not set
+- agent
+- php
+- swear
+- rfi
+- bot
+- referer
+
+
+
+
+
+
+
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
+app-test - how to disable middleware on certain routes (ie large request)
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 
@@ -22,9 +38,6 @@ How to spec what to add together to determine a block type
 PINT
 
 # Documentation 
-### TODO
-app-test - how to disable middleware on certain routes (ie large request)
-
 # EXTEND
 
 ## File validation

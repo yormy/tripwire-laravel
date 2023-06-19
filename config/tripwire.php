@@ -21,6 +21,7 @@ $res = ConfigBuilder::make()
     ->trainingMode(env('FIREWALL_EMAIL_ENABLED', true))
 
     ->trainingMode(false)
+    ->debugMode(true)
     ->dateFormat('Y-m-f', 0)
     ->notificationMail(
         NotificationMailConfig::make(env('FIREWALL_EMAIL_ENABLED', true))

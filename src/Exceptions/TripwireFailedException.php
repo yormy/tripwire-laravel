@@ -29,10 +29,9 @@ class TripwireFailedException extends BaseException
     /**
      * @return string
      *
-     * @psalm-return 'dddd'
      */
     protected function renderHtml(Request $request)
     {
-        return 'dddd';
+        return 'Tripwire Failed Exception Renderer';
     }
 }

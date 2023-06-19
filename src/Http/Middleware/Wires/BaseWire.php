@@ -93,6 +93,7 @@ abstract class BaseWire
                 triggerData: $triggerData,
                 triggerRules: $rules,
                 trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
                 comments: '',
             );
 

@@ -19,7 +19,7 @@ class Agent extends BaseWire
 
     public function isAttack($patterns): bool
     {
-        $agents = $this->config->tripwires;
+        $agents = $this->config->tripwires();
         if (empty($agents)) {
             return false;
         }

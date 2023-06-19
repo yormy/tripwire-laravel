@@ -160,6 +160,10 @@ class ConfigBuilder implements Arrayable
             $config->trainingMode($data['training_mode']);
         }
 
+        if (isset($data['debug_mode'])) {
+            $config->debugMode($data['debug_mode']);
+        }
+
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
 
         $config->notificationsMail = NotificationMailConfig::makeFromArray($data['notifications']['mail'] ?? null);

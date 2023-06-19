@@ -25,7 +25,7 @@ class Swear extends BaseWire
     {
         $patterns = [];
 
-        foreach ($this->config->tripwires as $wire) {
+        foreach ($this->config->tripwires() as $wire) {
             $patterns[] = '#\b'.$wire.'\b#i';
         }
 

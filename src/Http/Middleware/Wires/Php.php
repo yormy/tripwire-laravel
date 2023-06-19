@@ -20,7 +20,7 @@ class Php extends BaseWire
     {
         $patterns = [];
 
-        foreach ($this->config->tripwires as $wire) {
+        foreach ($this->config->tripwires() as $wire) {
             $patterns[] = '#'.$wire.'#i';
         }
 

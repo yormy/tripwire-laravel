@@ -36,9 +36,9 @@ Order of middleware is when it trips, the first tripped wire will explore, the r
 ### Start of request cycle
 ```
     ChecksumCalculate::class, // need to be the very first in your middleware set before modifying any request item
-    HoneypotsCheck::class,
+    HoneypotsWire::class,
     ...
-    ChecksumValidate::class, // validate that the frontend checksum matches the posted values
+    ChecksumValidateWire::class, // validate that the frontend checksum matches the posted values
 ```
 
 ### General middleware
