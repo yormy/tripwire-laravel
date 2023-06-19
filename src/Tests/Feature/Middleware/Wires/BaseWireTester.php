@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
+use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -46,7 +47,26 @@ class BaseWireTester extends TestCase
         $result = $this->triggerTripwire($violation);
 
         $this->assertNotEquals('next', $result, 'Should block but did not');
-        $this->assertEquals(409, $result->getStatusCode());
+        $this->assertEquals(Tripwire::TRIPWIRE_CODE_WIRE, $result->getStatusCode());
+
+        $this->assertLogAddedToDatabase($startCount);
+    }
+
+    /**
+     * @group tripwire-log
+     *
+     * @group aaa
+     */
+    public function Use_default_should_block(): void
+    {
+        $this->setConfigDefault();
+
+        $startCount = TripwireLog::count();
+
+        $result = $this->triggerTripwire($this->violations[0]);
+
+        $this->assertNotEquals('next', $result, 'Should block but did not');
+        $this->assertEquals(Tripwire::TRIPWIRE_CODE_DEFAULT, $result->getStatusCode());
 
         $this->assertLogAddedToDatabase($startCount);
     }

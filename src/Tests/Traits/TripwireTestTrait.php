@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Traits;
 
+use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 
 trait TripwireTestTrait
@@ -42,6 +43,16 @@ trait TripwireTestTrait
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
         config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+    }
+
+    protected function setConfigDefault(): void
+    {
+        config(["tripwire_wires.$this->tripwire.enabled" => true]);
+        config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
+
+        $settings = ['code' => Tripwire::TRIPWIRE_CODE_DEFAULT];
+        config(["tripwire.trigger_response.html" => $settings]);
+        config(["tripwire_wires.".$this->tripwire.".trigger_response.html" => []]);
     }
 
     protected function triggerTripwire(string $input)
