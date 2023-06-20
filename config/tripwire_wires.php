@@ -51,6 +51,9 @@ $swearConfig = WireDetailsConfig::make()
 | SQL Injection
 |--------------------------------------------------------------------------
 */
+$f = REGEX::FILLER;
+$q = REGEX::QUOTE;
+
 $orStatements = Regex::or([
     'union select',
     'union join',
@@ -59,8 +62,26 @@ $orStatements = Regex::or([
     'or 2=2',
     'or\+1=1',
     'or\+2=2',
-    'ROWNUM=ROWNUM'
+    'ROWNUM=ROWNUM',
+    '@@connections',
+    '@@CPU_BUSY',
+    'DBMS_PIPE.RECEIVE_MESSAGE',
+    'SLEEPTIME'
     ]);
+
+$orPostgressForbidden = Regex::forbidden([
+    "pg_client_encoding",
+    "get_current_ts_config",
+    "quote_literal$f*\(",
+    "current_database$f*\(",
+]);
+
+$orSqlLiteForbidden = Regex::forbidden([
+    "sqlite_version$f*\(",
+    "last_insert_rowid$f*\(",
+    "last_insert_rowid$f*\(",
+]);
+
 
 $sqliConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SQLI_ENABLED', env('TRIPWIRE_ENABLED', true)))
@@ -72,6 +93,29 @@ $sqliConfig = WireDetailsConfig::make()
     ->tripwires([
         "#[\d\W]($orStatements)[\d\W]#iUu",
         '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
+        "#[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))#iUu",
+        "#$f*sleep\(\d+\)$f*#iUu",
+        "#\[\".+=.+\"#iUu", //["1337=1337",
+        "#BINARY_CHECKSUM\(.*\)#iUu",
+        "#pow$f*\(\d+#iUu",
+        "#connection_id$f*\(#iUu",
+        "#crc32$f*\(('|\")#iUu",
+        "#USER_ID\($f*\d+$f*\)$f*=#iUu",
+        "#WAITFOR($f*)DELAY#iUu",
+        "#conv$f*\($q#iUu",
+
+        //oracle
+        "#RAWTOHEX$f*\(('|\")#iUu",
+        "#LNNVL$f*\(\d+#iUu",
+        "#BITAND$f*\(\d+#iUu",
+
+        //postgres
+        $orPostgressForbidden,
+        "#::(int|integer)$f*=$f*#iUu",
+
+        //sqllite
+        $orSqlLiteForbidden,
+        "#=$f*LIKE$f*\($q#iUu",
     ])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
