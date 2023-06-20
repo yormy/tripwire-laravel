@@ -70,16 +70,17 @@ $orStatements = Regex::or([
 $orPostgressForbidden = Regex::forbidden([
     "pg_client_encoding",
     "get_current_ts_config",
-    "quote_literal$f*\(",
-    "current_database$f*\(",
+    "quote_literal \(",
+    "current_database \(",
 ]);
 
 $orSqlLiteForbidden = Regex::forbidden([
-    "sqlite_version$f*\(",
-    "last_insert_rowid$f*\(",
-    "last_insert_rowid$f*\(",
+    "sqlite_version \(",
+    "last_insert_rowid \(",
+    "last_insert_rowid \(",
 ]);
 
+//dd(regex::makeWhitespaceSafe("# sleep #iUu"));
 
 $sqliConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SQLI_ENABLED', env('TRIPWIRE_ENABLED', true)))
@@ -88,34 +89,35 @@ $sqliConfig = WireDetailsConfig::make()
     ->attackScore(500)
     //->urls(UrlsConfig::make())
     //->inputFilter(InputsFilterConfig::make())
-    ->tripwires([
+    ->tripwires(
+        regex::clean([
         "#[\d\W]($orStatements)[\d\W]#iUu",
         '#[\d\W](insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
         "#[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))#iUu",
 
-        "#$f*sleep$f*\($f*\d+$f*\)$f*#iUu",
-        "#\[\"$f*.+$f*=$f*.+$f*\"#iUu", //["1337=1337",
-        "#BINARY_CHECKSUM$f*\(.*\)#iUu",
-        "#pow$f*\(\d+#iUu",
-        "#connection_id$f*\(#iUu",
-        "#crc32$f*\($q#iUu",
-        "#USER_ID$f*\($f*\d+$f*\)$f*=#iUu",
-        "#WAITFOR$f*($f*)DELAY#iUu",
-        "#conv$f*\($q#iUu",
+        "# sleep \( \d+ \) #iUu",
+        "#\[\" .+ = .+ \"#iUu", //["1337=1337",
+        "#BINARY_CHECKSUM \(.*\)#iUu",
+        "#pow \(\d+#iUu",
+        "#connection_id \(#iUu",
+        "#crc32 \($q#iUu",
+        "#USER_ID \( \d+ \) =#iUu",
+        "#WAITFOR ( )DELAY#iUu",
+        "#conv \($q#iUu",
 
         //oracle
-        "#RAWTOHEX$f*\($q#iUu",
-        "#LNNVL$f*\(\d+#iUu",
-        "#BITAND$f*\(\d+#iUu",
+        "#RAWTOHEX \($q#iUu",
+        "#LNNVL \(\d+#iUu",
+        "#BITAND \(\d+#iUu",
 
         //postgres
         $orPostgressForbidden,
-        "#::(int|integer)$f*=$f*#iUu",
+        "#::(int|integer) = #iUu",
 
         //sqllite
         $orSqlLiteForbidden,
-        "#=$f*LIKE$f*\($q#iUu",
-    ])
+        "#= LIKE \($q#iUu",
+    ]))
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
     ->triggerResponse(
         BlockResponseConfig::make()

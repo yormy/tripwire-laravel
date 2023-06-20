@@ -7,7 +7,8 @@ Unit tests ?
 - bot
 - referer
 
-
+Test that runs throught all wires with some approved/blocked sets, approved: lorum ipsum
+spaces in regex vervangen door nullbyte or non printable 
 
 
 
