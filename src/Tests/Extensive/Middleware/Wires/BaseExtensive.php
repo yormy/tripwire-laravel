@@ -20,7 +20,7 @@ class BaseExtensive extends TestCase
 
         // ignore commented out with #
         foreach ($this->violations as $index => $violation) {
-            if (str_starts_with($violation, '##')) {
+            if (str_starts_with($violation, '##') || strlen(trim($violation)) === 0) {
                 unset($this->violations[$index]);
             } else {
                 $this->violations[$index] = str_replace(PHP_EOL, '', $this->violations[$index]);

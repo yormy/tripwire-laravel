@@ -55,18 +55,18 @@ $f = REGEX::FILLER;
 $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
-    'union select',
-    'union join',
-    'union distinct',
-    'or 1=1',
-    'or 2=2',
-    'or\+1=1',
-    'or\+2=2',
-    'ROWNUM=ROWNUM',
-    '@@connections',
-    '@@CPU_BUSY',
-    'DBMS_PIPE.RECEIVE_MESSAGE',
-    'SLEEPTIME'
+    "union$f*select",
+    "union$f*join",
+    "union$f*distinct",
+    "or$f*1$f*=$f*1",
+    "or$f*2$f*=$f*2",
+    "or$f*\+1$f*=$f*1",
+    "or$f*\+2$f*=$f*2",
+    "ROWNUM=ROWNUM",
+    "@@connections",
+    "@@CPU_BUSY",
+    "DBMS_PIPE.RECEIVE_MESSAGE",
+    "SLEEPTIME",
     ]);
 
 $orPostgressForbidden = Regex::forbidden([
@@ -92,20 +92,21 @@ $sqliConfig = WireDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
         "#[\d\W]($orStatements)[\d\W]#iUu",
-        '#[\d\W](union|union select|insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
+        '#[\d\W](insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
         "#[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))#iUu",
-        "#$f*sleep\(\d+\)$f*#iUu",
-        "#\[\".+=.+\"#iUu", //["1337=1337",
-        "#BINARY_CHECKSUM\(.*\)#iUu",
+
+        "#$f*sleep$f*\($f*\d+$f*\)$f*#iUu",
+        "#\[\"$f*.+$f*=$f*.+$f*\"#iUu", //["1337=1337",
+        "#BINARY_CHECKSUM$f*\(.*\)#iUu",
         "#pow$f*\(\d+#iUu",
         "#connection_id$f*\(#iUu",
-        "#crc32$f*\(('|\")#iUu",
-        "#USER_ID\($f*\d+$f*\)$f*=#iUu",
-        "#WAITFOR($f*)DELAY#iUu",
+        "#crc32$f*\($q#iUu",
+        "#USER_ID$f*\($f*\d+$f*\)$f*=#iUu",
+        "#WAITFOR$f*($f*)DELAY#iUu",
         "#conv$f*\($q#iUu",
 
         //oracle
-        "#RAWTOHEX$f*\(('|\")#iUu",
+        "#RAWTOHEX$f*\($q#iUu",
         "#LNNVL$f*\(\d+#iUu",
         "#BITAND$f*\(\d+#iUu",
 

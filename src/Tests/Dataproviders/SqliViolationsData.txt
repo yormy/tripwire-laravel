@@ -1,4 +1,8 @@
 ## Commented out lines
+UNION SELECT '
+UNION SELECT "
+UNION      SELECT '
+
 1' + sleep(10)
 1' and sleep(10)
 1' && sleep(10)
