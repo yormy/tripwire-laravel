@@ -55,13 +55,11 @@ $f = REGEX::FILLER;
 $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
-    "union$f*select",
-    "union$f*join",
-    "union$f*distinct",
-    "or$f*1$f*=$f*1",
-    "or$f*2$f*=$f*2",
-    "or$f*\+1$f*=$f*1",
-    "or$f*\+2$f*=$f*2",
+    "union join",
+    "union distinct",
+    "{$q} 1 = 1",
+    "or \d* = \d*",
+    "or \+\d* = \d*",
     "ROWNUM=ROWNUM",
     "@@connections",
     "@@CPU_BUSY",

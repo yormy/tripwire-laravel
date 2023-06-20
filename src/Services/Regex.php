@@ -15,6 +15,15 @@ class Regex
 
     public static function or(array $signatures): string
     {
-        return implode('|', $signatures);
+        $clean = array_map(function ($signature) {
+            return self::makeWhitespaceSafe($signature);
+        }, $signatures);
+
+        return implode('|', $clean);
+    }
+
+    public static function makeWhitespaceSafe(string $signature): string
+    {
+        return str_replace(' ', self::FILLER. '*', $signature);
     }
 }
