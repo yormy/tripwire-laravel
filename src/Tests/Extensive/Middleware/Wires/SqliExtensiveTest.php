@@ -12,7 +12,6 @@ class SqliExtensiveTest extends BaseExtensive
 
     protected array $accepting = [
         'saaaaaaa',
-        //  'ho7'
     ];
 
     protected array $violations;
@@ -20,7 +19,7 @@ class SqliExtensiveTest extends BaseExtensive
     /**
      * @test
      *
-     * @group tripwire-log
+     * @group tripwire-sqli
      *
      * @dataProvider accepting
      */
@@ -32,7 +31,7 @@ class SqliExtensiveTest extends BaseExtensive
     /**
      * @test
      *
-     * @group tripwire-log
+     * @group tripwire-sqli
      *
      * @dataProvider violations
      */

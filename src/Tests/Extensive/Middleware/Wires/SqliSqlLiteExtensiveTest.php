@@ -19,7 +19,7 @@ class SqliSqlLiteExtensiveTest extends BaseExtensive
     /**
      * @test
      *
-     * @group tripwire-log
+     * @group tripwire-sqli
      *
      * @dataProvider accepting
      */
@@ -31,7 +31,7 @@ class SqliSqlLiteExtensiveTest extends BaseExtensive
     /**
      * @test
      *
-     * @group tripwire-log
+     * @group tripwire-sqli
      *
      * @dataProvider violations
      */
