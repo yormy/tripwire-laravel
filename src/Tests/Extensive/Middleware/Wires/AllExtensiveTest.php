@@ -5,38 +5,85 @@ namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
+use Faker\Factory as Faker;
 
 class AllExtensiveTest extends TestCase
 {
     protected $tripwireClass = Xss::class;
     public string $tripwire ='xss';
 
-    protected string $violationsDataFile = './src/Tests/Dataproviders/XssViolationsData.txt';
-
-    protected array $accepting = [
+    protected array $accepts = [
         'saaaaaaa',
     ];
 
-    protected array $violations;
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        $this->buildAccept();
+
+        parent::__construct($name, $data, $dataName);
+    }
 
     /**
      * @test
      *
      * @group aaa
      *
-     * dataProvider accepting
+     * @dataProvider accepts
      */
-    public function should_accept(): void
+    public function should_accept($accept): void
     {
         $this->setConfig();
 
         $startCount = TripwireLog::count();
 
-        $result = $this->triggerTripwire('ff');
+        $result = $this->triggerTripwire($accept);
 
         $this->assertNotLogged($startCount);
 
         $this->assertEquals('next', $result);
+    }
+
+
+    private function buildAccept()
+    {
+        $locales = [
+            'en_GB',
+            'de_DE',
+            'es_ES',
+            'ar_SA',
+            'ru_RU'
+        ];
+
+        foreach ($locales as $locale) {
+            $faker = Faker::create($locale);
+            for ($i = 1; $i <= 10; $i++) {
+                $this->accepts[] = $this->buildText($faker);
+            }
+        }
+
+        $this->formatProvider();
+    }
+
+    public function buildText($faker): string
+    {
+
+        $name = $faker->lastName();
+        $realText =$faker->realText(50); // characters
+
+        $text = $name. '-'. $realText;
+        return $text;
+    }
+
+    public function formatProvider()
+    {
+        foreach ($this->accepts as $index => $accept) {
+            $this->accepts[$index] = str_replace(PHP_EOL, '', $this->accepts[$index]);
+        }
+    }
+
+    private function makeSentence(): string
+    {
+        return fake()->sentence();
     }
 
     protected function setConfig(): void
@@ -62,6 +109,14 @@ class AllExtensiveTest extends TestCase
         $this->assertEquals($startCount, TripwireLog::count());
     }
 
+    public function accepts(): array
+    {
+        $providerArray = [];
+        foreach ($this->accepts as $accept) {
+            $providerArray[$accept] = [$accept];
+        }
 
+        return $providerArray;
+    }
 
 }
