@@ -21,7 +21,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
-use Yormy\TripwireLaravel\Observers\Listeners\NotifyUsers;
+use Yormy\TripwireLaravel\Observers\Listeners\NotifyAdmin;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\ServiceProviders\EventServiceProvider;
 use Yormy\TripwireLaravel\ServiceProviders\RouteServiceProvider;
@@ -124,7 +124,7 @@ class TripwireServiceProvider extends ServiceProvider
     public function registerListeners(): void
     {
         $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class);
-        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyUsers::class);
+        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyAdmin::class);
     }
 
     public function registerTranslations(): void

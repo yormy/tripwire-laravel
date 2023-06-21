@@ -7,7 +7,7 @@ use Yormy\TripwireLaravel\Notifications\Notifiable;
 use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
 
-class NotifyUsers
+class NotifyAdmin
 {
     public function handle(TripwireBlockedEvent $event): void
     {

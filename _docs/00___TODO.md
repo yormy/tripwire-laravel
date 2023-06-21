@@ -26,6 +26,7 @@ PINT
 
 # Documentation 
 # EXTEND
+- notify multiple admins/channels
 
 ## File validation
 - file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
