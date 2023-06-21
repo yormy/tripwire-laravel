@@ -261,7 +261,7 @@ $evilTokens = Regex::forbidden([
     "onerror = $q javascript:document",
     "$lt $f2 BR SIZE",
     "$lt br size",
-    "<? xml version=\"",
+    "{$lt}? xml version=\"",
     "xss:e/\*\*/xpression",
     "document.vulnerable=",
     "$lt $f2 BR",
