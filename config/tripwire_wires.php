@@ -227,19 +227,20 @@ $sessionConfig = WireDetailsConfig::make()
 | https://dencode.com/en/
 |--------------------------------------------------------------------------
 */
+
+$lt = Regex::LT;
+$gt = Regex::GT;
+$f2 = Regex::FILLERSEMI;
+
 $evilStart = Regex::forbidden([
-    '&lt;scrscriptipt',
+    "{$lt} scrscriptipt",
     '%253c',
     '%252F',
-    '\<script\>',
-    '%3cscript%3e',
-    '¼script¾',
-    '%BCscript%BE',
-    '&lt;script',
+    "$lt script",
     '1script3',
     '1/script3',
-    '<;/script>',
-    '<;scrscriptipt>',
+    "{$lt} {$f2} script",
+    "{$lt} {$f2} scrscriptipt",
 ]);
 
 $evilStartWithHashContent = Regex::forbidden([

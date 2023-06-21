@@ -6,7 +6,12 @@ class Regex
 {
     const FILLER = '[\s|\x00]';
 
+    const FILLERSEMI = '[;|/]';
     const QUOTE = '["|\']';
+
+    const LT = '[<|&lt;|%3c|¼|%BC]';
+
+    const GT = '[>|%3e|¾|%BE]';
 
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
