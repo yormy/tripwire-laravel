@@ -265,10 +265,10 @@ $evilTokens = Regex::forbidden([
     "xss:e/\*\*/xpression",
     "document.vulnerable=",
     "$lt $f2 BR",
-    '\';\!--\"',
-    ';\';;\!--"',
-    '\&quot;',
-    '=\\\";&;{',
+    "{$q};\!--{$q}",
+    ";{$q};;\!--{$q}",
+    "\&quot;",
+    "=\\\";&;{",
 ]);
 
 $orTags = Regex::or([

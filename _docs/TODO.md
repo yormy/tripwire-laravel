@@ -7,7 +7,7 @@ Unit tests ?
 - bot
 - referer
 
-Test that runs throught all wires with some approved/blocked sets, approved: lorum ipsum
+Test that runs throught all wires with some approved/blocked sets, approved: lorum ipsum / faker sentence/ paragraph
 spaces in regex vervangen door nullbyte or non printable 
 also in xss
 
