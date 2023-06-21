@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
@@ -26,27 +27,45 @@ class NotificationsTest extends TestCase
     /**
      * @test
      *
-     * @group tripwire-block
+     * @group aaa
      */
     public function Block_added_Send_notification_mail(): void
     {
         $this->setConfig();
+        $mailSettings = [
+            'enabled' => true,
+            'name' => 'Tripwire',
+            'from' => 'Tripwire@system.com',
+            'to' => 'Tripwire@system.com',
+            'template_plain' => 'tripwire-laravel::email_plain',
+            'template_html' => 'tripwire-laravel::email',
+        ];
+        config(["tripwire.notifications.mail" => [$mailSettings]]);
 
         Notification::fake();
         $this->triggerBlock();
+        Notification::assertSentTimes(UserBlockedNotification::class, 1);
         Notification::assertSentTo((new Notifiable), UserBlockedNotification::class, function ($notification, $channels) {
+            dd($channels);
             return in_array('mail', $channels);
         });
     }
 
     /**
-     * @test
+     * test
      *
      * @group tripwire-block
      */
     public function Blocked_added_Send_notification_slack(): void
     {
         $this->setConfig();
+        $slackSettings =[
+            'enabled' => true,
+            'from' => 'Tripwire@system.com',
+            'to' => 'Tripwire@system.com',
+            'channel' => 'xxxx',
+        ];
+        config(["tripwire.notifications.slack" => $slackSettings]);
 
         Notification::fake();
         $this->triggerBlock();
@@ -59,24 +78,6 @@ class NotificationsTest extends TestCase
     {
         $settings = ['code' => 409];
 
-        $mailSettings =[
-            'enabled' => true,
-            'name' => 'Tripwire',
-            'from' => 'Tripwire@system.com',
-            'to' => 'Tripwire@system.com',
-            'template_plain' => 'tripwire-laravel::email_plain',
-            'template_html' => 'tripwire-laravel::email',
-        ];
-
-        $slackSettings =[
-            'enabled' => true,
-            'from' => 'Tripwire@system.com',
-            'to' => 'Tripwire@system.com',
-            'channel' => 'xxxx',
-        ];
-
-        config(["tripwire.notifications.mail" => $mailSettings]);
-        config(["tripwire.notifications.slack" => $slackSettings]);
         config(["mail.default" => 'log']);
 
 

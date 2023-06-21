@@ -34,7 +34,7 @@ class ConfigBuilder implements Arrayable
 
     public DatetimeConfig $datetime;
 
-    public ?NotificationMailConfig $notificationsMail;
+    public array $notificationsMail;
 
     public ?NotificationSlackConfig $notificationsSlack;
 
@@ -81,7 +81,9 @@ class ConfigBuilder implements Arrayable
 
         $data['datetime'] = $this->datetime->toArray();
 
-        $data['notifications']['mail'] = $this->notificationsMail->toArray();
+        foreach ($this->notificationsMail as $mailSetting) {
+            $data['notifications']['mail'][] = $mailSetting->toArray();
+        }
 
         if (isset($this->notificationsSlack)) {
             $data['notifications']['slack'] = $this->notificationsSlack->toArray();
@@ -166,7 +168,9 @@ class ConfigBuilder implements Arrayable
 
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
 
-        $config->notificationsMail = NotificationMailConfig::makeFromArray($data['notifications']['mail'] ?? null);
+        foreach ($data['notifications']['mail'] as $mailSetting) {
+            $config->notificationsMail[] = NotificationMailConfig::makeFromArray($mailSetting);
+        }
 
         $config->notificationsSlack = NotificationSlackConfig::makeFromArray($data['notifications']['slack'] ?? null);
 
@@ -263,7 +267,7 @@ class ConfigBuilder implements Arrayable
     |--------------------------------------------------------------------------
     */
     public function notificationMail(
-        NotificationMailConfig $notificationMail,
+        array $notificationMail,
     ): self {
         $this->notificationsMail = $notificationMail;
 

@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Throwable;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
 use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
 use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedEvent;
@@ -11,17 +12,21 @@ class NotifyAdmin
 {
     public function handle(TripwireBlockedEvent $event): void
     {
-        $message = new UserBlockedNotification(
-            $event->ipAddress,
-            $event->userId,
-            $event->userType,
-            $event->browserFingerprint,
-        );
+        $config = ConfigBuilder::fromArray(config('tripwire'));
+        foreach ($config->notificationsMail as $mailSettings) {
+            $message = new UserBlockedNotification(
+                $event->ipAddress,
+                $event->userId,
+                $event->userType,
+                $event->browserFingerprint,
+                $mailSettings
+            );
 
-        try {
-            (new Notifiable)->notify($message);
-        } catch (Throwable $e) {
-            report($e);
+            try {
+                (new Notifiable)->notify($message);
+            } catch (Throwable $e) {
+                report($e);
+            }
         }
     }
 }

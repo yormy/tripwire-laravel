@@ -23,13 +23,14 @@ $res = ConfigBuilder::make()
     ->trainingMode(false)
     ->debugMode(true)
     ->dateFormat('Y-m-f', 0)
-    ->notificationMail(
+    ->notificationMail([
         NotificationMailConfig::make(env('FIREWALL_EMAIL_ENABLED', true))
             ->name(env('FIREWALL_EMAIL_NAME', 'Laravel Firewall'))
             ->from(env('FIREWALL_EMAIL_FROM', 'firewall@mydomain.com'))
             ->to(env('FIREWALL_EMAIL_TO', 'admin@mydomain.com'))
             ->templatePlain(env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email_plain'))
             ->templateHtml(env('FIREWALL_EMAIL_TO', 'tripwire-laravel::email'))
+            ]
     )
 
     ->notificationSlack(
@@ -124,6 +125,7 @@ $res = ConfigBuilder::make()
         HtmlResponseConfig::make()->view('tripwire-laravel::blocked'),
     )
     ->toArray();
+
 ConfigBuilder::fromArray($res);
 
 return $res;
