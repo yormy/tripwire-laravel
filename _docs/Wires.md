@@ -46,6 +46,7 @@ This is a pretty slow wire, so if you do not need it, best is to keep it out of 
 ## Text
 ## Xss
 ## Custom
+This is the place to start customizing or add rules that do not belong elsewhere
 
 ## Honeypot
 ## Checksum

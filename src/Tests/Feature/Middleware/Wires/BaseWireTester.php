@@ -55,7 +55,7 @@ class BaseWireTester extends TestCase
     /**
      * @group tripwire-log
      *
-     * @group aaa
+     * @group tripwire
      */
     public function Use_default_should_block(): void
     {

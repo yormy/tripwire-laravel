@@ -20,8 +20,11 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 
 class BaseAcceptAll extends TestCase
 {
-    protected array $accepts;
-    protected string $acceptsDataFile = './src/Tests/Dataproviders/AcceptsData-ru_RU.txt';
+    protected string $violationsDataFile;
+    protected string $acceptsDataFile;
+    protected array $accepts = [];
+
+    protected array $violations = [];
 
     protected array $tripwires = [
         Agent::class,
@@ -41,22 +44,15 @@ class BaseAcceptAll extends TestCase
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        $this->accepts = file($this->acceptsDataFile);
+        if (isset($this->acceptsDataFile)) {
+            $this->accepts = file($this->acceptsDataFile);
+        }
+
+        if (isset($this->violationsDataFile)) {
+            $this->violations = file($this->violationsDataFile);
+        }
 
         parent::__construct($name, $data, $dataName);
-    }
-
-    /**
-     * @test
-     *
-     * @group aaa
-     *
-     * @dataProvider accepts
-     */
-    public function should_accept($accept): void
-    {
-        $this->setConfig();
-        $this->triggerTripwire($accept);
     }
 
     protected function setConfig(): void

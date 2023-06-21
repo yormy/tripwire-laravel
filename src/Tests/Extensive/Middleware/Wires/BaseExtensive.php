@@ -16,20 +16,35 @@ class BaseExtensive extends TestCase
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        $this->violations = file($this->violationsDataFile);
-
-        // ignore commented out with #
-        foreach ($this->violations as $index => $violation) {
-            if (str_starts_with($violation, '##') || strlen(trim($violation)) === 0) {
-                unset($this->violations[$index]);
-            } else {
-                $this->violations[$index] = str_replace(PHP_EOL, '', $this->violations[$index]);
-            }
+        if (isset($this->violationsDataFile)) {
+            $this->violations = $this->loadFile($this->violationsDataFile);
         }
+
+        if (isset($this->acceptsDataFile)) {
+            $this->accepting = $this->loadFile($this->acceptsDataFile);
+        }
+
         $this->tripwire = $this->tripwireClass::NAME;
 
         parent::__construct($name, $data, $dataName);
     }
+
+    private function loadFile(string $filename): array
+    {
+        $data = file($filename);
+
+        // ignore commented out with #
+        foreach ($data as $index => $value) {
+            if (str_starts_with($value, '##') || strlen(trim($value)) === 0) {
+                unset($data[$index]);
+            } else {
+                $data[$index] = str_replace(PHP_EOL, '', $data[$index]);
+            }
+        }
+
+        return $data;
+    }
+
 
     public function assertAccept(string $accept): void
     {

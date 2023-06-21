@@ -24,7 +24,7 @@ class AcceptAllGermanTest extends BaseAcceptAll
     /**
      * test
      *
-     * @group aaa
+     * @group tripwire-accept-all
      *
      * @dataProvider accepts
      */
