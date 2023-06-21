@@ -1,5 +1,5 @@
 Unit tests ?
-- reset route missing if not set
+- resetroute missing if not set
 - agent
 - php
 - swear
@@ -8,8 +8,12 @@ Unit tests ?
 - referer
 
 Test that runs throught all wires with some approved/blocked sets, approved: lorum ipsum / faker sentence/ paragraph
-spaces in regex vervangen door nullbyte or non printable 
-also in xss
+Command to generate text in file. test loads that file 1 filetest per language
+
+Quickly add cve protection ? => env ? config ? => special checker based on xss
+- how to run test without clearing the database at the end by artisan command for customer
+- custom quite dataprovider for testing all with data/ violoations all with data, to simply add new items
+
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
