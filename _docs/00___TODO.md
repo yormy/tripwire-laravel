@@ -25,6 +25,7 @@ PINT
 
 # Documentation 
 # EXTEND
+Send the user an email when they are blocked (only on first block of the day)
 
 ## File validation
 - file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
@@ -35,6 +36,10 @@ fix geo fencing, need working api key to ip lookup stuff
 
 # Management:
 response wrapper ?
+Admin sees blokcs, tripwire events, tarpits
+Admin overview of blocked users
+Mark block permanent / unmark
+get reset key
 
 # Unit test
 - globally ignore certain cookies
