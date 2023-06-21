@@ -47,7 +47,11 @@ class NotificationSlackConfig
         $object->enabled = $data['enabled'];
         $object->from = $data['from'];
         $object->to = $data['to'];
-        $object->emoji = $data['emoji'];
+
+        if (isset($data['emoji'])) {
+            $object->emoji = $data['emoji'];
+        }
+
         $object->channel = $data['channel'];
 
         return $object;

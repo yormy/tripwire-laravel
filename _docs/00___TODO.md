@@ -1,10 +1,4 @@
-Unit tests ?
-- agent
-- php
-- swear
-- rfi
-- bot
-- referer
+allow chaski to send out emails, use event
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
@@ -46,5 +40,9 @@ response wrapper ?
 # Unit test
 - globally ignore certain cookies
 - globally ignore certain headers
-- notifications to mail
-- notifications to slack
+- Agent
+- Referer
+- php
+- swear
+- rfi
+- bot

@@ -16,7 +16,7 @@ class UserBlockedMailable extends Mailable
         public readonly string $title,
         public readonly string $msg,
         public readonly string $ipAddress = '',
-        public readonly string $userId = '',
+        public readonly ?string $userId = null,
         public readonly string $url = '',
     ) {
         // ...
