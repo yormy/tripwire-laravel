@@ -27,6 +27,19 @@ class NotificationsTest extends TestCase
     /**
      * @test
      *
+     * @group tripwire-notifications
+     */
+    public function Block_added_Disabled_notifications(): void
+    {
+        $this->setConfig();
+        Notification::fake();
+        $this->triggerBlock();
+        Notification::assertSentTimes(UserBlockedNotification::class, 0);
+    }
+
+    /**
+     * test
+     *
      * @group aaa
      */
     public function Block_added_Send_notification_mail(): void
@@ -40,13 +53,13 @@ class NotificationsTest extends TestCase
             'template_plain' => 'tripwire-laravel::email_plain',
             'template_html' => 'tripwire-laravel::email',
         ];
-        config(["tripwire.notifications.mail" => [$mailSettings]]);
+        //config(["tripwire.notifications.mail" => [$mailSettings]]);
 
+        config(["tripwire.notifications" => []]);
         Notification::fake();
         $this->triggerBlock();
         Notification::assertSentTimes(UserBlockedNotification::class, 1);
         Notification::assertSentTo((new Notifiable), UserBlockedNotification::class, function ($notification, $channels) {
-            dd($channels);
             return in_array('mail', $channels);
         });
     }
@@ -79,6 +92,24 @@ class NotificationsTest extends TestCase
         $settings = ['code' => 409];
 
         config(["mail.default" => 'log']);
+
+        $mailSettings = [
+            'enabled' => false,
+            'name' => 'Tripwire',
+            'from' => 'Tripwire@system.com',
+            'to' => 'Tripwire@system.com',
+            'template_plain' => 'tripwire-laravel::email_plain',
+            'template_html' => 'tripwire-laravel::email',
+        ];
+        config(["tripwire.notifications.mail" => [$mailSettings]]);
+
+        $slackSettings =[
+            'enabled' => false,
+            'from' => 'Tripwire@system.com',
+            'to' => 'Tripwire@system.com',
+            'channel' => 'xxxx',
+        ];
+        config(["tripwire.notifications.slack" => $slackSettings]);
 
 
         config(["tripwire_wires.$this->tripwire.enabled" => true]);

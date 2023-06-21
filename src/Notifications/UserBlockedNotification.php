@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
+use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Mailables\UserBlockedMailable;
 
 class UserBlockedNotification extends Notification implements ShouldQueue
@@ -64,7 +65,9 @@ class UserBlockedNotification extends Notification implements ShouldQueue
             userId: $this->userId,
         );
 
-        $mailSettings = $this->settings;
+        $config = ConfigBuilder::fromArray(config('tripwire'));
+        $mailSettings = $config->notificationsMail[0];
+
         $mail
             ->subject($subject)
             ->to($mailSettings->from, $mailSettings->to);

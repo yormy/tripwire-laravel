@@ -14,18 +14,20 @@ class NotifyAdmin
     {
         $config = ConfigBuilder::fromArray(config('tripwire'));
         foreach ($config->notificationsMail as $mailSettings) {
-            $message = new UserBlockedNotification(
-                $event->ipAddress,
-                $event->userId,
-                $event->userType,
-                $event->browserFingerprint,
-                $mailSettings
-            );
+            if ($mailSettings->enabled) {
+                $message = new UserBlockedNotification(
+                    $event->ipAddress,
+                    $event->userId,
+                    $event->userType,
+                    $event->browserFingerprint,
+                    $mailSettings
+                );
 
-            try {
-                (new Notifiable)->notify($message);
-            } catch (Throwable $e) {
-                report($e);
+                try {
+                    (new Notifiable)->notify($message);
+                } catch (Throwable $e) {
+                    report($e);
+                }
             }
         }
     }
