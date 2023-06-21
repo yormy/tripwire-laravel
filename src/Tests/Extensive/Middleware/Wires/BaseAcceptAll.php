@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Php;
@@ -34,7 +35,8 @@ class BaseAcceptAll extends TestCase
         Sqli::class,
         Swear::class,
         Text::class,
-        Xss::class
+        Xss::class,
+        Custom::class
     ];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Yormy\TripwireLaravel\Console\Commands\GenerateAccepts;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Php;
@@ -110,6 +111,7 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.text', Text::class);
         $router->aliasMiddleware('tripwire.xss', Xss::class);
         $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
+        $router->aliasMiddleware('tripwire.custom', Custom::class);
     }
 
     private function registerMiddlewareGroups(Router $router): void

@@ -90,6 +90,7 @@ $res = ConfigBuilder::make()
             'tripwire.text',
             'tripwire.xss',
             'tripwire.request_size',
+            'tripwire.custom',
         ])
     )
 
@@ -102,6 +103,7 @@ $res = ConfigBuilder::make()
             'tripwire.swear',
             'tripwire.text',
             'tripwire.xss',
+            'tripwire.custom',
         ])
     )
 

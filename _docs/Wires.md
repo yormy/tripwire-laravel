@@ -16,6 +16,7 @@
 * [Swear](Swear)
 * [Text](Text)
 * [Xss](Xss)
+* [Custom](Custom)
 
 # --
 * [Honeypot](Honeypot)
@@ -44,6 +45,7 @@ This is a pretty slow wire, so if you do not need it, best is to keep it out of 
 ## Swear
 ## Text
 ## Xss
+## Custom
 
 ## Honeypot
 ## Checksum

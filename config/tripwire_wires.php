@@ -13,9 +13,11 @@ use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
 use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Php;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\Referer;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\RequestSize;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Rfi;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Session;
@@ -226,7 +228,6 @@ $sessionConfig = WireDetailsConfig::make()
 | https://dencode.com/en/
 |--------------------------------------------------------------------------
 */
-
 $lt = Regex::LT;
 $gt = Regex::GT;
 $f2 = Regex::FILLERSEMI;
@@ -326,6 +327,21 @@ $xssConfig = WireDetailsConfig::make()
 
         "#$lt /*($orTags)[^>]*>?#i",
         "#(onmouseover|onhover)[^>]*>?#i",
+    ])
+    );
+
+
+/*
+|--------------------------------------------------------------------------
+| Custom
+| A customizable wire
+|--------------------------------------------------------------------------
+*/
+$customConfig = WireDetailsConfig::make()
+    ->enabled(env('TRIPWIRE_CUSTOM_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(0)
+    ->tripwires(Regex::injectFillers([
+        "#example.malicious#iUu"
     ])
     );
 
@@ -520,24 +536,27 @@ $refererConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)));
 
 $res = ConfigBuilderWires::make()
-    ->addWireDetails(Swear::NAME, $swearConfig)
-    ->addWireDetails(Sqli::NAME, $sqliConfig)
+    ->addWireDetails(Agent::NAME, $agentConfig)
+    ->addWireDetails(Bot::NAME, $botConfig)
+    ->addWireDetails(Geo::NAME, $geoConfig)
     ->addWireDetails(Lfi::NAME, $lfiConfig)
+    ->addWireDetails(Php::NAME, $phpConfig)
+    ->addWireDetails(Referer::NAME, $refererConfig)
+    ->addWireDetails(RequestSize::NAME, $requestSizeConfig)
     ->addWireDetails(Rfi::NAME, $rfiConfig)
     ->addWireDetails(Session::NAME, $sessionConfig)
-    ->addWireDetails(Xss::NAME, $xssConfig)
-    ->addWireDetails(Bot::NAME, $botConfig)
-    ->addWireDetails(Php::NAME, $phpConfig)
-    ->addWireDetails(Agent::NAME, $agentConfig)
-    ->addWireDetails(Geo::NAME, $geoConfig)
+    ->addWireDetails(Sqli::NAME, $sqliConfig)
+    ->addWireDetails(Swear::NAME, $swearConfig)
     ->addWireDetails(Text::NAME, $textConfig)
-    ->addWireDetails(RequestSize::NAME, $requestSizeConfig)
+    ->addWireDetails(Xss::NAME, $xssConfig)
+    ->addWireDetails(Custom::NAME, $customConfig)
+    ->addWireDetails('honeypots', $honeypotConfig)
     ->addWireDetails('page404', $pageMissingConfig)
     ->addWireDetails('model404', $modelMissingConfig)
     ->addWireDetails('loginfailed', $loginFailedConfig)
     ->addWireDetails('throttle', $throttleHitConfig)
     ->addWireDetails('referer', $refererConfig)
-    ->addWireDetails('honeypots', $honeypotConfig)
+
 
     ->toArray();
 
