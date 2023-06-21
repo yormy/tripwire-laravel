@@ -137,6 +137,8 @@ $sqliConfig = WireDetailsConfig::make()
 | Local File Inclusion
 |--------------------------------------------------------------------------
 */
+$f = REGEX::FILLER;
+
 $commonFilesString = Regex::forbidden([
     '.ssh/id_rsa',
     '/access.log',
@@ -184,7 +186,7 @@ $lfiConfig = WireDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires([
         '#\.\/..\/#is',
-        '#\.\.[\s]*/[\s]*\.#iUu', // ..[ ]*/[ ]*.
+        "#\.\.$f/$f\.#iUu", // ..[ ]*/[ ]*.
         $forbiddenTokens,
         $commonFilesString,
     ]);
