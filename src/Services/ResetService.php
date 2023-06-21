@@ -8,8 +8,12 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class ResetService
 {
-    public static function run(Request $request): void
+    public static function run(Request $request): bool
     {
+        if (! config('tripwire.reset.enabled')) {
+            return false;
+        }
+
         $requestSourceClass = config('tripwire.services.request_source');
         $browserFingerprint = $requestSourceClass::getBrowserFingerprint();
 
@@ -30,5 +34,7 @@ class ResetService
         $blockRepository->resetIp($ipAddress, $softDelete);
         $blockRepository->resetBrowser($browserFingerprint, $softDelete);
         $blockRepository->resetUser($userId, $userType, $softDelete);
+
+        return true;
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Services\ResetService;
 use Yormy\TripwireLaravel\Services\ResetUrl;
+use \Illuminate\Http\JsonResponse;
 
 class ResetController extends controller
 {
@@ -14,18 +15,19 @@ class ResetController extends controller
      */
     public function reset(Request $request)
     {
-        if (! config('tripwire.reset.enabled')) {
+        if (!ResetService::run($request)) {
             return;
         }
-
-        ResetService::run($request);
 
         return response()->json(['logs cleared']);
     }
 
-    public function getKey(): \Illuminate\Http\JsonResponse
+    public function getKey(): ?JsonResponse
     {
         $url = ResetUrl::get();
+        if (!$url) {
+            return null;
+        }
 
         return response()->json(['url' => $url]);
     }

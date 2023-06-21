@@ -2,6 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
 
+use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\Http\Controllers\ResetController;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
@@ -15,6 +17,45 @@ class ResetTest extends TestCase
     const HTTP_TRIPWIRE_CODE = 409;
 
     const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
+
+    /**
+     * @test
+     *
+     * @group tripwire-reset
+     */
+    public function Reset_disabled_Activate_Nothing(): void
+    {
+        config(['tripwire.reset' => [
+            'enabled' => false,
+            'soft_delete' => false,
+            'link_expiry_minutes' => 30,
+        ]]);
+
+        $resetController = new ResetController();
+        $request = $this->app->request;
+        $result = $resetController->reset($request);
+        $this->assertEquals(null, $result);
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-reset
+     */
+    public function Reset_enabled_Activate_Oke(): void
+    {
+        config(['tripwire.reset' => [
+            'enabled' => true,
+            'soft_delete' => false,
+            'link_expiry_minutes' => 30,
+        ]]);
+
+        $resetController = new ResetController();
+
+        $request = $this->app->request;
+        $result = $resetController->reset($request);
+        $this->assertNotEquals(null, $result);
+    }
 
     /**
      * @test
@@ -48,7 +89,6 @@ class ResetTest extends TestCase
     }
 
     // -------- HELPERS --------
-
     private function triggerBlock(): void
     {
         $this->triggerTripwire();
