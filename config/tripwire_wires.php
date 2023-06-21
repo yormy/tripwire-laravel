@@ -304,11 +304,11 @@ $xssConfig = WireDetailsConfig::make()
         $evilTokens,
         "#&lt;(A|$orTags)( |&gt;|body)#iUu",  // &lt;???
 
-        "#(<|&lt;);($orTags|\!--|\?|script|iframe|a href)#iUu",
+        "#$lt $f2 ($orTags|\!--|\?|script|iframe|a href)#iUu",
 
-        "#(<|&lt;)/(body|html)#iUu",
+        "#$lt /(body|html)#iUu",
 
-        "#&lt;(\!--|\? |div )#iUu",
+        "#$lt (\!--|\? |div )#iUu",
 
         "!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu",
         '#-moz-binding[\x00-\x20]*:#u',
