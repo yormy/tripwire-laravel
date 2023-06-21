@@ -5,7 +5,6 @@ namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
-use Faker\Factory as Faker;
 
 class AllExtensiveTest extends TestCase
 {
@@ -55,20 +54,18 @@ class AllExtensiveTest extends TestCase
         ];
 
         foreach ($locales as $locale) {
-            $faker = Faker::create($locale);
-            for ($i = 1; $i <= 10; $i++) {
-                $this->accepts[] = $this->buildText($faker);
+            for ($i = 1; $i <= 50; $i++) {
+                $this->accepts[] = $this->buildText($locale);
             }
         }
 
         $this->formatProvider();
     }
 
-    public function buildText($faker): string
+    public function buildText($locale): string
     {
-
-        $name = $faker->lastName();
-        $realText =$faker->realText(50); // characters
+        $name = fake($locale)->lastName();
+        $realText =fake($locale)->realText(200); // characters
 
         $text = $name. '-'. $realText;
         return $text;
