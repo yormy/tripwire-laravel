@@ -40,7 +40,7 @@ class LogRepository
 
         if ($event->getDebugMode()) {
             $data['trigger_data'] = $event->getTriggerData();
-            $data['trigger_rule'] = implode(';', $event->getTriggerRules());
+            $data['trigger_rule'] = substr(implode(';', $event->getTriggerRules()),0, 150);
         }
 
         return $this->model::create($data);

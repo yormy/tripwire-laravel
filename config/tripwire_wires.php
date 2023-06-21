@@ -299,18 +299,18 @@ $orTags = Regex::or([
 $xssConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(0)
-    ->tripwires([
+    ->tripwires(Regex::injectFillers([
         $evilStart,
         $evilTokens,
         "#&lt;(A|$orTags)( |&gt;|body)#iUu",  // &lt;???
 
         "#(<|&lt;);($orTags|\!--|\?|script|iframe|a href)#iUu",
 
-        '#(<|&lt;)/(body|html)#iUu',
+        "#(<|&lt;)/(body|html)#iUu",
 
-        '#&lt;(\!--|\? |div )#iUu',
+        "#&lt;(\!--|\? |div )#iUu",
 
-        '!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu',
+        "!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu",
         '#-moz-binding[\x00-\x20]*:#u',
 
         '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|style|xmlns|xlink:href)[^>]*>?#iUu',
@@ -319,13 +319,14 @@ $xssConfig = WireDetailsConfig::make()
 
         $evilStartWithHashContent,
 
-        '#(" onfocus=)#iUu',
+        "#( $q onfocus=)#iUu",
 
-        '#(\\[\\\\xc0]\[\\\\xBC])#iUu',
+        "#(\\[\\\\xc0]\[\\\\xBC])#iUu",
 
         "#</*($orTags)[^>]*>?#i",
-        '#(onmouseover|onhover)[^>]*>?#i',
-    ]);
+        "#(onmouseover|onhover)[^>]*>?#i",
+    ])
+    );
 
 /*
 |--------------------------------------------------------------------------
