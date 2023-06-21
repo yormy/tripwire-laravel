@@ -4,9 +4,9 @@ namespace Yormy\TripwireLaravel\Services;
 
 class Regex
 {
-    const FILLER = '(\s|\x00)';
+    const FILLER = '[\s|\x00]';
 
-    const QUOTE = '("|\')';
+    const QUOTE = '["|\']';
 
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
@@ -15,7 +15,7 @@ class Regex
 
     public static function or(array $signatures): string
     {
-        $clean = self::clean($signatures);
+        $clean = self::injectFillers($signatures);
 
         return implode('|', $clean);
     }
@@ -25,7 +25,7 @@ class Regex
         return str_replace(' ', self::FILLER. '*', $signature);
     }
 
-    public static function clean(array $signatures): array
+    public static function injectFillers(array $signatures): array
     {
         $clean = array_map(function ($signature) {
             return self::makeWhitespaceSafe($signature);

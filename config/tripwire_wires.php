@@ -55,16 +55,28 @@ $f = REGEX::FILLER;
 $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
+    "union select",
+    "select count \(",
+    "select load_file \(",
+    "version \(\)",
     "union join",
     "union distinct",
+    "{$q} or true",
+    "\)\) or true",
     "{$q} 1 = 1",
+    "or $q $q",
     "or \d* = \d*",
     "or \+\d* = \d*",
     "ROWNUM=ROWNUM",
     "@@connections",
+    "@@version",
     "@@CPU_BUSY",
     "DBMS_PIPE.RECEIVE_MESSAGE",
     "SLEEPTIME",
+    "drop table",
+    "information_schema.tables",
+    "or \( $q\w$q =",
+    "or $q\w$q ="
     ]);
 
 $orPostgressForbidden = Regex::forbidden([
@@ -80,8 +92,6 @@ $orSqlLiteForbidden = Regex::forbidden([
     "last_insert_rowid \(",
 ]);
 
-//dd(regex::makeWhitespaceSafe("# sleep #iUu"));
-
 $sqliConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SQLI_ENABLED', env('TRIPWIRE_ENABLED', true)))
     //->trainingMode(false)
@@ -90,11 +100,8 @@ $sqliConfig = WireDetailsConfig::make()
     //->urls(UrlsConfig::make())
     //->inputFilter(InputsFilterConfig::make())
     ->tripwires(
-        regex::clean([
+        regex::injectFillers([
         "#[\d\W]($orStatements)[\d\W]#iUu",
-        '#[\d\W](insert|from|where|concat|into|cast|truncate|select|delete|having)[\d\W]#iUu',
-        "#[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))#iUu",
-
         "# sleep \( \d+ \) #iUu",
         "#\[\" .+ = .+ \"#iUu", //["1337=1337",
         "#BINARY_CHECKSUM \(.*\)#iUu",

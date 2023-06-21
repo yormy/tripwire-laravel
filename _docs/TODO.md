@@ -9,10 +9,7 @@ Unit tests ?
 
 Test that runs throught all wires with some approved/blocked sets, approved: lorum ipsum
 spaces in regex vervangen door nullbyte or non printable 
-
-
-
-
+also in xss
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
