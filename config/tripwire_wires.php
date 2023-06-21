@@ -231,6 +231,7 @@ $sessionConfig = WireDetailsConfig::make()
 $lt = Regex::LT;
 $gt = Regex::GT;
 $f2 = Regex::FILLERSEMI;
+$q = REGEX::QUOTE;
 
 $evilStart = Regex::forbidden([
     "{$lt} scrscriptipt",
@@ -247,25 +248,23 @@ $evilStartWithHashContent = Regex::forbidden([
     '&#97', //a
     'perl -e &apos;',
     'perl -e &#039;',
-    'perl -e \'',
+    "perl -e $q",
 ], '!');
 
 $evilTokens = Regex::forbidden([
     'string.fromCharCode',
     'window.alert',
-    '>><marquee',
-    'dataformatas="html"',
-    '\'%uff1cscript',
-    '<scrscriptipt',
-    '=expression\(',
-    'onerror=\"javascript:document',
-    '<;BR SIZE',
-    '<br size',
-    '&lt;br size',
-    '<?xml version="1.0',
-    'xss:e/\*\*/xpression',
-    'document.vulnerable=',
-    '&lt;/br',
+    "{$gt} {$gt} {$lt} marquee",
+    "dataformatas = {$q}html",
+    "{$q}%uff1cscript",
+    "= expression \(",
+    "onerror = $q javascript:document",
+    "$lt $f2 BR SIZE",
+    "$lt br size",
+    "<?xml version=\"1.0",
+    "xss:e/\*\*/xpression",
+    "document.vulnerable=",
+    "$lt $f2 BR",
     '\';\!--\"',
     ';\';;\!--"',
     '\&quot;',
