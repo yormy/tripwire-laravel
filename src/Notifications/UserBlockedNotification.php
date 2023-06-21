@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Mailables\UserBlockedMailable;
 
@@ -21,7 +22,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         private readonly ?int $userId,
         private readonly ?string $userType,
         private readonly string $browserFingerprint,
-        private readonly NotificationMailConfig $settings,
+        private readonly NotificationMailConfig| NotificationSlackConfig $settings,
     ) {
         $this->notifications = config('tripwire.notifications');
     }
@@ -34,11 +35,13 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         $channels = [];
 
         foreach ($this->notifications as $channel => $settings) {
-            if (empty($settings['enabled'])) {
-                continue;
-            }
 
-            $channels[] = $channel;
+            foreach($settings as $config) {
+                if ($config['enabled']) {
+                    $channels[] = $channel;
+                    continue;
+                }
+            }
         }
 
         return $channels;

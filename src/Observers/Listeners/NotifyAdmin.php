@@ -13,6 +13,7 @@ class NotifyAdmin
     public function handle(TripwireBlockedEvent $event): void
     {
         $config = ConfigBuilder::fromArray(config('tripwire'));
+
         foreach ($config->notificationsMail as $mailSettings) {
             if ($mailSettings->enabled) {
                 $message = new UserBlockedNotification(
@@ -23,11 +24,21 @@ class NotifyAdmin
                     $mailSettings
                 );
 
-                try {
-                    (new Notifiable)->notify($message);
-                } catch (Throwable $e) {
-                    report($e);
-                }
+                (new Notifiable)->notify($message);
+            }
+        }
+
+        foreach ($config->notificationsSlack as $mailSettings) {
+            if ($mailSettings->enabled) {
+                $message = new UserBlockedNotification(
+                    $event->ipAddress,
+                    $event->userId,
+                    $event->userType,
+                    $event->browserFingerprint,
+                    $mailSettings
+                );
+
+                (new Notifiable)->notify($message);
             }
         }
     }

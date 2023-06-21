@@ -38,9 +38,9 @@ class NotificationsTest extends TestCase
     }
 
     /**
-     * test
+     * @test
      *
-     * @group aaa
+     * @group tripwire-notifications
      */
     public function Block_added_Send_notification_mail(): void
     {
@@ -53,21 +53,20 @@ class NotificationsTest extends TestCase
             'template_plain' => 'tripwire-laravel::email_plain',
             'template_html' => 'tripwire-laravel::email',
         ];
-        //config(["tripwire.notifications.mail" => [$mailSettings]]);
+        config(["tripwire.notifications.mail" => [$mailSettings, $mailSettings]]);
 
-        config(["tripwire.notifications" => []]);
         Notification::fake();
         $this->triggerBlock();
-        Notification::assertSentTimes(UserBlockedNotification::class, 1);
+        Notification::assertSentTimes(UserBlockedNotification::class, 2);
         Notification::assertSentTo((new Notifiable), UserBlockedNotification::class, function ($notification, $channels) {
             return in_array('mail', $channels);
         });
     }
 
     /**
-     * test
+     * @test
      *
-     * @group tripwire-block
+     * @group tripwire-notifications
      */
     public function Blocked_added_Send_notification_slack(): void
     {
@@ -78,10 +77,11 @@ class NotificationsTest extends TestCase
             'to' => 'Tripwire@system.com',
             'channel' => 'xxxx',
         ];
-        config(["tripwire.notifications.slack" => $slackSettings]);
+        config(["tripwire.notifications.slack" => [$slackSettings, $slackSettings] ]);
 
         Notification::fake();
         $this->triggerBlock();
+        Notification::assertSentTimes(UserBlockedNotification::class, 2);
         Notification::assertSentTo((new Notifiable), UserBlockedNotification::class, function ($notification, $channels) {
             return in_array('slack', $channels);
         });
@@ -109,7 +109,7 @@ class NotificationsTest extends TestCase
             'to' => 'Tripwire@system.com',
             'channel' => 'xxxx',
         ];
-        config(["tripwire.notifications.slack" => $slackSettings]);
+        config(["tripwire.notifications.slack" => [$slackSettings] ]);
 
 
         config(["tripwire_wires.$this->tripwire.enabled" => true]);

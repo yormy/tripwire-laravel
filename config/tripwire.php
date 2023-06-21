@@ -33,12 +33,13 @@ $res = ConfigBuilder::make()
             ]
     )
 
-    ->notificationSlack(
+    ->notificationSlack([
         NotificationSlackConfig::make(env('FIREWALL_SLACK_ENABLED', false))
             ->from(env('FIREWALL_SLACK_FROM', 'Tripwire'))
             ->to(env('FIREWALL_SLACK_TO', ''))
             ->channel(env('FIREWALL_SLACK_CHANNEL', 'ttt'))
             ->emoji(env('FIREWALL_SLACK_EMOJI', ':japanese_goblin:'))
+            ]
     )
 
     ->checksums(

@@ -36,7 +36,7 @@ class ConfigBuilder implements Arrayable
 
     public array $notificationsMail;
 
-    public ?NotificationSlackConfig $notificationsSlack;
+    public array $notificationsSlack;
 
     public ChecksumsConfig $checksums;
 
@@ -85,8 +85,8 @@ class ConfigBuilder implements Arrayable
             $data['notifications']['mail'][] = $mailSetting->toArray();
         }
 
-        if (isset($this->notificationsSlack)) {
-            $data['notifications']['slack'] = $this->notificationsSlack->toArray();
+        foreach ($this->notificationsSlack as $mailSetting) {
+            $data['notifications']['slack'][] = $mailSetting->toArray();
         }
 
         if (isset($this->checksums)) {
@@ -172,7 +172,9 @@ class ConfigBuilder implements Arrayable
             $config->notificationsMail[] = NotificationMailConfig::makeFromArray($mailSetting);
         }
 
-        $config->notificationsSlack = NotificationSlackConfig::makeFromArray($data['notifications']['slack'] ?? null);
+        foreach ($data['notifications']['slack'] as $mailSetting) {
+            $config->notificationsSlack[] = NotificationSlackConfig::makeFromArray($mailSetting);
+        }
 
         $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
 
@@ -280,7 +282,7 @@ class ConfigBuilder implements Arrayable
     |--------------------------------------------------------------------------
     */
     public function notificationSlack(
-        NotificationSlackConfig $notificationsSlack,
+        array $notificationsSlack,
     ): self {
         $this->notificationsSlack = $notificationsSlack;
 
