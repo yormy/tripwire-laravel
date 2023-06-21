@@ -261,15 +261,15 @@ $evilTokens = Regex::forbidden([
     "onerror = $q javascript:document",
     "$lt $f2 BR SIZE",
     "$lt br size",
-    "{$lt}? xml version=\"",
-    "xss:e/\*\*/xpression",
-    "document.vulnerable=",
+    "{$lt}? xml version =\"",
+    "xss : e/\*\*/xpression",
+    "document.vulnerable =",
     "$lt $f2 BR",
-    "{$q};\!--{$q}",
-    ";{$q};;\!--{$q}",
+    "{$q} $f2 \!--{$q}",
+    ";{$q} $f2 $f2\!--{$q}",
     "style = $q",
     "\&quot;",
-    "= \\\" ; & ; {",
+    "= \\\" $f2 & $f2 {",
 ]);
 
 $orTags = Regex::or([
