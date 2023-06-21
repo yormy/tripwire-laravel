@@ -10,7 +10,7 @@ class SessionTest extends BaseWireTester
 
     protected $tripwireClass = Session::class;
 
-    protected array $accepting = [
+    protected array $accepts = [
         'dsfsdf',
         'sss',
     ];

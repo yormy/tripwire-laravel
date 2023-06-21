@@ -16,7 +16,7 @@ class BaseWireTester extends TestCase
      *
      * @group tripwire-log
      *
-     * @dataProvider accepting
+     * @dataProvider accepts
      */
     public function should_accept(string $accept): void
     {

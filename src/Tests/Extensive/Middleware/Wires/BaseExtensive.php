@@ -10,7 +10,7 @@ class BaseExtensive extends TestCase
 {
     use TripwireTestTrait;
 
-    protected array $accepting = [];
+    protected array $accepts = [];
 
     protected array $violations = [];
 
@@ -21,7 +21,7 @@ class BaseExtensive extends TestCase
         }
 
         if (isset($this->acceptsDataFile)) {
-            $this->accepting = $this->loadFile($this->acceptsDataFile);
+            $this->accepts = $this->loadFile($this->acceptsDataFile);
         }
 
         $this->tripwire = $this->tripwireClass::NAME;

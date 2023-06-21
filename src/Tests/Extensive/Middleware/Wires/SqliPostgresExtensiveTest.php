@@ -10,7 +10,7 @@ class SqliPostgresExtensiveTest extends BaseExtensive
 
     protected string $violationsDataFile = './src/Tests/Dataproviders/SqliPostgresViolationsData.txt';
 
-    protected array $accepting = [
+    protected array $accepts = [
         'saaaaaaa',
     ];
 
@@ -21,7 +21,7 @@ class SqliPostgresExtensiveTest extends BaseExtensive
      *
      * @group tripwire-sqli
      *
-     * @dataProvider accepting
+     * @dataProvider accepts
      */
     public function should_accept(string $accept): void
     {

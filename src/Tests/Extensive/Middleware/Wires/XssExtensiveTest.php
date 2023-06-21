@@ -10,7 +10,7 @@ class XssExtensiveTest extends BaseExtensive
 
     protected string $violationsDataFile = './src/Tests/Dataproviders/XssViolationsData.txt';
 
-    protected array $accepting = [
+    protected array $accepts = [
         'saaaaaaa',
     ];
 
@@ -21,7 +21,7 @@ class XssExtensiveTest extends BaseExtensive
      *
      * @group tripwire-log
      *
-     * @dataProvider accepting
+     * @dataProvider accepts
      */
     public function should_accept(string $accept): void
     {

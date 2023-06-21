@@ -22,7 +22,7 @@ class AcceptAllEnglishTest extends BaseAcceptAll
     protected string $acceptsDataFile = './src/Tests/Dataproviders/AcceptsData-en_GB.txt';
 
     /**
-     * test
+     * @test
      *
      * @group tripwire-accept-all
      *

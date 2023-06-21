@@ -12,10 +12,10 @@ trait TripwireTestTrait
      *
      * @psalm-return array<list{mixed}>
      */
-    public function accepting(): array
+    public function accepts(): array
     {
         $providerArray = [];
-        foreach ($this->accepting as $accept) {
+        foreach ($this->accepts as $accept) {
             $providerArray[$accept] = [$accept];
         }
 

@@ -16,7 +16,7 @@ class CustomExtensiveTest extends BaseExtensive
      *
      * @group aaa
      *
-     * @dataProvider accepting
+     * @dataProvider accepts
      */
     public function should_accept(string $accept): void
     {
