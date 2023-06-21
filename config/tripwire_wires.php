@@ -56,6 +56,7 @@ $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
     "union select",
+    "union \+ select",
     "select count \(",
     "select load_file \(",
     "version \(\)",
@@ -64,7 +65,6 @@ $orStatements = Regex::or([
     "{$q} or true",
     "\)\) or true",
     "{$q} 1 = 1",
-    "or $q $q",
     "or \d* = \d*",
     "or \+\d* = \d*",
     "ROWNUM=ROWNUM",
@@ -168,7 +168,6 @@ $commonFilesString = Regex::forbidden([
 
 $forbiddenTokens = Regex::forbidden([
     '%252e%252f',
-    '…',  // some wierd ... converted into 1 dot
     'zip://',
     'php://',
     'file=expect:',
@@ -310,7 +309,7 @@ $xssConfig = WireDetailsConfig::make()
 
         "#$lt /(body|html)#iUu",
 
-        "#$lt (\!--|\? |div )#iUu",
+        //"#$lt (\!--|\? |div )#iUu",
 
         "!((java|live|vb)script|mocha|feed|data)(:|&colon;)(\w)*!iUu",
         '#-moz-binding[\x00-\x20]*:#u',

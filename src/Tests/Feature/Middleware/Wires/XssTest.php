@@ -11,7 +11,7 @@ class XssTest extends BaseWireTester
     protected $tripwireClass = Xss::class;
 
     protected array $accepting = [
-        'dsfsdf',
+        "it!--That·I·won't,·then!--Bill's·to",
         'sss',
     ];
 

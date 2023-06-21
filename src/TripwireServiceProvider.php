@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel;
 use Illuminate\Auth\Events\Failed as LoginFailed;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Yormy\TripwireLaravel\Console\Commands\GenerateAccepts;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
@@ -89,6 +90,7 @@ class TripwireServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                GenerateAccepts::class,
             ]);
         }
     }

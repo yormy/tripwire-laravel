@@ -20,7 +20,6 @@ class Geo extends BaseWire
 
     public function isAttack($patterns): bool
     {
-
         if (! $location = $this->getLocation()) {
             return false;
         }
