@@ -242,6 +242,8 @@ $evilStart = Regex::forbidden([
     '1/script3',
     "{$lt} {$f2} script",
     "{$lt} {$f2} scrscriptipt",
+    '\xc0',
+    '\xBC',
 ]);
 
 $evilStartWithHashContent = Regex::forbidden([
@@ -302,7 +304,7 @@ $xssConfig = WireDetailsConfig::make()
     ->tripwires(Regex::injectFillers([
         $evilStart,
         $evilTokens,
-        "#&lt;(A|$orTags)( |&gt;|body)#iUu",  // &lt;???
+        "#&lt;(A|$orTags)( |&gt;|body)#iUu",
 
         "#$lt $f2 ($orTags|\!--|\?|script|iframe|a href)#iUu",
 
@@ -319,11 +321,11 @@ $xssConfig = WireDetailsConfig::make()
 
         $evilStartWithHashContent,
 
-        "#( $q onfocus=)#iUu",
+        "#( $q onfocus = )#iUu",
 
         "#(\\[\\\\xc0]\[\\\\xBC])#iUu",
 
-        "#</*($orTags)[^>]*>?#i",
+        "#$lt /*($orTags)[^>]*>?#i",
         "#(onmouseover|onhover)[^>]*>?#i",
     ])
     );
