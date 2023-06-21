@@ -14,32 +14,38 @@ class NotifyAdmin
     {
         $config = ConfigBuilder::fromArray(config('tripwire'));
 
-        foreach ($config->notificationsMail as $mailSettings) {
-            if ($mailSettings->enabled) {
-                $message = new UserBlockedNotification(
-                    $event->ipAddress,
-                    $event->userId,
-                    $event->userType,
-                    $event->browserFingerprint,
-                    $mailSettings
-                );
+        if (isset($config->notificationsMail)) {
+            foreach ($config->notificationsMail as $mailSettings) {
+                if (isset($mailSettings->enabled) && $mailSettings->enabled) {
+                    $message = new UserBlockedNotification(
+                        $event->ipAddress,
+                        $event->userId,
+                        $event->userType,
+                        $event->browserFingerprint,
+                        $mailSettings
+                    );
 
-                (new Notifiable)->notify($message);
+                    (new Notifiable)->notify($message);
+                }
             }
         }
 
-        foreach ($config->notificationsSlack as $mailSettings) {
-            if ($mailSettings->enabled) {
-                $message = new UserBlockedNotification(
-                    $event->ipAddress,
-                    $event->userId,
-                    $event->userType,
-                    $event->browserFingerprint,
-                    $mailSettings
-                );
 
-                (new Notifiable)->notify($message);
+        if (isset($config->notificationsSlack)) {
+            foreach ($config->notificationsSlack as $mailSettings) {
+                if (isset($mailSettings->enabled) && $mailSettings->enabled) {
+                    $message = new UserBlockedNotification(
+                        $event->ipAddress,
+                        $event->userId,
+                        $event->userType,
+                        $event->browserFingerprint,
+                        $mailSettings
+                    );
+
+                    (new Notifiable)->notify($message);
+                }
             }
         }
+
     }
 }

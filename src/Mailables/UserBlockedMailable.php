@@ -7,6 +7,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 
 class UserBlockedMailable extends Mailable
 {
@@ -18,6 +20,7 @@ class UserBlockedMailable extends Mailable
         public readonly string $ipAddress = '',
         public readonly ?string $userId = null,
         public readonly string $url = '',
+        private readonly NotificationMailConfig| NotificationSlackConfig $mailSettings,
     ) {
         // ...
     }
@@ -32,8 +35,8 @@ class UserBlockedMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: config('tripwire.notifications.mail.template_html'),
-            text: config('tripwire.notifications.mail.template_plain'),
+            view: $this->mailSettings->templateHtml,
+            text: $this->mailSettings->templatePlain,
         );
     }
 

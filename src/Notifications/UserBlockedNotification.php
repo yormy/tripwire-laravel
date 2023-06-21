@@ -37,7 +37,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         foreach ($this->notifications as $channel => $settings) {
 
             foreach($settings as $config) {
-                if ($config['enabled']) {
+                if (isset($config['enabled'])) {
                     $channels[] = $channel;
                     continue;
                 }
@@ -61,15 +61,15 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         ]);
 
         $title = $subject;
+        $mailSettings = $this->settings;
         $mail = new UserBlockedMailable(
             title: $title,
             msg: $message,
             ipAddress: $this->ipAddress,
             userId: $this->userId,
+            url: '',
+            mailSettings: $mailSettings
         );
-
-        $config = ConfigBuilder::fromArray(config('tripwire'));
-        $mailSettings = $config->notificationsMail[0];
 
         $mail
             ->subject($subject)
@@ -86,10 +86,11 @@ class UserBlockedNotification extends Notification implements ShouldQueue
             'domain' => $domain,
         ]);
 
+        $mailSettings = $this->settings;
         return (new SlackMessage)
             ->error()
-            ->from($this->notifications['slack']['from'], $this->notifications['slack']['emoji'])
-            ->to($this->notifications['slack']['channel'])
+            ->from($mailSettings['from'], $mailSettings['emoji'])
+            ->to($mailSettings['channel'])
             ->content($message)
             ->attachment(function ($attachment) use ($domain) {
                 $attachment->fields([

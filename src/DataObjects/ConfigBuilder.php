@@ -81,12 +81,16 @@ class ConfigBuilder implements Arrayable
 
         $data['datetime'] = $this->datetime->toArray();
 
-        foreach ($this->notificationsMail as $mailSetting) {
-            $data['notifications']['mail'][] = $mailSetting->toArray();
+        if (isset($this->notificationsMail)) {
+            foreach ($this->notificationsMail as $mailSetting) {
+                $data['notifications']['mail'][] = $mailSetting->toArray();
+            }
         }
 
-        foreach ($this->notificationsSlack as $mailSetting) {
-            $data['notifications']['slack'][] = $mailSetting->toArray();
+        if (isset($this->notificationsSlack)) {
+            foreach ($this->notificationsSlack as $mailSetting) {
+                $data['notifications']['slack'][] = $mailSetting->toArray();
+            }
         }
 
         if (isset($this->checksums)) {
@@ -168,12 +172,16 @@ class ConfigBuilder implements Arrayable
 
         $config->datetime = DatetimeConfig::makeFromArray($data['datetime'] ?? null);
 
-        foreach ($data['notifications']['mail'] as $mailSetting) {
-            $config->notificationsMail[] = NotificationMailConfig::makeFromArray($mailSetting);
+        if (isset($data['notifications']['mail'])) {
+            foreach ($data['notifications']['mail'] as $mailSetting) {
+                $config->notificationsMail[] = NotificationMailConfig::makeFromArray($mailSetting);
+            }
         }
 
-        foreach ($data['notifications']['slack'] as $mailSetting) {
-            $config->notificationsSlack[] = NotificationSlackConfig::makeFromArray($mailSetting);
+        if (isset($data['notifications']['slack'])) {
+            foreach ($data['notifications']['slack'] as $mailSetting) {
+                $config->notificationsSlack[] = NotificationSlackConfig::makeFromArray($mailSetting);
+            }
         }
 
         $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);

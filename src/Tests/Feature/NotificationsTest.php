@@ -91,8 +91,6 @@ class NotificationsTest extends TestCase
     {
         $settings = ['code' => 409];
 
-        config(["mail.default" => 'log']);
-
         $mailSettings = [
             'enabled' => false,
             'name' => 'Tripwire',
