@@ -15,6 +15,14 @@ Suggestions
 | TripwireBlockedUserEvent    | Block Created | When a block on userId is added                                                                                                       |
 
 
+## Typical use cases:
+### TripwireBlockedEvent
+* User logout
+* Send admin notification
+
+
+
+
 | Event                       | When | Description |
 |-----------------------------|------|-------------|
 | TripwireBlockedEvent        |      |             |

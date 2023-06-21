@@ -1,4 +1,3 @@
-allow chaski to send out emails, use event
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
@@ -26,7 +25,6 @@ PINT
 
 # Documentation 
 # EXTEND
-- notify multiple admins/channels
 
 ## File validation
 - file checker : upload checker (laravelvalidation/upload middleware) +certain file types / sizes
