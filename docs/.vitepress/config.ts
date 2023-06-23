@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Tripwire Laravel",
   description: "A extensive web application firewall (waf) to stock hackers in their tracks",
-  base: 'tripwire-laravel/',
+  base: '/tripwire-laravel/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
