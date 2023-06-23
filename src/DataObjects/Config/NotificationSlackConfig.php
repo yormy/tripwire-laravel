@@ -8,8 +8,6 @@ class NotificationSlackConfig
 
     public string $from;
 
-    public string $to;
-
     public string $emoji;
 
     public ?string $channel;
@@ -21,7 +19,6 @@ class NotificationSlackConfig
     public static function make(
         bool $enabled,
         string $from = '',
-        string $to = '',
         string $emoji = '',
         string $channel = '',
     ): self {
@@ -29,7 +26,6 @@ class NotificationSlackConfig
 
         $object->enabled = $enabled;
         $object->from = $from;
-        $object->to = $to;
         $object->emoji = $emoji;
         $object->channel = $channel;
 
@@ -46,7 +42,6 @@ class NotificationSlackConfig
 
         $object->enabled = $data['enabled'];
         $object->from = $data['from'];
-        $object->to = $data['to'];
 
         if (isset($data['emoji'])) {
             $object->emoji = $data['emoji'];
@@ -60,13 +55,6 @@ class NotificationSlackConfig
     public function from(string $from): self
     {
         $this->from = $from;
-
-        return $this;
-    }
-
-    public function to(string $to): self
-    {
-        $this->to = $to;
 
         return $this;
     }
@@ -95,14 +83,13 @@ class NotificationSlackConfig
             throw new \Exception('Slack Channel missing');
         }
 
-        if (empty($this->to)) {
+        if (empty($this->webhook)) {
             throw new \Exception('Slack to missing');
         }
 
         return [
             'enabled' => $this->enabled,
             'from' => $this->from,
-            'to' => $this->to,
             'emoji' => $this->emoji,
             'channel' => $this->channel,
         ];

@@ -73,7 +73,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 
         $mail
             ->subject($subject)
-            ->to($mailSettings->from, $mailSettings->to);
+            ->to($mailSettings->from, $mailSettings->webhook);
 
         return $mail;
     }
