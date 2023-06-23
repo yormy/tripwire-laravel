@@ -8,16 +8,15 @@ abstract class OnlyExceptConfig
 
     public array $except;
 
-    public $model = MissingPageConfig::class;
-
-    private function __construct()
+    protected function __construct()
     {
+        // Only named constructors
     }
 
     public static function make(
         array $only = [],
         array $except = []
-    ): self {
+    ): static {
         $model = static::MODEL;
         $object = new $model();
 
@@ -27,7 +26,7 @@ abstract class OnlyExceptConfig
         return $object;
     }
 
-    public static function makeFromArray(?array $data): ?self
+    public static function makeFromArray(?array $data): ?static
     {
         if (! $data) {
             return null;
@@ -47,14 +46,14 @@ abstract class OnlyExceptConfig
         return $object;
     }
 
-    public function only(array $only): self
+    public function only(array $only): static
     {
         $this->only = $only;
 
         return $this;
     }
 
-    public function except(array $except): self
+    public function except(array $except): static
     {
         $this->except = $except;
 
