@@ -4,8 +4,11 @@ layout: home
 
 hero:
   name: "Tripwire Laravel"
-  text: "A extensive web application firewall (waf) to stock hackers in their tracks"
-  tagline: My great project tagline
+  text: ""
+  tagline: A extensive web application firewall (waf) to stock hackers in their tracks
+  image:
+      src: ./assets/images/tripwire.jpeg
+      alt: Tripwire laravel - Web application firewall
   actions:
     - theme: brand
       text: Markdown Examples
@@ -15,11 +18,10 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Implementable
+    details: Simply put in front of your laravel application and (aggressively) stop hackers
+  - title: Extendable
+    details: Easy to extend classes and actions based on events
+  - title: Documentation and support
+    details: Extensive documentation and support is available if needed
 ---
-

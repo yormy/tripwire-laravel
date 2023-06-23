@@ -4,11 +4,15 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Tripwire Laravel",
   description: "A extensive web application firewall (waf) to stock hackers in their tracks",
-  base: '/tripwire-laravel/',
+  //base: '/tripwire-laravel/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local'
+    },
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
     ],
 
@@ -23,7 +27,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://yormy.github.io/tripwire-laravel/' }
     ]
   }
 })

@@ -60,3 +60,8 @@ get reset key
 - swear
 - rfi
 - bot
+
+
+
+Show docs:
+Run npm run docs:preview from host
