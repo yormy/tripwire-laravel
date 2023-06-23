@@ -1,3 +1,13 @@
+Convert contfig to env and docu
+Convert all :self =>: static
+
+Slack is unclear:
+to ?
+channel?
+
+test:
+publishing with tag?
+
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()

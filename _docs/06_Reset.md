@@ -12,3 +12,8 @@ Admin first need to unpersist a block, and only then it can be deleted.
 
 The reset-urls are all signed
 
+
+```
+TRIPWIRE_RESET_ENABLED=true
+TRIPWIRE_RESET_LINK_EXPIRATION_MINUTES=60*24*30
+```
