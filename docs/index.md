@@ -11,11 +11,11 @@ hero:
       alt: Tripwire laravel - Web application firewall
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get Started
+      link: /guide/what-is-tripwire
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: View on GitHub
+      link: https://github.com/yormy/tripwire-laravel/
 
 features:
   - title: Implementable

@@ -12,8 +12,8 @@ export default defineConfig({
     },
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Guide', link: '/guide/what-is-tripwire' },
+      { text: 'Examples', link: '/examples' }
     ],
 
     sidebar: [
@@ -23,11 +23,22 @@ export default defineConfig({
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
+      },
+      {
+        text: 'Examples',
+        items: [
+          { text: 'Markdown Examples', link: '/markdown-examples' },
+          { text: 'Runtime API Examples', link: '/api-examples' }
+        ]
       }
     ],
 
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2022 to present Yormy'
+    },
     socialLinks: [
-      { icon: 'github', link: 'https://yormy.github.io/tripwire-laravel/' }
+      { icon: 'github', link: 'https://github.com/yormy/tripwire-laravel' }
     ]
   }
 })

@@ -30,15 +30,15 @@ There are a few concepts:
 * AttackScore: Every wire has a attackScore (either specified or default), the higher the score the more severe and certain you are that this is a malicious request.
 * Punish: When the user attempts too many times, the user is blocked (or punished).
 
-# Goal
+## Goal
 To stop attackers from reaching your site and to block them as soon as possible
 Tripwire-Laravel is an easy yet comprehensive and extendable way to add a security layer around laravel.
 All in order to prevent hackers getting into your system and frustrates the heck out of them while trying
 
-# Limitation
+## Limitation
 Tripwire is not intented to validate or sanitize input, and also no substitute for proper coding. Your site should be well protected against different types of attack without tripwire in the first place. Tripwire will just add another layer or protection
 
-# Frontend
+## Frontend
 This package does not contain a frontend for managing blocked states or logged events.
 I am currently working on a separate package to function as a frontend
 
