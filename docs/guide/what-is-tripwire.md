@@ -1,10 +1,14 @@
-# Tripwire - Web Appplication Firewall to Stop Hackers Early 
+# Tripwire - Web Appplication Firewall
 
-Tripwire definition:
+Tripwire definitions:
 
-```a wire stretched close to the ground, working a trap, explosion, or alarm when disturbed and serving to detect or prevent people or animals entering an area.```
+::: tip Definition One
+a wire stretched close to the ground, working a trap, explosion, or alarm when disturbed and serving to detect or prevent people or animals entering an area.
+:::
 
-```a comparatively weak military force employed as a first line of defence, engagement with which will trigger the intervention of stronger forces.```
+::: tip Definition Two
+a comparatively weak military force employed as a first line of defence, engagement with which will trigger the intervention of stronger forces.
+:::
 
 ## Overview
 Tripwire-laravel is a package designed to early catch attempts to hack your site and stop those people right away.
@@ -35,14 +39,10 @@ To stop attackers from reaching your site and to block them as soon as possible
 Tripwire-Laravel is an easy yet comprehensive and extendable way to add a security layer around laravel.
 All in order to prevent hackers getting into your system and frustrates the heck out of them while trying
 
-## Limitation
+::: danger Limitation
 Tripwire is not intented to validate or sanitize input, and also no substitute for proper coding. Your site should be well protected against different types of attack without tripwire in the first place. Tripwire will just add another layer or protection
+:::
 
 ## Frontend
 This package does not contain a frontend for managing blocked states or logged events.
 I am currently working on a separate package to function as a frontend
-
-
-# Table of Contents
-* [Installation](01_installation.md)
-* [Setup](setup.md)

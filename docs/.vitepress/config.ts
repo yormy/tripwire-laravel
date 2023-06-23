@@ -18,19 +18,35 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Introduction',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Support me', link: '/markdown-examples' },
+          { text: 'What is Tripwire', link: '/markdown-examples' },
+          { text: 'Getting Started', link: '/api-examples' }
         ]
       },
       {
-        text: 'Examples',
+        text: 'Getting Started',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Installation', link: '/markdown-examples' },
+          { text: 'Configuration', link: '/markdown-examples' },
+        ]
+      },
+      {
+        text: 'Use cases',
+        items: [
+          { text: 'Basic setup', link: '/markdown-examples' },
+          { text: 'Xss prevention', link: '/markdown-examples' },
+        ]
+      },
+      {
+        text: 'Customization',
+        items: [
+          { text: 'Customization', link: '/markdown-examples' },
+          { text: 'Debugging', link: '/api-examples' }
         ]
       }
+
     ],
 
     footer: {
