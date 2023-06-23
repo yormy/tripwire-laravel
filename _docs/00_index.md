@@ -38,6 +38,10 @@ All in order to prevent hackers getting into your system and frustrates the heck
 # Limitation
 Tripwire is not intented to validate or sanitize input, and also no substitute for proper coding. Your site should be well protected against different types of attack without tripwire in the first place. Tripwire will just add another layer or protection
 
+# Frontend
+This package does not contain a frontend for managing blocked states or logged events.
+I am currently working on a separate package to function as a frontend
+
 
 # Table of Contents
 * [Installation](01_installation.md)
