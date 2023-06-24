@@ -30,7 +30,7 @@ class RequestSize extends BaseWire
                 $this->check($value, $violations);
             }
 
-            if (strlen($value) > $this->config->tripwires['size'] ?? 400) {
+            if (strlen($value) > $this->config->tripwires()['size'] ?? 400) {
                 $violations[] = $field;
             }
         }

@@ -135,7 +135,7 @@ abstract class BaseWire
         $inputsLocalFilter = [];
         foreach ($inputsGlobalFilter as $key => $value) {
             if (! $this->config->skipInput($key)) {
-                $inputsLocalFilter[$key] = $this->prepareInput($value);
+                $inputsLocalFilter[$key] = $value;
             }
         }
 
@@ -161,7 +161,8 @@ abstract class BaseWire
         $stringed = '';
         $this->convertValuesToString($scannableValues, $stringed);
 
-        return $stringed;
+        $cleaned = $this->prepareInput($stringed);
+        return $cleaned;
     }
 
     private function convertValuesToString(array $data, string &$string): void

@@ -18,12 +18,13 @@ class Rfi extends BaseWire
 
     public function prepareInput($value): string
     {
-        if (! isset($this->config->guards()['allow'])) {
-            return $value;
+        $exceptions = [];
+        $guards = $this->config->guards();
+        if (isset($guards['allow'])) {
+            $exceptions = $this->config->guards()['allow'];
         }
-        $exceptions = $this->config->guards()['allow'];
-        $domain = $this->request->getHost();
 
+        $domain = $this->request->getHost();
         $exceptions[] = 'http://'.$domain;
         $exceptions[] = 'https://'.$domain;
         $exceptions[] = 'http://&';
