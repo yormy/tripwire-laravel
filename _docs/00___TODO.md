@@ -1,13 +1,16 @@
+Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 Convert contfig to env and docu
 Convert all :self =>: static
 find todo
 
-Slack is unclear:
+Slack is unclear: => test
 to ?
 channel?
 
 test:
 publishing with tag?
+
+TripwireAdminRoutes : split in api // reset ?
 
 Idea: hero image logo
 Yormy - tripwire + graphic?

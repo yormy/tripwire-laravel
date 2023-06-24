@@ -11,7 +11,7 @@ class GuestRoutes
     public static function register(): void
     {
         Route::macro('TripwireResetRoutes', function (string $prefix = '') {
-            if (config('tripwire.reset.enabled')) {
+            if (config('tripwire.reset.enabled', false)) {
                 Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
                     Route::prefix('')

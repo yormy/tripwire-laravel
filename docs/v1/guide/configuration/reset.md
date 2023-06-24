@@ -5,7 +5,17 @@ One way of doing that is to disable Tripwire, but a much better way is to give t
 With a reset-url someone can access the page to remove all blocks/logs with their ip.
 They will be instanly unblocked and have access to the site again.
 
-At the minimum you need to enable the reset and specify how many minutes the reset url will be available. After that time the reset-url will do nothing. 
+For this to work you need to
+* register the reset url
+* enable the reset
+* specify how many minutes the reset url will be available. After that time the reset-url will do nothing. 
+
+In your app routes you need to add this line // todo: what url will it generate ?
+```php
+Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
+```
+
+and update your ```.env```
 ```php
 TRIPWIRE_RESET_ENABLED=true
 TRIPWIRE_RESET_LINK_EXPIRATION_MINUTES=60*24*30     // how many minutes will this reset-url be available
@@ -25,6 +35,20 @@ As long as a block is persistent, it will not be removed by the reset-url.
 The database hold a field called: ```persistent_block``` when this flag is set, this block is not affected by the reset-url.
 These flags need to be cleared before the blocks can be removed with a reset-url
 :::
+
+## Generate a reset url: Todo
+In your routes file specify the prefix/middleware/group and register the admin tripwire routes
+
+This way you can specify where the routes are in your path and namespaces and what middleware you want to apply
+
+These routes should be only accessible by admins
+```php
+    Route::prefix('')
+        ->middleware(['web','auth', 'admin'])
+        ->group(function () {
+            Route::TripwireAdminRoutes(); // [!code focus] // make sure only admins have access to this route
+        });
+```
 
 
 
