@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/what-is-tripwire
+      link: /v1/guide/what-is-tripwire
     - theme: alt
       text: View on GitHub
       link: https://github.com/yormy/tripwire-laravel/

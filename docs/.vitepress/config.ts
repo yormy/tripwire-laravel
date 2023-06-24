@@ -12,7 +12,7 @@ export default defineConfig({
     },
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/what-is-tripwire' },
+      { text: 'Guide', link: '/v1/guide/what-is-tripwire' },
       { text: 'Examples', link: '/examples' }
     ],
 
@@ -20,16 +20,18 @@ export default defineConfig({
       {
         text: 'Introduction',
         items: [
-          { text: 'Support me', link: '/markdown-examples' },
-          { text: 'What is Tripwire', link: '/markdown-examples' },
+          { text: 'What is Tripwire', link: '/v1/guide/what-is-tripwire' },
+          { text: 'Why Support me', link: '/v1/support-me' },
+          { text: 'Definitions', link: '/v1/definitions.md' },
           { text: 'Getting Started', link: '/api-examples' }
         ]
       },
       {
         text: 'Getting Started',
         items: [
-          { text: 'Installation', link: '/markdown-examples' },
-          { text: 'Configuration', link: '/markdown-examples' },
+          { text: 'Installation', link: '/v1/guide/installation' },
+          { text: 'Setup', link: '/v1/guide/basic-setup' },
+          { text: 'Configuration', link: '/v1//guide/basic-configuration' },
         ]
       },
       {

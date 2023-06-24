@@ -1,10 +1,3 @@
-# Installation
-```
-composer require yormy/tripwire-laravel
-
-php artisan migrate
-```
-
 # Optional
 Publish view - todo
 Publish translations - todo

@@ -1,5 +1,6 @@
 Convert contfig to env and docu
 Convert all :self =>: static
+find todo
 
 Slack is unclear:
 to ?
@@ -7,6 +8,9 @@ channel?
 
 test:
 publishing with tag?
+
+Idea: hero image logo
+Yormy - tripwire + graphic?
 
 
 # Documentation

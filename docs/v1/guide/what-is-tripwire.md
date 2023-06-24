@@ -28,11 +28,11 @@ There are MANY different configuration options, just check out the config for mo
 You can always see what attacks where causing a specific block
 
 There are a few concepts:
-* Log : Every request that is recognized as a hack attempt is logged regardless it blocks the rest of the request or not.
-* Block: A block prevents a certain user or Ip from accessing your site. As long a the block is valid no requests will continue to your site.
-* Wire: A checked that parses the request to see it if violates certain rules. If a wire is triggered it is considered as a hack attempt
-* AttackScore: Every wire has a attackScore (either specified or default), the higher the score the more severe and certain you are that this is a malicious request.
-* Punish: When the user attempts too many times, the user is blocked (or punished).
+* **Log** : Every request that is recognized as a hack attempt is logged regardless it blocks the rest of the request or not.
+* **Block**: A block prevents a certain user or Ip from accessing your site. As long a the block is valid no requests will continue to your site.
+* **Wire**: A checked that parses the request to see it if violates certain rules. If a wire is triggered it is considered as a hack attempt
+* **AttackScore**: Every wire has a attackScore (either specified or default), the higher the score the more severe and certain you are that this is a malicious request.
+* **Punish**: When the user attempts too many times, the user is blocked (or punished).
 
 ## Goal
 To stop attackers from reaching your site and to block them as soon as possible
