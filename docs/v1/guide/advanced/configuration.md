@@ -1,5 +1,5 @@
-# Configuration
-There are 2 config files. 
+# Configuration - todo
+There are 2 config files.
 * Tripwire.php is the main config for the package
 * Tripwire_wires.php is the config where all the wires are defined
 

@@ -15,6 +15,13 @@ TripwireAdminRoutes : split in api // reset ?
 Idea: hero image logo
 Yormy - tripwire + graphic?
 
+??# Catch Model Binding????
+When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
+
+Add to your model that you want to protect
+```
+use TripwireModelBindingTrait
+```
 
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()

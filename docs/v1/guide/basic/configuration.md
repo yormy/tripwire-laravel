@@ -12,7 +12,8 @@ TRIPWIRE_NOTIFICATION_MAIL_NAME=Tripwire
 TRIPWIRE_NOTIFICATION_MAIL_FROM=tripwire@yourdomain.com
 TRIPWIRE_NOTIFICATION_MAIL_TO=tripwire@yourdomain.com
 ```
-
+If you want to use a different email template for your notifications you can set that up too. 
+Look at [customization of notifications](../customization/notifications.md)
 
 ## Slack notifications
 

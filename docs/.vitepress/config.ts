@@ -30,30 +30,49 @@ export default defineConfig({
           { text: 'Installation', link: '/v1/guide/installation' },
           { text: 'Setup', link: '/v1/guide/basic/setup' },
           { text: 'Configuration', link: '/v1//guide/basic/configuration' },
+          { text: 'Tips', link: '/v1//guide/basic/tips' },
         ]
       },
       {
         text: 'Advanced Configuration',
         items: [
           { text: 'Resetting blocks', link: '/v1/guide/configuration/reset' },
-          { text: 'Setup', link: '/v1/guide/basic/setup' },
-          { text: 'Configuration', link: '/v1//guide/basic/configuration' },
+          { text: 'Configuration', link: '/v1/guide/advanced/configuration' },
+          { text: 'Blockers', link: '/v1/guide/advanced/blockers' },
+          { text: 'Checksum', link: '/v1/guide/advanced/checksum' },
+          { text: 'Exception', link: '/v1/guide/advanced/exceptions' },
+          { text: 'Wires', link: '/v1/guide/advanced/wires' },
         ]
       },
       {
         text: 'Use cases',
         items: [
-          { text: 'Basic setup', link: '/..' },
-          { text: 'Xss prevention', link: '/-examples' },
+          { text: 'Basic setup -todo', link: '/..' },
+          { text: 'Xss prevention-todo', link: '/-examples' },
         ]
       },
       {
         text: 'Customization',
         items: [
-          { text: 'Customization', link: '/m-examples' },
-          { text: 'Debugging', link: '/-examples' }
+          { text: 'Customization', link: '/v1/guide/customization/customization' },
+          { text: 'Notifications', link: '/v1/guide/customization/notifications' },
         ]
-      }
+      },
+      {
+        text: 'References',
+        items: [
+          {
+            text: 'Wires',
+            items: [
+              { text: 'General', link: '/v1/guide/configuration/wires-general' },
+              { text: 'Request', link: '/v1/guide/configuration/wires-request' }
+            ]
+          },
+          { text: 'Events', link: '/v1/guide/configuration/events' }
+        ]
+      },
+      { text: 'Debugging', link: '/v1/guide/configuration/debug' },
+      { text: 'Support', link: '/v1/support-me' }
 
     ],
 
