@@ -11,6 +11,7 @@ a comparatively weak military force employed as a first line of defence, engagem
 :::
 
 ## Overview
+TODO: this should be a high level feature overview
 Tripwire-laravel is a package designed to early catch attempts to hack your site and stop those people right away.
 It is designed to sit in front of every request (or the ones you specify) to listen to what is coming in and determine if that is good or not.
 If it is an attempt to hack you site (ie Sqli, xss etc) then this attempt with lots of details will be logged.
@@ -27,12 +28,9 @@ There are MANY different configuration options, just check out the config for mo
 
 You can always see what attacks where causing a specific block
 
-There are a few concepts:
-* **Log** : Every request that is recognized as a hack attempt is logged regardless it blocks the rest of the request or not.
-* **Block**: A block prevents a certain user or Ip from accessing your site. As long a the block is valid no requests will continue to your site.
-* **Wire**: A checked that parses the request to see it if violates certain rules. If a wire is triggered it is considered as a hack attempt
-* **AttackScore**: Every wire has a attackScore (either specified or default), the higher the score the more severe and certain you are that this is a malicious request.
-* **Punish**: When the user attempts too many times, the user is blocked (or punished).
+There are options to have to user reset their blocks (in case they are researchers or developers). 
+Blocks can be persistent so block will not be removed by accident.
+
 
 ## Goal
 To stop attackers from reaching your site and to block them as soon as possible

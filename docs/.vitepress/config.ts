@@ -13,7 +13,6 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/v1/guide/what-is-tripwire' },
-      { text: 'Examples', link: '/examples' }
     ],
 
     sidebar: [
@@ -23,29 +22,36 @@ export default defineConfig({
           { text: 'What is Tripwire', link: '/v1/guide/what-is-tripwire' },
           { text: 'Why Support me', link: '/v1/support-me' },
           { text: 'Definitions', link: '/v1/definitions.md' },
-          { text: 'Getting Started', link: '/api-examples' }
         ]
       },
       {
         text: 'Getting Started',
         items: [
           { text: 'Installation', link: '/v1/guide/installation' },
-          { text: 'Setup', link: '/v1/guide/basic-setup' },
-          { text: 'Configuration', link: '/v1//guide/basic-configuration' },
+          { text: 'Setup', link: '/v1/guide/basic/setup' },
+          { text: 'Configuration', link: '/v1//guide/basic/configuration' },
+        ]
+      },
+      {
+        text: 'Advanced Configuration',
+        items: [
+          { text: 'Resetting blocks', link: '/v1/guide/configuration/reset' },
+          { text: 'Setup', link: '/v1/guide/basic/setup' },
+          { text: 'Configuration', link: '/v1//guide/basic/configuration' },
         ]
       },
       {
         text: 'Use cases',
         items: [
-          { text: 'Basic setup', link: '/markdown-examples' },
-          { text: 'Xss prevention', link: '/markdown-examples' },
+          { text: 'Basic setup', link: '/..' },
+          { text: 'Xss prevention', link: '/-examples' },
         ]
       },
       {
         text: 'Customization',
         items: [
-          { text: 'Customization', link: '/markdown-examples' },
-          { text: 'Debugging', link: '/api-examples' }
+          { text: 'Customization', link: '/m-examples' },
+          { text: 'Debugging', link: '/-examples' }
         ]
       }
 

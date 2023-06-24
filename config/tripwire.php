@@ -150,7 +150,7 @@ $res = ConfigBuilder::make()
     */
     ->reset(
         ResetConfig::make(env('TRIPWIRE_RESET_ENABLED', true))
-            ->softDelete(true)
+            ->softDelete(env('TRIPWIRE_RESET_DELETE_SOFT', true))
             ->linkExpireMinutes(env('TRIPWIRE_RESET_LINK_EXPIRATION_MINUTES', 60*24*30))
     )
 
