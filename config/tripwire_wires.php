@@ -300,7 +300,7 @@ $orTags = Regex::or([
 
 $xssConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->attackScore(0)
+    ->attackScore(100)
     ->tripwires(Regex::injectFillers([
         $evilStart,
         $evilTokens,

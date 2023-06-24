@@ -52,7 +52,7 @@ $res = ConfigBuilder::make()
     | or detailed data why a certain issue was triggered
     | fills fields: trigger_data and trigger_rule
     */
-    ->debugMode(env('TRIPWIRE_DEBUG_MODE', false))
+    ->debugMode(env('TRIPWIRE_DEBUG_MODE', true))
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ $res = ConfigBuilder::make()
     | note this will log increase on every violation that leads to a block
     | the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
     */
-    ->punish(800, 60 * 24, 5)
+    ->punish(1000, 60 * 24, 5)
 
     /*
     |--------------------------------------------------------------------------

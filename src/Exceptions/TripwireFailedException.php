@@ -18,12 +18,11 @@ class TripwireFailedException extends BaseException
      */
     protected function renderJson(Request $request)
     {
-        //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
-        $status = 400;
-        $error = 'Something is wrong';
-        $help = 'Contact the sales team to verify';
+        $status = config('tripwire.block_code');
+        $error = __('tripwire::exceptions.tripwire_failed_exception.error');
+        $message = __('tripwire::exceptions.tripwire_failed_exception.message');
 
-        return response(['error' => $error, 'help' => $help], $status);
+        return response(['error' => $error, 'message' => $message], $status);
     }
 
     /**
