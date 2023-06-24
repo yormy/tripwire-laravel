@@ -22,6 +22,25 @@ Or
 ./vendor/bin/phpunit ./vendor/yormy/tripwire-laravel/src/Tests --testdox --testsuite Extensive
 ```
 
+# Customizing the database
+```bash
+php artisan vendor:publish --provider="Yormy\TripwireLaravel\TripwireServiceProvider" --tag="migrations"
+```
+
+# Customizing the translations
+```bash
+php artisan vendor:publish --provider="Yormy\TripwireLaravel\TripwireServiceProvider" --tag="translations"
+```
+
+# Customizing the config
+```bash
+php artisan vendor:publish --provider="Yormy\TripwireLaravel\TripwireServiceProvider" --tag="config"
+```
+
+# Customizing the views
+```bash
+php artisan vendor:publish --provider="Yormy\TripwireLaravel\TripwireServiceProvider" --tag="views"
+```
 
 
 

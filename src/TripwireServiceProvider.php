@@ -71,15 +71,15 @@ class TripwireServiceProvider extends ServiceProvider
             $this->publishes([
                 self::CONFIG_FILE => config_path('tripwire.php'),
                 self::CONFIG_WIRE_FILE => config_path('tripwire_wires.php'),
-            ], 'tripwire-config');
+            ], 'config');
 
             $this->publishes([
                 __DIR__.'/../database/migrations/' => database_path('migrations'),
-            ], 'tripwire-migrations');
+            ], 'migrations');
 
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-views'),
-            ]);
+            ],'views');
 
             $this->publishes([
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/tripwire'),
