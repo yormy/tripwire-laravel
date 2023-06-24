@@ -31,6 +31,7 @@ export default defineConfig({
           { text: 'Setup -todo', link: '/v1/guide/basic/setup' },
           { text: 'Configuration -todo', link: '/v1//guide/basic/configuration' },
           { text: 'Tips', link: '/v1//guide/basic/tips' },
+          { text: 'Frontend', link: '/v1//guide/basic/frontend' },
         ]
       },
       {

@@ -40,6 +40,4 @@ Features that tripwire include:
 * Configure exactly how a block should respond. At what malicious sum score level (```punishScore```), and how to respond (silent, exception, view, json, redirect)
 * Persistent blocks, prevent blocks from being removed.
 
-## Frontend
-This package does not contain a frontend for managing blocked states or logged events.
-I am currently working on a separate package to function as a frontend
+<!--@include: ../guide/basic/frontend.md-->
