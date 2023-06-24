@@ -12,7 +12,7 @@ export default defineConfig({
     },
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: 'v1/guide/what-is-tripwire' },
+      { text: 'Guide', link: '/v1/introduction/what-is-tripwire' },
     ],
 
     sidebar: [
