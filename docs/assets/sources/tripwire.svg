@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.3932941"
-     inkscape:cx="378.95804"
-     inkscape:cy="362.80926"
+     inkscape:zoom="2.7865882"
+     inkscape:cx="422.02145"
+     inkscape:cy="213.34333"
      inkscape:window-width="1870"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -640,12 +640,12 @@
        y="154.86749"
        style="stroke-width:0.264583;fill:none" />
     <path
-       d="M 52.044252,139.24849 H 163.32081 V 48.844568 H 52.044252 Z"
-       style="fill:#172441;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0163787"
+       d="M 26.954019,77.623251 H 93.905833 V 23.229891 H 26.954019 Z"
+       style="fill:#172441;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.00985458"
        id="path841" />
     <g
        id="g10652"
-       transform="translate(-4.5588061,4.4904435)">
+       transform="matrix(0.60167044,0,0,0.60167044,57.171891,5.2923769)">
       <g
          id="g1263"
          transform="matrix(0.03527778,0,0,-0.0352778,58.24396,138.74146)">
@@ -716,15 +716,17 @@
       </g>
     </g>
     <g
-       id="g10659">
+       id="g10659"
+       transform="matrix(0.60167044,0,0,0.60167044,59.91479,2.5906099)">
       <g
          id="g12227">
         <g
            id="g1251"
-           transform="matrix(0.3527778,0,0,-0.352778,58.048755,138.74146)">
+           transform="matrix(0.3527778,0,0,-0.352778,58.048755,138.74146)"
+           style="fill:#ffffff;stroke:#172441;stroke-opacity:1">
           <text
              transform="matrix(1,0,0,-1,76.1453,59.516)"
-             style="font-variant:normal;font-weight:900;font-size:23.4635px;font-family:Montserrat;-inkscape-font-specification:Montserrat-Black;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             style="font-variant:normal;font-weight:900;font-size:23.4635px;font-family:Montserrat;-inkscape-font-specification:Montserrat-Black;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#172441;stroke-opacity:1"
              id="text1255"><tspan
                sodipodi:role="line"
                id="tspan1253"
