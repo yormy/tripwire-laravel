@@ -1,4 +1,4 @@
-# Support me
+# Support me - todo make friendlier
 
 ## Feedback
 You pay with your feedback, When you use it you apparently like it, please let us know why you like it
