@@ -26,6 +26,7 @@ use TripwireModelBindingTrait
 # Documentation
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)
+setup payment method
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait
 

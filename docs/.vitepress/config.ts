@@ -20,8 +20,8 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           { text: 'What is Tripwire', link: '/v1/introduction/what-is-tripwire' },
-          { text: 'Why Support me -todo', link: '/v1/support-me' },
           { text: 'Definitions', link: '/v1/definitions.md' },
+          { text: 'Need Support?', link: '/v1/support-me' },
         ]
       },
       {
@@ -75,7 +75,7 @@ export default defineConfig({
         ]
       },
       { text: 'Debugging-todo', link: '/v1/guide/configuration/debug' },
-      { text: 'Support-todo', link: '/v1/support-me' }
+      { text: 'Support', link: '/v1/support-me' }
 
     ],
 
