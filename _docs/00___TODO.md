@@ -1,20 +1,10 @@
+# CODE:
+app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
+app-test - how to disable middleware on certain routes (ie large request)
+Slack is unclear: => test \to ? channel?
 Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
-Convert contfig to env and docu
 Convert all :self =>: static
-find todo
-
-Slack is unclear: => test
-to ?
-channel?
-
-test:
-publishing with tag?
-
 TripwireAdminRoutes : split in api // reset ?
-
-Idea: hero image logo
-Yormy - tripwire + graphic?
-
 ??# Catch Model Binding???? => generic as in config, or specify in your model ?
 When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
 
@@ -22,10 +12,21 @@ Add to your model that you want to protect
 ```
 use TripwireModelBindingTrait
 ```
+Convert contfig to env and docu
+
+
+# DOCS
+find todo
+
+test:
+publishing with tag?
+
+Idea: hero image logo
+Yormy - tripwire + graphic?
+
 
 # Documentation
-app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
-app-test - how to disable middleware on certain routes (ie large request)
+
 setup payment method
 
 anonymizer, extend model, prevent callable in other namespace? in base class/ trait anonymizabletrait

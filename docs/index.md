@@ -7,7 +7,7 @@ hero:
   text: ""
   tagline: A extensive web application firewall (waf) to stock hackers in their tracks
   image:
-      src: ./assets/images/tripwire.jpeg
+      src: ./assets/images/tripwire.png
       alt: Tripwire laravel - Web application firewall
   actions:
     - theme: brand
