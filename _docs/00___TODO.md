@@ -15,7 +15,7 @@ TripwireAdminRoutes : split in api // reset ?
 Idea: hero image logo
 Yormy - tripwire + graphic?
 
-??# Catch Model Binding????
+??# Catch Model Binding???? => generic as in config, or specify in your model ?
 When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
 
 Add to your model that you want to protect

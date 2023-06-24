@@ -19,29 +19,32 @@ export default defineConfig({
       {
         text: 'Introduction',
         items: [
-          { text: 'What is Tripwire', link: '/v1/guide/what-is-tripwire' },
-          { text: 'Why Support me', link: '/v1/support-me' },
+          { text: 'What is Tripwire', link: '/v1/introduction/what-is-tripwire' },
+          { text: 'Why Support me -todo', link: '/v1/support-me' },
           { text: 'Definitions', link: '/v1/definitions.md' },
         ]
       },
       {
         text: 'Getting Started',
         items: [
-          { text: 'Installation', link: '/v1/guide/installation' },
-          { text: 'Setup', link: '/v1/guide/basic/setup' },
-          { text: 'Configuration', link: '/v1//guide/basic/configuration' },
+          { text: 'Installation -todo', link: '/v1/guide/installation' },
+          { text: 'Setup -todo', link: '/v1/guide/basic/setup' },
+          { text: 'Configuration -todo', link: '/v1//guide/basic/configuration' },
           { text: 'Tips', link: '/v1//guide/basic/tips' },
         ]
       },
       {
         text: 'Advanced Configuration',
         items: [
-          { text: 'Resetting blocks', link: '/v1/guide/configuration/reset' },
-          { text: 'Configuration', link: '/v1/guide/advanced/configuration' },
-          { text: 'Blockers', link: '/v1/guide/advanced/blockers' },
-          { text: 'Checksum', link: '/v1/guide/advanced/checksum' },
-          { text: 'Exception', link: '/v1/guide/advanced/exceptions' },
-          { text: 'Wires', link: '/v1/guide/advanced/wires' },
+          { text: 'Resetting blocks  -todo', link: '/v1/guide/configuration/reset' },
+          { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
+          { text: 'Blockers -todo', link: '/v1/guide/advanced/blockers' },
+          { text: 'Checksum -todo', link: '/v1/guide/advanced/checksum' },
+          { text: 'Exception -todo', link: '/v1/guide/advanced/exceptions' },
+          { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
+          { text: 'Training mode -todo', link: '/v1/guide/advanced/training-mode' },
+          { text: 'Debug mode -todo', link: '/v1/guide/advanced/debug-mode' },
+          { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
         ]
       },
       {
@@ -54,7 +57,7 @@ export default defineConfig({
       {
         text: 'Customization',
         items: [
-          { text: 'Customization', link: '/v1/guide/customization/customization' },
+          { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
         ]
       },
@@ -64,15 +67,15 @@ export default defineConfig({
           {
             text: 'Wires',
             items: [
-              { text: 'General', link: '/v1/guide/configuration/wires-general' },
-              { text: 'Request', link: '/v1/guide/configuration/wires-request' }
+              { text: 'General-todo', link: '/v1/guide/configuration/wires-general' },
+              { text: 'Request-todo', link: '/v1/guide/configuration/wires-request' }
             ]
           },
-          { text: 'Events', link: '/v1/guide/configuration/events' }
+          { text: 'Events-todo', link: '/v1/guide/references/events' }
         ]
       },
-      { text: 'Debugging', link: '/v1/guide/configuration/debug' },
-      { text: 'Support', link: '/v1/support-me' }
+      { text: 'Debugging-todo', link: '/v1/guide/configuration/debug' },
+      { text: 'Support-todo', link: '/v1/support-me' }
 
     ],
 

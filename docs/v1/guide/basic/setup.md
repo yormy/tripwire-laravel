@@ -3,7 +3,8 @@ There are a few steps involved to setup Tripwire.
 * Malicious requests need to be recognized and responded to
 * Malicious users need to be blocked
 
-<!--@include: ../definitions.md-->
+
+<!--@include: ../../definitions.md-->
 
 ## Recognizing and blocking malicious requests
 Recognizing malicious requests happen through the so called wires. When a wire is tripped, actions will be taken.
