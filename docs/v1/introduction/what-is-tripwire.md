@@ -1,5 +1,7 @@
 # Tripwire - Web Appplication Firewall
 
+![tripwire](../../assets/images/tripwire.png)
+
 ::: tip Definition One
 a wire stretched close to the ground, working a trap, explosion, or alarm when disturbed and serving to detect or prevent people or animals entering an area.
 :::
