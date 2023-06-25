@@ -12,6 +12,12 @@ This block is only temporarily and will be removed after a few seconds. However 
 A block can be based on a ip address, user id, and or browser-fingerprint (if supplied by your frontend)
 :::
 
+###
+::: tip Definition: Reject
+When a request is suspicious it is rejected and this could lead eventually to a block
+:::
+
+
 ### Wire
 ::: tip Definition: Wire
 A checked that parses the request to see it if violates certain rules. If a wire is triggered it is considered as a hack attempt

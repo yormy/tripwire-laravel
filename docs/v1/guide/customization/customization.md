@@ -46,3 +46,5 @@ php artisan vendor:publish --provider="Yormy\TripwireLaravel\TripwireServiceProv
 
 # Extend action classes
 # Encrypt user data
+
+## Punish

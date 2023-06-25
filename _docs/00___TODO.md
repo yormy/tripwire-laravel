@@ -1,4 +1,31 @@
+Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
+
+Installation:
+composer & Datataba
+
+Setup:
+Changes to code
+
+Basic Configuration
+basic Setup env
+
+Advanced Config
+all env
+
+Customization
+publish config 
+edit config
+
+
+References
+All wires
+
+
+
+
+
 # CODE:
+rename trigger-response -> reject-response (this is more in line with 'blocked-response')
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)
 Slack is unclear: => test \to ? channel?
@@ -17,7 +44,7 @@ what does :redirect_url do in json response ?
 
 Add to your model that you want to protect
 
-specify the return json in env
+datetime offset is in minutes, but variable is specified as just offset, whyy is datetime in 'Y-m-f' ?? 
 
 ```
 use TripwireModelBindingTrait

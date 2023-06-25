@@ -13,21 +13,14 @@ If you want to use a different email template for your notifications you can set
 Look at [customization of notifications](../customization/notifications.md)
 
 ## Slack notifications
-
-### Create slack incoming webhook
-- Open your slack application
-- Click apps
-- Find 'Incoming WebHooks' and add to slack
-- Select channel
-- Copy the slack-webhook and paste into your .env
-
-### Setup env
+Setup ```.env```
 ```php
 TRIPWIRE_NOTIFICATION_SLACK_ENABLED=true
 TRIPWIRE_NOTIFICATION_SLACK_FROM='Tripwire'
 TRIPWIRE_NOTIFICATION_SLACK_CHANNEL=you-slack-webhook
 TRIPWIRE_NOTIFICATION_SLACK_EMOJI=:japanese_goblin:
 ```
+[create webhook in slack](../references/slack-setup.md)
 
 ## Ready & Test
 Now you are all set to test and be amazed by the results

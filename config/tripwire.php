@@ -58,8 +58,12 @@ $res = ConfigBuilder::make()
     |--------------------------------------------------------------------------
     | Date formatting
     |--------------------------------------------------------------------------
+    | Specify the format to show the date time to the users and the offset compared to UTC (in minutes)
     */
-    ->dateFormat('Y-m-f', 0)
+    ->dateFormat(
+        env('TRIPWIRE_DATE_FORMAT', 'Y-m-f'),
+        env('TRIPWIRE_DATE_OFFSET',0)
+    )
 
     /*
     |--------------------------------------------------------------------------
@@ -170,15 +174,15 @@ $res = ConfigBuilder::make()
     |--------------------------------------------------------------------------
     */
     ->triggerResponse(
-        JsonResponseConfig::make()->code(406)->json([]),
-        HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
+        JsonResponseConfig::make()->code(406)->json(json_decode(env('TRIPWIRE_REJECT_JSON', '[]'), true)),
+        HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
     )
 
     /*
     |--------------------------------------------------------------------------
     | Punish
     |--------------------------------------------------------------------------
-    | punish at waht score level
+    | punish at what score level
     | score reached within x minutes to punish, if score is reached over more time, no punishment
     | Penalty block for x seconds
     | note this will log increase on every violation that leads to a block

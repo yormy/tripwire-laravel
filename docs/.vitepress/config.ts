@@ -47,14 +47,16 @@ export default defineConfig({
         text: 'Advanced Configuration',
         items: [
           { text: 'Config files', link: '/v1/guide/advanced/configuration/config-files' },
+          { text: 'Options -todo', link: '/v1/guide/advanced/configuration/options' },
           { text: 'Training mode', link: '/v1/guide/advanced/configuration/training-mode' },
           { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
-          { text: 'Block Response', link: '/v1/guide/advanced/configuration/block' },
-          { text: 'Options', link: '/v1/guide/advanced/configuration/options' },
+          { text: 'Block Response', link: '/v1/guide/advanced/configuration/block-response' },
+          { text: 'Trigger Response', link: '/v1/guide/advanced/configuration/trigger-response' },
+
 
 
           { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
-          { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
+          { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/configuration/reset' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
         ]
       },
@@ -64,6 +66,7 @@ export default defineConfig({
           { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
           { text: 'Block', link: '/v1/guide/customization/block' },
+          { text: 'Reject -todo', link: '/v1/guide/customization/reject' },
           { text: 'Json Response', link: '/v1/guide/customization/json-response' },
           { text: 'Html Response', link: '/v1/guide/customization/html-response' },
           { text: 'Wire Groups', link: '/v1/guide/customization/wire-groups' },
