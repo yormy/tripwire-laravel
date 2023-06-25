@@ -1,14 +1,15 @@
 # Removing blocks
-Sometimes you need an ability to remove the block and logs. One of the use cases is that you are blocked yourself, or that you want security researches pentest your system.
+Sometimes you need an ability to remove the block and logs. One of the use cases is that you are blocked yourself, 
+or that you want security researchers to pentest your system (...they will constantly be blocked).
 One way of doing that is to disable Tripwire, but a much better way is to give them a reset url.
 
 With a reset-url someone can access the page to remove all blocks/logs with their ip.
-They will be instanly unblocked and have access to the site again.
+They will be instantly unblocked and have access to the site again.
 
 For this to work you need to
-* register the reset url
-* enable the reset
-* specify how many minutes the reset url will be available. After that time the reset-url will do nothing. 
+* Register the reset url
+* Enable the reset
+* Specify how many minutes the reset url will be available. After that time the reset-url will do nothing. 
 
 In your app routes you need to add this line // todo: what url will it generate ?
 ```php

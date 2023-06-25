@@ -28,20 +28,27 @@ export default defineConfig({
         text: 'Getting Started',
         items: [
           { text: 'Installation', link: '/v1/guide/installation' },
-          { text: 'Setup', link: '/v1/guide/basic/setup' },
-          { text: 'Configuration', link: '/v1//guide/basic/configuration' },
+          { text: 'Basic Setup', link: '/v1/guide/basic/setup' },
+          { text: 'Basic Configuration', link: '/v1//guide/basic/configuration' },
           { text: 'Tips', link: '/v1//guide/basic/tips' },
           { text: 'Frontend', link: '/v1//guide/basic/frontend' },
         ]
       },
       {
+        text: 'Advanced Setup',
+        items: [
+          { text: 'Blockers', link: '/v1/guide/advanced/setup/blockers' },
+          { text: 'Exception Inspector', link: '/v1/guide/advanced/setup/exceptions' },
+        ]
+      },
+      {
         text: 'Advanced Configuration',
         items: [
-          { text: 'Resetting blocks  -todo', link: '/v1/guide/configuration/reset' },
+          { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
           { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
-          { text: 'Blockers -todo', link: '/v1/guide/advanced/blockers' },
+          { text: 'Blockers - todo', link: '/v1/guide/advanced/blockers' },
           { text: 'Checksum -todo', link: '/v1/guide/advanced/checksum' },
-          { text: 'Exception -todo', link: '/v1/guide/advanced/exceptions' },
+
           { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
           { text: 'Training mode -todo', link: '/v1/guide/advanced/training-mode' },
           { text: 'Debug mode -todo', link: '/v1/guide/advanced/debug-mode' },

@@ -9,6 +9,7 @@ TripwireAdminRoutes : split in api // reset ?
 When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
 recode honeypot, that it is is just one of the many wires
 remove xuid
+generate reset url, how is this not blocked by tripwire ?
 
 returning an exception is slower than an abort code
 
