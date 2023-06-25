@@ -58,14 +58,18 @@ export default defineConfig({
       {
         text: 'Customization - todo',
         items: [
-          { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
-          { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
-          { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
+          { text: 'Publish Config', link: '/v1/guide/customization/config' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
           { text: 'Block response', link: '/v1/guide/customization/block' },
           { text: 'Reject response', link: '/v1/guide/customization/reject' },
-
           { text: 'Wire Groups', link: '/v1/guide/customization/wire-groups' },
+          { text: 'Views', link: '/v1/guide/customization/views' },
+          { text: 'Translations', link: '/v1/guide/customization/translations' },
+          { text: 'Database', link: '/v1/guide/customization/database' },
+
+          { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
+          { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
+          { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
         ]
       },
       {
