@@ -39,7 +39,8 @@ export default defineConfig({
         items: [
           { text: 'Blockers', link: '/v1/guide/advanced/setup/blockers' },
           { text: 'Exception Inspector', link: '/v1/guide/advanced/setup/exceptions' },
-          { text: 'Request Validator - todo', link: '/v1/guide/setup/checksum' },
+          { text: 'Request Validator - todo', link: '/v1/guide/advanced/`setup/checksum' },
+          { text: 'Wires', link: '/v1/guide/advanced/setup/wires' },
         ]
       },
       {
@@ -80,7 +81,8 @@ export default defineConfig({
               { text: 'Request-todo', link: '/v1/guide/configuration/wires-request' }
             ]
           },
-          { text: 'Events-todo', link: '/v1/guide/references/events' }
+          { text: 'Events-todo', link: '/v1/guide/references/events' },
+          { text: 'All Wires-todo', link: '/v1/guide/references/wires' }
         ]
       },
       { text: 'Debugging-todo', link: '/v1/guide/configuration/debug' },
