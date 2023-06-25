@@ -173,7 +173,7 @@ $res = ConfigBuilder::make()
     | Trigger response - How to respond when a malicious request is detected
     |--------------------------------------------------------------------------
     */
-    ->triggerResponse(
+    ->rejectResponse(
         JsonResponseConfig::make()->code(406)->json(json_decode(env('TRIPWIRE_REJECT_JSON', '[]'), true)),
         HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
     )

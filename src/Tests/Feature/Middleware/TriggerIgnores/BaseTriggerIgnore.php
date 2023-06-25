@@ -30,9 +30,9 @@ class BaseTriggerIgnore extends TestCase
 
     protected function setDefaultConfig(): void
     {
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
+        config(["tripwire_wires.$this->tripwire.reject_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(['tripwire.trigger_response.html' => ['exception' => TripwireFailedException::class]]);
+        config(['tripwire.reject_response.html' => ['exception' => TripwireFailedException::class]]);
     }
 }

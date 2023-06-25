@@ -4,7 +4,7 @@ Specify in your ``tripwire.php`` how tripwire should respond in case of the requ
 
 Create 2 objects to specify how to respond in case of a JSON and in case of an HTML request
 ```php
-    ->triggerResponse(
+    ->rejectResponse(
         JsonResponseConfig::make()->code(423),
         HtmlResponseConfig::make()->code(423)->view('tripwire-laravel::blocked'),
     )

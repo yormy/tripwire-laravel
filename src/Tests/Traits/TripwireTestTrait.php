@@ -42,7 +42,7 @@ trait TripwireTestTrait
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $settings]);
+        config(["tripwire_wires.$this->tripwire.reject_response.html" => $settings]);
     }
 
     protected function setConfigDefault(): void
@@ -51,8 +51,8 @@ trait TripwireTestTrait
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
 
         $settings = ['code' => Tripwire::TRIPWIRE_CODE_DEFAULT];
-        config(["tripwire.trigger_response.html" => $settings]);
-        config(["tripwire_wires.".$this->tripwire.".trigger_response.html" => []]);
+        config(["tripwire.reject_response.html" => $settings]);
+        config(["tripwire_wires.".$this->tripwire.".reject_response.html" => []]);
     }
 
     protected function triggerTripwire(string $input)

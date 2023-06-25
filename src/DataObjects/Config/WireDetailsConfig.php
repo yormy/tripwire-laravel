@@ -22,23 +22,23 @@ class WireDetailsConfig
 
     public ?PunishConfig $punish;
 
-    public ?BlockResponseConfig $triggerResponse;
+    public ?BlockResponseConfig $rejectResponse;
 
     private function __construct()
     {
     }
 
     public static function make(
-        bool $enabled = true,
-        bool $trainingMode = null,
-        array $methods = ['*'],
-        int $attackScore = 0,
-        UrlsConfig $urlsConfig = null,
-        InputsFilterConfig $inputs = null,
-        array $tripwires = [],
-        array $guards = [],
-        PunishConfig $punishConfig = null,
-        BlockResponseConfig $triggerResponse = null,
+        bool                $enabled = true,
+        bool                $trainingMode = null,
+        array               $methods = ['*'],
+        int                 $attackScore = 0,
+        UrlsConfig          $urlsConfig = null,
+        InputsFilterConfig  $inputs = null,
+        array               $tripwires = [],
+        array               $guards = [],
+        PunishConfig        $punishConfig = null,
+        BlockResponseConfig $rejectResponse = null,
     ): self {
         $object = new WireDetailsConfig();
 
@@ -62,7 +62,7 @@ class WireDetailsConfig
         $object->tripwires = $tripwires;
         $object->guards = $guards;
         $object->punish = $punishConfig;
-        $object->triggerResponse = $triggerResponse;
+        $object->rejectResponse = $rejectResponse;
 
         return $object;
     }
@@ -108,8 +108,8 @@ class WireDetailsConfig
             $object->punish = $data['punish'];
         }
 
-        if (isset($data['trigger_response'])) {
-            $object->triggerResponse = BlockResponseConfig::makeFromArray($data['trigger_response']);
+        if (isset($data['reject_response'])) {
+            $object->rejectResponse = BlockResponseConfig::makeFromArray($data['reject_response']);
         }
 
         return $object;
@@ -187,9 +187,9 @@ class WireDetailsConfig
         return $this;
     }
 
-    public function triggerResponse(BlockResponseConfig $triggerResponse): self
+    public function rejectResponse(BlockResponseConfig $rejectResponse): self
     {
-        $this->triggerResponse = $triggerResponse;
+        $this->rejectResponse = $rejectResponse;
 
         return $this;
     }
@@ -228,8 +228,8 @@ class WireDetailsConfig
             $data['punish'] = $this->punish->toArray();
         }
 
-        if ($this->triggerResponse) {
-            $data['trigger_response'] = $this->triggerResponse->toArray();
+        if ($this->rejectResponse) {
+            $data['reject_response'] = $this->rejectResponse->toArray();
         }
 
         return $data;

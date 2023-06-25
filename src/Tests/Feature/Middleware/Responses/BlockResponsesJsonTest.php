@@ -95,7 +95,7 @@ class BlockResponsesJsonTest extends TestCase
         $settings = ['code' => 409];
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
-        config(["tripwire_wires.$this->tripwire.trigger_response.json" => $settings]);
+        config(["tripwire_wires.$this->tripwire.reject_response.json" => $settings]);
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
 
         config(["tripwire_wires.$this->tripwire.attack_score" => 10]);

@@ -42,7 +42,7 @@ $swearConfig = WireDetailsConfig::make()
     //->inputFilter(InputsFilterConfig::make())
     //->tripwires(['blow'])
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
-    ->triggerResponse(
+    ->rejectResponse(
         BlockResponseConfig::make()
             ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
             ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
@@ -128,7 +128,7 @@ $sqliConfig = WireDetailsConfig::make()
         "#= LIKE \($q#iUu",
     ]))
     //->punish(PunishConfig::make(10, 60 * 24, 5,))
-    ->triggerResponse(
+    ->rejectResponse(
         BlockResponseConfig::make()
             ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
             ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
@@ -192,7 +192,7 @@ $lfiConfig = WireDetailsConfig::make()
         $commonFilesString,
     ]);
 //->punish(PunishConfig::make(10, 60 * 24, 5,))
-//    ->triggerResponse(
+//    ->rejectResponse(
 //        BlockResponseConfig::make()
 //            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
 //            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))

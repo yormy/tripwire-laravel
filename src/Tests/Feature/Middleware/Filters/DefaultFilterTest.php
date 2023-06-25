@@ -107,8 +107,8 @@ class DefaultFilterTest extends TestCase
 
     private function setDefaultConfig(array $data = []): void
     {
-        config(['tripwire.trigger_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
+        config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(["tripwire_wires.$this->tripwire.reject_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
     }

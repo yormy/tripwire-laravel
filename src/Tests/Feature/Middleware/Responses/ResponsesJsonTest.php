@@ -136,14 +136,14 @@ class ResponsesJsonTest extends TestCase
     private function setConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(["tripwire_wires.$this->tripwire.trigger_response.json" => $data]);
+        config(["tripwire_wires.$this->tripwire.reject_response.json" => $data]);
     }
 
     private function setDefaultConfig(array $data): void
     {
-        config(["tripwire_wires.$this->tripwire.trigger_response.json" => []]);
+        config(["tripwire_wires.$this->tripwire.reject_response.json" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(['tripwire.trigger_response.json' => $data]);
+        config(['tripwire.reject_response.json' => $data]);
     }
 }

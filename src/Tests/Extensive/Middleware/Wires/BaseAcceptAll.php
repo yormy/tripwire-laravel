@@ -63,7 +63,7 @@ class BaseAcceptAll extends TestCase
             $name = $wire::NAME;
             config(["tripwire_wires.$name.enabled" => true]);
             config(["tripwire_wires.$name.methods" => ['*']]);
-            config(["tripwire_wires.$name.trigger_response.html" => $settings]);
+            config(["tripwire_wires.$name.reject_response.html" => $settings]);
         }
     }
 

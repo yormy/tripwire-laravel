@@ -64,7 +64,7 @@ class ConfigBuilder implements Arrayable
 
     public array $wireGroups;
 
-    public BlockResponseConfig $triggerResponse;
+    public BlockResponseConfig $rejectResponse;
 
     public function toArray(): array
     {
@@ -148,8 +148,8 @@ class ConfigBuilder implements Arrayable
             $data['punish'] = $this->punish->toArray();
         }
 
-        if (isset($this->triggerResponse)) {
-            $data['trigger_response'] = $this->triggerResponse->toArray();
+        if (isset($this->rejectResponse)) {
+            $data['reject_response'] = $this->rejectResponse->toArray();
         }
 
         return $data;
@@ -210,7 +210,7 @@ class ConfigBuilder implements Arrayable
 
         $config->punish = PunishConfig::makeFromArray($data['punish'] ?? null);
 
-        $config->triggerResponse = BlockResponseConfig::makeFromArray($data['trigger_response'] ?? null);
+        $config->rejectResponse = BlockResponseConfig::makeFromArray($data['reject_response'] ?? null);
 
         return $config;
     }
@@ -394,11 +394,11 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-    public function triggerResponse(
+    public function rejectResponse(
         JsonResponseConfig $jsonResponseConfig,
         HtmlResponseConfig $htmlResponseConfig
     ): self {
-        $this->triggerResponse = BlockResponseConfig::make(
+        $this->rejectResponse = BlockResponseConfig::make(
             $jsonResponseConfig,
             $htmlResponseConfig
         );

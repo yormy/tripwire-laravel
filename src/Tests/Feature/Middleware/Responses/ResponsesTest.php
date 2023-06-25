@@ -209,14 +209,14 @@ class ResponsesTest extends TestCase
     private function setConfig(array $data): void
     {
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => $data]);
+        config(["tripwire_wires.$this->tripwire.reject_response.html" => $data]);
     }
 
     private function setDefaultConfig(array $data): void
     {
-        config(["tripwire_wires.$this->tripwire.trigger_response.html" => []]);
+        config(["tripwire_wires.$this->tripwire.reject_response.html" => []]);
 
         config(["tripwire_wires.$this->tripwire.tripwires" => [self::TRIPWIRE_TRIGGER]]);
-        config(['tripwire.trigger_response.html' => $data]);
+        config(['tripwire.reject_response.html' => $data]);
     }
 }

@@ -50,13 +50,13 @@ class HoneypotsWire
             $this->attackFound($request, $triggerEventData, $wireConfig);
 
             if ($request->wantsJson()) {
-                $config = JsonResponseConfig::makeFromArray(config('tripwire.trigger_response.json'));
+                $config = JsonResponseConfig::makeFromArray(config('tripwire.reject_response.json'));
                 $respond = new ResponseDeterminer($config, $request->url());
 
                 return $respond->respondWithJson();
             }
 
-            $config = HtmlResponseConfig::makeFromArray(config('tripwire.trigger_response.html'));
+            $config = HtmlResponseConfig::makeFromArray(config('tripwire.reject_response.html'));
             $respond = new ResponseDeterminer($config, $request->url());
 
             return $respond->respondWithHtml();
