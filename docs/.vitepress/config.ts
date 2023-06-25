@@ -67,9 +67,12 @@ export default defineConfig({
           { text: 'Translations', link: '/v1/guide/customization/translations' },
           { text: 'Database', link: '/v1/guide/customization/database' },
 
+          { text: 'Services - todo', link: '/v1/guide/customization/services' },
+          { text: 'Encryption - todo', link: '/v1/guide/customization/encryption' },
+          { text: 'Punish - todo', link: '/v1/guide/customization/punish' },
+
           { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
-          { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
         ]
       },
       {

@@ -6,3 +6,10 @@
     ...
     ChecksumValidateWire::class, // Trips when the calculated checksum does not match the frontend posted value (if provided)
 ```
+
+    ->checksums(
+        ChecksumsConfig::make()
+            ->posted('X-Checksum')
+            ->timestamp('X-sand')
+            ->serversideCalculated('x-checksum-serverside')
+    )
