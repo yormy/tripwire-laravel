@@ -39,6 +39,7 @@ export default defineConfig({
         items: [
           { text: 'Blockers', link: '/v1/guide/advanced/setup/blockers' },
           { text: 'Exception Inspector', link: '/v1/guide/advanced/setup/exceptions' },
+          { text: 'Request Validator - todo', link: '/v1/guide/setup/checksum' },
         ]
       },
       {
@@ -47,11 +48,11 @@ export default defineConfig({
           { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
           { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
           { text: 'Blockers - todo', link: '/v1/guide/advanced/blockers' },
-          { text: 'Checksum -todo', link: '/v1/guide/advanced/checksum' },
+
 
           { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
-          { text: 'Training mode -todo', link: '/v1/guide/advanced/training-mode' },
-          { text: 'Debug mode -todo', link: '/v1/guide/advanced/debug-mode' },
+          { text: 'Training mode', link: '/v1/guide/advanced/configuration/training-mode' },
+          { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
         ]
       },

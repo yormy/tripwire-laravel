@@ -12,6 +12,7 @@ remove xuid
 generate reset url, how is this not blocked by tripwire ?
 
 returning an exception is slower than an abort code
+checksum validator-calculator in one ?
 
 Add to your model that you want to protect
 ```
