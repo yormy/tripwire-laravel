@@ -194,7 +194,7 @@ $res = ConfigBuilder::make()
     */
     ->blockCode(406)
     ->blockResponse(
-        JsonResponseConfig::make()->code(423)->abort(env('TRIPWIRE_BLOCK_ABORT', false)),
+        JsonResponseConfig::make()->code(423)->json(json_decode(env('TRIPWIRE_BLOCK_JSON', '[]'), true)),
         HtmlResponseConfig::make()->code(423)->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
     )
 

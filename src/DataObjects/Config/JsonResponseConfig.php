@@ -6,8 +6,6 @@ class JsonResponseConfig
 {
     public int $code;
 
-    public bool $abort;
-
     public ?array $json;
 
     public ?string $exception;
@@ -22,7 +20,6 @@ class JsonResponseConfig
 
     public static function make(
         ?int $code = 406,
-        ?bool $abort = false,
         ?array $json = null,
         ?string $exception = null,
         ?string $redirectUrl = null,
@@ -32,10 +29,6 @@ class JsonResponseConfig
 
         if (isset($code)) {
             $object->code = $code;
-        }
-
-        if (isset($abort)) {
-            $object->abort = $abort;
         }
 
         $object->json = $json;
@@ -57,10 +50,6 @@ class JsonResponseConfig
 
         if (isset($data['code'])) {
             $object->code = $data['code'];
-        }
-
-        if (isset($data['abort'])) {
-            $object->abort = $data['abort'];
         }
 
         if (isset($data['json'])) {
@@ -85,13 +74,6 @@ class JsonResponseConfig
     public function code(int $code): self
     {
         $this->code = $code;
-
-        return $this;
-    }
-
-    public function abort(bool $abort): self
-    {
-        $this->abort = $abort;
 
         return $this;
     }
@@ -129,10 +111,6 @@ class JsonResponseConfig
         $data = [];
         if (isset($this->code)) {
             $data['code'] = $this->code;
-        }
-
-        if (isset($this->abort)) {
-            $data['abort'] = $this->abort;
         }
 
         if (isset($this->json)) {

@@ -5,10 +5,10 @@ This object can be used for both responding after triggering a wire or when a us
 
 You can use a fluent api to respond
 
-## Abort
-Simply abort the request with code 406
+## General
+Simply abort the request with the specified code (406)
 ```php
-JsonResponseConfig::make()->code(406)->abort(true)
+JsonResponseConfig::make()->code(406)
 ```
 
 ## Exception
@@ -27,7 +27,7 @@ JsonResponseConfig::make()->messageKey('your-custom-translatable-message-key')
 Returns json data, this can be anything you like.
 You could also specify a redirection url here and have your frontend redirect to that url.
 ```php
-JsonResponseConfig::make()->code(406)->json([
+JsonResponseConfig::make()->json([
     'error' =>'This request is not allowed'
     'action' => 'go hack somewhere else'
 ]),

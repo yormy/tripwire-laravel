@@ -48,11 +48,11 @@ export default defineConfig({
         items: [
           { text: 'Training mode', link: '/v1/guide/advanced/configuration/training-mode' },
           { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
+          { text: 'Block Response', link: '/v1/guide/advanced/configuration/block' },
 
-          { text: 'Json', link: '/v1/guide/advanced/configuration/json-response' },
-          { text: 'Html', link: '/v1/guide/advanced/configuration/html-response' },
+
           { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
-          { text: 'Blockers - todo', link: '/v1/guide/advanced/blockers' },
+
           { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
           { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
@@ -63,6 +63,9 @@ export default defineConfig({
         items: [
           { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
+          { text: 'Block', link: '/v1/guide/customization/block' },
+          { text: 'Json Response', link: '/v1/guide/customization/json-response' },
+          { text: 'Html Response', link: '/v1/guide/customization/html-response' },
         ]
       },
       {
