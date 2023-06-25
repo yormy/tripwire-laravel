@@ -58,13 +58,6 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Use cases',
-        items: [
-          { text: 'Basic setup -todo', link: '/..' },
-          { text: 'Xss prevention-todo', link: '/-examples' },
-        ]
-      },
-      {
         text: 'Customization',
         items: [
           { text: 'Customization -todo', link: '/v1/guide/customization/customization' },
