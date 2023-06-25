@@ -46,14 +46,15 @@ export default defineConfig({
       {
         text: 'Advanced Configuration',
         items: [
-          { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
-          { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
-          { text: 'Blockers - todo', link: '/v1/guide/advanced/blockers' },
-
-
-          { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
           { text: 'Training mode', link: '/v1/guide/advanced/configuration/training-mode' },
           { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
+
+          { text: 'Json', link: '/v1/guide/advanced/configuration/json-response' },
+          { text: 'Html', link: '/v1/guide/advanced/configuration/html-response' },
+          { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
+          { text: 'Blockers - todo', link: '/v1/guide/advanced/blockers' },
+          { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
+          { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
         ]
       },
