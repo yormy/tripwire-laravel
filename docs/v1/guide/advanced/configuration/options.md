@@ -49,7 +49,7 @@ TRIPWIRE_NOTIFICATION_SLACK_EMOJI=:japanese_goblin:
 [create webhook in slack](../references/slack-setup.md)
 
 ## Reset blocks
-[remove blocks](reset.md)
+[remove blocks](../setup/reset.md)
 
 ## Whitelist Ips
 You can whitelist certain IP's that will be excluded from checking their input.

@@ -11,6 +11,6 @@ Create 2 objects to specify how to respond in case of a JSON and in case of an H
 ```
 
 See the options how to create these objects:
-* [JSON Response](json-response.md)
-* [HTML Response](html-response.md)
+* [JSON Response](../references/json-response.md)
+* [HTML Response](../references/html-response.md)
 
