@@ -27,6 +27,8 @@ travis ci
 # DOCS
 readme cleanup
 install in clean laravel blade and record how to install and how to trigger
+show video of reset
+
 find todo
 create different use cases
 Typical blade usage = view

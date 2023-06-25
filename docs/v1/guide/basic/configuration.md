@@ -38,14 +38,19 @@ Go to your app and in whatever field there is fill in the following
 <script alert('xss')>
 ```
 
-This will result in a few actions
-1) This will trigger the tripwire
-2) Returns json requests with: [] and status 406
-3) Returns html requests with a nasty block screen
+This will:
+1) Trigger the tripwire and record the violation
+2) JSON requests return status 406 with data [ ]
+3) HTML requests return with status 406 and a nasty block screen
 
 ### step 2
-Now repeat this action 5 times (todo: how many)
-And it will:
-1) This will trigger the blocker
-2) Every JSON request will be blocked with status code 423
-3) Every HTML request will be blocked with status code 42 and show a view screen
+Now repeat this action 5 times
+
+This will:
+1) Trigger the blocker
+2) Block every JSON with status code 423
+3) Block every HTML request with status code 423 and show a view screen
+
+:::info
+All these reponses to requests and blocks are completely customizable
+:::
