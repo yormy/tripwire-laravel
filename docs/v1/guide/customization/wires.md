@@ -1,5 +1,8 @@
 # Wires
 
+Wires are configured in the ```tripwire_wires.php```
+[See how to setup a specific wire](../references/wires) 
+
 ## Changing the ruleset
 When you change the ruleset it is good to manually run all tests again to test if their are no suddenly false positives or false negatives added.
 

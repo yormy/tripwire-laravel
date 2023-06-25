@@ -1,4 +1,10 @@
 # Wires Request - todo
+
+Each wire has a optional set of global overrides and some specific settings:
+
+<!--@include: ./wires/optionals.md-->
+
+# Specifics
 ## Agent
 ## Bot
 ## Geo
@@ -14,6 +20,8 @@ This is a pretty slow wire, so if you do not need it, best is to keep it out of 
 ## Session
 ## Sqli
 ## Swear
+[Setup swear wire](./wires/swear.md)
+
 ## Text
 ## Xss
 ## Custom

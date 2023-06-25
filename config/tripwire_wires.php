@@ -35,18 +35,7 @@ use Yormy\TripwireLaravel\Services\Regex;
 */
 $swearConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SWEAR_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    //->trainingMode(false)
-    //->methods(['post', 'put', 'patch', 'get'])
-    ->attackScore(500)
-    //->urls(UrlsConfig::make())
-    //->inputFilter(InputsFilterConfig::make())
-    //->tripwires(['blow'])
-    //->punish(PunishConfig::make(10, 60 * 24, 5,))
-    ->rejectResponse(
-        BlockResponseConfig::make()
-            ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
-            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
-    );
+    ->attackScore(10);
 
 /*
 |--------------------------------------------------------------------------

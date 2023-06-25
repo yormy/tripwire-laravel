@@ -55,7 +55,7 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Customization - todo',
+        text: 'General Customization - todo',
         items: [
           { text: 'Publish Config', link: '/v1/guide/customization/config' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
@@ -75,8 +75,13 @@ export default defineConfig({
           { text: 'Ignores', link: '/v1/guide/customization/ignores' },
           { text: 'Models', link: '/v1/guide/customization/models' },
 
-          { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
+        ]
+      },
+      {
+        text: 'Wire Customization - todo',
+        items: [
+          { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
         ]
       },
       {
@@ -85,8 +90,8 @@ export default defineConfig({
           {
             text: 'Wires',
             items: [
-              { text: 'General-todo', link: '/v1/guide/configuration/wires-general' },
-              { text: 'Request-todo', link: '/v1/guide/configuration/wires-request' }
+              { text: 'General-todo', link: '/v1/guide/references/wires-general' },
+              { text: 'Request-todo', link: '/v1/guide/references/wires-request' }
             ]
           },
           { text: 'Events-todo', link: '/v1/guide/references/events' },

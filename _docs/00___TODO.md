@@ -62,6 +62,7 @@ travis ci
 
 # DOCS
 streamline docs with config file
+if methods is [] or missing, inspect all ?
 readme cleanup
 install in clean laravel blade and record how to install and how to trigger
 show video of reset
