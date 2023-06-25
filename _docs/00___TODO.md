@@ -25,6 +25,8 @@ All wires
 
 
 # CODE:
+services needs interfaces (source/user/ip)
+
 rename trigger-response -> reject-response (this is more in line with 'blocked-response')
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)

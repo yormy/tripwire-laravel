@@ -2,11 +2,10 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Tripwire Laravel",
+  title: "Tripwire",
   description: "A extensive web application firewall (waf) to stock hackers in their tracks",
   base: '/tripwire-laravel/',
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     search: {
       provider: 'local'
     },
@@ -69,7 +68,11 @@ export default defineConfig({
 
           { text: 'Services - todo', link: '/v1/guide/customization/services' },
           { text: 'Encryption - todo', link: '/v1/guide/customization/encryption' },
-          { text: 'Punish - todo', link: '/v1/guide/customization/punish' },
+          { text: 'Punish', link: '/v1/guide/customization/punish' },
+          { text: 'Urls - todo', link: '/v1/guide/customization/urls' },
+          { text: 'Logging - todo', link: '/v1/guide/customization/logging' },
+          { text: 'Ignores - todo', link: '/v1/guide/customization/ignores' },
+          { text: 'Models - todo', link: '/v1/guide/customization/models' },
 
           { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
           { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
