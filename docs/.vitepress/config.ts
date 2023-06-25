@@ -46,12 +46,12 @@ export default defineConfig({
       {
         text: 'Advanced Configuration',
         items: [
+          { text: 'Config files', link: '/v1/guide/advanced/configuration/config-files' },
           { text: 'Training mode', link: '/v1/guide/advanced/configuration/training-mode' },
           { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
           { text: 'Block Response', link: '/v1/guide/advanced/configuration/block' },
+          { text: 'Options', link: '/v1/guide/advanced/configuration/options' },
 
-
-          { text: 'Configuration -todo', link: '/v1/guide/advanced/configuration' },
 
           { text: 'Wires -todo', link: '/v1/guide/advanced/wires' },
           { text: 'Removing blocks  -todo', link: '/v1/guide/advanced/reset' },
@@ -66,6 +66,7 @@ export default defineConfig({
           { text: 'Block', link: '/v1/guide/customization/block' },
           { text: 'Json Response', link: '/v1/guide/customization/json-response' },
           { text: 'Html Response', link: '/v1/guide/customization/html-response' },
+          { text: 'Wire Groups', link: '/v1/guide/customization/wire-groups' },
         ]
       },
       {

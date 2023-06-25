@@ -210,7 +210,7 @@ $res = ConfigBuilder::make()
         WireGroupConfig::make([
             'tripwire.agent',
             'tripwire.bot',
-            'tripwire.geo',
+            // 'tripwire.geo', // work in progress
             'tripwire.lfi',
             'tripwire.php',
             'tripwire.referer',
@@ -244,7 +244,6 @@ $res = ConfigBuilder::make()
         WireGroupConfig::make([
             'tripwire.agent',
             'tripwire.bot',
-            'tripwire.geo',
             'tripwire.referer',
             'tripwire.session',
         ])

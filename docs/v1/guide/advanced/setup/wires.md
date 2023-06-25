@@ -28,4 +28,4 @@ The first tripped wire will stop the request, the rest will not be checked
             'tripwire.all' // [!code focus] // Uses all tripwires defined in the group 'all' in the config
         ],
 ```
-See [wire groups](../configuration/wire-groups) on how to create new wire groups
+See [wire groups](../../customization/wire-groups.md) on how to create new wire groups
