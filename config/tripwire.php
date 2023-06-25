@@ -166,6 +166,16 @@ $res = ConfigBuilder::make()
 
     /*
     |--------------------------------------------------------------------------
+    | Trigger response - How to respond when a malicious request is detected
+    |--------------------------------------------------------------------------
+    */
+    ->triggerResponse(
+        JsonResponseConfig::make()->code(406)->json([]),
+        HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
+    )
+
+    /*
+    |--------------------------------------------------------------------------
     | Punish
     |--------------------------------------------------------------------------
     | punish at waht score level
@@ -182,21 +192,13 @@ $res = ConfigBuilder::make()
     |--------------------------------------------------------------------------
     | Specify how the system should handle a blocking request
     */
-    ->blockCode(409)
+    ->blockCode(406)
     ->blockResponse(
-        JsonResponseConfig::make()->code(506)->abort(env('TRIPWIRE_BLOCK_ABORT', false)),
-        HtmlResponseConfig::make()->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
+        JsonResponseConfig::make()->code(423)->abort(env('TRIPWIRE_BLOCK_ABORT', false)),
+        HtmlResponseConfig::make()->code(423)->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
     )
 
-    /*
-    |--------------------------------------------------------------------------
-    | Trigger response - How to respond when a malicious request is detected
-    |--------------------------------------------------------------------------
-    */
-    ->triggerResponse(
-        JsonResponseConfig::make()->exception(TripwireFailedException::class),
-        HtmlResponseConfig::make()->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
-    )
+
 
     /*
     |--------------------------------------------------------------------------

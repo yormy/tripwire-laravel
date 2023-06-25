@@ -19,7 +19,7 @@ class ResponseDeterminer
         private string $currentUrl = ''
     ) {
         if (! isset($this->config->code) || $this->config->code === 0) {
-            $this->code = 401;
+            $this->code = 406;
         } else {
             $this->code = $this->config->code;
         }

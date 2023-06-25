@@ -4,8 +4,8 @@
 I love feedback from you !
 Your feedback in how you use tripwire, features you need, additions or changes in code are highly appreciated.
 Both positive and negative feedback is welcome. I am a human being, so yes I also like to hear when you enjoy my work.
-* If you like Tripwire, please let me know why and how you like it.
-* If you do not like it, please also let me know and why and what changes you would like to see.
+* If you **LIKE** Tripwire, please Star it on github and leave a comment on why and how you like it, and tell your friends about Tripwire, write an article about how you used Tripwire or whatever to get the word out
+* If you do **NOT LIKE** it, please also let me know and why and what changes you would like to see.
 
 Only with your feedback Tripwire can grow and help more sites to be secure.
 
@@ -26,7 +26,7 @@ So your investment would be considerable to get a system like Tripwire running.
 Ask yourself, could you or your development staff develop this level of tested code and features within 4 hours of their time.
 If not, please support me by donating 100 Euro (or more) for my time and effort. This will allow me to continue working on this project and make it even better for you.
 
-If you are a sole developer, without employing people or making money with your code, just use this package as you see fit.
+If you are a sole developer, without employing people or making money with your code, just use this package as you see fit, and 'donate' with your feedback and getting the word out
 But if you have a paid product/service or if you are paying developers (freelance or a salary), please consider me paying only a fraction of the development costs.
 
 As I said, I am not a company, just a sole developer wanting to make great things, so I could really use your financial support.

@@ -1,9 +1,6 @@
 # Configuration
 
-You can get notified whenever there is a block added. This notification can be by email or by slack.
-In the configuration you can specify the destinations.
-The destination can be either a single email/slack notification or you can send it to multiple destinations
-Another option is that you listen to the ```TripwireBlockedEvent``` event and handle notifications yourself
+You can get notified whenever there is a block added. This notification can be by email and/or by slack.
 
 ## Email notifications
 ```php
@@ -42,12 +39,13 @@ Go to your app and in whatever field there is fill in the following
 ```
 
 This will result in a few actions
-1) this will trigger the tripwire
-2) returns to the user with a todo: default response?
+1) This will trigger the tripwire
+2) Returns json requests with: [] and status 406
+3) Returns html requests with a nasty block screen
 
 ### step 2
-Now repeat this action x times (todo: how many)
+Now repeat this action 5 times (todo: how many)
 And it will:
-1) this will trigger the blocker
-2) every request will be blocked
-3) Just refresh your page (or go to any page on your site), and you will see that the user is blocked
+1) This will trigger the blocker
+2) Every JSON request will be blocked with status code 423
+3) Every HTML request will be blocked with status code 42 and show a view screen

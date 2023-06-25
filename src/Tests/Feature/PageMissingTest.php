@@ -15,7 +15,7 @@ class PageMissingTest extends TestCase
     use TripwireTestTrait;
     use RequestTrait;
 
-    const HTTP_TRIPWIRE_CODE = 409;
+    const HTTP_TRIPWIRE_CODE = 406;
 
     /**
      * @test

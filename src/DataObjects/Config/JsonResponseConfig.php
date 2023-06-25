@@ -21,7 +21,7 @@ class JsonResponseConfig
     }
 
     public static function make(
-        ?int $code = 0,
+        ?int $code = 406,
         ?bool $abort = false,
         ?array $json = null,
         ?string $exception = null,

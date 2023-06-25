@@ -7,6 +7,10 @@ Convert all :self =>: static
 TripwireAdminRoutes : split in api // reset ?
 ??# Catch Model Binding???? => generic as in config, or specify in your model ?
 When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
+recode honeypot, that it is is just one of the many wires
+remove xuid
+
+returning an exception is slower than an abort code
 
 Add to your model that you want to protect
 ```
@@ -14,9 +18,24 @@ use TripwireModelBindingTrait
 ```
 Convert contfig to env and docu
 
+# Pipeline
+styleci
+travis ci
+.. others ?
+
 
 # DOCS
+readme cleanup
+install in clean laravel blade and record how to install and how to trigger
 find todo
+create different use cases
+Typical blade usage = view
+Typical vue usage => json
+Videos on installing and seeing it tripped
+"Start page with : waht this page will answer?"
+Config: if you set this to X, you can expect Y as end result
+
+
 
 test:
 publishing with tag?

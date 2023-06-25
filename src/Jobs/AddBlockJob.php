@@ -45,7 +45,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
 
         $sum = $this->getSumViolationScore($punishableTimeframe);
 
-        if ($sum->maxScore > $this->thresholdScore) {
+        if ($sum->maxScore >= $this->thresholdScore) {
             $blockRepository = new BlockRepository();
             $blockItem = $blockRepository->add(
                 penaltySeconds: $this->penaltySeconds,

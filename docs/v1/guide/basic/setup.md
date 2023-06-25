@@ -3,13 +3,12 @@ There are a few steps involved to setup Tripwire.
 * Malicious requests need to be recognized and responded to
 * Malicious users need to be blocked
 
-
 <!--@include: ../../definitions.md-->
 
 ## Recognizing and blocking malicious requests
 Recognizing malicious requests happen through the so called wires. When a wire is tripped, actions will be taken.
 These actions can be defined (see configuration). But we first need to define which wires to use.
-There are many different wires, but start with the basics
+There are many different wires and wire groups but start with the basics
 
 In your ```kernal.php``` make the following additions 
 
@@ -42,3 +41,7 @@ If you also have an api section, you need to add it there too
 
         ],
 ```
+
+:::warning Order is important
+First include your blockhandler (ie: TripwireBlockHandlerAll::class) and then your tripwires (ie 'tripwire.all). This will ensure that no blocked user is getting trough to your tripwire handlers. This makes the response faster
+:::
