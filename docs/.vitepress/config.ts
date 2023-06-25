@@ -69,7 +69,7 @@ export default defineConfig({
           { text: 'Services - todo', link: '/v1/guide/customization/services' },
           { text: 'Encryption - todo', link: '/v1/guide/customization/encryption' },
           { text: 'Punish', link: '/v1/guide/customization/punish' },
-          { text: 'Urls - todo', link: '/v1/guide/customization/urls' },
+          { text: 'Urls', link: '/v1/guide/customization/urls' },
           { text: 'Logging', link: '/v1/guide/customization/logging' },
           { text: 'Ignores - todo', link: '/v1/guide/customization/ignores' },
           { text: 'Models - todo', link: '/v1/guide/customization/models' },
