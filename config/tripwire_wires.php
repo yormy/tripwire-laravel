@@ -85,11 +85,7 @@ $orSqlLiteForbidden = Regex::forbidden([
 
 $sqliConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_SQLI_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    //->trainingMode(false)
-    //->methods(['post', 'put', 'patch', 'get'])
     ->attackScore(500)
-    //->urls(UrlsConfig::make())
-    //->inputFilter(InputsFilterConfig::make())
     ->tripwires(
         regex::injectFillers([
         "#[\d\W]($orStatements)[\d\W]#iUu",
@@ -115,14 +111,7 @@ $sqliConfig = WireDetailsConfig::make()
         //sqllite
         $orSqlLiteForbidden,
         "#= LIKE \($q#iUu",
-    ]))
-    //->punish(PunishConfig::make(10, 60 * 24, 5,))
-    ->rejectResponse(
-        BlockResponseConfig::make()
-            ->json(JsonResponseConfig::make()->json(['data' => 'kkkkkk', 'err' => '233']))
-            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
-    );
-
+    ]));
 /*
 |--------------------------------------------------------------------------
 | Local File Inclusion
