@@ -26,6 +26,7 @@ All wires
 
 # CODE:
 services needs interfaces (source/user/ip)
+make blockmodel dynamic just like logmodel
 check if loggingConfig does CHECK the data, but only not stores to databse.
 rename trigger-response -> reject-response (this is more in line with 'blocked-response')
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
@@ -60,6 +61,7 @@ travis ci
 
 
 # DOCS
+streamline docs with config file
 readme cleanup
 install in clean laravel blade and record how to install and how to trigger
 show video of reset
