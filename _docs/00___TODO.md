@@ -26,7 +26,7 @@ All wires
 
 # CODE:
 services needs interfaces (source/user/ip)
-
+check if loggingConfig does CHECK the data, but only not stores to databse.
 rename trigger-response -> reject-response (this is more in line with 'blocked-response')
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)
