@@ -42,7 +42,6 @@ $swearConfig = WireDetailsConfig::make()
 | SQL Injection
 |--------------------------------------------------------------------------
 */
-$f = REGEX::FILLER;
 $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
@@ -112,6 +111,7 @@ $sqliConfig = WireDetailsConfig::make()
         $orSqlLiteForbidden,
         "#= LIKE \($q#iUu",
     ]));
+
 /*
 |--------------------------------------------------------------------------
 | Local File Inclusion

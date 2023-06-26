@@ -49,6 +49,13 @@ Add to your model that you want to protect
 
 datetime offset is in minutes, but variable is specified as just offset, whyy is datetime in 'Y-m-f' ?? 
 
+regext, this replaces a space with an optional space, so unionselect is also recognized, this is not good I guess
+    public static function makeWhitespaceSafe(string $signature): string
+    {
+        return str_replace(' ', self::FILLER. '*', $signature); // ????
+    }
+
+
 ```
 use TripwireModelBindingTrait
 ```

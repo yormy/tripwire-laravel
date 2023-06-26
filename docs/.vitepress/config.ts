@@ -96,7 +96,7 @@ export default defineConfig({
           },
           { text: 'Events-todo', link: '/v1/guide/references/events' },
           { text: 'All Wires-todo', link: '/v1/guide/references/wires' },
-          { text: 'Tripwire-Regex for wires - todo', link: '/v1/guide/references/wires/regex' },
+          { text: 'Regex for wires', link: '/v1/guide/references/wires/regex' },
           { text: 'Response Types', items: [
               { text: 'Json Response', link: '/v1/guide/references/json-response' },
               { text: 'Html Response', link: '/v1/guide/references/html-response' },

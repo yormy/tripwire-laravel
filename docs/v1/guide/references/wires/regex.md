@@ -45,14 +45,13 @@ Regex::or([
 This takes an array of words and coverts it to a regex string that can be directly included in the tripwires list
 
 ```php
-$orPostgressForbidden = Regex::forbidden([
+$forbidden = Regex::forbidden([
     "aaa",
     "bbb",
 ]);
 
 // results: '#(aaa|bbb)#iUu'
 ```
-
 
 ## Regex::makeWhitespaceSafe()
 Takes a string with spaces and converts it to string with one or more spaces or fillers (like null byte).
@@ -64,6 +63,61 @@ Regex::or('hello world')
 // to find with 1 or more spaces/fillers between hello and world
 ```
 
-
 ## Regex::injectFillers()
 This will take an array and covert it to an array whereby each element went through ```Regex::makeWhitespaceSafe```
+
+
+## Example Sqli
+```php
+$q = REGEX::QUOTE;
+
+$orStatements = Regex::or([
+    "union select",
+    "union \+ select",
+    "{$q} or true",
+]);
+
+$orPostgressForbidden = Regex::forbidden([
+    "pg_client_encoding",
+    "get_current_ts_config",
+]);
+
+$sqliConfig = WireDetailsConfig::make()
+    ->tripwires(
+        regex::injectFillers([
+            "#[\d\W]($orStatements)[\d\W]#iUu",
+            $orPostgressForbidden,
+        ])
+    );
+```
+
+## Example Xss
+```php
+$lt = Regex::LT;
+$gt = Regex::GT;
+$f2 = Regex::FILLERSEMI;
+$q = REGEX::QUOTE;
+
+
+$evilStart = Regex::forbidden([
+    "$lt script",
+    "{$lt} {$f2} script",
+]);
+
+$evilTokens = Regex::forbidden([
+    "{$gt} {$gt} {$lt} marquee",
+    "onerror = $q javascript:document",
+    "$lt $f2 BR SIZE",
+    "style = $q",
+    "= \\\" $f2 & $f2 {",
+]);
+
+
+$xssConfig = WireDetailsConfig::make()
+    ->tripwires(
+        Regex::injectFillers([
+            $evilStart,
+            $evilTokens,
+        ])
+    );
+```

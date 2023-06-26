@@ -18,7 +18,10 @@ This is a pretty slow wire, so if you do not need it, best is to keep it out of 
 ## RequestSize-todo
 ## Rfi-todo
 ## Session-todo
-## Sqli-todo
+
+## Sqli- todo
+[Setup sqli wire](./wires/sqli.md)
+
 ## Swear
 [Setup swear wire](./wires/swear.md)
 
