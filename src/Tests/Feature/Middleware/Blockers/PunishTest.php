@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Blockers;
 
 use Yormy\TripwireLaravel\Http\Middleware\Blockers\TripwireBlockHandlerAll;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;

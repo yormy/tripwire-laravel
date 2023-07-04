@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
+namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Filters;
 
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Tests\TestCase;

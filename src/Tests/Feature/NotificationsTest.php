@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
+namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;

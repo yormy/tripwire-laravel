@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Responses;
+namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
