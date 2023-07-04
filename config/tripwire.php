@@ -210,6 +210,14 @@ $res = ConfigBuilder::make()
     |--------------------------------------------------------------------------
     */
     ->addWireGroup(
+        'main',
+        WireGroupConfig::make([
+            'tripwire.sqli',
+            'tripwire.xss',
+        ])
+    )
+
+    ->addWireGroup(
         'all',
         WireGroupConfig::make([
             'tripwire.agent',

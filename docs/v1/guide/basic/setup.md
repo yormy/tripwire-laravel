@@ -27,7 +27,7 @@ protected $middlewareGroups = [ // [!code focus]
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         TripwireBlockHandlerAll::class, // [!code focus] // will block malicious ips/users
-        'tripwire.all'  // [!code focus] // will recognize and action on malicious requests
+        'tripwire.main'  // [!code focus] // will recognize and action on malicious requests
         ...
 ```
 
@@ -38,11 +38,11 @@ protected $middlewareGroups = [ // [!code focus]
         \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         TripwireBlockHandlerAll::class, // [!code focus] // will block malicious ips/users
-        'tripwire.all'  // [!code focus] // will recognize and action on malicious requests
+        'tripwire.main'  // [!code focus] // will recognize and action on malicious requests
 
     ],
 ```
 
 :::warning Order is important
-First include your blockhandler (ie: TripwireBlockHandlerAll::class) and then your tripwires (ie 'tripwire.all). This will ensure that no blocked user is getting trough to your tripwire handlers. This makes the response faster
+First include your blockhandler (ie: TripwireBlockHandlerAll::class) and then your tripwires (ie 'tripwire.main). This will ensure that no blocked user is getting trough to your tripwire handlers. This makes the response faster
 :::

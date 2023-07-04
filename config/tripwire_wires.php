@@ -158,23 +158,14 @@ $forbiddenTokens = Regex::forbidden([
 
 $lfiConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_LFI_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    //->trainingMode(false)
-    //->methods(['post', 'put', 'patch', 'get'])
-    //->attackScore(500)
-    //->urls(UrlsConfig::make())
-    //->inputFilter(InputsFilterConfig::make())
+    ->methods(['*'])
+    ->attackScore(500)
     ->tripwires([
         '#\.\/..\/#is',
         "#\.\.$f/$f\.#iUu", // ..[ ]*/[ ]*.
         $forbiddenTokens,
         $commonFilesString,
     ]);
-//->punish(PunishConfig::make(10, 60 * 24, 5,))
-//    ->rejectResponse(
-//        BlockResponseConfig::make()
-//            ->json(JsonResponseConfig::make()->json([ 'data' => 'kkkkkk', 'err' =>'233']))
-//            ->html(HtmlResponseConfig::make()->exception(TripwireFailedException::class))
-//    );
 
 /*
 |--------------------------------------------------------------------------
@@ -353,14 +344,17 @@ $agentConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_AGENT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->tripwires([
         'browsers' => [
+            'allow' => [],
             'block' => [], // i.e. 'IE', 'CHROME', 'FIREFOX'
         ],
 
         'platforms' => [
+            'allow' => [],
             'block' => [], // i.e. 'OS X', 'UBUNTU', 'WINDOWS
         ],
 
         'devices' => [
+            'allow' => [],
             'block' => [], // ie DESTOP, TABLET, MOBILE, PHONE
         ],
 
@@ -482,7 +476,7 @@ $honeypotConfig = WireDetailsConfig::make()
 
 /*
 |--------------------------------------------------------------------------
-| Login Failed
+| LOGIN FAILED
 |--------------------------------------------------------------------------
 */
 $loginFailedConfig = WireDetailsConfig::make()
@@ -490,7 +484,7 @@ $loginFailedConfig = WireDetailsConfig::make()
 
 /*
 |--------------------------------------------------------------------------
-| Throttle Hit
+| TRHOTTLE HIT
 |--------------------------------------------------------------------------
 */
 $throttleHitConfig = WireDetailsConfig::make()
@@ -503,7 +497,12 @@ $throttleHitConfig = WireDetailsConfig::make()
 | https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
 */
 $botConfig = WireDetailsConfig::make()
-    ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)));
+    ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(1000)
+    ->guards([
+        'allow' => [], // ie Google Desktop
+        'block' => [] // ie attohttpc
+    ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -511,7 +510,12 @@ $botConfig = WireDetailsConfig::make()
 |--------------------------------------------------------------------------
 */
 $refererConfig = WireDetailsConfig::make()
-    ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)));
+    ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(1000)
+    ->guards([
+        'allow' => [],
+        'block' => []
+    ]);
 
 $res = ConfigBuilderWires::make()
     ->addWireDetails(Agent::NAME, $agentConfig)

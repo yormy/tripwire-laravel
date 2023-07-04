@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Tripwire",
   description: "A extensive web application firewall (waf) to stock hackers in their tracks",
@@ -20,7 +19,7 @@ export default defineConfig({
         items: [
           { text: 'What is Tripwire', link: '/v1/introduction/what-is-tripwire' },
           { text: 'Definitions', link: '/v1/definitions.md' },
-          { text: 'Need Support?', link: '/v1/support-me' },
+          { text: 'Need Support?', link: '/general/support/support-me' },
         ]
       },
       {
@@ -103,8 +102,20 @@ export default defineConfig({
             ]},
         ]
       },
-      { text: 'Debugging-todo', link: '/v1/guide/configuration/debug' },
-      { text: 'Support', link: '/v1/support-me' }
+      { text: 'Contributing', items: [
+        { text: 'Report Security Issues', link: '/general/report_security' },
+        { text: 'License', link: '/general/license' },
+        { text: 'Change log', link: '/general/changelog' },
+        { text: 'Contributing', link: '/general/contributing' },
+        { text: 'Code of Conduct', link: '/general/code_of_conduct' },
+        { text: 'Credits', link: '/general/credits' },
+      ]},
+
+      { text: 'Contact', items: [
+          { text: 'Contact', link: '/general/contact' },
+          { text: 'Support', link: '/general/support/support-me' },
+          { text: 'Donations', link: '/general/support/donations' },
+        ]},
 
     ],
 

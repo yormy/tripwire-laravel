@@ -1,16 +1,13 @@
 # Generic - todo
-:::warning
-The following wires need the [ExceptionInspector](../advanced/setup/exceptions) to be setup
-:::
 
-## Page Not Found
-A page is accessed that is not available. Although not always a malicious request. A normal user should never see this and thus this might be an indication
+## Page Not Found - todo
+[Page not found](./generic/page_not_found.md)
 
-In the config you can specify which pages are excluded or included
+## Model Not Found - todo
+[Model not found](./generic/model_not_found.md)
 
+## Login Failed - todo
+[Login Failed](./generic/login_failed.md)
 
-
-## Model Not Found
-A model is accessed which is not available. This could be an attempt of direct-object-access which failed. A normal user should never see this and thus this might be an indication
-
-In the config you can specify which models are excluded or included
+## Throttle Hit - todo
+[Throttle Hit](./generic/throttle_hit.md)

@@ -1,30 +1,10 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
-Installation:
-composer & Datataba
-
-Setup:
-Changes to code
-
-Basic Configuration
-basic Setup env
-
-Advanced Config
-all env
-
-Customization
-publish config 
-edit config
-
-
-References
-All wires
-
-
-
-
-
 # CODE:
+requestsize per field, report per field in violations
+guards to separate object constructor Guard::make()->allow()
+
+
 services needs interfaces (source/user/ip)
 make blockmodel dynamic just like logmodel
 check if loggingConfig does CHECK the data, but only not stores to databse.
@@ -61,13 +41,25 @@ use TripwireModelBindingTrait
 ```
 Convert contfig to env and docu
 
-# Pipeline
-styleci
-travis ci
-.. others ?
 
 
 # DOCS
+| PAGE MISSING
+| MODEL MISSING
+| Login Failed
+| Throttle Hit
+
+packagist submit
+
+>>    ->addWireDetails('honeypots', $honeypotConfig) waarom hebben deze string names
+
+refactor Guards => Filters oid
+explain how to use checksumvalidation, early in request if request modding (like decoding),
+or in tripwire, but calc up front
+explain where to place tripwire, if user block => tripwire na user known
+
+
+rewrite and test geofencing, 
 streamline docs with config file
 if methods is [] or missing, inspect all ?
 readme cleanup
@@ -87,8 +79,7 @@ Config: if you set this to X, you can expect Y as end result
 test:
 publishing with tag?
 
-Idea: hero image logo
-Yormy - tripwire + graphic?
+- favicon ?
 
 
 # Documentation
@@ -137,13 +128,22 @@ get reset key
 - globally ignore certain cookies
 - globally ignore certain headers
 - Agent
+- Bot
 - Referer
+- honeypot
+- checksum?
 - php
 - swear
 - rfi
 - bot
+- page404
 
 
 
 Show docs:
 Run npm run docs:preview from host
+
+# Pipeline
+styleci
+travis ci
+.. others ?

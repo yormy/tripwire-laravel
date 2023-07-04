@@ -5,32 +5,54 @@ Each wire has a optional set of global overrides and some specific settings:
 <!--@include: ./wires/optionals.md-->
 
 # Specifics
-## Agent -todo
-## Bot-todo
-## Geo-todo
--- Work In Progress --
+## Agent
+[Setup Agent wire](./wires/agent.md)
 
-This is a pretty slow wire, so if you do not need it, best is to keep it out of your set
+## Bot
+[Setup Bot wire](./wires/bot.md)
 
-## Lfi-todo
-## Php-todo
-## Referer-todo
-## RequestSize-todo
-## Rfi-todo
-## Session-todo
+## Geo - WORK_IN_PROGRESS
+[Setup Geo wire](./wires/geo.md)
 
-## Sqli- todo
-[Setup sqli wire](./wires/sqli.md)
+## Lfi
+[Setup Lfi wire](./wires/lfi.md)
+
+## Php
+[Setup Php wire](./wires/php.md)
+
+## Referer
+[Setup Referer wire](./wires/referer.md)
+
+## RequestSize
+[Setup RequestSize wire](./wires/requestsize.md)
+
+## Rfi
+[Setup Rfi wire](./wires/rfi.md)
+
+## Session
+[Setup Session wire](./wires/session.md)
+
+## Sqli
+[Setup Sqli wire](./wires/sqli.md)
 
 ## Swear
-[Setup swear wire](./wires/swear.md)
+[Setup Swear wire](./wires/swear.md)
 
-## Text-todo
-## Xss-todo
-## Custom-todo
-This is the place to start customizing or add rules that do not belong elsewhere
+## Text
+[Setup Text wire](./wires/text.md)
 
-## Honeypot-todo
+## Xss
+[Setup Xss wire](./wires/xss.md)
+
+## Custom
+[Setup Custom wire](./wires/custom.md)
+
+## Honeypot
+[Setup Honeypot wire](./wires/honeypot.md)
+
 ## Checksum-todo
-## FileUpload-todo
+[Setup Checksum wire](./wires/checksum.md)
+
+## FileUpload- WORK_IN_PROGRESS
+[Setup Upload wire](./wires/upload.md)
 -- Work in progress --
