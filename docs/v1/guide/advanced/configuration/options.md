@@ -46,7 +46,7 @@ TRIPWIRE_NOTIFICATION_SLACK_FROM='Tripwire'
 TRIPWIRE_NOTIFICATION_SLACK_CHANNEL=you-slack-webhook
 TRIPWIRE_NOTIFICATION_SLACK_EMOJI=:japanese_goblin:
 ```
-[create webhook in slack](../references/slack-setup.md)
+[create webhook in slack](../../references/slack-setup.md)
 
 ## Reset blocks
 [remove blocks](../setup/reset.md)
