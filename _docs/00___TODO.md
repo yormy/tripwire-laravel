@@ -135,6 +135,9 @@ get reset key
 - rfi
 - bot
 - page404
+- model404
+- loginfailed
+- throttletripped
 
 
 

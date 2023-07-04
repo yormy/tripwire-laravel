@@ -59,7 +59,7 @@ TRIPWIRE_WHITELIST_IPS=127.0.0.1,192.168.1.3
 ```
 
 ## Trigger Response
-[see trigger response setup](trigger-response.md)
+[see trigger response setup](reject-response.md)
 
 ## Block Response
 [see block response setup](block-response.md)
