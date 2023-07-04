@@ -18,8 +18,11 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
 
-      - name: Run tests
-        run: ./vendor/bin/phpunit
+      - name: Run Basic tests
+        run: composer testp
+
+      - name: Run Extended tests
+        run: composer test-extp
 
       - name: Upload artifacts
         uses: actions/upload-artifact@master
