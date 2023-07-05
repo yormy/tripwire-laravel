@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Services;
 
-class Honeypot
+class HoneypotService
 {
     public static function checkFalseValues(\Illuminate\Http\Request $request, array $honeypots = []): array
     {

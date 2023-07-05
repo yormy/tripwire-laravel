@@ -2,7 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
-use Yormy\TripwireLaravel\Http\Middleware\HoneypotsWire;
+use Yormy\TripwireLaravel\Http\Middleware\Honeypot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
@@ -90,7 +90,7 @@ class HoneypotTest extends TestCase
         $request = $this->app->request; // default is as HTML
         $request->query->set('foo', 'non blocked test');
 
-        return (new HoneypotsWire($request))->handle($request, $this->getNextClosure());
+        return (new Honeypot($request))->handle($request, $this->getNextClosure());
     }
 
     private function setDefaultConfig(array $data = []): void

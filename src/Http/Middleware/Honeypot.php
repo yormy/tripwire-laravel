@@ -10,7 +10,7 @@ use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
 use Yormy\TripwireLaravel\Services\BlockIfNeeded;
-use Yormy\TripwireLaravel\Services\Honeypot;
+use Yormy\TripwireLaravel\Services\HoneypotService;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 
 /**
@@ -21,8 +21,10 @@ use Yormy\TripwireLaravel\Services\ResponseDeterminer;
  * When a honeypot is filled or changed the application will immediately notice malicious intent
  * No real user would do this
  */
-class HoneypotsWire
+class Honeypot
 {
+    public const NAME = 'honeypots';
+
     /**
      * @return mixed
      *
@@ -34,7 +36,7 @@ class HoneypotsWire
 
         $honeypotsMustBeFalseOrMissing = $wireConfig->tripwires();
 
-        $violations = Honeypot::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
+        $violations = HoneypotService::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
 
         if (! empty($violations)) {
             $triggerEventData = new TriggerEventData(

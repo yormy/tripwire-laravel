@@ -213,6 +213,7 @@ $res = ConfigBuilder::make()
     ->addWireGroup(
         'main',
         WireGroupConfig::make([
+            'tripwire.honeypot',
             'tripwire.sqli',
             'tripwire.xss',
         ])

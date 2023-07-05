@@ -6,6 +6,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
+use Yormy\TripwireLaravel\Http\Middleware\Honeypot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
@@ -521,7 +522,7 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails(Text::NAME, $textConfig)
     ->addWireDetails(Xss::NAME, $xssConfig)
     ->addWireDetails(Custom::NAME, $customConfig)
-    ->addWireDetails('honeypots', $honeypotConfig)
+    ->addWireDetails(Honeypot::NAME, $honeypotConfig)
     ->addWireDetails('page404', $pageMissingConfig)
     ->addWireDetails('model404', $modelMissingConfig)
     ->addWireDetails('loginfailed', $loginFailedConfig)

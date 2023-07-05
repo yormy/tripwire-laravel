@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Failed as LoginFailed;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Yormy\TripwireLaravel\Console\Commands\GenerateAccepts;
+use Yormy\TripwireLaravel\Http\Middleware\Honeypot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
@@ -112,6 +113,8 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.xss', Xss::class);
         $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
         $router->aliasMiddleware('tripwire.custom', Custom::class);
+
+        $router->aliasMiddleware('tripwire.honeypot', Honeypot::class);
     }
 
     private function registerMiddlewareGroups(Router $router): void
