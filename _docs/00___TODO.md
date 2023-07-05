@@ -1,20 +1,10 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
 # CODE:
-
 check if loggingConfig does CHECK the data, but only not stores to databse.
 
 recode honeypot, that it is is just one of the many wires
 generate reset url, how is this not blocked by tripwire ?
-
-regext, this replaces a space with an optional space, so unionselect is also recognized, this is not good I guess
-    public static function makeWhitespaceSafe(string $signature): string
-    {
-        return str_replace(' ', self::FILLER. '*', $signature); // ????
-    }
-
-
-Convert contfig to env and docu
 
 # DOCS
 | PAGE MISSING
@@ -51,7 +41,7 @@ Typical vue usage => json
 Videos on installing and seeing it tripped
 "Start page with : waht this page will answer?"
 Config: if you set this to X, you can expect Y as end result
-
+Convert contfig to env and docu
 
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()

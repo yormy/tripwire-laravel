@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\Services;
 
 class Regex
 {
-    const FILLER = '[\s|\x00]';
+    const FILLER = '[\+|\s|\x00]';
 
     const FILLERSEMI = '[;|/]';
 
