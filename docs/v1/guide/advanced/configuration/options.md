@@ -18,10 +18,10 @@ You can specify the date format to format the datetime of the blocked_until valu
 The user is presented information when the block will end (```blocked_until```). 
 This value can be formatted any way you want by 
 * Specifying the format
-* Specifying the offset for non UTC times, this is a minuus or plus in minutes
+* Specifying the offset for non UTC times, this is a minutes or plus in minutes
 
 ```php
-TRIPWIRE_DATE_FORMAT='Y-m-f'
+TRIPWIRE_DATE_FORMAT='Y-m-d h:i:s'
 TRIPWIRE_DATE_OFFSET=0
 ```
 

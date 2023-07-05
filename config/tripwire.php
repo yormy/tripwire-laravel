@@ -59,7 +59,7 @@ $res = ConfigBuilder::make()
     | Specify the format to show the date time to the users and the offset compared to UTC (in minutes)
     */
     ->dateFormat(
-        env('TRIPWIRE_DATE_FORMAT', 'Y-m-f'),
+        env('TRIPWIRE_DATE_FORMAT', 'Y-m-d h:i:s'),
         env('TRIPWIRE_DATE_OFFSET', 0)
     )
 

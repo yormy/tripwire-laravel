@@ -4,23 +4,8 @@ Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!
 
 check if loggingConfig does CHECK the data, but only not stores to databse.
 
-Slack is unclear: => test \to ? channel?
-Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
-Convert all :self =>: static
-TripwireAdminRoutes : split in api // reset ?
-??# Catch Model Binding???? => generic as in config, or specify in your model ?
-When a hacker tries to change your routes and tries to access impproper missing models then you can catch this by
 recode honeypot, that it is is just one of the many wires
-remove xuid
 generate reset url, how is this not blocked by tripwire ?
-
-returning an exception is slower than an abort code
-checksum validator-calculator in one ?
-what does :redirect_url do in json response ?
-
-Add to your model that you want to protect
-
-datetime offset is in minutes, but variable is specified as just offset, whyy is datetime in 'Y-m-f' ?? 
 
 regext, this replaces a space with an optional space, so unionselect is also recognized, this is not good I guess
     public static function makeWhitespaceSafe(string $signature): string
@@ -29,9 +14,6 @@ regext, this replaces a space with an optional space, so unionselect is also rec
     }
 
 
-```
-use TripwireModelBindingTrait
-```
 Convert contfig to env and docu
 
 # DOCS
@@ -71,9 +53,19 @@ Videos on installing and seeing it tripped
 Config: if you set this to X, you can expect Y as end result
 
 
-INTEGRATION TESTS
+## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)
+Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
+returning an exception is slower than an abort code => or is it the email that is  sow perception
+checksum validator-calculator in one ?
+what does :redirect_url do in json response ?
+```
+??# Catch Model Binding???? => generic as in config, or specify in your model ?
+use TripwireModelBindingTrait
+```
+
+
 
 test:
 publishing with tag?
