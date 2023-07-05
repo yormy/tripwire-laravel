@@ -129,7 +129,12 @@ $res = ConfigBuilder::make()
         IpAddress::class
     )
 
-    ->logging(LoggingConfig::make()->remove(['password']))
+    ->logging(
+        LoggingConfig::make()
+            ->remove([
+                'password',
+            ])
+    )
 
     /*
     |--------------------------------------------------------------------------

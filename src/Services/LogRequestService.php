@@ -31,7 +31,8 @@ class LogRequestService
 
         $logHeader = $request->header();
         if ($logHeader) {
-            $logHeader = substr(json_encode($request->header()), 0, config('tripwire.log.max_header_size'));
+            $header = FieldMasker::run($request->header());
+            $logHeader = substr(json_encode($header), 0, config('tripwire.log.max_header_size'));
         }
         $data['header'] = $logHeader;
         $data['request'] = self::getRequestString($request);
@@ -78,9 +79,8 @@ class LogRequestService
     private static function getRequestString(Request $request): string
     {
         $inputs = $request->all();
-        foreach (config('tripwire.log.remove', []) as $field) {
-            unset($inputs[$field]);
-        }
+
+        $inputs = FieldMasker::run($inputs);
 
         $logRequest = json_encode($inputs);
         if ($logRequest) {

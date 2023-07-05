@@ -1,8 +1,6 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
 # CODE:
-check if loggingConfig does CHECK the data, but only not stores to databse.
-
 recode honeypot, that it is is just one of the many wires
 generate reset url, how is this not blocked by tripwire ?
 
@@ -21,27 +19,15 @@ explain how to use checksumvalidation, early in request if request modding (like
 or in tripwire, but calc up front
 explain where to place tripwire, if user block => tripwire na user known
 
-
-REWITE GEO
-- losse services
-- DTO
-- stub to test / mock
-
-
-
-streamline docs with config file
-
-install in clean laravel blade and record how to install and how to trigger
-show video of reset
-
-find todo
 create different use cases
 Typical blade usage = view
 Typical vue usage => json
-Videos on installing and seeing it tripped
-"Start page with : waht this page will answer?"
-Config: if you set this to X, you can expect Y as end result
-Convert contfig to env and docu
+
+# Docs2 - Finalization
+find todo
+streamline docs with config file
+install in clean laravel blade and record how to install and how to trigger
+show video of reset
 
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
