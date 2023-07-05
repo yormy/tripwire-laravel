@@ -7,6 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
 {
+    public const NAME = 'throttle';
+
     public function __construct()
     {
         parent::__construct('throttle');
@@ -14,6 +16,8 @@ class ThrottleHitWireListener extends WireBaseListener
 
     public function handle($event): void
     {
+        $this->request = request();
+
         if ($this->config->isDisabled()) {
             return;
         }
@@ -25,7 +29,18 @@ class ThrottleHitWireListener extends WireBaseListener
 
     public function isAttack($event): bool
     {
-        $this->attackFound([]);
+        $violations =['throttle_hit'];
+        $triggerEventData = new TriggerEventData(
+            attackScore: $this->config->attackScore(),
+            violations: $violations,
+            triggerData: implode(',', $violations),
+            triggerRules: [],
+            trainingMode: $this->config->trainingMode(),
+            debugMode: $this->config->debugMode(),
+            comments: '',
+        );
+
+        $this->attackFound($triggerEventData);
 
         return true;
     }

@@ -23,6 +23,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\ThrottleHitWireListener;
 use Yormy\TripwireLaravel\Services\IpLookup\ExtremeIplookup;
 use Yormy\TripwireLaravel\Services\Regex;
 
@@ -527,7 +528,7 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails('page404', $pageMissingConfig)
     ->addWireDetails('model404', $modelMissingConfig)
     ->addWireDetails(LoginFailedWireListener::NAME, $loginFailedConfig)
-    ->addWireDetails('throttle', $throttleHitConfig)
+    ->addWireDetails(ThrottleHitWireListener::NAME, $throttleHitConfig)
     ->addWireDetails(Referer::NAME, $refererConfig)
 
     ->toArray();
