@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
 use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
+use Yormy\TripwireLaravel\Services\CheckOnlyExcept;
 use Yormy\TripwireLaravel\Services\UrlTester;
 
 class WireConfig
@@ -163,14 +164,6 @@ class WireConfig
             return false;
         }
 
-        if (in_array($key, $this->inputs['except'])) {
-            return true;
-        }
-
-        if (! empty($this->inputs['only']) && ! in_array($key, $this->inputs['only'])) {
-            return true;
-        }
-
-        return false;
+        return CheckOnlyExcept::needsProcessing($key, $this->inputs);
     }
 }

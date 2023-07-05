@@ -1,16 +1,11 @@
 <?php
 
-use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\InputsFilterConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\AllowBlockFilterConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\PunishConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
@@ -26,6 +21,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Services\IpLookup\ExtremeIplookup;
 use Yormy\TripwireLaravel\Services\Regex;
 
 /*
@@ -372,8 +368,10 @@ $agentConfig = WireDetailsConfig::make()
 */
 $geoConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_GEO_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(1000)
     ->tripwires([
-        'service' => 'ipstack',
+        'service' => ExtremeIplookup::class,
+        'api_key' => '----',
 
         'continents' => [
             'allow' => [], // i.e. 'Africa'
@@ -421,7 +419,6 @@ $textConfig = WireDetailsConfig::make()
 */
 $requestSizeConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REQUESTSIZE_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
     ->tripwires([
         'size' => 200,    // max characters
     ]);
@@ -499,11 +496,7 @@ $throttleHitConfig = WireDetailsConfig::make()
 $botConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
-    ->guards([
-        'allow' => [], // ie Google Desktop
-        'block' => [] // ie attohttpc
-    ]);
-
+    ->guards(AllowBlockFilterConfig::make()->allow(['aaaa'])->block([]));
 /*
 |--------------------------------------------------------------------------
 | REFERER
@@ -512,10 +505,7 @@ $botConfig = WireDetailsConfig::make()
 $refererConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
-    ->guards([
-        'allow' => [],
-        'block' => []
-    ]);
+    ->guards(AllowBlockFilterConfig::make()->allow([])->block([]));
 
 $res = ConfigBuilderWires::make()
     ->addWireDetails(Agent::NAME, $agentConfig)

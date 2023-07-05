@@ -214,7 +214,17 @@ abstract class BaseWire
         }
 
         if ($attackFound) {
-            $this->attackFound([$value]);
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->getAttackScore(),
+                violations: [$value],
+                triggerData: $value,
+                triggerRules: [],
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
+                comments: '',
+            );
+
+            $this->attackFound($triggerEventData);
 
             return true;
         }

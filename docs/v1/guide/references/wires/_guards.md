@@ -1,15 +1,50 @@
 ## Guards
-This specifies what to include and what to exclude
-
-if the allow list is empty- ??
-if the block list is empty- ??
-
-If the item to be tested is in the allow list, nothing happends
-if the item to be tested is in teh block list, the request is blocked and recorded
+This specifies what to allow and what to block
 
 ```php
-    // ...
-        'allow' => [],
-        'block' => [],
-    // ...
+    ->guards(AllowBlockFilterConfig::make()->allow(['allow-this'])->block(['block-this']));
+```
+
+### Example: Exception
+allow must be at least ['*'] to allow all
+```php
+    ->allow([])->block([])
+```
+
+### Example: Allowed
+```firefox``` is allowed
+```php
+    ->allow(['firefox'])->block([])
+```
+
+### Example: Blocked
+```brave``` is blocked
+```php
+    ->allow(['*'])->block(['brave'])
+```
+
+### Example: Not Blocked
+```firebrave``` is not blocked, so allowed
+```php
+    ->allow(['*'])->block([])
+```
+
+### Example: Not Blocked
+```Chrome``` is not blocked, so allowed
+```php
+    ->allow(['*'])->block(['brave'])
+```
+
+### Example: Allowed and Blocked
+```firebrave``` is both allowed and blocked, so allowed
+```php
+    ->allow(['firebrave'])->block(['firebrave'])
+```
+
+### Example: Unspecified
+```firebrave``` is both not as allowed and not as blocked
+The return depends on where it is used.
+
+```php
+    ->allow(['firebrave'])->block(['firebrave'])
 ```

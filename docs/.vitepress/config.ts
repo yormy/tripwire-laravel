@@ -65,7 +65,7 @@ export default defineConfig({
           { text: 'Translations', link: '/v1/guide/customization/translations' },
           { text: 'Database', link: '/v1/guide/customization/database' },
 
-          { text: 'Services - todo', link: '/v1/guide/customization/services' },
+          { text: 'Service Helpers', link: '/v1/guide/customization/services' },
           { text: 'Encryption - todo', link: '/v1/guide/customization/encryption' },
 
           { text: 'Punish', link: '/v1/guide/customization/punish' },

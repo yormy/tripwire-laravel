@@ -18,11 +18,14 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
 
+      - name: Run Unit tests
+        run: composer test:unit
+
       - name: Run Basic tests
-        run: composer testp
+        run: composer test:main
 
       - name: Run Extended tests
-        run: composer test-extp
+        run: composer test:ext
 
       - name: Upload artifacts
         uses: actions/upload-artifact@master

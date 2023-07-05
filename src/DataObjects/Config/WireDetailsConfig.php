@@ -20,6 +20,8 @@ class WireDetailsConfig
 
     public ?array $guards;
 
+    public ?AllowBlockFilterConfig $allowBlockConfig;
+
     public ?PunishConfig $punish;
 
     public ?BlockResponseConfig $rejectResponse;
@@ -36,7 +38,7 @@ class WireDetailsConfig
         UrlsConfig          $urlsConfig = null,
         InputsFilterConfig  $inputs = null,
         array               $tripwires = [],
-        array               $guards = [],
+        AllowBlockFilterConfig $allowBlockConfig = null,
         PunishConfig        $punishConfig = null,
         BlockResponseConfig $rejectResponse = null,
     ): self {
@@ -60,7 +62,7 @@ class WireDetailsConfig
         $object->urls = $urlsConfig;
         $object->inputs = $inputs;
         $object->tripwires = $tripwires;
-        $object->guards = $guards;
+        $object->allowBlockConfig = $allowBlockConfig;
         $object->punish = $punishConfig;
         $object->rejectResponse = $rejectResponse;
 
@@ -173,9 +175,9 @@ class WireDetailsConfig
         return $this;
     }
 
-    public function guards(array $guards): self
+    public function guards(AllowBlockFilterConfig $allowBlockConfig): self
     {
-        $this->guards = $guards;
+        $this->allowBlockConfig = $allowBlockConfig;
 
         return $this;
     }
@@ -220,8 +222,8 @@ class WireDetailsConfig
 
         $data['tripwires'] = $this->tripwires;
 
-        if ($this->guards) {
-            $data['guards'] = $this->guards;
+        if (isset($this->allowBlockConfig)) {
+            $data['guards'] = $this->allowBlockConfig->toArray();
         }
 
         if ($this->punish) {

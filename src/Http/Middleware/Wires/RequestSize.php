@@ -16,7 +16,17 @@ class RequestSize extends BaseWire
         $this->check($inputs, $violations);
 
         if (! empty($violations)) {
-            $this->attackFound($violations);
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->getAttackScore(),
+                violations: $violations,
+                triggerData: implode(',', $violations),
+                triggerRules: [],
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
+                comments: '',
+            );
+
+            $this->attackFound($triggerEventData);
         }
 
         return ! empty($violations);

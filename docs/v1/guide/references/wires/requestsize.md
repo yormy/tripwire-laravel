@@ -1,6 +1,7 @@
 # Request Size
 :::tip Goal
-Prevent extremely long request sizes that could indicate an malicious request
+Prevent extremely long inputs in fields that could indicate an malicious request.
+**Caution** Some fields (ie ```your bio```) could contain a long text.
 :::
 
 ## Enabled
@@ -11,7 +12,7 @@ Enable or disable this wire
 <!--@include: ./_attackscore.md-->
 
 ## Tripwires
-Specify the maximum size of fields in the request
+Specify the maximum size of a field in the request.
 
 ## Example
 ```php

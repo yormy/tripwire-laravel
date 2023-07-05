@@ -2,10 +2,10 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
+use Yormy\TripwireLaravel\DataObjects\GeoLocation;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\GeoFailedEvent;
 use Yormy\TripwireLaravel\Services\IpAddress;
-use Yormy\TripwireLaravel\Services\IpLookup;
 
 class Geo extends BaseWire
 {
@@ -24,29 +24,40 @@ class Geo extends BaseWire
             return false;
         }
 
-        $location = new \StdClass();
-        $location->continent = 'Europe';
-
-        $continent = 'Europe';
-        $continentsGuards = $this->config->tripwires['continents'];
+        $continentsGuards = $this->config->tripwires()['continents'];
+        $regionGuards = $this->config->tripwires()['regions'];
+        $countryGuards = $this->config->tripwires()['countries'];
+        $cityGuards = $this->config->tripwires()['cities'];
 
         $violations = [];
-        if ($this->isGuardAttack($continent, $continentsGuards)) {
-            $violations[] = $continent;
+        if ($this->isGuardAttack($location->continent, $continentsGuards)) {
+            $violations[] = $location->continent;
         }
 
-        if (! empty($violations)) {
-            $this->attackFound($violations);
+        if ($this->isGuardAttack($location->region, $regionGuards)) {
+            $violations[] = $location->region;
+        }
+
+        if ($this->isGuardAttack($location->country, $countryGuards)) {
+            $violations[] = $location->country;
+        }
+
+
+        if ($this->isGuardAttack($location->city, $cityGuards)) {
+            $violations[] = $location->city;
         }
 
         return ! empty($violations);
     }
 
-    protected function getLocation(): void
+    protected function getLocation(): ?GeoLocation
     {
         $service = $this->config->tripwires()['service'];
-        $apiKey = '--';
-        $ipLookup = new IpLookup(IpAddress::get($this->request), $service, $apiKey);
-        $ipLookup->get();
+        $apiKey = $this->config->tripwires()['api_key'];
+        $ipAddress = IpAddress::get($this->request);
+
+        $ipLookup = new $service($apiKey);
+
+        return $ipLookup->get($ipAddress);
     }
 }

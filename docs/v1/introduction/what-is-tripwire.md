@@ -25,6 +25,7 @@ It is designed to sit in front of every request (or the ones you specify) to lis
 Suspicious requests (ie Sqli, xss etc) will be logged with many details about the request for inspection. 
 When the user attempts multiple times the ip/user will be automatically blocked from sending any request and the user will be presented a fuck-off screen.
 
+## Features
 Features that tripwire include:
 * Automatically screen requests and prevent malicious ones
 * Automatically temporarily block users due to malicious requests, all site access for this user/ip is blocked

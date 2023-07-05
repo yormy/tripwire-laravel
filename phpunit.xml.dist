@@ -21,6 +21,9 @@
     </exclude>
   </coverage>
   <testsuites>
+      <testsuite name="Unit">
+          <directory>src/Tests/Unit</directory>
+      </testsuite>
     <testsuite name="Main">
       <directory>src/Tests/Feature</directory>
     </testsuite>
