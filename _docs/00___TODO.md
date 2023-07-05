@@ -3,7 +3,6 @@ Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!
 # CODE:
 
 check if loggingConfig does CHECK the data, but only not stores to databse.
-rename trigger-response -> reject-response (this is more in line with 'blocked-response')
 
 Slack is unclear: => test \to ? channel?
 Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work

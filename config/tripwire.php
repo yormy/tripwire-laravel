@@ -168,7 +168,7 @@ $res = ConfigBuilder::make()
 
     /*
     |--------------------------------------------------------------------------
-    | Trigger response - How to respond when a malicious request is detected
+    | Reject response - How to respond when a malicious request is detected
     |--------------------------------------------------------------------------
     */
     ->rejectResponse(
