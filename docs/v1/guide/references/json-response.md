@@ -13,6 +13,7 @@ JsonResponseConfig::make()->code(406)
 
 ## Exception
 Throw an exception
+**Note:** throwing an exception as a response is slightly slower than other types of responses
 ```php
 JsonResponseConfig::make()->exception(TripwireFailedException::class)
 ```

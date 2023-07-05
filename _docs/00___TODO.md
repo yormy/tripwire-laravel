@@ -25,14 +25,21 @@ show video of reset
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 app-test - how to disable middleware on certain routes (ie large request)
 Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
-returning an exception is slower than an abort code => or is it the email that is  sow perception
 checksum validator-calculator in one ?
 what does :redirect_url do in json response ?
 
 
 explain how to use checksumvalidation, early in request if request modding (like decoding),  or in tripwire, but calc up front
 
-Docs of : Page Not found
+Docs of : Page Not found:
+URLS && tripwire ??
+->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
+->tripwires([
+MissingPageConfig::make()->except([
+'/membedie',
+]),
+]);
+
 
 
 test:

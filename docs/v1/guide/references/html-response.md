@@ -19,6 +19,7 @@ HtmlResponseConfig::make()->redirect('https://go-away.com'),
 
 ## Exception
 Throw an exception
+**Note:** throwing an exception as a response is slightly slower than other types of responses
 ```php
 HtmlResponseConfig::make()->exception(TripwireFailedException::class)
 ```
