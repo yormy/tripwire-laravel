@@ -373,22 +373,22 @@ $geoConfig = WireDetailsConfig::make()
         'api_key' => '----',
 
         'continents' => [
-            'allow' => [], // i.e. 'Africa'
+            'allow' => ['*'], // i.e. 'Africa'
             'block' => ['Europe'], // i.e. 'Europe'
         ],
 
         'regions' => [
-            'allow' => [], // i.e. 'California'
+            'allow' => ['*'], // i.e. 'California'
             'block' => [], // i.e. 'Nevada'
         ],
 
         'countries' => [
-            'allow' => [], // i.e. 'Albania'
+            'allow' => ['*'], // i.e. 'Albania'
             'block' => [], // i.e. 'Madagascar'
         ],
 
         'cities' => [
-            'allow' => [], // i.e. 'Istanbul'
+            'allow' => ['*'], // i.e. 'Istanbul'
             'block' => [], // i.e. 'London'
         ],
     ]);

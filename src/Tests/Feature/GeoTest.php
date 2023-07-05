@@ -14,7 +14,7 @@ class GeoTest extends TestCase
     /**
      * @test
      *
-     * @group tripwire-wires
+     * @group geo
      */
     public function Trigger_Geo_Oke(): void
     {
@@ -35,7 +35,7 @@ class GeoTest extends TestCase
         $this->setDefaultConfig();
 
         $continents = [
-            'allow' => [],
+            'allow' => ['*'],
             'block' => ['CONTINENT'],
         ];
 
@@ -59,7 +59,7 @@ class GeoTest extends TestCase
         $this->setDefaultConfig();
 
         $regions = [
-            'allow' => [],
+            'allow' => ['*'],
             'block' => ['REGION'],
         ];
 
@@ -79,7 +79,7 @@ class GeoTest extends TestCase
         $this->setDefaultConfig();
 
         $countries = [
-            'allow' => [],
+            'allow' => ['*'],
             'block' => ['COUNTRY'],
         ];
 
@@ -99,7 +99,7 @@ class GeoTest extends TestCase
         $this->setDefaultConfig();
 
         $cities = [
-            'allow' => [],
+            'allow' => ['*'],
             'block' => ['CITY'],
         ];
 

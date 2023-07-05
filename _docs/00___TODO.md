@@ -1,31 +1,6 @@
-GEO:
-
-todo: allow
-'allow' => [],
-
-'block' => ['CONTINENT'],
-
-
-
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
 # CODE:
-pint: ????
-bool                $enabled = true,
-bool                $trainingMode = null,
-array               $methods = ['*'],
-int                 $attackScore = 0,
-UrlsConfig          $urlsConfig = null,
-InputsFilterConfig  $inputs = null,
-array               $tripwires = [],
-
-What is the difference between block/allow and onl/excpt
-replace block/allow / only/except with services
-
-guards 
-- if the allow list is empty- ??
-  if the block list is empty- ??
-
 
 check if loggingConfig does CHECK the data, but only not stores to databse.
 rename trigger-response -> reject-response (this is more in line with 'blocked-response')

@@ -9,6 +9,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
+use Yormy\TripwireLaravel\Services\CheckAllowBlock;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
@@ -196,25 +197,7 @@ abstract class BaseWire
 
     protected function isGuardAttack(string $value, array $guards): bool
     {
-        if (! $value) {
-            return false;
-        }
-
-        if (empty($guards)) {
-            return false;
-        }
-
-        $attackFound = false;
-
-        if (! empty($guards['allow']) && ! in_array($value, $guards['allow'])) {
-            $attackFound = true;
-        }
-
-        if (! empty($guards['block']) && in_array($value, $guards['block'])) {
-            $attackFound = true;
-        }
-
-        if ($attackFound) {
+        if (CheckAllowBlock::shouldBlock($value, $guards)) {
             $triggerEventData = new TriggerEventData(
                 attackScore: $this->getAttackScore(),
                 violations: [$value],
