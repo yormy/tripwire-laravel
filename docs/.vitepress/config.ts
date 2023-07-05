@@ -40,6 +40,7 @@ export default defineConfig({
           { text: 'Exception Inspector', link: '/v1/guide/advanced/setup/exceptions' },
           { text: 'Request Validator - todo', link: '/v1/guide/advanced/`setup/checksum' },
           { text: 'Remove blocks -todo', link: '/v1/guide/advanced/setup/reset' },
+          { text: 'Remove Tripwires on Routes', link: '/v1/guide/advanced/setup/routes' },
         ]
       },
       {

@@ -23,7 +23,7 @@ show video of reset
 
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
-app-test - how to disable middleware on certain routes (ie large request)
+
 Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 checksum validator-calculator in one ?
 what does :redirect_url do in json response ?

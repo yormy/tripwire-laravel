@@ -472,6 +472,7 @@ $honeypotConfig = WireDetailsConfig::make()
         'is_debug',
         'show_log',
         'skip_encryption',
+        'firstname'
     ]);
 
 /*
