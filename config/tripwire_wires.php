@@ -24,6 +24,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\PageNotFoundWireListener;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\RouteModelBindingWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\ThrottleHitWireListener;
 use Yormy\TripwireLaravel\Services\IpLookup\ExtremeIplookup;
 use Yormy\TripwireLaravel\Services\Regex;
@@ -450,9 +451,8 @@ $modelMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_MODEL404_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(3)
     ->tripwires([
-        MissingModelConfig::make()->only([
+        MissingModelConfig::make()->except([
             Tripwirelog::class,
-            //'member.class'
         ]),
     ]);
 
@@ -527,7 +527,7 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails(Custom::NAME, $customConfig)
     ->addWireDetails(Honeypot::NAME, $honeypotConfig)
     ->addWireDetails(PageNotFoundWireListener::NAME, $pageMissingConfig)
-    ->addWireDetails('model404', $modelMissingConfig)
+    ->addWireDetails(RouteModelBindingWireListener::NAME, $modelMissingConfig)
     ->addWireDetails(LoginFailedWireListener::NAME, $loginFailedConfig)
     ->addWireDetails(ThrottleHitWireListener::NAME, $throttleHitConfig)
     ->addWireDetails(Referer::NAME, $refererConfig)

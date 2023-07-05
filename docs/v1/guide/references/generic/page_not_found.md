@@ -11,3 +11,9 @@ The following wires need the [ExceptionInspector](../../advanced/setup/exception
 
 In the config you can specify which pages are excluded or included
 
+## Enabled
+Enable or disable this wire
+
+<!--@include: ./_methods.md-->
+
+<!--@include: ./_attackscore.md-->

@@ -10,3 +10,13 @@ Every time the throttle prevents the request this wire is triggered.
 The following wires need the [ExceptionInspector](../../advanced/setup/exceptions) to be setup
 
 In the config you can specify which pages are excluded or included
+
+## Enabled
+Enable or disable this wire
+
+<!--@include: ./_methods.md-->
+
+<!--@include: ./_attackscore.md-->
+
+## Tripwires
+No additional setup needed

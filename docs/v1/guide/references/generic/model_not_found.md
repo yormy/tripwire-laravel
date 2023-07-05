@@ -9,3 +9,23 @@ A model is accessed which is not available. This could be an attempt of direct-o
 :::tip Installation
 The following wires need the [ExceptionInspector](../../advanced/setup/exceptions) to be setup
 :::
+
+## Enabled
+Enable or disable this wire
+
+<!--@include: ./_methods.md-->
+
+<!--@include: ./_attackscore.md-->
+
+## Tripwires
+Specify which models you want to include /exclude the tripwires
+
+## Example
+The following example will trip for every model not found, except the ```DoNotReportMyModel``` class
+```php
+    ->tripwires([
+        MissingModelConfig::make()->except([
+            DoNotReportMyModel::class,
+        ]),
+    ]);
+```

@@ -28,13 +28,11 @@ Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored
 returning an exception is slower than an abort code => or is it the email that is  sow perception
 checksum validator-calculator in one ?
 what does :redirect_url do in json response ?
-recode honeypot, that it is is just one of the many wires : is it working in tripwire.main -> then also recode others , >>    ->addWireDetails('honeypots', $honeypotConfig) waarom hebben deze string names
-explain how to use checksumvalidation, early in request if request modding (like decoding),  or in tripwire, but calc up front
-```
-??# Catch Model Binding???? => generic as in config, or specify in your model ?
-use TripwireModelBindingTrait
-```
 
+
+explain how to use checksumvalidation, early in request if request modding (like decoding),  or in tripwire, but calc up front
+
+Docs of : Page Not found
 
 
 test:
