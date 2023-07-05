@@ -2,16 +2,12 @@
 
 namespace Yormy\TripwireLaravel\Tests\Unit;
 
-use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\OnlyExceptConfig;
-use Yormy\TripwireLaravel\Services\CheckAllowBlock;
 use Yormy\TripwireLaravel\Services\CheckOnlyExcept;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
 class OnlyExceptTest extends TestCase
 {
-
     /**
      * @test
      *
@@ -35,7 +31,7 @@ class OnlyExceptTest extends TestCase
 
         $config = MissingPageConfig::make()
             ->only([])
-            ->except([]);;
+            ->except([]);
 
         $result = CheckOnlyExcept::needsProcessing('firefox', $config);
         $this->assertTrue($result);

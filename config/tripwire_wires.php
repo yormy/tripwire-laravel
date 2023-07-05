@@ -41,33 +41,33 @@ $swearConfig = WireDetailsConfig::make()
 $q = REGEX::QUOTE;
 
 $orStatements = Regex::or([
-    "union select",
+    'union select',
     "union \+ select",
     "select count \(",
     "select load_file \(",
     "version \(\)",
-    "union join",
-    "union distinct",
+    'union join',
+    'union distinct',
     "{$q} or true",
     "\)\) or true",
     "{$q} 1 = 1",
     "or \d* = \d*",
     "or \+\d* = \d*",
-    "ROWNUM=ROWNUM",
-    "@@connections",
-    "@@version",
-    "@@CPU_BUSY",
-    "DBMS_PIPE.RECEIVE_MESSAGE",
-    "SLEEPTIME",
-    "drop table",
-    "information_schema.tables",
+    'ROWNUM=ROWNUM',
+    '@@connections',
+    '@@version',
+    '@@CPU_BUSY',
+    'DBMS_PIPE.RECEIVE_MESSAGE',
+    'SLEEPTIME',
+    'drop table',
+    'information_schema.tables',
     "or \( $q\w$q =",
-    "or $q\w$q ="
-    ]);
+    "or $q\w$q =",
+]);
 
 $orPostgressForbidden = Regex::forbidden([
-    "pg_client_encoding",
-    "get_current_ts_config",
+    'pg_client_encoding',
+    'get_current_ts_config',
     "quote_literal \(",
     "current_database \(",
 ]);
@@ -83,30 +83,30 @@ $sqliConfig = WireDetailsConfig::make()
     ->attackScore(500)
     ->tripwires(
         regex::injectFillers([
-        "#[\d\W]($orStatements)[\d\W]#iUu",
-        "# sleep \( \d+ \) #iUu",
-        "#\[\" .+ = .+ \"#iUu", //["1337=1337",
-        "#BINARY_CHECKSUM \(.*\)#iUu",
-        "#pow \(\d+#iUu",
-        "#connection_id \(#iUu",
-        "#crc32 \($q#iUu",
-        "#USER_ID \( \d+ \) =#iUu",
-        "#WAITFOR ( )DELAY#iUu",
-        "#conv \($q#iUu",
+            "#[\d\W]($orStatements)[\d\W]#iUu",
+            "# sleep \( \d+ \) #iUu",
+            "#\[\" .+ = .+ \"#iUu", //["1337=1337",
+            "#BINARY_CHECKSUM \(.*\)#iUu",
+            "#pow \(\d+#iUu",
+            "#connection_id \(#iUu",
+            "#crc32 \($q#iUu",
+            "#USER_ID \( \d+ \) =#iUu",
+            '#WAITFOR ( )DELAY#iUu',
+            "#conv \($q#iUu",
 
-        //oracle
-        "#RAWTOHEX \($q#iUu",
-        "#LNNVL \(\d+#iUu",
-        "#BITAND \(\d+#iUu",
+            //oracle
+            "#RAWTOHEX \($q#iUu",
+            "#LNNVL \(\d+#iUu",
+            "#BITAND \(\d+#iUu",
 
-        //postgres
-        $orPostgressForbidden,
-        "#::(int|integer) = #iUu",
+            //postgres
+            $orPostgressForbidden,
+            '#::(int|integer) = #iUu',
 
-        //sqllite
-        $orSqlLiteForbidden,
-        "#= LIKE \($q#iUu",
-    ]));
+            //sqllite
+            $orSqlLiteForbidden,
+            "#= LIKE \($q#iUu",
+        ]));
 
 /*
 |--------------------------------------------------------------------------
@@ -230,7 +230,7 @@ $evilTokens = Regex::forbidden([
     "$lt br size",
     "{$lt}? xml version =\"",
     "xss : e/\*\*/xpression",
-    "document.vulnerable =",
+    'document.vulnerable =',
     "$lt $f2 BR",
     "{$q} $f2 \!--{$q}",
     ";{$q} $f2 $f2\!--{$q}",
@@ -291,10 +291,9 @@ $xssConfig = WireDetailsConfig::make()
         "#(\\[\\\\xc0]\[\\\\xBC])#iUu",
 
         "#$lt /*($orTags)[^>]*>?#i",
-        "#(onmouseover|onhover)[^>]*>?#i",
+        '#(onmouseover|onhover)[^>]*>?#i',
     ])
     );
-
 
 /*
 |--------------------------------------------------------------------------
@@ -306,7 +305,7 @@ $customConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_CUSTOM_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(0)
     ->tripwires(Regex::injectFillers([
-        "#example.malicious#iUu"
+        '#example.malicious#iUu',
     ])
     );
 
@@ -528,7 +527,6 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails('loginfailed', $loginFailedConfig)
     ->addWireDetails('throttle', $throttleHitConfig)
     ->addWireDetails('referer', $refererConfig)
-
 
     ->toArray();
 

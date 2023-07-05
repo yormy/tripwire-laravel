@@ -9,6 +9,7 @@ class CustomExtensiveTest extends BaseExtensive
     protected $tripwireClass = Custom::class;
 
     protected string $violationsDataFile = './src/Tests/Dataproviders/CustomViolationsData.txt';
+
     protected string $acceptsDataFile = './src/Tests/Dataproviders/CustomAcceptsData.txt';
 
     /**

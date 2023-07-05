@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
-use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
@@ -53,7 +52,7 @@ class NotificationsTest extends TestCase
             'template_plain' => 'tripwire-laravel::email_plain',
             'template_html' => 'tripwire-laravel::email',
         ];
-        config(["tripwire.notifications.mail" => [$mailSettings, $mailSettings]]);
+        config(['tripwire.notifications.mail' => [$mailSettings, $mailSettings]]);
 
         Notification::fake();
         $this->triggerBlock();
@@ -71,13 +70,13 @@ class NotificationsTest extends TestCase
     public function Blocked_added_Send_notification_slack(): void
     {
         $this->setConfig();
-        $slackSettings =[
+        $slackSettings = [
             'enabled' => true,
             'from' => 'Tripwire@system.com',
             'to' => 'Tripwire@system.com',
             'channel' => 'xxxx',
         ];
-        config(["tripwire.notifications.slack" => [$slackSettings, $slackSettings] ]);
+        config(['tripwire.notifications.slack' => [$slackSettings, $slackSettings]]);
 
         Notification::fake();
         $this->triggerBlock();
@@ -99,16 +98,15 @@ class NotificationsTest extends TestCase
             'template_plain' => 'tripwire-laravel::email_plain',
             'template_html' => 'tripwire-laravel::email',
         ];
-        config(["tripwire.notifications.mail" => [$mailSettings]]);
+        config(['tripwire.notifications.mail' => [$mailSettings]]);
 
-        $slackSettings =[
+        $slackSettings = [
             'enabled' => false,
             'from' => 'Tripwire@system.com',
             'to' => 'Tripwire@system.com',
             'channel' => 'xxxx',
         ];
-        config(["tripwire.notifications.slack" => [$slackSettings] ]);
-
+        config(['tripwire.notifications.slack' => [$slackSettings]]);
 
         config(["tripwire_wires.$this->tripwire.enabled" => true]);
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);

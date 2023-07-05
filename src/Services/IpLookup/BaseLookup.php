@@ -2,8 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
-use Yormy\TripwireLaravel\Services\Interfaces\IpLookup;
-
 class BaseLookup
 {
     protected function getResponse(string $url)

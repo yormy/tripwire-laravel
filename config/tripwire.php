@@ -11,7 +11,6 @@ use Yormy\TripwireLaravel\DataObjects\Config\ResetConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
-use Yormy\TripwireLaravel\Exceptions\TripwireFailedException;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
@@ -43,7 +42,6 @@ $res = ConfigBuilder::make()
     */
     ->trainingMode(env('TRIPWIRE_TRAINING_MODE', false))
 
-
     /*
     |--------------------------------------------------------------------------
     | Debug mode
@@ -62,7 +60,7 @@ $res = ConfigBuilder::make()
     */
     ->dateFormat(
         env('TRIPWIRE_DATE_FORMAT', 'Y-m-f'),
-        env('TRIPWIRE_DATE_OFFSET',0)
+        env('TRIPWIRE_DATE_OFFSET', 0)
     )
 
     /*
@@ -76,15 +74,15 @@ $res = ConfigBuilder::make()
             ->from(env('TRIPWIRE_NOTIFICATION_MAIL_FROM', 'tripwirel@yourdomain.com'))
             ->to(env('TRIPWIRE_NOTIFICATION_MAIL_TO', 'tripwire@yourdomain.com'))
             ->templatePlain(env('TRIPWIRE_NOTIFICATION_MAIL_PLAIN', 'tripwire-laravel::email_plain'))
-            ->templateHtml(env('TRIPWIRE_NOTIFICATION_MAIL_HTML', 'tripwire-laravel::email'))
-            ]
+            ->templateHtml(env('TRIPWIRE_NOTIFICATION_MAIL_HTML', 'tripwire-laravel::email')),
+    ]
     )
     ->notificationSlack([
         NotificationSlackConfig::make(env('TRIPWIRE_NOTIFICATION_SLACK_ENABLED', false))
             ->from(env('TRIPWIRE_NOTIFICATION_SLACK_FROM', 'Tripwire'))
             ->channel(env('TRIPWIRE_NOTIFICATION_SLACK_CHANNEL', ''))
-            ->emoji(env('TRIPWIRE_NOTIFICATION_SLACK_EMOJI', ':japanese_goblin:'))
-        ]
+            ->emoji(env('TRIPWIRE_NOTIFICATION_SLACK_EMOJI', ':japanese_goblin:')),
+    ]
     )
 
     /*
@@ -155,7 +153,7 @@ $res = ConfigBuilder::make()
     ->reset(
         ResetConfig::make(env('TRIPWIRE_RESET_ENABLED', true))
             ->softDelete(env('TRIPWIRE_RESET_DELETE_SOFT', true))
-            ->linkExpireMinutes(env('TRIPWIRE_RESET_LINK_EXPIRATION_MINUTES', 60*24*30))
+            ->linkExpireMinutes(env('TRIPWIRE_RESET_LINK_EXPIRATION_MINUTES', 60 * 24 * 30))
     )
 
     /*
@@ -201,8 +199,6 @@ $res = ConfigBuilder::make()
         JsonResponseConfig::make()->code(423)->json(json_decode(env('TRIPWIRE_BLOCK_JSON', '[]'), true)),
         HtmlResponseConfig::make()->code(423)->view(env('TRIPWIRE_BLOCK_PAGE', 'tripwire-laravel::blocked')),
     )
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -278,7 +274,6 @@ $res = ConfigBuilder::make()
             ->only([])
             ->except([])
     )
-
 
     ->toArray();
 

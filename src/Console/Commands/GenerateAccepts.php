@@ -18,7 +18,7 @@ class GenerateAccepts extends Command
             'de_DE',
             'es_ES',
             'ar_SA',
-            'ru_RU'
+            'ru_RU',
         ];
 
         foreach ($locales as $locale) {
@@ -28,7 +28,6 @@ class GenerateAccepts extends Command
             $filename = "AcceptsData-$locale.txt";
             Storage::disk('local')->put($filename, $contents);
         }
-
 
         return Command::SUCCESS;
     }
@@ -46,8 +45,8 @@ class GenerateAccepts extends Command
     public function buildText($locale): string
     {
         $name = fake($locale)->lastName();
-        $realText =fake($locale)->realText(200); // characters
+        $realText = fake($locale)->realText(200); // characters
 
-        return $name. '-'. $realText;
+        return $name.'-'.$realText;
     }
 }

@@ -79,7 +79,7 @@ class TripwireServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/tripwire-views'),
-            ],'views');
+            ], 'views');
 
             $this->publishes([
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/tripwire'),

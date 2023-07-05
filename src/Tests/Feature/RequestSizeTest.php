@@ -2,10 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
-use Yormy\TripwireLaravel\Http\Middleware\HoneypotsWire;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\RequestSize;
-use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
-use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
@@ -24,7 +21,6 @@ class RequestSizeTest extends TestCase
         $result = $this->testRequest();
         $this->assertOke($result);
     }
-
 
     /**
      * @test

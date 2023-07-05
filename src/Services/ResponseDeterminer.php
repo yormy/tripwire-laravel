@@ -109,7 +109,7 @@ class ResponseDeterminer
         return null;
     }
 
-    public function asGeneralMessage(string $message = null): ?\Illuminate\Http\Response
+    public function asGeneralMessage(string $message = null): ?View
     {
         if (isset($this->config->messageKey)) {
             $message = __($this->config->messageKey);

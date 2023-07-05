@@ -5,9 +5,8 @@ namespace Yormy\TripwireLaravel\Services\IpLookup;
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;
 use Yormy\TripwireLaravel\Services\Interfaces\IpLookupInterface;
 
-class IpStack extends BaseLookup  implements IpLookupInterface
+class IpStack extends BaseLookup implements IpLookupInterface
 {
-
     public function __construct(
         private readonly string $apiKey
     ) {
@@ -16,9 +15,9 @@ class IpStack extends BaseLookup  implements IpLookupInterface
 
     public function get(string $ipAddress): ?GeoLocation
     {
-        $response = $this->getResponse('https://api.ipstack.com/'. $ipAddress. '?access_key='. $this->apiKey);
+        $response = $this->getResponse('https://api.ipstack.com/'.$ipAddress.'?access_key='.$this->apiKey);
 
-        if (!is_object($response) || $this->hasFailed($response)) {
+        if (! is_object($response) || $this->hasFailed($response)) {
             return null;
         }
 

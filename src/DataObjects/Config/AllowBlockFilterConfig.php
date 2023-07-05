@@ -73,4 +73,3 @@ class AllowBlockFilterConfig
         return $data;
     }
 }
-

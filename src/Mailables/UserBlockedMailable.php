@@ -17,10 +17,10 @@ class UserBlockedMailable extends Mailable
     public function __construct(
         public readonly string $title,
         public readonly string $msg,
-        public readonly string $ipAddress = '',
-        public readonly ?string $userId = null,
-        public readonly string $url = '',
-        private readonly NotificationMailConfig| NotificationSlackConfig $mailSettings,
+        public readonly string $ipAddress,
+        public readonly ?string $userId,
+        public readonly string $url,
+        private readonly NotificationMailConfig|NotificationSlackConfig $mailSettings,
     ) {
         // ...
     }

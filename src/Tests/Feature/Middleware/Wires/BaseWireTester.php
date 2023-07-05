@@ -2,8 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
-use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
@@ -54,7 +54,6 @@ class BaseWireTester extends TestCase
 
     /**
      * @group tripwire-log
-     *
      * @group tripwire
      */
     public function Use_default_should_block(): void

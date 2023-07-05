@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;

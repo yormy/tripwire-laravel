@@ -23,7 +23,6 @@ class GeoTest extends TestCase
         $this->assertOke($result);
     }
 
-
     /**
      * @test
      *

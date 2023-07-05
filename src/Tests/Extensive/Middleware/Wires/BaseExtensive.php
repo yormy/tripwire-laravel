@@ -45,7 +45,6 @@ class BaseExtensive extends TestCase
         return $data;
     }
 
-
     public function assertAccept(string $accept): void
     {
         $this->setConfig();

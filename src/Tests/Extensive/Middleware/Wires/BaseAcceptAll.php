@@ -21,7 +21,9 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 class BaseAcceptAll extends TestCase
 {
     protected string $violationsDataFile;
+
     protected string $acceptsDataFile;
+
     protected array $accepts = [];
 
     protected array $violations = [];
@@ -39,7 +41,7 @@ class BaseAcceptAll extends TestCase
         Swear::class,
         Text::class,
         Xss::class,
-        Custom::class
+        Custom::class,
     ];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
@@ -75,7 +77,7 @@ class BaseAcceptAll extends TestCase
         foreach ($this->tripwires as $wire) {
             $wire = new $wire($request);
             $result = $wire->handle($request, $this->getNextClosure());
-            $this->assertEquals('next', $result, strtoupper($wire::NAME .' tripped'));
+            $this->assertEquals('next', $result, strtoupper($wire::NAME.' tripped'));
         }
     }
 
@@ -93,5 +95,4 @@ class BaseAcceptAll extends TestCase
 
         return $providerArray;
     }
-
 }

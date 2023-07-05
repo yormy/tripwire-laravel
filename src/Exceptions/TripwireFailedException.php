@@ -27,7 +27,6 @@ class TripwireFailedException extends BaseException
 
     /**
      * @return string
-     *
      */
     protected function renderHtml(Request $request)
     {

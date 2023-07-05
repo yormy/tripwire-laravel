@@ -33,8 +33,8 @@ class TripwireBlock extends BaseModel
         parent::__construct($attributes);
     }
 
-//    public function getRouteKeyName()
-//    {
-//        return 'xid';
-//    }
+    //    public function getRouteKeyName()
+    //    {
+    //        return 'xid';
+    //    }
 }

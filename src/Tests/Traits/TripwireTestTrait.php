@@ -2,8 +2,8 @@
 
 namespace Yormy\TripwireLaravel\Tests\Traits;
 
-use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 
 trait TripwireTestTrait
 {
@@ -51,8 +51,8 @@ trait TripwireTestTrait
         config(["tripwire_wires.$this->tripwire.methods" => ['*']]);
 
         $settings = ['code' => Tripwire::TRIPWIRE_CODE_DEFAULT];
-        config(["tripwire.reject_response.html" => $settings]);
-        config(["tripwire_wires.".$this->tripwire.".reject_response.html" => []]);
+        config(['tripwire.reject_response.html' => $settings]);
+        config(['tripwire_wires.'.$this->tripwire.'.reject_response.html' => []]);
     }
 
     protected function triggerTripwire(string $input)

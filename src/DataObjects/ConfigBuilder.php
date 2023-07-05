@@ -215,7 +215,6 @@ class ConfigBuilder implements Arrayable
         return $config;
     }
 
-
     public function enabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -230,14 +229,12 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-
     public function trainingMode(bool $trainingMode): self
     {
         $this->trainingMode = $trainingMode;
 
         return $this;
     }
-
 
     public function debugMode(bool $debugMode): self
     {
@@ -331,7 +328,6 @@ class ConfigBuilder implements Arrayable
 
         return $this;
     }
-
 
     public function urls(
         UrlsConfig $urls,

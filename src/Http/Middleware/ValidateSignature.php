@@ -40,9 +40,7 @@ class ValidateSignature
      * copied and modified from
      * vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:363
      *
-     * @param Request $request
-     * @param bool  $absolute
-     *
+     * @param  bool  $absolute
      * @return bool
      */
     public function hasValidSignature(Request $request, $absolute = true)

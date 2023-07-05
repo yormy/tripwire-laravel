@@ -82,8 +82,6 @@ class Agent extends BaseWire
     }
 
     /**
-     * @return array|null|string
-     *
      * @psalm-return array<never, never>|null|string
      */
     protected function isMaliciousAgent(): array|string|null

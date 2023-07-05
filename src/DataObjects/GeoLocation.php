@@ -9,7 +9,7 @@ class GeoLocation
         public readonly string $country,
         public readonly string $region,
         public readonly string $city
-    ){
+    ) {
         // ...
     }
 }

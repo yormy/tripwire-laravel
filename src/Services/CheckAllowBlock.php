@@ -26,8 +26,7 @@ class CheckAllowBlock
             return false;
         }
 
-        if (! empty($guards['block']))
-        {
+        if (! empty($guards['block'])) {
             if (in_array($value, $guards['block'])) {
                 return true;
             }

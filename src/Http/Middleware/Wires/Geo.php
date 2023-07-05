@@ -42,7 +42,6 @@ class Geo extends BaseWire
             $violations[] = $location->country;
         }
 
-
         if ($this->isGuardAttack($location->city, $cityGuards)) {
             $violations[] = $location->city;
         }

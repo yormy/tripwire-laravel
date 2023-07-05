@@ -162,6 +162,7 @@ abstract class BaseWire
         $this->convertValuesToString($scannableValues, $stringed);
 
         $cleaned = $this->prepareInput($stringed);
+
         return $cleaned;
     }
 

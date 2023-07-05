@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\OnlyExceptConfig;
 
 class CheckOnlyExcept
 {
-    PUBLIC static function needsProcessing(string $value, OnlyExceptConfig $config): bool
+    public static function needsProcessing(string $value, OnlyExceptConfig $config): bool
     {
         if (in_array($value, $config->except)) {
             return false;
@@ -16,7 +16,7 @@ class CheckOnlyExcept
             return true;
         }
 
-        if (is_array($config->only) && !empty($config->only)) {
+        if (is_array($config->only) && ! empty($config->only)) {
             return false;
         }
 

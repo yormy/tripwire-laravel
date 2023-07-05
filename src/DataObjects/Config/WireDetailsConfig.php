@@ -31,15 +31,15 @@ class WireDetailsConfig
     }
 
     public static function make(
-        bool                $enabled = true,
-        bool                $trainingMode = null,
-        array               $methods = ['*'],
-        int                 $attackScore = 0,
-        UrlsConfig          $urlsConfig = null,
-        InputsFilterConfig  $inputs = null,
-        array               $tripwires = [],
+        bool $enabled = true,
+        bool $trainingMode = null,
+        array $methods = ['*'],
+        int $attackScore = 0,
+        UrlsConfig $urlsConfig = null,
+        InputsFilterConfig $inputs = null,
+        array $tripwires = [],
         AllowBlockFilterConfig $allowBlockConfig = null,
-        PunishConfig        $punishConfig = null,
+        PunishConfig $punishConfig = null,
         BlockResponseConfig $rejectResponse = null,
     ): self {
         $object = new WireDetailsConfig();

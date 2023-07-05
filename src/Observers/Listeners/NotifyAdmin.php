@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
-use Throwable;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\Notifications\Notifiable;
 use Yormy\TripwireLaravel\Notifications\UserBlockedNotification;
@@ -29,7 +28,6 @@ class NotifyAdmin
                 }
             }
         }
-
 
         if (isset($config->notificationsSlack)) {
             foreach ($config->notificationsSlack as $mailSettings) {

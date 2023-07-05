@@ -2,11 +2,11 @@
 
 namespace Yormy\TripwireLaravel\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Services\ResetService;
 use Yormy\TripwireLaravel\Services\ResetUrl;
-use \Illuminate\Http\JsonResponse;
 
 class ResetController extends controller
 {
@@ -15,7 +15,7 @@ class ResetController extends controller
      */
     public function reset(Request $request)
     {
-        if (!ResetService::run($request)) {
+        if (! ResetService::run($request)) {
             return;
         }
 
@@ -25,7 +25,7 @@ class ResetController extends controller
     public function getKey(): ?JsonResponse
     {
         $url = ResetUrl::get();
-        if (!$url) {
+        if (! $url) {
             return null;
         }
 

@@ -40,7 +40,7 @@ class LogRepository
 
         if ($event->getDebugMode()) {
             $data['trigger_data'] = $event->getTriggerData();
-            $data['trigger_rule'] = substr(implode(';', $event->getTriggerRules()),0, 150);
+            $data['trigger_rule'] = substr(implode(';', $event->getTriggerRules()), 0, 150);
         }
 
         return $this->model::create($data);
@@ -99,9 +99,6 @@ class LogRepository
 
     }
 
-    /**
-     * @param null|string $userType
-     */
     public function queryViolationsByUser(int $withinMinutes, int $userId, string|null $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
