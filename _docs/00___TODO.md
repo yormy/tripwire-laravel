@@ -1,7 +1,7 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
 # CODE:
-recode honeypot, that it is is just one of the many wires
+
 generate reset url, how is this not blocked by tripwire ?
 
 # DOCS
@@ -12,16 +12,8 @@ generate reset url, how is this not blocked by tripwire ?
 
 packagist submit
 
->>    ->addWireDetails('honeypots', $honeypotConfig) waarom hebben deze string names
-
 refactor Guards => Filters oid
-explain how to use checksumvalidation, early in request if request modding (like decoding),
-or in tripwire, but calc up front
 explain where to place tripwire, if user block => tripwire na user known
-
-create different use cases
-Typical blade usage = view
-Typical vue usage => json
 
 # Docs2 - Finalization
 find todo
@@ -36,6 +28,8 @@ Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored
 returning an exception is slower than an abort code => or is it the email that is  sow perception
 checksum validator-calculator in one ?
 what does :redirect_url do in json response ?
+recode honeypot, that it is is just one of the many wires : is it working in tripwire.main -> then also recode others , >>    ->addWireDetails('honeypots', $honeypotConfig) waarom hebben deze string names
+explain how to use checksumvalidation, early in request if request modding (like decoding),  or in tripwire, but calc up front
 ```
 ??# Catch Model Binding???? => generic as in config, or specify in your model ?
 use TripwireModelBindingTrait
