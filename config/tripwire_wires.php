@@ -22,6 +22,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Swear;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\Services\IpLookup\ExtremeIplookup;
 use Yormy\TripwireLaravel\Services\Regex;
 
@@ -525,9 +526,9 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails(Honeypot::NAME, $honeypotConfig)
     ->addWireDetails('page404', $pageMissingConfig)
     ->addWireDetails('model404', $modelMissingConfig)
-    ->addWireDetails('loginfailed', $loginFailedConfig)
+    ->addWireDetails(LoginFailedWireListener::NAME, $loginFailedConfig)
     ->addWireDetails('throttle', $throttleHitConfig)
-    ->addWireDetails('referer', $refererConfig)
+    ->addWireDetails(Referer::NAME, $refererConfig)
 
     ->toArray();
 

@@ -13,14 +13,6 @@ There are many different wires and wire groups but start with the basics
 In your ```kernel.php``` make the following additions 
 
 ```php
-protected $middleware = [ // [!code focus]
-    HoneypotsWire::class,  // [!code focus] // will recognize and block on honeypot traps
-    \App\Http\Middleware\TrustProxies::class,
-    \Illuminate\Http\Middleware\HandleCors::class,
-    SetDefaultLocale::class,
-```
-
-```php
 protected $middlewareGroups = [ // [!code focus]
     'web' => [ // [!code focus]
         \App\Http\Middleware\EncryptCookies::class,
