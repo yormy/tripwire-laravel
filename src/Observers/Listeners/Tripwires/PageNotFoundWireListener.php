@@ -7,6 +7,8 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
 
 class PageNotFoundWireListener extends WireBaseListener
 {
+    public const NAME = 'page404';
+
     public function __construct()
     {
         parent::__construct('page404');
@@ -14,14 +16,23 @@ class PageNotFoundWireListener extends WireBaseListener
 
     public function isAttack($event): bool
     {
-
         $violations = [];
         $url = $event->request->fullUrl();
 
         $violations[] = $url;
 
         if (! empty($violations)) {
-            $this->attackFound($violations);
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->config->attackScore(),
+                violations: $violations,
+                triggerData: implode(',', $violations),
+                triggerRules: [],
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
+                comments: '',
+            );
+
+            $this->attackFound($triggerEventData);
         }
 
         return ! empty($violations);
