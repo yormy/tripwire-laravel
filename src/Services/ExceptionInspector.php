@@ -32,7 +32,7 @@ class ExceptionInspector
             $wireConfig = new WireConfig('model404');
             $this->config = $wireConfig;
 
-            if ($this->skip($request)) {
+            if ($this->config->isDisabled()) {
                 return;
             }
 

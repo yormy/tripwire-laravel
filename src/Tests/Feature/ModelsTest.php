@@ -17,7 +17,25 @@ class ModelsTest extends TestCase
     /**
      * @test
      *
-     * @group tripwire-models
+     * @group xxx
+     */
+    public function Models_missing_disabled_Trigger_Skip(): void
+    {
+        config(['tripwire_wires.model404.enabled' => false]);
+
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerModelNotFound();
+
+        $this->assertNotLogged($startCount);
+    }
+
+    /**
+     * @test
+     *
+     * @group xxx
      */
     public function Models_missing_log(): void
     {
@@ -55,7 +73,7 @@ class ModelsTest extends TestCase
         try {
             TripwireLog::findOrFail(999999);
         } catch (\Throwable $e) {
-            ExceptionInspector::inspect($e);
+            (new ExceptionInspector())->inspect($e);
         }
     }
 

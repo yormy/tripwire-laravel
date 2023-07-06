@@ -103,7 +103,5 @@ Send the user an email when they are blocked (only on first block of the day)
 - swear
 - rfi
 - bot
-- page404
-- model404
 - loginfailed
 - throttletripped
