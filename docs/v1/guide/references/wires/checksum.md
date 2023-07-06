@@ -27,15 +27,16 @@ class Kernel extends HttpKernel
 
 ## Setup
 ```php
-// tripwire.php
-    ->checksums(
-        ChecksumsConfig::make()
-            ->posted('X-Checksum') // the name of the field that includes your frontend calculated checksum
-            ->timestamp('X-sand') // the name of the field that contains the frontend calculated timestamp
-            ->serversideCalculated('x-checksum-serverside') // used internally to store the server side checksum for calculation purposes
-    )
+// tripwire_wires.php
+    ->enabled(env('TRIPWIRE_CHECKSUM_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(1000)
+    ->config([
+        'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
+        'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
+        'serverside_calculated'=> 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
+    ]);
 ```
-You can change the ```serversideCalculated('x-checksum-serverside')``` to whatever fieldname you want, as long as it does not conflicts with possible request fields
+You can change the ```x-checksum-serverside``` to whatever fieldname you want, as long as it does not conflicts with possible request fields
 
 
 ## Frontend setup with Axios

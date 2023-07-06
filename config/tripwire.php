@@ -87,21 +87,6 @@ $res = ConfigBuilder::make()
 
     /*
     |--------------------------------------------------------------------------
-    | Checksums
-    |--------------------------------------------------------------------------
-    | Some checksums are posted by the frontend and validated on the backend.
-    | These header values of the config need to match with the settings of your frontend
-    |
-    */
-    ->checksums(
-        ChecksumsConfig::make()
-            ->posted('X-Checksum')  // the name of the field that includes your frontend calculated checksum
-            ->timestamp('X-sand') // the name of the field that contains the frontend calculated timestamp
-            ->serversideCalculated('x-checksum-serverside')  // used internally to store the server side checksum for calculation purposes
-    )
-
-    /*
-    |--------------------------------------------------------------------------
     | Database tables
     |--------------------------------------------------------------------------
     */

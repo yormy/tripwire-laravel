@@ -6,6 +6,7 @@ use App\Exceptions\Exceptions\RequestChecksumFailedException;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 
 /**
  * Goal:
@@ -21,6 +22,14 @@ use Illuminate\Http\Request;
  */
 class ChecksumValidateWire
 {
+    public const NAME = 'checksum';
+
+    private WireDetailsConfig $checksumDetails;
+
+    public function __construct()
+    {
+        $this->checksumDetails = WireDetailsConfig::makeFromArray(config('tripwire_wires.checksum'));
+    }
     /**
      * @return mixed
      *
@@ -30,8 +39,8 @@ class ChecksumValidateWire
     {
         $this->checkTimestamp($request);
 
-        $postedChecksum = (string) $request->headers->get(config('tripwire.checksums.posted'), '');
-        $recalculatedChecksum = (string) $request->get(config('tripwire.checksums.serverside_calculated'));
+        $postedChecksum = (string) $request->headers->get($this->checksumDetails->config['posted']);
+        $recalculatedChecksum = (string) $request->get($this->checksumDetails->config['serverside_calculated']);
 
         if (! $postedChecksum) {
             if (! $this->allowEmpytChecksum($request)) {
@@ -58,7 +67,7 @@ class ChecksumValidateWire
     private function checkTimestamp(Request $request)
     {
 
-        $timestamp = $request->header(config('tripwire.checksums.timestamp'));
+        $timestamp = $request->header($this->checksumDetails->config['timestamp']);
 
         if ($timestamp && Carbon::now()->diffInSeconds(Carbon::parse($timestamp / 1000)) > 30) {
             throw new \RuntimeException('Service blocked! Invalid Timestamp Synchronization');
@@ -76,6 +85,6 @@ class ChecksumValidateWire
 
     protected function cleanup(Request $request): void
     {
-        $request->request->remove(config('tripwire.checksums.serverside_calculated'));
+        $request->request->remove($this->checksumDetails->config['serverside_calculated']);
     }
 }

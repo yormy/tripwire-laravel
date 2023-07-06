@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\Services\HashService;
 
 /**
@@ -30,7 +31,8 @@ class ChecksumCalculate
         $requestCleaned = $requestJson;
         $requestCleaned = preg_replace('/[^a-z0-9]/', '', $requestCleaned);
 
-        $request->request->add([config('tripwire.checksums.serverside_calculated') => HashService::create($requestCleaned)]);
+        $checksumDetails = WireDetailsConfig::makeFromArray(config('tripwire_wires.checksum'));
+        $request->request->add([$checksumDetails->config['serverside_calculated'] => HashService::create($requestCleaned)]);
 
         return $request;
     }

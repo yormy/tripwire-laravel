@@ -1,11 +1,13 @@
 <?php
 
 use Yormy\TripwireLaravel\DataObjects\Config\AllowBlockFilterConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
+use Yormy\TripwireLaravel\Http\Middleware\ChecksumValidateWire;
 use Yormy\TripwireLaravel\Http\Middleware\Honeypot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Bot;
@@ -511,6 +513,23 @@ $refererConfig = WireDetailsConfig::make()
     ->attackScore(1000)
     ->guards(AllowBlockFilterConfig::make()->allow([])->block([]));
 
+/*
+|--------------------------------------------------------------------------
+| CHECKSUM
+|--------------------------------------------------------------------------
+| Some checksums are posted by the frontend and validated on the backend.
+| These header values of the config need to match with the settings of your frontend
+|
+*/
+$checksumConfig = WireDetailsConfig::make()
+    ->enabled(env('TRIPWIRE_CHECKSUM_ENABLED', env('TRIPWIRE_ENABLED', true)))
+    ->attackScore(1000)
+    ->config([
+        'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
+        'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
+        'serverside_calculated'=> 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
+    ]);
+
 $res = ConfigBuilderWires::make()
     ->addWireDetails(Agent::NAME, $agentConfig)
     ->addWireDetails(Bot::NAME, $botConfig)
@@ -532,6 +551,8 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails(LoginFailedWireListener::NAME, $loginFailedConfig)
     ->addWireDetails(ThrottleHitWireListener::NAME, $throttleHitConfig)
     ->addWireDetails(Referer::NAME, $refererConfig)
+    ->addWireDetails(ChecksumValidateWire::NAME, $checksumConfig)
+
 
     ->toArray();
 
