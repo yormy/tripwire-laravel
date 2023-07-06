@@ -95,14 +95,14 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         $logRepository = new LogRepository();
 
         $violationsByIp = $logRepository->queryViolationsByIp($punishableTimeframe, $this->ipAddress, $violations);
-        $scoreByIp = $violationsByIp->get()->sum('event_score');
+        $scoreByIp = $violationsByIp->sum('event_score');
 
         $scoreByUser = 0;
 
         $violationsByUser = null;
         if ($this->userId) {
             $violationsByUser = $logRepository->queryViolationsByUser($punishableTimeframe, $this->userId, $this->userType, $violations);
-            $scoreByUser = $violationsByUser->get()->sum('event_score');
+            $scoreByUser = $violationsByUser->sum('event_score');
         }
 
         $requestSourceClass = config('tripwire.services.request_source');
@@ -111,7 +111,7 @@ class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
         $violationsByBrowser = null;
         if ($browserFingerprint) {
             $violationsByBrowser = $logRepository->queryViolationsByBrowser($punishableTimeframe, $browserFingerprint, $violations);
-            $scoreByBrowser = $violationsByBrowser->get()->sum('event_score');
+            $scoreByBrowser = $violationsByBrowser->sum('event_score');
         }
 
         $result = new \StdClass();

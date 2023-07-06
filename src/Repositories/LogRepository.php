@@ -102,8 +102,8 @@ class LogRepository
     public function queryViolationsByUser(int $withinMinutes, int $userId, string|null $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
-            ->byUserId($userId)
-            ->byUserType($userType);
+            ->byUserType($userType)
+            ->byUserId($userId);
     }
 
     public function queryViolationsByBrowser(int $withinMinutes, string $browserFingerprint, array $violations = []): Builder

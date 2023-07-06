@@ -40,6 +40,7 @@ return new class extends Migration
 
             $table->index('blocked_ip');
             $table->index('blocked_browser_fingerprint');
+            $table->index(['blocked_user_type', 'blocked_user_id']);
         });
     }
 };

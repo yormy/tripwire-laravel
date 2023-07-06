@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('event_violation')->nullalbe();
             $table->string('event_comment')->nullable();
 
-            $table->string('ip')->nullable(); // ??
+            $table->string('ip')->nullable();
             $table->json('ips')->nullable();
             $table->string('level')->default('medium');
             $table->integer('user_id')->nullable();
@@ -48,6 +48,7 @@ return new class extends Migration
 
             $table->index('ip');
             $table->index('browser_fingerprint');
+            $table->index(['user_type', 'user_id']);
         });
     }
 };
