@@ -25,11 +25,27 @@ class Kernel extends HttpKernel
         // ... 
 ```
 
-## Setup
+## Enabled
+Enable or disable this wire
+
+<!--@include: ./_attackscore.md-->
+
+<!--@include: ./_methods.md-->
+
+<!--@include: ./_urls.md-->
+
+## Example
 ```php
 // tripwire_wires.php
     ->enabled(env('TRIPWIRE_CHECKSUM_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
+    ->methods(['*'])
+    ->urls(
+        UrlsConfig::make()
+            ->except([
+                'admin/*'
+            ]
+        ))
     ->config([
         'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
         'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
@@ -37,6 +53,8 @@ class Kernel extends HttpKernel
     ]);
 ```
 You can change the ```x-checksum-serverside``` to whatever fieldname you want, as long as it does not conflicts with possible request fields
+
+[optional global overriders](./optionals.md)
 
 
 ## Frontend setup with Axios
@@ -78,33 +96,3 @@ axios.interceptors.request.use((config) => {
 
 
 
-### ---todo----
-
-
-## Enabled
-Enable or disable this wire
-
-<!--@include: ./_methods.md-->
-
-<!--@include: ./_attackscore.md-->
-
-## Guards
-Specify the list of referers that should be forbidden
-
-<!--@include: ./_guards.md-->
-
-## Example
-```php
-WireDetailsConfig::make()
-    ->enabled(true)
-    ->methods(['*'])
-    ->attackScore(1000)
-    ->guards([
-        'allow' => [],
-        'block' => []
-    ]);
-    
-    //... optional overrides        
-````
-
-[optional global overriders](./optionals.md)

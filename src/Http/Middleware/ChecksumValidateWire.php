@@ -6,7 +6,9 @@ use App\Exceptions\Exceptions\RequestChecksumFailedException;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\DataObjects\WireConfig;
+use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 /**
  * Goal:
@@ -24,11 +26,12 @@ class ChecksumValidateWire
 {
     public const NAME = 'checksum';
 
-    private WireDetailsConfig $checksumDetails;
+    use TripwireHelpers;
+    private WireConfig $config;
 
     public function __construct()
     {
-        $this->checksumDetails = WireDetailsConfig::makeFromArray(config('tripwire_wires.checksum'));
+        $this->config = new WireConfig('checksum');
     }
     /**
      * @return mixed
@@ -37,6 +40,10 @@ class ChecksumValidateWire
      */
     public function handle(Request $request, Closure $next)
     {
+        if ($this->skip($request)) {
+            return $next($request);
+        }
+
         $this->checkTimestamp($request);
 
         $postedChecksum = (string) $request->headers->get($this->checksumDetails->config['posted']);
@@ -86,5 +93,10 @@ class ChecksumValidateWire
     protected function cleanup(Request $request): void
     {
         $request->request->remove($this->checksumDetails->config['serverside_calculated']);
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        // TODO: Implement attackFound() method.
     }
 }

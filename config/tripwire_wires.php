@@ -524,6 +524,14 @@ $refererConfig = WireDetailsConfig::make()
 $checksumConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_CHECKSUM_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
+    ->methods(['*'])
+    ->urls(
+        UrlsConfig::make()
+            ->except([
+                'admin/*'
+            ]
+        )
+    )
     ->config([
         'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
         'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum

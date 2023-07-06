@@ -4,7 +4,6 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\CookiesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatabaseTablesConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\DatetimeConfig;
@@ -37,8 +36,6 @@ class ConfigBuilder implements Arrayable
     public array $notificationsMail;
 
     public array $notificationsSlack;
-
-    public ChecksumsConfig $checksums;
 
     public DatabaseTablesConfig $databaseTables;
 
@@ -91,10 +88,6 @@ class ConfigBuilder implements Arrayable
             foreach ($this->notificationsSlack as $mailSetting) {
                 $data['notifications']['slack'][] = $mailSetting->toArray();
             }
-        }
-
-        if (isset($this->checksums)) {
-            $data['checksums'] = $this->checksums->toArray();
         }
 
         if (isset($this->databaseTables)) {
@@ -184,8 +177,6 @@ class ConfigBuilder implements Arrayable
             }
         }
 
-        $config->checksums = ChecksumsConfig::makeFromArray($data['checksums'] ?? null);
-
         $config->databaseTables = DatabaseTablesConfig::makeFromArray($data['database_tables'] ?? null);
 
         $config->models = ModelsConfig::makeFromArray($data['models'] ?? null);
@@ -255,14 +246,6 @@ class ConfigBuilder implements Arrayable
         array $notificationsSlack,
     ): self {
         $this->notificationsSlack = $notificationsSlack;
-
-        return $this;
-    }
-
-    public function checksums(
-        ChecksumsConfig $checksums,
-    ): self {
-        $this->checksums = $checksums;
 
         return $this;
     }
