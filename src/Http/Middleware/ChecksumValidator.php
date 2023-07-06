@@ -20,7 +20,6 @@ class ChecksumValidator
 
         $validate = new ChecksumValidateWire();
         return $validate->handle($request, $next);
-
     }
 
 }

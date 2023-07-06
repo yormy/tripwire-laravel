@@ -6,17 +6,6 @@ Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!
 
 ### what does :redirect_url do in json response ?
 
-### Docs of : Page Not found:
-Cannot disable or custom attack score?
-
-URLS && tripwire ??
-->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
-->tripwires([
-MissingPageConfig::make()->except([
-'/membedie',
-]),
-]);
-
 
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
@@ -98,7 +87,6 @@ Send the user an email when they are blocked (only on first block of the day)
 - Bot
 - Referer
 - honeypot
-- checksum?
 - php
 - swear
 - rfi

@@ -75,7 +75,7 @@ class ChecksumValidateWire
         $isAttack = false;
         $this->checkTimestamp($request);
 
-        $postedChecksum = (string) $request->headers->get($this->config->wireDetails()->config['posted']); // ???????
+        $postedChecksum = (string) $request->headers->get($this->config->wireDetails()->config['posted']);
         $recalculatedChecksum = (string) $request->get($this->config->wireDetails()->config['serverside_calculated']);
 
         if (! $postedChecksum && $this->allowEmpytChecksum($request)) {
