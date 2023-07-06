@@ -145,8 +145,8 @@ class BlockRepository
         }
 
         $builder = $this->model
-            ->where('blocked_user_id', $userId)
             ->where('blocked_user_type', $userType)
+            ->where('blocked_user_id', $userId)
             ->where('blocked_until', '>', Carbon::now());
 
         $blocked = $this->getLatest($builder);
@@ -173,8 +173,8 @@ class BlockRepository
             if ($userId) {
                 $query->orWhere(function ($queryUser) use ($userId, $userType) {
                     $queryUser
-                        ->where('blocked_user_id', $userId)
-                        ->where('blocked_user_type', $userType);
+                        ->where('blocked_user_type', $userType)
+                        ->where('blocked_user_id', $userId);
                 });
             }
         });
