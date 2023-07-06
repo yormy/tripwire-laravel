@@ -17,7 +17,7 @@ class ModelsTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
+     * @group tripwire-models
      */
     public function Models_missing_disabled_Trigger_Skip(): void
     {
@@ -35,7 +35,7 @@ class ModelsTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
+     * @group tripwire-models
      */
     public function Models_missing_log(): void
     {
