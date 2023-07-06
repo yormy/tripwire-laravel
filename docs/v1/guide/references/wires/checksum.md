@@ -50,7 +50,13 @@ Enable or disable this wire
         'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
         'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
         'serverside_calculated'=> 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
-    ]);
+    ])
+    ->rejectResponse(
+        BlockResponseConfig::make(
+            JsonResponseConfig::make()->code(406)->exception(RequestChecksumFailedException::class),
+            HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
+        )
+    );
 ```
 You can change the ```x-checksum-serverside``` to whatever fieldname you want, as long as it does not conflicts with possible request fields
 

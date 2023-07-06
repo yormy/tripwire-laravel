@@ -9,23 +9,6 @@ app-test : encryption is done in consumer derived model, which must somehow over
 ### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 
-### checksum validator-calculator in one ?
-test 
-- response
-- // TODO: duplicate code from basewire
-  if (! $postedChecksum) {
-  if (!$this->allowEmpytChecksum($request)) {
-  //throw new RequestChecksumFailedException();
-  }
-
-            // ... checksum missing from post
-            // allow missing for now
-            return false;
-        }
-
-
-
-
 ### what does :redirect_url do in json response ?
 
 ### Docs of : Page Not found:

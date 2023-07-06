@@ -50,7 +50,7 @@ Each wire has a optional set of global overrides and some specific settings:
 ## Honeypot
 [Setup Honeypot wire](./wires/honeypot.md)
 
-## Request Validator / Checksum-todo
+## Request Validator / Checksum
 [Setup Checksum wire](./wires/checksum.md)
 
 ## FileUpload- WORK_IN_PROGRESS

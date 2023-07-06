@@ -23,7 +23,6 @@ class ExceptionInspector
         }
 
         if ($e instanceof ModelNotFoundException) {
-
             $model = $e->getModel();
             $wireConfig = new WireConfig('model404');
 
