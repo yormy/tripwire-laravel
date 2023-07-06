@@ -10,11 +10,11 @@ Enable or disable this wire
 
 <!--@include: ./_attackscore.md-->
 
-## Guards
+## Filters
 Specify the list of bots that should be forbidden
 https://github.com/JayBizzle/Crawler-Detect/blob/master/raw/Crawlers.txt
 
-<!--@include: ./_guards.md-->
+<!--@include: ./_filters.md-->
 
 ## Example
 ```php
@@ -22,7 +22,7 @@ WireDetailsConfig::make()
     ->enabled(true)
     ->methods(['*'])
     ->attackScore(10)
-    ->guards([
+    ->filters([
         'allow' => [], // ie Google Desktop
         'block' => [] // ie attohttpc
     ]);

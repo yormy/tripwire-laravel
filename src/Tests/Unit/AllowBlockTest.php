@@ -12,7 +12,7 @@ class AllowBlockTest extends TestCase
      *
      * @group tripwire-allow_block
      */
-    public function AllowBlock_EmptyGuards_Allow(): void
+    public function AllowBlock_EmptyFilter_Allow(): void
     {
         $result = CheckAllowBlock::shouldBlock('test', []);
         $this->assertFalse($result);
@@ -26,13 +26,13 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_Empty_allow_Exception(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => [],
             'block' => [],
         ];
 
         $this->expectException(\Exception::class);
-        CheckAllowBlock::shouldBlock('test', $guards);
+        CheckAllowBlock::shouldBlock('test', $filters);
     }
 
     /**
@@ -43,12 +43,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_AllowValue_Allow(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['firefox'],
             'block' => [],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('firefox', $guards);
+        $result = CheckAllowBlock::shouldBlock('firefox', $filters);
         $this->assertFalse($result);
     }
 
@@ -60,12 +60,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_BlockValue_Block(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['*'],
             'block' => ['brave'],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('brave', $guards);
+        $result = CheckAllowBlock::shouldBlock('brave', $filters);
         $this->assertTrue($result);
     }
 
@@ -77,12 +77,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_BlockNotValue_Allow(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['*'],
             'block' => ['brave'],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('chome', $guards);
+        $result = CheckAllowBlock::shouldBlock('chome', $filters);
         $this->assertFalse($result);
     }
 
@@ -94,12 +94,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_BlockEmpty_Allow(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['*'],
             'block' => [],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('firebrave', $guards);
+        $result = CheckAllowBlock::shouldBlock('firebrave', $filters);
         $this->assertFalse($result);
     }
 
@@ -111,12 +111,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_Allow_and_block_value_Allow(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['firefox'],
             'block' => ['firefox'],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('firefox', $guards);
+        $result = CheckAllowBlock::shouldBlock('firefox', $filters);
         $this->assertFalse($result);
     }
 
@@ -128,12 +128,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_Unspecified_DefaultAllow(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['firefox'],
             'block' => ['brave'],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('chrome', $guards, false);
+        $result = CheckAllowBlock::shouldBlock('chrome', $filters, false);
         $this->assertFalse($result);
     }
 
@@ -145,12 +145,12 @@ class AllowBlockTest extends TestCase
     public function AllowBlock_Unspecified_DefaultBlock(): void
     {
 
-        $guards = [
+        $filters = [
             'allow' => ['firefox'],
             'block' => ['brave'],
         ];
 
-        $result = CheckAllowBlock::shouldBlock('chrome', $guards, true);
+        $result = CheckAllowBlock::shouldBlock('chrome', $filters, true);
         $this->assertTrue($result);
     }
 }

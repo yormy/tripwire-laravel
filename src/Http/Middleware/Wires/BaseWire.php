@@ -177,9 +177,9 @@ abstract class BaseWire
         return null;
     }
 
-    protected function isGuardAttack(string $value, array $guards): bool
+    protected function isFilterAttack(string $value, array $filters): bool
     {
-        if (CheckAllowBlock::shouldBlock($value, $guards)) {
+        if (CheckAllowBlock::shouldBlock($value, $filters)) {
             $triggerEventData = new TriggerEventData(
                 attackScore: $this->getAttackScore(),
                 violations: [$value],

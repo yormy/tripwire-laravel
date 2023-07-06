@@ -21,6 +21,6 @@ class Referer extends BaseWire
     {
         $referer = RequestSource::getReferer();
 
-        return $this->isGuardAttack($referer, $this->config->guards());
+        return $this->isFilterAttack($referer, $this->config->filters());
     }
 }

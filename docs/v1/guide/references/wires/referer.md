@@ -10,10 +10,10 @@ Enable or disable this wire
 
 <!--@include: ./_attackscore.md-->
 
-## Guards
+## Filters
 Specify the list of referers that should be forbidden
 
-<!--@include: ./_guards.md-->
+<!--@include: ./_filters.md-->
 
 ## Example
 ```php
@@ -21,7 +21,7 @@ WireDetailsConfig::make()
     ->enabled(true)
     ->methods(['*'])
     ->attackScore(1000)
-    ->guards([
+    ->filters([
         'allow' => [],
         'block' => []
     ]);

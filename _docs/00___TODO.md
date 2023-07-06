@@ -1,8 +1,5 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
-# CODE:
-refactor Guards => Filters oid
-
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 

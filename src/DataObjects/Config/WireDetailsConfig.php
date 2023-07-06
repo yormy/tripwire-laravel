@@ -18,7 +18,7 @@ class WireDetailsConfig
 
     public array $tripwires;
 
-    public ?array $guards;
+    public ?array $filters;
 
     public ?array $config;
 
@@ -108,8 +108,8 @@ class WireDetailsConfig
             $object->tripwires = $data['tripwires'];
         }
 
-        if (isset($data['guards'])) {
-            $object->guards = $data['guards'];
+        if (isset($data['filters'])) {
+            $object->filters = $data['filters'];
         }
 
         if (isset($data['config'])) {
@@ -185,7 +185,7 @@ class WireDetailsConfig
         return $this;
     }
 
-    public function guards(AllowBlockFilterConfig $allowBlockConfig): self
+    public function filters(AllowBlockFilterConfig $allowBlockConfig): self
     {
         $this->allowBlockConfig = $allowBlockConfig;
 
@@ -240,7 +240,7 @@ class WireDetailsConfig
         $data['tripwires'] = $this->tripwires;
 
         if (isset($this->allowBlockConfig)) {
-            $data['guards'] = $this->allowBlockConfig->toArray();
+            $data['filters'] = $this->allowBlockConfig->toArray();
         }
 
         if ($this->config) {

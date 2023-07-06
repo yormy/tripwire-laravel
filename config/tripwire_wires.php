@@ -506,7 +506,7 @@ $throttleHitConfig = WireDetailsConfig::make()
 $botConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_BOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
-    ->guards(AllowBlockFilterConfig::make()->allow(['aaaa'])->block([]));
+    ->filters(AllowBlockFilterConfig::make()->allow(['aaaa'])->block([]));
 /*
 |--------------------------------------------------------------------------
 | REFERER
@@ -515,7 +515,7 @@ $botConfig = WireDetailsConfig::make()
 $refererConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_REFERER_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(1000)
-    ->guards(AllowBlockFilterConfig::make()->allow([])->block([]));
+    ->filters(AllowBlockFilterConfig::make()->allow([])->block([]));
 
 /*
 |--------------------------------------------------------------------------

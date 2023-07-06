@@ -27,12 +27,12 @@ class Agent extends BaseWire
         $violations = [];
 
         $browsers = $agents['browsers'];
-        if ($this->isGuardAttack(RequestSource::getBrowser(), $browsers)) {
+        if ($this->isFilterAttack(RequestSource::getBrowser(), $browsers)) {
             $violations[] = RequestSource::getBrowser();
         }
 
         $platforms = $agents['platforms'];
-        if ($this->isGuardAttack(RequestSource::getPlatform(), $platforms)) {
+        if ($this->isFilterAttack(RequestSource::getPlatform(), $platforms)) {
             $violations[] = RequestSource::getPlatform();
         }
 

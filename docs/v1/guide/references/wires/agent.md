@@ -14,8 +14,8 @@ Enable or disable this wire
 Specify the list of agents that should be allowed or forbidden
 https://github.com/jenssegers/agent
 
-## Guards
-<!--@include: ./_guards.md-->
+## Filters
+<!--@include: ./_filters.md-->
 
 ## Example
 ```php

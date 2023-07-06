@@ -4,30 +4,30 @@ namespace Yormy\TripwireLaravel\Services;
 
 class CheckAllowBlock
 {
-    public static function shouldBlock(string $value, array $guards, bool $default = false): bool
+    public static function shouldBlock(string $value, array $filters, bool $default = false): bool
     {
         if (! $value) {
             return false;
         }
 
-        if (empty($guards)) {
+        if (empty($filters)) {
             return false;
         }
 
-        if (empty($guards['allow'])) {
+        if (empty($filters['allow'])) {
             throw new \Exception("Empty Allow not valid, to allow all specify ['*']");
         }
 
-        if (in_array($value, $guards['allow'])) {
+        if (in_array($value, $filters['allow'])) {
             return false;
         }
 
-        if (empty($guards['block'])) {
+        if (empty($filters['block'])) {
             return false;
         }
 
-        if (! empty($guards['block'])) {
-            if (in_array($value, $guards['block'])) {
+        if (! empty($filters['block'])) {
+            if (in_array($value, $filters['block'])) {
                 return true;
             }
         }

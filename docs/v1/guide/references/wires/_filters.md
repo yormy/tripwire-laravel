@@ -1,8 +1,8 @@
-## Guards
+## Filters
 This specifies what to allow and what to block
 
 ```php
-    ->guards(AllowBlockFilterConfig::make()->allow(['allow-this'])->block(['block-this']));
+    ->filters(AllowBlockFilterConfig::make()->allow(['allow-this'])->block(['block-this']));
 ```
 
 ### Example: Exception

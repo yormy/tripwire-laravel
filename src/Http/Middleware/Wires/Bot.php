@@ -25,6 +25,6 @@ class Bot extends BaseWire
 
         $robot = RequestSource::getRobot();
 
-        return $this->isGuardAttack($robot, $this->config->guards());
+        return $this->isFilterAttack($robot, $this->config->filters());
     }
 }

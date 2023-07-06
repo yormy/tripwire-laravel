@@ -109,10 +109,10 @@ class WireConfig
         return [];
     }
 
-    public function guards(): array
+    public function filters(): array
     {
-        if (isset($this->wireConfig->guards)) {
-            return $this->wireConfig->guards;
+        if (isset($this->wireConfig->filters)) {
+            return $this->wireConfig->filters;
         }
 
         return [];

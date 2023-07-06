@@ -24,25 +24,25 @@ class Geo extends BaseWire
             return false;
         }
 
-        $continentsGuards = $this->config->tripwires()['continents'];
-        $regionGuards = $this->config->tripwires()['regions'];
-        $countryGuards = $this->config->tripwires()['countries'];
-        $cityGuards = $this->config->tripwires()['cities'];
+        $continentsFilter = $this->config->tripwires()['continents'];
+        $regionFilter = $this->config->tripwires()['regions'];
+        $countryFilter = $this->config->tripwires()['countries'];
+        $cityFilter = $this->config->tripwires()['cities'];
 
         $violations = [];
-        if ($this->isGuardAttack($location->continent, $continentsGuards)) {
+        if ($this->isFilterAttack($location->continent, $continentsFilter)) {
             $violations[] = $location->continent;
         }
 
-        if ($this->isGuardAttack($location->region, $regionGuards)) {
+        if ($this->isFilterAttack($location->region, $regionFilter)) {
             $violations[] = $location->region;
         }
 
-        if ($this->isGuardAttack($location->country, $countryGuards)) {
+        if ($this->isFilterAttack($location->country, $countryFilter)) {
             $violations[] = $location->country;
         }
 
-        if ($this->isGuardAttack($location->city, $cityGuards)) {
+        if ($this->isFilterAttack($location->city, $cityFilter)) {
             $violations[] = $location->city;
         }
 
