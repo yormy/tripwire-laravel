@@ -2,11 +2,9 @@
 
 use Yormy\TripwireLaravel\DataObjects\Config\AllowBlockFilterConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
@@ -478,7 +476,6 @@ $honeypotConfig = WireDetailsConfig::make()
         'is_debug',
         'show_log',
         'skip_encryption',
-        'firstname'
     ]);
 
 /*

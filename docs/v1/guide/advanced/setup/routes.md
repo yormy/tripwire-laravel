@@ -12,6 +12,6 @@ Route::prefix('')
 ## Removing a single middleware
 ```php
 Route::prefix('')
-    ->withoutMiddleware(['tripwire.honeypot'])
+    ->withoutMiddleware(['tripwire.honeypotwire'])
     ->group(function () {
 ```

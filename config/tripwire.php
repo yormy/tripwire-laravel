@@ -1,6 +1,5 @@
 <?php
 
-use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\InputIgnoreConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
@@ -198,7 +197,7 @@ $res = ConfigBuilder::make()
     ->addWireGroup(
         'main',
         WireGroupConfig::make([
-            'tripwire.honeypot',
+            'tripwire.honeypotwire',
             'tripwire.sqli',
             'tripwire.xss',
         ])
@@ -207,6 +206,7 @@ $res = ConfigBuilder::make()
     ->addWireGroup(
         'all',
         WireGroupConfig::make([
+            'tripwire.honeypotwire',
             'tripwire.agent',
             'tripwire.bot',
             // 'tripwire.geo', // work in progress

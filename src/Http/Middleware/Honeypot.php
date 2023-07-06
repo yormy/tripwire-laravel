@@ -23,7 +23,7 @@ use Yormy\TripwireLaravel\Services\ResponseDeterminer;
  */
 class Honeypot
 {
-    public const NAME = 'honeypots';
+    public const NAME = 'honeypot';
 
     /**
      * @return mixed
@@ -32,7 +32,7 @@ class Honeypot
      */
     public function handle(Request $request, Closure $next)
     {
-        $wireConfig = new WireConfig('honeypots');
+        $wireConfig = new WireConfig(self::NAME);
 
         $honeypotsMustBeFalseOrMissing = $wireConfig->tripwires();
 

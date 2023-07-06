@@ -114,7 +114,7 @@ class TripwireServiceProvider extends ServiceProvider
         $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
         $router->aliasMiddleware('tripwire.custom', Custom::class);
 
-        $router->aliasMiddleware('tripwire.honeypot', Honeypot::class);
+        $router->aliasMiddleware('tripwire.honeypotwire', Honeypot::class);
     }
 
     private function registerMiddlewareGroups(Router $router): void
