@@ -441,12 +441,12 @@ $requestSizeConfig = WireDetailsConfig::make()
 $pageMissingConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_PAGE404_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(10)
-    ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
-    ->tripwires([
-        MissingPageConfig::make()->except([
-            '/membedie',
-        ]),
-    ]);
+    ->urls(
+        UrlsConfig::make()
+            ->except([
+                'admin/*'
+                ]
+            ));
 
 /*
 |--------------------------------------------------------------------------

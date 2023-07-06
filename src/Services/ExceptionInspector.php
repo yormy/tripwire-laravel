@@ -13,10 +13,15 @@ use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\ThrottleHitEvent;
+use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 class ExceptionInspector
 {
-    public static function inspect(Throwable $e, Request $request = null): void
+    use TripwireHelpers;
+
+    protected WireConfig $config;
+
+    public function inspect(Throwable $e, Request $request = null): void
     {
         if ($e instanceof ThrottleRequestsException) {
             event(new ThrottleHitEvent($request));
@@ -25,6 +30,11 @@ class ExceptionInspector
         if ($e instanceof ModelNotFoundException) {
             $model = $e->getModel();
             $wireConfig = new WireConfig('model404');
+            $this->config = $wireConfig;
+
+            if ($this->skip($request)) {
+                return;
+            }
 
             /** @var MissingModelConfig $missingModelConfig */
             $missingModelConfig = $wireConfig->tripwires()[0];
@@ -46,31 +56,36 @@ class ExceptionInspector
                 BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode());
                 // Response is not needed, consumer will handle the 404, this is just an additional inspector
             }
-
         }
 
         if ($e instanceof NotFoundHttpException) {
             $wireConfig = new WireConfig('page404');
-            $value = $request->url();
-            $config = $wireConfig->tripwires()[0];
-            $needsProcessing = CheckOnlyExcept::needsProcessing($value, $config);
+            $this->config = $wireConfig;
 
-            if ($needsProcessing) {
-                $violations = [$value];
-                $triggerEventData = new TriggerEventData(
-                    attackScore: $wireConfig->attackScore(),
-                    violations: $violations,
-                    triggerData: implode(',', $violations),
-                    triggerRules: [],
-                    trainingMode: $wireConfig->trainingMode(),
-                    debugMode: $wireConfig->debugMode(),
-                    comments: '',
-                );
-                event(new Page404FailedEvent($triggerEventData));
-
-                BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode());
-                // Response is not needed, consumer will handle the 404, this is just an additional inspector
+            if ($this->skip($request)) {
+                return;
             }
+
+            $value = $request->url();
+            $violations = [$value];
+            $triggerEventData = new TriggerEventData(
+                attackScore: $wireConfig->attackScore(),
+                violations: $violations,
+                triggerData: implode(',', $violations),
+                triggerRules: [],
+                trainingMode: $wireConfig->trainingMode(),
+                debugMode: $wireConfig->debugMode(),
+                comments: '',
+            );
+            event(new Page404FailedEvent($triggerEventData));
+
+            BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode());
+            // Response is not needed, consumer will handle the 404, this is just an additional inspector
         }
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        // TODO: Implement attackFound() method.
     }
 }

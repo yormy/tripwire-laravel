@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
@@ -20,9 +21,27 @@ class PageMissingTest extends TestCase
     /**
      * @test
      *
-     * @group tripwire-models
+     * @group tripwire-page404
      */
-    public function Page_missing_Added_log(): void
+    public function Page_missing_disabled_Trigger_Skip(): void
+    {
+        config(['tripwire_wires.page404.enabled' => false]);
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerPageNotFound();
+
+        $this->assertNotLogged($startCount);
+    }
+
+
+    /**
+     * @test
+     *
+     * @group tripwire-page404
+     */
+    public function Page_missing_Added_Log(): void
     {
         $startCount = TripwireLog::count();
 
@@ -31,6 +50,76 @@ class PageMissingTest extends TestCase
         $this->triggerPageNotFound();
 
         $this->assertLogAddedToDatabase($startCount);
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-page404
+     */
+    public function Page_missing_Added_except_Skip(): void
+    {
+        $urls = UrlsConfig::make()
+            ->except([
+                    'path/to/*'
+                ]
+            );
+        config(['tripwire_wires.page404.urls' => $urls->toArray()]);
+
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerPageNotFound();
+
+        $this->assertNotLogged($startCount);
+    }
+
+
+    /**
+     * @test
+     *
+     * @group tripwire-page404
+     */
+    public function Page_missing_Added_only_Log(): void
+    {
+        $urls = UrlsConfig::make()
+            ->only([
+                    'path/to/*'
+                ]
+            );
+        config(['tripwire_wires.page404.urls' => $urls->toArray()]);
+
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerPageNotFound();
+
+        $this->assertLogAddedToDatabase($startCount);
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-page404
+     */
+    public function Page_missing_Added_only_mismatch_Skip(): void
+    {
+        $urls = UrlsConfig::make()
+            ->only([
+                    'path/not/*'
+                ]
+            );
+        config(['tripwire_wires.page404.urls' => $urls->toArray()]);
+
+        $startCount = TripwireLog::count();
+
+        $this->setDefaultConfig();
+
+        $this->triggerPageNotFound();
+
+        $this->assertNotLogged($startCount);
     }
 
     /**
@@ -59,8 +148,7 @@ class PageMissingTest extends TestCase
         $request->url();
 
         $exception = (new NotFoundHttpException($request));
-        ExceptionInspector::inspect($exception, $request);
-
+        (new ExceptionInspector())->inspect($exception, $request);
     }
 
     private function setDefaultConfig(array $data = []): void

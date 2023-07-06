@@ -14,6 +14,17 @@ In the config you can specify which pages are excluded or included
 ## Enabled
 Enable or disable this wire
 
-<!--@include: ./_methods.md-->
+<!--@include: ../wires/_attackscore.md-->
 
-<!--@include: ./_attackscore.md-->
+<!--@include: ../wires/_urls.md-->
+
+# Example
+Record all page not founds, except those that start with ```admin```
+```php
+    ->urls(
+        UrlsConfig::make()
+            ->except([
+                'admin/*'
+                ]
+            ));
+```

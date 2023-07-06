@@ -1,6 +1,6 @@
 # Generic - todo
 
-## Page Not Found - todo
+## Page Not Found
 [Page not found](./generic/page_not_found.md)
 
 ## Model Not Found

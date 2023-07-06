@@ -1,7 +1,5 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
-## INTEGRATION TESTS
-app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
 ### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 -- generated reset url, how is this not blocked by tripwire ? + in docs
@@ -9,6 +7,8 @@ app-test : encryption is done in consumer derived model, which must somehow over
 ### what does :redirect_url do in json response ?
 
 ### Docs of : Page Not found:
+Cannot disable or custom attack score?
+
 URLS && tripwire ??
 ->urls(UrlsConfig::make()->except(['api/v1/meber/*']))
 ->tripwires([
@@ -17,11 +17,15 @@ MissingPageConfig::make()->except([
 ]),
 ]);
 
+
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
 * how to do encyption
 * ->cookies('session_id') // ???? of hernoemen als fingerprinting
   setup payment method
+
+## INTEGRATION TESTS
+app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
 
 # Docs2 - Finalization

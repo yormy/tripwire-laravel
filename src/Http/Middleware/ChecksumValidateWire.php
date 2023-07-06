@@ -2,12 +2,9 @@
 
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
-use App\Exceptions\Exceptions\RequestChecksumFailedException;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\ChecksumFailedEvent;
@@ -31,6 +28,7 @@ class ChecksumValidateWire
     public const NAME = 'checksum';
 
     use TripwireHelpers;
+
     private WireConfig $config;
 
     protected Request $request;

@@ -12,6 +12,6 @@ use Yormy\TripwireLaravel\Services\ExceptionInspector;
 public function render($request, Throwable $exception)
 {
     ...
-    ExceptionInspector::inspect($exception); // [!code focus]
+    (new ExceptionInspector())->inspect($exception); // [!code focus]
     ...
 ```
