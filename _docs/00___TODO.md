@@ -10,8 +10,13 @@ app-test : encryption is done in consumer derived model, which must somehow over
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 
 ### checksum validator-calculator in one ?
-- there are 2 mds
-- axios example
+todo
+- add log event / blocking / response
+- 
+test 
+- attackscore
+- block auto
+- response
 
 
 ### what does :redirect_url do in json response ?
@@ -24,9 +29,6 @@ MissingPageConfig::make()->except([
 '/membedie',
 ]),
 ]);
-
-- favicon ?
-
 
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
