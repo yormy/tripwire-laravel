@@ -99,13 +99,7 @@ class ChecksumValidateWire
         $postedChecksum = (string) $request->headers->get($this->config->wireDetails()->config['posted']); // ???????
         $recalculatedChecksum = (string) $request->get($this->config->wireDetails()->config['serverside_calculated']);
 
-        if (! $postedChecksum) {
-            if (!$this->allowEmpytChecksum($request)) {
-                //throw new RequestChecksumFailedException();
-            }
-
-            // ... checksum missing from post
-            // allow missing for now
+        if (! $postedChecksum && $this->allowEmpytChecksum($request)) {
             return false;
         }
 
