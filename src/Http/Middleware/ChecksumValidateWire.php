@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
+use Yormy\TripwireLaravel\Observers\Events\Failed\ChecksumFailedEvent;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 /**
@@ -29,10 +30,13 @@ class ChecksumValidateWire
     use TripwireHelpers;
     private WireConfig $config;
 
+    protected Request $request;
+
     public function __construct()
     {
         $this->config = new WireConfig('checksum');
     }
+
     /**
      * @return mixed
      *
@@ -44,10 +48,12 @@ class ChecksumValidateWire
             return $next($request);
         }
 
+        $this->request = $request;
+
         $this->checkTimestamp($request);
 
-        $postedChecksum = (string) $request->headers->get($this->checksumDetails->config['posted']);
-        $recalculatedChecksum = (string) $request->get($this->checksumDetails->config['serverside_calculated']);
+        $postedChecksum = (string) $request->headers->get($this->config->wireDetails()->config['posted']); // ???????
+        $recalculatedChecksum = (string) $request->get($this->config->wireDetails()->config['serverside_calculated']);
 
         if (! $postedChecksum) {
             if (! $this->allowEmpytChecksum($request)) {
@@ -60,7 +66,18 @@ class ChecksumValidateWire
         }
 
         if ($postedChecksum !== $recalculatedChecksum) {
-            throw new RequestChecksumFailedException();
+            $violations = ['checksum-failed'];
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->getAttackScore(),
+                violations: $violations,
+                triggerData: implode(',', $violations),
+                triggerRules: [],
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
+                comments: '',
+            );
+
+            $this->attackFound($triggerEventData);
         }
 
         $this->cleanup($request);
@@ -74,7 +91,7 @@ class ChecksumValidateWire
     private function checkTimestamp(Request $request)
     {
 
-        $timestamp = $request->header($this->checksumDetails->config['timestamp']);
+        $timestamp = $request->header($this->config->wireDetails()->config['timestamp']);
 
         if ($timestamp && Carbon::now()->diffInSeconds(Carbon::parse($timestamp / 1000)) > 30) {
             throw new \RuntimeException('Service blocked! Invalid Timestamp Synchronization');
@@ -92,11 +109,16 @@ class ChecksumValidateWire
 
     protected function cleanup(Request $request): void
     {
-        $request->request->remove($this->checksumDetails->config['serverside_calculated']);
+        $request->request->remove($this->config->wireDetails()->config['serverside_calculated']);
     }
 
     protected function attackFound(TriggerEventData $triggerEventData): void
     {
+        event(new ChecksumFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
+
         // TODO: Implement attackFound() method.
+        throw new RequestChecksumFailedException();
     }
 }

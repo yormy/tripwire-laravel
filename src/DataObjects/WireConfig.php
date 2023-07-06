@@ -166,4 +166,9 @@ class WireConfig
 
         return CheckOnlyExcept::needsProcessing($key, $this->inputs);
     }
+
+    public function wireDetails(): WireDetailsConfig
+    {
+        return $this->wireConfig;
+    }
 }
