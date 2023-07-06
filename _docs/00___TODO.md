@@ -10,13 +10,20 @@ app-test : encryption is done in consumer derived model, which must somehow over
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 
 ### checksum validator-calculator in one ?
-todo
-- add log event / blocking / response
-- 
 test 
-- attackscore
-- block auto
 - response
+- // TODO: duplicate code from basewire
+  if (! $postedChecksum) {
+  if (!$this->allowEmpytChecksum($request)) {
+  //throw new RequestChecksumFailedException();
+  }
+
+            // ... checksum missing from post
+            // allow missing for now
+            return false;
+        }
+
+
 
 
 ### what does :redirect_url do in json response ?

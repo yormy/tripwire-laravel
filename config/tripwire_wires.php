@@ -1,12 +1,16 @@
 <?php
 
 use Yormy\TripwireLaravel\DataObjects\Config\AllowBlockFilterConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\ChecksumsConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
+use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\MissingPageConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\WireDetailsConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilderWires;
+use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Http\Middleware\ChecksumValidateWire;
 use Yormy\TripwireLaravel\Http\Middleware\Honeypot;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Agent;
@@ -523,7 +527,7 @@ $refererConfig = WireDetailsConfig::make()
 */
 $checksumConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_CHECKSUM_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->attackScore(1000)
+    ->attackScore(10)
     ->methods(['*'])
     ->urls(
         UrlsConfig::make()
@@ -536,7 +540,13 @@ $checksumConfig = WireDetailsConfig::make()
         'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
         'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
         'serverside_calculated'=> 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
-    ]);
+    ])
+    ->rejectResponse(
+        BlockResponseConfig::make(
+            JsonResponseConfig::make()->code(406)->exception(RequestChecksumFailedException::class),
+            HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
+        )
+    );
 
 $res = ConfigBuilderWires::make()
     ->addWireDetails(Agent::NAME, $agentConfig)

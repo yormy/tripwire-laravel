@@ -20,17 +20,15 @@ class RequestChecksumFailedException extends BaseException
     protected function renderJson(Request $request)
     {
         //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
-        $status = 400;
+        $status = 406;
         $error = 'Something is wrong';
-        $help = 'Contact the sales team to verify';
+        $help = 'Wrong request';
 
         return response(['error' => $error, 'help' => $help], $status);
     }
 
     /**
      * @return string
-     *
-     * @psalm-return 'dddd'
      */
     protected function renderHtml(Request $request)
     {
