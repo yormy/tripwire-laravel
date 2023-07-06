@@ -95,9 +95,9 @@ $res = ConfigBuilder::make()
     */
     ->checksums(
         ChecksumsConfig::make()
-            ->posted('X-Checksum')
-            ->timestamp('X-sand')
-            ->serversideCalculated('x-checksum-serverside')
+            ->posted('X-Checksum')  // the name of the field that includes your frontend calculated checksum
+            ->timestamp('X-sand') // the name of the field that contains the frontend calculated timestamp
+            ->serversideCalculated('x-checksum-serverside')  // used internally to store the server side checksum for calculation purposes
     )
 
     /*

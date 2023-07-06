@@ -17,6 +17,13 @@ class ChecksumCalculate
      */
     public function handle(Request $request, Closure $next)
     {
+        $request = $this->calculate($request);
+
+        return $this->validate($request, $next);
+    }
+
+    public function calculate(Request $request): Request
+    {
         /** @psalm-suppress PossiblyInvalidArgument */
         $data = $request->except(array_keys($request->query()));
         $requestJson = json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -25,6 +32,12 @@ class ChecksumCalculate
 
         $request->request->add([config('tripwire.checksums.serverside_calculated') => HashService::create($requestCleaned)]);
 
-        return $next($request);
+        return $request;
+    }
+
+    public function validate(Request $request, Closure $next)
+    {
+        $validate = new ChecksumValidateWire();
+        return $validate->handle($request, $next);
     }
 }
