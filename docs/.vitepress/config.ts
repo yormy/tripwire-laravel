@@ -43,7 +43,7 @@ export default defineConfig({
           { text: 'Wires', link: '/v1/guide/advanced/setup/wires' },
           { text: 'Blockers', link: '/v1/guide/advanced/setup/blockers' },
           { text: 'Exception Inspector', link: '/v1/guide/advanced/setup/exceptions' },
-          { text: 'Remove blocks -todo', link: '/v1/guide/advanced/setup/reset' },
+          { text: 'Remove blocks', link: '/v1/guide/advanced/setup/reset' },
           { text: 'Remove Tripwires on Routes', link: '/v1/guide/advanced/setup/routes' },
         ]
       },
@@ -60,7 +60,7 @@ export default defineConfig({
         ]
       },
       {
-        text: 'General Customization - todo',
+        text: 'General Customization',
         items: [
           { text: 'Publish Config', link: '/v1/guide/customization/config' },
           { text: 'Notifications', link: '/v1/guide/customization/notifications' },
@@ -72,7 +72,7 @@ export default defineConfig({
           { text: 'Database', link: '/v1/guide/customization/database' },
 
           { text: 'Service Helpers', link: '/v1/guide/customization/services' },
-          { text: 'Encryption - todo', link: '/v1/guide/customization/encryption' },
+          { text: 'Encryption', link: '/v1/guide/customization/encryption' },
 
           { text: 'Punish', link: '/v1/guide/customization/punish' },
           { text: 'Urls', link: '/v1/guide/customization/urls' },
@@ -80,13 +80,13 @@ export default defineConfig({
           { text: 'Ignores', link: '/v1/guide/customization/ignores' },
           { text: 'Models', link: '/v1/guide/customization/models' },
 
-          { text: 'Browser fingerprint -todo', link: '/v1/guide/advanced/browser-fingerprint' },
+          { text: 'Browser fingerprint', link: '/v1/guide/advanced/browser-fingerprint' },
         ]
       },
       {
-        text: 'Wire Customization - todo',
+        text: 'Wire Customization',
         items: [
-          { text: 'Wires -todo', link: '/v1/guide/customization/wires' },
+          { text: 'Wires', link: '/v1/guide/customization/wires' },
         ]
       },
       {
@@ -95,12 +95,12 @@ export default defineConfig({
           {
             text: 'Wires',
             items: [
-              { text: 'General-todo', link: '/v1/guide/references/wires-general' },
-              { text: 'Request-todo', link: '/v1/guide/references/wires-request' }
+              { text: 'General', link: '/v1/guide/references/wires-general' },
+              { text: 'Request', link: '/v1/guide/references/wires-request' }
             ]
           },
-          { text: 'Events-todo', link: '/v1/guide/references/events' },
-          { text: 'All Wires-todo', link: '/v1/guide/references/wires' },
+          { text: 'Events', link: '/v1/guide/references/events' },
+          { text: 'All Wires', link: '/v1/guide/references/wires' },
           { text: 'Regex for wires', link: '/v1/guide/references/wires/regex' },
           { text: 'Response Types', items: [
               { text: 'Json Response', link: '/v1/guide/references/json-response' },

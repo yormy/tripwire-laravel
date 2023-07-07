@@ -12,6 +12,7 @@ use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\SessionFailedEvent;
 use Yormy\TripwireLaravel\Observers\Events\Tripwires\ThrottleHitEvent;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
@@ -85,6 +86,6 @@ class ExceptionInspector
 
     protected function attackFound(TriggerEventData $triggerEventData): void
     {
-        // TODO: Implement attackFound() method.
+        // no additional processing needed here
     }
 }

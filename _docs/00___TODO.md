@@ -3,7 +3,6 @@ app-test : encryption is done in consumer derived model, which must somehow over
 
 
 # Docs2 - Finalization
-find todo
 streamline docs with config file
 install in clean laravel blade and record how to install and how to trigger
 show video of reset
