@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
 {
@@ -18,7 +17,9 @@ class BlockRepository
 
     public function __construct()
     {
-        $this->model = new TripwireBlock();
+        $class = config('tripwire.models.block');
+        $this->model = new $class;
+
         $this->repeatOffenderTimeframeDays = 10; // how long to look back for repeating violations
     }
 

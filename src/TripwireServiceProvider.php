@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel;
 
 use Illuminate\Auth\Events\Failed as LoginFailed;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Yormy\TripwireLaravel\Console\Commands\GenerateAccepts;
@@ -52,6 +53,8 @@ class TripwireServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tripwire-laravel');
 
         $this->registerTranslations();
+
+        $this->morphMaps();
     }
 
     /**
@@ -134,4 +137,21 @@ class TripwireServiceProvider extends ServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tripwire');
     }
+
+    private function morphMaps()
+    {
+        $logModelpath = config('tripwire.models.log');
+        $sections = explode('\\', $logModelpath);
+        $LogModelName = end($sections);
+
+        $blockModelpath = config('tripwire.models.block');
+        $sections = explode('\\', $blockModelpath);
+        $blockModelName = end($sections);
+
+        Relation::enforceMorphMap([
+            $LogModelName => $logModelpath,
+            $blockModelName => $blockModelpath
+        ]);
+    }
+
 }

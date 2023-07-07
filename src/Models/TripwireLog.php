@@ -38,7 +38,7 @@ class TripwireLog extends BaseModel
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('tripwire.database_tables.tripwire_log');
+        $this->table = config('tripwire.database_tables.tripwire_logs');
 
         parent::__construct($attributes);
     }

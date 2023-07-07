@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('event_violation')->nullalbe();
             $table->string('event_comment')->nullable();
 
-            $table->string('ip')->nullable();
-            $table->json('ips')->nullable();
+            $table->string('ip')->nullable();   // need place for encrypted values
+            $table->json('ips')->nullable();    // need place for encrypted values
             $table->string('level')->default('medium');
             $table->integer('user_id')->nullable();
             $table->string('user_type')->nullable();

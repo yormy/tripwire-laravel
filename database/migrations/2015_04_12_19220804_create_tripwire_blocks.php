@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type')->default('HACK-ATTEMPT');
             $table->json('reasons')->nullable(); // ie 404, xss, swear, manual
 
-            $table->string('blocked_ip', 30);
+            $table->string('blocked_ip');  // need place for encrypted values
             $table->unsignedBigInteger('blocked_user_id')->nullable();
             $table->string('blocked_user_type')->nullable();
             $table->string('blocked_browser_fingerprint')->nullable();

@@ -6,16 +6,20 @@ class ModelsConfig
 {
     public string $log;
 
+    public string $block;
+
     private function __construct()
     {
     }
 
     public static function make(
         string $log,
+        string $block,
     ): self {
         $object = new ModelsConfig();
 
         $object->log = $log;
+        $object->block = $block;
 
         return $object;
     }
@@ -29,6 +33,7 @@ class ModelsConfig
         $object = new ModelsConfig();
 
         $object->log = $data['log'];
+        $object->block = $data['block'];
 
         return $object;
     }
@@ -37,6 +42,7 @@ class ModelsConfig
     {
         return [
             'log' => $this->log,
+            'block' => $this->block,
         ];
     }
 }

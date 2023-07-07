@@ -263,10 +263,12 @@ class ConfigBuilder implements Arrayable
     }
 
     public function models(
-        string $models,
+        string $logModel,
+        string $blockModel,
     ): self {
         $this->models = ModelsConfig::make(
-            $models,
+            $logModel,
+            $blockModel
         );
 
         return $this;

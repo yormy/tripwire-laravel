@@ -99,7 +99,11 @@ $res = ConfigBuilder::make()
     | Models
     |--------------------------------------------------------------------------
     */
-    ->models(TripwireLog::class)
+    ->models(
+        TripwireLog::class,
+        TripwireBlock::class
+    )
+
     ->browserFingerprint('session_id')
 
     /*
