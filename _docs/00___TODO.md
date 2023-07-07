@@ -3,12 +3,8 @@ app-test : encryption is done in consumer derived model, which must somehow over
 
 
 # Docs2 - Finalization
-streamline docs with config file
 install in clean laravel blade and record how to install and how to trigger
 show video of reset
-
-
-
 
 # PSALM
     <UndefinedThisPropertyFetch errorLevel="info" />
@@ -36,6 +32,8 @@ travis ci
 # -------------------------------------
 #         WORK IN PROGRESS
 # -------------------------------------
+## Review config comments
+Are they still up to date with the docs
 
 ## How to summarize logs to a block / how to make teh block depended on the violations
 Currently all violations scores are added to 1 large sum. This is then used to block or no block
