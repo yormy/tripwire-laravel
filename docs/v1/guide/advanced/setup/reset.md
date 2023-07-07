@@ -11,9 +11,13 @@ For this to work you need to
 * Enable the reset
 * Specify how many minutes the reset url will be available. After that time the reset-url will do nothing. 
 
-In your app routes you need to add this line // todo: what url will it generate ?
+In your app routes you need to add this line under the grouping and ```guest``` middlewares. These routes need to be publicly available without any tripwire middleware.
 ```php
-Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
+Route::prefix('myprefix')
+    ->name('my-name.')
+    ->group(function () {
+        Route::TripwireResetRoutes(); //[!code focus] //  path: myprefix/guest/reset ; name: 'my-name.tripwire.guest.logs.reset'
+    });
 ```
 
 and update your ```.env```

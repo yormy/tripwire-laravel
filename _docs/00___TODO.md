@@ -1,8 +1,3 @@
-Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
-
-### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
--- generated reset url, how is this not blocked by tripwire ? + in docs
-
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
 * how to do encyption
@@ -78,6 +73,7 @@ Send the user an email when they are blocked (only on first block of the day)
 - Admin overview of blocked users
 - Mark block permanent / unmark
 - get reset key
+- Admin routes docs (registrations)
 
 # Unit test
 - globally ignore certain cookies
