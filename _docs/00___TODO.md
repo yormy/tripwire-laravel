@@ -1,8 +1,5 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
-test honeypot filled with 0 but present, fille with false => testcases
-
-
 ### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 

@@ -70,7 +70,7 @@
 
         "---------- TESTS ---------- ": "",
         "test:all": "vendor/bin/paratest",
-        "t": "vendor/bin/phpunit --colors=always --testdox --group xxx",
+        "t": "vendor/bin/phpunit --colors=always --testdox --group testnow",
         "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
         "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
 
