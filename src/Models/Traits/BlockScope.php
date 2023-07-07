@@ -16,11 +16,6 @@ trait BlockScope
         return $query->where('created_at', '>=', Carbon::now()->subDays($days));
     }
 
-    public function scopeByIp($query, string $ipAddress)
-    {
-        return $query->where('blocked_ip', $ipAddress);
-    }
-
     public function scopeByUserId($query, int $userId)
     {
         return $query->where('blocked_user_id', $userId);

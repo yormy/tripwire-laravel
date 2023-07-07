@@ -18,11 +18,6 @@ trait LogScope
         return $query->whereIn('event_code', $codes);
     }
 
-    public function scopeByIp($query, string $ipAddress)
-    {
-        return $query->where('ip', $ipAddress);
-    }
-
     public function scopeByUserId($query, int $userId)
     {
         return $query->where('user_id', $userId);

@@ -62,7 +62,7 @@ class LogRepository
 
     public function resetIp(string $ip, bool $softDelete = true): void
     {
-        $query = $this->model::where('ip', $ip);
+        $query = $this->model::byIp($ip);
         $this->delete($query, $softDelete);
     }
 

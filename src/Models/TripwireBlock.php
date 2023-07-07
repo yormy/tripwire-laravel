@@ -33,6 +33,11 @@ class TripwireBlock extends BaseModel
         parent::__construct($attributes);
     }
 
+    public function scopeByIp($query, string $ipAddress)
+    {
+        return $query->where('blocked_ip', $ipAddress);
+    }
+
     //    public function getRouteKeyName()
     //    {
     //        return 'xid';

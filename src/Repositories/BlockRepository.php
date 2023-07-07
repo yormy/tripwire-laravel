@@ -44,7 +44,7 @@ class BlockRepository
 
     public function resetIp(string $ip, bool $softDelete = true): void
     {
-        $query = $this->model::where('blocked_ip', $ip)
+        $query = $this->model::byIp($ip)
             ->where('persistent_block', false);
 
         $this->delete($query, $softDelete);
@@ -116,7 +116,7 @@ class BlockRepository
     public function isIpBlockedUntil(string $ipAddress): ?Carbon
     {
         $builder = $this->model
-            ->where('blocked_ip', $ipAddress)
+            ->byIp($ipAddress)
             ->where('blocked_until', '>', Carbon::now());
 
         $blocked = $this->getLatest($builder);
@@ -165,7 +165,7 @@ class BlockRepository
             ->where('blocked_until', '>', Carbon::now());
 
         $builder->where(function ($query) use ($ipAddress, $browserFingerprint, $userId, $userType) {
-            $query->where('blocked_ip', $ipAddress);
+            $query = $query->byIp($ipAddress);
 
             if ($browserFingerprint) {
                 $query->orWhere('blocked_browser_fingerprint', $browserFingerprint);

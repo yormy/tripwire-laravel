@@ -42,4 +42,9 @@ class TripwireLog extends BaseModel
 
         parent::__construct($attributes);
     }
+
+    public function scopeByIp($query, string $ipAddress)
+    {
+        return $query->where('ip', $ipAddress);
+    }
 }
