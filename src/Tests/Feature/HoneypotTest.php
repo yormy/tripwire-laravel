@@ -17,15 +17,15 @@ class HoneypotTest extends TestCase
      *
      * @group tripwire-honeypot
      */
-    public function Trigger_honeypot_log(): void
+    public function Trigger_honeypot_Log(): void
     {
         $startCount = Tripwirelog::count();
 
         $this->setDefaultConfig();
         $this->triggerHoneypotOke();
         config([
-            'tripwire_wires.honeypots.attack_score' => 10,
-            'tripwire_wires.honeypots.tripwires' => [
+            'tripwire_wires.honeypot.attack_score' => 10,
+            'tripwire_wires.honeypot.tripwires' => [
                 'foo',
             ],
         ]);
@@ -50,8 +50,8 @@ class HoneypotTest extends TestCase
         $this->triggerHoneypotOke();
 
         config([
-            'tripwire_wires.honeypots.attack_score' => 10,
-            'tripwire_wires.honeypots.tripwires' => [
+            'tripwire_wires.honeypot.attack_score' => 10,
+            'tripwire_wires.honeypot.tripwires' => [
                 'foo',
             ],
         ]);
@@ -68,6 +68,8 @@ class HoneypotTest extends TestCase
     public function triggerHoneypotBlock(): void
     {
         $result = $this->testHoneypot();
+
+        $this->assertNotEquals($result, 'next');
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
@@ -96,6 +98,7 @@ class HoneypotTest extends TestCase
     private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+        config(['tripwire_wires.honeypot.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
     }
 }

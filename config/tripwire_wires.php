@@ -467,7 +467,7 @@ $modelMissingConfig = WireDetailsConfig::make()
 */
 $honeypotConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_HONEYPOT_ENABLED', env('TRIPWIRE_ENABLED', true)))
-    ->attackScore(3)
+    ->attackScore(300)
     ->tripwires([
         'isAdmin',
         'debug',
@@ -476,7 +476,19 @@ $honeypotConfig = WireDetailsConfig::make()
         'is_debug',
         'show_log',
         'skip_encryption',
-    ]);
+       // 'firstname',
+    ])
+    ->rejectResponse(
+        BlockResponseConfig::make(
+            //JsonResponseConfig::make()->code(406)->exception(RequestChecksumFailedException::class),
+            JsonResponseConfig::make()->code(406)->json(["aa"]),
+            //JsonResponseConfig::make()->code(406)->redirectUrl('http://ggooele.com'),
+            HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
+        )
+    );
+
+;
+
 
 /*
 |--------------------------------------------------------------------------

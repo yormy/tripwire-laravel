@@ -29,38 +29,37 @@ class ExceptionInspector
 
         if ($e instanceof ModelNotFoundException) {
             $model = $e->getModel();
-            $wireConfig = new WireConfig('model404');
-            $this->config = $wireConfig;
+
+            $this->config = new WireConfig('model404');
 
             if ($this->config->isDisabled()) {
                 return;
             }
 
             /** @var MissingModelConfig $missingModelConfig */
-            $missingModelConfig = $wireConfig->tripwires()[0];
+            $missingModelConfig = $this->config->tripwires()[0];
             $needsProcessing = CheckOnlyExcept::needsProcessing($model, $missingModelConfig);
             if ($needsProcessing) {
                 // attack found
                 $violations = [$model];
                 $triggerEventData = new TriggerEventData(
-                    attackScore: $wireConfig->attackScore(),
+                    attackScore: $this->config->attackScore(),
                     violations: $violations,
                     triggerData: implode(',', $violations),
                     triggerRules: [],
-                    trainingMode: $wireConfig->trainingMode(),
-                    debugMode: $wireConfig->debugMode(),
+                    trainingMode: $this->config->trainingMode(),
+                    debugMode: $this->config->debugMode(),
                     comments: '',
                 );
                 event(new Model404FailedEvent($triggerEventData));
 
-                BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode());
+                BlockIfNeeded::run($request, $this->config->punish(), $this->config->trainingMode());
                 // Response is not needed, consumer will handle the 404, this is just an additional inspector
             }
         }
 
         if ($e instanceof NotFoundHttpException) {
-            $wireConfig = new WireConfig('page404');
-            $this->config = $wireConfig;
+            $this->config = new WireConfig('page404');
 
             if ($this->skip($request)) {
                 return;
@@ -69,17 +68,17 @@ class ExceptionInspector
             $value = $request->url();
             $violations = [$value];
             $triggerEventData = new TriggerEventData(
-                attackScore: $wireConfig->attackScore(),
+                attackScore: $this->config->attackScore(),
                 violations: $violations,
                 triggerData: implode(',', $violations),
                 triggerRules: [],
-                trainingMode: $wireConfig->trainingMode(),
-                debugMode: $wireConfig->debugMode(),
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
                 comments: '',
             );
             event(new Page404FailedEvent($triggerEventData));
 
-            BlockIfNeeded::run($request, $wireConfig->punish(), $wireConfig->trainingMode());
+            BlockIfNeeded::run($request, $this->config->punish(), $this->config->trainingMode());
             // Response is not needed, consumer will handle the 404, this is just an additional inspector
         }
     }

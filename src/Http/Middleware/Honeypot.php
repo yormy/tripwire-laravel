@@ -4,14 +4,12 @@ namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\HoneypotFailedEvent;
-use Yormy\TripwireLaravel\Services\BlockIfNeeded;
 use Yormy\TripwireLaravel\Services\HoneypotService;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
+use Yormy\TripwireLaravel\Traits\TripwireHelpers;
 
 /**
  * Goal:
@@ -23,6 +21,8 @@ use Yormy\TripwireLaravel\Services\ResponseDeterminer;
  */
 class Honeypot
 {
+    use TripwireHelpers;
+
     public const NAME = 'honeypot';
 
     /**
@@ -32,48 +32,46 @@ class Honeypot
      */
     public function handle(Request $request, Closure $next)
     {
-        $wireConfig = new WireConfig(self::NAME);
+        $this->request = $request;
 
-        $honeypotsMustBeFalseOrMissing = $wireConfig->tripwires();
+        $this->config = new WireConfig(self::NAME);
+
+        $honeypotsMustBeFalseOrMissing = $this->config->tripwires();
 
         $violations = HoneypotService::checkFalseValues($request, $honeypotsMustBeFalseOrMissing);
 
         if (! empty($violations)) {
             $triggerEventData = new TriggerEventData(
-                attackScore: $wireConfig->attackScore(),
+                attackScore: $this->config->attackScore(),
                 violations: $violations,
                 triggerData: implode(',', $violations),
                 triggerRules: [],
-                trainingMode: $wireConfig->trainingMode(),
-                debugMode: $wireConfig->debugMode(),
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
                 comments: '',
             );
 
-            $this->attackFound($request, $triggerEventData, $wireConfig);
+            $this->attackFound($triggerEventData);
 
+            $rejectResponse = $this->getConfig($request, 'honeypot');
+            $respond = new ResponseDeterminer($rejectResponse, $request->url());
             if ($request->wantsJson()) {
-                $config = JsonResponseConfig::makeFromArray(config('tripwire.reject_response.json'));
-                $respond = new ResponseDeterminer($config, $request->url());
-
                 return $respond->respondWithJson();
             }
-
-            $config = HtmlResponseConfig::makeFromArray(config('tripwire.reject_response.html'));
-            $respond = new ResponseDeterminer($config, $request->url());
 
             return $respond->respondWithHtml();
         }
 
-        $this->cleanup($request, $wireConfig);
+        $this->cleanup($request, $this->config);
 
         return $next($request);
     }
 
-    protected function attackFound(Request $request, TriggerEventData $triggerEventData, WireConfig $config): void
+    protected function attackFound(TriggerEventData $triggerEventData): void
     {
         event(new HoneypotFailedEvent($triggerEventData));
 
-        BlockIfNeeded::run($request, $config->punish(), $config->trainingMode());
+        $this->blockIfNeeded();
     }
 
     protected function cleanup(Request $request, WireConfig $wireConfig): void

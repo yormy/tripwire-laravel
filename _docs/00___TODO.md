@@ -1,10 +1,13 @@
 Waar is de grens tussen dingen in env zetten en mensen config laten aanpassen !!!!
 
+test honeypot filled with 0 but present, fille with false => testcases
+
 
 ### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 
 ### what does :redirect_url do in json response ?
+nthing, but is cool to implement to give standard response for a frontend to redirect
 
 
 # DOCS
@@ -72,6 +75,9 @@ Send the user an email when they are blocked (only on first block of the day)
 
 ## Geofencing
 - fix geo fencing, need working api key to ip lookup stuff
+- use offline database https://www.maxmind.com/en/home
+- when api calls, cache results to prevent  duplicate calls
+- separate job to update location based on ip
 
 # Management:
 - response wrapper ?
