@@ -33,6 +33,10 @@ class ResponseDeterminer
             return $response;
         }
 
+        if ($response = $this->asJsonRedirect($data)) {
+            return $response;
+        }
+
         if ($response = $this->asGeneralMessage()) {
             return $response;
         }
@@ -84,6 +88,19 @@ class ResponseDeterminer
         }
 
         return null;
+    }
+
+    public function asJsonRedirect(): ?JsonResponse
+    {
+        if (!isset($this->config->redirectUrl)) {
+            return null;
+        }
+
+        $data = [
+            'redirect_url' => $this->config->redirectUrl
+        ];
+
+        return Response::json($data, $this->code);
     }
 
     public function asView(array $data): ?View

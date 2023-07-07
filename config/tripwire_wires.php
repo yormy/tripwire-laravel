@@ -476,13 +476,10 @@ $honeypotConfig = WireDetailsConfig::make()
         'is_debug',
         'show_log',
         'skip_encryption',
-       // 'firstname',
     ])
     ->rejectResponse(
         BlockResponseConfig::make(
-            //JsonResponseConfig::make()->code(406)->exception(RequestChecksumFailedException::class),
-            JsonResponseConfig::make()->code(406)->json(["aa"]),
-            //JsonResponseConfig::make()->code(406)->redirectUrl('http://ggooele.com'),
+            JsonResponseConfig::make()->code(406)->exception(RequestChecksumFailedException::class),
             HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
         )
     );

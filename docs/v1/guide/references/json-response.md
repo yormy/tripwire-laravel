@@ -18,6 +18,13 @@ Throw an exception
 JsonResponseConfig::make()->exception(TripwireFailedException::class)
 ```
 
+## Redirect
+Returns json data, with a redirect url
+```php
+JsonResponseConfig::make()->code(406)->redirectUrl('http://go-away.com'),
+// returns {redirect_url: "http://go-away.com"}
+```
+
 ## Message
 Returns a translated message
 ```php

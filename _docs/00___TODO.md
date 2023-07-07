@@ -6,10 +6,6 @@ test honeypot filled with 0 but present, fille with false => testcases
 ### Route::TripwireResetRoutes();   // needs to have guest access/ todo also ignored by firewall... how? does this work
 -- generated reset url, how is this not blocked by tripwire ? + in docs
 
-### what does :redirect_url do in json response ?
-nthing, but is cool to implement to give standard response for a frontend to redirect
-
-
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
 * how to do encyption
