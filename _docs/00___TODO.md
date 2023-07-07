@@ -68,6 +68,7 @@ Send the user an email when they are blocked (only on first block of the day)
 - Mark block permanent / unmark
 - get reset key
 - Admin routes docs (registrations)
+- docs ## Generate a reset url: Todo
 
 # Unit test
 - globally ignore certain cookies

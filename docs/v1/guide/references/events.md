@@ -1,8 +1,8 @@
-# Events - todo
+# Events
 
-Blocked Events
-When a block is added most of the time multiple events are sent. You can simply catch the generic event or a more specific one if you like
-When a block is added there could be a notification sent out (see notifications in your config);
+Blocked Events:
+* When a block is added most of the time multiple events are sent. You can simply catch the generic event or a more specific one if you like
+* When a block is added there could be a notification sent out (see notifications in your config);
 
 Suggestions
 - When a block is added logging out the current user is advisable
@@ -19,13 +19,3 @@ Suggestions
 ### TripwireBlockedEvent
 * User logout
 * Send admin notification
-
-
-
-
-| Event                       | When | Description |
-|-----------------------------|------|-------------|
-| TripwireBlockedEvent        |      |             |
-|       |      |             |
-|  |      |             |
-|     |      |             |

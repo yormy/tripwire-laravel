@@ -1,4 +1,4 @@
-# Wires Request - todo
+# Wires Request
 
 Each wire has a optional set of global overrides and some specific settings:
 

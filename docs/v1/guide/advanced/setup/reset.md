@@ -41,7 +41,7 @@ The database hold a field called: ```persistent_block``` when this flag is set, 
 These flags need to be cleared before the blocks can be removed with a reset-url
 :::
 
-## Generate a reset url: Todo
+## Generate a reset url
 In your routes file specify the prefix/middleware/group and register the admin tripwire routes
 
 This way you can specify where the routes are in your path and namespaces and what middleware you want to apply

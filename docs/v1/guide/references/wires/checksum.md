@@ -1,5 +1,5 @@
 
-# Checksum - todo
+# Checksum
 :::tip Goal
 Prevent man-in-the-middle types of request changes. By adding a checksum to the request and validate that in the backend
 :::
