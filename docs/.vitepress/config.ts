@@ -56,6 +56,7 @@ export default defineConfig({
           { text: 'Debug mode', link: '/v1/guide/advanced/configuration/debug-mode' },
           { text: 'Block Response', link: '/v1/guide/advanced/configuration/block-response' },
           { text: 'Reject Response', link: '/v1/guide/advanced/configuration/reject-response' },
+          { text: 'Browser fingerprinting', link: '/v1/guide/advanced/configuration/browser-fingerprint' },
         ]
       },
       {

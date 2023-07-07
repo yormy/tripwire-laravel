@@ -272,7 +272,7 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-    public function cookies(
+    public function browserFingerprint(
         string $browserFingerprint,
     ): self {
         $this->cookies = CookiesConfig::make(

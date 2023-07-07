@@ -1,6 +1,5 @@
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
-* ->cookies('session_id') // ???? of hernoemen als fingerprinting
 
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
