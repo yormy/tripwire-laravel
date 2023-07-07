@@ -1,7 +1,3 @@
-## INTEGRATION TESTS
-app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
-
-
 # Docs2 - Finalization
 install in clean laravel blade and record how to install and how to trigger
 show video of reset

@@ -135,7 +135,6 @@ class ChecksumValidateWire
 
         $this->blockIfNeeded();
 
-
         //throw new RequestChecksumFailedException();
     }
 }

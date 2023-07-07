@@ -29,7 +29,7 @@ class ThrottleHitWireListener extends WireBaseListener
 
     public function isAttack($event): bool
     {
-        $violations =['throttle_hit'];
+        $violations = ['throttle_hit'];
         $triggerEventData = new TriggerEventData(
             attackScore: $this->config->attackScore(),
             violations: $violations,

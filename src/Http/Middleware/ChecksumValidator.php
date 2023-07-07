@@ -19,7 +19,7 @@ class ChecksumValidator
         $request = $validate->calculate($request);
 
         $validate = new ChecksumValidateWire();
+
         return $validate->handle($request, $next);
     }
-
 }

@@ -2,14 +2,11 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
-use Illuminate\Auth\Events\Failed as LoginFailed;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\Http\Middleware\ChecksumValidator;
-use Yormy\TripwireLaravel\Http\Middleware\Wires\Geo;
-use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -75,7 +72,6 @@ class ChecksumTest extends TestCase
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
-
     // ---------- HELPERS ----------
     private function trigger(bool $withChecksum = false): mixed
     {
@@ -111,7 +107,6 @@ class ChecksumTest extends TestCase
 
         config(['tripwire_wires.checksum.config' => $config]);
 
-
         $config = BlockResponseConfig::make(
             JsonResponseConfig::make()->code(self::HTTP_TRIPWIRE_CODE),
             HtmlResponseConfig::make()->code(self::HTTP_TRIPWIRE_CODE),
@@ -119,5 +114,4 @@ class ChecksumTest extends TestCase
         config(['tripwire_wires.checksum.reject_response' => $config->toArray()]);
 
     }
-
-    }
+}

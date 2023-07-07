@@ -35,7 +35,6 @@ class PageMissingTest extends TestCase
         $this->assertNotLogged($startCount);
     }
 
-
     /**
      * @test
      *
@@ -61,8 +60,8 @@ class PageMissingTest extends TestCase
     {
         $urls = UrlsConfig::make()
             ->except([
-                    'path/to/*'
-                ]
+                'path/to/*',
+            ]
             );
         config(['tripwire_wires.page404.urls' => $urls->toArray()]);
 
@@ -75,7 +74,6 @@ class PageMissingTest extends TestCase
         $this->assertNotLogged($startCount);
     }
 
-
     /**
      * @test
      *
@@ -85,8 +83,8 @@ class PageMissingTest extends TestCase
     {
         $urls = UrlsConfig::make()
             ->only([
-                    'path/to/*'
-                ]
+                'path/to/*',
+            ]
             );
         config(['tripwire_wires.page404.urls' => $urls->toArray()]);
 
@@ -108,8 +106,8 @@ class PageMissingTest extends TestCase
     {
         $urls = UrlsConfig::make()
             ->only([
-                    'path/not/*'
-                ]
+                'path/not/*',
+            ]
             );
         config(['tripwire_wires.page404.urls' => $urls->toArray()]);
 

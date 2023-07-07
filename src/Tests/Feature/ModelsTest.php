@@ -82,7 +82,7 @@ class ModelsTest extends TestCase
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
 
-        $config = MissingModelConfig::make()->only([Tripwirelog::class,])->except([]);
+        $config = MissingModelConfig::make()->only([Tripwirelog::class])->except([]);
         config(['tripwire_wires.model404.tripwires' => [$config]]);
     }
 }

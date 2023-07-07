@@ -150,8 +150,7 @@ class TripwireServiceProvider extends ServiceProvider
 
         Relation::enforceMorphMap([
             $LogModelName => $logModelpath,
-            $blockModelName => $blockModelpath
+            $blockModelName => $blockModelpath,
         ]);
     }
-
 }

@@ -40,6 +40,7 @@ class ChecksumCalculate
     public function validate(Request $request, Closure $next)
     {
         $validate = new ChecksumValidateWire();
+
         return $validate->handle($request, $next);
     }
 }

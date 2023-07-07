@@ -49,13 +49,10 @@ class LoginFailedTest extends TestCase
         $this->assertLogAddedToDatabase($startCount);
     }
 
-
-
-
     // ---------- HELPERS ----------
     private function triggerLoginFailed(): void
     {
-        event(new LoginFailed('','',''));
+        event(new LoginFailed('', '', ''));
     }
 
     private function setDefaultConfig(array $data = []): void
@@ -63,7 +60,7 @@ class LoginFailedTest extends TestCase
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
 
-//        $config = MissingModelConfig::make()->only([Tripwirelog::class,])->except([]);
-//        config(['tripwire_wires.model404.tripwires' => [$config]]);
+        //        $config = MissingModelConfig::make()->only([Tripwirelog::class,])->except([]);
+        //        config(['tripwire_wires.model404.tripwires' => [$config]]);
     }
 }

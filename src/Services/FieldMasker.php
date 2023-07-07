@@ -9,13 +9,14 @@ class FieldMasker
         foreach ($inputs as $key => $input) {
 
             if (is_array($input)) {
-               return self::run($input);
+                return self::run($input);
             } else {
-                if (in_array($key, config('tripwire.log.remove', []) )) {
-                    $inputs[$key] = "****";
+                if (in_array($key, config('tripwire.log.remove', []))) {
+                    $inputs[$key] = '****';
                 }
             }
         }
+
         return $inputs;
     }
 }

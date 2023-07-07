@@ -442,8 +442,8 @@ $pageMissingConfig = WireDetailsConfig::make()
     ->urls(
         UrlsConfig::make()
             ->except([
-                'admin/*'
-                ]
+                'admin/*',
+            ]
             ));
 
 /*
@@ -483,9 +483,6 @@ $honeypotConfig = WireDetailsConfig::make()
             HtmlResponseConfig::make()->code(406)->view(env('TRIPWIRE_REJECT_PAGE', 'tripwire-laravel::blocked')),
         )
     );
-
-;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -538,14 +535,14 @@ $checksumConfig = WireDetailsConfig::make()
     ->urls(
         UrlsConfig::make()
             ->except([
-                'admin/*'
+                'admin/*',
             ]
-        )
+            )
     )
     ->config([
-        'posted'=> 'X-Checksum', // the name of the field that includes your frontend calculated checksum
-        'timestamp'=> 'X-sand', // the name of the field that includes your frontend calculated checksum
-        'serverside_calculated'=> 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
+        'posted' => 'X-Checksum', // the name of the field that includes your frontend calculated checksum
+        'timestamp' => 'X-sand', // the name of the field that includes your frontend calculated checksum
+        'serverside_calculated' => 'x-checksum-serverside', // the name of the field that includes your frontend calculated checksum
     ])
     ->rejectResponse(
         BlockResponseConfig::make(
@@ -576,7 +573,6 @@ $res = ConfigBuilderWires::make()
     ->addWireDetails(ThrottleHitWireListener::NAME, $throttleHitConfig)
     ->addWireDetails(Referer::NAME, $refererConfig)
     ->addWireDetails(ChecksumValidateWire::NAME, $checksumConfig)
-
 
     ->toArray();
 

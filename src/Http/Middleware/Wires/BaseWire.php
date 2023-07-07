@@ -4,8 +4,6 @@ namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Closure;
 use Illuminate\Http\Request;
-use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
-use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;

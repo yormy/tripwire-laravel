@@ -92,12 +92,12 @@ class ResponseDeterminer
 
     public function asJsonRedirect(): ?JsonResponse
     {
-        if (!isset($this->config->redirectUrl)) {
+        if (! isset($this->config->redirectUrl)) {
             return null;
         }
 
         $data = [
-            'redirect_url' => $this->config->redirectUrl
+            'redirect_url' => $this->config->redirectUrl,
         ];
 
         return Response::json($data, $this->code);

@@ -29,7 +29,7 @@ class LoginFailedWireListener extends WireBaseListener
 
     public function isAttack($event): bool
     {
-        $violations =['login_failed'];
+        $violations = ['login_failed'];
         $triggerEventData = new TriggerEventData(
             attackScore: $this->config->attackScore(),
             violations: $violations,

@@ -71,7 +71,6 @@ class WireDetailsConfig
 
         $object->config = $config;
 
-
         return $object;
     }
 
