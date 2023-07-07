@@ -1,6 +1,3 @@
-# DOCS
-explain where to place tripwire, if user block => tripwire na user known
-
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
 
