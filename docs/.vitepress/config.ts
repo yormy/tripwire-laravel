@@ -110,6 +110,7 @@ export default defineConfig({
       },
       { text: 'Contributing', items: [
         { text: 'Report Security Issues', link: '/general/report_security' },
+        { text: 'Roadmap', link: '/general/roadmap' },
         { text: 'License', link: '/general/license' },
         { text: 'Change log', link: '/general/changelog' },
         { text: 'Contributing', link: '/general/contributing' },
