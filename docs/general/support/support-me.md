@@ -9,12 +9,14 @@ Both positive and negative feedback is welcome. I am a human being, so yes I als
 
 Only with your feedback Tripwire can grow and help more sites to be secure.
 
-Don't be a stranger, reach out and share your thoughts with me
+Don't be a stranger, reach out and share your thoughts with me on github
 
 <!--@include: ./donations.md-->
 
 
 ## Pro Support
 If you want lifetime pro support, meaning faster merging of your changes/fixes that you submit. access to pre-release versions, vue frontend,
-faster response time to your issues. Please consider donating 1000 euro, which is still much less than you would have spent if you hired a team to develop this package.
+faster response time to your issues. Please consider donating [1000 euro](https://helpforhealth.thrivecart.com/tripwire-pro-support/), which is still much less than you would have spent if you hired a team to develop this package.
 And if you have questions, sure I am there, and consider I do not have a fully fledged 24/7 support, so responses could take a few hours. 
+
+[YES, I higly value your help and insights](https://helpforhealth.thrivecart.com/tripwire-pro-support/)

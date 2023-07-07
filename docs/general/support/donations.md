@@ -11,10 +11,13 @@ That having said, if you had to employ someone or use one of your developers to 
 So your investment would be considerable to get a system like Tripwire running.
 
 Ask yourself, could you or your development staff develop this level of tested code and features within 4 hours of their time.
-If not, please support me by donating 100 Euro (or more) for my time and effort. If you are an agency developing software for others, please consider supporting me for every product that includes Tripwire.
+If not, please support me by donating [100 Euro (or more)](https://helpforhealth.thrivecart.com/tripwire-development-donation/) for my time and effort. If you are an agency developing software for others, please consider supporting me for every product that includes Tripwire.
 This will allow me to continue working on this project and support the people I learned from and make it even better for you. Lets keep the community alive.
 
-If you are a sole developer, without employing people or making money with your code, just use this package as you see fit, and 'donate' with your feedback and getting the word out
+If you are a sole developer, without employing people or making money with your code, just use this package as you see fit, and 'donate' with your feedback
+[donate a coffee](https://helpforhealth.thrivecart.com/tripwire-coffee-donation/) and getting the word out
 But if you have a paid product/service or if you are paying developers (freelance or a salary), please consider me paying only a fraction of the development costs.
 
 As I said, I am not a company, just a sole developer wanting to make great things, so I could really use your financial support.
+
+[YES !!! I want to donate to help you maintain and continue your development](https://helpforhealth.thrivecart.com/tripwire-development-donation/)

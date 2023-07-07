@@ -1,8 +1,6 @@
 # DOCS
 explain where to place tripwire, if user block => tripwire na user known
-* how to do encyption
 * ->cookies('session_id') // ???? of hernoemen als fingerprinting
-  setup payment method
 
 ## INTEGRATION TESTS
 app-test : encryption is done in consumer derived model, which must somehow override findByIp (>where encrypted()
