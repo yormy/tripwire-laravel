@@ -20,7 +20,7 @@ class LogRequestService
 
     private static function addRequest(Request $request, array $data): array
     {
-        $data['url'] = $request->fullUrl();
+        $data['url'] = self::truncateValue($request->fullUrl());
         $data['method'] = $request->method();
 
         $logReferer = $request->headers->get('referer');
@@ -39,6 +39,11 @@ class LogRequestService
         $data['request_fingerprint'] = self::fingerprint($request);
 
         return $data;
+    }
+
+    private static function truncateValue(string $value, $max = 150): string
+    {
+        return substr($value, 0, $max);
     }
 
     private static function addUser(Request $request, array $data): array
