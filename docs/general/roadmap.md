@@ -25,8 +25,8 @@ Add auto style checkers and integration checkers, which ones?
 - Documentation
 
 ## Email Notifications
-- Send the user an email when they are blocked (only on first block of the day)
-- Maybe cache a value with a decay, that once released a new email can be sent ? Send 1 per day per Ip?, DDOS will send thousands of emails, Digest of blocked ip per day ?
+- Send the user an email when they are blocked (only on first block of the day). Maybe cache a value with a decay, that once released a new email can be sent ?
+- Send admin Digest of blocked ip per day/ slack
 
 
 ## File Upload With Unit Tests
