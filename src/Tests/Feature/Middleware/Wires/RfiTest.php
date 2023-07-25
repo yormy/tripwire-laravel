@@ -10,11 +10,11 @@ class RfiTest extends BaseWireTester
 
     protected $tripwireClass = Rfi::class;
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'random',
     ];
 
-    protected array $violations = [
+    protected static array $violations = [
         'https://example.com/danger.json',
     ];
 }

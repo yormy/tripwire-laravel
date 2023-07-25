@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 
 class AcceptAllEnglishTest extends BaseAcceptAll
 {
-    protected string $acceptsDataFile = './src/Tests/Dataproviders/AcceptsData-en_GB.txt';
+    protected static string $acceptsDataFile = './src/Tests/Dataproviders/AcceptsData-en_GB.txt';
 
     /**
      * @test

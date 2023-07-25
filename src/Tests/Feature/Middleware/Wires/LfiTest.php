@@ -10,12 +10,12 @@ class LfiTest extends BaseWireTester
 
     protected $tripwireClass = Lfi::class;
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'dsfsdf',
         'sss',
     ];
 
-    protected array $violations = [
+    protected static array $violations = [
         '../../etc/passwd',
     ];
 }

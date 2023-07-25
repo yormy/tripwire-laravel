@@ -8,13 +8,13 @@ class TextExtensiveTest extends BaseExtensive
 {
     protected $tripwireClass = Text::class;
 
-    protected string $violationsDataFile = './src/Tests/Dataproviders/TextViolationsData.txt';
+    protected static string $violationsDataFile = './src/Tests/Dataproviders/TextViolationsData.txt';
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'saaaaaaa',
     ];
 
-    protected array $violations;
+    protected static array $violations;
 
     /**
      * @test

@@ -8,13 +8,13 @@ class LfiExtensiveTest extends BaseExtensive
 {
     protected $tripwireClass = Lfi::class;
 
-    protected string $violationsDataFile = './src/Tests/Dataproviders/LfiViolationsData.txt';
+    protected static string $violationsDataFile = './src/Tests/Dataproviders/LfiViolationsData.txt';
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'saaaaaaa',
     ];
 
-    protected array $violations;
+    protected static array $violations;
 
     /**
      * @test

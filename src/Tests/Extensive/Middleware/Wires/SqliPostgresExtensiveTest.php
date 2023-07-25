@@ -8,13 +8,13 @@ class SqliPostgresExtensiveTest extends BaseExtensive
 {
     protected $tripwireClass = Sqli::class;
 
-    protected string $violationsDataFile = './src/Tests/Dataproviders/SqliPostgresViolationsData.txt';
+    protected static string $violationsDataFile = './src/Tests/Dataproviders/SqliPostgresViolationsData.txt';
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'saaaaaaa',
     ];
 
-    protected array $violations;
+    protected static array $violations;
 
     /**
      * @test

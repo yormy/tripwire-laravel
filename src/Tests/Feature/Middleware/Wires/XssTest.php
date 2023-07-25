@@ -10,12 +10,12 @@ class XssTest extends BaseWireTester
 
     protected $tripwireClass = Xss::class;
 
-    protected array $accepts = [
+    protected static array $accepts = [
         "it!--That·I·won't,·then!--Bill's·to",
         'sss',
     ];
 
-    protected array $violations = [
+    protected static array $violations = [
         '<script>',
         '#-moz-binding:#u',
         '<script>alert(123)</script>',

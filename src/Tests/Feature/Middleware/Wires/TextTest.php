@@ -10,11 +10,11 @@ class TextTest extends BaseWireTester
 
     protected $tripwireClass = Text::class;
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'hello',
     ];
 
-    protected array $violations = [
+    protected static array $violations = [
         '\x00',
     ];
 }

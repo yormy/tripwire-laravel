@@ -20,13 +20,13 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 
 class BaseAcceptAll extends TestCase
 {
-    protected string $violationsDataFile;
+    protected static string $violationsDataFile;
 
-    protected string $acceptsDataFile;
+    protected static string $acceptsDataFile;
 
-    protected array $accepts = [];
+    protected static array $accepts = [];
 
-    protected array $violations = [];
+    protected static array $violations = [];
 
     protected array $tripwires = [
         Agent::class,
@@ -46,12 +46,10 @@ class BaseAcceptAll extends TestCase
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        if (isset($this->acceptsDataFile)) {
-            $this->accepts = file($this->acceptsDataFile);
-        }
 
-        if (isset($this->violationsDataFile)) {
-            $this->violations = file($this->violationsDataFile);
+
+        if (isset(static::$violationsDataFile)) {
+            static::$violations = file(static::$violationsDataFile);
         }
 
         parent::__construct($name, $data, $dataName);
@@ -86,10 +84,14 @@ class BaseAcceptAll extends TestCase
         $this->assertEquals($startCount, TripwireLog::count());
     }
 
-    public function accepts(): array
+    public static function accepts(): array
     {
+        if (isset(static::$acceptsDataFile)) {
+            static::$accepts = file(static::$acceptsDataFile);
+        }
+
         $providerArray = [];
-        foreach ($this->accepts as $accept) {
+        foreach (static::$accepts as $accept) {
             $providerArray[$accept] = [$accept];
         }
 

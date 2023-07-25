@@ -10,26 +10,18 @@ class BaseExtensive extends TestCase
 {
     use TripwireTestTrait;
 
-    protected array $accepts = [];
+    protected static array $accepts = [];
 
-    protected array $violations = [];
+    protected static array $violations = [];
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        if (isset($this->violationsDataFile)) {
-            $this->violations = $this->loadFile($this->violationsDataFile);
-        }
-
-        if (isset($this->acceptsDataFile)) {
-            $this->accepts = $this->loadFile($this->acceptsDataFile);
-        }
-
         $this->tripwire = $this->tripwireClass::NAME;
 
         parent::__construct($name, $data, $dataName);
     }
 
-    private function loadFile(string $filename): array
+    private static function loadFile(string $filename): array
     {
         $data = file($filename);
 

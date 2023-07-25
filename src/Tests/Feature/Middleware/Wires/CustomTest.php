@@ -10,12 +10,12 @@ class CustomTest extends BaseWireTester
 
     protected $tripwireClass = Custom::class;
 
-    protected array $accepts = [
+    protected static array $accepts = [
         "it!--That·I·won't,·then!--Bill's·to",
         'sss',
     ];
 
-    protected array $violations = [
+    protected static array $violations = [
         ' example.malicious',
     ];
 }

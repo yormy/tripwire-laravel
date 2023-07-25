@@ -12,10 +12,14 @@ trait TripwireTestTrait
      *
      * @psalm-return array<list{mixed}>
      */
-    public function accepts(): array
+    public static function accepts(): array
     {
+        if (isset(static::$acceptsDataFile)) {
+            static::$accepts = static::loadFile(static::$acceptsDataFile);
+        }
+
         $providerArray = [];
-        foreach ($this->accepts as $accept) {
+        foreach (static::$accepts as $accept) {
             $providerArray[$accept] = [$accept];
         }
 
@@ -27,10 +31,14 @@ trait TripwireTestTrait
      *
      * @psalm-return array<list{mixed}>
      */
-    public function violations(): array
+    public static function violations(): array
     {
+        if (isset(static::$violationsDataFile)) {
+            static::$violations = static::loadFile(static::$violationsDataFile);
+        }
+
         $providerArray = [];
-        foreach ($this->violations as $violation) {
+        foreach (static::$violations as $violation) {
             $providerArray[$violation] = [$violation];
         }
 

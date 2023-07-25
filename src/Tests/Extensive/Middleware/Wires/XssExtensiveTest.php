@@ -8,13 +8,13 @@ class XssExtensiveTest extends BaseExtensive
 {
     protected $tripwireClass = Xss::class;
 
-    protected string $violationsDataFile = './src/Tests/Dataproviders/XssViolationsData.txt';
+    protected static string $violationsDataFile = './src/Tests/Dataproviders/XssViolationsData.txt';
 
-    protected array $accepts = [
+    protected static array $accepts = [
         'saaaaaaa',
     ];
 
-    protected array $violations;
+    protected static array $violations;
 
     /**
      * @test
