@@ -54,7 +54,7 @@
         "pint": "vendor/bin/pint",
 
         "---------- TESTS ---------- ": "",
-        "test:all": "vendor/bin/paratest",
+        "test:all": "vendor/bin/phpunit",
         "t": "vendor/bin/phpunit --colors=always --testdox --group testnow",
         "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
         "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
