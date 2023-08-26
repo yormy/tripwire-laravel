@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('event_code');
             $table->integer('event_score');
-            $table->string('event_violation')->nullable();
+            $table->text('event_violation')->nullable();
             $table->string('event_comment')->nullable();
 
             $table->string('ip')->nullable();   // need place for encrypted values
@@ -30,11 +30,11 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('method')->nullable();
             $table->string('referer')->nullable();
-            $table->text('header', 500)->nullable();
+            $table->text('header')->nullable();
 
-            $table->text('request', 500)->nullable();
-            $table->text('trigger_data', 500)->nullable();
-            $table->string('trigger_rule')->nullable();
+            $table->text('request')->nullable();
+            $table->text('trigger_data')->nullable();
+            $table->text('trigger_rule')->nullable();
             $table->text('user_agent')->nullable();
 
             $table->text('robot_crawler')->nullable();
