@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('event_code');
             $table->integer('event_score');
-            $table->string('event_violation')->nullalbe();
+            $table->string('event_violation')->nullable();
             $table->string('event_comment')->nullable();
 
             $table->string('ip')->nullable();   // need place for encrypted values

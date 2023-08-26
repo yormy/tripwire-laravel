@@ -34,13 +34,13 @@ class LogRepository
         $data = $meta;
         $data['event_code'] = $event::CODE;
         $data['event_score'] = $event->getScore();
-        $data['event_violation'] = substr($event->getViolationText(), 0, 150);
+        $data['event_violation'] = substr($event->getViolationText(), 0, 1000);
         $data['event_comment'] = $event->getComment();
         $data['ignore'] = $event->getTrainingMode();
 
         if ($event->getDebugMode()) {
             $data['trigger_data'] = $event->getTriggerData();
-            $data['trigger_rule'] = substr(implode(';', $event->getTriggerRules()), 0, 150);
+            $data['trigger_rule'] = substr(implode(';', $event->getTriggerRules()), 0, 1000);
         }
 
         return $this->model::create($data);
