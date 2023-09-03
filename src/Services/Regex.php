@@ -10,7 +10,7 @@ class Regex
 
     const QUOTE = '["|\'|&quot;|&apos;]';
 
-    const LT = '[<|&lt;|%3c|¼|%BC]';
+    const LT = '[<|&lt;|%3c|¼]';        // %BC adding will trip the word 'subscription somehow
 
     const GT = '[>|%3e|¾|%BE]';
 

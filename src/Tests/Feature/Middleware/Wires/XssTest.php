@@ -13,6 +13,7 @@ class XssTest extends BaseWireTester
     protected static array $accepts = [
         "it!--That·I·won't,·then!--Bill's·to",
         'sss',
+        'net subscription'
     ];
 
     protected static array $violations = [
