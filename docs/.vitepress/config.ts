@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: "Tripwire",
-  description: "A extensive web application firewall (waf) to stock hackers in their tracks",
+  description: "A extensive web application firewall (waf) to stop hackers in their tracks",
   base: '/tripwire-laravel/',
   head: [
     ['link', { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/images/apple-touch-icon.png"}],

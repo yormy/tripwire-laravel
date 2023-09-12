@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Tripwire Laravel"
   text: ""
-  tagline: A extensive web application firewall (waf) to stock hackers in their tracks
+  tagline: A extensive web application firewall (waf) to stop hackers in their tracks
   image:
       src: /tripwire.png
       alt: Tripwire laravel - Web application firewall
