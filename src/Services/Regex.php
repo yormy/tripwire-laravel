@@ -10,9 +10,9 @@ class Regex
 
     const QUOTE = '["|\'|&quot;|&apos;]';
 
-    const LT = '[<|&lt;|%3c|¼]';        // %BC adding will trip the word 'subscription somehow
+    const LT = '([<|&lt;|¼]|%3C|%BC)';        // %BC adding will trip the word 'subscription somehow
 
-    const GT = '[>|%3e|¾|%BE]';
+    const GT = '([>|¾])|%3E|%BE';
 
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
