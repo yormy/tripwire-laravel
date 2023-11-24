@@ -4,15 +4,15 @@ namespace Yormy\TripwireLaravel\Services;
 
 class Regex
 {
-    const FILLER = '[\+|\s|\x00]';
+    const FILLER = '[\+\s\x00]';
 
-    const FILLERSEMI = '[;|/]';
+    const FILLERSEMI = '[;/]';
 
-    const QUOTE = '["|\'|&quot;|&apos;]';
+    const QUOTE = '["\'&quot;&apos;]';
 
-    const LT = '([<|&lt;|¼]|%3C|%BC)';        // %BC adding will trip the word 'subscription somehow
+    const LT = '([<&lt;¼]|%3C|%BC)';        // %BC adding will trip the word 'subscription somehow
 
-    const GT = '([>|¾])|%3E|%BE';
+    const GT = '([>¾])|%3E|%BE';
 
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
