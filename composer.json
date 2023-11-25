@@ -56,15 +56,13 @@
         "---------- TESTS ---------- ": "",
         "test:all": "vendor/bin/phpunit",
         "t": "vendor/bin/phpunit --colors=always --testdox --group testnow",
+        "t:all": "vendor/bin/phpunit",
         "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
-        "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
+        "t:wires": "vendor/bin/phpunit --colors=always --testdox --testsuite FeatureWires",
 
         "t:main": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",
-        "test:main": "vendor/bin/paratest --colors=always --testdox --testsuite Main",
 
         "t:ext": "vendor/bin/phpunit --colors=always --testdox --testsuite Extensive",
-        "test:ext": "vendor/bin/paratest --colors=always --testdox --testsuite Extensive",
-
 
         "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
