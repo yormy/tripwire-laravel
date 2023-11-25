@@ -208,6 +208,7 @@ $f2 = Regex::FILLERSEMI;
 $q = REGEX::QUOTE;
 
 $evilStart = Regex::forbidden([
+    "{$lt}",
     "{$lt} scrscriptipt",
     '%253c',
     '%252F',
