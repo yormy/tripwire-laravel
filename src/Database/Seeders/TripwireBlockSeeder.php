@@ -3,12 +3,13 @@
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 
-class TripwireLogSeeder extends Seeder
+class TripwireBlockSeeder extends Seeder
 {
     public function run()
     {
-        TripwireLog::factory(30)->create();
+        TripwireBlock::factory(20)->create();
     }
 }
