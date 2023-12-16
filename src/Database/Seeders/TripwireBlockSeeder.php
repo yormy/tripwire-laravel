@@ -13,7 +13,6 @@ class TripwireBlockSeeder extends Seeder
         TripwireBlock::factory(1)->create();
 
         $block = TripwireBlock::factory()->create();
-
         TripwireLog::factory(5)->forBlock($block)->create();
     }
 }
