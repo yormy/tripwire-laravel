@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\LogScope;
 
 class TripwireLog extends BaseModel
 {
     use LogScope;
+    use PackageFactoryTrait;
 
     protected $fillable = [
         'ignore',
