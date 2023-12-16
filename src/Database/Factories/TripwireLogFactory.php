@@ -94,4 +94,12 @@ class TripwireLogFactory extends Factory
         });
     }
 
+    public function forBlock($block): Factory
+    {
+        return $this->state(function (array $attributes) use ($block) {
+            return [
+                'tripwire_block_id' => $block->id,
+            ];
+        });
+    }
 }

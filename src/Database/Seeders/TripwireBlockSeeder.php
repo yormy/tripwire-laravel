@@ -10,6 +10,10 @@ class TripwireBlockSeeder extends Seeder
 {
     public function run()
     {
-        TripwireBlock::factory(20)->create();
+        TripwireBlock::factory(1)->create();
+
+        $block = TripwireBlock::factory()->create();
+
+        TripwireLog::factory(5)->forBlock($block)->create();
     }
 }

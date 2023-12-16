@@ -9,6 +9,6 @@ class TripwireLogSeeder extends Seeder
 {
     public function run()
     {
-        TripwireLog::factory(30)->create();
+        TripwireLog::factory(10)->create();
     }
 }
