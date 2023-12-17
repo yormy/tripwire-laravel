@@ -17,10 +17,10 @@ class AdminRoutes
                 Route::prefix('tripwire/')
                     ->name('tripwire.')
                     ->group(function () {
-                            Route::get('/reset-key', [ResetController::class, 'getKey'])->name('reset-key');
-                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
+//                            Route::get('/reset-key', [ResetController::class, 'getKey'])->name('reset-key');
+//                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
                             Route::get('/{member_xid}/logs', [LogController::class, 'index'])->name('logs.index');
-                            Route::get('/{member_xid}/blocks', [BlockController::class, 'show'])->name('blocks.show');
+                            Route::get('/{member_xid}/blocks', [BlockController::class, 'index'])->name('blocks.index');
                     });
             });
         });
