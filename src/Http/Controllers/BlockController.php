@@ -7,7 +7,9 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockCollection;
+use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockResource;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\LogCollection;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 use Yormy\Apiresponse\Facades\ApiResponse;
@@ -27,19 +29,29 @@ class BlockController extends controller
             ->successResponse();
     }
 
-    public function show($blockId): Response
+    public function show(Request $request, TripwireBlock $block_xid)
     {
-        if (! is_numeric($blockId)) {
-            return response()->json([]);
-        }
+        $tripwireBlock = $block_xid;
 
-        $logRepository = new LogRepository();
-        $logs = $logRepository->getByBlockId($blockId);
+        $block = (new BlockResource($tripwireBlock))->toArray($request);
 
-        $logs = (new LogCollection($logs))->toArray(null);
-
-        return response()->json($logs);
+        return ApiResponse::withData($block)
+            ->successResponse();
     }
+
+//    public function show11($blockId): Response
+//    {
+//        if (! is_numeric($blockId)) {
+//            return response()->json([]);
+//        }
+//
+//        $logRepository = new LogRepository();
+//        $logs = $logRepository->getByBlockId($blockId);
+//
+//        $logs = (new LogCollection($logs))->toArray(null);
+//
+//        return response()->json($logs);
+//    }
 
     private function decorateWithStatus($values): array
     {
