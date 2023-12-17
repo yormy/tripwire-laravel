@@ -40,7 +40,7 @@ class LogResource extends JsonResource
             'browser_fingerprint' => $this->browser_fingerprint,
             'ignore' => (bool)$this->ignore,
             'rowstyle' => $this->deleted_at ? 'deleted' : '',
-            'block_xid' => $this->relationLoaded('block') ? $this->block->xid : null,
+            'block_xid' => $this->relationLoaded('block') && $this->tripwire_block_id ? $this->block->xid : null,
         ];
 
         return $fields;
