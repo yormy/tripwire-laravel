@@ -51,6 +51,6 @@ class TripwireLog extends BaseModel
 
     public function block()
     {
-        return $this->belongsTo(TripwireBlock::class, 'tripwire_block_id');
+        return $this->belongsTo(TripwireBlock::class, 'tripwire_block_id', 'id', )->withTrashed();
     }
 }
