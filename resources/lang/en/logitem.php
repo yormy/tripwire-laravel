@@ -10,6 +10,10 @@ return [
     'crawler' => 'Crawler',
     'referer' => 'Referer',
     'method' => 'Method',
-    'url' => 'url'
-
+    'url' => 'url',
+    'score' => [
+        'high' => 'High',
+        'medium' => 'Medium',
+        'low' => 'Low'
+    ],
 ];

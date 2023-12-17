@@ -21,6 +21,15 @@ class LogResource extends JsonResource
             'request' => $this->request,
             'user_agent' => $this->user_agent,
             'created_at' => $this->formatDate($this->created_at),
+
+            'tripwire_block_id' => $this->tripwire_block_id,
+
+            'header' => $this->header,
+            'robot_crawler' => $this->robot_crawler,
+            'trigger_data' => $this->trigger_data,
+            'trigger_rule' => $this->trigger_rule,
+            'browser_fingerprint' => $this->browser_fingerprint,
+            'ignore' => (bool)$this->ignore,
         ];
 
         return $fields;
