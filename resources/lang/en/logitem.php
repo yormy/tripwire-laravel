@@ -16,4 +16,5 @@ return [
         'medium' => 'Medium',
         'low' => 'Low'
     ],
+    'block_active' => 'Active'
 ];
