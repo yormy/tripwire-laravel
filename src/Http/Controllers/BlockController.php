@@ -34,34 +34,48 @@ class BlockController extends controller
         $blockRepository = new BlockRepository();
         $tripwireBlock = $blockRepository->findByXid($block_xid);
 
-        $block = (new BlockResource($tripwireBlock))->toArray($request);
-
-        return ApiResponse::withData($block)
-            ->successResponse();
+        return $this->returnBlock($request, $tripwireBlock);
     }
 
     public function persist(Request $request, TripwireBlock $block_xid)
     {
         $block_xid->persistent_block = true;
         $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
     }
 
     public function unpersist(Request $request, TripwireBlock $block_xid)
     {
         $block_xid->persistent_block = false;
         $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
     }
 
     public function unblock(Request $request, TripwireBlock $block_xid)
     {
         $block_xid->blocked_until = null;
         $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
     }
 
     public function delete(Request $request, TripwireBlock $block_xid)
     {
         $block_xid->delete();
+
+        return $this->returnBlock($request, $block_xid);
     }
+
+    private function returnBlock(Request $request, TripwireBlock $tripwireBlock)
+    {
+        $block = (new BlockResource($tripwireBlock))->toArray($request);
+
+        return ApiResponse::withData($block)
+            ->successResponse();
+    }
+
 
 //    public function show11($blockId): Response
 //    {
