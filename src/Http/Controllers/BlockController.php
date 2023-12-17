@@ -29,9 +29,10 @@ class BlockController extends controller
             ->successResponse();
     }
 
-    public function show(Request $request, TripwireBlock $block_xid)
+    public function show(Request $request, $block_xid)
     {
-        $tripwireBlock = $block_xid;
+        $blockRepository = new BlockRepository();
+        $tripwireBlock = $blockRepository->findByXid($block_xid);
 
         $block = (new BlockResource($tripwireBlock))->toArray($request);
 

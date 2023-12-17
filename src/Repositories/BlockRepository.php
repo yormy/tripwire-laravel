@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
 {
@@ -35,6 +36,14 @@ class BlockRepository
             ->byUserType(get_class($user))
             ->withTrashed()
             ->get();
+    }
+
+    public function findByXid(string $xid): ?TripwireBlock
+    {
+        return $this->model::where('xid', $xid)
+            ->withTrashed()
+            ->get()
+            ->first();
     }
 
     /**

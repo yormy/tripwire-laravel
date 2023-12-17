@@ -23,12 +23,13 @@ class AdminRoutes
                         Route::get('/reset-key', [ResetController::class, 'getKey'])->name('reset-key');
                         //                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
 
-                        // not in account... but this is general for all account
-//                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
-//                            Route::get('/blocks/{block_xid}', [BlockController::class, 'show'])->name('blocks.show');
-//                            Route::get('/blocks/{block_xid}/logs', [LogController::class, 'indexForBlock'])->name('blocks.logs.index');
+//                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index'); // all blocks for system managemetn
+
+                            // get details of blocks
+                            Route::get('/blocks/{block_xid}', [BlockController::class, 'show'])->name('blocks.show');
+                            Route::get('/blocks/{block_xid}/logs', [LogController::class, 'indexForBlock'])->name('blocks.logs.index');
 //
-//                            Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
+//                            Route::get('/logs', [LogController::class, 'index'])->name('logs.index'); // all logs for system managemetn
 
                             Route::prefix('/{member_xid}')
                             ->name('')
