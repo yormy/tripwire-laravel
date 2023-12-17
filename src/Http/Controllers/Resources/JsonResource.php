@@ -13,8 +13,12 @@ class JsonResource extends BaseJsonResource
         $this->withoutWrapping();
     }
 
-    protected function formatDate(Carbon $date): string
+    protected function formatDate(?Carbon $date): string
     {
+        if (!$date) {
+            return '';
+        }
+
         return $date
             ->clone()
             ->addMinutes(config('tripwire.datetime.offset', 0))

@@ -29,7 +29,7 @@ class LogResource extends JsonResource
             'request' => $this->request,
             'user_agent' => $this->user_agent,
             'created_at' => $this->formatDate($this->created_at),
-            'deleted_at' => $this->deleted_at,
+            'deleted_at' => $this->formatDate($this->deleted_at),
 
             'tripwire_block_id' => $this->tripwire_block_id,
 

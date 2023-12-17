@@ -40,6 +40,29 @@ class BlockController extends controller
             ->successResponse();
     }
 
+    public function persist(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->persistent_block = true;
+        $block_xid->save();
+    }
+
+    public function unpersist(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->persistent_block = false;
+        $block_xid->save();
+    }
+
+    public function unblock(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->blocked_until = null;
+        $block_xid->save();
+    }
+
+    public function delete(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->delete();
+    }
+
 //    public function show11($blockId): Response
 //    {
 //        if (! is_numeric($blockId)) {

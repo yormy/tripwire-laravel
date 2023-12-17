@@ -19,11 +19,11 @@ class BlockResource extends JsonResource
             'blocked_repeater' => $this->blocked_repeater,
 
             'internal_comments' => $this->internal_comments,
-            'manually_blocked' => $this->manually_blocked,
-            'persistent_block' => $this->persistent_block,
+            'manually_blocked' => (bool)$this->manually_blocked,
+            'persistent_block' => (bool)$this->persistent_block,
             'blocked_until' => $this->formatDate($this->blocked_until),
             'created_at' => $this->formatDate($this->created_at),
-            'deleted_at' => $this->deleted_at,
+            'deleted_at' => $this->formatDate($this->deleted_at),
 
             'rowstyle' => $this->deleted_at ? 'deleted' : ''
         ];

@@ -28,6 +28,11 @@ class AdminRoutes
                             // get details of blocks
                             Route::get('/blocks/{block_xid}', [BlockController::class, 'show'])->name('blocks.show');
                             Route::get('/blocks/{block_xid}/logs', [LogController::class, 'indexForBlock'])->name('blocks.logs.index');
+
+                            Route::delete('/blocks/{block_xid}', [BlockController::class, 'delete'])->name('blocks.delete');
+                            Route::patch('/blocks/{block_xid}', [BlockController::class, 'unblock'])->name('blocks.unblock');
+                            Route::patch('/blocks/{block_xid}/persist', [BlockController::class, 'persist'])->name('blocks.persist');
+                            Route::patch('/blocks/{block_xid}/unpersist', [BlockController::class, 'unpersist'])->name('blocks.unpersist');
 //
 //                            Route::get('/logs', [LogController::class, 'index'])->name('logs.index'); // all logs for system managemetn
 
