@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\LogCollection;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class LogController extends controller
@@ -23,6 +24,17 @@ class LogController extends controller
             ->successResponse();
     }
 
+    public function indexForBlock(Request $request, TripwireBlock $block_xid): Response
+    {
+        $tripwireBlock = $block_xid;
+
+        $logs = $tripwireBlock->logs;
+        $logs = (new LogCollection($logs))->toArray($request);
+        $logs = $this->decorateWithStatus($logs);
+
+        return ApiResponse::withData($logs)
+            ->successResponse();
+    }
 
     private function decorateWithStatus($values): array
     {

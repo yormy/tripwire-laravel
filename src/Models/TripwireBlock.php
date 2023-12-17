@@ -35,6 +35,16 @@ class TripwireBlock extends BaseModel
         parent::__construct($attributes);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'xid';
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(TripwireLog::class)->withTrashed();
+    }
+
     public function scopeByIp($query, string $ipAddress)
     {
         return $query->where('blocked_ip', $ipAddress);
