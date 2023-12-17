@@ -39,7 +39,8 @@ class LogResource extends JsonResource
             'trigger_rule' => $this->trigger_rule,
             'browser_fingerprint' => $this->browser_fingerprint,
             'ignore' => (bool)$this->ignore,
-            'rowstyle' => $this->deleted_at ? 'deleted' : ''
+            'rowstyle' => $this->deleted_at ? 'deleted' : '',
+            'block_xid' => $this->relationLoaded('block') ? $this->block->xid : null,
         ];
 
         return $fields;

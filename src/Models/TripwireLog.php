@@ -48,4 +48,9 @@ class TripwireLog extends BaseModel
     {
         return $query->where('ip', $ipAddress);
     }
+
+    public function block()
+    {
+        return $this->belongsTo(TripwireBlock::class, 'tripwire_block_id');
+    }
 }

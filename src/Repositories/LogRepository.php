@@ -26,7 +26,8 @@ class LogRepository
 
     public function getAllForUser($user): Collection
     {
-        return $this->model::latest()
+        return $this->model::with(['block'])
+            ->latest()
             ->byUserId($user->id)
             ->byUserType(get_class($user))
             ->withTrashed()
