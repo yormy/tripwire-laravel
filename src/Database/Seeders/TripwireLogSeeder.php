@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
 class TripwireLogSeeder extends Seeder
 {
-    public function run()
+    public function run($user = null)
     {
         $user = UserResolver::getRandom();
         TripwireLog::factory(10)->forUser($user)->create();

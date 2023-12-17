@@ -6,9 +6,9 @@ use Illuminate\Database\Seeder;
 
 class MainTripwireSeeder extends Seeder
 {
-    public function run()
+    public function run($user = null)
     {
-        (new TripwireLogSeeder())->run();
-        (new TripwireBlockSeeder())->run();
+        (new TripwireLogSeeder($user))->run();
+        (new TripwireBlockSeeder($user))->run();
     }
 }

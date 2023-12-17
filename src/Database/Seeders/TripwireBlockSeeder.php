@@ -9,7 +9,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
 class TripwireBlockSeeder extends Seeder
 {
-    public function run()
+    public function run($user = null)
     {
         $user = UserResolver::getRandom();
         TripwireBlock::factory(1)->create();
