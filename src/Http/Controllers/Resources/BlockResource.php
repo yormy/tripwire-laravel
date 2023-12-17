@@ -23,6 +23,9 @@ class BlockResource extends JsonResource
             'persistent_block' => $this->persistent_block,
             'blocked_until' => $this->formatDate($this->blocked_until),
             'created_at' => $this->formatDate($this->created_at),
+            'deleted_at' => $this->deleted_at,
+
+            'rowstyle' => $this->deleted_at ? 'deleted' : ''
         ];
 
         return $fields;

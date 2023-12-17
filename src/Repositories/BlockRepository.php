@@ -28,6 +28,15 @@ class BlockRepository
         return $this->model::latest()->get();
     }
 
+    public function getAllForUser($user): Collection
+    {
+        return $this->model::latest()
+            ->byUserId($user->id)
+            ->byUserType(get_class($user))
+            ->withTrashed()
+            ->get();
+    }
+
     /**
      * @return void
      */

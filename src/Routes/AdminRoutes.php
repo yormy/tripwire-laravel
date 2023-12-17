@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel\Routes;
 use Illuminate\Support\Facades\Route;
 use Yormy\TripwireLaravel\Http\Controllers\BlockController;
 use Yormy\TripwireLaravel\Http\Controllers\LogController;
+use Yormy\TripwireLaravel\Http\Controllers\Members\MemberBlockController;
 use Yormy\TripwireLaravel\Http\Controllers\Members\MemberLogController;
 use Yormy\TripwireLaravel\Http\Controllers\ResetController;
 
@@ -33,7 +34,7 @@ class AdminRoutes
                             ->name('')
                             ->group(function () {
                                 Route::get('/logs', [MemberLogController::class, 'index'])->name('logs.index');
-                                Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
+                                Route::get('/blocks', [MemberBlockController::class, 'index'])->name('blocks.index');
                             });
                     });
             });
