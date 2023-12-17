@@ -58,7 +58,6 @@ class TripwireLogFactory extends Factory
             'event_comment' => 'a comment',
             'ip' => $this->faker->ipv4,
             'ips' => '["121.121.121.123", "121.121.121.123"]',
-            'level' => '?',
             'url' => $this->faker->url,
             'method' => $this->faker->randomElement(['GET', 'POST', 'PUT', 'DELETE', 'PATCH']),
             'referer' => 'referer',

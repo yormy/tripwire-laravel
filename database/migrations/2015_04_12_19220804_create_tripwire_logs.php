@@ -23,7 +23,6 @@ return new class extends Migration
 
             $table->string('ip')->nullable();   // need place for encrypted values
             $table->json('ips')->nullable();    // need place for encrypted values
-            $table->string('level')->default('medium');
             $table->integer('user_id')->nullable();
             $table->string('user_type')->nullable();
 
