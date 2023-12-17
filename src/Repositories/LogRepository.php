@@ -24,6 +24,15 @@ class LogRepository
         return $this->model::latest()->get();
     }
 
+    public function getAllForUser($user): Collection
+    {
+        return $this->model::latest()
+            ->byUserId($user->id)
+            ->byUserType(get_class($user))
+            ->withTrashed()
+            ->get();
+    }
+
     public function getByBlockId(int $blockId): Collection
     {
         return $this->model::where('tripwire_block_id', $blockId)->latest()->get();
