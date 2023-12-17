@@ -6,6 +6,13 @@ class LogResource extends JsonResource
 {
     public function toArray($request): array
     {
+
+        $domain = parse_url($this->url)['host'];
+        $relativeURl = strtolower($this->url);
+        $relativeURl = str_replace('https://', '', $relativeURl);
+        $relativeURl = str_replace('http://', '', $relativeURl);
+        $relativeURl = str_replace($domain, '', $relativeURl);
+
         $fields = [
             'xid' => $this->xid,
             'event_code' => $this->event_code,
@@ -16,6 +23,7 @@ class LogResource extends JsonResource
             'user_id' => $this->user_id,
             'user_type' => $this->user_type,
             'url' => $this->url,
+            'relative_url' => $relativeURl,
             'method' => $this->method,
             'referer' => $this->referer,
             'request' => $this->request,
