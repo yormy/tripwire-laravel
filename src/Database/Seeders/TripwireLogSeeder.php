@@ -3,14 +3,26 @@
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
+use Mexion\BedrockUsersv2\Domain\User\Models\Member;
+use Yormy\LaravelFootsteps\Models\Log;
 use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
 class TripwireLogSeeder extends Seeder
 {
     public function run($user = null)
     {
-        $user = UserResolver::getRandom();
-        TripwireLog::factory(10)->forUser($user)->create();
+        $member = Member::where('id', 1)->first();
+        TripwireLog::factory(10)->forUser($member)->create();
+
+        $member = Member::where('id', 2)->first();
+        TripwireLog::factory(10)->forUser($member)->create();
+
+
+        $admin = Admin::where('id', 1)->first();
+        TripwireLog::factory(10)->forUser($admin)->create();
+
+        $admin = Admin::where('id', 2)->first();
+        TripwireLog::factory(10)->forUser($admin)->create();
     }
 }

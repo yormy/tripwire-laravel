@@ -1,14 +1,14 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Http\Controllers\Members;
+namespace Yormy\TripwireLaravel\Http\Controllers\Admins;
 
 use Yormy\TripwireLaravel\Http\Controllers\Base\BaseBlockController;
 use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
-class MemberBlockController extends BaseBlockController
+class AdminBlockController extends BaseBlockController
 {
     public function getUser($userId)
     {
-        return UserResolver::getMemberByXid($userId);
+        return UserResolver::getAdminByXid($userId);
     }
 }

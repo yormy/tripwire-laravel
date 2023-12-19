@@ -3,6 +3,8 @@
 namespace Yormy\TripwireLaravel\Routes;
 
 use Illuminate\Support\Facades\Route;
+use Yormy\TripwireLaravel\Http\Controllers\Admins\AdminBlockController;
+use Yormy\TripwireLaravel\Http\Controllers\Admins\AdminLogController;
 use Yormy\TripwireLaravel\Http\Controllers\BlockController;
 use Yormy\TripwireLaravel\Http\Controllers\LogController;
 use Yormy\TripwireLaravel\Http\Controllers\Members\MemberBlockController;
@@ -36,7 +38,18 @@ class AdminRoutes
 //
 //                            Route::get('/logs', [LogController::class, 'index'])->name('logs.index'); // all logs for system managemetn
 
-                            Route::prefix('/{member_xid}')
+
+                    });
+            });
+        });
+
+        Route::macro('TripwireAdminMemberRoutes', function (string $prefix = '') {
+            Route::prefix($prefix)->name($prefix ? $prefix . '.' : '')->group(function () {
+
+                Route::prefix('tripwire/')
+                    ->name('tripwire.')
+                    ->group(function () {
+                        Route::prefix('/{member_xid}')
                             ->name('')
                             ->group(function () {
                                 Route::get('/logs', [MemberLogController::class, 'index'])->name('logs.index');
@@ -45,5 +58,23 @@ class AdminRoutes
                     });
             });
         });
+
+
+        Route::macro('TripwireAdminAdminRoutes', function (string $prefix = '') {
+            Route::prefix($prefix)->name($prefix ? $prefix . '.' : '')->group(function () {
+
+                Route::prefix('tripwire/')
+                    ->name('tripwire.')
+                    ->group(function () {
+                        Route::prefix('/{admin_xid}')
+                            ->name('')
+                            ->group(function () {
+                                Route::get('/logs', [AdminLogController::class, 'index'])->name('logs.index');
+                                Route::get('/blocks', [AdminBlockController::class, 'index'])->name('blocks.index');
+                            });
+                    });
+            });
+        });
+
     }
 }
