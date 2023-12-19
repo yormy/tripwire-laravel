@@ -23,6 +23,16 @@ class UserResolver
         return Member::first();
     }
 
+    public static function getMemberById($id): Member
+    {
+        return Member::where('id', $id)->firstOrFail();
+    }
+
+    public static function getAdminById($id): Admin
+    {
+        return Admin::where('id', $id)->firstOrFail();
+    }
+
     public static function getMemberByXid($id): Member
     {
         return Member::where('xid', $id)->firstOrFail();
