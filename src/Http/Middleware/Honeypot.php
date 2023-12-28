@@ -25,11 +25,6 @@ class Honeypot
 
     public const NAME = 'honeypot';
 
-    /**
-     * @return mixed
-     *
-     * @throws \Mexion\BedrockCore\Exceptions\ExceptionResponse
-     */
     public function handle(Request $request, Closure $next)
     {
         $this->request = $request;
