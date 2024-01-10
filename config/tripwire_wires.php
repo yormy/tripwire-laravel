@@ -30,6 +30,7 @@ use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\LoginFailedWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\PageNotFoundWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\RouteModelBindingWireListener;
 use Yormy\TripwireLaravel\Observers\Listeners\Tripwires\ThrottleHitWireListener;
+use Yormy\TripwireLaravel\Services\Html;
 use Yormy\TripwireLaravel\Services\IpLookup\ExtremeIplookup;
 use Yormy\TripwireLaravel\Services\Regex;
 
@@ -273,9 +274,12 @@ $orTags = Regex::or([
     'body',
 ]);
 
+$whitelistedHtml = html::tags();
+
 $xssConfig = WireDetailsConfig::make()
     ->enabled(env('TRIPWIRE_XSS_ENABLED', env('TRIPWIRE_ENABLED', true)))
     ->attackScore(250)
+    ->whitelistedTokens([$whitelistedHtml])
     ->tripwires(Regex::injectFillers([
         $evilStart,
         $evilTokens,

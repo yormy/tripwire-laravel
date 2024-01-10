@@ -13,6 +13,7 @@ class XssTest extends BaseWireTester
     protected static array $accepts = [
         "it!--That·I·won't,·then!--Bill's·to",
         'sss',
+        'hello <bold> something',  // html never allowed
         'net subscription',
         'N2IyZjliMGI1NTY4OGJkYTMwM2VjYWY' // regression test
     ];

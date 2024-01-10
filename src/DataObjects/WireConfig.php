@@ -54,6 +54,11 @@ class WireConfig
         return $trainingMode;
     }
 
+    public function whitelistedTokens(): array
+    {
+        return $this->wireConfig->whitelistedTokens;
+    }
+
     public function debugMode(): bool
     {
         return $this->defaultConfig->debugMode ?? false;

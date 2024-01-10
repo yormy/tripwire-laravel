@@ -28,6 +28,8 @@ class WireDetailsConfig
 
     public ?BlockResponseConfig $rejectResponse;
 
+    public array $whitelistedTokens = [];
+
     private function __construct()
     {
     }
@@ -93,6 +95,10 @@ class WireDetailsConfig
 
         if (isset($data['attack_score'])) {
             $object->attackScore = $data['attack_score'];
+        }
+
+        if (isset($data['whitelisted_tokens'])) {
+            $object->whitelistedTokens = $data['whitelisted_tokens'];
         }
 
         if (isset($data['urls'])) {
@@ -163,6 +169,13 @@ class WireDetailsConfig
         return $this;
     }
 
+    public function whitelistedTokens(array $whitelistedTokens): self
+    {
+        $this->whitelistedTokens = $whitelistedTokens;
+
+        return $this;
+    }
+
     public function urls(UrlsConfig $urls): self
     {
         $this->urls = $urls;
@@ -227,6 +240,8 @@ class WireDetailsConfig
         }
 
         $data['attack_score'] = $this->attackScore;
+
+        $data['whitelisted_tokens'] = $this->whitelistedTokens;
 
         if ($this->urls) {
             $data['urls'] = $this->urls->toArray();

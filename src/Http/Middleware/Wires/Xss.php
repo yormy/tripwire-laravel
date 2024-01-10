@@ -15,4 +15,14 @@ class Xss extends BaseWire
 
         $this->blockIfNeeded();
     }
+
+    public function prepareInput($value): string
+    {
+        $whitelistedTokens = $this->config->whitelistedTokens();// $this->getWhitelistedTokens();
+        foreach ($whitelistedTokens as $token) {
+            $value = str_ireplace($token,'##whitelisted_token_replacement##', $value);
+        }
+
+        return $value;
+    }
 }
