@@ -16,6 +16,7 @@ class SystemLogController extends Controller
         $logRepository = new LogRepository();
         $logs = $logRepository->getAll();
 
+
         $logs = (new LogCollection($logs))->toArray($request);
         $logs = $this->decorateWithStatus($logs);
 

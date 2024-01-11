@@ -25,6 +25,18 @@ class AdminRoutes
                     ->group(function () {
                         Route::get('/blocks', [SystemBlockController::class, 'index'])->name('blocks.index');
                         Route::get('/logs', [SystemLogController::class, 'index'])->name('logs.index');
+
+                        Route::prefix('/blocks/{block_xid}')
+                            ->name('blocks.')
+                            ->group(function () {
+                                Route::get('', [BlockController::class, 'show'])->name('show');
+                                Route::get('/logs', [LogController::class, 'indexForBlock'])->name('logs.index');
+
+                                Route::delete('', [BlockController::class, 'delete'])->name('delete');
+                                Route::patch('', [BlockController::class, 'unblock'])->name('unblock');
+                                Route::patch('/persist', [BlockController::class, 'persist'])->name('persist');
+                                Route::patch('/unpersist', [BlockController::class, 'unpersist'])->name('unpersist');
+                            });
                     });
             });
         });
@@ -38,22 +50,6 @@ class AdminRoutes
                     ->group(function () {
                         // only for user X
                         Route::get('/reset-key', [ResetController::class, 'getKey'])->name('reset-key');
-                        //                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index');
-
-//                            Route::get('/blocks', [BlockController::class, 'index'])->name('blocks.index'); // all blocks for system managemetn
-
-                            // get details of blocks
-                            Route::get('/blocks/{block_xid}', [BlockController::class, 'show'])->name('blocks.show');
-                            Route::get('/blocks/{block_xid}/logs', [LogController::class, 'indexForBlock'])->name('blocks.logs.index');
-
-                            Route::delete('/blocks/{block_xid}', [BlockController::class, 'delete'])->name('blocks.delete');
-                            Route::patch('/blocks/{block_xid}', [BlockController::class, 'unblock'])->name('blocks.unblock');
-                            Route::patch('/blocks/{block_xid}/persist', [BlockController::class, 'persist'])->name('blocks.persist');
-                            Route::patch('/blocks/{block_xid}/unpersist', [BlockController::class, 'unpersist'])->name('blocks.unpersist');
-//
-//                            Route::get('/logs', [LogController::class, 'index'])->name('logs.index'); // all logs for system managemetn
-
-
                     });
             });
         });
