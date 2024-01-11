@@ -21,7 +21,7 @@ class LogRepository
 
     public function getAll(): Collection
     {
-        return $this->model::latest()->get();
+        return $this->model::with('user')->latest()->get();
     }
 
     public function getAllForUser($user): Collection

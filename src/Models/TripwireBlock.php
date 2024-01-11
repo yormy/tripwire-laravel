@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\BlockScope;
 
@@ -48,6 +49,11 @@ class TripwireBlock extends BaseModel
     public function scopeByIp($query, string $ipAddress)
     {
         return $query->where('blocked_ip', $ipAddress);
+    }
+
+    public function user(): MorphTo
+    {
+        return $this->morphTo('user', 'blocked_user_type', 'blocked_user_id');
     }
 
     //    public function getRouteKeyName()

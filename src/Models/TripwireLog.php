@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\LogScope;
 
@@ -47,6 +48,11 @@ class TripwireLog extends BaseModel
     public function scopeByIp($query, string $ipAddress)
     {
         return $query->where('ip', $ipAddress);
+    }
+
+    public function user(): MorphTo
+    {
+        return $this->morphTo('user');
     }
 
     public function block()

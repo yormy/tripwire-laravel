@@ -273,4 +273,11 @@ $res = ConfigBuilder::make()
 
     ->toArray();
 
+$res['user_fields'] = [
+    'id' => 'xid',
+    'firstname' => 'firstname',
+    'lastname' => 'lastname',
+    'email' => 'email'
+];
+
 return $res;

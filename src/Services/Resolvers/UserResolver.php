@@ -33,6 +33,7 @@ class UserResolver
         return Admin::where('id', $id)->firstOrFail();
     }
 
+
     public static function getMemberByXid($id): Member
     {
         return Member::where('xid', $id)->firstOrFail();
