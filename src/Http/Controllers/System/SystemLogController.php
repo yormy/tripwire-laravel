@@ -19,6 +19,7 @@ class SystemLogController extends Controller
 
         $logs = (new LogCollection($logs))->toArray($request);
         $logs = $this->decorateWithStatus($logs);
+        $logs = $this->decorateWithMethod($logs);
 
         return ApiResponse::withData($logs)
             ->successResponse();
@@ -48,6 +49,32 @@ class SystemLogController extends Controller
 
 
             $values[$index]['status'] = $status;
+        }
+
+        return $values;
+    }
+
+    private function decorateWithMethod($values): array
+    {
+        foreach ($values as $index => $data) {
+
+            $nature = '';
+            if ($data['method'] === 'DELETE') {
+                $nature = 'DANGER';
+            }
+            if ($data['method'] === 'GET') {
+                $nature = 'SUCCESS';
+            }
+            if ($data['method'] === 'POST' || $data['method'] === 'PATCH' || $data['method'] === 'PUT') {
+                $nature = 'WARNING';
+            }
+
+            $status = [
+                'key' => $data['method'],
+                'nature' => $nature,
+                'text' => $data['method']
+            ];
+            $values[$index]['method'] = $status;
         }
 
         return $values;
