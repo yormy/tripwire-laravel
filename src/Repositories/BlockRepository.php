@@ -97,6 +97,15 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
+    public function addManualBlock(array $data): TripwireBlock
+    {
+        $data['manually_blocked'] = true;
+        $data['persistent_block'] = true;
+        $data['blocked_until'] = Carbon::now()->addYears(100);
+
+        return $this->model->create($data);
+    }
+
     public function add(
         int $penaltySeconds,
         string $ipAddress,

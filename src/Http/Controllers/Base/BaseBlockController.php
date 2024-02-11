@@ -25,30 +25,6 @@ abstract class BaseBlockController extends controller
         return ApiResponse::withData($blocks)
             ->successResponse();
     }
-//
-//    public function show(Request $request, TripwireBlock $block_xid)
-//    {
-//        $tripwireBlock = $block_xid;
-//
-//        $block = (new BlockResource($tripwireBlock))->toArray($request);
-//
-//        return ApiResponse::withData($block)
-//            ->successResponse();
-//    }
-
-//    public function show11($blockId): Response
-//    {
-//        if (! is_numeric($blockId)) {
-//            return response()->json([]);
-//        }
-//
-//        $logRepository = new LogRepository();
-//        $logs = $logRepository->getByBlockId($blockId);
-//
-//        $logs = (new LogCollection($logs))->toArray(null);
-//
-//        return response()->json($logs);
-//    }
 
     private function decorateWithStatus($values): array
     {

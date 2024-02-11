@@ -23,6 +23,7 @@ class TripwireBlock extends BaseModel
         'blocked_repeater',
         'manually_blocked',
         'persistent_block',
+        'internal_comments',
     ];
 
     protected $casts = [

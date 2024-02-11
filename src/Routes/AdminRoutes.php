@@ -24,6 +24,7 @@ class AdminRoutes
                     ->name('tripwire.')
                     ->group(function () {
                         Route::get('/blocks', [SystemBlockController::class, 'index'])->name('blocks.index');
+                        Route::post('/blocks', [SystemBlockController::class, 'store'])->name('blocks.store');
                         Route::get('/logs', [SystemLogController::class, 'index'])->name('logs.index');
 
                         Route::prefix('/blocks/{block_xid}')
