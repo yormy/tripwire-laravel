@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature\Management;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Testing\TestResponse;
 use Yormy\AssertLaravel\Traits\DisableExceptionHandling;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
@@ -20,6 +21,11 @@ class BlocksTest extends TestCase
     const ROUTE_SHOW_BLOCK = 'api.v1.admin.site.security.tripwire.blocks.show';
     const ROUTE_SHOW_BLOCK_LOGS = 'api.v1.admin.site.security.tripwire.blocks.logs.index';
 
+    const ROUTE_SHOW_BLOCK_DELETE = 'api.v1.admin.site.security.tripwire.blocks.delete';
+    const ROUTE_SHOW_BLOCK_UNBLOCK = 'api.v1.admin.site.security.tripwire.blocks.unblock';
+    const ROUTE_SHOW_BLOCK_PERSIST = 'api.v1.admin.site.security.tripwire.blocks.persist';
+    const ROUTE_SHOW_BLOCK_UNPERSIST = 'api.v1.admin.site.security.tripwire.blocks.unpersist';
+
     /**
      * @test
      *
@@ -27,12 +33,10 @@ class BlocksTest extends TestCase
      */
     public function Blocks_Index_HasItem(): void
     {
-        $blockedIp = '0.0.0';
-        $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertSuccessful();
-        $response->assertJsonDataArrayNotHasElement('blocked_ip', $blockedIp);
+        $data = $this->getBlockAddData();
+        $response = $this->addBlockRecord($data);
+        $blockedIp = json_decode($response->getContent())->data->blocked_ip;
 
-        TripwireBlock::factory()->create(['blocked_ip' => $blockedIp]);
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);
     }
@@ -60,8 +64,7 @@ class BlocksTest extends TestCase
     public function Blocks_AddItem_HasItem(): void
     {
         $data = $this->getBlockAddData();
-        $response = $this->json('POST', route(static::ROUTE_POST), $data);
-        $response->assertCreated();
+        $this->addBlockRecord($data);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $data['blocked_ip']);
@@ -84,7 +87,6 @@ class BlocksTest extends TestCase
      * @test
      *
      * @group tripwire-api
-     * @group xxx
      */
     public function Blocks_ShowBlockLogs(): void
     {
@@ -96,7 +98,92 @@ class BlocksTest extends TestCase
         $response->assertJsonDataArrayHasElement('xid', $log->xid);
     }
 
+    /**
+     * @test
+     *
+     * @group tripwire-api
+     */
+    public function Blocks_Delete(): void
+    {
+        $data = $this->getBlockAddData();
+        $response = $this->addBlockRecord($data);
+        $blockedIp = json_decode($response->getContent())->data->blocked_ip;
+        $blockedXid = json_decode($response->getContent())->data->xid;
+
+
+        $response = $this->json('GET', route(static::ROUTE_INDEX));
+        $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);
+
+        $this->json('DELETE', route(static::ROUTE_SHOW_BLOCK_DELETE, ['block_xid' => $blockedXid]));
+
+        $response = $this->json('GET', route(static::ROUTE_INDEX));
+        $response->assertJsonDataArrayNotHasElement('blocked_ip', $blockedIp);
+
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-api
+     */
+    public function Blocks_Unblock(): void
+    {
+        $block = TripwireBlock::factory()->create();
+
+        $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNBLOCK, ['block_xid' => $block->xid]));
+
+        $response->assertSuccessful();
+        $content = json_decode($response->getContent());
+        $this->assertEquals($content?->data?->blocked_until, '');
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-api
+     */
+    public function Blocks_Persist(): void
+    {
+        $data = $this->getBlockAddData();
+        $response = $this->addBlockRecord($data);
+        $xid = json_decode($response->getContent())->data->xid;
+
+        $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_PERSIST, ['block_xid' => $xid]));
+
+        $response->assertSuccessful();
+        $response->assertJsonDataItemHasElement('persistent_block', true);
+    }
+
+    /**
+     * @test
+     *
+     * @group tripwire-api
+     */
+    public function Blocks_Unpersist(): void
+    {
+        $data = $this->getBlockAddData();
+        $response = $this->addBlockRecord($data);
+        $xid = json_decode($response->getContent())->data->xid;
+
+        $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNPERSIST, ['block_xid' => $xid]));
+
+        $response->assertSuccessful();
+        $response->assertJsonDataItemHasElement('persistent_block', false);
+    }
+
     // --------- HELPERS ---------
+    private function addBlockRecord(array $data = null): TestResponse
+    {
+        if (!$data) {
+            $data = $this->getBlockAddData();
+        }
+
+        $response = $this->json('POST', route(static::ROUTE_POST), $data);
+        $response->assertCreated();
+
+        return $response;
+    }
+
     private function getBlockAddData(): array
     {
         $data = [];
