@@ -35,7 +35,7 @@ class SystemBlockController extends Controller
         $block = $this->decorateWithStatus($block);
 
         return ApiResponse::withData($block)
-            ->successResponse();
+            ->successResponseCreated();
     }
 
     private function decorateAllWithStatus($values): array
