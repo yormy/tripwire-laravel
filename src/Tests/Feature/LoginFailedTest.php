@@ -16,7 +16,6 @@ class LoginFailedTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
      */
     public function LoginFailed_Trigger_Skip(): void
     {
@@ -34,7 +33,6 @@ class LoginFailedTest extends TestCase
     /**
      * @test
      *
-     * @group xxx
      */
     public function LoginFailed_Trigger_Log(): void
     {
