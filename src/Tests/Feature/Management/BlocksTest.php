@@ -52,7 +52,6 @@ class BlocksTest extends TestCase
      * @test
      *
      * @group tripwire-api
-     * @group xxx
      */
     public function Blocks_AddItem_HasItem(): void
     {
