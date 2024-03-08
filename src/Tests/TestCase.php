@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Spatie\LaravelRay\RayServiceProvider;
 
@@ -43,5 +44,20 @@ abstract class TestCase extends BaseTestCase
         return function () {
             return 'next';
         };
+    }
+
+    protected function refreshTestDatabase()
+    {
+        if (! RefreshDatabaseState::$migrated) {
+
+            $this->artisan('db:wipe');
+
+            $this->loadMigrationsFrom(__DIR__.'/../tests/Setup/Database/Migrations');
+            $this->artisan('migrate');
+
+            RefreshDatabaseState::$migrated = true;
+        }
+
+        $this->beginDatabaseTransaction();
     }
 }
