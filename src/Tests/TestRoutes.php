@@ -12,7 +12,11 @@ class TestRoutes
             ->name('api.v1.admin.')
             ->middleware('api')
             ->group(function () {
-              //  Route::PromocodesApiV1();
+                Route::prefix('site/security')
+                    ->as('site.security.')
+                    ->group(function () {
+                        Route::TripwireAdminSystemRoutes();
+                    });
             });
     }
 }
