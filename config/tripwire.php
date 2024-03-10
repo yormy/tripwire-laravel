@@ -262,13 +262,15 @@ $res = ConfigBuilder::make()
     | urls should not start with a leading /
     | i.e.
     | - 'admin/*'
-    | - * /member/dashboard/*` (space between * and / here is needed as othewise it is comment in comment
+    | - * /member/dashboard/*` (space between * and / here is needed as otherwise it is comment in comment
     |
     */
     ->urls(
         UrlsConfig::make()
             ->only([])
-            ->except([])
+            ->except([
+                '*/telescope/*'
+            ])
     )
 
     ->toArray();
