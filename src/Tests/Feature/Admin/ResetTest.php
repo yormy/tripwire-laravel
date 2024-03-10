@@ -14,7 +14,6 @@ class ResetTest extends TestCase
      * @test
      *
      * @group tripwire-api
-     * @group xxx
      */
     public function ResetKey_Get_Success(): void
     {
@@ -34,7 +33,6 @@ class ResetTest extends TestCase
      * @test
      *
      * @group tripwire-api
-     * @group xxx
      */
     public function ResetKeyDisabled_Get_Failed(): void
     {

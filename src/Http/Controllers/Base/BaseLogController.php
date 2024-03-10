@@ -13,10 +13,10 @@ abstract class BaseLogController extends controller
 {
     public function index(Request $request, $userId): Response
     {
-        $member = $this->getUser($userId);
+        $user = $this->getUser($userId);
 
         $logRepository = new LogRepository();
-        $logs = $logRepository->getAllForUser($member);
+        $logs = $logRepository->getAllForUser($user);
 
         $logs = (new LogCollection($logs))->toArray($request);
         $logs = $this->decorateWithStatus($logs);

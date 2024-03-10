@@ -28,13 +28,18 @@ class TestRoutes
                     ->as('members.account.')
                     ->group(function () {
                         Route::TripwireAdminRoutes();
+                        Route::TripwireAdminMemberRoutes();
+                    });
+
+                Route::prefix('admins/account')
+                    ->as('admins.account.')
+                    ->group(function () {
+                        Route::TripwireAdminAdminRoutes();
                     });
             });
 
-
         Route::TripwireResetRoutes();
+
     }
 }
-
-
 
