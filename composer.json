@@ -31,7 +31,7 @@
         "yormy/core-tools-laravel": "dev-master"
     },
     "require-dev": {
-        "yormy/dev-tools-laravel": "^1.0"
+        "yormy/dev-tools-laravel": "dev-master"
     },
 
     "autoload": {
@@ -70,8 +70,11 @@
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
         ],
+        "post-install-cmd": [
+            "composer outdated"
+        ],
         "post-update-cmd": [
-            "local-php-security-checker-installer && local-php-security-checker"
+            "composer outdated"
         ]
     },
     "extra": {
