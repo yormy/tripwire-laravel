@@ -18,5 +18,23 @@ class TestRoutes
                         Route::TripwireAdminSystemRoutes();
                     });
             });
+
+
+        Route::prefix('admin2/')
+            ->name('api.v1.admin.')
+            ->middleware('api')
+            ->group(function () {
+                Route::prefix('members/account')
+                    ->as('members.account.')
+                    ->group(function () {
+                        Route::TripwireAdminRoutes();
+                    });
+            });
+
+
+        Route::TripwireResetRoutes();
     }
 }
+
+
+

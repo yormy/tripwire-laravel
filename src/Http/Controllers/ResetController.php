@@ -26,7 +26,7 @@ class ResetController extends controller
     {
         $url = ResetUrl::get();
         if (! $url) {
-            return null;
+            return response()->json([], 404);
         }
 
         return response()->json(['url' => $url]);
