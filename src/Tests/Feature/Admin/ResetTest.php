@@ -40,4 +40,19 @@ class ResetTest extends TestCase
         $response = $this->json('GET', route(static::ROUTE_RESET_KEY));
         $response->assertNotFound();
     }
+
+    /**
+     * @test
+     *
+     * @group tripwire-api
+     */
+    public function ResetForUser(): void
+    {
+        /*
+         * Test if user logs are unblocked when reset key is used
+         * Test if reset key is the right one
+         * Test if reset is enabled or fail
+         */
+        $this->markTestSkipped('Users untested');
+    }
 }
