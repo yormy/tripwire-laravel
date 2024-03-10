@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Management;
+namespace Yormy\TripwireLaravel\Tests\Feature\Management\System;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Testing\TestResponse;
