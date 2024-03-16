@@ -23,7 +23,7 @@ class SystemLogController extends Controller
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
      * @responseApiType successResponse
      */
-    public function index(Request $request): Response
+    public function index(): Response
     {
         $logRepository = new LogRepository();
         $logs = $logRepository->getAll();
