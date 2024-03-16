@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Yormy\TripwireLaravel\DataObjects\Block\BlockDataRequest;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
@@ -97,8 +98,9 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
-    public function addManualBlock(array $data): TripwireBlock
+    public function addManualBlock(BlockDataRequest $data): TripwireBlock
     {
+        $data = $data->toArray();
         $data['manually_blocked'] = true;
         $data['persistent_block'] = true;
         $data['blocked_until'] = Carbon::now()->addYears(100);
