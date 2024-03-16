@@ -24,7 +24,7 @@ class SystemBlockController extends Controller
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
      * @responseApiType successResponse
      */
-    public function index(Request $request): Response
+    public function index(): Response
     {
         $blockRepository = new BlockRepository();
         $blocks = $blockRepository->getAll();
