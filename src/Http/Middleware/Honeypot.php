@@ -27,6 +27,10 @@ class Honeypot
 
     public const NAME = 'honeypot';
 
+    protected WireConfig $config;
+
+    protected Request $request;
+
     public function handle(Request $request, Closure $next): mixed
     {
         $this->request = $request;

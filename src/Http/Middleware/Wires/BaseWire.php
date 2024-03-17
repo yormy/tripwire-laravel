@@ -19,6 +19,11 @@ abstract class BaseWire
 
     protected WireConfig $config;
 
+    protected Request $request;
+
+    protected string $middleware;
+    protected string|int $user_id;
+
     public function __construct(Request $request)
     {
         $this->request = $request;

@@ -8,6 +8,16 @@ use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 trait TripwireTestTrait
 {
     /**
+     * @var array $accepts
+     */
+    protected static array $accepts = [];
+
+
+    protected static array $violations = [];
+
+    protected static string $acceptsDataFile;
+
+    /**
      * @return array[]
      * @return array<string>
      */

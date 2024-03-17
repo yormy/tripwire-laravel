@@ -18,6 +18,10 @@ class PageMissingTest extends TestCase
 
     const HTTP_TRIPWIRE_CODE = 406;
 
+    protected string $tripwire;
+
+    protected mixed $tripwireClass;
+
     /**
      * @test
      *

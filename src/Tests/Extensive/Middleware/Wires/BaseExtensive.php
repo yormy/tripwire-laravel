@@ -10,9 +10,7 @@ class BaseExtensive extends TestCase
 {
     use TripwireTestTrait;
 
-    protected static array $accepts = [];
 
-    protected static array $violations = [];
 
     protected $tripwire;
 
