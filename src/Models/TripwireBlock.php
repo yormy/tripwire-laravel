@@ -11,7 +11,19 @@ use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\BlockScope;
 
 /**
- * 
+ * @property string $xid
+ * @property bool $ignore
+ * @property string $type
+ * @property array<string> $reasons
+ * @property string $blocked_ip
+ * @property bool $persistent_block
+ * @property string $blocked_browser_fingerprint
+ * @property int $blocked_repeater
+ * @property string $internal_comments
+ * @property bool $manually_blocked
+ * @property string $created_at
+ * @property string $deleted_at
+ * @property string $blocked_until
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Yormy\TripwireLaravel\Models\TripwireLog> $logs
  * @property-read int|null $logs_count

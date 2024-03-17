@@ -14,7 +14,24 @@ use Yormy\TripwireLaravel\Models\Traits\LogScope;
  * @property string $url
  * @property string $xid
  * @property string $event_code
- *
+ * @property int $event_score
+ * @property string $event_comment
+ * @property string $event_violation
+ * @property string $ip
+ * @property string $referer
+ * @property string $request
+ * @property string $user_agent
+ * @property string $created_at
+ * @property string $deleted_at
+ * @property string $method
+ * @property int $tripwire_block_id
+ * @property string $header
+ * @property string $robot_crawler
+ * @property string $trigger_data
+ * @property string $trigger_rule
+ * @property string $browser_fingerprint
+ * @property bool $ignore
+  *
  * @property-read \Yormy\TripwireLaravel\Models\TripwireBlock|null $block
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byBrowser(string $browserFingerprint)
