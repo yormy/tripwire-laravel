@@ -147,7 +147,9 @@ abstract class BaseWire
      */
     private function collectInputs(): string
     {
+        $exceptInputs = [];
         $exceptInputs[] = 'remember';
+
         $config = ConfigBuilder::fromArray(config('tripwire'));
 
         $exceptInputs = $config->inputIgnore->inputs;
@@ -170,6 +172,7 @@ abstract class BaseWire
         $cookies = $this->removeItems($this->request->cookie(), $exceptCookies);
         $headers = $this->removeItems($this->request->header(), $exceptHeaders);
 
+        $scannableValues = [];
         $scannableValues[] = $inputsLocalFilter;
         $scannableValues[] = $cookies;
         $scannableValues[] = $headers;
@@ -191,7 +194,7 @@ abstract class BaseWire
 
     private function convertValuesToString(array $data, string &$string): void
     {
-        foreach ($data as $field => $value) {
+        foreach ($data as $value) {
             if (is_array($value)) {
                 $this->convertValuesToString($value, $string);
             } else {

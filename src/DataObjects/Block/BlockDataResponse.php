@@ -96,6 +96,7 @@ class BlockDataResponse extends BlockData
             ];
         }
 
+        $data = [];
         $data['status'] = $status;
 
         return $data;

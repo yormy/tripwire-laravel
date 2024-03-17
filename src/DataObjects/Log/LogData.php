@@ -10,6 +10,8 @@ class LogData extends Data
 {
     public static function examples(): array
     {
+        $data = [];
+
         $data['xid'] = '123123!24';
 
         $data['event_code'] = '';
@@ -64,6 +66,8 @@ class LogData extends Data
 
     public static function descriptions(): array
     {
+        $data = [];
+
         $data['xid'] = 'Internal id';
 
         $data['event_code'] = '';

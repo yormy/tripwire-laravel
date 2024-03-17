@@ -24,9 +24,10 @@ class ThrottleHitWireListener extends WireBaseListener
             return;
         }
 
-        if ($this->isAttack($event)) {
-            // respond as attack, events cannot respond
-        }
+        $this->isAttack($event);
+//        if ($isAttack) {
+//            //abort(406); // respond as attack, events cannot respond
+//        }
     }
 
     /**

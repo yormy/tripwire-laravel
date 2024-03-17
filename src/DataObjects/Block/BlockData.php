@@ -14,6 +14,8 @@ class BlockData extends Data
      */
     public static function rules(ValidationContext $context): array
     {
+        $rules = [];
+
         $rules['blocked_ip'] = ['required', 'string', 'min:6'];
         $rules['internal_comments'] = ['required', 'string'];
 
@@ -22,6 +24,8 @@ class BlockData extends Data
 
     public static function examples(): array
     {
+        $data = [];
+
         $data['xid'] = '123123!24';
         $data['ignore'] = true;
         $data['type'] = '?';
@@ -50,6 +54,8 @@ class BlockData extends Data
 
     public static function descriptions(): array
     {
+        $data = [];
+
         $data['xid'] = 'internal number';
         $data['ignore'] = 'This block will be ignored';
         $data['type'] = '?';

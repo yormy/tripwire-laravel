@@ -98,6 +98,7 @@ class BlockRepository
         ?string $responseHtml,
         ?bool $ignore = false
     ): Model {
+        $data = [];
         $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
         $data['blocked_user_id'] = $userId;

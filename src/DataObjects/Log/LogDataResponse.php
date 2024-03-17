@@ -144,6 +144,7 @@ class LogDataResponse extends LogData
             ];
         }
 
+        $data = [];
         $data['status'] = $status;
 
         return $data;
@@ -169,6 +170,7 @@ class LogDataResponse extends LogData
             'text' => $method,
         ];
 
+        $data = [];
         $data['method'] = $status;
 
         return $data;
