@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\DataObjects\Block;
 
@@ -35,10 +37,10 @@ class BlockData extends Data
         $data['created_at'] = '2024-12-12 10:10:10';
         $data['rowstyle'] = 'deleted';
         $data['status'] = [
-                'key' => 'some key',
-                'nature' => 'danger',
-                'text' => 'blocked',
-            ];
+            'key' => 'some key',
+            'nature' => 'danger',
+            'text' => 'blocked',
+        ];
 
         return $data;
     }

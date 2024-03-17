@@ -14,7 +14,7 @@ return [
     'score' => [
         'high' => 'High',
         'medium' => 'Medium',
-        'low' => 'Low'
+        'low' => 'Low',
     ],
-    'block_active' => 'Active'
+    'block_active' => 'Active',
 ];

@@ -31,7 +31,7 @@ abstract class LoggableEvent implements LoggableEventInterface
         return $this->score;
     }
 
-    public function getViolationText(string $violation = null): string
+    public function getViolationText(?string $violation = null): string
     {
         if ($violation) {
             return $violation;
@@ -44,7 +44,7 @@ abstract class LoggableEvent implements LoggableEventInterface
         return '';
     }
 
-    public function getComment(string $comment = null): string
+    public function getComment(?string $comment = null): string
     {
         if ($comment) {
             return $comment;

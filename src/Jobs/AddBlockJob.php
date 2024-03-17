@@ -16,7 +16,7 @@ use Yormy\TripwireLaravel\Observers\Events\Blocked\TripwireBlockedUserEvent;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
-class AddBlockJob implements ShouldQueue, ShouldBeEncrypted
+class AddBlockJob implements ShouldBeEncrypted, ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;

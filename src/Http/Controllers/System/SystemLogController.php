@@ -20,7 +20,9 @@ class SystemLogController extends Controller
      * Log Index
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
+     *
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
+     *
      * @responseApiType successResponse
      */
     public function index(): Response
@@ -40,7 +42,9 @@ class SystemLogController extends Controller
      * Returns all the log items that were used for a specified block
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
+     *
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
+     *
      * @responseApiType successResponse
      */
     public function indexForBlock(TripwireBlock $block_xid): Response

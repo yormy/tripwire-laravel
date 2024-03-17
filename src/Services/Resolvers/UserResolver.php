@@ -1,14 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Services\Resolvers;
 
 use Illuminate\Support\Facades\Auth;
-use Mexion\BedrockUsersv2\Domain\User\Models\Member;
 use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
+use Mexion\BedrockUsersv2\Domain\User\Models\Member;
 
 class UserResolver
 {
-    public static function getCurrent() : ?User
+    public static function getCurrent(): ?User
     {
         /**
          * @var User $user
@@ -33,7 +35,6 @@ class UserResolver
         return Admin::where('id', $id)->firstOrFail();
     }
 
-
     public static function getMemberByXid($id): Member
     {
         return Member::where('xid', $id)->firstOrFail();
@@ -43,7 +44,6 @@ class UserResolver
     {
         return Admin::where('xid', $id)->firstOrFail();
     }
-
 
     public static function getMemberOnXId(string $xid): ?Member
     {

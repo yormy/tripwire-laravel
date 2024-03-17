@@ -18,9 +18,9 @@ class Xss extends BaseWire
 
     public function prepareInput($value): string
     {
-        $whitelistedTokens = $this->config->whitelistedTokens();// $this->getWhitelistedTokens();
+        $whitelistedTokens = $this->config->whitelistedTokens(); // $this->getWhitelistedTokens();
         foreach ($whitelistedTokens as $token) {
-            $value = str_ireplace($token,'##whitelisted_token_replacement##', $value);
+            $value = str_ireplace($token, '##whitelisted_token_replacement##', $value);
         }
 
         return $value;

@@ -4,7 +4,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class NotificationSlackConfig
 {
-    public bool   $enabled;
+    public bool $enabled;
 
     public string $from;
 

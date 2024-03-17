@@ -116,7 +116,7 @@ class ResponseDeterminer
     {
         if (isset($this->config->redirectUrl)) {
             // prevent redir to self
-            if (0 === strcasecmp($this->currentUrl, $this->config->redirectUrl)) {
+            if (strcasecmp($this->currentUrl, $this->config->redirectUrl) === 0) {
                 $this->asGeneralAbort();
             }
 
@@ -126,7 +126,7 @@ class ResponseDeterminer
         return null;
     }
 
-    public function asGeneralMessage(string $message = null): ?View
+    public function asGeneralMessage(?string $message = null): ?View
     {
         if (isset($this->config->messageKey)) {
             $message = __($this->config->messageKey);

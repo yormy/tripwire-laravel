@@ -269,7 +269,7 @@ $res = ConfigBuilder::make()
         UrlsConfig::make()
             ->only([])
             ->except([
-                '*/telescope/*'
+                '*/telescope/*',
             ])
     )
 
@@ -279,7 +279,7 @@ $res['user_fields'] = [
     'id' => 'xid',
     'firstname' => 'firstname',
     'lastname' => 'lastname',
-    'email' => 'email'
+    'email' => 'email',
 ];
 
 return $res;

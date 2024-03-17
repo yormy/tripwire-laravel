@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\DataObjects\Log;
 
@@ -46,10 +48,10 @@ class LogData extends Data
         $data['block_xid'] = '2312412';
 
         $data['status'] = [
-                'key' => 'some key',
-                'nature' => 'danger',
-                'text' => 'high',
-            ];
+            'key' => 'some key',
+            'nature' => 'danger',
+            'text' => 'high',
+        ];
 
         $data['method'] = [
             'key' => 'delete',

@@ -5,20 +5,18 @@ namespace Yormy\TripwireLaravel\Routes;
 use Illuminate\Support\Facades\Route;
 use Yormy\TripwireLaravel\Http\Controllers\Admins\AdminBlockController;
 use Yormy\TripwireLaravel\Http\Controllers\Admins\AdminLogController;
-use Yormy\TripwireLaravel\Http\Controllers\System\SystemLogController;
-use Yormy\TripwireLaravel\Http\Controllers\System\SystemBlockController;
-use Yormy\TripwireLaravel\Http\Controllers\BlockController;
-use Yormy\TripwireLaravel\Http\Controllers\LogController;
 use Yormy\TripwireLaravel\Http\Controllers\Members\MemberBlockController;
 use Yormy\TripwireLaravel\Http\Controllers\Members\MemberLogController;
 use Yormy\TripwireLaravel\Http\Controllers\ResetController;
+use Yormy\TripwireLaravel\Http\Controllers\System\SystemBlockController;
+use Yormy\TripwireLaravel\Http\Controllers\System\SystemLogController;
 
 class AdminRoutes
 {
     public static function register(): void
     {
         Route::macro('TripwireAdminSystemRoutes', function (string $prefix = '') {
-            Route::prefix($prefix)->name($prefix ? $prefix . '.' : '')->group(function () {
+            Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
                 Route::prefix('tripwire/')
                     ->name('tripwire.')
@@ -42,7 +40,6 @@ class AdminRoutes
             });
         });
 
-
         Route::macro('TripwireAdminRoutes', function (string $prefix = '') {
             Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
@@ -56,7 +53,7 @@ class AdminRoutes
         });
 
         Route::macro('TripwireAdminMemberRoutes', function (string $prefix = '') {
-            Route::prefix($prefix)->name($prefix ? $prefix . '.' : '')->group(function () {
+            Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
                 Route::prefix('tripwire/')
                     ->name('tripwire.')
@@ -71,9 +68,8 @@ class AdminRoutes
             });
         });
 
-
         Route::macro('TripwireAdminAdminRoutes', function (string $prefix = '') {
-            Route::prefix($prefix)->name($prefix ? $prefix . '.' : '')->group(function () {
+            Route::prefix($prefix)->name($prefix ? $prefix.'.' : '')->group(function () {
 
                 Route::prefix('tripwire/')
                     ->name('tripwire.')

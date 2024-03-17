@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Services;
 
@@ -9,21 +11,21 @@ class Html
         $tags = [
             '<bold>',
             '<strong>',
-            "<i>",
-            "<u>",
-            "<s>",
-            "<ins>",
-            "<del>",
+            '<i>',
+            '<u>',
+            '<s>',
+            '<ins>',
+            '<del>',
             '<p>',
             '<h1>',
             '<h2>',
             '<h3>',
             '<h4>',
-            "<ol>",
-            "<ul>",
-            "<li>",
-            "<div>",
-            "<span>",
+            '<ol>',
+            '<ul>',
+            '<li>',
+            '<div>',
+            '<span>',
         ];
 
         // add terminator options
@@ -32,7 +34,8 @@ class Html
         }, $tags);
 
         $all = array_merge($tags, $terminators);
-//        dd($all);
+
+        //        dd($all);
         return $all;
     }
 }

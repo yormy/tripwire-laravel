@@ -13,8 +13,8 @@ use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
 class PageMissingTest extends TestCase
 {
-    use TripwireTestTrait;
     use RequestTrait;
+    use TripwireTestTrait;
 
     const HTTP_TRIPWIRE_CODE = 406;
 

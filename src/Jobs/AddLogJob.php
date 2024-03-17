@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
-class AddLogJob implements ShouldQueue, ShouldBeEncrypted
+class AddLogJob implements ShouldBeEncrypted, ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;

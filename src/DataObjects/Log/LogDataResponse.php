@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\DataObjects\Log;
 
@@ -92,13 +94,14 @@ class LogDataResponse extends LogData
             $model->trigger_rule,
             $model->browser_fingerprint,
 
-            (bool)$model->ignore,
+            (bool) $model->ignore,
             $model->deleted_at ? 'deleted' : '',
             self::getBlockXid($model),
             ...self::decorateWithStatus($model),
-            ...self::decorateWithMethod($model)
+            ...self::decorateWithMethod($model),
         ];
     }
+
     private static function decorateWithStatus($model): array
     {
         $scoreMediumThreshold = 20;
@@ -109,7 +112,7 @@ class LogDataResponse extends LogData
             $status = [
                 'key' => 'medium',
                 'nature' => 'warning',
-                'text' => __('tripwire::logitem.score.medium')
+                'text' => __('tripwire::logitem.score.medium'),
             ];
         }
 
@@ -117,7 +120,7 @@ class LogDataResponse extends LogData
             $status = [
                 'key' => 'high',
                 'nature' => 'danger',
-                'text' => __('tripwire::logitem.score.high')
+                'text' => __('tripwire::logitem.score.high'),
             ];
         }
 
@@ -144,7 +147,7 @@ class LogDataResponse extends LogData
         $status = [
             'key' => $method,
             'nature' => $nature,
-            'text' => $method
+            'text' => $method,
         ];
 
         $data['method'] = $status;
@@ -158,17 +161,18 @@ class LogDataResponse extends LogData
         if ($model->relationLoaded('user')) {
             if ($model->user) {
                 return $model->user[$fieldId];
-            };
+            }
         }
+
         return null;
     }
 
     protected static function getBlockXid($model): ?string
     {
-        if ($model->relationLoaded('block') && $model->tripwire_block_id  ) {
+        if ($model->relationLoaded('block') && $model->tripwire_block_id) {
             if ($model->user) {
                 return $model->block->xid;
-            };
+            }
         }
 
         return null;

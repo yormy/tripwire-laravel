@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 class UsersTest extends TestCase
 {
     use RouteHelperTrait;
+
     const ROUTE_RESET_KEY = 'api.v1.admin.members.account.tripwire.reset-key';
 
     /**

@@ -1,9 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\DataObjects\Block;
 
 use Carbon\CarbonImmutable;
-
 use Illuminate\Support\Carbon;
 
 class BlockDataResponse extends BlockData
@@ -14,7 +15,7 @@ class BlockDataResponse extends BlockData
         public ?string $type,
         public ?string $reasons,
         public string $blocked_ip,
-        public ? CarbonImmutable $deleted_at,
+        public ?CarbonImmutable $deleted_at,
 
         public ?string $blocked_user_xid,
         public ?string $blocked_user_firstname,
@@ -26,7 +27,7 @@ class BlockDataResponse extends BlockData
         public ?string $internal_comments,
         public bool $manually_blocked,
         public bool $persistent_block,
-        public ? CarbonImmutable $blocked_until,
+        public ?CarbonImmutable $blocked_until,
         public CarbonImmutable $created_at,
         public ?string $rowstyle,
 
@@ -43,7 +44,7 @@ class BlockDataResponse extends BlockData
 
         return [
             $model->xid,
-            (bool)$model->ignore,
+            (bool) $model->ignore,
 
             $model->type,
             $model->reasons,
@@ -55,17 +56,17 @@ class BlockDataResponse extends BlockData
             self::getUserField($model, $fieldLastname),
             self::getUserField($model, $fieldEmail),
             $model->blocked_browser_fingerprint,
-            (int)$model->blocked_repeater,
+            (int) $model->blocked_repeater,
 
             $model->internal_comments,
-            (bool)$model->manually_blocked,
-            (bool)$model->persistent_block,
+            (bool) $model->manually_blocked,
+            (bool) $model->persistent_block,
 
             $model->blocked_until ? CarbonImmutable::parse($model->blocked_until) : null,
             CarbonImmutable::parse($model->created_at),
             $model->deleted_at ? 'deleted' : '',
 
-            ...self::decorateWithStatus($model)
+            ...self::decorateWithStatus($model),
         ];
     }
 
@@ -76,7 +77,7 @@ class BlockDataResponse extends BlockData
             $status = [
                 'key' => 'active',
                 'nature' => 'danger',
-                'text' => __('tripwire::logitem.block_active')
+                'text' => __('tripwire::logitem.block_active'),
             ];
         }
 
@@ -91,8 +92,9 @@ class BlockDataResponse extends BlockData
         if ($model->relationLoaded('user')) {
             if ($model->user) {
                 return $model->user[$fieldId];
-            };
+            }
         }
+
         return null;
     }
 

@@ -21,7 +21,7 @@ class ExceptionInspector
 
     protected WireConfig $config;
 
-    public function inspect(Throwable $e, Request $request = null): void
+    public function inspect(Throwable $e, ?Request $request = null): void
     {
         if ($e instanceof ThrottleRequestsException) {
             event(new ThrottleHitEvent($request));

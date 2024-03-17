@@ -7,7 +7,6 @@ use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Spatie\LaravelData\LaravelDataServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
-
 use Yormy\AssertLaravel\Helpers\AssertJsonMacros;
 use Yormy\TripwireLaravel\TripwireServiceProvider;
 

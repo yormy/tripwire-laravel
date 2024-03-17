@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
 use Mexion\BedrockUsersv2\Domain\User\Models\Member;
-use Yormy\LaravelFootsteps\Models\Log;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class TripwireLogSeeder extends Seeder
@@ -17,7 +18,6 @@ class TripwireLogSeeder extends Seeder
 
         $member = Member::where('id', 2)->first();
         TripwireLog::factory(10)->forUser($member)->create();
-
 
         $admin = Admin::where('id', 1)->first();
         TripwireLog::factory(10)->forUser($admin)->create();

@@ -47,7 +47,6 @@ class BaseAcceptAll extends TestCase
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
 
-
         if (isset(static::$violationsDataFile)) {
             static::$violations = file(static::$violationsDataFile);
         }

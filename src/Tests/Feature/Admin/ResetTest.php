@@ -8,6 +8,7 @@ use Yormy\TripwireLaravel\Tests\TestCase;
 class ResetTest extends TestCase
 {
     use RouteHelperTrait;
+
     const ROUTE_RESET_KEY = 'api.v1.admin.members.account.tripwire.reset-key';
 
     /**
@@ -21,7 +22,7 @@ class ResetTest extends TestCase
         $response->assertSuccessful();
 
         $data = json_decode($response->getContent());
-        $this->assertStringContainsString('reset?expires', $data->url );
+        $this->assertStringContainsString('reset?expires', $data->url);
 
         // reset works if enabled
         // not if disabled

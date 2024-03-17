@@ -15,7 +15,7 @@ class XssTest extends BaseWireTester
         'sss',
         'hello <bold> something',  // html never allowed
         'net subscription',
-        'N2IyZjliMGI1NTY4OGJkYTMwM2VjYWY' // regression test
+        'N2IyZjliMGI1NTY4OGJkYTMwM2VjYWY', // regression test
     ];
 
     protected static array $violations = [

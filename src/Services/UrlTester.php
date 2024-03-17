@@ -38,7 +38,7 @@ class UrlTester
         foreach ($exceptUrls as $exclude) {
             static::checkValid($exclude);
 
-            if ($request->is($exclude) || 0 === strcasecmp($exclude, $request->url())) {
+            if ($request->is($exclude) || strcasecmp($exclude, $request->url()) === 0) {
                 return true;
             }
         }

@@ -109,7 +109,7 @@ class LogRepository
 
     }
 
-    public function queryViolationsByUser(int $withinMinutes, int $userId, string|null $userType, array $violations = []): Builder
+    public function queryViolationsByUser(int $withinMinutes, int $userId, ?string $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byUserType($userType)

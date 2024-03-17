@@ -11,9 +11,9 @@ use Yormy\Xid\Models\Traits\Xid;
 
 class BaseModel extends Model
 {
+    use QueryCacheable;
     use SoftDeletes;
     use Xid;
-    use QueryCacheable;
 
     // Cachables
     public $cacheFor = 4 * (60 * 60); // cache time, in seconds

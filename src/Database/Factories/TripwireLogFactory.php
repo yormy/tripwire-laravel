@@ -3,8 +3,6 @@
 namespace Yormy\TripwireLaravel\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
-use Yormy\CoreToolsLaravel\Helpers\Password;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\Xid\Services\XidService;
 
@@ -19,7 +17,7 @@ class TripwireLogFactory extends Factory
             'LFI',
             'SQLI',
             'XSS',
-            'custom'
+            'custom',
         ];
 
         $eventViolation = [
@@ -46,14 +44,14 @@ class TripwireLogFactory extends Factory
         $triggerRule = [
             '#example.malicious#iUu',
             '#(%252e%252f|zip://|php://|file=expect:|http:%252f%252|data://text/plain;|php:expect://)#iUu',
-            '#(([<¼]|(&lt;)|%3C|%BC)|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*scrscriptipt|%253c|%252F|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*script|1script3|1/script3|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*script|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*scrscriptipt|\xc0|\xBC)#iUu'
+            '#(([<¼]|(&lt;)|%3C|%BC)|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*scrscriptipt|%253c|%252F|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*script|1script3|1/script3|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*script|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*scrscriptipt|\xc0|\xBC)#iUu',
         ];
 
         return [
             'xid' => XidService::generate(),
             'ignore' => false,
             'event_code' => $this->faker->randomElement($eventCode),
-            'event_score' => rand(0,100),
+            'event_score' => rand(0, 100),
             'event_violation' => $this->faker->randomElement($eventViolation),
             'event_comment' => 'a comment',
             'ip' => $this->faker->ipv4,
@@ -67,16 +65,16 @@ class TripwireLogFactory extends Factory
             'trigger_rule' => $this->faker->randomElement($triggerRule),
             'user_agent' => $this->faker->userAgent,
             'robot_crawler' => 'robot crawler',
-            'browser_fingerprint' => 'fingerprint' . rand(0,99),
+            'browser_fingerprint' => 'fingerprint'.rand(0, 99),
             'created_at' => $this->faker->date(),
-            'deleted_at' => rand(0,10) === 0 ? $this->faker->date() : null,
-            'tripwire_block_id' => null
+            'deleted_at' => rand(0, 10) === 0 ? $this->faker->date() : null,
+            'tripwire_block_id' => null,
         ];
     }
 
     public function forUser($user): Factory
     {
-        return $this->state(function (array $attributes) use ($user){
+        return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
                 'user_type' => get_class($user),

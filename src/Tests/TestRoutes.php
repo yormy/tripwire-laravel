@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Tests;
 
@@ -18,7 +20,6 @@ class TestRoutes
                         Route::TripwireAdminSystemRoutes();
                     });
             });
-
 
         Route::prefix('admin2/')
             ->name('api.v1.admin.')
@@ -42,4 +43,3 @@ class TestRoutes
 
     }
 }
-

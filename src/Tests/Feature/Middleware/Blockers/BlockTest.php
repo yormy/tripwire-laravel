@@ -11,8 +11,8 @@ use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
 class BlockTest extends TestCase
 {
-    use TripwireTestTrait;
     use BlockTestTrait;
+    use TripwireTestTrait;
 
     const TRIPWIRE_TRIGGER = 'BLOCK_TEST';
 

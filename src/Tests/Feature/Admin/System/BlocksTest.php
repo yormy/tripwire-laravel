@@ -13,14 +13,19 @@ class BlocksTest extends TestCase
     use RouteHelperTrait;
 
     const ROUTE_INDEX = 'api.v1.admin.site.security.tripwire.blocks.index';
+
     const ROUTE_POST = 'api.v1.admin.site.security.tripwire.blocks.store';
 
     const ROUTE_SHOW_BLOCK = 'api.v1.admin.site.security.tripwire.blocks.show';
+
     const ROUTE_SHOW_BLOCK_LOGS = 'api.v1.admin.site.security.tripwire.blocks.logs.index';
 
     const ROUTE_SHOW_BLOCK_DELETE = 'api.v1.admin.site.security.tripwire.blocks.delete';
+
     const ROUTE_SHOW_BLOCK_UNBLOCK = 'api.v1.admin.site.security.tripwire.blocks.unblock';
+
     const ROUTE_SHOW_BLOCK_PERSIST = 'api.v1.admin.site.security.tripwire.blocks.persist';
+
     const ROUTE_SHOW_BLOCK_UNPERSIST = 'api.v1.admin.site.security.tripwire.blocks.unpersist';
 
     /**
@@ -107,7 +112,6 @@ class BlocksTest extends TestCase
         $blockedIp = json_decode($response->getContent())->data->blocked_ip;
         $blockedXid = json_decode($response->getContent())->data->xid;
 
-
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);
 
@@ -169,9 +173,9 @@ class BlocksTest extends TestCase
     }
 
     // --------- HELPERS ---------
-    private function addBlockRecord(array $data = null): TestResponse
+    private function addBlockRecord(?array $data = null): TestResponse
     {
-        if (!$data) {
+        if (! $data) {
             $data = $this->getBlockAddData();
         }
 
@@ -193,7 +197,7 @@ class BlocksTest extends TestCase
     private function ruleTestParameter(array $validData, string $url, string $field, $invalidValue = null)
     {
         $invalidData = $validData;
-        if (!$invalidValue) {
+        if (! $invalidValue) {
             unset($invalidData[$field]);
         } else {
             $invalidData[$field] = $invalidValue;
@@ -203,5 +207,4 @@ class BlocksTest extends TestCase
 
         $response->assertJsonValidationErrors($field);
     }
-
 }

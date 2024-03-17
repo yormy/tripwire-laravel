@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\TripwireLaravel\DataObjects\Block\BlockDataRequest;
 use Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse;
-use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockResource;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 
@@ -23,7 +22,9 @@ class SystemBlockController extends Controller
      * Block Index
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function index(): Response
@@ -43,7 +44,9 @@ class SystemBlockController extends Controller
      * @bodyParamDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataRequest
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponseCreated
      */
     public function store(BlockDataRequest $data)
@@ -61,6 +64,7 @@ class SystemBlockController extends Controller
      * Show
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function show(Request $request, TripwireBlock $block_xid)
@@ -72,6 +76,7 @@ class SystemBlockController extends Controller
      * Persist
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function persist(Request $request, TripwireBlock $block_xid)
@@ -86,6 +91,7 @@ class SystemBlockController extends Controller
      * Un-Persist
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function unpersist(Request $request, TripwireBlock $block_xid)
@@ -100,6 +106,7 @@ class SystemBlockController extends Controller
      * Un-block
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function unblock(Request $request, TripwireBlock $block_xid)
@@ -114,6 +121,7 @@ class SystemBlockController extends Controller
      * Delete
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     *
      * @responseApiType successResponse
      */
     public function delete(Request $request, TripwireBlock $block_xid)
