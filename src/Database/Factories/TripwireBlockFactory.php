@@ -40,7 +40,7 @@ class TripwireBlockFactory extends Factory
         ];
     }
 
-    public function forUser(Authenticatable $user): Factory
+    public function forUser($user): Factory
     {
         /**
          * @param array<string> $attributes

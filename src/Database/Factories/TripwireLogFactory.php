@@ -83,7 +83,7 @@ class TripwireLogFactory extends Factory
         ];
     }
 
-    public function forUser(Authenticatable $user): Factory
+    public function forUser($user): Factory
     {
         /**
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
