@@ -17,6 +17,8 @@ trait TripwireTestTrait
 
     protected static string $acceptsDataFile;
 
+    protected static string $violationsDataFile;
+
     /**
      * @return array[]
      * @return array<string>

@@ -4,6 +4,7 @@ namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Yormy\TripwireLaravel\DataObjects\Config\UrlsConfig;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
@@ -20,7 +21,7 @@ class PageMissingTest extends TestCase
 
     protected string $tripwire;
 
-    protected mixed $tripwireClass;
+    protected BaseWire $tripwireClass;
 
     /**
      * @test
@@ -162,5 +163,10 @@ class PageMissingTest extends TestCase
     {
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
+    }
+
+    private static function loadFile(string $filename): array
+    {
+        return [];
     }
 }

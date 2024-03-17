@@ -127,4 +127,9 @@ class NotificationsTest extends TestCase
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
         $this->triggerTripwire(self::TRIPWIRE_TRIGGER);
     }
+
+    private static function loadFile(string $filename): array
+    {
+        return [];
+    }
 }

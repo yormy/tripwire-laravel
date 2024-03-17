@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Yormy\TripwireLaravel\DataObjects\Config\MissingModelConfig;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\ExceptionInspector;
 use Yormy\TripwireLaravel\Tests\TestCase;
@@ -13,6 +14,10 @@ class ModelsTest extends TestCase
     use TripwireTestTrait;
 
     const HTTP_TRIPWIRE_CODE = 409;
+
+    protected string $tripwire;
+
+    protected BaseWire $tripwireClass;
 
     /**
      * @test

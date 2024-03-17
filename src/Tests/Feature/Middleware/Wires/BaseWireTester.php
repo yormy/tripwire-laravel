@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 use Yormy\TripwireLaravel\Tests\TestCase;

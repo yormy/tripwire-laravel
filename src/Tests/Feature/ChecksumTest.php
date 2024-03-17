@@ -7,6 +7,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\BlockResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\HtmlResponseConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\JsonResponseConfig;
 use Yormy\TripwireLaravel\Http\Middleware\ChecksumValidator;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Services\HashService;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -16,6 +17,10 @@ class ChecksumTest extends TestCase
     use TripwireTestTrait;
 
     const HTTP_TRIPWIRE_CODE = 409;
+
+    protected string $tripwire;
+
+    protected BaseWire $tripwireClass;
 
     /**
      * @test

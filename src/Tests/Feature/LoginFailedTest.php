@@ -3,6 +3,7 @@
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
 use Illuminate\Auth\Events\Failed as LoginFailed;
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -12,6 +13,10 @@ class LoginFailedTest extends TestCase
     use TripwireTestTrait;
 
     const HTTP_TRIPWIRE_CODE = 409;
+
+    protected string $tripwire;
+
+    protected BaseWire $tripwireClass;
 
     /**
      * @test
