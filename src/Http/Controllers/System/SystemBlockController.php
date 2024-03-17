@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\TripwireLaravel\DataObjects\Block\BlockDataRequest;
 use Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse;
+use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockResource;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 
 /**
@@ -53,5 +55,79 @@ class SystemBlockController extends Controller
 
         return ApiResponse::withData($dto)
             ->successResponseCreated();
+    }
+
+    /**
+     * Show
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function show(Request $request, TripwireBlock $block_xid)
+    {
+        return $this->returnBlock($request, $block_xid);
+    }
+
+    /**
+     * Persist
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function persist(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->persistent_block = true;
+        $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
+    }
+
+    /**
+     * Un-Persist
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function unpersist(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->persistent_block = false;
+        $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
+    }
+
+    /**
+     * Un-block
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function unblock(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->blocked_until = null;
+        $block_xid->save();
+
+        return $this->returnBlock($request, $block_xid);
+    }
+
+    /**
+     * Delete
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function delete(Request $request, TripwireBlock $block_xid)
+    {
+        $block_xid->delete();
+
+        return $this->returnBlock($request, $block_xid);
+    }
+
+    private function returnBlock(Request $request, TripwireBlock $tripwireBlock)
+    {
+        $dto = BlockDataResponse::fromModel($tripwireBlock);
+
+        return ApiResponse::withData($dto)
+            ->successResponse();
     }
 }
