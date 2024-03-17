@@ -6,7 +6,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 abstract class OnlyExceptConfig
 {
-    const MODEL = '';
+    public const MODEL = '';
 
     /**
      * @var array<string> $only

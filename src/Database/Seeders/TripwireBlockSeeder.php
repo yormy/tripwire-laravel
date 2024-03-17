@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;

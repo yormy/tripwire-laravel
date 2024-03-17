@@ -40,6 +40,11 @@ class TripwireBlockFactory extends Factory
         ];
     }
 
+    /**
+     * @param Authenticatable $user
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
     public function forUser($user): Factory
     {
         /**

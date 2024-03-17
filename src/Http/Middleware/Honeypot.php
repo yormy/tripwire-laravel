@@ -31,7 +31,8 @@ class Honeypot
 
     protected Request $request;
 
-    public function __construct() {
+    public function __construct()
+    {
         // ...
     }
 

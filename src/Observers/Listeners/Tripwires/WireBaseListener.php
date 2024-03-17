@@ -6,10 +6,10 @@ namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
-use Illuminate\Support\Facades\Event;
 
 abstract class WireBaseListener
 {
