@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
 
 class CustomExtensiveTest extends BaseExtensive
 {
-    protected $tripwireClass = Custom::class;
+    protected string $tripwireClass = Custom::class;
 
     protected static string $violationsDataFile = './src/Tests/Dataproviders/CustomViolationsData.txt';
 

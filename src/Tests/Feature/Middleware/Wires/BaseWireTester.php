@@ -12,6 +12,10 @@ class BaseWireTester extends TestCase
 {
     use TripwireTestTrait;
 
+    protected string $tripwire;
+
+    protected string $tripwireClass;
+
     /**
      * @test
      *

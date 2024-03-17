@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Lfi;
 
 class LfiExtensiveTest extends BaseExtensive
 {
-    protected $tripwireClass = Lfi::class;
+    protected string $tripwireClass = Lfi::class;
 
     protected static string $violationsDataFile = './src/Tests/Dataproviders/LfiViolationsData.txt';
 

@@ -17,7 +17,7 @@ class NotificationsTest extends TestCase
 
     private string $tripwire = 'text';
 
-    protected $tripwireClass = Text::class;
+    protected string $tripwireClass = Text::class;
 
     const BLOCK_CODE = 401;
 

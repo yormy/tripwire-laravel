@@ -8,7 +8,7 @@ class RfiTest extends BaseWireTester
 {
     protected string $tripwire = 'rfi';
 
-    protected $tripwireClass = Rfi::class;
+    protected string $tripwireClass = Rfi::class;
 
     protected static array $accepts = [
         'random',

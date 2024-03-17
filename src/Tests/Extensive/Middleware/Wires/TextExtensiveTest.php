@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 
 class TextExtensiveTest extends BaseExtensive
 {
-    protected $tripwireClass = Text::class;
+    protected string $tripwireClass = Text::class;
 
     protected static string $violationsDataFile = './src/Tests/Dataproviders/TextViolationsData.txt';
 

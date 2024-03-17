@@ -8,7 +8,7 @@ class SqliTest extends BaseWireTester
 {
     protected string $tripwire = 'sqli';
 
-    protected $tripwireClass = Sqli::class;
+    protected string $tripwireClass = Sqli::class;
 
     protected static array $accepts = [
         'dsfsdf',

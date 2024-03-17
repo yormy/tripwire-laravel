@@ -21,7 +21,7 @@ class PunishTest extends TestCase
 
     protected string $tripwire = 'text';
 
-    protected $tripwireClass = Text::class;
+    protected string $tripwireClass = Text::class;
 
     /**
      * @test

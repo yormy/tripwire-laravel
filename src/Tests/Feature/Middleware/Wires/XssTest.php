@@ -8,7 +8,7 @@ class XssTest extends BaseWireTester
 {
     protected string $tripwire = 'xss';
 
-    protected $tripwireClass = Xss::class;
+    protected string $tripwireClass = Xss::class;
 
     protected static array $accepts = [
         "it!--That·I·won't,·then!--Bill's·to",

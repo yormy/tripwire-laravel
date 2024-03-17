@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Sqli;
 
 class SqliExtensiveTest extends BaseExtensive
 {
-    protected $tripwireClass = Sqli::class;
+    protected string $tripwireClass = Sqli::class;
 
     protected static string $violationsDataFile = './src/Tests/Dataproviders/SqliViolationsData.txt';
 

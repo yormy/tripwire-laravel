@@ -6,7 +6,7 @@ use Yormy\TripwireLaravel\Http\Middleware\Wires\Xss;
 
 class XssExtensiveTest extends BaseExtensive
 {
-    protected $tripwireClass = Xss::class;
+    protected string $tripwireClass = Xss::class;
 
     protected static string $violationsDataFile = './src/Tests/Dataproviders/XssViolationsData.txt';
 

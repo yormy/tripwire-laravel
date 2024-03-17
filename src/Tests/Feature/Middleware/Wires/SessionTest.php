@@ -8,7 +8,7 @@ class SessionTest extends BaseWireTester
 {
     protected string $tripwire = 'session';
 
-    protected $tripwireClass = Session::class;
+    protected string $tripwireClass = Session::class;
 
     protected static array $accepts = [
         'dsfsdf',
