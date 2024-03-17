@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel;
 
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Auth\Events\Failed as LoginFailed;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
@@ -36,6 +37,8 @@ class TripwireServiceProvider extends ServiceProvider
 
     public const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
 
+    const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
+
     /**
      * @psalm-suppress MissingReturnType
      */
@@ -66,9 +69,12 @@ class TripwireServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(self::CONFIG_FILE, 'tripwire');
         $this->mergeConfigFrom(self::CONFIG_WIRE_FILE, 'tripwire_wires');
+        $this->mergeConfigFrom(static::CONFIG_IDE_HELPER_FILE, 'ide-helper');
 
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(IdeHelperServiceProvider::class);
+
     }
 
     public function registerMiddleware(Router $router): void

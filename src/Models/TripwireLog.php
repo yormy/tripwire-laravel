@@ -10,6 +10,28 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\LogScope;
 
+/**
+ * @property string $url
+ * @property string $xid
+ * @property string $event_code
+ *
+ * @property-read \Yormy\TripwireLaravel\Models\TripwireBlock|null $block
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byBrowser(string $browserFingerprint)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byIp(string $ipAddress)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byUserId(int $userId)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byUserType(string $userType)
+ * @method static \Yormy\TripwireLaravel\Database\Factories\TripwireLogFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog types(array $codes)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog within(int $minutes)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog withoutTrashed()
+ * @mixin \Eloquent
+ */
 class TripwireLog extends BaseModel
 {
     use LogScope;

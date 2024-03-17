@@ -39,6 +39,7 @@
         "yormy/core-tools-laravel": "dev-master"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.0",
         "nunomaduro/larastan": "^2.9",
         "nunomaduro/phpinsights": "^2.11",
         "yormy/dev-tools-laravel": "dev-master"
@@ -61,7 +62,7 @@
         "insights": "./vendor/bin/testbench insights",
         "insights:fix": "./vendor/bin/testbench insights --fix",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
-        "ide-helpers": "php vendor/bin/testbench clear-compiled && php vendor/bin/testbench ide-helper:generate && php vendor/bin/testbench --write ide-helper:models && php vendor/bin/testbench ide-helper:meta",
+        "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
         "---------- FIXES ---------- ": "",
 
         "cs-fixer" : "phpcbf",
