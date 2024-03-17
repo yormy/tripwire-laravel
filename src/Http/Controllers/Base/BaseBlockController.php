@@ -7,40 +7,31 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 use Yormy\Apiresponse\Facades\ApiResponse;
+use Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse;
 use Yormy\TripwireLaravel\Http\Controllers\Resources\BlockCollection;
 use Yormy\TripwireLaravel\Repositories\BlockRepository;
 
 abstract class BaseBlockController extends controller
 {
-    public function index(Request $request, $userId): Response
+    /**
+     * Index
+     *
+     * Get all blocks for this user
+     *
+     * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
+     * @responseApiType successResponse
+     */
+    public function index($user_xid): Response
     {
-        $member = $this->getUser($userId);
+        $member = $this->getUser($user_xid);
 
         $logRepository = new BlockRepository();
         $blocks = $logRepository->getAllForUser($member);
 
-        $blocks = (new BlockCollection($blocks))->toArray($request);
-        $blocks = $this->decorateWithStatus($blocks);
+        $dto = BlockDataResponse::collect($blocks);
 
-        return ApiResponse::withData($blocks)
+        return ApiResponse::withData($dto)
             ->successResponse();
-    }
-
-    private function decorateWithStatus($values): array
-    {
-        foreach ($values as $index => $data) {
-            $status = '';
-            if ($data['blocked_until'] >= Carbon::now()) {
-                $status = [
-                    'key' => 'active',
-                    'nature' => 'danger',
-                    'text' => __('tripwire::logitem.block_active')
-                ];
-            }
-
-            $values[$index]['status'] = $status;
-        }
-
-        return $values;
     }
 }
