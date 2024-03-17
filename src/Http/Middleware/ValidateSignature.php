@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\App;
 
 class ValidateSignature
 {
-    private $keyResolver;
+    private Closure $keyResolver;
 
     public function __construct()
     {

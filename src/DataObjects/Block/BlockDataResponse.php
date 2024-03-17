@@ -6,9 +6,13 @@ namespace Yormy\TripwireLaravel\DataObjects\Block;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
+use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockDataResponse extends BlockData
 {
+    /**
+     * @param array<string> $status
+     */
     public function __construct(
         public string $xid,
         public bool $ignore,
@@ -32,14 +36,14 @@ class BlockDataResponse extends BlockData
     ) {
     }
 
-    public static function fromModel($model): self
+    public static function fromModel(TripwireBlock $model): self
     {
         $constuctorData = self::constructorData($model);
 
         return new static(...$constuctorData);
     }
 
-    protected static function constructorData($model): array
+    protected static function constructorData(TripwireBlock $model): array
     {
         $fieldId = config('tripwire.user_fields.id');
         $fieldFirstname = config('tripwire.user_fields.firstname');
@@ -74,7 +78,7 @@ class BlockDataResponse extends BlockData
         ];
     }
 
-    protected static function getUserField($model, $field): ?string
+    protected static function getUserField(TripwireBlock $model, string $field): ?string
     {
         if ($model->relationLoaded('user')) {
             if ($model->user) {
@@ -85,7 +89,7 @@ class BlockDataResponse extends BlockData
         return null;
     }
 
-    private static function decorateWithStatus($model): array
+    private static function decorateWithStatus(TripwireBlock $model): array
     {
         $status = [];
         if ($model->blocked_until >= Carbon::now()) {

@@ -14,6 +14,10 @@ class TripwireBlock extends BaseModel
     use BlockScope;
     use PackageFactoryTrait;
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     * @var array<string> $fillable
+     */
     protected $fillable = [
         'ignore',
         'blocked_ip',
@@ -27,6 +31,10 @@ class TripwireBlock extends BaseModel
         'internal_comments',
     ];
 
+    /**
+     * @var array<string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $casts = [
         'blocked_until' => 'datetime',
     ];

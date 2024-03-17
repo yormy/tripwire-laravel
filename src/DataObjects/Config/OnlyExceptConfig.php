@@ -15,6 +15,10 @@ abstract class OnlyExceptConfig
         // Only named constructors
     }
 
+    /**
+     * @param array<string> $only
+     * @param array<string> $except
+     */
     public static function make(
         array $only = [],
         array $except = []
@@ -48,6 +52,9 @@ abstract class OnlyExceptConfig
         return $object;
     }
 
+    /**
+     * @param array<string> $only
+     */
     public function only(array $only): static
     {
         $this->only = $only;
@@ -55,6 +62,9 @@ abstract class OnlyExceptConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $except
+     */
     public function except(array $except): static
     {
         $this->except = $except;

@@ -12,6 +12,9 @@ class WireGroupConfig
     {
     }
 
+    /**
+     * @param array<string> $wires
+     */
     public static function make(array $wires): self
     {
         $object = new WireGroupConfig();

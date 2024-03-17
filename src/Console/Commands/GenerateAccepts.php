@@ -34,7 +34,7 @@ class GenerateAccepts extends Command
         return Command::SUCCESS;
     }
 
-    public function buildText($locale): string
+    public function buildText(string $locale): string
     {
         $name = fake($locale)->lastName();
         $realText = fake($locale)->realText(200); // characters

@@ -25,6 +25,9 @@ class ConfigBuilderWires implements Arrayable
         return $data;
     }
 
+    /**
+     * @param array<string> $data
+     */
     public static function fromArray(array $data): self
     {
         $config = new self();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Database\Factories;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\Xid\Services\XidService;
@@ -31,7 +32,7 @@ class TripwireBlockFactory extends Factory
         ];
     }
 
-    public function forUser($user): Factory
+    public function forUser(Authenticatable $user): Factory
     {
         /**
          * @param array<string> $attributes

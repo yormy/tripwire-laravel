@@ -15,7 +15,8 @@ class TripwireLog extends BaseModel
     use PackageFactoryTrait;
 
     /**
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     * @var array<string> $fillable
      */
     protected $fillable = [
         'ignore',

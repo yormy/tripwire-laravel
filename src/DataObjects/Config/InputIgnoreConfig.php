@@ -12,10 +12,11 @@ class InputIgnoreConfig
 
     public array $header;
 
-    private function __construct()
-    {
-    }
-
+    /**
+     * @param array<string> $inputs
+     * @param array<string> $cookies
+     * @param array<string> $header
+     */
     public static function make(
         array $inputs = [],
         array $cookies = [],
@@ -30,6 +31,9 @@ class InputIgnoreConfig
         return $object;
     }
 
+    /**
+     * @param array<string> $data
+     */
     public static function makeFromArray(?array $data): ?self
     {
         if (! $data) {
@@ -53,6 +57,9 @@ class InputIgnoreConfig
         return $object;
     }
 
+    /**
+     * @param array<string> $inputs
+     */
     public function inputs(array $inputs): self
     {
         $this->inputs = $inputs;
@@ -60,6 +67,9 @@ class InputIgnoreConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $cookies
+     */
     public function cookies(array $cookies): self
     {
         $this->cookies = $cookies;
@@ -67,6 +77,9 @@ class InputIgnoreConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $headers
+     */
     public function headers(array $headers): self
     {
         $this->header = $headers;

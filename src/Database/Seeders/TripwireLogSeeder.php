@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Seeder;
 use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
 use Mexion\BedrockUsersv2\Domain\User\Models\Member;
@@ -14,7 +15,7 @@ class TripwireLogSeeder extends Seeder
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function run($user = null): void
+    public function run(Authenticatable $user = null): void
     {
         $member = Member::where('id', 1)->first();
         TripwireLog::factory(10)->forUser($member)->create();

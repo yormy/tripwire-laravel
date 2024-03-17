@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\DataObjects\Log;
 
 use Carbon\CarbonImmutable;
+use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class LogDataResponse extends LogData
 {
+
+    /**
+     * @param array<string> $status
+     * @param array<string> $method
+     */
     public function __construct(
         public string $xid,
         public string $event_code,
@@ -40,14 +46,14 @@ class LogDataResponse extends LogData
     ) {
     }
 
-    public static function fromModel($model): self
+    public static function fromModel(TripwireLog $model): self
     {
         $constuctorData = self::constructorData($model);
 
         return new static(...$constuctorData);
     }
 
-    protected static function constructorData($model): array
+    protected static function constructorData(TripwireLog $model): array
     {
         $fieldId = config('tripwire.user_fields.id');
         $fieldFirstname = config('tripwire.user_fields.firstname');
@@ -100,7 +106,7 @@ class LogDataResponse extends LogData
         ];
     }
 
-    protected static function getUserField($model, $field): ?string
+    protected static function getUserField(TripwireLog $model, string $field): ?string
     {
         if ($model->relationLoaded('user')) {
             if ($model->user) {
@@ -111,7 +117,7 @@ class LogDataResponse extends LogData
         return null;
     }
 
-    protected static function getBlockXid($model): ?string
+    protected static function getBlockXid(TripwireLog $model): ?string
     {
         if ($model->relationLoaded('block') && $model->tripwire_block_id) {
             if ($model->user) {
@@ -122,7 +128,7 @@ class LogDataResponse extends LogData
         return null;
     }
 
-    private static function decorateWithStatus($model): array
+    private static function decorateWithStatus(TripwireLog $model): array
     {
         $scoreMediumThreshold = 20;
         $scoreHighThreshold = 50;
@@ -150,7 +156,7 @@ class LogDataResponse extends LogData
         return $data;
     }
 
-    private static function decorateWithMethod($model): array
+    private static function decorateWithMethod(TripwireLog $model): array
     {
         $nature = [];
         $method = $model->method;

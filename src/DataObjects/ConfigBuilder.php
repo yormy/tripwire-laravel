@@ -149,6 +149,9 @@ class ConfigBuilder implements Arrayable
         return $data;
     }
 
+    /**
+     * @param array<string> $data
+     */
     public static function fromArray(array $data): self
     {
         $config = new self();
@@ -235,17 +238,21 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
-    public function notificationMail(
-        array $notificationMail,
-    ): self {
+    /**
+     * @param array<string> $notificationMail
+     */
+    public function notificationMail(array $notificationMail): self
+    {
         $this->notificationsMail = $notificationMail;
 
         return $this;
     }
 
-    public function notificationSlack(
-        array $notificationsSlack,
-    ): self {
+    /**
+     * @param array<string> $notificationsSlack
+     */
+    public function notificationSlack(array $notificationsSlack): self
+    {
         $this->notificationsSlack = $notificationsSlack;
 
         return $this;
@@ -331,6 +338,9 @@ class ConfigBuilder implements Arrayable
         return $this;
     }
 
+    /**
+     * @param array<string> $ips
+     */
     public function whitelist(
         array $ips,
     ): self {

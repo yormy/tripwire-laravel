@@ -80,6 +80,9 @@ class JsonResponseConfig
         return $this;
     }
 
+    /**
+     * @param array<mixed> $json
+     */
     public function json(array $json): self
     {
         $this->json = $json;

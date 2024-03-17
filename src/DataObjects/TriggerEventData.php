@@ -6,6 +6,10 @@ namespace Yormy\TripwireLaravel\DataObjects;
 
 class TriggerEventData
 {
+    /**
+     * @param array<string> $violations
+     * @param array<string> $triggerRules
+     */
     public function __construct(
         public int $attackScore,
         public array $violations,

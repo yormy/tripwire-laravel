@@ -12,6 +12,9 @@ class WhitelistConfig
     {
     }
 
+    /**
+     * @param array<string> $ips
+     */
     public static function make(array $ips): self
     {
         $object = new WhitelistConfig();

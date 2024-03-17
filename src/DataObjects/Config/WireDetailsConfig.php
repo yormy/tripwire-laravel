@@ -36,6 +36,11 @@ class WireDetailsConfig
     {
     }
 
+    /**
+     * @param array<string> $methods
+     * @param array<string> $tripwires
+     * @param array<string> $config
+     */
     public static function make(
         bool $enabled = true,
         ?bool $trainingMode = null,
@@ -148,6 +153,9 @@ class WireDetailsConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $methods
+     */
     public function methods(array $methods): self
     {
         if (! $methods) {
@@ -171,6 +179,9 @@ class WireDetailsConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $whitelistedTokens
+     */
     public function whitelistedTokens(array $whitelistedTokens): self
     {
         $this->whitelistedTokens = $whitelistedTokens;
@@ -192,6 +203,9 @@ class WireDetailsConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $tripWires
+     */
     public function tripwires(array $tripWires): self
     {
         $this->tripwires = $tripWires;
@@ -206,6 +220,9 @@ class WireDetailsConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $config
+     */
     public function config(array $config): self
     {
         $this->config = $config;
@@ -274,6 +291,10 @@ class WireDetailsConfig
         return $data;
     }
 
+    /**
+     * @param array<string> $values
+     * @param array<string> $allowedValues
+     */
     private function getArrayErrors(array $values, array $allowedValues): array
     {
         $errors = [];

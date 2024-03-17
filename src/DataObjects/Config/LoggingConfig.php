@@ -19,6 +19,9 @@ class LoggingConfig
         // ...
     }
 
+    /**
+     * @param array<string> $remove
+     */
     public static function make(
         int $maxRequestSize = 190,
         int $maxHeaderSize = 190,
@@ -72,6 +75,9 @@ class LoggingConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $remove
+     */
     public function remove(array $remove): self
     {
         $this->remove = $remove;

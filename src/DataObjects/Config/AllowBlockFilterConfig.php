@@ -10,11 +10,10 @@ class AllowBlockFilterConfig
 
     public array $block;
 
-    protected function __construct()
-    {
-        // Only named constructors
-    }
-
+    /**
+     * @param array<string> $allow
+     * @param array<string> $block
+     */
     public static function make(
         array $allow = [],
         array $block = []
@@ -27,6 +26,9 @@ class AllowBlockFilterConfig
         return $object;
     }
 
+    /**
+     * @param array<string>| null $data
+     */
     public static function makeFromArray(?array $data): ?static
     {
         if (! $data) {
@@ -46,6 +48,9 @@ class AllowBlockFilterConfig
         return $object;
     }
 
+    /**
+     * @param array<string> $allow
+     */
     public function allow(array $allow): static
     {
         $this->allow = $allow;
@@ -53,6 +58,9 @@ class AllowBlockFilterConfig
         return $this;
     }
 
+    /**
+     * @param array<string> $block
+     */
     public function block(array $block): static
     {
         $this->block = $block;

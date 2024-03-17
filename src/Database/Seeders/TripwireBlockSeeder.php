@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Database\Seeders;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
@@ -15,7 +16,7 @@ class TripwireBlockSeeder extends Seeder
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function run($user = null): void
+    public function run(Authenticatable $user = null): void
     {
         TripwireBlock::factory(1)->create();
 
