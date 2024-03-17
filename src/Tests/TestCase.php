@@ -5,6 +5,7 @@ namespace Yormy\TripwireLaravel\Tests;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
 
 use Yormy\AssertLaravel\Helpers\AssertJsonMacros;
@@ -33,6 +34,7 @@ abstract class TestCase extends BaseTestCase
         return [
             TripwireServiceProvider::class,
             RayServiceProvider::class,
+            LaravelDataServiceProvider::class,
         ];
     }
 

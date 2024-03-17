@@ -9,7 +9,7 @@ class BlockData extends Data
 {
     public static function rules(ValidationContext $context): array
     {
-        $rules['blocked_ip'] = ['required', 'string'];
+        $rules['blocked_ip'] = ['required', 'string', 'min:6'];
         $rules['internal_comments'] = ['required', 'string'];
 
         return $rules;

@@ -30,13 +30,13 @@ class AdminRoutes
                         Route::prefix('/blocks/{block_xid}')
                             ->name('blocks.')
                             ->group(function () {
-                                Route::get('', [BlockController::class, 'show'])->name('show');
-                                Route::get('/logs', [LogController::class, 'indexForBlock'])->name('logs.index');
+                                Route::get('', [SystemBlockController::class, 'show'])->name('show');
+                                Route::get('/logs', [SystemLogController::class, 'indexForBlock'])->name('logs.index');
 
-                                Route::delete('', [BlockController::class, 'delete'])->name('delete');
-                                Route::patch('', [BlockController::class, 'unblock'])->name('unblock');
-                                Route::patch('/persist', [BlockController::class, 'persist'])->name('persist');
-                                Route::patch('/unpersist', [BlockController::class, 'unpersist'])->name('unpersist');
+                                Route::delete('', [SystemBlockController::class, 'delete'])->name('delete');
+                                Route::patch('', [SystemBlockController::class, 'unblock'])->name('unblock');
+                                Route::patch('/persist', [SystemBlockController::class, 'persist'])->name('persist');
+                                Route::patch('/unpersist', [SystemBlockController::class, 'unpersist'])->name('unpersist');
                             });
                     });
             });

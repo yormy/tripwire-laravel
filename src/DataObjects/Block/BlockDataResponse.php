@@ -14,7 +14,7 @@ class BlockDataResponse extends BlockData
         public ?string $type,
         public ?string $reasons,
         public string $blocked_ip,
-        public CarbonImmutable | null $deleted_at,
+        public ? CarbonImmutable $deleted_at,
 
         public ?string $blocked_user_xid,
         public ?string $blocked_user_firstname,
@@ -26,7 +26,7 @@ class BlockDataResponse extends BlockData
         public ?string $internal_comments,
         public bool $manually_blocked,
         public bool $persistent_block,
-        public CarbonImmutable $blocked_until,
+        public ? CarbonImmutable $blocked_until,
         public CarbonImmutable $created_at,
         public ?string $rowstyle,
 
@@ -48,7 +48,7 @@ class BlockDataResponse extends BlockData
             $model->type,
             $model->reasons,
             $model->blocked_ip,
-            CarbonImmutable::parse($model->deleted_at),
+            $model->deleted_at ? CarbonImmutable::parse($model->deleted_at) : null,
 
             self::getUserField($model, $fieldId),
             self::getUserField($model, $fieldFirstname),
@@ -61,7 +61,7 @@ class BlockDataResponse extends BlockData
             (bool)$model->manually_blocked,
             (bool)$model->persistent_block,
 
-            CarbonImmutable::parse($model->blocked_until),
+            $model->blocked_until ? CarbonImmutable::parse($model->blocked_until) : null,
             CarbonImmutable::parse($model->created_at),
             $model->deleted_at ? 'deleted' : '',
 

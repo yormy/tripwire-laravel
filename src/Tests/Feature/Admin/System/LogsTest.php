@@ -13,7 +13,6 @@ class LogsTest extends TestCase
      * @test
      *
      * @group tripwire-api
-     *
      */
     public function Logs_Index_HasItem(): void
     {
