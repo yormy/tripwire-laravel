@@ -45,7 +45,6 @@ class RequestSize extends BaseWire
         $this->blockIfNeeded();
     }
 
-
     /**
      * @param array<string> $inputs
      * @param array<string> $violations

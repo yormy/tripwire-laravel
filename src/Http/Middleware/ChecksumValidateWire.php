@@ -27,8 +27,8 @@ use Yormy\TripwireLaravel\Traits\TripwireHelpers;
  */
 class ChecksumValidateWire
 {
-
     use TripwireHelpers;
+
     public const NAME = 'checksum';
 
     protected Request $request;

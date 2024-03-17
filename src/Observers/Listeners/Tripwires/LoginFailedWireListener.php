@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
-use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailedEvent;
-use Illuminate\Support\Facades\Event;
-use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 use Illuminate\Auth\Events\Failed;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailedEvent;
 
 class LoginFailedWireListener extends WireBaseListener
 {

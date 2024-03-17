@@ -90,7 +90,6 @@ abstract class BaseWire
     }
 
     /**
-     *
      * @param array<string> $violations
      * @psalm-return 0|1|false
      */

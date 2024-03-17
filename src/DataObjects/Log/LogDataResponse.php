@@ -9,7 +9,6 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class LogDataResponse extends LogData
 {
-
     /**
      * @param array<string> $status
      * @param array<string> $method

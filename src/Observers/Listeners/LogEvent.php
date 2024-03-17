@@ -6,9 +6,8 @@ namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Illuminate\Auth\Events\Failed;
 use Yormy\TripwireLaravel\Jobs\AddLogJob;
-use Yormy\TripwireLaravel\Services\LogRequestService;
-use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
+use Yormy\TripwireLaravel\Services\LogRequestService;
 
 class LogEvent extends BaseListener
 {

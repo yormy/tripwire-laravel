@@ -10,7 +10,7 @@ use Mexion\BedrockUsersv2\Domain\User\Models\Member;
 
 class UserResolver
 {
-    public static function getCurrent(): Member | Admin | Null
+    public static function getCurrent(): Member | Admin | null
     {
         return Auth::user();
     }

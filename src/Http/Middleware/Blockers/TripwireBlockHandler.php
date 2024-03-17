@@ -14,7 +14,6 @@ use Yormy\TripwireLaravel\Services\UrlTester;
 
 abstract class TripwireBlockHandler
 {
-
     public function handle(Request $request, Closure $next): mixed
     {
         if (UrlTester::skipUrl($request, config('tripwire.urls'))) {

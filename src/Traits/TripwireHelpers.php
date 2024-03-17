@@ -13,7 +13,6 @@ use Yormy\TripwireLaravel\Services\UrlTester;
 
 trait TripwireHelpers
 {
-
     public function skip(Request $request): bool
     {
         if ($this->config->isDisabled()) {

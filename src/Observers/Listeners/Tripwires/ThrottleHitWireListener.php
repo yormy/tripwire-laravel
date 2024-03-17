@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Illuminate\Auth\Events\Failed;
-use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
-use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
 use Illuminate\Support\Facades\Event;
+use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
+use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
 {
