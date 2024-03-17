@@ -8,10 +8,21 @@ use Illuminate\Routing\Controller;
 use Yormy\TripwireLaravel\Services\ResetService;
 use Yormy\TripwireLaravel\Services\ResetUrl;
 
+/**
+ * @group Tripwire
+ *
+ * @subgroup Reset
+ */
 class ResetController extends controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse|null
+     * Reset
+     *
+     * Reset the blocks so the ip/user has access again
+     *
+     * @response {
+     *   "logs cleared
+     *  }
      */
     public function reset(Request $request)
     {
@@ -22,6 +33,15 @@ class ResetController extends controller
         return response()->json(['logs cleared']);
     }
 
+    /**
+     * Get reset url
+     *
+     * Returns the url to reset the blocks
+     *
+     * @response {
+     *  "url": 'https://localhost.com/reset/325235235235253252',
+     * }
+     */
     public function getKey(): ?JsonResponse
     {
         $url = ResetUrl::get();
