@@ -17,6 +17,8 @@ abstract class BaseWire
 {
     use TripwireHelpers;
 
+    public const NAME = '';
+
     protected WireConfig $config;
 
     protected Request $request;
