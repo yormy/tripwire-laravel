@@ -11,6 +11,7 @@ class BlockData extends Data
 {
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @return array<string>
      */
     public static function rules(ValidationContext $context): array

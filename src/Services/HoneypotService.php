@@ -8,6 +8,7 @@ class HoneypotService
 {
     /**
      * @param array<string> $honeypots
+     *
      * @return array<string>
      */
     public static function checkFalseValues(\Illuminate\Http\Request $request, array $honeypots = []): array

@@ -313,6 +313,7 @@ class WireDetailsConfig
     /**
      * @param array<string> $values
      * @param array<string> $allowedValues
+     *
      * @return array<string>
      */
     private function getArrayErrors(array $values, array $allowedValues): array

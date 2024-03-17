@@ -25,6 +25,7 @@ class LogRequestService
 
     /**
      * @param array<string> $data
+     *
      * @return array<string>
      */
     private static function addRequest(Request $request, array $data): array

@@ -33,6 +33,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @return array<string>
      */
     public function via(Notifiable $notifiable): array
