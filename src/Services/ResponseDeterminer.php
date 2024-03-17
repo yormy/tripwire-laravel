@@ -27,6 +27,9 @@ class ResponseDeterminer
         }
     }
 
+    /**
+     * @param array<string> $data
+     */
     public function respondWithJson(array $data = []): View|JsonResponse
     {
         $this->asException();
@@ -46,6 +49,9 @@ class ResponseDeterminer
         return $this->asGeneralAbort();
     }
 
+    /**
+     * @param array<string> $data
+     */
     public function respondWithHtml(array $data = []): View|RedirectResponse
     {
         $this->asException();
@@ -74,7 +80,7 @@ class ResponseDeterminer
         return false;
     }
 
-    public function asException()
+    public function asException(): ?\Exception
     {
         if (isset($this->config->exception)) {
             throw new $this->config->exception();
@@ -105,6 +111,9 @@ class ResponseDeterminer
         return Response::json($data, $this->code);
     }
 
+    /**
+     * @param array<string> $data
+     */
     public function asView(array $data): ?View
     {
         if (isset($this->config->view)) {

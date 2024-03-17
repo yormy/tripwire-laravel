@@ -43,11 +43,14 @@ class LogRequestService
         return $data;
     }
 
-    private static function truncateValue(string $value, $max = 150): string
+    private static function truncateValue(string $value, int $max = 150): string
     {
         return substr($value, 0, $max);
     }
 
+    /**
+     * @param array<string> $data
+     */
     private static function addUser(Request $request, array $data): array
     {
         $userClass = config('tripwire.services.user');
@@ -60,6 +63,9 @@ class LogRequestService
         return $data;
     }
 
+    /**
+     * @param array<string> $data
+     */
     private static function addUserAgent(array $data): array
     {
         $requestSourceClass = config('tripwire.services.request_source');

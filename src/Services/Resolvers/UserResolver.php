@@ -10,40 +10,37 @@ use Mexion\BedrockUsersv2\Domain\User\Models\Member;
 
 class UserResolver
 {
-    public static function getCurrent(): ?User
+    public static function getCurrent(): Member | Admin | Null
     {
-        /**
-         * @var User $user
-         */
         return Auth::user();
     }
 
-    public static function getRandom()
+    public static function getRandom(): Member
     {
         return Member::first();
     }
 
-    public static function getMemberById($id): Member
+    public static function getMemberById(string | int $id): Member
     {
         return Member::where('id', $id)->firstOrFail();
     }
 
-    public static function getAdminById($id): Admin
+    public static function getAdminById(string | int $id): Admin
     {
         return Admin::where('id', $id)->firstOrFail();
     }
 
-    public static function getMemberByXid($id): Member
+    public static function getMemberByXid(string | int $id): Member
     {
         return Member::where('xid', $id)->firstOrFail();
     }
 
-    public static function getAdminByXid($id): Admin
+    public static function getAdminByXid(string | int $id): Admin
     {
         return Admin::where('xid', $id)->firstOrFail();
     }
 
-    public static function getMemberOnXId(string $xid): ?Member
+    public static function getMemberOnXId(string | int $xid): ?Member
     {
         return Member::where('xid', $xid)->first();
     }

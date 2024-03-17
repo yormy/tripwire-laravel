@@ -16,11 +16,17 @@ class Regex
 
     public const GT = '([>¾])|%3E|%BE';
 
+    /**
+     * @param array<string> $signatures
+     */
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
         return $delim.'('.self::or($signatures).')'.$delim.'iUu';
     }
 
+    /**
+     * @param array<string> $signatures
+     */
     public static function or(array $signatures): string
     {
         $clean = self::injectFillers($signatures);
@@ -33,6 +39,9 @@ class Regex
         return str_replace(' ', self::FILLER.'*', $signature);
     }
 
+    /**
+     * @param array<string> $signatures
+     */
     public static function injectFillers(array $signatures): array
     {
         return array_map(function ($signature) {

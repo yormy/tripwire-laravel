@@ -27,6 +27,10 @@ class UrlTester
 
         return false;
     }
+
+    /**
+     * @param array<string> $urlsConfig
+     */
     private static function isInclude(Request $request, array $urlsConfig): bool
     {
         $onlyUrls = $urlsConfig['only'] ?? false;
@@ -47,6 +51,9 @@ class UrlTester
         return false;
     }
 
+    /**
+     * @param array<string> $urlsConfig
+     */
     private static function isExcluded(Request $request, array $urlsConfig): bool
     {
         $exceptUrls = $urlsConfig['except'];
