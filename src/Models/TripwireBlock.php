@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Models;
 
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\BlockScope;
@@ -51,17 +52,17 @@ class TripwireBlock extends BaseModel
         parent::__construct($attributes);
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'xid';
     }
 
-    public function logs()
+    public function logs(): HasMany
     {
         return $this->hasMany(TripwireLog::class)->withTrashed();
     }
 
-    public function scopeByIp(Builder $query, string $ipAddress)
+    public function scopeByIp(Builder $query, string $ipAddress): Builder
     {
         return $query->where('blocked_ip', $ipAddress);
     }
@@ -70,9 +71,4 @@ class TripwireBlock extends BaseModel
     {
         return $this->morphTo('user', 'blocked_user_type', 'blocked_user_id');
     }
-
-    //    public function getRouteKeyName()
-    //    {
-    //        return 'xid';
-    //    }
 }

@@ -10,12 +10,12 @@ class Notifiable
 {
     use NotifiableTrait;
 
-    public function routeNotificationForMail()
+    public function routeNotificationForMail(): ?string
     {
         return config('tripwire.notifications.mail.to');
     }
 
-    public function routeNotificationForSlack()
+    public function routeNotificationForSlack(): ?string
     {
         return config('tripwire.notifications.slack.to');
     }

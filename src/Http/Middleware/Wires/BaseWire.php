@@ -26,7 +26,7 @@ abstract class BaseWire
         $this->config = new WireConfig($this->middleware);
     }
 
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($this->skip($request)) {
             return $next($request);
@@ -50,7 +50,10 @@ abstract class BaseWire
         return $next($request);
     }
 
-    public function getPatterns()
+    /**
+     * @return array<string>
+     */
+    public function getPatterns(): array
     {
         return $this->config->tripwires();
     }

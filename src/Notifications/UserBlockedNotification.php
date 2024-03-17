@@ -89,7 +89,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function toSlack(Notifiable $notifiable)
+    public function toSlack(Notifiable $notifiable): mixed
     {
         $domain = request()->getHttpHost();
 

@@ -22,7 +22,7 @@ class User
         return get_class(self::get($request));
     }
 
-    private static function get(Request $request)
+    private static function get(Request $request): mixed
     {
         return $request->user();
     }

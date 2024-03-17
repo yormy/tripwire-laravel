@@ -23,7 +23,7 @@ class GenerateAccepts extends Command
      */
     protected $description = 'Generate a file with random text that should be accepted';
 
-    public function handle()
+    public function handle(): int
     {
         $locales = [
             'en_GB',

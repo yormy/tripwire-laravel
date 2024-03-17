@@ -6,6 +6,7 @@ namespace Yormy\TripwireLaravel\Http\Controllers\System;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\TripwireLaravel\DataObjects\Block\BlockDataRequest;
@@ -51,7 +52,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponseCreated
      */
-    public function store(BlockDataRequest $data)
+    public function store(BlockDataRequest $data): JsonResponse
     {
         $blockRepository = new BlockRepository();
         $block = $blockRepository->addManualBlock($data);
@@ -69,7 +70,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponse
      */
-    public function show(Request $request, TripwireBlock $block_xid)
+    public function show(Request $request, TripwireBlock $block_xid): JsonResponse
     {
         return $this->returnBlock($request, $block_xid);
     }
@@ -81,7 +82,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponse
      */
-    public function persist(Request $request, TripwireBlock $block_xid)
+    public function persist(Request $request, TripwireBlock $block_xid): JsonResponse
     {
         $block_xid->persistent_block = true;
         $block_xid->save();
@@ -96,7 +97,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponse
      */
-    public function unpersist(Request $request, TripwireBlock $block_xid)
+    public function unpersist(Request $request, TripwireBlock $block_xid): JsonResponse
     {
         $block_xid->persistent_block = false;
         $block_xid->save();
@@ -111,7 +112,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponse
      */
-    public function unblock(Request $request, TripwireBlock $block_xid)
+    public function unblock(Request $request, TripwireBlock $block_xid): JsonResponse
     {
         $block_xid->blocked_until = null;
         $block_xid->save();
@@ -126,7 +127,7 @@ class SystemBlockController extends Controller
      *
      * @responseApiType successResponse
      */
-    public function delete(Request $request, TripwireBlock $block_xid)
+    public function delete(Request $request, TripwireBlock $block_xid): JsonResponse
     {
         $block_xid->delete();
 
@@ -136,7 +137,7 @@ class SystemBlockController extends Controller
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    private function returnBlock(Request $request, TripwireBlock $tripwireBlock)
+    private function returnBlock(Request $request, TripwireBlock $tripwireBlock): JsonResponse
     {
         $dto = BlockDataResponse::fromModel($tripwireBlock);
 

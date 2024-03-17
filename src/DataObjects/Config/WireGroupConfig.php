@@ -28,6 +28,10 @@ class WireGroupConfig
         return $object;
     }
 
+    /**
+     * @param array<string>|null $data
+     * @return array<string>|null
+     */
     public static function makeFromArray(?array $data): ?array
     {
         if (! $data) {

@@ -27,7 +27,7 @@ class Honeypot
 
     public const NAME = 'honeypot';
 
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $this->request = $request;
 

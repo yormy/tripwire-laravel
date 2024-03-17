@@ -26,7 +26,7 @@ class ResetController extends controller
      *   "logs cleared
      *  }
      */
-    public function reset(Request $request)
+    public function reset(Request $request): JsonResponse
     {
         if (! ResetService::run($request)) {
             return response()->json([], 404);

@@ -210,7 +210,7 @@ class BlockRepository
         $query->delete();
     }
 
-    private function getLatest(Builder $builder): TripwireBlock
+    private function getLatest(Builder $builder): ?TripwireBlock
     {
         return $builder->notIgnore()
             ->latest()

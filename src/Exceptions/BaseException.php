@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 abstract class BaseException extends Exception
 {
-    public function render(Request $request)
+    public function render(Request $request): Response | string
     {
         $this->dispatchEvents($request);
 

@@ -36,7 +36,7 @@ class ChecksumCalculate
         return $request;
     }
 
-    public function validate(Request $request, Closure $next)
+    public function validate(Request $request, Closure $next): mixed
     {
         $validate = new ChecksumValidateWire();
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Models;
 
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\LogScope;
@@ -54,7 +55,7 @@ class TripwireLog extends BaseModel
         parent::__construct($attributes);
     }
 
-    public function scopeByIp(Builder $query, string $ipAddress)
+    public function scopeByIp(Builder $query, string $ipAddress): Builder
     {
         return $query->where('ip', $ipAddress);
     }
@@ -64,7 +65,7 @@ class TripwireLog extends BaseModel
         return $this->morphTo('user');
     }
 
-    public function block()
+    public function block(): BelongsTo
     {
         return $this->belongsTo(TripwireBlock::class, 'tripwire_block_id', 'id')->withTrashed();
     }
