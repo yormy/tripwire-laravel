@@ -11,6 +11,7 @@ class EventServiceProvider extends ServiceProvider
 {
     /**
      * @var array<string> $subscribe
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $subscribe = [

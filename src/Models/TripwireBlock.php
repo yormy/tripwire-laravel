@@ -16,6 +16,7 @@ class TripwireBlock extends BaseModel
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     *
      * @var array<string> $fillable
      */
     protected $fillable = [
@@ -33,6 +34,7 @@ class TripwireBlock extends BaseModel
 
     /**
      * @var array<string>
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $casts = [

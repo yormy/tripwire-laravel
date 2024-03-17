@@ -14,6 +14,7 @@ class TripwireLogFactory extends Factory
 {
     /**
      * @var string $model
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $model = TripwireLog::class;
@@ -51,7 +52,7 @@ class TripwireLogFactory extends Factory
         $triggerRule = [
             '#example.malicious#iUu',
             '#(%252e%252f|zip://|php://|file=expect:|http:%252f%252|data://text/plain;|php:expect://)#iUu',
-            '#(([<¼]|(&lt;)|%3C|%BC)|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*scrscriptipt|%253c|%252F|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*script|1script3|1/script3|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*script|([<¼]|(&lt;)|%3C|%BC)[\+\s\x00]*[;/][\+\s\x00]*scrscriptipt|\xc0|\xBC)#iUu',
+            '#(([<¼]]*scrscriptipt|%253c|%252F|([<¼]#iUu',
         ];
 
         return [

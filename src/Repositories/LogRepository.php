@@ -108,8 +108,11 @@ class LogRepository
     /**
      * @param array<string> $violations
      */
-    public function queryViolationsByBrowser(int $withinMinutes, string $browserFingerprint, array $violations = []): Builder
-    {
+    public function queryViolationsByBrowser(
+        int $withinMinutes,
+        string $browserFingerprint,
+        array $violations = []
+    ): Builder {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byBrowser($browserFingerprint);
     }

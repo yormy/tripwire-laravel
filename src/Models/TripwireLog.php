@@ -16,6 +16,7 @@ class TripwireLog extends BaseModel
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     *
      * @var array<string> $fillable
      */
     protected $fillable = [

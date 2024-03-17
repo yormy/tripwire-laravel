@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
-use Illuminate\Http\Response;
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;
 use Yormy\TripwireLaravel\Services\Interfaces\IpLookupInterface;
 

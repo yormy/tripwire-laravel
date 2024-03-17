@@ -13,6 +13,7 @@ class TripwireBlockFactory extends Factory
 {
     /**
      * @var string $model
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $model = TripwireBlock::class;
@@ -40,6 +41,7 @@ class TripwireBlockFactory extends Factory
     {
         /**
          * @param array<string> $attributes
+         *
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
         return $this->state(function (array $attributes) use ($user) {
@@ -54,6 +56,7 @@ class TripwireBlockFactory extends Factory
     {
         /**
          * @param array<string> $attributes
+         *
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
         return $this->state(function (array $attributes) {

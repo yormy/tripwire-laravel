@@ -14,6 +14,7 @@ class Bot extends BaseWire
 
     /**
      * @param array<string> $patterns
+     *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
     public function isAttack(array $patterns): bool

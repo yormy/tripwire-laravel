@@ -91,6 +91,7 @@ abstract class BaseWire
 
     /**
      * @param array<string> $violations
+     *
      * @psalm-return 0|1|false
      */
     public function matchResults(string $pattern, string $input, array | null &$violations): false|int
