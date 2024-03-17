@@ -21,16 +21,17 @@ class IpData extends BaseLookup implements IpLookupInterface
             return null;
         }
 
-        $location = new GeoLocation(
+        return new GeoLocation(
             $response->continent_name,
             $response->country_name,
             $response->region_name,
             $response->city
         );
-
-        return $location;
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     private function hasFailed($response): bool
     {
         return false; //todo determine if call failed

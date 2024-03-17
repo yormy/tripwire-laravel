@@ -33,10 +33,8 @@ class Regex
 
     public static function injectFillers(array $signatures): array
     {
-        $clean = array_map(function ($signature) {
+        return array_map(function ($signature) {
             return self::makeWhitespaceSafe($signature);
         }, $signatures);
-
-        return $clean;
     }
 }

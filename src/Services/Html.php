@@ -33,9 +33,6 @@ class Html
             return str_replace('<', '</', $item);
         }, $tags);
 
-        $all = array_merge($tags, $terminators);
-
-        //        dd($all);
-        return $all;
+        return array_merge($tags, $terminators);
     }
 }

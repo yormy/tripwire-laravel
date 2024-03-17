@@ -21,14 +21,12 @@ class ExtremeIplookup extends BaseLookup implements IpLookupInterface
             return null;
         }
 
-        $location = new GeoLocation(
+        return new GeoLocation(
             $response->continent,
             $response->country,
             $response->region,
             $response->city
         );
-
-        return $location;
     }
 
     private function hasFailed($response): bool

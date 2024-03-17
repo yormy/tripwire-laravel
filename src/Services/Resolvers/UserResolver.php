@@ -15,9 +15,7 @@ class UserResolver
         /**
          * @var User $user
          */
-        $user = Auth::user();
-
-        return $user;
+        return Auth::user();
     }
 
     public static function getRandom()

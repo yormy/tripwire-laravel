@@ -9,6 +9,6 @@ class BlockAccountAction implements ActionInterface
     public static function exec(): void
     {
         //event(new TripwireBlockedAccount()); ?
-        dd('block account');
+        abort('block account');
     }
 }

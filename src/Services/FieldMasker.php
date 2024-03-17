@@ -10,10 +10,10 @@ class FieldMasker
 
             if (is_array($input)) {
                 return self::run($input);
-            } else {
-                if (in_array($key, config('tripwire.log.remove', []))) {
-                    $inputs[$key] = '****';
-                }
+            }
+
+            if (in_array($key, config('tripwire.log.remove', []))) {
+                $inputs[$key] = '****';
             }
         }
 

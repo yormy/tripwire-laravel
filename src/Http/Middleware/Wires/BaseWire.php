@@ -19,7 +19,7 @@ abstract class BaseWire
     {
         $this->request = $request;
         $this->middleware = static::NAME;
-        $this->user_id = auth()->id() ?: 0;
+        $this->user_id = auth()->id() ?? 0;
 
         $this->config = new WireConfig($this->middleware);
     }
@@ -142,9 +142,7 @@ abstract class BaseWire
         $stringed = '';
         $this->convertValuesToString($scannableValues, $stringed);
 
-        $cleaned = $this->prepareInput($stringed);
-
-        return $cleaned;
+        return $this->prepareInput($stringed);
     }
 
     private function convertValuesToString(array $data, string &$string): void
@@ -170,6 +168,9 @@ abstract class BaseWire
         return preg_match($pattern, $input, $violations);
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function matchAdditional($value): ?string
     {
         return null;

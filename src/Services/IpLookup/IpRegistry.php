@@ -21,16 +21,17 @@ class IpRegistry extends BaseLookup implements IpLookupInterface
             return null;
         }
 
-        $location = new GeoLocation(
+        return new GeoLocation(
             $response->location->continent->name,
             $response->location->country->name,
             $response->location->region->name,
             $response->location->city
         );
-
-        return $location;
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     private function hasFailed($response): bool
     {
         return false; //todo determine if call failed

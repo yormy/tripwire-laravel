@@ -8,6 +8,5 @@ class LogoutAction implements ActionInterface
 {
     public static function exec(): void
     {
-        dd('do logoout, to implement');
-    }
-}
+        abort('do logoout, to implement'); //todo
+    }}

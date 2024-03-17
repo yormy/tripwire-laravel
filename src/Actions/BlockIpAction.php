@@ -8,7 +8,6 @@ class BlockIpAction implements ActionInterface
 {
     public static function exec(): void
     {
-        //
-        dd('blockIP');
+        abort('blockIP');
     }
 }

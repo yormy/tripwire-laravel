@@ -21,16 +21,17 @@ class IpApi extends BaseLookup implements IpLookupInterface
             return null;
         }
 
-        $location = new GeoLocation(
+        return new GeoLocation(
             $response->continent,
             $response->country,
             $response->regionName,
             $response->city
         );
-
-        return $location;
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     private function hasFailed($response): bool
     {
         return false; //todo determine if call failed
