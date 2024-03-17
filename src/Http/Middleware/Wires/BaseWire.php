@@ -17,6 +17,8 @@ abstract class BaseWire
 {
     use TripwireHelpers;
 
+    protected WireConfig $config;
+
     public function __construct(Request $request)
     {
         $this->request = $request;

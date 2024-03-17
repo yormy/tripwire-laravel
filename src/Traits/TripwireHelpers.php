@@ -46,7 +46,7 @@ trait TripwireHelpers
 
     protected function blockIfNeeded(): void
     {
-        BlockIfNeeded::run($this->request, $this->config->punish(), $this->config->trainingMode());
+        BlockIfNeeded::run(request(), $this->config->punish(), $this->config->trainingMode());
     }
 
     private function getConfig(Request $request, ?string $wire = null): JsonResponseConfig|HtmlResponseConfig|null
