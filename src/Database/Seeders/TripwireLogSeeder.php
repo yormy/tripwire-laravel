@@ -6,9 +6,9 @@ namespace Yormy\TripwireLaravel\Database\Seeders;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Seeder;
-use Mexion\BedrockUsersv2\Domain\User\Models\Admin;
-use Mexion\BedrockUsersv2\Domain\User\Models\Member;
 use Yormy\TripwireLaravel\Models\TripwireLog;
+use Yormy\TripwireLaravel\Tests\Setup\Models\Admin;
+use Yormy\TripwireLaravel\Tests\Setup\Models\Member;
 
 class TripwireLogSeeder extends Seeder
 {
@@ -22,16 +22,16 @@ class TripwireLogSeeder extends Seeder
      */
     public function run(?Authenticatable $user = null): void
     {
-        $member = Member::where('id', 1)->first();
+        $member = Member::create();
         TripwireLog::factory(10)->forUser($member)->create();
 
-        $member = Member::where('id', 2)->first();
+        $member = Member::create();
         TripwireLog::factory(10)->forUser($member)->create();
 
-        $admin = Admin::where('id', 1)->first();
+        $admin = Admin::create();
         TripwireLog::factory(10)->forUser($admin)->create();
 
-        $admin = Admin::where('id', 2)->first();
+        $admin = Admin::create();
         TripwireLog::factory(10)->forUser($admin)->create();
     }
 }
