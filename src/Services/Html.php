@@ -6,6 +6,9 @@ namespace Yormy\TripwireLaravel\Services;
 
 class Html
 {
+    /**
+     * @return array<string>
+     */
     public static function tags(): array
     {
         $tags = [

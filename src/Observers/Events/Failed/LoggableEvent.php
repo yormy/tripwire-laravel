@@ -59,6 +59,9 @@ abstract class LoggableEvent implements LoggableEventInterface
         return $this->triggerEventData->triggerData;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getTriggerRules(): array
     {
         return $this->triggerEventData->triggerRules ?? [];

@@ -56,6 +56,9 @@ class WireConfig
         return $trainingMode;
     }
 
+    /**
+     * @return array<string>
+     */
     public function whitelistedTokens(): array
     {
         return $this->wireConfig->whitelistedTokens;
@@ -71,6 +74,9 @@ class WireConfig
         return ! $this->isEnabled();
     }
 
+    /**
+     * @return array<string>
+     */
     public function methods(): array
     {
         if (isset($this->wireConfig->methods)) {
@@ -80,6 +86,9 @@ class WireConfig
         return [];
     }
 
+    /**
+     * @return array<string>
+     */
     public function urls(): array
     {
         if (isset($this->wireConfig->urls)) {
@@ -98,6 +107,9 @@ class WireConfig
         return $this->defaultConfig->punish;
     }
 
+    /**
+     * @return array<string>
+     */
     public function inputs(): array
     {
         if (isset($this->wireConfig->inputs)) {
@@ -107,6 +119,9 @@ class WireConfig
         return [];
     }
 
+    /**
+     * @return array<string>
+     */
     public function tripwires(): array
     {
         if (isset($this->wireConfig->tripwires)) {
@@ -116,6 +131,9 @@ class WireConfig
         return [];
     }
 
+    /**
+     * @return array<string>
+     */
     public function filters(): array
     {
         if (isset($this->wireConfig->filters)) {

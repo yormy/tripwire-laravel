@@ -13,8 +13,6 @@ class Swear extends BaseWire
 
     /**
      * @return array<string>
-     *
-     * @psalm-return list{0?: string,...}
      */
     public function getPatterns(): array
     {

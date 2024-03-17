@@ -15,6 +15,9 @@ class ConfigBuilderWires implements Arrayable
      */
     public array $wires;
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         $data = [];

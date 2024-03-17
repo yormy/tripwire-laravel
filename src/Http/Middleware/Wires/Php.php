@@ -11,6 +11,9 @@ class Php extends BaseWire
 {
     public const NAME = 'php';
 
+    /**
+     * @return array<string>
+     */
     public function getPatterns(): array
     {
         $patterns = [];

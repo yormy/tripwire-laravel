@@ -83,6 +83,9 @@ class BaseAcceptAll extends TestCase
         $this->assertEquals($startCount, TripwireLog::count());
     }
 
+    /**
+     * @return array<string>
+     */
     public static function accepts(): array
     {
         if (isset(static::$acceptsDataFile)) {

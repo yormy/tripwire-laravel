@@ -46,6 +46,9 @@ class PunishConfig
         return $object;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         return [

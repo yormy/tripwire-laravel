@@ -96,6 +96,9 @@ class NotificationMailConfig
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         if (! $this->enabled) {

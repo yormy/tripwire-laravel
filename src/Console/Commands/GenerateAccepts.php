@@ -52,6 +52,9 @@ class GenerateAccepts extends Command
         return $name.'-'.$realText;
     }
 
+    /**
+     * @return array<string>
+     */
     private function buildAccept(string $locale, int $lines = 2): array
     {
         $accepts = [];

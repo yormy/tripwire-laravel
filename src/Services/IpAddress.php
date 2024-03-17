@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class IpAddress
 {
+    /**
+     * @return array<string>|string|null
+     */
     public static function get(?Request $request): array|string|null
     {
         if (! $request) {

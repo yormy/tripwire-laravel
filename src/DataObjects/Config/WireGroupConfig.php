@@ -44,6 +44,9 @@ class WireGroupConfig
         return $wireGroups;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         return $this->wires;

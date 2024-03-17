@@ -43,6 +43,9 @@ class BlockDataResponse extends BlockData
         return new static(...$constuctorData);
     }
 
+    /**
+     * @return array<string>
+     */
     protected static function constructorData(TripwireBlock $model): array
     {
         $fieldId = config('tripwire.user_fields.id');
@@ -89,6 +92,9 @@ class BlockDataResponse extends BlockData
         return null;
     }
 
+    /**
+     * @return array<string>
+     */
     private static function decorateWithStatus(TripwireBlock $model): array
     {
         $status = [];

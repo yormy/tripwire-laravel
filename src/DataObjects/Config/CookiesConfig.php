@@ -35,6 +35,9 @@ class CookiesConfig
         return $object;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         return [

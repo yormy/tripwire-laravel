@@ -74,6 +74,9 @@ class ConfigBuilder implements Arrayable
 
     public BlockResponseConfig $rejectResponse;
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         $data = [];

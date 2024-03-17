@@ -9,8 +9,7 @@ trait TripwireTestTrait
 {
     /**
      * @return array[]
-     *
-     * @psalm-return array<list{mixed}>
+     * @return array<string>
      */
     public static function accepts(): array
     {
@@ -28,8 +27,7 @@ trait TripwireTestTrait
 
     /**
      * @return array[]
-     *
-     * @psalm-return array<list{mixed}>
+     * @return array<string>
      */
     public static function violations(): array
     {

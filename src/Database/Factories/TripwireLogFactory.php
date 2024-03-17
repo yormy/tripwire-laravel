@@ -19,6 +19,9 @@ class TripwireLogFactory extends Factory
      */
     protected $model = TripwireLog::class;
 
+    /**
+     * @return array<string>
+     */
     public function definition(): array
     {
         $eventCode = [

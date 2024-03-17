@@ -18,6 +18,9 @@ class TripwireBlockFactory extends Factory
      */
     protected $model = TripwireBlock::class;
 
+    /**
+     * @return array<string>
+     */
     public function definition(): array
     {
         return [

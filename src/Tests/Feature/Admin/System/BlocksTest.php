@@ -185,6 +185,9 @@ class BlocksTest extends TestCase
         return $response;
     }
 
+    /**
+     * @return array<string>
+     */
     private function getBlockAddData(): array
     {
         $data = [];

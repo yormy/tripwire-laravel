@@ -8,6 +8,9 @@ use Spatie\LaravelData\Data;
 
 class LogData extends Data
 {
+    /**
+     * @return array<string>
+     */
     public static function examples(): array
     {
         $data = [];
@@ -64,6 +67,9 @@ class LogData extends Data
         return $data;
     }
 
+    /**
+     * @return array<string>
+     */
     public static function descriptions(): array
     {
         $data = [];

@@ -52,6 +52,9 @@ class LogDataResponse extends LogData
         return new static(...$constuctorData);
     }
 
+    /**
+     * @return array<string>
+     */
     protected static function constructorData(TripwireLog $model): array
     {
         $fieldId = config('tripwire.user_fields.id');
@@ -127,6 +130,9 @@ class LogDataResponse extends LogData
         return null;
     }
 
+    /**
+     * @return array<string>
+     */
     private static function decorateWithStatus(TripwireLog $model): array
     {
         $scoreMediumThreshold = 20;
@@ -155,6 +161,9 @@ class LogDataResponse extends LogData
         return $data;
     }
 
+    /**
+     * @return array<string>
+     */
     private static function decorateWithMethod(TripwireLog $model): array
     {
         $nature = [];

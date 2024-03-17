@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class LogRequestService
 {
+    /**
+     * @return array<string>
+     */
     public static function getMeta(Request $request): array
     {
         $data = [];
@@ -22,6 +25,7 @@ class LogRequestService
 
     /**
      * @param array<string> $data
+     * @return array<string>
      */
     private static function addRequest(Request $request, array $data): array
     {
@@ -53,6 +57,7 @@ class LogRequestService
 
     /**
      * @param array<string> $data
+     * @return array<string>
      */
     private static function addUser(Request $request, array $data): array
     {
@@ -68,6 +73,7 @@ class LogRequestService
 
     /**
      * @param array<string> $data
+     * @return array<string>
      */
     private static function addUserAgent(array $data): array
     {

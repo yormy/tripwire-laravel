@@ -210,7 +210,7 @@ class BlockRepository
         $query->delete();
     }
 
-    private function getLatest(Builder $builder)
+    private function getLatest(Builder $builder): TripwireBlock
     {
         return $builder->notIgnore()
             ->latest()
@@ -271,7 +271,7 @@ class BlockRepository
             ->count();
     }
 
-    private function queryRepeatOffender()
+    private function queryRepeatOffender(): Builder
     {
         return $this->model
             ->withinDays($this->repeatOffenderTimeframeDays);

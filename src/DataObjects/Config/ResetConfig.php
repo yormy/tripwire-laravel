@@ -60,6 +60,9 @@ class ResetConfig
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         return [

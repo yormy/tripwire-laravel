@@ -79,6 +79,9 @@ class AllowBlockFilterConfig
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function toArray(): array
     {
         $data = [];

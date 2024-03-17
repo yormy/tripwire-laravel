@@ -23,6 +23,9 @@ class BaseExtensive extends TestCase
         parent::__construct($name, $data, $dataName);
     }
 
+    /**
+     * @return array<string>
+     */
     private static function loadFile(string $filename): array
     {
         $data = file($filename);
