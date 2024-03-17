@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
+use Illuminate\Support\Facades\Event;
 
 abstract class WireBaseListener
 {
@@ -36,5 +37,5 @@ abstract class WireBaseListener
 //        }
     }
 
-   // abstract public function isAttack(Event $event): bool;
+    abstract public function isAttack(Event | Failed $event): bool;
 }

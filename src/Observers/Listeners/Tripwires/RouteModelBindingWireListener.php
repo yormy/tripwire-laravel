@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
+use Illuminate\Auth\Events\Failed;
 use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
@@ -17,7 +18,7 @@ class RouteModelBindingWireListener extends WireBaseListener
         parent::__construct('model404');
     }
 
-    public function isAttack(Event $event): bool
+    public function isAttack(Event | Failed $event): bool
     {
         $violations = [];
         if (in_array($event->class, $this->config->tripwires())) {

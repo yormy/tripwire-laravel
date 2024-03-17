@@ -7,6 +7,7 @@ namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
+use Illuminate\Auth\Events\Failed;
 
 class PageNotFoundWireListener extends WireBaseListener
 {
@@ -17,7 +18,7 @@ class PageNotFoundWireListener extends WireBaseListener
         parent::__construct('page404');
     }
 
-    public function isAttack(Event $event): bool
+    public function isAttack(Event | Failed $event): bool
     {
         $violations = [];
         $url = $event->request->fullUrl();

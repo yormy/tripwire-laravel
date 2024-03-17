@@ -36,7 +36,7 @@ class ThrottleHitWireListener extends WireBaseListener
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack(Event $event): bool
+    public function isAttack(Event | Failed $event): bool
     {
         $violations = ['throttle_hit'];
         $triggerEventData = new TriggerEventData(
