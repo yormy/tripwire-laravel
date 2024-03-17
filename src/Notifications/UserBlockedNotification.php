@@ -18,6 +18,9 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    /**
+     * @var array|\Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|mixed
+     */
     public array $notifications;
 
     public function __construct(

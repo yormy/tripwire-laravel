@@ -12,9 +12,10 @@ class RequestSize extends BaseWire
     public const NAME = 'request_size';
 
     /**
+     * @param array<string> $patterns
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack($patterns): bool
+    public function isAttack(array $patterns): bool
     {
         $inputs = $this->request->input();
         $violations = [];
@@ -44,6 +45,11 @@ class RequestSize extends BaseWire
         $this->blockIfNeeded();
     }
 
+
+    /**
+     * @param array<string> $inputs
+     * @param array<string> $violations
+     */
     private function check(array $inputs, array &$violations): void
     {
         foreach ($inputs as $field => $value) {

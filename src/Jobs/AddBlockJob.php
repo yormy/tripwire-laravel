@@ -92,6 +92,9 @@ class AddBlockJob implements ShouldBeEncrypted, ShouldQueue
         return null;
     }
 
+    /**
+     * @param array<string> $violations
+     */
     private function getSumViolationScore(int $punishableTimeframe, array $violations = []): \StdClass
     {
         $logRepository = new LogRepository();

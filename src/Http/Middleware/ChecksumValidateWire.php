@@ -70,7 +70,7 @@ class ChecksumValidateWire
         return $next($request);
     }
 
-    public function isAttack($request): bool
+    public function isAttack(Request $request): bool
     {
         $isAttack = false;
         $this->checkTimestamp($request);

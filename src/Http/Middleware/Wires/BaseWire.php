@@ -55,7 +55,10 @@ abstract class BaseWire
         return $this->config->tripwires();
     }
 
-    public function isAttack($patterns): bool
+    /**
+     * @param array<string> $patterns
+     */
+    public function isAttack(array $patterns): bool
     {
         $violations = [];
         $rules = [];
@@ -87,14 +90,16 @@ abstract class BaseWire
     }
 
     /**
+     *
+     * @param array<string> $violations
      * @psalm-return 0|1|false
      */
-    public function matchResults($pattern, string $input, &$violations): false|int
+    public function matchResults(string $pattern, string $input, array | null &$violations): false|int
     {
         return preg_match($pattern, $input, $violations);
     }
 
-    public function prepareInput($value): string
+    public function prepareInput(string $value): string
     {
         return $value;
     }
@@ -102,11 +107,14 @@ abstract class BaseWire
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    protected function matchAdditional($value): ?string
+    protected function matchAdditional(string $value): ?string
     {
         return null;
     }
 
+    /**
+     * @param array<string> $filters
+     */
     protected function isFilterAttack(string $value, array $filters): bool
     {
         if (CheckAllowBlock::shouldBlock($value, $filters)) {
@@ -128,6 +136,10 @@ abstract class BaseWire
         return false;
     }
 
+    /**
+     * @param array<string> $original
+     * @param array<string> $toRemove
+     */
     private function removeItems(array $original, array $toRemove): array
     {
         $filtered = [];
@@ -192,6 +204,9 @@ abstract class BaseWire
         return $this->prepareInput($stringed);
     }
 
+    /**
+     * @param array<string> $data
+     */
     private function convertValuesToString(array $data, string &$string): void
     {
         foreach ($data as $value) {

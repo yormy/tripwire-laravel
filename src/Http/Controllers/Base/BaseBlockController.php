@@ -23,7 +23,7 @@ abstract class BaseBlockController extends controller
      *
      * @responseApiType successResponse
      */
-    public function index($user_xid): Response
+    public function index(string $user_xid): Response
     {
         $member = $this->getUser($user_xid);
 

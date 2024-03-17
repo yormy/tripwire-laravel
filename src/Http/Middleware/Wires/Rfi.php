@@ -11,7 +11,7 @@ class Rfi extends BaseWire
 {
     public const NAME = 'rfi';
 
-    public function prepareInput($value): string
+    public function prepareInput(string $value): string
     {
         $exceptions = [];
         $filters = $this->config->filters();
@@ -35,7 +35,7 @@ class Rfi extends BaseWire
         $this->blockIfNeeded();
     }
 
-    protected function matchAdditional($value): ?string
+    protected function matchAdditional(string $value): ?string
     {
         $contents = @file_get_contents($value);
 

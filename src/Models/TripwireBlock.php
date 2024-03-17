@@ -31,6 +31,9 @@ class TripwireBlock extends BaseModel
         'blocked_until' => 'datetime',
     ];
 
+    /**
+     * @param array<string> $attributes
+     */
     public function __construct(array $attributes = [])
     {
         $this->table = config('tripwire.database_tables.tripwire_blocks');

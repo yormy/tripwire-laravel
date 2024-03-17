@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
  */
 class AdminBlockController extends BaseBlockController
 {
-    public function getUser($userId)
+    public function getUser(string | int $userId)
     {
         return UserResolver::getAdminByXid($userId);
     }

@@ -11,7 +11,7 @@ class Xss extends BaseWire
 {
     public const NAME = 'xss';
 
-    public function prepareInput($value): string
+    public function prepareInput(string $value): string
     {
         $whitelistedTokens = $this->config->whitelistedTokens(); // $this->getWhitelistedTokens();
         foreach ($whitelistedTokens as $token) {

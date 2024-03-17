@@ -11,7 +11,10 @@ class Text extends BaseWire
 {
     public const NAME = 'text';
 
-    public function matchResults($pattern, string $input, &$violations): false|int
+    /**
+     * @param array<string> $violations
+     */
+    public function matchResults(string $pattern, string $input, array | null &$violations): false|int
     {
         if (str_contains($input, $pattern)) {
             $violations[] = $pattern;

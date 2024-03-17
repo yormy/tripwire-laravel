@@ -13,9 +13,10 @@ class Referer extends BaseWire
     public const NAME = 'referer';
 
     /**
+     * @param array<string> $patterns
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack($patterns): bool
+    public function isAttack(array $patterns): bool
     {
         $referer = RequestSource::getReferer();
 

@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 use Yormy\TripwireLaravel\Repositories\LogRepository;
 
 class AddLogJob implements ShouldBeEncrypted, ShouldQueue
@@ -19,8 +20,11 @@ class AddLogJob implements ShouldBeEncrypted, ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /**
+     * @param array<string> $meta
+     */
     public function __construct(
-        private $event,
+        private LoggableEvent $event,
         private array $meta
     ) {
     }
