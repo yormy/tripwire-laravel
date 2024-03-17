@@ -38,6 +38,7 @@
         "yormy/core-tools-laravel": "dev-master"
     },
     "require-dev": {
+        "nunomaduro/larastan": "^2.9",
         "nunomaduro/phpinsights": "^2.11",
         "yormy/dev-tools-laravel": "dev-master"
     },
@@ -57,14 +58,15 @@
         "pint": "vendor/bin/pint",
         "---------- ANALYSIS ---------- ": "",
         "insights": "./vendor/bin/testbench insights",
+        "insights:fix": "./vendor/bin/testbench insights --fix",
+        "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
 
         "---------- FIXES ---------- ": "",
-        "insights:fix": "./vendor/bin/testbench insights --fix",
 
         "cs-fixer" : "phpcbf",
         "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
         "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",
-        "phpstan": "vendor/bin/phpstan analyze src --error-format=raw --level=4",
+        "phpstan": "vendor/bin/phpstan analyze src --error-format=raw --level=8",
         "psalm": "vendor/bin/psalm --no-diff --no-cache --report-show-info=false --report=psalm-report.txt",
         "psalm-debug": "vendor/bin/psalm --no-cache --debug --debug-by-line",
 
