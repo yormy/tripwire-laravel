@@ -12,6 +12,9 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
 class TripwireBlockSeeder extends Seeder
 {
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function run($user = null): void
     {
         TripwireBlock::factory(1)->create();

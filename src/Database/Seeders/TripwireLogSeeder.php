@@ -11,6 +11,9 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class TripwireLogSeeder extends Seeder
 {
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function run($user = null): void
     {
         $member = Member::where('id', 1)->first();

@@ -13,6 +13,9 @@ class Geo extends BaseWire
 {
     public const NAME = 'geo';
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function isAttack($patterns): bool
     {
         if (! $location = $this->getLocation()) {

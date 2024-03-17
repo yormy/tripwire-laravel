@@ -75,6 +75,9 @@ class TripwireLogFactory extends Factory
 
     public function forUser($user): Factory
     {
+        /**
+         * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+         */
         return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
@@ -85,6 +88,9 @@ class TripwireLogFactory extends Factory
 
     public function ignore(): Factory
     {
+        /**
+         * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+         */
         return $this->state(function (array $attributes) {
             return [
                 'ignore' => true,
@@ -94,6 +100,9 @@ class TripwireLogFactory extends Factory
 
     public function forBlock($block): Factory
     {
+        /**
+         * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+         */
         return $this->state(function (array $attributes) use ($block) {
             return [
                 'tripwire_block_id' => $block->id,

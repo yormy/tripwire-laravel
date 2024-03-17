@@ -8,10 +8,16 @@ use Illuminate\Http\Request;
 
 class RequestChecksumFailedException extends BaseException
 {
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function dispatchEvents(Request $request): void
     {
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function renderJson(Request $request): \Illuminate\Http\Response
     {
         //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
@@ -22,6 +28,9 @@ class RequestChecksumFailedException extends BaseException
         return response(['error' => $error, 'help' => $help], $status);
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function renderHtml(Request $request): string
     {
         return 'Request checksum failed renderer';

@@ -9,6 +9,9 @@ use Spatie\LaravelData\Support\Validation\ValidationContext;
 
 class BlockData extends Data
 {
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public static function rules(ValidationContext $context): array
     {
         $rules['blocked_ip'] = ['required', 'string', 'min:6'];

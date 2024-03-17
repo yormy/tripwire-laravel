@@ -85,6 +85,9 @@ class ExceptionInspector
         }
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function attackFound(TriggerEventData $triggerEventData): void
     {
         // no additional processing needed here

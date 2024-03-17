@@ -12,6 +12,9 @@ class Bot extends BaseWire
 {
     public const NAME = 'bot';
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function isAttack($patterns): bool
     {
         if (! RequestSource::isRobot()) {

@@ -76,10 +76,9 @@ class BlockDataResponse extends BlockData
 
     protected static function getUserField($model, $field): ?string
     {
-        $fieldId = config('tripwire.user_fields.id');
         if ($model->relationLoaded('user')) {
             if ($model->user) {
-                return $model->user[$fieldId];
+                return $model->user[$field];
             }
         }
 

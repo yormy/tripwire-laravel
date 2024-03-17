@@ -29,7 +29,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * @psalm-return list<mixed>
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
     public function via($notifiable): array
     {
@@ -48,6 +48,9 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         return $channels;
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function toMail($notifiable): UserBlockedMailable
     {
         $domain = request()->getHttpHost();
@@ -79,6 +82,9 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         return $mail;
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function toSlack($notifiable)
     {
         $domain = request()->getHttpHost();

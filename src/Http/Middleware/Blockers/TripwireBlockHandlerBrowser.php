@@ -10,6 +10,9 @@ use Yormy\TripwireLaravel\Repositories\BlockRepository;
 
 class TripwireBlockHandlerBrowser extends TripwireBlockHandler
 {
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     protected function isBlockedUntil(Request $request): ?Carbon
     {
         $requestSourceClass = config('tripwire.services.request_source');

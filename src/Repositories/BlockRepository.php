@@ -109,8 +109,8 @@ class BlockRepository
         $data['blocked_until'] = $blockedUntil;
         $data['blocked_repeater'] = $repeaterCount;
 
-        //        $data['response_json'] = $responseJson;
-        //        $data['response_html'] = $responseHtml;
+        $data['response_json'] = $responseJson;
+        $data['response_html'] = $responseHtml;
 
         return $this->model::create($data);
     }

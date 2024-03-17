@@ -29,6 +29,9 @@ class LoginFailedWireListener extends WireBaseListener
         }
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function isAttack($event): bool
     {
         $violations = ['login_failed'];

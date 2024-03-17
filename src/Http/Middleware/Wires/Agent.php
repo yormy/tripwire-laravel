@@ -12,6 +12,9 @@ class Agent extends BaseWire
 {
     public const NAME = 'agent';
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function isAttack($patterns): bool
     {
         $agents = $this->config->tripwires();

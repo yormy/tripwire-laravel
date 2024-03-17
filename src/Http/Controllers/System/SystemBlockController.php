@@ -133,6 +133,9 @@ class SystemBlockController extends Controller
         return $this->returnBlock($request, $block_xid);
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     private function returnBlock(Request $request, TripwireBlock $tripwireBlock)
     {
         $dto = BlockDataResponse::fromModel($tripwireBlock);

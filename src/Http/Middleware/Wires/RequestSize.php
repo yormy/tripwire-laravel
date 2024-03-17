@@ -11,6 +11,9 @@ class RequestSize extends BaseWire
 {
     public const NAME = 'request_size';
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
     public function isAttack($patterns): bool
     {
         $inputs = $this->request->input();
