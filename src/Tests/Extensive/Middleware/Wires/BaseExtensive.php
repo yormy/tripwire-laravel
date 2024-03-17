@@ -7,7 +7,7 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
 
-class BaseExtensive extends TestCase
+abstract class BaseExtensive extends TestCase
 {
     use TripwireTestTrait;
 
@@ -15,11 +15,12 @@ class BaseExtensive extends TestCase
 
     protected string $tripwireClass;
 
+    // @phpstan-ignore-next-line
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
         $this->tripwire = $this->tripwireClass::NAME;
 
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($name);
     }
 
     /**

@@ -31,9 +31,9 @@ class Honeypot
 
     protected Request $request;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        // ...
+        $this->request = $request;
     }
 
     public function handle(Request $request, Closure $next): mixed

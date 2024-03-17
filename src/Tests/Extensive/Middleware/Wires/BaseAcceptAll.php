@@ -44,6 +44,7 @@ class BaseAcceptAll extends TestCase
         Custom::class,
     ];
 
+    // @phpstan-ignore-next-line
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
 
@@ -51,7 +52,7 @@ class BaseAcceptAll extends TestCase
             static::$violations = file(static::$violationsDataFile);
         }
 
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($name);
     }
 
     protected function setConfig(): void

@@ -25,7 +25,7 @@ class PageNotFoundWireListener extends WireBaseListener
 
         $violations[] = $url;
 
-        if (! empty($violations)) {
+        if (! count($violations)) {
             $triggerEventData = new TriggerEventData(
                 attackScore: $this->config->attackScore(),
                 violations: $violations,
@@ -39,7 +39,7 @@ class PageNotFoundWireListener extends WireBaseListener
             $this->attackFound($triggerEventData);
         }
 
-        return ! empty($violations);
+        return ! count($violations);
     }
 
     protected function attackFound(TriggerEventData $triggerEventData): void

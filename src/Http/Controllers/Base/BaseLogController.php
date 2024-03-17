@@ -35,4 +35,6 @@ abstract class BaseLogController extends controller
         return ApiResponse::withData($dto)
             ->successResponse();
     }
+
+    abstract public function getUser(string | int $userId): mixed;
 }

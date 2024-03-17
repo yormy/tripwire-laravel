@@ -98,7 +98,10 @@ class ResponseDeterminer
         return null;
     }
 
-    public function asJsonRedirect(): ?JsonResponse
+    /**
+     * @param array<string> $data
+     */
+    public function asJsonRedirect(array $data): ?JsonResponse
     {
         if (! isset($this->config->redirectUrl)) {
             return null;
@@ -123,7 +126,12 @@ class ResponseDeterminer
         return null;
     }
 
-    public function asRedirect(): ?RedirectResponse
+    /**
+     * @param array<string> $data
+     *
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
+    public function asRedirect(array $data): ?RedirectResponse
     {
         if (isset($this->config->redirectUrl)) {
             // prevent redir to self

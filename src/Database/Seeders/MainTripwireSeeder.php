@@ -11,7 +11,7 @@ class MainTripwireSeeder extends Seeder
 {
     public function run(?Authenticatable $user = null): void
     {
-        (new TripwireLogSeeder($user))->run();
-        (new TripwireBlockSeeder($user))->run();
+        (new TripwireLogSeeder())->run($user);
+        (new TripwireBlockSeeder())->run($user);
     }
 }
