@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class HoneypotsConfig
@@ -23,7 +25,6 @@ class HoneypotsConfig
 
     public static function makeFromArray(?array $data): ?self
     {
-
         if (! $data) {
             return null;
         }

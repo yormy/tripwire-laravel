@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -8,13 +10,6 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\PhpFailedEvent;
 class Php extends BaseWire
 {
     public const NAME = 'php';
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new PhpFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
 
     public function getPatterns(): array
     {
@@ -25,5 +20,12 @@ class Php extends BaseWire
         }
 
         return $patterns;
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new PhpFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 }

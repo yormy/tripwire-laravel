@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class MissingPageConfig extends OnlyExceptConfig
 {
-    const MODEL = MissingPageConfig::class;
+    public const MODEL = MissingPageConfig::class;
 }

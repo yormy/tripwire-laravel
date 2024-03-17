@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 class HoneypotService
@@ -10,7 +12,7 @@ class HoneypotService
         foreach ($honeypots as $honeypotName) {
             $honeypotContent = $request->get($honeypotName);
             if ($honeypotContent) {
-                $violations[] = "$honeypotName=$honeypotContent";
+                $violations[] = "{$honeypotName}={$honeypotContent}";
             }
         }
 

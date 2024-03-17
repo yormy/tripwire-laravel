@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -15,7 +17,6 @@ class ConfigBuilderWires implements Arrayable
         $data = [];
 
         if (isset($this->wires)) {
-
             foreach ($this->wires as $name => $wire) {
                 $data[$name] = $wire->toArray();
             }

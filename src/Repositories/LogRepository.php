@@ -16,7 +16,7 @@ class LogRepository
     public function __construct()
     {
         $class = config('tripwire.models.log');
-        $this->model = new $class;
+        $this->model = new $class();
     }
 
     public function getAll(): Collection
@@ -29,7 +29,7 @@ class LogRepository
         return $this->model::with(['block'])
             ->latest()
             ->byUserId($user->id)
-            ->byUserType(get_class($user))
+            ->byUserType($user::class)
             ->withTrashed()
             ->get();
     }
@@ -56,30 +56,13 @@ class LogRepository
         return $this->model::create($data);
     }
 
-    /**
-     * @return void
-     */
-    private function delete(Builder $query, bool $softDelete = true)
-    {
-        if (! $softDelete) {
-            $query->forceDelete();
-
-            return;
-        }
-
-        $query->delete();
-    }
-
     public function resetIp(string $ip, bool $softDelete = true): void
     {
         $query = $this->model::byIp($ip);
         $this->delete($query, $softDelete);
     }
 
-    /**
-     * @return void
-     */
-    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
+    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true): void
     {
         if (! $browserFingerprint) {
             return;
@@ -89,10 +72,7 @@ class LogRepository
         $this->delete($query, $softDelete);
     }
 
-    /**
-     * @return void
-     */
-    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
+    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true): void
     {
         if (! $userId) {
             return;
@@ -106,7 +86,6 @@ class LogRepository
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byIp($ipAddress);
-
     }
 
     public function queryViolationsByUser(int $withinMinutes, int $userId, ?string $userType, array $violations = []): Builder
@@ -120,6 +99,17 @@ class LogRepository
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byBrowser($browserFingerprint);
+    }
+
+    private function delete(Builder $query, bool $softDelete = true): void
+    {
+        if (! $softDelete) {
+            $query->forceDelete();
+
+            return;
+        }
+
+        $query->delete();
     }
 
     private function queryScoreViolations(int $withinMinutes, array $violations = []): Builder

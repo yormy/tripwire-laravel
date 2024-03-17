@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Blockers;
 
 use Carbon\Carbon;
@@ -12,12 +14,8 @@ use Yormy\TripwireLaravel\Services\UrlTester;
 
 abstract class TripwireBlockHandler
 {
-    abstract protected function isBlockedUntil(Request $request): ?Carbon;
 
-    /**
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (UrlTester::skipUrl($request, config('tripwire.urls'))) {
             return $next($request);
@@ -39,4 +37,5 @@ abstract class TripwireBlockHandler
 
         return $respond->respondWithHtml(['blocked_until' => $blockedUntil]);
     }
+    abstract protected function isBlockedUntil(Request $request): ?Carbon;
 }

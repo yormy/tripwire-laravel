@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 use Yormy\TripwireLaravel\DataObjects\Config\OnlyExceptConfig;

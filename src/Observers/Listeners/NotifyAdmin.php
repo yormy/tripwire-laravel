@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Yormy\TripwireLaravel\DataObjects\ConfigBuilder;
@@ -24,7 +26,7 @@ class NotifyAdmin
                         $mailSettings
                     );
 
-                    (new Notifiable)->notify($message);
+                    (new Notifiable())->notify($message);
                 }
             }
         }
@@ -40,10 +42,9 @@ class NotifyAdmin
                         $mailSettings
                     );
 
-                    (new Notifiable)->notify($message);
+                    (new Notifiable())->notify($message);
                 }
             }
         }
-
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -34,7 +36,6 @@ class UserBlockedNotification extends Notification implements ShouldQueue
         $channels = [];
 
         foreach ($this->notifications as $channel => $settings) {
-
             foreach ($settings as $config) {
                 if (isset($config['enabled'])) {
                     $channels[] = $channel;
@@ -88,12 +89,12 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 
         $mailSettings = $this->settings;
 
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->error()
             ->from($mailSettings['from'], $mailSettings['emoji'])
             ->to($mailSettings['channel'])
             ->content($message)
-            ->attachment(function ($attachment) use ($domain) {
+            ->attachment(function ($attachment) use ($domain): void {
                 $attachment->fields([
                     'IP' => $this->ipAddress,
                     'User ID' => $this->userId,

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -12,7 +14,6 @@ class TripwireBlockFactory extends Factory
 
     public function definition(): array
     {
-
         return [
             'xid' => XidService::generate(),
             'ignore' => rand(0, 10) === 0 ? true : false,
@@ -35,7 +36,7 @@ class TripwireBlockFactory extends Factory
         return $this->state(function (array $attributes) use ($user) {
             return [
                 'blocked_user_id' => $user->id,
-                'blocked_user_type' => get_class($user),
+                'blocked_user_type' => $user::class,
             ];
         });
     }

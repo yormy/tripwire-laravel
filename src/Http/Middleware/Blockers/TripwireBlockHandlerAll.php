@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Blockers;
 
 use Carbon\Carbon;

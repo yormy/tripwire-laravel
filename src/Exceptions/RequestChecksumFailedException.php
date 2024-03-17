@@ -1,23 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Exceptions;
 
 use Illuminate\Http\Request;
 
 class RequestChecksumFailedException extends BaseException
 {
-    /**
-     * @return void
-     */
-    protected function dispatchEvents(Request $request)
+    protected function dispatchEvents(Request $request): void
     {
-
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    protected function renderJson(Request $request)
+    protected function renderJson(Request $request): \Illuminate\Http\Response
     {
         //https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
         $status = 406;
@@ -27,10 +22,7 @@ class RequestChecksumFailedException extends BaseException
         return response(['error' => $error, 'help' => $help], $status);
     }
 
-    /**
-     * @return string
-     */
-    protected function renderHtml(Request $request)
+    protected function renderHtml(Request $request): string
     {
         return 'Request checksum failed renderer';
     }

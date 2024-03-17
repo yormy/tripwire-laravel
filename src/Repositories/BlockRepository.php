@@ -20,7 +20,7 @@ class BlockRepository
     public function __construct()
     {
         $class = config('tripwire.models.block');
-        $this->model = new $class;
+        $this->model = new $class();
 
         $this->repeatOffenderTimeframeDays = 10; // how long to look back for repeating violations
     }
@@ -34,7 +34,7 @@ class BlockRepository
     {
         return $this->model::latest()
             ->byUserId($user->id)
-            ->byUserType(get_class($user))
+            ->byUserType($user::class)
             ->withTrashed()
             ->get();
     }
@@ -47,20 +47,6 @@ class BlockRepository
             ->first();
     }
 
-    /**
-     * @return void
-     */
-    private function delete(Builder $query, bool $softDelete = true)
-    {
-        if (! $softDelete) {
-            $query->forceDelete();
-
-            return;
-        }
-
-        $query->delete();
-    }
-
     public function resetIp(string $ip, bool $softDelete = true): void
     {
         $query = $this->model::byIp($ip)
@@ -69,10 +55,7 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
-    /**
-     * @return void
-     */
-    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true)
+    public function resetBrowser(?string $browserFingerprint, bool $softDelete = true): void
     {
         if (! $browserFingerprint) {
             return;
@@ -84,10 +67,7 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
-    /**
-     * @return void
-     */
-    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true)
+    public function resetUser(?int $userId, ?string $userType, bool $softDelete = true): void
     {
         if (! $userId) {
             return;
@@ -133,13 +113,6 @@ class BlockRepository
         //        $data['response_html'] = $responseHtml;
 
         return $this->model::create($data);
-    }
-
-    private function getLatest(Builder $builder)
-    {
-        return $builder->notIgnore()
-            ->latest()
-            ->first();
     }
 
     public function isIpBlockedUntil(string $ipAddress): ?Carbon
@@ -193,7 +166,7 @@ class BlockRepository
         $builder = $this->model
             ->where('blocked_until', '>', Carbon::now());
 
-        $builder->where(function ($query) use ($ipAddress, $browserFingerprint, $userId, $userType) {
+        $builder->where(function ($query) use ($ipAddress, $browserFingerprint, $userId, $userType): void {
             $query = $query->byIp($ipAddress);
 
             if ($browserFingerprint) {
@@ -201,7 +174,7 @@ class BlockRepository
             }
 
             if ($userId) {
-                $query->orWhere(function ($queryUser) use ($userId, $userType) {
+                $query->orWhere(function ($queryUser) use ($userId, $userType): void {
                     $queryUser
                         ->where('blocked_user_type', $userType)
                         ->where('blocked_user_id', $userId);
@@ -212,6 +185,34 @@ class BlockRepository
         $blocked = $this->getLatest($builder);
 
         return $blocked?->blocked_until;
+    }
+
+    public function getRepeaterPunishment(int $penaltySeconds, int $repeaterCount): int
+    {
+        if (! $repeaterCount) {
+            return 0;
+        }
+
+        // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
+        return (int) pow($penaltySeconds, $repeaterCount);
+    }
+
+    private function delete(Builder $query, bool $softDelete = true): void
+    {
+        if (! $softDelete) {
+            $query->forceDelete();
+
+            return;
+        }
+
+        $query->delete();
+    }
+
+    private function getLatest(Builder $builder)
+    {
+        return $builder->notIgnore()
+            ->latest()
+            ->first();
     }
 
     private function getBlockedUntil(
@@ -240,16 +241,6 @@ class BlockRepository
         $repeatOffenderBrowser = $this->repeatOffenderBrowser($browserFingerprint);
 
         return max($repeatOffenderIp, $repeatOffenderUser, $repeatOffenderBrowser);
-    }
-
-    public function getRepeaterPunishment(int $penaltySeconds, int $repeaterCount): int
-    {
-        if (! $repeaterCount) {
-            return 0;
-        }
-
-        // the first block will be for 5 seconds, de second for 25, the 3rd block is about 2 min, the 5th block is almost an hour
-        return (int) pow($penaltySeconds, $repeaterCount);
     }
 
     private function repeatOffenderIp(string $ipAddress): int

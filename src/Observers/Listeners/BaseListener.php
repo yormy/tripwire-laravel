@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Illuminate\Http\Request;
@@ -10,5 +12,5 @@ abstract class BaseListener
     {
     }
 
-    abstract public function handle($event);
+    abstract public function handle($event): void;
 }

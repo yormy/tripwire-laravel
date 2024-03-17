@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
 class ThrottleHitTrippedEvent extends LoggableEvent
 {
-    const CODE = 'THROTTLE';
+    public const CODE = 'THROTTLE';
 
     protected int $score = 0;
 }

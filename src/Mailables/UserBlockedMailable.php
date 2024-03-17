@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Mailables;
 
 use Illuminate\Bus\Queueable;

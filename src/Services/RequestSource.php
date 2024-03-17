@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 use Jenssegers\Agent\Agent;
@@ -48,7 +50,6 @@ class RequestSource
 
     public static function isRobot(): bool
     {
-
         return (new Agent())->isRobot();
     }
 

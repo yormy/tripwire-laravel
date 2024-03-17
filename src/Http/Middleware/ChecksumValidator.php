@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
@@ -10,10 +12,7 @@ use Illuminate\Http\Request;
  */
 class ChecksumValidator
 {
-    /**
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $validate = new ChecksumCalculate();
         $request = $validate->calculate($request);

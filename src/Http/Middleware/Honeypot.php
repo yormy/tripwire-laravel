@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
@@ -29,7 +31,7 @@ class Honeypot
     {
         $this->request = $request;
 
-        $this->config = new WireConfig(self::NAME);
+        $this->config = new WireConfig(static::NAME);
 
         $honeypotsMustBeFalseOrMissing = $this->config->tripwires();
 

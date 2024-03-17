@@ -16,7 +16,7 @@ class BaseModel extends Model
     use Xid;
 
     // Cachables
-    public $cacheFor = 4 * (60 * 60); // cache time, in seconds
+    public $cacheFor = 4 * 60 * 60; // cache time, in seconds
 
     protected static $flushCacheOnUpdate = true;
 }

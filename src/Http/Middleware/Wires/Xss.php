@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -9,13 +11,6 @@ class Xss extends BaseWire
 {
     public const NAME = 'xss';
 
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new XssFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
-
     public function prepareInput($value): string
     {
         $whitelistedTokens = $this->config->whitelistedTokens(); // $this->getWhitelistedTokens();
@@ -24,5 +19,12 @@ class Xss extends BaseWire
         }
 
         return $value;
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new XssFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 }

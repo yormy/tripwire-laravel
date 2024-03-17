@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature;
 
+use Symfony\Component\HttpFoundation\Response;
 use Yormy\TripwireLaravel\Http\Controllers\ResetController;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Text;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
@@ -33,7 +34,8 @@ class ResetTest extends TestCase
         $resetController = new ResetController();
         $request = $this->app->request;
         $result = $resetController->reset($request);
-        $this->assertEquals(null, $result);
+
+        $this->assertEquals(Response::HTTP_NOT_FOUND, $result->getStatusCode());
     }
 
     /**

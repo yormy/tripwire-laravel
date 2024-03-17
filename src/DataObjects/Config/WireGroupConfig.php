@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class WireGroupConfig
@@ -30,7 +32,6 @@ class WireGroupConfig
             $wireGroups[$name] = WireGroupConfig::make(
                 $wires,
             );
-
         }
 
         return $wireGroups;

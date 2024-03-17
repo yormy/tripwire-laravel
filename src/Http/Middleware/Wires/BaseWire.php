@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Closure;
@@ -84,6 +86,48 @@ abstract class BaseWire
         return ! empty($violations);
     }
 
+    /**
+     * @psalm-return 0|1|false
+     */
+    public function matchResults($pattern, string $input, &$violations): false|int
+    {
+        return preg_match($pattern, $input, $violations);
+    }
+
+    public function prepareInput($value): string
+    {
+        return $value;
+    }
+
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     */
+    protected function matchAdditional($value): ?string
+    {
+        return null;
+    }
+
+    protected function isFilterAttack(string $value, array $filters): bool
+    {
+        if (CheckAllowBlock::shouldBlock($value, $filters)) {
+            $triggerEventData = new TriggerEventData(
+                attackScore: $this->getAttackScore(),
+                violations: [$value],
+                triggerData: $value,
+                triggerRules: [],
+                trainingMode: $this->config->trainingMode(),
+                debugMode: $this->config->debugMode(),
+                comments: '',
+            );
+
+            $this->attackFound($triggerEventData);
+
+            return true;
+        }
+
+        return false;
+    }
+
     private function removeItems(array $original, array $toRemove): array
     {
         $filtered = [];
@@ -156,49 +200,5 @@ abstract class BaseWire
                 }
             }
         }
-    }
-
-    /**
-     * @return false|int
-     *
-     * @psalm-return 0|1|false
-     */
-    public function matchResults($pattern, string $input, &$violations)
-    {
-        return preg_match($pattern, $input, $violations);
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     */
-    protected function matchAdditional($value): ?string
-    {
-        return null;
-    }
-
-    protected function isFilterAttack(string $value, array $filters): bool
-    {
-        if (CheckAllowBlock::shouldBlock($value, $filters)) {
-            $triggerEventData = new TriggerEventData(
-                attackScore: $this->getAttackScore(),
-                violations: [$value],
-                triggerData: $value,
-                triggerRules: [],
-                trainingMode: $this->config->trainingMode(),
-                debugMode: $this->config->debugMode(),
-                comments: '',
-            );
-
-            $this->attackFound($triggerEventData);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public function prepareInput($value): string
-    {
-        return $value;
     }
 }

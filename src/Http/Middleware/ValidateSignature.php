@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
@@ -23,27 +25,21 @@ class ValidateSignature
     /**
      * Based in/laravel/framework/src/Illuminate/Routing/Middleware/ValidateSignature.php.
      * Handle an incoming request.
-     *
-     * @param  IlluminateHttpRequest  $request
-     * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(IlluminateHttpRequest $request, Closure $next): mixed
     {
         if ($this->hasValidSignature($request)) {
             return $next($request);
         }
-        throw new InvalidSignatureException;
+        throw new InvalidSignatureException();
     }
 
     /**
      * Determine if the given request has a valid signature.
      * copied and modified from
      * vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:363
-     *
-     * @param  bool  $absolute
-     * @return bool
      */
-    public function hasValidSignature(Request $request, $absolute = true)
+    public function hasValidSignature(Request $request, bool $absolute = true): bool
     {
         $url = $absolute ? $request->url() : '/'.$request->path();
 

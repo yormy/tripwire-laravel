@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;

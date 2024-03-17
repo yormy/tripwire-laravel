@@ -58,6 +58,9 @@
         "---------- ANALYSIS ---------- ": "",
         "insights": "./vendor/bin/testbench insights",
 
+        "---------- FIXES ---------- ": "",
+        "insights:fix": "./vendor/bin/testbench insights --fix",
+
         "cs-fixer" : "phpcbf",
         "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
         "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Notifications;
 
 use Illuminate\Notifications\Notifiable as NotifiableTrait;

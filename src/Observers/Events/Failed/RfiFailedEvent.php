@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
 class RfiFailedEvent extends LoggableEvent
 {
-    const CODE = 'RFI';
+    public const CODE = 'RFI';
 
     protected int $score = 20;
 }

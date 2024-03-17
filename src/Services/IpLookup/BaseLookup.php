@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
 class BaseLookup
@@ -17,7 +19,7 @@ class BaseLookup
 
             $response = json_decode($content);
         } catch (\ErrorException $e) {
-            throw new $e;
+            throw new $e();
         }
 
         return $response;

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class InputsFilterConfig extends OnlyExceptConfig
 {
-    const MODEL = InputsFilterConfig::class;
+    public const MODEL = InputsFilterConfig::class;
 }

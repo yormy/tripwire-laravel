@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -25,11 +27,19 @@ class GenerateAccepts extends Command
             $accepts = $this->buildAccept($locale, 500);
             $contents = implode(PHP_EOL, $accepts);
 
-            $filename = "AcceptsData-$locale.txt";
+            $filename = "AcceptsData-{$locale}.txt";
             Storage::disk('local')->put($filename, $contents);
         }
 
         return Command::SUCCESS;
+    }
+
+    public function buildText($locale): string
+    {
+        $name = fake($locale)->lastName();
+        $realText = fake($locale)->realText(200); // characters
+
+        return $name.'-'.$realText;
     }
 
     private function buildAccept(string $locale, int $lines = 2): array
@@ -40,13 +50,5 @@ class GenerateAccepts extends Command
         }
 
         return $accepts;
-    }
-
-    public function buildText($locale): string
-    {
-        $name = fake($locale)->lastName();
-        $realText = fake($locale)->realText(200); // characters
-
-        return $name.'-'.$realText;
     }
 }

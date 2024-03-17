@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 class Regex
 {
-    const FILLER = '[\+\s\x00]';
+    public const FILLER = '[\+\s\x00]';
 
-    const FILLERSEMI = '[;/]';
+    public const FILLERSEMI = '[;/]';
 
-    const QUOTE = '["\'&quot;&apos;]';
+    public const QUOTE = '["\'&quot;&apos;]';
 
-    const LT = '([<¼]|(&lt;)|%3C|%BC)';
+    public const LT = '([<¼]|(&lt;)|%3C|%BC)';
 
-    const GT = '([>¾])|%3E|%BE';
+    public const GT = '([>¾])|%3E|%BE';
 
     public static function forbidden(array $signatures, string $delim = '#'): string
     {

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class UrlsConfig extends OnlyExceptConfig
 {
-    const MODEL = UrlsConfig::class;
+    public const MODEL = UrlsConfig::class;
 }

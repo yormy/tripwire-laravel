@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Controllers\System;
 
 use Illuminate\Routing\Controller;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -12,7 +14,6 @@ class TripwireLogFactory extends Factory
 
     public function definition(): array
     {
-
         $eventCode = [
             'LFI',
             'SQLI',
@@ -77,7 +78,7 @@ class TripwireLogFactory extends Factory
         return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
-                'user_type' => get_class($user),
+                'user_type' => $user::class,
             ];
         });
     }

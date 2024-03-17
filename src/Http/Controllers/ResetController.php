@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -27,7 +29,7 @@ class ResetController extends controller
     public function reset(Request $request)
     {
         if (! ResetService::run($request)) {
-            return;
+            return response()->json([], 404);
         }
 
         return response()->json(['logs cleared']);

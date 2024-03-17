@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -8,13 +10,6 @@ use Yormy\TripwireLaravel\Observers\Events\Failed\RfiFailedEvent;
 class Rfi extends BaseWire
 {
     public const NAME = 'rfi';
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new RfiFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
 
     public function prepareInput($value): string
     {
@@ -31,6 +26,13 @@ class Rfi extends BaseWire
         $exceptions[] = 'https://&';
 
         return str_replace($exceptions, '', $value);
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new RfiFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 
     protected function matchAdditional($value): ?string

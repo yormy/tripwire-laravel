@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;
@@ -10,13 +12,6 @@ use Yormy\TripwireLaravel\Services\IpAddress;
 class Geo extends BaseWire
 {
     public const NAME = 'geo';
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new GeoFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
 
     public function isAttack($patterns): bool
     {
@@ -47,6 +42,13 @@ class Geo extends BaseWire
         }
 
         return ! empty($violations);
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new GeoFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 
     protected function getLocation(): ?GeoLocation

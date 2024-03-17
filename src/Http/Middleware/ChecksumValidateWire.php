@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Carbon\Carbon;
@@ -25,13 +27,13 @@ use Yormy\TripwireLaravel\Traits\TripwireHelpers;
  */
 class ChecksumValidateWire
 {
-    public const NAME = 'checksum';
 
     use TripwireHelpers;
-
-    private WireConfig $config;
+    public const NAME = 'checksum';
 
     protected Request $request;
+
+    private WireConfig $config;
 
     public function __construct()
     {
@@ -39,11 +41,9 @@ class ChecksumValidateWire
     }
 
     /**
-     * @return mixed
-     *
      * @throws RequestChecksumFailedException
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($this->skip($request)) {
             return $next($request);
@@ -102,12 +102,22 @@ class ChecksumValidateWire
         return $isAttack;
     }
 
-    /**
-     * @return void
-     */
-    private function checkTimestamp(Request $request)
+    protected function cleanup(Request $request): void
     {
+        $request->request->remove($this->config->wireDetails()->config['serverside_calculated']);
+    }
 
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new ChecksumFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
+
+        //throw new RequestChecksumFailedException();
+    }
+
+    private function checkTimestamp(Request $request): void
+    {
         $timestamp = $request->header($this->config->wireDetails()->config['timestamp']);
 
         if ($timestamp && Carbon::now()->diffInSeconds(Carbon::parse($timestamp / 1000)) > 30) {
@@ -122,19 +132,5 @@ class ChecksumValidateWire
         }
 
         return false;
-    }
-
-    protected function cleanup(Request $request): void
-    {
-        $request->request->remove($this->config->wireDetails()->config['serverside_calculated']);
-    }
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new ChecksumFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-
-        //throw new RequestChecksumFailedException();
     }
 }

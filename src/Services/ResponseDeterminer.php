@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 use Illuminate\Http\JsonResponse;
@@ -75,7 +77,7 @@ class ResponseDeterminer
     public function asException()
     {
         if (isset($this->config->exception)) {
-            throw new $this->config->exception;
+            throw new $this->config->exception();
         }
 
         return null;

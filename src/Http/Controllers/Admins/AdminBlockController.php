@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Controllers\Admins;
 
 use Yormy\TripwireLaravel\Http\Controllers\Base\BaseBlockController;

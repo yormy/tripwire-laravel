@@ -11,7 +11,7 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class TripwireLogSeeder extends Seeder
 {
-    public function run($user = null)
+    public function run($user = null): void
     {
         $member = Member::where('id', 1)->first();
         TripwireLog::factory(10)->forUser($member)->create();

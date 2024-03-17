@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
 class RefererFailedEvent extends LoggableEvent
 {
-    const CODE = 'REFERER';
+    public const CODE = 'REFERER';
 
     protected int $score = 20;
 }

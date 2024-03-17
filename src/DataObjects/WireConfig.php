@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\DataObjects;
 
 use Illuminate\Http\Request;
@@ -155,7 +157,6 @@ class WireConfig
         }
 
         return $isWhitelisted;
-
     }
 
     public function skipUrl(Request $request): bool

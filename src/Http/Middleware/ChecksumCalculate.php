@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware;
 
 use Closure;
@@ -13,10 +15,7 @@ use Yormy\TripwireLaravel\Services\HashService;
  */
 class ChecksumCalculate
 {
-    /**
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $request = $this->calculate($request);
 

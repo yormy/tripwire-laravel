@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Jobs;
 
 use Illuminate\Bus\Queueable;

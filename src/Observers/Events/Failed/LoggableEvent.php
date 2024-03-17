@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
 use Illuminate\Foundation\Events\Dispatchable;
@@ -15,7 +17,6 @@ abstract class LoggableEvent implements LoggableEventInterface
 
     public function __construct(
         protected TriggerEventData $triggerEventData
-
     ) {
         if ($triggerEventData->attackScore) {
             $this->score = $triggerEventData->attackScore;

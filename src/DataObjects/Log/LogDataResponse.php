@@ -10,43 +10,41 @@ class LogDataResponse extends LogData
 {
     public function __construct(
         public string $xid,
-
         public string $event_code,
         public int $event_score,
         public string $event_violation,
         public string $event_comment,
-
         public string $ip,
-
         public ?string $user_xid,
         public ?string $user_firstname,
         public ?string $user_lastname,
         public ?string $user_email,
-
         public ?string $url,
         public ?string $relative_url,
         public ?string $referer,
         public ?string $request,
         public ?string $user_agent,
-
         public CarbonImmutable $created_at,
         public ?CarbonImmutable $deleted_at,
-
         public ?int $tripwire_block_id,
         public ?string $header,
         public ?string $robot_crawler,
-
         public ?string $trigger_data,
         public ?string $trigger_rule,
         public ?string $browser_fingerprint,
-
         public bool $ignore,
         public ?string $rowstyle,
         public ?string $block_xid,
-
         public array $status,
         public array $method,
     ) {
+    }
+
+    public static function fromModel($model): self
+    {
+        $constuctorData = self::constructorData($model);
+
+        return new static(...$constuctorData);
     }
 
     protected static function constructorData($model): array
@@ -102,6 +100,29 @@ class LogDataResponse extends LogData
         ];
     }
 
+    protected static function getUserField($model, $field): ?string
+    {
+        $fieldId = config('tripwire.user_fields.id');
+        if ($model->relationLoaded('user')) {
+            if ($model->user) {
+                return $model->user[$fieldId];
+            }
+        }
+
+        return null;
+    }
+
+    protected static function getBlockXid($model): ?string
+    {
+        if ($model->relationLoaded('block') && $model->tripwire_block_id) {
+            if ($model->user) {
+                return $model->block->xid;
+            }
+        }
+
+        return null;
+    }
+
     private static function decorateWithStatus($model): array
     {
         $scoreMediumThreshold = 20;
@@ -127,7 +148,6 @@ class LogDataResponse extends LogData
         $data['status'] = $status;
 
         return $data;
-
     }
 
     private static function decorateWithMethod($model): array
@@ -153,35 +173,5 @@ class LogDataResponse extends LogData
         $data['method'] = $status;
 
         return $data;
-    }
-
-    protected static function getUserField($model, $field): ?string
-    {
-        $fieldId = config('tripwire.user_fields.id');
-        if ($model->relationLoaded('user')) {
-            if ($model->user) {
-                return $model->user[$fieldId];
-            }
-        }
-
-        return null;
-    }
-
-    protected static function getBlockXid($model): ?string
-    {
-        if ($model->relationLoaded('block') && $model->tripwire_block_id) {
-            if ($model->user) {
-                return $model->block->xid;
-            }
-        }
-
-        return null;
-    }
-
-    public static function fromModel($model): self
-    {
-        $constuctorData = self::constructorData($model);
-
-        return new static(...$constuctorData);
     }
 }

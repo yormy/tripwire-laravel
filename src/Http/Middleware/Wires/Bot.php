@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -10,13 +12,6 @@ class Bot extends BaseWire
 {
     public const NAME = 'bot';
 
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new BotFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
-
     public function isAttack($patterns): bool
     {
         if (! RequestSource::isRobot()) {
@@ -26,5 +21,12 @@ class Bot extends BaseWire
         $robot = RequestSource::getRobot();
 
         return $this->isFilterAttack($robot, $this->config->filters());
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new BotFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 }

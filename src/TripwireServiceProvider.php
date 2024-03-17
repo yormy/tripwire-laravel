@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel;
 
 use Illuminate\Auth\Events\Failed as LoginFailed;
@@ -30,14 +32,14 @@ use Yormy\TripwireLaravel\ServiceProviders\RouteServiceProvider;
 
 class TripwireServiceProvider extends ServiceProvider
 {
-    const CONFIG_FILE = __DIR__.'/../config/tripwire.php';
+    public const CONFIG_FILE = __DIR__.'/../config/tripwire.php';
 
-    const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
+    public const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
 
     /**
      * @psalm-suppress MissingReturnType
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         $this->publish();
 
@@ -60,13 +62,44 @@ class TripwireServiceProvider extends ServiceProvider
     /**
      * @psalm-suppress MixedArgument
      */
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(static::CONFIG_FILE, 'tripwire');
-        $this->mergeConfigFrom(static::CONFIG_WIRE_FILE, 'tripwire_wires');
+        $this->mergeConfigFrom(self::CONFIG_FILE, 'tripwire');
+        $this->mergeConfigFrom(self::CONFIG_WIRE_FILE, 'tripwire_wires');
 
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function registerMiddleware(Router $router): void
+    {
+        $router->aliasMiddleware('tripwire.agent', Agent::class);
+        $router->aliasMiddleware('tripwire.bot', Bot::class);
+        $router->aliasMiddleware('tripwire.geo', Geo::class);
+        $router->aliasMiddleware('tripwire.lfi', Lfi::class);
+        $router->aliasMiddleware('tripwire.php', Php::class);
+        $router->aliasMiddleware('tripwire.referer', Referer::class);
+        $router->aliasMiddleware('tripwire.rfi', Rfi::class);
+        $router->aliasMiddleware('tripwire.session', Session::class);
+        $router->aliasMiddleware('tripwire.sqli', Sqli::class);
+        $router->aliasMiddleware('tripwire.swear', Swear::class);
+        $router->aliasMiddleware('tripwire.text', Text::class);
+        $router->aliasMiddleware('tripwire.xss', Xss::class);
+        $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
+        $router->aliasMiddleware('tripwire.custom', Custom::class);
+
+        $router->aliasMiddleware('tripwire.honeypotwire', Honeypot::class);
+    }
+
+    public function registerListeners(): void
+    {
+        $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class);
+        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyAdmin::class);
+    }
+
+    public function registerTranslations(): void
+    {
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tripwire');
     }
 
     private function publish(): void
@@ -100,45 +133,14 @@ class TripwireServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerMiddleware(Router $router): void
-    {
-        $router->aliasMiddleware('tripwire.agent', Agent::class);
-        $router->aliasMiddleware('tripwire.bot', Bot::class);
-        $router->aliasMiddleware('tripwire.geo', Geo::class);
-        $router->aliasMiddleware('tripwire.lfi', Lfi::class);
-        $router->aliasMiddleware('tripwire.php', Php::class);
-        $router->aliasMiddleware('tripwire.referer', Referer::class);
-        $router->aliasMiddleware('tripwire.rfi', Rfi::class);
-        $router->aliasMiddleware('tripwire.session', Session::class);
-        $router->aliasMiddleware('tripwire.sqli', Sqli::class);
-        $router->aliasMiddleware('tripwire.swear', Swear::class);
-        $router->aliasMiddleware('tripwire.text', Text::class);
-        $router->aliasMiddleware('tripwire.xss', Xss::class);
-        $router->aliasMiddleware('tripwire.request_size', RequestSize::class);
-        $router->aliasMiddleware('tripwire.custom', Custom::class);
-
-        $router->aliasMiddleware('tripwire.honeypotwire', Honeypot::class);
-    }
-
     private function registerMiddlewareGroups(Router $router): void
     {
         foreach (config('tripwire.wire_groups', []) as $name => $items) {
-            $router->middlewareGroup("tripwire.$name", $items);
+            $router->middlewareGroup("tripwire.{$name}", $items);
         }
     }
 
-    public function registerListeners(): void
-    {
-        $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class);
-        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyAdmin::class);
-    }
-
-    public function registerTranslations(): void
-    {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tripwire');
-    }
-
-    private function morphMaps()
+    private function morphMaps(): void
     {
         $logModelpath = config('tripwire.models.log');
         $sections = explode('\\', $logModelpath);

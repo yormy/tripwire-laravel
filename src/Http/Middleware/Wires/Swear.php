@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -9,19 +11,12 @@ class Swear extends BaseWire
 {
     public const NAME = 'SWEARY';
 
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new SwearFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
-
     /**
-     * @return string[]
+     * @return array<string>
      *
      * @psalm-return list{0?: string,...}
      */
-    public function getPatterns()
+    public function getPatterns(): array
     {
         $patterns = [];
 
@@ -30,5 +25,12 @@ class Swear extends BaseWire
         }
 
         return $patterns;
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new SwearFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
     }
 }

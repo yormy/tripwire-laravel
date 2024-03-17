@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -9,13 +11,6 @@ use Yormy\TripwireLaravel\Services\RequestSource;
 class Agent extends BaseWire
 {
     public const NAME = 'agent';
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new AgentFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
-    }
 
     public function isAttack($patterns): bool
     {
@@ -27,13 +22,15 @@ class Agent extends BaseWire
         $violations = [];
 
         $browsers = $agents['browsers'];
-        if ($this->isFilterAttack(RequestSource::getBrowser(), $browsers)) {
-            $violations[] = RequestSource::getBrowser();
+        $currentBrowser = RequestSource::getBrowser();
+        if ($currentBrowser && $this->isFilterAttack($currentBrowser, $browsers)) {
+            $violations[] = $currentBrowser;
         }
 
         $platforms = $agents['platforms'];
-        if ($this->isFilterAttack(RequestSource::getPlatform(), $platforms)) {
-            $violations[] = RequestSource::getPlatform();
+        $currentPlatform = RequestSource::getPlatform();
+        if ($currentPlatform && $this->isFilterAttack($currentPlatform, $platforms)) {
+            $violations[] = $currentPlatform;
         }
 
         $devicesBlocked = $agents['devices']['block'];
@@ -50,6 +47,39 @@ class Agent extends BaseWire
         }
 
         return ! empty($violations);
+    }
+
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new AgentFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
+    }
+
+    /**
+     * @psalm-return array<never, never>|string|null
+     */
+    protected function isMaliciousAgent(): array|string|null
+    {
+        $agent = RequestSource::getUserAgent();
+
+        if (empty($agent) || ($agent === '-') || strstr($agent, '<?')) {
+            return [];
+        }
+
+        $patterns = [
+            '@"feed_url@',
+            '@}__(.*)|O:@',
+            '@J?Simple(p|P)ie(Factory)?@',
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $agent, $matches)) {
+                return $matches[0];
+            }
+        }
+
+        return null;
     }
 
     private function isDeviceBlocked(array $devices): ?string
@@ -75,32 +105,6 @@ class Agent extends BaseWire
         if (RequestSource::isDesktop()) {
             if (in_array('DESKTOP', $devices)) {
                 return 'DESKTOP';
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @psalm-return array<never, never>|null|string
-     */
-    protected function isMaliciousAgent(): array|string|null
-    {
-        $agent = RequestSource::getUserAgent();
-
-        if (empty($agent) || ($agent == '-') || strstr($agent, '<?')) {
-            return [];
-        }
-
-        $patterns = [
-            '@"feed_url@',
-            '@}__(.*)|O:@',
-            '@J?Simple(p|P)ie(Factory)?@',
-        ];
-
-        foreach ($patterns as $pattern) {
-            if (preg_match($pattern, $agent, $matches)) {
-                return $matches[0];
             }
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Http\Middleware\Wires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -32,9 +34,15 @@ class RequestSize extends BaseWire
         return ! empty($violations);
     }
 
+    protected function attackFound(TriggerEventData $triggerEventData): void
+    {
+        event(new RequestSizeFailedEvent($triggerEventData));
+
+        $this->blockIfNeeded();
+    }
+
     private function check(array $inputs, array &$violations): void
     {
-
         foreach ($inputs as $field => $value) {
             if (is_array($value)) {
                 $this->check($value, $violations);
@@ -44,12 +52,5 @@ class RequestSize extends BaseWire
                 $violations[] = $field;
             }
         }
-    }
-
-    protected function attackFound(TriggerEventData $triggerEventData): void
-    {
-        event(new RequestSizeFailedEvent($triggerEventData));
-
-        $this->blockIfNeeded();
     }
 }

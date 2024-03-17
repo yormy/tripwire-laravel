@@ -1,11 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\TripwireLaravel\Services;
 
 use Illuminate\Http\Request;
 
 class UrlTester
 {
+
+    public static function skipUrl(Request $request, ?array $urlsConfig): bool
+    {
+        if (! $urlsConfig) {
+            return false;
+        }
+
+        $included = self::isInclude($request, $urlsConfig);
+        if (! $included) {
+            return true;
+        }
+
+        $excluded = self::isExcluded($request, $urlsConfig);
+        if ($excluded) {
+            return true;
+        }
+
+        return false;
+    }
     private static function isInclude(Request $request, array $urlsConfig): bool
     {
         $onlyUrls = $urlsConfig['only'] ?? false;
@@ -41,26 +62,6 @@ class UrlTester
             if ($request->is($exclude) || strcasecmp($exclude, $request->url()) === 0) {
                 return true;
             }
-        }
-
-        return false;
-    }
-
-    public static function skipUrl(Request $request, ?array $urlsConfig): bool
-    {
-
-        if (! $urlsConfig) {
-            return false;
-        }
-
-        $included = self::isInclude($request, $urlsConfig);
-        if (! $included) {
-            return true;
-        }
-
-        $excluded = self::isExcluded($request, $urlsConfig);
-        if ($excluded) {
-            return true;
         }
 
         return false;

@@ -16,12 +16,10 @@ class BlockDataResponse extends BlockData
         public ?string $reasons,
         public string $blocked_ip,
         public ?CarbonImmutable $deleted_at,
-
         public ?string $blocked_user_xid,
         public ?string $blocked_user_firstname,
         public ?string $blocked_user_lastname,
         public ?string $blocked_user_email,
-
         public ?string $blocked_browser_fingerprint,
         public int $blocked_repeater,
         public ?string $internal_comments,
@@ -30,9 +28,15 @@ class BlockDataResponse extends BlockData
         public ?CarbonImmutable $blocked_until,
         public CarbonImmutable $created_at,
         public ?string $rowstyle,
-
         public array $status,
     ) {
+    }
+
+    public static function fromModel($model): self
+    {
+        $constuctorData = self::constructorData($model);
+
+        return new static(...$constuctorData);
     }
 
     protected static function constructorData($model): array
@@ -70,6 +74,18 @@ class BlockDataResponse extends BlockData
         ];
     }
 
+    protected static function getUserField($model, $field): ?string
+    {
+        $fieldId = config('tripwire.user_fields.id');
+        if ($model->relationLoaded('user')) {
+            if ($model->user) {
+                return $model->user[$fieldId];
+            }
+        }
+
+        return null;
+    }
+
     private static function decorateWithStatus($model): array
     {
         $status = [];
@@ -84,24 +100,5 @@ class BlockDataResponse extends BlockData
         $data['status'] = $status;
 
         return $data;
-    }
-
-    protected static function getUserField($model, $field): ?string
-    {
-        $fieldId = config('tripwire.user_fields.id');
-        if ($model->relationLoaded('user')) {
-            if ($model->user) {
-                return $model->user[$fieldId];
-            }
-        }
-
-        return null;
-    }
-
-    public static function fromModel($model): self
-    {
-        $constuctorData = self::constructorData($model);
-
-        return new static(...$constuctorData);
     }
 }
