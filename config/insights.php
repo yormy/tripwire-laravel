@@ -1,6 +1,7 @@
 <?php
 // config/insights.php
 
+use NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenGlobals;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
@@ -22,17 +23,20 @@ return [
         DisallowEmptySniff::class,
         NoSilencedErrorsSniff::class,
 
+
         SuperfluousInterfaceNamingSniff::class,
         SuperfluousExceptionNamingSniff::class,
         ForbiddenNormalClasses::class,
         ForbiddenTraits::class,
         FunctionLengthSniff::class,
+
+        CyclomaticComplexityIsHigh::class,
     ],
 
     'config' => [
         \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
             'lineLimit' => 160,
             'absoluteLineLimit' => 160
-        ]
+        ],
     ]
 ];
