@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
+use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
 

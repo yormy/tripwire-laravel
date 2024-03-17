@@ -38,7 +38,7 @@ class TripwireBlockSeeder extends Seeder
         $this->createForUser($admin);
     }
 
-    private function createForUser(Model $user): void
+    private function createForUser(Authenticatable $user): void
     {
         $block = TripwireBlock::factory()->forUser($user)->create();
         TripwireLog::factory(5)->forBlock($block)->forUser($user)->create();

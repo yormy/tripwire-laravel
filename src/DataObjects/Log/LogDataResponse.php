@@ -7,7 +7,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Log;
 use Carbon\CarbonImmutable;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 
-class LogDataResponse extends LogData
+final class LogDataResponse extends LogData
 {
     /**
      * @param array<string> $status

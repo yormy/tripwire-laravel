@@ -8,7 +8,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
 
-class BlockDataResponse extends BlockData
+final class BlockDataResponse extends BlockData
 {
     /**
      * @param array<string> $status
