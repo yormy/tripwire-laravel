@@ -108,4 +108,10 @@ trait TripwireTestTrait
     {
         $this->assertEquals($result->getStatusCode(), $expectedCode);
     }
+
+    private static function loadFile(string $filename): array
+    {
+        return [];
+    }
+
 }

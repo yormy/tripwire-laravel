@@ -12,6 +12,11 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 
 class TripwireLogSeeder extends Seeder
 {
+    public function __construct()
+    {
+        // ...
+    }
+
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */

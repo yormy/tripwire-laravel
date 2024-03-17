@@ -35,4 +35,6 @@ abstract class WireBaseListener
 //            //abort(406); // respond as attack, events cannot respond
 //        }
     }
+
+   // abstract public function isAttack(Event $event): bool;
 }

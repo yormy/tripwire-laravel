@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Extensive\Middleware\Wires;
 
+use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 use Yormy\TripwireLaravel\Tests\Traits\TripwireTestTrait;
@@ -10,9 +11,9 @@ class BaseExtensive extends TestCase
 {
     use TripwireTestTrait;
 
+    protected string $tripwire;
 
-
-    protected $tripwire;
+    protected string $tripwireClass;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {

@@ -164,9 +164,4 @@ class PageMissingTest extends TestCase
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
         config(['tripwire.punish.score' => 21]);
     }
-
-    private static function loadFile(string $filename): array
-    {
-        return [];
-    }
 }

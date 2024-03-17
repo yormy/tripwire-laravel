@@ -26,7 +26,7 @@ class ValidateSignature
      * Based in/laravel/framework/src/Illuminate/Routing/Middleware/ValidateSignature.php.
      * Handle an incoming request.
      */
-    public function handle(IlluminateHttpRequest $request, Closure $next): mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($this->hasValidSignature($request)) {
             return $next($request);
