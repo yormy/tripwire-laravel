@@ -19,7 +19,7 @@ class BaseTriggerIgnore extends TestCase
 
     protected function triggerTripwire()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
 
         $request = $this->createRequest('post', '', 'path/to/location');

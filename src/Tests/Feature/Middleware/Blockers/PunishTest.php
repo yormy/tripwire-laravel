@@ -75,7 +75,7 @@ class PunishTest extends TestCase
 
     protected function testBlockHandlerAll()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', 'normal input');
 
         $wite = new TripwireBlockHandlerAll();

@@ -121,7 +121,7 @@ class ResponsesJsonTest extends TestCase
 
     private function triggerTripwire()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
         $request->headers->set('Accept', 'application/json');
 

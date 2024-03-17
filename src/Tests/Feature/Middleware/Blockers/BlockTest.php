@@ -116,7 +116,7 @@ class BlockTest extends TestCase
 
     protected function testBlockHandlerAll()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', 'normal input');
 
         $wire = new TripwireBlockHandlerAll();

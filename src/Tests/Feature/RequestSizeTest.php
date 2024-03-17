@@ -61,7 +61,7 @@ class RequestSizeTest extends TestCase
 
     private function testRequest()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', 'non blocked test');
 
         return (new RequestSize($request))->handle($request, $this->getNextClosure());

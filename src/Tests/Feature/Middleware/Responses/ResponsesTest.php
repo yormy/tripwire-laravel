@@ -195,7 +195,7 @@ class ResponsesTest extends TestCase
 
     private function triggerTripwire()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
 
         return (new Text($request))->handle($request, $this->getNextClosure());

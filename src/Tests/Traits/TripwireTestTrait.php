@@ -75,7 +75,7 @@ trait TripwireTestTrait
 
     protected function triggerTripwire(string $input)
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', $input);
 
         $wire = new $this->tripwireClass($request);
@@ -85,7 +85,7 @@ trait TripwireTestTrait
 
     protected function triggerJsonTripwire(string $input)
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', $input);
         $request->headers->set('Accept', 'application/json');
 
@@ -109,7 +109,7 @@ trait TripwireTestTrait
         $this->assertEquals($result->getStatusCode(), $expectedCode);
     }
 
-    private static function loadFile(string $filename): array
+    protected static function loadFile(string $filename): array
     {
         return [];
     }

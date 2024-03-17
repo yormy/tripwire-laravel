@@ -15,7 +15,7 @@ trait BlockTestTrait
 
     protected function doRequest()
     {
-        $request = $this->app->request;
+        $request = request();
         $blocker = new TripwireBlockHandlerAll();
 
         return $blocker->handle($request, $this->getNextClosure());
@@ -23,7 +23,7 @@ trait BlockTestTrait
 
     protected function doJsonRequest()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->headers->set('Accept', 'application/json');
         $blocker = new TripwireBlockHandlerAll();
 

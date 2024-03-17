@@ -69,7 +69,7 @@ class BaseAcceptAll extends TestCase
 
     protected function triggerTripwire(string $input)
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', $input);
 
         foreach ($this->tripwires as $wire) {

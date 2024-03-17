@@ -61,7 +61,7 @@
         "insights": "./vendor/bin/testbench insights",
         "insights:fix": "./vendor/bin/testbench insights --fix",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
-
+        "ide-helpers": "php vendor/bin/testbench clear-compiled && php vendor/bin/testbench ide-helper:generate && php vendor/bin/testbench --write ide-helper:models && php vendor/bin/testbench ide-helper:meta",
         "---------- FIXES ---------- ": "",
 
         "cs-fixer" : "phpcbf",

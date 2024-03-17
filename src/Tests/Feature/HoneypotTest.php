@@ -132,7 +132,7 @@ class HoneypotTest extends TestCase
 
     private function triggerTripwire()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', 'non blocked test');
 
         return (new Text($request))->handle($request, $this->getNextClosure());
@@ -140,7 +140,7 @@ class HoneypotTest extends TestCase
 
     private function triggerHoneypot()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', 'non blocked test');
 
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
@@ -148,7 +148,7 @@ class HoneypotTest extends TestCase
 
     private function triggerHoneypotEmpty()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', '');
 
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
@@ -156,7 +156,7 @@ class HoneypotTest extends TestCase
 
     private function triggerHoneypotZero()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', 0);
 
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
@@ -164,7 +164,7 @@ class HoneypotTest extends TestCase
 
     private function triggerHoneypotFalse()
     {
-        $request = $this->app->request;
+        $request = request();
         $request->query->set('foo', false);
 
         return (new Honeypot($request))->handle($request, $this->getNextClosure());

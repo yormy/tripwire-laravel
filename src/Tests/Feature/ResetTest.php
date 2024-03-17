@@ -32,7 +32,7 @@ class ResetTest extends TestCase
         ]]);
 
         $resetController = new ResetController();
-        $request = $this->app->request;
+        $request = request();
         $result = $resetController->reset($request);
 
         $this->assertEquals(Response::HTTP_NOT_FOUND, $result->getStatusCode());
@@ -53,7 +53,7 @@ class ResetTest extends TestCase
 
         $resetController = new ResetController();
 
-        $request = $this->app->request;
+        $request = request();
         $result = $resetController->reset($request);
         $this->assertNotEquals(null, $result);
     }
@@ -77,7 +77,7 @@ class ResetTest extends TestCase
         $this->assertGreaterThan(0, $blockCount);
 
         // call reset
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
         ResetService::run($request);
 
@@ -111,7 +111,7 @@ class ResetTest extends TestCase
 
     private function triggerTripwire()
     {
-        $request = $this->app->request; // default is as HTML
+        $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
 
         return (new Text($request))->handle($request, $this->getNextClosure());

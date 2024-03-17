@@ -26,7 +26,7 @@ abstract class BaseExtensive extends TestCase
     /**
      * @return array<string>
      */
-    private static function loadFile(string $filename): array
+    protected static function loadFile(string $filename): array
     {
         $data = file($filename);
 
