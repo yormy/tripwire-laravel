@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 /**
  * @group Tripwire
  *
- * @subgroup Admin Block
+ * @subgroup Admin
  */
 class AdminBlockController extends BaseBlockController
 {

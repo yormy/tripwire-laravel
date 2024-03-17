@@ -12,12 +12,12 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 /**
  * @group Tripwire
  *
- * @subgroup System Logs
+ * @subgroup System
  */
 class SystemLogController extends Controller
 {
     /**
-     * Index
+     * Log Index
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Log\LogDataResponse

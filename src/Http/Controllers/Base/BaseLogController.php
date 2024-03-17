@@ -13,7 +13,7 @@ use Yormy\TripwireLaravel\Repositories\LogRepository;
 abstract class BaseLogController extends controller
 {
     /**
-     * Index
+     * Log Index
      *
      * Get all logs for this user
      *

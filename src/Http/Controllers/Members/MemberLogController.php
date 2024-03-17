@@ -9,7 +9,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 /**
  * @group Tripwire
  *
- * @subgroup Member Log
+ * @subgroup Member
  */
 class MemberLogController extends BaseLogController
 {

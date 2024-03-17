@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Repositories\BlockRepository;
 abstract class BaseBlockController extends controller
 {
     /**
-     * Index
+     * Block Index
      *
      * Get all blocks for this user
      *

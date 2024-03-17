@@ -15,12 +15,12 @@ use Yormy\TripwireLaravel\Repositories\BlockRepository;
 /**
  * @group Tripwire
  *
- * @subgroup System Blocks
+ * @subgroup System
  */
 class SystemBlockController extends Controller
 {
     /**
-     * Index
+     * Block Index
      *
      * @responseFieldsDTO Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse
      * @responseApiDTOCollection Yormy\TripwireLaravel\DataObjects\Block\BlockDataResponse

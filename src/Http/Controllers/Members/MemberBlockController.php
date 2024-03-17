@@ -8,7 +8,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 /**
  * @group Tripwire
  *
- * @subgroup Member Block
+ * @subgroup Member
  */
 class MemberBlockController extends BaseBlockController
 {
