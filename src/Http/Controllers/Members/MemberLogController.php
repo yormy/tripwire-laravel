@@ -6,6 +6,11 @@ use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\TripwireLaravel\Http\Controllers\Base\BaseLogController;
 use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 
+/**
+ * @group Tripwire
+ *
+ * @subgroup Member Log
+ */
 class MemberLogController extends BaseLogController
 {
     public function getUser($userId)
