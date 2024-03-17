@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Models\Traits;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Query\Builder;
 
 trait LogScope
 {
@@ -25,7 +26,7 @@ trait LogScope
         return $query->where('user_id', $userId);
     }
 
-    public function scopeByUserType($query, string $userType)
+    public function scopeByUserType(Builder $query, string $userType)
     {
         return $query->where('user_type', $userType);
     }

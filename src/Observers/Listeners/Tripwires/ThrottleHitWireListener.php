@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
+use Illuminate\Auth\Events\Failed;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
+use Illuminate\Support\Facades\Event;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
 {
@@ -16,7 +19,7 @@ class ThrottleHitWireListener extends WireBaseListener
         parent::__construct('throttle');
     }
 
-    public function handle($event): void
+    public function handle(Failed | LoggableEvent $event): void
     {
         $this->request = request();
 
@@ -33,7 +36,7 @@ class ThrottleHitWireListener extends WireBaseListener
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack($event): bool
+    public function isAttack(Event $event): bool
     {
         $violations = ['throttle_hit'];
         $triggerEventData = new TriggerEventData(

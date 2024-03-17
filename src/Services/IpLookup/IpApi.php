@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
+use Illuminate\Http\Response;
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;
 use Yormy\TripwireLaravel\Services\Interfaces\IpLookupInterface;
 
@@ -34,7 +35,7 @@ class IpApi extends BaseLookup implements IpLookupInterface
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    private function hasFailed($response): bool
+    private function hasFailed(\StdClass $response): bool
     {
         return false; //todo determine if call failed
     }

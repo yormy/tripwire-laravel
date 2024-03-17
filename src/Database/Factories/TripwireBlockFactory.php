@@ -34,6 +34,7 @@ class TripwireBlockFactory extends Factory
     public function forUser($user): Factory
     {
         /**
+         * @param array<string> $attributes
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
         return $this->state(function (array $attributes) use ($user) {
@@ -47,6 +48,7 @@ class TripwireBlockFactory extends Factory
     public function ignore(): Factory
     {
         /**
+         * @param array<string> $attributes
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
         return $this->state(function (array $attributes) {

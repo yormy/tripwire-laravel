@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\BlockScope;
@@ -47,7 +48,7 @@ class TripwireBlock extends BaseModel
         return $this->hasMany(TripwireLog::class)->withTrashed();
     }
 
-    public function scopeByIp($query, string $ipAddress)
+    public function scopeByIp(Builder $query, string $ipAddress)
     {
         return $query->where('blocked_ip', $ipAddress);
     }

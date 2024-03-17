@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Notifications;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
@@ -11,12 +12,13 @@ use Illuminate\Notifications\Notification;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\Mailables\UserBlockedMailable;
+use Yormy\TripwireLaravel\Notifications\Notifiable;
 
 class UserBlockedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $notifications;
+    public array $notifications;
 
     public function __construct(
         private readonly string $ipAddress,
@@ -31,7 +33,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function via($notifiable): array
+    public function via(Notifiable $notifiable): array
     {
         $channels = [];
 
@@ -51,7 +53,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function toMail($notifiable): UserBlockedMailable
+    public function toMail(Notifiable $notifiable): UserBlockedMailable
     {
         $domain = request()->getHttpHost();
 
@@ -85,7 +87,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function toSlack($notifiable)
+    public function toSlack(Notifiable $notifiable)
     {
         $domain = request()->getHttpHost();
 

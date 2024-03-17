@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
+use Illuminate\Auth\Events\Failed;
 
 abstract class WireBaseListener
 {
@@ -21,7 +24,7 @@ abstract class WireBaseListener
         $this->config = new WireConfig($tripwire);
     }
 
-    public function handle($event): void
+    public function handle(Failed | LoggableEvent $event): void
     {
         $this->request = $event->request;
         if ($this->skip($this->request)) {

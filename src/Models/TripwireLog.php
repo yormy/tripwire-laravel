@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\TripwireLaravel\Models\Traits\LogScope;
@@ -13,6 +14,9 @@ class TripwireLog extends BaseModel
     use LogScope;
     use PackageFactoryTrait;
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
     protected $fillable = [
         'ignore',
         'event_code',
@@ -38,6 +42,9 @@ class TripwireLog extends BaseModel
         'tripwire_block_id',
     ];
 
+    /**
+     * @param array<string> $attributes
+     */
     public function __construct(array $attributes = [])
     {
         $this->table = config('tripwire.database_tables.tripwire_logs');
@@ -45,7 +52,7 @@ class TripwireLog extends BaseModel
         parent::__construct($attributes);
     }
 
-    public function scopeByIp($query, string $ipAddress)
+    public function scopeByIp(Builder $query, string $ipAddress)
     {
         return $query->where('ip', $ipAddress);
     }

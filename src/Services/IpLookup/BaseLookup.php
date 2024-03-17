@@ -6,7 +6,7 @@ namespace Yormy\TripwireLaravel\Services\IpLookup;
 
 class BaseLookup
 {
-    protected function getResponse(string $url)
+    protected function getResponse(string $url):\StdClass
     {
         try {
             $ch = curl_init();

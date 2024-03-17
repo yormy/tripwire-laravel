@@ -6,6 +6,9 @@ namespace Yormy\TripwireLaravel\Observers\Listeners\Tripwires;
 
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoginFailedEvent;
+use Illuminate\Support\Facades\Event;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
+use Illuminate\Auth\Events\Failed;
 
 class LoginFailedWireListener extends WireBaseListener
 {
@@ -16,7 +19,7 @@ class LoginFailedWireListener extends WireBaseListener
         parent::__construct('loginfailed');
     }
 
-    public function handle($event): void
+    public function handle(Failed | LoggableEvent $event): void
     {
         $this->request = request();
 
@@ -33,7 +36,7 @@ class LoginFailedWireListener extends WireBaseListener
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack($event): bool
+    public function isAttack(Failed $event): bool
     {
         $violations = ['login_failed'];
         $triggerEventData = new TriggerEventData(

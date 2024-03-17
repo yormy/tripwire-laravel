@@ -16,7 +16,7 @@ class PageNotFoundWireListener extends WireBaseListener
         parent::__construct('page404');
     }
 
-    public function isAttack($event): bool
+    public function isAttack(Event $event): bool
     {
         $violations = [];
         $url = $event->request->fullUrl();

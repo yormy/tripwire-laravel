@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Repositories;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -24,7 +25,7 @@ class LogRepository
         return $this->model::with(['user', 'block'])->latest()->get();
     }
 
-    public function getAllForUser($user): Collection
+    public function getAllForUser(Authenticatable $user): Collection
     {
         return $this->model::with(['block'])
             ->latest()
@@ -39,6 +40,9 @@ class LogRepository
         return $this->model::where('tripwire_block_id', $blockId)->latest()->get();
     }
 
+    /**
+     * @param array<string> $meta
+     */
     public function add(LoggableEventInterface $event, array $meta): Model
     {
         $data = $meta;
@@ -82,12 +86,18 @@ class LogRepository
         $this->delete($query, $softDelete);
     }
 
+    /**
+     * @param array<string> $violations
+     */
     public function queryViolationsByIp(int $withinMinutes, string $ipAddress, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
             ->byIp($ipAddress);
     }
 
+    /**
+     * @param array<string> $violations
+     */
     public function queryViolationsByUser(int $withinMinutes, int $userId, ?string $userType, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
@@ -95,6 +105,9 @@ class LogRepository
             ->byUserId($userId);
     }
 
+    /**
+     * @param array<string> $violations
+     */
     public function queryViolationsByBrowser(int $withinMinutes, string $browserFingerprint, array $violations = []): Builder
     {
         return $this->queryScoreViolations($withinMinutes, $violations)
@@ -112,6 +125,9 @@ class LogRepository
         $query->delete();
     }
 
+    /**
+     * @param array<string> $violations
+     */
     private function queryScoreViolations(int $withinMinutes, array $violations = []): Builder
     {
         $builder = $this->model->within($withinMinutes);

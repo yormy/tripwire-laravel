@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Observers\Listeners;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
+use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 
 abstract class BaseListener
 {
@@ -12,5 +14,5 @@ abstract class BaseListener
     {
     }
 
-    abstract public function handle($event): void;
+    abstract public function handle(LoggableEvent $event): void;
 }

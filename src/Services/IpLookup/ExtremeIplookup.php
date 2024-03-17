@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Services\IpLookup;
 
+use Illuminate\Http\Response;
 use Yormy\TripwireLaravel\DataObjects\GeoLocation;
 use Yormy\TripwireLaravel\Services\Interfaces\IpLookupInterface;
 
@@ -31,7 +32,7 @@ class ExtremeIplookup extends BaseLookup implements IpLookupInterface
         );
     }
 
-    private function hasFailed($response): bool
+    private function hasFailed(\StdClass $response): bool
     {
         return $response->status === 'fail';
     }

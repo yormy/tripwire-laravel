@@ -6,7 +6,10 @@ namespace Yormy\TripwireLaravel\Services;
 
 class FieldMasker
 {
-    public static function run(array $inputs)
+    /**
+     * @param array<array|string> $inputs
+     */
+    public static function run(array $inputs): array
     {
         foreach ($inputs as $key => $input) {
             if (is_array($input)) {

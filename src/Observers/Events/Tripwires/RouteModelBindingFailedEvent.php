@@ -15,9 +15,9 @@ class RouteModelBindingFailedEvent
 
     public function __construct(
         public Request $request,
-        public $class,
-        public $value,
-        public $field = null,
+        public string $class,
+        public string $value,
+        public ?string $field = null,
     ) {
     }
 }

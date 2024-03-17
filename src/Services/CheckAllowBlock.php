@@ -6,6 +6,9 @@ namespace Yormy\TripwireLaravel\Services;
 
 class CheckAllowBlock
 {
+    /**
+     * @param array<string> $filters
+     */
     public static function shouldBlock(string $value, array $filters, bool $default = false): bool
     {
         if (! $value) {

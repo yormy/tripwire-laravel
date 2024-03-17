@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Repositories;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +31,7 @@ class BlockRepository
         return $this->model::with('user')->latest()->get();
     }
 
-    public function getAllForUser($user): Collection
+    public function getAllForUser(Authenticatable $user): Collection
     {
         return $this->model::latest()
             ->byUserId($user->id)

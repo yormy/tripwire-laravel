@@ -20,6 +20,9 @@ class LogRequestService
         return $data;
     }
 
+    /**
+     * @param array<string> $data
+     */
     private static function addRequest(Request $request, array $data): array
     {
         $data['url'] = self::truncateValue($request->fullUrl());

@@ -34,7 +34,7 @@ class IpData extends BaseLookup implements IpLookupInterface
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    private function hasFailed($response): bool
+    private function hasFailed(\StdClass $response): bool
     {
         return false; //todo determine if call failed
     }
