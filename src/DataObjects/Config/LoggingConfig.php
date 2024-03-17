@@ -12,11 +12,14 @@ class LoggingConfig
 
     public int $maxRefererSize;
 
+    /**
+     * @var array<string> $remove
+     */
     public array $remove;
 
     private function __construct()
     {
-        // ...
+        // disable default constructor
     }
 
     /**

@@ -18,6 +18,7 @@ class HtmlResponseConfig
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     public static function make(

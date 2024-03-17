@@ -16,7 +16,7 @@ class TripwireBlockSeeder extends Seeder
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function run(Authenticatable $user = null): void
+    public function run(?Authenticatable $user = null): void
     {
         TripwireBlock::factory(1)->create();
 

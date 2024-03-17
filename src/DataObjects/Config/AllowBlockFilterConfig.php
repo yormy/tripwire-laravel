@@ -6,9 +6,20 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class AllowBlockFilterConfig
 {
+    /**
+     * @var array<string> $allow
+     */
     public array $allow;
 
+    /**
+     * @var array<string> $block
+     */
     public array $block;
+
+    private function __construct()
+    {
+        // disable default constructor
+    }
 
     /**
      * @param array<string> $allow

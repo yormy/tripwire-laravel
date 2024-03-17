@@ -3,6 +3,7 @@
 
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenFinalClasses;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenGlobals;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\NoSilencedErrorsSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\GlobalKeywordSniff;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
@@ -18,5 +19,6 @@ return [
         DisallowLateStaticBindingForConstantsSniff::class,
         AssignmentInConditionSniff::class,
         DisallowEmptySniff::class,
+        NoSilencedErrorsSniff::class,
     ],
 ];

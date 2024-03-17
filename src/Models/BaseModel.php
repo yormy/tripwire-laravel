@@ -16,6 +16,10 @@ class BaseModel extends Model
     use Xid;
 
     // Cachables
+    /**
+     * @var int $cacheFor
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     public $cacheFor = 4 * 60 * 60; // cache time, in seconds
 
     /**

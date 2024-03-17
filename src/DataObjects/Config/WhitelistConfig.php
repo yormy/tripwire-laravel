@@ -6,10 +6,14 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class WhitelistConfig
 {
+    /**
+     * @var array<string> $ips
+     */
     public array $ips;
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     /**

@@ -6,10 +6,14 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class WireGroupConfig
 {
+    /**
+     * @var array<string> $wires
+     */
     public array $wires;
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     /**

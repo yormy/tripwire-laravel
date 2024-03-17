@@ -8,7 +8,15 @@ class HoneypotsConfig
 {
     public int $attackScore;
 
+    /**
+     * @var array<string> $mustBeMissingOrFalse
+     */
     public array $mustBeMissingOrFalse;
+
+    private function __construct()
+    {
+        // disable default constructor
+    }
 
     /**
      * @param array<string> $mustBeMissingOrFalse
@@ -23,7 +31,7 @@ class HoneypotsConfig
     }
 
     /**
-     * @param array<mixed>|null $data
+     * @param array<string|int|array>|null $data
      */
     public static function makeFromArray(?array $data): ?self
     {

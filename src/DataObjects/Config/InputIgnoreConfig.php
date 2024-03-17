@@ -6,11 +6,25 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 class InputIgnoreConfig
 {
+    /**
+     * @var array<string> $inputs
+     */
     public array $inputs;
 
+    /**
+     * @var array<string> $cookies
+     */
     public array $cookies;
 
+    /**
+     * @var array<string> $header
+     */
     public array $header;
+
+    private function __construct()
+    {
+        // disable default constructor
+    }
 
     /**
      * @param array<string> $inputs

@@ -12,6 +12,7 @@ class DatabaseTablesConfig
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     public static function make(

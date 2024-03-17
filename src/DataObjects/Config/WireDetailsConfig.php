@@ -10,6 +10,9 @@ class WireDetailsConfig
 
     public ?bool $trainingMode;
 
+    /**
+     * @var array<string>|null $methods
+     */
     public ?array $methods;
 
     public int $attackScore;
@@ -18,10 +21,19 @@ class WireDetailsConfig
 
     public ?InputsFilterConfig $inputs;
 
+    /**
+     * @var array<string>|null $tripwires
+     */
     public array $tripwires;
 
+    /**
+     * @var array<string>|null $filters
+     */
     public ?array $filters;
 
+    /**
+     * @var array<string>|null $config
+     */
     public ?array $config;
 
     public ?AllowBlockFilterConfig $allowBlockConfig;
@@ -30,10 +42,14 @@ class WireDetailsConfig
 
     public ?BlockResponseConfig $rejectResponse;
 
+    /**
+     * @var array<string> $whitelistedTokens
+     */
     public array $whitelistedTokens = [];
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     /**

@@ -14,7 +14,7 @@ class ServicesConfig
 
     private function __construct()
     {
-        // ...
+        // disable default constructor
     }
 
     public static function make(

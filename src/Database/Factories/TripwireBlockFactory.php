@@ -11,6 +11,10 @@ use Yormy\Xid\Services\XidService;
 
 class TripwireBlockFactory extends Factory
 {
+    /**
+     * @var string $model
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $model = TripwireBlock::class;
 
     public function definition(): array

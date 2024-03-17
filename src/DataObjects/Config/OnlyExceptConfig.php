@@ -6,13 +6,19 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 
 abstract class OnlyExceptConfig
 {
+    /**
+     * @var array<string> $only
+     */
     public array $only;
 
+    /**
+     * @var array<string> $except
+     */
     public array $except;
 
-    protected function __construct()
+    private function __construct()
     {
-        // Only named constructors
+        // disable default constructor
     }
 
     /**

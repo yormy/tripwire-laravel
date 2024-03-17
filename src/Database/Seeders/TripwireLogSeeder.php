@@ -15,7 +15,7 @@ class TripwireLogSeeder extends Seeder
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function run(Authenticatable $user = null): void
+    public function run(?Authenticatable $user = null): void
     {
         $member = Member::where('id', 1)->first();
         TripwireLog::factory(10)->forUser($member)->create();

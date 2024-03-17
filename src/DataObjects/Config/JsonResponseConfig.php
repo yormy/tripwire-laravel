@@ -8,6 +8,9 @@ class JsonResponseConfig
 {
     public int $code;
 
+    /**
+     * @var array<string>|null $json
+     */
     public ?array $json;
 
     public ?string $exception;
@@ -18,6 +21,7 @@ class JsonResponseConfig
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     public static function make(
@@ -81,7 +85,7 @@ class JsonResponseConfig
     }
 
     /**
-     * @param array<mixed> $json
+     * @param array<string> $json
      */
     public function json(array $json): self
     {

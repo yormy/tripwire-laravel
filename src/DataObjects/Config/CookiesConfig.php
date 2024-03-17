@@ -10,6 +10,7 @@ class CookiesConfig
 
     private function __construct()
     {
+        // disable default constructor
     }
 
     public static function make(string $browserFingerprint): self

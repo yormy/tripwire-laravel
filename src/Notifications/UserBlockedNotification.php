@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Notifications;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
@@ -12,7 +11,6 @@ use Illuminate\Notifications\Notification;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationMailConfig;
 use Yormy\TripwireLaravel\DataObjects\Config\NotificationSlackConfig;
 use Yormy\TripwireLaravel\Mailables\UserBlockedMailable;
-use Yormy\TripwireLaravel\Notifications\Notifiable;
 
 class UserBlockedNotification extends Notification implements ShouldQueue
 {

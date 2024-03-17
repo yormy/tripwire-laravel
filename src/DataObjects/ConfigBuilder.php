@@ -35,8 +35,14 @@ class ConfigBuilder implements Arrayable
 
     public DatetimeConfig $datetime;
 
+    /**
+     * @var array<string> $notificationsMail
+     */
     public array $notificationsMail;
 
+    /**
+     * @var array<string> $notificationsSlack
+     */
     public array $notificationsSlack;
 
     public DatabaseTablesConfig $databaseTables;
@@ -61,6 +67,9 @@ class ConfigBuilder implements Arrayable
 
     public PunishConfig $punish;
 
+    /**
+     * @var array<string> $wireGroups
+     */
     public array $wireGroups;
 
     public BlockResponseConfig $rejectResponse;

@@ -9,8 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class GenerateAccepts extends Command
 {
+    /**
+     * @var string $signature
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $signature = 'generate:accepts';
 
+    /**
+     * @var string $description
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $description = 'Generate a file with random text that should be accepted';
 
     public function handle()
