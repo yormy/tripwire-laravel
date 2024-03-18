@@ -9,6 +9,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\DataObjects\WireConfig;
+use Yormy\TripwireLaravel\Exceptions\RequestChecksumFailedException;
 use Yormy\TripwireLaravel\Observers\Events\Failed\ChecksumFailedEvent;
 use Yormy\TripwireLaravel\Services\ResponseDeterminer;
 use Yormy\TripwireLaravel\Traits\TripwireHelpers;
@@ -120,6 +121,7 @@ class ChecksumValidateWire
     {
         $timestamp = $request->header($this->config->wireDetails()->config['timestamp']);
 
+        // @phpstan-ignore-next-line
         if ($timestamp && Carbon::now()->diffInSeconds(Carbon::parse($timestamp / 1000)) > 30) {
             throw new \RuntimeException('Service blocked! Invalid Timestamp Synchronization');
         }

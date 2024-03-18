@@ -100,7 +100,7 @@ class BlockRepository
         ?string $responseJson,
         ?string $responseHtml,
         ?bool $ignore = false
-    ): Model {
+    ): TripwireBlock {
         $data = [];
         $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
