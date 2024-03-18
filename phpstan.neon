@@ -8,7 +8,14 @@ parameters:
 
     excludePaths:
         analyse:
+            - ./vendor/**
             - src/zz
+
+   # reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate#'  #ignore scope on model errors
+        - '#Call to an undefined static method Illuminate#'  #ignore scope on model errors
+        # - '#Call to an undefined static method#'
 
     # Level 9 is the strictest
     level: 2
