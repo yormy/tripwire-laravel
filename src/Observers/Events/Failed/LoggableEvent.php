@@ -80,6 +80,6 @@ abstract class LoggableEvent implements LoggableEventInterface
 
     public function getRequest(): ?Request
     {
-        return $this->triggerEventData?->request;
+        return $this->triggerEventData->request;
     }
 }

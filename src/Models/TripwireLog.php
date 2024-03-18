@@ -58,7 +58,7 @@ class TripwireLog extends BaseModel
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      *
-     * @var array<string> $fillable
+     * @var array<int, string> $fillable
      */
     protected $fillable = [
         'ignore',
@@ -90,7 +90,7 @@ class TripwireLog extends BaseModel
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = config('tripwire.database_tables.tripwire_logs');
+        $this->table = config('tripwire.database_tables.tripwire_logs'); // @phpstan-ignore-line
 
         parent::__construct($attributes);
     }

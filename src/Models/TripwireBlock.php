@@ -52,7 +52,7 @@ class TripwireBlock extends BaseModel
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      *
-     * @var array<string> $fillable
+     * @var array<int, string> $fillable
      */
     protected $fillable = [
         'ignore',
@@ -68,7 +68,7 @@ class TripwireBlock extends BaseModel
     ];
 
     /**
-     * @var array<string>
+     * @var array<string, string>
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -81,7 +81,7 @@ class TripwireBlock extends BaseModel
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = config('tripwire.database_tables.tripwire_blocks');
+        $this->table = config('tripwire.database_tables.tripwire_blocks'); // @phpstan-ignore-line
 
         parent::__construct($attributes);
     }

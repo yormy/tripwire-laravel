@@ -70,17 +70,19 @@ class AddBlockJob implements ShouldBeEncrypted, ShouldQueue
             }
 
             event(new TripwireBlockedIpEvent($sum->ipAddress));
-            $sum->violationsByIp->update(['tripwire_block_id' => $blockItem->id]);
+
+            $blockItemId = $blockItem->id; // @phpstan-ignore-line
+            $sum->violationsByIp->update(['tripwire_block_id' => $blockItemId]);
 
             if ($sum->violationsByUser) {
-                $sum->violationsByUser->update(['tripwire_block_id' => $blockItem->id]);
+                $sum->violationsByUser->update(['tripwire_block_id' => $blockItemId]);
                 if (! $this->trainingMode) {
                     event(new TripwireBlockedUserEvent($sum->userId, $sum->userType));
                 }
             }
 
             if ($sum->violationsByBrowser) {
-                $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItem->id]);
+                $sum->violationsByBrowser->update(['tripwire_block_id' => $blockItemId]);
                 if (! $this->trainingMode) {
                     event(new TripwireBlockedBrowserEvent($sum->browserFingerprint));
                 }

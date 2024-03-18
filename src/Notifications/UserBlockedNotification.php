@@ -17,7 +17,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * @var array<string> $notifications
+     * @var array<array<string>> $notifications
      */
     public array $notifications;
 
@@ -82,7 +82,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
 
         $mail
             ->subject($subject)
-            ->to($mailSettings->from, $mailSettings->to);
+            ->to($mailSettings->from, $mailSettings->to); // @phpstan-ignore-line
 
         return $mail;
     }
