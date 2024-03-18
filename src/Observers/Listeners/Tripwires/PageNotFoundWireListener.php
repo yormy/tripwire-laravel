@@ -22,6 +22,7 @@ class PageNotFoundWireListener extends WireBaseListener
 
     public function isAttack(Event | Failed $event): bool
     {
+        dd('test');
         $violations = [];
 
         /** @var PageNotFoundEvent $event */

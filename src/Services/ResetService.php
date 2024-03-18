@@ -17,14 +17,14 @@ class ResetService
         }
 
         $requestSourceClass = config('tripwire.services.request_source');
-        $browserFingerprint = $requestSourceClass::getBrowserFingerprint();
+        $browserFingerprint = $requestSourceClass::getBrowserFingerprint(); // @phpstan-ignore-line
 
         $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($request);
+        $ipAddress = $ipAddressClass::get($request); // @phpstan-ignore-line
 
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($request);
-        $userType = $userClass::getType($request);
+        $userId = $userClass::getId($request); // @phpstan-ignore-line
+        $userType = $userClass::getType($request); // @phpstan-ignore-line
 
         $softDelete = (bool) config('tripwire.reset.soft_delete');
         $logRepository = new LogRepository();

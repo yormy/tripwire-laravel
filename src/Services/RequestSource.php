@@ -65,7 +65,9 @@ class RequestSource
 
     public static function getBrowserFingerprint(): string
     {
+        /** @var string $browserFingerprintKey */
         $browserFingerprintKey = config('tripwire.cookie.browser_fingerprint');
+
         if (array_key_exists($browserFingerprintKey, $_COOKIE)) {
             return $_COOKIE[$browserFingerprintKey];
         }

@@ -16,6 +16,7 @@ class ResetUrl
         }
 
         if (! $expirationMinutes) {
+            /** @var int $expirationMinutes */
             $expirationMinutes = config('tripwire.reset.link_expiry_minutes', 60);
         }
         $expiresAt = Carbon::now()->addMinutes($expirationMinutes);

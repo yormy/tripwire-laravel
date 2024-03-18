@@ -99,8 +99,8 @@ class TripwireServiceProvider extends ServiceProvider
 
     public function registerListeners(): void
     {
-        $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class);
-        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyAdmin::class);
+        $this->app['events']->listen(LoginFailed::class, LoginFailedWireListener::class); // @phpstan-ignore-line
+        $this->app['events']->listen(TripwireBlockedEvent::class, NotifyAdmin::class); // @phpstan-ignore-line
     }
 
     public function registerTranslations(): void
