@@ -17,14 +17,14 @@ class LogsTest extends TestCase
     public function Logs_Index_HasItem(): void
     {
         $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $count = $response->getDataCount();
+        $count = $response->getDataCount(); // @phpstan-ignore-line
 
         $data = TripwireLog::factory()->create();
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
-        $countAfter = $response->getDataCount();
+        $countAfter = $response->getDataCount(); // @phpstan-ignore-line
 
         $this->assertGreaterThan($count, $countAfter);
-        $response->assertJsonDataArrayHasElement('xid', $data->xid);
+        $response->assertJsonDataArrayHasElement('xid', $data->xid); // @phpstan-ignore-line
     }
 }

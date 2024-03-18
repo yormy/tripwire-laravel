@@ -73,7 +73,7 @@ class UrlTester
         return false;
     }
 
-    private static function checkValid(string $url): void
+    protected static function checkValid(string $url): void
     {
         if (str_starts_with($url, '/')) {
             throw new \Exception('urls cannot start with leading \\');

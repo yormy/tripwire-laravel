@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -21,8 +22,8 @@ use Yormy\TripwireLaravel\Models\Traits\LogScope;
  * @property string $referer
  * @property string $request
  * @property string $user_agent
- * @property string $created_at
- * @property string $deleted_at
+ * @property CarbonImmutable $created_at
+ * @property CarbonImmutable $deleted_at
  * @property string $method
  * @property int $tripwire_block_id
  * @property string $header

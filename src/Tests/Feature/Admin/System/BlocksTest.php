@@ -1,5 +1,4 @@
 <?php
-
 namespace Yormy\TripwireLaravel\Tests\Feature\Management\System;
 
 use Illuminate\Testing\TestResponse;
@@ -40,7 +39,7 @@ class BlocksTest extends TestCase
         $blockedIp = json_decode($response->getContent())->data->blocked_ip;
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);
+        $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp); // @phpstan-ignore-line
     }
 
     /**
@@ -69,7 +68,7 @@ class BlocksTest extends TestCase
         $this->addBlockRecord($data);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertJsonDataArrayHasElement('blocked_ip', $data['blocked_ip']);
+        $response->assertJsonDataArrayHasElement('blocked_ip', $data['blocked_ip']); // @phpstan-ignore-line
     }
 
     /**
@@ -82,7 +81,7 @@ class BlocksTest extends TestCase
         $block = TripwireBlock::factory()->create();
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
-        $response->assertJsonDataItemHasElement('xid', $block->xid);
+        $response->assertJsonDataItemHasElement('xid', $block->xid);  // @phpstan-ignore-line
     }
 
     /**
@@ -97,7 +96,7 @@ class BlocksTest extends TestCase
 
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK_LOGS, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
-        $response->assertJsonDataArrayHasElement('xid', $log->xid);
+        $response->assertJsonDataArrayHasElement('xid', $log->xid);  // @phpstan-ignore-line
     }
 
     /**
@@ -113,12 +112,12 @@ class BlocksTest extends TestCase
         $blockedXid = json_decode($response->getContent())->data->xid;
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);
+        $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);  // @phpstan-ignore-line
 
         $this->json('DELETE', route(static::ROUTE_SHOW_BLOCK_DELETE, ['block_xid' => $blockedXid]));
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertJsonDataArrayNotHasElement('blocked_ip', $blockedIp);
+        $response->assertJsonDataArrayNotHasElement('blocked_ip', $blockedIp);  // @phpstan-ignore-line
 
     }
 
@@ -152,7 +151,7 @@ class BlocksTest extends TestCase
         $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_PERSIST, ['block_xid' => $xid]));
 
         $response->assertSuccessful();
-        $response->assertJsonDataItemHasElement('persistent_block', true);
+        $response->assertJsonDataItemHasElement('persistent_block', true);  // @phpstan-ignore-line
     }
 
     /**
@@ -169,7 +168,7 @@ class BlocksTest extends TestCase
         $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNPERSIST, ['block_xid' => $xid]));
 
         $response->assertSuccessful();
-        $response->assertJsonDataItemHasElement('persistent_block', false);
+        $response->assertJsonDataItemHasElement('persistent_block', false);  // @phpstan-ignore-line
     }
 
     // --------- HELPERS ---------

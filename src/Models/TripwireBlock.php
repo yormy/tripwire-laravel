@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -21,9 +22,9 @@ use Yormy\TripwireLaravel\Models\Traits\BlockScope;
  * @property int $blocked_repeater
  * @property string $internal_comments
  * @property bool $manually_blocked
- * @property string $created_at
- * @property string $deleted_at
- * @property string $blocked_until
+ * @property CarbonImmutable $created_at
+ * @property CarbonImmutable $deleted_at
+ * @property CarbonImmutable $blocked_until
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Yormy\TripwireLaravel\Models\TripwireLog> $logs
  * @property-read int|null $logs_count

@@ -6,5 +6,9 @@ parameters:
     paths:
         - src/
 
+    excludePaths:
+        analyse:
+            - src/zz
+
     # Level 9 is the strictest
     level: 2

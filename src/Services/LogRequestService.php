@@ -28,7 +28,7 @@ class LogRequestService
      *
      * @return array<string>
      */
-    private static function addRequest(Request $request, array $data): array
+    protected static function addRequest(Request $request, array $data): array
     {
         $data['url'] = self::truncateValue($request->fullUrl());
         $data['method'] = $request->method();
@@ -61,7 +61,7 @@ class LogRequestService
      *
      * @return array<string>
      */
-    private static function addUser(Request $request, array $data): array
+    protected static function addUser(Request $request, array $data): array
     {
         $userClass = config('tripwire.services.user');
         $userId = $userClass::getId($request);
@@ -78,7 +78,7 @@ class LogRequestService
      *
      * @return array<string>
      */
-    private static function addUserAgent(array $data): array
+    protected static function addUserAgent(array $data): array
     {
         $requestSourceClass = config('tripwire.services.request_source');
 
