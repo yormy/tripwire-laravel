@@ -70,7 +70,7 @@ class RequestSizeTest extends TestCase
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
-     * @var array<string> $data
+     * @param array<string> $data
      */
     private function setDefaultConfig(array $data = []): void
     {

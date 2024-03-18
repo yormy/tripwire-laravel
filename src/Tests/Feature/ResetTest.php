@@ -109,7 +109,7 @@ class ResetTest extends TestCase
         $this->assertEquals('next', $result);
     }
 
-    private function triggerTripwire()
+    private function triggerTripwire(): mixed
     {
         $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);
@@ -117,6 +117,10 @@ class ResetTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     * @param array<string> $data
+     */
     private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);

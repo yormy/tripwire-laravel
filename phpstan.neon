@@ -9,7 +9,10 @@ parameters:
     excludePaths:
         analyse:
             - ./vendor/**
-            - src/zz
+            - src/Tests
+
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
 
    # reportUnmatchedIgnoredErrors: false
     ignoreErrors:

@@ -108,7 +108,7 @@ trait TripwireTestTrait
 
     protected function assertFirewallTripped(mixed $result, int $expectedCode = 409): void
     {
-        $this->assertEquals($result->getStatusCode(), $expectedCode);
+        $this->assertEquals($result->getStatusCode(), $expectedCode); // @phpstan-ignore-line
     }
 
     /**

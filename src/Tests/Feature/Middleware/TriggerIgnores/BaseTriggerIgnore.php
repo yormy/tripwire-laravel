@@ -17,7 +17,7 @@ class BaseTriggerIgnore extends TestCase
 
     const TRIPWIRE_TRIGGER = 'HTML-RESPONSE-TEST';
 
-    protected function triggerTripwire()
+    protected function triggerTripwire(): mixed
     {
         $request = request(); // default is as HTML
         $request->query->set('foo', self::TRIPWIRE_TRIGGER);

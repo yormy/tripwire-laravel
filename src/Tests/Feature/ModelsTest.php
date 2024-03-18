@@ -82,6 +82,10 @@ class ModelsTest extends TestCase
         }
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     * @param array<string> $data
+     */
     private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
