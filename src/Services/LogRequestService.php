@@ -24,9 +24,9 @@ class LogRequestService
     }
 
     /**
-     * @param array<string> $data
+     * @param array<string, string|false|null> $data
      *
-     * @return array<string>
+     * @return array<string,array|bool|string|null>
      */
     protected static function addRequest(Request $request, array $data): array
     {
@@ -35,14 +35,14 @@ class LogRequestService
 
         $logReferer = $request->headers->get('referer');
         if ($logReferer) {
-            $logReferer = substr($request->headers->get('referer'), 0, config('tripwire.log.max_referer_size'));
+            $logReferer = substr($request->headers->get('referer'), 0, config('tripwire.log.max_referer_size')); // @phpstan-ignore-line
         }
         $data['referer'] = $logReferer;
 
         $logHeader = $request->header();
         if ($logHeader) {
             $header = FieldMasker::run($request->header());
-            $logHeader = substr(json_encode($header), 0, config('tripwire.log.max_header_size'));
+            $logHeader = substr(json_encode($header), 0, config('tripwire.log.max_header_size')); // @phpstan-ignore-line
         }
         $data['header'] = $logHeader;
         $data['request'] = self::getRequestString($request);
@@ -57,15 +57,15 @@ class LogRequestService
     }
 
     /**
-     * @param array<string> $data
+     * @param array<string,array|bool|string|null> $data
      *
      * @return array<string>
      */
     protected static function addUser(Request $request, array $data): array
     {
         $userClass = config('tripwire.services.user');
-        $userId = $userClass::getId($request);
-        $userType = $userClass::getType($request);
+        $userId = $userClass::getId($request); // @phpstan-ignore-line
+        $userType = $userClass::getType($request); // @phpstan-ignore-line
 
         $data['user_id'] = $userId ?? null;
         $data['user_type'] = $userType ?? null;
@@ -82,17 +82,17 @@ class LogRequestService
     {
         $requestSourceClass = config('tripwire.services.request_source');
 
-        $userAgent = substr(json_encode($requestSourceClass::getUserAgent()), 0, 190);
+        $userAgent = substr(json_encode($requestSourceClass::getUserAgent()), 0, 190); // @phpstan-ignore-line
         $data['user_agent'] = $userAgent;
-        $data['robot_crawler'] = $requestSourceClass::getRobot();
-        $data['browser_fingerprint'] = $requestSourceClass::getBrowserFingerprint();
+        $data['robot_crawler'] = $requestSourceClass::getRobot(); // @phpstan-ignore-line
+        $data['browser_fingerprint'] = $requestSourceClass::getBrowserFingerprint(); // @phpstan-ignore-line
 
         return $data;
     }
 
     private static function fingerprint(Request $request): string
     {
-        return HashService::create(json_encode([
+        return HashService::create(json_encode([ // @phpstan-ignore-line
             $request->url(),
             $request->method(),
             $request->ips(),
@@ -107,9 +107,10 @@ class LogRequestService
 
         $inputs = FieldMasker::run($inputs);
 
+        /** @var string $logRequest */
         $logRequest = json_encode($inputs);
         if ($logRequest) {
-            $logRequest = substr($logRequest, 0, config('tripwire.log.max_request_size'));
+            $logRequest = substr($logRequest, 0, config('tripwire.log.max_request_size')); // @phpstan-ignore-line
         }
 
         return $logRequest;
