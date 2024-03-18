@@ -26,7 +26,7 @@ abstract class WireBaseListener
 
     public function handle(Failed | LoggableEvent $event): void
     {
-        $this->request = $event->request;
+        $this->request = $event->getRequest();
         if ($this->skip($this->request)) {
             return;
         }

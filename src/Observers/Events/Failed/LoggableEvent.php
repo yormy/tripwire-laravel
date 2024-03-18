@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\Observers\Events\Failed;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
@@ -75,5 +76,10 @@ abstract class LoggableEvent implements LoggableEventInterface
     public function getDebugMode(): bool
     {
         return $this->triggerEventData->debugMode ?? false;
+    }
+
+    public function getRequest(): ?Request
+    {
+        return $this->triggerEventData?->request;
     }
 }

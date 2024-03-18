@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Yormy\TripwireLaravel\DataObjects;
 
+use Illuminate\Http\Request;
+
 class TriggerEventData
 {
     /**
@@ -18,6 +20,7 @@ class TriggerEventData
         public bool $trainingMode,
         public bool $debugMode,
         public string $comments,
+        public ?Request $request = null,
     ) {
     }
 }

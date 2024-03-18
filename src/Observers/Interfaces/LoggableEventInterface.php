@@ -6,6 +6,8 @@ namespace Yormy\TripwireLaravel\Observers\Interfaces;
 
 interface LoggableEventInterface
 {
+    public const CODE = '';
+
     public function getScore(?int $score = null): int;
 
     public function getTriggerData(): ?string;

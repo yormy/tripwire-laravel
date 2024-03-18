@@ -93,6 +93,7 @@ abstract class BaseWire
                 trainingMode: $this->config->trainingMode(),
                 debugMode: $this->config->debugMode(),
                 comments: '',
+                request: $this->request,
             );
 
             $this->attackFound($triggerEventData);

@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Failed;
 use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Model404FailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Tripwires\RouteModelBindingFailedEvent;
 
 class RouteModelBindingWireListener extends WireBaseListener
 {
@@ -21,6 +22,8 @@ class RouteModelBindingWireListener extends WireBaseListener
     public function isAttack(Event | Failed $event): bool
     {
         $violations = [];
+
+        /** @var RouteModelBindingFailedEvent $event */
         if (in_array($event->class, $this->config->tripwires())) {
             $violations[] = $event->value;
         }

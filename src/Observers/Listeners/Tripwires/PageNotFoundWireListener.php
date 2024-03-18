@@ -8,6 +8,8 @@ use Illuminate\Auth\Events\Failed;
 use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\Page404FailedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Tripwires\PageNotFoundEvent;
+use Yormy\TripwireLaravel\Observers\Events\Tripwires\RouteModelBindingFailedEvent;
 
 class PageNotFoundWireListener extends WireBaseListener
 {
@@ -21,6 +23,8 @@ class PageNotFoundWireListener extends WireBaseListener
     public function isAttack(Event | Failed $event): bool
     {
         $violations = [];
+
+        /** @var PageNotFoundEvent $event */
         $url = $event->request->fullUrl();
 
         $violations[] = $url;
@@ -34,6 +38,7 @@ class PageNotFoundWireListener extends WireBaseListener
                 trainingMode: $this->config->trainingMode(),
                 debugMode: $this->config->debugMode(),
                 comments: '',
+                request: $this->request,
             );
 
             $this->attackFound($triggerEventData);

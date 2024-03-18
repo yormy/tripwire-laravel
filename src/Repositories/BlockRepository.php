@@ -33,8 +33,10 @@ class BlockRepository
 
     public function getAllForUser(Authenticatable $user): Collection
     {
+        $foreignUserId = config('tripwire.user_fields.foreign_key');
+
         return $this->model::latest()
-            ->byUserId($user->id)
+            ->byUserId($user->$foreignUserId)
             ->byUserType($user::class)
             ->withTrashed()
             ->get();

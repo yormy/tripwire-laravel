@@ -277,6 +277,7 @@ $res = ConfigBuilder::make()
 
 $res['user_fields'] = [
     'id' => 'xid',
+    'foreign_key' => 'id',
     'firstname' => 'firstname',
     'lastname' => 'lastname',
     'email' => 'email',
