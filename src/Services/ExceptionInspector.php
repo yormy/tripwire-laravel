@@ -67,8 +67,11 @@ class ExceptionInspector
                 return;
             }
 
-            $value = $request->url();
+            $value = $request?->url();
+
+            /** @var array<string> $violations */
             $violations = [$value];
+
             $triggerEventData = new TriggerEventData(
                 attackScore: $this->config->attackScore(),
                 violations: $violations,

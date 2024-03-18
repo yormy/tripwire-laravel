@@ -17,6 +17,7 @@ class BaseLookup
             $content = curl_exec($ch);
             curl_close($ch);
 
+            /** @var string $content */
             $response = json_decode($content);
         } catch (\ErrorException $e) {
             throw new $e();

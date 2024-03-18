@@ -15,6 +15,7 @@ class HoneypotService
     {
         $violations = [];
         foreach ($honeypots as $honeypotName) {
+            /** @var string $honeypotContent */
             $honeypotContent = $request->get($honeypotName);
             if ($honeypotContent) {
                 $violations[] = "{$honeypotName}={$honeypotContent}";

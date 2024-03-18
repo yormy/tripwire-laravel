@@ -14,7 +14,7 @@ class ThrottleHitEvent
     use SerializesModels;
 
     public function __construct(
-        public Request $request,
+        public ?Request $request = null,
     ) {
     }
 }
