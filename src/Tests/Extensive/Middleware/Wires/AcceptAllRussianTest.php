@@ -13,7 +13,7 @@ class AcceptAllRussianTest extends BaseAcceptAll
      *
      * @dataProvider accepts
      */
-    public function should_accept($accept): void
+    public function should_accept(string $accept): void
     {
         $this->setConfig();
         $this->triggerTripwire($accept);

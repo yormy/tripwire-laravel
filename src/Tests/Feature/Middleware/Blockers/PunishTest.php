@@ -63,12 +63,12 @@ class PunishTest extends TestCase
     }
 
     // ---------- HELPERS ---------
-    private function assertContinue($result): void
+    private function assertContinue(mixed $result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    private function assertBlocked($result): void
+    private function assertBlocked(mixed $result): void
     {
         $this->assertNotEquals('next', $result);
     }

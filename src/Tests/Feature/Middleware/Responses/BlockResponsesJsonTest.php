@@ -39,8 +39,6 @@ class BlockResponsesJsonTest extends TestCase
 
         $this->expectException(TripwireFailedException::class);
         $result = $this->doJsonRequest();
-
-        dd($result);
     }
 
     /**

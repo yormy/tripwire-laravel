@@ -39,7 +39,7 @@ class BlocksTest extends TestCase
 
         /** @var string $content */
         $content = $response->getContent();
-        $blockedIp = json_decode($content)->data->blocked_ip;
+        $blockedIp = json_decode($content)->data->blocked_ip; // @phpstan-ignore-line
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp); // @phpstan-ignore-line
@@ -114,8 +114,8 @@ class BlocksTest extends TestCase
 
         /** @var string $content */
         $content = $response->getContent();
-        $blockedIp = json_decode($content)->data->blocked_ip;
-        $blockedXid = json_decode($content)->data->xid;
+        $blockedIp = json_decode($content)->data->blocked_ip; // @phpstan-ignore-line
+        $blockedXid = json_decode($content)->data->xid; // @phpstan-ignore-line
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);  // @phpstan-ignore-line

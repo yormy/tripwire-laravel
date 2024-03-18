@@ -48,18 +48,18 @@ class RequestSizeTest extends TestCase
     }
 
     // -------- HELPERS --------
-    public function assertBlock($result): void
+    public function assertBlock(mixed $result): void
     {
         $this->assertNotEquals('next', $result);
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
-    public function assertOke($result): void
+    public function assertOke(mixed $result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    private function testRequest()
+    private function testRequest(): mixed
     {
         $request = request();
         $request->query->set('foo', 'non blocked test');
@@ -67,6 +67,11 @@ class RequestSizeTest extends TestCase
         return (new RequestSize($request))->handle($request, $this->getNextClosure());
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
+     * @var array<string> $data
+     */
     private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);

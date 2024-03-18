@@ -37,12 +37,12 @@ trait BlockTestTrait
         return TripwireBlock::count();
     }
 
-    protected function assertBlockAddedToDatabase($startCount): void
+    protected function assertBlockAddedToDatabase(int $startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireBlock::count());
     }
 
-    protected function assertNotBlocked($startCount): void
+    protected function assertNotBlocked(int $startCount): void
     {
         $this->assertEquals($startCount, TripwireBlock::count());
     }

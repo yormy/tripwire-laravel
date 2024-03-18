@@ -76,7 +76,7 @@ class HoneypotTest extends TestCase
         $this->assertOke($result);
     }
 
-    private function assertOke($result): void
+    private function assertOke(mixed $result): void
     {
         $this->assertEquals($result, 'next');
     }

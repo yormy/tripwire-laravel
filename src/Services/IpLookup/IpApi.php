@@ -10,7 +10,7 @@ use Yormy\TripwireLaravel\Services\Interfaces\IpLookupInterface;
 class IpApi extends BaseLookup implements IpLookupInterface
 {
     public function __construct(
-        private readonly string $apiKey
+        // private readonly string $apiKey // todo
     ) {
         // ...
     }

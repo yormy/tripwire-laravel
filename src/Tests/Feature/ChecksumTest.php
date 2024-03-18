@@ -67,12 +67,12 @@ class ChecksumTest extends TestCase
 
     // ---------- HELPERS ---------
 
-    public function assertOke($result): void
+    public function assertOke(mixed $result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    public function assertBlocked($result): void
+    public function assertBlocked(mixed $result): void
     {
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
