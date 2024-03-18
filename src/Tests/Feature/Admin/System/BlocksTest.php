@@ -36,7 +36,10 @@ class BlocksTest extends TestCase
     {
         $data = $this->getBlockAddData();
         $response = $this->addBlockRecord($data);
-        $blockedIp = json_decode($response->getContent())->data->blocked_ip;
+
+        /** @var string $content */
+        $content = $response->getContent();
+        $blockedIp = json_decode($content)->data->blocked_ip;
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp); // @phpstan-ignore-line
@@ -108,8 +111,11 @@ class BlocksTest extends TestCase
     {
         $data = $this->getBlockAddData();
         $response = $this->addBlockRecord($data);
-        $blockedIp = json_decode($response->getContent())->data->blocked_ip;
-        $blockedXid = json_decode($response->getContent())->data->xid;
+
+        /** @var string $content */
+        $content = $response->getContent();
+        $blockedIp = json_decode($content)->data->blocked_ip;
+        $blockedXid = json_decode($content)->data->xid;
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertJsonDataArrayHasElement('blocked_ip', $blockedIp);  // @phpstan-ignore-line
@@ -133,7 +139,9 @@ class BlocksTest extends TestCase
         $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNBLOCK, ['block_xid' => $block->xid]));
 
         $response->assertSuccessful();
-        $content = json_decode($response->getContent());
+        /** @var string $content */
+        $content = $response->getContent();
+        $content = json_decode($content);
         $this->assertEquals($content?->data?->blocked_until, '');
     }
 

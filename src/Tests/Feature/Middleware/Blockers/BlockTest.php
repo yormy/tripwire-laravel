@@ -104,17 +104,17 @@ class BlockTest extends TestCase
         $this->assertBlocked($result);
     }
 
-    private function assertContinue($result): void
+    private function assertContinue(mixed $result): void
     {
         $this->assertEquals('next', $result);
     }
 
-    private function assertBlocked($result): void
+    private function assertBlocked(mixed $result): void
     {
         $this->assertNotEquals('next', $result);
     }
 
-    protected function testBlockHandlerAll()
+    protected function testBlockHandlerAll(): mixed
     {
         $request = request();
         $request->query->set('foo', 'normal input');

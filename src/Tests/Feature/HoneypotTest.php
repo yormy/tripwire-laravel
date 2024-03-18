@@ -76,18 +76,18 @@ class HoneypotTest extends TestCase
         $this->assertOke($result);
     }
 
-    private function assertOke($result)
+    private function assertOke($result): void
     {
         $this->assertEquals($result, 'next');
     }
 
-    private function assertNotLogged(int $startCount)
+    private function assertNotLogged(int $startCount): void
     {
         $endCount = Tripwirelog::count();
         $this->assertEquals($startCount, $endCount);
     }
 
-    private function assertLog(int $startCount)
+    private function assertLog(int $startCount): void
     {
         $endCount = Tripwirelog::count();
         $this->assertGreaterThan($startCount, $endCount);
@@ -130,7 +130,7 @@ class HoneypotTest extends TestCase
         $this->assertEquals('next', $result);
     }
 
-    private function triggerTripwire()
+    private function triggerTripwire(): mixed
     {
         $request = request(); // default is as HTML
         $request->query->set('foo', 'non blocked test');
@@ -138,7 +138,7 @@ class HoneypotTest extends TestCase
         return (new Text($request))->handle($request, $this->getNextClosure());
     }
 
-    private function triggerHoneypot()
+    private function triggerHoneypot(): mixed
     {
         $request = request(); // default is as HTML
         $request->query->set('foo', 'non blocked test');
@@ -146,7 +146,7 @@ class HoneypotTest extends TestCase
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
     }
 
-    private function triggerHoneypotEmpty()
+    private function triggerHoneypotEmpty(): mixed
     {
         $request = request();
         $request->query->set('foo', '');
@@ -154,7 +154,7 @@ class HoneypotTest extends TestCase
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
     }
 
-    private function triggerHoneypotZero()
+    private function triggerHoneypotZero(): mixed
     {
         $request = request();
         $request->query->set('foo', 0);
@@ -162,7 +162,7 @@ class HoneypotTest extends TestCase
         return (new Honeypot($request))->handle($request, $this->getNextClosure());
     }
 
-    private function triggerHoneypotFalse()
+    private function triggerHoneypotFalse(): mixed
     {
         $request = request();
         $request->query->set('foo', false);
@@ -177,7 +177,7 @@ class HoneypotTest extends TestCase
         config(['tripwire.punish.score' => 21]);
     }
 
-    private function setTrippableConfig()
+    private function setTrippableConfig(): void
     {
         config([
             'tripwire_wires.honeypot.attack_score' => 10,

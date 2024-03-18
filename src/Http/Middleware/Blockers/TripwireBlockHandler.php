@@ -36,5 +36,6 @@ abstract class TripwireBlockHandler
 
         return $respond->respondWithHtml(['blocked_until' => $blockedUntil]);
     }
+
     abstract protected function isBlockedUntil(Request $request): ?Carbon;
 }

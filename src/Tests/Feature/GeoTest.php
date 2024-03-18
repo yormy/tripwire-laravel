@@ -110,13 +110,13 @@ class GeoTest extends TestCase
     }
 
     // -------- HELPERS --------
-    public function assertBlock($result): void
+    public function assertBlock(mixed $result): void
     {
         $this->assertNotEquals('next', $result);
         $this->assertEquals($result->getStatusCode(), self::HTTP_TRIPWIRE_CODE);
     }
 
-    public function assertOke($result): void
+    public function assertOke(mixed $result): void
     {
         $this->assertEquals('next', $result);
     }

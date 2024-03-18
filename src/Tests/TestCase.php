@@ -28,7 +28,10 @@ abstract class TestCase extends BaseTestCase
         AssertJsonMacros::register();
     }
 
-    protected function getPackageProviders($app)
+    /**
+     * @return string[]
+     */
+    protected function getPackageProviders($app): array
     {
         return [
             TripwireServiceProvider::class,
@@ -47,7 +50,7 @@ abstract class TestCase extends BaseTestCase
         };
     }
 
-    protected function refreshTestDatabase()
+    protected function refreshTestDatabase(): void
     {
         if (! RefreshDatabaseState::$migrated) {
 

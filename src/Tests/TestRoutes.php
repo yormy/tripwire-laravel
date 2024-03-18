@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 class TestRoutes
 {
-    public static function setup()
+    public static function setup(): void
     {
         Route::prefix('admin2/')
             ->name('api.v1.admin.')
