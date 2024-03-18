@@ -21,7 +21,7 @@ trait TripwireTestTrait
 
     /**
      * @return array[]
-     * @return array<string>
+     * @return array<int|string, array<int,mixed>>
      */
     public static function accepts(): array
     {
@@ -39,7 +39,7 @@ trait TripwireTestTrait
 
     /**
      * @return array[]
-     * @return array<string>
+     * @return array<int|string, array<int,mixed>>
      */
     public static function violations(): array
     {

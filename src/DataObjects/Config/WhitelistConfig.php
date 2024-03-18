@@ -42,7 +42,7 @@ class WhitelistConfig
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<string>>
      */
     public function toArray(): array
     {

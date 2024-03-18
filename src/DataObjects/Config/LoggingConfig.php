@@ -89,7 +89,7 @@ class LoggingConfig
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<string>|int>
      */
     public function toArray(): array
     {

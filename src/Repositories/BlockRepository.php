@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yormy\TripwireLaravel\Repositories;
 
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -14,7 +15,7 @@ use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
 {
-    private Model $model;
+    private TripwireBlock $model;
 
     private int $repeatOffenderTimeframeDays;
 

@@ -61,7 +61,7 @@ class ResetConfig
     }
 
     /**
-     * @return array<string>
+     * @return array<string, bool|int>
      */
     public function toArray(): array
     {

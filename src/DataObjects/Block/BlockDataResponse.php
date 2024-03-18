@@ -93,7 +93,7 @@ final class BlockDataResponse extends BlockData
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<string, (array|string)>>
      */
     private static function decorateWithStatus(TripwireBlock $model): array
     {

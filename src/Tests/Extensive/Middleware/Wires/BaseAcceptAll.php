@@ -85,7 +85,7 @@ class BaseAcceptAll extends TestCase
     }
 
     /**
-     * @return array<string>
+     * @return array<int|string, array<int, mixed>>
      */
     public static function accepts(): array
     {
