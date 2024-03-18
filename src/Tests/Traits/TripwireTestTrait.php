@@ -82,7 +82,7 @@ trait TripwireTestTrait
 
         $wire = new $this->tripwireClass($request);
 
-        return $wire->handle($request, $this->getNextClosure());
+        return $wire->handle($request, $this->getNextClosure()); // @phpstan-ignore-line
     }
 
     protected function triggerJsonTripwire(string $input): mixed
@@ -93,7 +93,7 @@ trait TripwireTestTrait
 
         $wire = new $this->tripwireClass($request);
 
-        return $wire->handle($request, $this->getNextClosure());
+        return $wire->handle($request, $this->getNextClosure()); // @phpstan-ignore-line
     }
 
     protected function assertLogAddedToDatabase(int $startCount): void
@@ -111,6 +111,9 @@ trait TripwireTestTrait
         $this->assertEquals($result->getStatusCode(), $expectedCode);
     }
 
+    /**
+     * @return array<string>
+     */
     protected static function loadFile(string $filename): array
     {
         return [];
