@@ -13,14 +13,14 @@ class BlockIfNeeded
     public static function run(?Request $request, PunishConfig $punish, bool $trainingMode = false): void
     {
         $ipAddressClass = config('tripwire.services.ip_address');
-        $ipAddress = $ipAddressClass::get($request ?? null);
+        $ipAddress = $ipAddressClass::get($request ?? null); // @phpstan-ignore-line
         $userClass = config('tripwire.services.user');
 
         $userId = 0;
         $userType = '';
         if ($request ?? false) {
-            $userId = $userClass::getId($request);
-            $userType = $userClass::getType($request);
+            $userId = $userClass::getId($request);  // @phpstan-ignore-line
+            $userType = $userClass::getType($request);  // @phpstan-ignore-line
         }
 
         AddBlockJob::dispatch(

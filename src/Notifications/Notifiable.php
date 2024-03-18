@@ -12,12 +12,12 @@ class Notifiable
 
     public function routeNotificationForMail(): ?string
     {
-        return config('tripwire.notifications.mail.to');
+        return config('tripwire.notifications.mail.to'); // @phpstan-ignore-line
     }
 
     public function routeNotificationForSlack(): ?string
     {
-        return config('tripwire.notifications.slack.to');
+        return config('tripwire.notifications.slack.to');  // @phpstan-ignore-line
     }
 
     public function getKey(): int

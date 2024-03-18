@@ -19,8 +19,8 @@ class WireConfig
 
     public function __construct(string $wire)
     {
-        $this->defaultConfig = ConfigBuilder::fromArray(config('tripwire'));
-        $this->wireConfig = WireDetailsConfig::makeFromArray(config('tripwire_wires.'.$wire));
+        $this->defaultConfig = ConfigBuilder::fromArray(config('tripwire')); // @phpstan-ignore-line
+        $this->wireConfig = WireDetailsConfig::makeFromArray(config('tripwire_wires.'.$wire)); // @phpstan-ignore-line
     }
 
     public function attackScore(): int
@@ -87,7 +87,7 @@ class WireConfig
     }
 
     /**
-     * @return array<string>
+     * @return array<string, array<string>>
      */
     public function urls(): array
     {

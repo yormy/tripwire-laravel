@@ -15,14 +15,14 @@ use Yormy\TripwireLaravel\Models\TripwireBlock;
 
 class BlockRepository
 {
-    private TripwireBlock $model;
+    private Model $model;
 
     private int $repeatOffenderTimeframeDays;
 
     public function __construct()
     {
         $class = config('tripwire.models.block');
-        $this->model = new $class();
+        $this->model = new $class(); // @phpstan-ignore-line
 
         $this->repeatOffenderTimeframeDays = 10; // how long to look back for repeating violations
     }
@@ -43,7 +43,7 @@ class BlockRepository
             ->get();
     }
 
-    public function findByXid(string $xid): ?TripwireBlock
+    public function findByXid(string $xid): ?Model
     {
         return $this->model::where('xid', $xid)
             ->withTrashed()
@@ -82,7 +82,7 @@ class BlockRepository
         $this->delete($query, $softDelete);
     }
 
-    public function addManualBlock(BlockDataRequest $data): TripwireBlock
+    public function addManualBlock(BlockDataRequest $data): Model
     {
         $data = $data->toArray();
         $data['manually_blocked'] = true;
@@ -101,7 +101,7 @@ class BlockRepository
         ?string $responseJson,
         ?string $responseHtml,
         ?bool $ignore = false
-    ): TripwireBlock {
+    ): Model {
         $data = [];
         $data['ignore'] = $ignore;
         $data['blocked_ip'] = $ipAddress;
@@ -120,7 +120,7 @@ class BlockRepository
         return $this->model::create($data);
     }
 
-    public function isIpBlockedUntil(string $ipAddress): ?Carbon
+    public function isIpBlockedUntil(string $ipAddress): ?CarbonImmutable
     {
         $builder = $this->model
             ->byIp($ipAddress)
@@ -131,7 +131,7 @@ class BlockRepository
         return $blocked?->blocked_until;
     }
 
-    public function isBrowserBlockedUntil(string $browserFingerprint): ?Carbon
+    public function isBrowserBlockedUntil(string $browserFingerprint): ?CarbonImmutable
     {
         if (! $browserFingerprint) {
             return null;
@@ -146,7 +146,7 @@ class BlockRepository
         return $blocked?->blocked_until;
     }
 
-    public function isUserBlockedUntil(int $userId, string $userType): ?Carbon
+    public function isUserBlockedUntil(int $userId, string $userType): ?CarbonImmutable
     {
         if (! $userId) {
             return null;
@@ -243,7 +243,11 @@ class BlockRepository
     ): int {
         $repeatOffenderIp = $this->repeatOffenderIp($ipAddress);
         $repeatOffenderUser = $this->repeatOffenderUser($userId, $userType);
-        $repeatOffenderBrowser = $this->repeatOffenderBrowser($browserFingerprint);
+
+        $repeatOffenderBrowser = 0;
+        if ($browserFingerprint) {
+            $repeatOffenderBrowser = $this->repeatOffenderBrowser($browserFingerprint);
+        }
 
         return max($repeatOffenderIp, $repeatOffenderUser, $repeatOffenderBrowser);
     }

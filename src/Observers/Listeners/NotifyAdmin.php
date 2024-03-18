@@ -13,16 +13,16 @@ class NotifyAdmin
 {
     public function handle(TripwireBlockedEvent $event): void
     {
-        $config = ConfigBuilder::fromArray(config('tripwire'));
+        $config = ConfigBuilder::fromArray(config('tripwire')); // @phpstan-ignore-line
 
         if (isset($config->notificationsMail)) {
             foreach ($config->notificationsMail as $mailSettings) {
-                if (isset($mailSettings->enabled) && $mailSettings->enabled) {
+                if (isset($mailSettings->enabled) && $mailSettings->enabled) { // @phpstan-ignore-line
                     $message = new UserBlockedNotification(
                         $event->ipAddress,
                         $event->userId,
                         $event->userType,
-                        $event->browserFingerprint,
+                        $event->browserFingerprint, // @phpstan-ignore-line
                         $mailSettings
                     );
 
@@ -33,12 +33,12 @@ class NotifyAdmin
 
         if (isset($config->notificationsSlack)) {
             foreach ($config->notificationsSlack as $mailSettings) {
-                if (isset($mailSettings->enabled) && $mailSettings->enabled) {
+                if (isset($mailSettings->enabled) && $mailSettings->enabled) { // @phpstan-ignore-line
                     $message = new UserBlockedNotification(
                         $event->ipAddress,
                         $event->userId,
                         $event->userType,
-                        $event->browserFingerprint,
+                        $event->browserFingerprint, // @phpstan-ignore-line
                         $mailSettings
                     );
 

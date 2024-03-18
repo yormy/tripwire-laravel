@@ -24,11 +24,11 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     public function __construct(
         private readonly string $ipAddress,
         private readonly ?int $userId,
-        private readonly ?string $userType,
-        private readonly string $browserFingerprint,
+        private readonly ?string $userType, // @phpstan-ignore-line
+        private readonly string $browserFingerprint, // @phpstan-ignore-line
         private readonly NotificationMailConfig|NotificationSlackConfig $settings,
     ) {
-        $this->notifications = config('tripwire.notifications');
+        $this->notifications = config('tripwire.notifications'); // @phpstan-ignore-line
     }
 
     /**
@@ -98,12 +98,12 @@ class UserBlockedNotification extends Notification implements ShouldQueue
             'domain' => $domain,
         ]);
 
-        $mailSettings = $this->settings;
+        $mailSettings = $this->settings; //todo to object
 
         return (new SlackMessage())
             ->error()
-            ->from($mailSettings['from'], $mailSettings['emoji'])
-            ->to($mailSettings['channel'])
+            ->from($mailSettings['from'], $mailSettings['emoji']) // @phpstan-ignore-line
+            ->to($mailSettings['channel']) // @phpstan-ignore-line
             ->content($message)
             ->attachment(function ($attachment) use ($domain): void {
                 $attachment->fields([

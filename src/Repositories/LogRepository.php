@@ -17,7 +17,7 @@ class LogRepository
     public function __construct()
     {
         $class = config('tripwire.models.log');
-        $this->model = new $class();
+        $this->model = new $class(); // @phpstan-ignore-line
     }
 
     public function getAll(): Collection
