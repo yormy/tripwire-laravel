@@ -94,8 +94,9 @@ class TripwireLogFactory extends Factory
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
         return $this->state(function (array $attributes) use ($user) {
+            $foreignUserId = config('tripwire.user_fields.foreign_key');
             return [
-                'user_id' => $user->id,
+                'user_id' => $user->$foreignUserId,
                 'user_type' => $user::class,
             ];
         });

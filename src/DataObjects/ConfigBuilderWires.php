@@ -11,7 +11,7 @@ use Yormy\TripwireLaravel\DataObjects\Config\WireGroupConfig;
 class ConfigBuilderWires implements Arrayable
 {
     /**
-     * @var array<string> $wires
+     * @var array<string>$wires
      */
     public array $wires;
 

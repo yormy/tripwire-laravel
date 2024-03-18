@@ -24,7 +24,7 @@ class WireDetailsConfig
     /**
      * @var array<string>|null $tripwires
      */
-    public array $tripwires;
+    public ?array $tripwires;
 
     /**
      * @var array<string>|null $filters
