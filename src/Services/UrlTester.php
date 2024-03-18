@@ -39,6 +39,7 @@ class UrlTester
             return true;
         }
 
+        /** @var array<string> $onlyUrls */
         foreach ($onlyUrls as $only) {
             static::checkValid($only);
 
@@ -62,6 +63,7 @@ class UrlTester
             return false;
         }
 
+        /** @var array<string> $exceptUrls */
         foreach ($exceptUrls as $exclude) {
             static::checkValid($exclude);
 

@@ -83,7 +83,7 @@ class ResponseDeterminer
     public function asException(): ?\Exception
     {
         if (isset($this->config->exception)) {
-            throw new $this->config->exception();
+            throw new $this->config->exception(); // @phpstan-ignore-line
         }
 
         return null;
