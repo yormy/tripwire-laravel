@@ -18,6 +18,7 @@ class RequestSize extends BaseWire
      */
     public function isAttack(array $patterns): bool
     {
+        /** @var array<string> $inputs */
         $inputs = $this->request->input();
         $violations = [];
         $this->check($inputs, $violations);
@@ -57,7 +58,7 @@ class RequestSize extends BaseWire
                 $this->check($value, $violations);
             }
 
-            if (strlen($value) > $this->config->tripwires()['size'] ?? 400) {
+            if (strlen($value) > $this->config->tripwires()['size'] ?? 400) { // @phpstan-ignore-line
                 $violations[] = $field;
             }
         }

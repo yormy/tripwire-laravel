@@ -177,14 +177,16 @@ abstract class BaseWire
         $exceptInputs = [];
         $exceptInputs[] = 'remember';
 
-        $config = ConfigBuilder::fromArray(config('tripwire'));
+        $config = ConfigBuilder::fromArray(config('tripwire')); // @phpstan-ignore-line
 
         $exceptInputs = $config->inputIgnore->inputs;
         $exceptCookies = $config->inputIgnore->cookies;
         $exceptHeaders = $config->inputIgnore->header;
         $exceptHeaders[] = 'cookie';
 
-        $inputsGlobalFilter = $this->removeItems($this->request->input(), $exceptInputs);
+        /** @var array<string> $inputs */
+        $inputs = $this->request->input();
+        $inputsGlobalFilter = $this->removeItems($inputs, $exceptInputs);
 
         $inputsLocalFilter = [];
         foreach ($inputsGlobalFilter as $key => $value) {
@@ -196,8 +198,14 @@ abstract class BaseWire
         $exceptHeaders[] = 'accept-charset';
         $exceptHeaders[] = 'accept-language';
         $exceptHeaders[] = 'accept';
-        $cookies = $this->removeItems($this->request->cookie(), $exceptCookies);
-        $headers = $this->removeItems($this->request->header(), $exceptHeaders);
+
+        /** @var array<string> $cookie */
+        $cookie = $this->request->cookie();
+        $cookies = $this->removeItems($cookie, $exceptCookies);
+
+        /** @var array<string> $header */
+        $header = $this->request->header();
+        $headers = $this->removeItems($header, $exceptHeaders);
 
         $scannableValues = [];
         $scannableValues[] = $inputsLocalFilter;

@@ -56,7 +56,6 @@ class ValidateSignature
 
 
         return hash_equals($signature, (string) $request->query('signature', '')) &&
-            // @phpstan-ignore-next-line
             ! ($expires && Carbon::now()->getTimestamp() > $expires);
     }
 }
