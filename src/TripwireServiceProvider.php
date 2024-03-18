@@ -148,11 +148,11 @@ class TripwireServiceProvider extends ServiceProvider
 
     private function morphMaps(): void
     {
-        $logModelpath = config('tripwire.models.log');
+        $logModelpath = strval(config('tripwire.models.log')); //@phpstan-ignore-line
         $sections = explode('\\', $logModelpath);
         $LogModelName = end($sections);
 
-        $blockModelpath = config('tripwire.models.block');
+        $blockModelpath = strval(config('tripwire.models.block')); //@phpstan-ignore-line
         $sections = explode('\\', $blockModelpath);
         $blockModelName = end($sections);
 

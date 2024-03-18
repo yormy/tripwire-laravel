@@ -8,11 +8,13 @@ use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 trait TripwireTestTrait
 {
     /**
-     * @var array $accepts
+     * @var array<string> $accepts
      */
     protected static array $accepts = [];
 
-
+    /**
+     * @var array<string> $violations
+     */
     protected static array $violations = [];
 
     protected static string $acceptsDataFile;
@@ -73,7 +75,7 @@ trait TripwireTestTrait
         config(['tripwire_wires.'.$this->tripwire.'.reject_response.html' => []]);
     }
 
-    protected function triggerTripwire(string $input)
+    protected function triggerTripwire(string $input): mixed
     {
         $request = request();
         $request->query->set('foo', $input);
@@ -83,7 +85,7 @@ trait TripwireTestTrait
         return $wire->handle($request, $this->getNextClosure());
     }
 
-    protected function triggerJsonTripwire(string $input)
+    protected function triggerJsonTripwire(string $input): mixed
     {
         $request = request();
         $request->query->set('foo', $input);
@@ -94,12 +96,12 @@ trait TripwireTestTrait
         return $wire->handle($request, $this->getNextClosure());
     }
 
-    protected function assertLogAddedToDatabase($startCount): void
+    protected function assertLogAddedToDatabase(int $startCount): void
     {
         $this->assertGreaterThan($startCount, TripwireLog::count());
     }
 
-    protected function assertNotLogged($startCount): void
+    protected function assertNotLogged(int $startCount): void
     {
         $this->assertEquals($startCount, TripwireLog::count());
     }

@@ -13,7 +13,7 @@ trait BlockTestTrait
         config(['tripwire.block_response.html' => $settings]);
     }
 
-    protected function doRequest()
+    protected function doRequest(): mixed
     {
         $request = request();
         $blocker = new TripwireBlockHandlerAll();
@@ -21,7 +21,7 @@ trait BlockTestTrait
         return $blocker->handle($request, $this->getNextClosure());
     }
 
-    protected function doJsonRequest()
+    protected function doJsonRequest(): mixed
     {
         $request = request();
         $request->headers->set('Accept', 'application/json');
