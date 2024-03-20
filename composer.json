@@ -31,7 +31,7 @@
         }
     ],
     "require": {
-        "php": "^^8.2",
+        "php": "^8.2",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^9|^10",
         "laravel/slack-notification-channel": "^3.2",
