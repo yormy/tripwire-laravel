@@ -12,3 +12,13 @@ phpunit:
     - composer install
     - composer psalm
     - composer phpcs
+
+analysis:
+  stage: test
+  script:
+    - php ./vendor/bin/phpunit --coverage-text --coverage-cobertura=coverage.cobertura.xml
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.cobertura.xml
