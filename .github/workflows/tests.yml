@@ -16,7 +16,7 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        run: php -v && composer install -n --prefer-dist
 
       - name: Run Unit tests
         run: composer test:unit
