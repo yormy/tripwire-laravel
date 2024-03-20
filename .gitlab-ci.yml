@@ -10,7 +10,6 @@ phpunit:
   script:
     - rm -Rf ./vendor
     - composer install
-    - composer psalm
     - composer phpcs
 
 analysis:
