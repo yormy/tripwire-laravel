@@ -63,6 +63,7 @@
         "insights:fix": "./vendor/bin/testbench insights --fix",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
+        "coverage" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
         "---------- FIXES ---------- ": "",
 
         "cs-fixer" : "phpcbf",
