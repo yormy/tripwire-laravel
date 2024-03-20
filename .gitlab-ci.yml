@@ -9,6 +9,7 @@ phpunit:
   stage: test
   script:
     - rm -Rf ./vendor
+    - php -v
     - composer install
     - composer phpcs
 
