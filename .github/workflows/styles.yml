@@ -40,6 +40,9 @@ jobs:
         with:
           php-version: 8.2
 
+      - name: a
+        run: "php artisan cache:clear && pwd"
+
       - name: stan
         run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
