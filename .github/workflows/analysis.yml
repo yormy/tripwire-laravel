@@ -36,7 +36,7 @@ jobs:
           key: cached-setup
 
       - name: stan
-        run: "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=2G"
+        run: "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G"
 #
 #  insights:
 #    runs-on: ubuntu-latest
