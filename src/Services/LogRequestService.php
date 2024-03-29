@@ -25,6 +25,7 @@ class LogRequestService
 
     /**
      * @param  array<string, string|false|null>  $data
+     *
      * @return array<string,array|bool|string|null>
      */
     protected static function addRequest(Request $request, array $data): array
@@ -52,6 +53,7 @@ class LogRequestService
 
     /**
      * @param  array<string,array|bool|string|null>  $data
+     *
      * @return array<string>
      */
     protected static function addUser(Request $request, array $data): array
@@ -68,6 +70,7 @@ class LogRequestService
 
     /**
      * @param  array<string>  $data
+     *
      * @return array<string>
      */
     protected static function addUserAgent(array $data): array

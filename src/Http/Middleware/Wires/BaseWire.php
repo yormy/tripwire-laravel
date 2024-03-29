@@ -153,6 +153,7 @@ abstract class BaseWire
     /**
      * @param  array<string>  $original
      * @param  array<string>  $toRemove
+     *
      * @return array<string>
      */
     private function removeItems(array $original, array $toRemove): array
