@@ -98,6 +98,7 @@ class BlocksTest extends TestCase
         $block = TripwireBlock::factory()->create();
         $log = TripwireLog::factory()->create(['tripwire_block_id' => $block->id]);
         usleep(100); // need to wait a little, sometime the created record is not yet available
+
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK_LOGS, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
         $response->assertJsonDataArrayHasElement('xid', $log->xid);  // @phpstan-ignore-line
@@ -136,6 +137,7 @@ class BlocksTest extends TestCase
     public function Blocks_Unblock(): void
     {
         $block = TripwireBlock::factory()->create();
+        usleep(100); // need to wait a little, sometime the created record is not yet available
 
         $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNBLOCK, ['block_xid' => $block->xid]));
 

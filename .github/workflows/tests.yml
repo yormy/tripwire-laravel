@@ -33,8 +33,9 @@ jobs:
           configuration: phpunit.xml
           coverage_clover: "./coverage/clover.xml"
 
-      - name: Clover
-        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
+      - name: Check test coverage
+        id: test-coverage
+        uses: johanvanhelden/gha-clover-test-coverage-check@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          clover-file: ./coverage/clover.xml
+          percentage: "70"
+          filename: "./coverage/clover.xml"
