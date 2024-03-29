@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: .
+        working-directory: ../22
     steps:
       - name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3
