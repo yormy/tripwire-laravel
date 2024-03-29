@@ -44,7 +44,7 @@ jobs:
         run: "pwd"
 
       - name: b
-        run: "mkdir vendor/orchestra/testbench-core/laravel/bootstrap/cache && sudo chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache"
+        run: "sudo chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache"
 
 
       - name: stan
