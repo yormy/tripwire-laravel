@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 if (! isset($argv[1])) {
     echo 'You must specify the clover.xml file'.PHP_EOL;
-    exit();
+    exit;
 }
 
 if (! isset($argv[2])) {
     echo 'You must specify a minimal accepted value'.PHP_EOL;
-    exit();
+    exit;
 }
 
 $inputFile = $argv[1];
@@ -32,7 +34,7 @@ foreach ($metrics as $metric) {
     $checkedElements += (int) $metric['coveredelements'];
 }
 
-$coverage = ($checkedElements / $totalElements) * 100;
+$coverage = $checkedElements / $totalElements * 100;
 
 if ($coverage < $percentage) {
     echo "\033[31mCode coverage is ".round($coverage, 2).'%, which is below the accepted '.$percentage."% \033[39m".PHP_EOL;

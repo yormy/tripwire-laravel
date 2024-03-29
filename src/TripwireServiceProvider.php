@@ -37,7 +37,7 @@ class TripwireServiceProvider extends ServiceProvider
 
     public const CONFIG_WIRE_FILE = __DIR__.'/../config/tripwire_wires.php';
 
-    const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
+    public const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
 
     /**
      * @psalm-suppress MissingReturnType
@@ -74,7 +74,6 @@ class TripwireServiceProvider extends ServiceProvider
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(IdeHelperServiceProvider::class);
-
     }
 
     public function registerMiddleware(Router $router): void

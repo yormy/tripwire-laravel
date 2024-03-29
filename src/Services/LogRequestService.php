@@ -25,6 +25,7 @@ class LogRequestService
 
     /**
      * @param  array<string, string|false|null>  $data
+     *
      * @return array<string,array|bool|string|null>
      */
     protected static function addRequest(Request $request, array $data): array
@@ -50,13 +51,9 @@ class LogRequestService
         return $data;
     }
 
-    private static function truncateValue(string $value, int $max = 150): string
-    {
-        return substr($value, 0, $max);
-    }
-
     /**
      * @param  array<string,array|bool|string|null>  $data
+     *
      * @return array<string>
      */
     protected static function addUser(Request $request, array $data): array
@@ -73,6 +70,7 @@ class LogRequestService
 
     /**
      * @param  array<string>  $data
+     *
      * @return array<string>
      */
     protected static function addUserAgent(array $data): array
@@ -85,6 +83,11 @@ class LogRequestService
         $data['browser_fingerprint'] = $requestSourceClass::getBrowserFingerprint(); // @phpstan-ignore-line
 
         return $data;
+    }
+
+    private static function truncateValue(string $value, int $max = 150): string
+    {
+        return substr($value, 0, $max);
     }
 
     private static function fingerprint(Request $request): string
