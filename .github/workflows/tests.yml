@@ -32,3 +32,9 @@ jobs:
           memory_limit: 300M
           configuration: phpunit.xml
           testsuite: unittest
+
+      - name: PHPUnit
+        run: |
+          composer coverage:check
+        env:
+          XDEBUG_MODE: coverage
