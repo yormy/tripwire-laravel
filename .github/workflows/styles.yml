@@ -43,6 +43,11 @@ jobs:
       - name: Prepare cache
         run: "sudo chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache"
 
+      - name: Prepare cache
+        uses: actions/cache@v3
+        with:
+          path: .
+          key: cached-setup
 
 #      - name: stan
 #        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
@@ -51,9 +56,13 @@ jobs:
 #        run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
 
   insights:
-   needs: phpstan
    runs-on: ubuntu-latest
    steps:
+    - name: getcache
+      uses: actions/cache@v3
+      with:
+        path: .
+        key: cached-setup
     - name: insights
       run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
 
