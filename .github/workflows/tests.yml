@@ -28,7 +28,7 @@ jobs:
           version: 9.6
           php_version: 8.2
           php_extensions: "json zip sodium pcntl bcmath"
-          args: "coverage-clover clover.xml"
+          args: "-coverage-clover clover.xml"
           memory_limit: 300M
           configuration: phpunit.xml
 
