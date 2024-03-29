@@ -28,13 +28,9 @@ jobs:
           version: 9.6
           php_version: 8.2
           php_extensions: "json zip sodium pcntl bcmath"
-          args: "-d date.timezone=Asia/Jakarta"
+          args: "coverage-clover clover.xml"
           memory_limit: 300M
           configuration: phpunit.xml
-          testsuite: unittest
 
-      - name: PHPUnit
-        run: |
-          composer coverage:check
-        env:
-          XDEBUG_MODE: coverage
+      - name: Run composer install
+        run: composer coverage:check
