@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v6
       with:
-        command: composer stan
+        command: stan
 
 #  phpinsights:
 #    name: PHP-Insights
