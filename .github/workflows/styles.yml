@@ -48,7 +48,7 @@ jobs:
 #        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
       - name: insights
-        run: "./vendor/bin/testbench insights"
+        run: "sudo ./vendor/bin/testbench insights"
 
 
 #  phpinsights:
