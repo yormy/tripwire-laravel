@@ -1,0 +1,806 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$code of function abort expects Illuminate\\\\Contracts\\\\Support\\\\Responsable\\|int\\|Symfony\\\\Component\\\\HttpFoundation\\\\Response, string given\\.$#"
+			count: 1
+			path: src/Actions/BlockAccountAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$code of function abort expects Illuminate\\\\Contracts\\\\Support\\\\Responsable\\|int\\|Symfony\\\\Component\\\\HttpFoundation\\\\Response, string given\\.$#"
+			count: 1
+			path: src/Actions/BlockIpAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$code of function abort expects Illuminate\\\\Contracts\\\\Support\\\\Responsable\\|int\\|Symfony\\\\Component\\\\HttpFoundation\\\\Response, string given\\.$#"
+			count: 1
+			path: src/Actions/LogoutAction.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockData\\:\\:descriptions\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, string\\>\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Block/BlockData.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockData\\:\\:examples\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, string\\>\\|bool\\|int\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Block/BlockData.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:constructorData\\(\\) should return array\\<string\\> but returns array\\<int\\|string, array\\<array\\|string\\>\\|bool\\|Carbon\\\\CarbonImmutable\\|int\\|string\\|null\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Block/BlockDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:getUserField\\(\\) should return string\\|null but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/Block/BlockDataResponse.php
+
+		-
+			message: "#^Parameter \\#2 \\$field of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:getUserField\\(\\) expects string, mixed given\\.$#"
+			count: 4
+			path: src/DataObjects/Block/BlockDataResponse.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\:\\:\\$except\\.$#"
+			count: 1
+			path: src/DataObjects/Config/AllowBlockFilterConfig.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\:\\:\\$only\\.$#"
+			count: 1
+			path: src/DataObjects/Config/AllowBlockFilterConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\:\\:make\\(\\) should return static\\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\) but returns Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\.$#"
+			count: 1
+			path: src/DataObjects/Config/AllowBlockFilterConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\:\\:makeFromArray\\(\\) should return static\\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\)\\|null but returns Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\.$#"
+			count: 1
+			path: src/DataObjects/Config/AllowBlockFilterConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\AllowBlockFilterConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string\\>\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/AllowBlockFilterConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatetimeConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/DatetimeConfig.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HoneypotsConfig\\:\\:\\$attackScore \\(int\\) does not accept array\\|int\\|string\\.$#"
+			count: 1
+			path: src/DataObjects/Config/HoneypotsConfig.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HoneypotsConfig\\:\\:\\$mustBeMissingOrFalse \\(array\\<string\\>\\) does not accept array\\|int\\|string\\.$#"
+			count: 1
+			path: src/DataObjects/Config/HoneypotsConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, int\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/HtmlResponseConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string\\>\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/InputIgnoreConfig.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\:\\:\\$cookies \\(array\\<string\\>\\) does not accept string\\.$#"
+			count: 1
+			path: src/DataObjects/Config/InputIgnoreConfig.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\:\\:\\$header \\(array\\<string\\>\\) does not accept string\\.$#"
+			count: 1
+			path: src/DataObjects/Config/InputIgnoreConfig.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\:\\:\\$inputs \\(array\\<string\\>\\) does not accept string\\.$#"
+			count: 1
+			path: src/DataObjects/Config/InputIgnoreConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string\\>\\|int\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/JsonResponseConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationMailConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, string\\|true\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/NotificationMailConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationSlackConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, string\\|true\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/NotificationSlackConfig.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$except\\.$#"
+			count: 2
+			path: src/DataObjects/Config/OnlyExceptConfig.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$only\\.$#"
+			count: 2
+			path: src/DataObjects/Config/OnlyExceptConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\OnlyExceptConfig\\:\\:make\\(\\) should return static\\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\OnlyExceptConfig\\) but returns object\\.$#"
+			count: 1
+			path: src/DataObjects/Config/OnlyExceptConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\OnlyExceptConfig\\:\\:makeFromArray\\(\\) should return static\\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\OnlyExceptConfig\\)\\|null but returns object\\.$#"
+			count: 1
+			path: src/DataObjects/Config/OnlyExceptConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireDetailsConfig\\:\\:getArrayErrors\\(\\) should return array\\<string, array\\<string\\>\\|bool\\|int\\|null\\> but returns array\\<int\\<0, max\\>, string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/WireDetailsConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireDetailsConfig\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, array\\<array\\<string\\>\\|int\\|string\\>\\|bool\\|int\\|null\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/WireDetailsConfig.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function implode expects array\\<string\\>, array\\<string, array\\<string\\>\\|bool\\|int\\|null\\> given\\.$#"
+			count: 2
+			path: src/DataObjects/Config/WireDetailsConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\:\\:makeFromArray\\(\\) should return array\\<string\\>\\|null but returns array\\<Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Config/WireGroupConfig.php
+
+		-
+			message: "#^Parameter \\#1 \\$wires of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\:\\:make\\(\\) expects array\\<string\\>, string given\\.$#"
+			count: 1
+			path: src/DataObjects/Config/WireGroupConfig.php
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on string\\.$#"
+			count: 3
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:toArray\\(\\) should return array\\<string\\> but returns array\\<string, array\\|bool\\|int\\>\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$blockCode of method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:blockCode\\(\\) expects int, string given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\BlockResponseConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 2
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\CookiesConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatabaseTablesConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatetimeConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\:\\:makeFromArray\\(\\) expects array\\<string\\>\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\LoggingConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ModelsConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\OnlyExceptConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\PunishConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ResetConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ServicesConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WhitelistConfig\\:\\:makeFromArray\\(\\) expects array\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\:\\:makeFromArray\\(\\) expects array\\<string\\>\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$debugMode of method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:debugMode\\(\\) expects bool, string given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$enabled of method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:enabled\\(\\) expects bool, string given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Parameter \\#1 \\$trainingMode of method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:trainingMode\\(\\) expects bool, string given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$blockResponse \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\BlockResponseConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\BlockResponseConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$cookies \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\CookiesConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\CookiesConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$databaseTables \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatabaseTablesConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatabaseTablesConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$datetime \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatetimeConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\DatetimeConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$inputIgnore \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\InputIgnoreConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$logging \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\LoggingConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\LoggingConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$models \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ModelsConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ModelsConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$notificationsMail \\(array\\<string\\>\\) does not accept array\\<string\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationMailConfig\\|null\\>\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$notificationsSlack \\(array\\<string\\>\\) does not accept array\\<string\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationSlackConfig\\|null\\>\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$punish \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\PunishConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\PunishConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$rejectResponse \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\BlockResponseConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\BlockResponseConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$reset \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ResetConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ResetConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$services \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ServicesConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\ServicesConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$whitelist \\(Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WhitelistConfig\\) does not accept Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WhitelistConfig\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$wireGroups \\(array\\<string\\>\\) does not accept array\\<string\\>\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilder\\:\\:\\$wireGroups \\(array\\<string\\>\\) does not accept array\\<string\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\>\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilder.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilderWires\\:\\:\\$wireGroups\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilderWires.php
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on string\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilderWires.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireGroupConfig\\:\\:makeFromArray\\(\\) expects array\\<string\\>\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilderWires.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\ConfigBuilderWires\\:\\:\\$wires \\(array\\<string\\>\\) does not accept array\\<string\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireDetailsConfig\\>\\.$#"
+			count: 1
+			path: src/DataObjects/ConfigBuilderWires.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogData\\:\\:descriptions\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, string\\>\\|string\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogData.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogData\\:\\:examples\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, string\\>\\|int\\|string\\|false\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogData.php
+
+		-
+			message: "#^Cannot access property \\$xid on Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock\\|null\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:constructorData\\(\\) should return array\\<string\\> but returns array\\<bool\\|Carbon\\\\CarbonImmutable\\|int\\|string\\|null\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:decorateWithMethod\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, array\\|string\\>\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:decorateWithStatus\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, \\(array\\|string\\)\\>\\>\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:getUserField\\(\\) should return string\\|null but returns mixed\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Parameter \\#2 \\$field of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:getUserField\\(\\) expects string, mixed given\\.$#"
+			count: 4
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
+			message: "#^Cannot call static method get\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/DataObjects/WireConfig.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\WireConfig\\:\\:inputs\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string\\>\\>\\.$#"
+			count: 1
+			path: src/DataObjects/WireConfig.php
+
+		-
+			message: "#^Access to constant class on an unknown class Illuminate\\\\Auth\\\\Authenticatable\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireBlockFactory.php
+
+		-
+			message: "#^Access to property \\$id on an unknown class Illuminate\\\\Auth\\\\Authenticatable\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireBlockFactory.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireBlockFactory\\:\\:definition\\(\\) should return array\\<string\\> but returns array\\<string, bool\\|DateTime\\|int\\<0, 100\\>\\|string\\|null\\>\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireBlockFactory.php
+
+		-
+			message: "#^PHPDoc type string of property Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireBlockFactory\\:\\:\\$model is not covariant with PHPDoc type class\\-string\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Factories\\\\Factory\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:\\$model\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireBlockFactory.php
+
+		-
+			message: "#^Parameter \\$user of method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireBlockFactory\\:\\:forUser\\(\\) has invalid type Illuminate\\\\Auth\\\\Authenticatable\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireBlockFactory.php
+
+		-
+			message: "#^Access to constant class on an unknown class Illuminate\\\\Auth\\\\Authenticatable\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireLogFactory\\:\\:definition\\(\\) should return array\\<string\\> but returns array\\<string, mixed\\>\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
+			message: "#^PHPDoc type string of property Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireLogFactory\\:\\:\\$model is not covariant with PHPDoc type class\\-string\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Factories\\\\Factory\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:\\$model\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
+			message: "#^Parameter \\$user of method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireLogFactory\\:\\:forUser\\(\\) has invalid type Illuminate\\\\Auth\\\\Authenticatable\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
+			message: "#^Parameter \\#2 \\$status of function response expects int, mixed given\\.$#"
+			count: 1
+			path: src/Exceptions/TripwireFailedException.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method Yormy\\\\TripwireLaravel\\\\Repositories\\\\BlockRepository\\:\\:getAllForUser\\(\\) expects Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable, mixed given\\.$#"
+			count: 1
+			path: src/Http/Controllers/Base/BaseBlockController.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method Yormy\\\\TripwireLaravel\\\\Repositories\\\\LogRepository\\:\\:getAllForUser\\(\\) expects Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable, mixed given\\.$#"
+			count: 1
+			path: src/Http/Controllers/Base/BaseLogController.php
+
+		-
+			message: "#^Parameter \\#1 \\$model of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:fromModel\\(\\) expects Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock, Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Http/Controllers/System/SystemBlockController.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock\\:\\:\\$blocked_until \\(Carbon\\\\CarbonImmutable\\) does not accept null\\.$#"
+			count: 1
+			path: src/Http/Controllers/System/SystemBlockController.php
+
+		-
+			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer\\:\\:respondWithHtml\\(\\) expects array\\<string\\>, array\\<string, Carbon\\\\Carbon\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer\\:\\:respondWithJson\\(\\) expects array\\<string\\>, array\\<string, Carbon\\\\Carbon\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\:\\:makeFromArray\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\:\\:makeFromArray\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Parameter \\#2 \\$urlsConfig of static method Yormy\\\\TripwireLaravel\\\\Services\\\\UrlTester\\:\\:skipUrl\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandler.php
+
+		-
+			message: "#^Cannot call static method get\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerAll.php
+
+		-
+			message: "#^Cannot call static method getBrowserFingerprint\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerAll.php
+
+		-
+			message: "#^Cannot call static method getId\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerAll.php
+
+		-
+			message: "#^Cannot call static method getType\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerAll.php
+
+		-
+			message: "#^Cannot call static method getBrowserFingerprint\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerBrowser.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Blockers\\\\TripwireBlockHandlerBrowser\\:\\:isBlockedUntil\\(\\) should return Carbon\\\\Carbon\\|null but returns Carbon\\\\CarbonImmutable\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerBrowser.php
+
+		-
+			message: "#^Cannot call static method get\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerIp.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Blockers\\\\TripwireBlockHandlerIp\\:\\:isBlockedUntil\\(\\) should return Carbon\\\\Carbon\\|null but returns Carbon\\\\CarbonImmutable\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerIp.php
+
+		-
+			message: "#^Cannot call static method getId\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerUser.php
+
+		-
+			message: "#^Cannot call static method getType\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerUser.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Blockers\\\\TripwireBlockHandlerUser\\:\\:isBlockedUntil\\(\\) should return Carbon\\\\Carbon\\|null but returns Carbon\\\\CarbonImmutable\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/Blockers/TripwireBlockHandlerUser.php
+
+		-
+			message: "#^Cannot access property \\$config on Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireDetailsConfig\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Offset 'serverside…' does not exist on array\\<string\\>\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_keys expects array, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of static method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\WireDetailsConfig\\:\\:makeFromArray\\(\\) expects array\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$message of static method Yormy\\\\TripwireLaravel\\\\Services\\\\HashService\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|false given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumCalculate.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
+			message: "#^Offset 'posted' does not exist on array\\<string\\>\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
+			message: "#^Offset 'serverside…' does not exist on array\\<string\\>\\|null\\.$#"
+			count: 2
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
+			message: "#^Offset 'timestamp' does not exist on array\\<string\\>\\|null\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
+			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
+			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Honeypot.php
+
+		-
+			message: "#^Cannot cast array\\|string\\|null to string\\.$#"
+			count: 1
+			path: src/Http/Middleware/ValidateSignature.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of static method Illuminate\\\\Support\\\\Arr\\:\\:except\\(\\) expects array, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ValidateSignature.php
+
+		-
+			message: "#^Offset 'block' does not exist on string\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/Agent.php
+
+		-
+			message: "#^Parameter \\#1 \\$triggerEventData of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\Agent\\:\\:attackFound\\(\\) expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\TriggerEventData, array\\<int, array\\|string\\|true\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/Agent.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:isFilterAttack\\(\\) expects string, string\\|true given\\.$#"
+			count: 2
+			path: src/Http/Middleware/Wires/Agent.php
+
+		-
+			message: "#^Parameter \\#2 \\$filters of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:isFilterAttack\\(\\) expects array\\<string\\>, string given\\.$#"
+			count: 2
+			path: src/Http/Middleware/Wires/Agent.php
+
+		-
+			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\|null given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/BaseWire.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:convertValuesToString\\(\\) expects array\\<string\\>, array\\<int, array\\<string\\>\\|string\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/BaseWire.php
+
+		-
+			message: "#^Parameter \\#2 \\$filters of static method Yormy\\\\TripwireLaravel\\\\Services\\\\CheckAllowBlock\\:\\:shouldBlock\\(\\) expects array\\<array\\<string\\>\\>, array\\<string\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/BaseWire.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:isFilterAttack\\(\\) expects string, bool\\|string given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/Bot.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:get\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/Geo.php
+
+		-
+			message: "#^Parameter \\#2 \\$filters of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:isFilterAttack\\(\\) expects array\\<string\\>, string given\\.$#"
+			count: 4
+			path: src/Http/Middleware/Wires/Geo.php
+
+		-
+			message: "#^Cannot assign new offset to array\\|string\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/Rfi.php
+
+		-
+			message: "#^Cannot call static method getBrowserFingerprint\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Jobs/AddBlockJob.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationMailConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationSlackConfig\\:\\:\\$templateHtml\\.$#"
+			count: 1
+			path: src/Mailables/UserBlockedMailable.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationMailConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\NotificationSlackConfig\\:\\:\\$templatePlain\\.$#"
+			count: 1
+			path: src/Mailables/UserBlockedMailable.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent\\:\\:getRequest\\(\\) should return GuzzleHttp\\\\Psr7\\\\Request\\|null but returns Illuminate\\\\Http\\\\Request\\|null\\.$#"
+			count: 1
+			path: src/Observers/Events/Failed/LoggableEvent.php
+
+		-
+			message: "#^Parameter \\$event of job class Yormy\\\\TripwireLaravel\\\\Jobs\\\\AddLogJob constructor expects Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent in Yormy\\\\TripwireLaravel\\\\Jobs\\\\AddLogJob\\:\\:dispatch\\(\\), Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/LogEvent.php
+
+		-
+			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\LoginFailedWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/LoginFailedWireListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\ThrottleHitWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/ThrottleHitWireListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$request of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:skip\\(\\) expects Illuminate\\\\Http\\\\Request, GuzzleHttp\\\\Psr7\\\\Request\\|null given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:\\$request \\(Illuminate\\\\Http\\\\Request\\) does not accept GuzzleHttp\\\\Psr7\\\\Request\\|null\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Repositories\\\\BlockRepository\\:\\:isAnyBlockedUntil\\(\\) should return Carbon\\\\Carbon\\|null but returns Carbon\\\\CarbonImmutable\\|null\\.$#"
+			count: 1
+			path: src/Repositories/BlockRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$request of method Yormy\\\\TripwireLaravel\\\\Services\\\\ExceptionInspector\\:\\:skip\\(\\) expects Illuminate\\\\Http\\\\Request, Illuminate\\\\Http\\\\Request\\|null given\\.$#"
+			count: 1
+			path: src/Services/ExceptionInspector.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\IpLookup\\\\BaseLookup\\:\\:getResponse\\(\\) should return stdClass but returns mixed\\.$#"
+			count: 1
+			path: src/Services/IpLookup/BaseLookup.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getAdminById\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Admin\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getAdminByXid\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Admin\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberById\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberByXid\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberOnXId\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\|null but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\|null\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getRandom\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\|null but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\|null\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: src/Services/User.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\User\\:\\:getType\\(\\) should return string\\|null but returns class\\-string\\|false\\.$#"
+			count: 1
+			path: src/Services/User.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
+			count: 1
+			path: src/Services/User.php
