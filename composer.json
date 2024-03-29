@@ -63,7 +63,10 @@
         "insights:fix": "./vendor/bin/testbench insights --fix",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
-        "coverage" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
+        "coverage:check" : "composer coverage:clover && php coverage-checker.php clover.xml 50",
+        "coverage:report" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
+        "coverage:clover" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-clover clover.xml",
+
         "---------- FIXES ---------- ": "",
 
         "cs-fixer" : "phpcbf",
