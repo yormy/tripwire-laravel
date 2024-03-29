@@ -35,9 +35,12 @@ jobs:
           php_version: 8.2
           php_extensions: "json zip sodium pcntl bcmath"
 
-      - name: stan
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php_version: 8.2
+          php-version: 8.2
+
+      - name: stan
         run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
 #  phpinsights:
