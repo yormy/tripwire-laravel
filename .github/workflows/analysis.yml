@@ -29,12 +29,6 @@ jobs:
       - name: Prepare cache
         run: "sudo chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache"
 
-      - name: Prepare cache
-        uses: actions/cache@v3
-        with:
-          path: .
-          key: cached-setup
-
       - name: stan
         run: "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G"
 #
