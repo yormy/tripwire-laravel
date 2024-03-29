@@ -20,9 +20,10 @@ jobs:
   phpstan:
     runs-on: ubuntu-latest
     steps:
-      - name: PHPStan Analysis
-        run: |
-          composer stan
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+      with:
+        command: composer stan
 
 #  phpinsights:
 #    name: PHP-Insights
