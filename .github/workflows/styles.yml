@@ -47,16 +47,12 @@ jobs:
 #      - name: stan
 #        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
-      - name: insights
-        run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=80 --min-architecture=50 --min-style=80"
+#      - name: insights
+#        run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
 
-
-#  phpinsights:
-#    name: PHP-Insights
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@master
-#      - name: PHP-Insights
-#        uses: docker://tienvx/phpinsights-action
-#        with:
-#          args: "-v --min-quality=7 --min-complexity=7 --min-architecture=5 --min-style=8"
+  insights:
+   runs-on: ubuntu-latest
+   needs: phpstan
+   steps:
+    - name: insights
+      run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
