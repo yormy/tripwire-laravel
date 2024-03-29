@@ -51,6 +51,7 @@ jobs:
 #        run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
 
   insights:
+   needs: phpstan
    runs-on: ubuntu-latest
    steps:
     - name: insights
