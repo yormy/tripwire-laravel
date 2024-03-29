@@ -89,7 +89,9 @@ class BaseAcceptAll extends TestCase
      */
     public static function accepts(): array
     {
+        echo "1";
         if (isset(static::$acceptsDataFile)) {
+            echo "2";
             static::$accepts = file(static::$acceptsDataFile);
         }
 
