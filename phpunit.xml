@@ -7,8 +7,6 @@
     processIsolation="false"
     stopOnFailure="true"
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
-    cacheDirectory=".phpunit.cache"
-    backupStaticProperties="false"
 >
   <coverage/>
   <testsuites>
@@ -47,12 +45,12 @@
     <!--                <env name="DB_USERNAME" value="root"/>-->
     <!--                <env name="DB_PASSWORD" value="secret"/>-->
   </php>
-  <source>
-    <include>
-      <directory suffix=".php">./src</directory>
-    </include>
-    <exclude>
-      <directory suffix=".php">./src/Database/Seeders/Locations</directory>
-    </exclude>
-  </source>
+<!--  <source>-->
+<!--    <include>-->
+<!--      <directory suffix=".php">./src</directory>-->
+<!--    </include>-->
+<!--    <exclude>-->
+<!--      <directory suffix=".php">./src/Database/Seeders/Locations</directory>-->
+<!--    </exclude>-->
+<!--  </source>-->
 </phpunit>
