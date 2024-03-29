@@ -4,9 +4,6 @@
 .phpunit.result.cache
 .phpunit.cache
 build
-#coverage
-phpunit.xml
-psalm.xml
 vendor
 
 psalm-report.txt
