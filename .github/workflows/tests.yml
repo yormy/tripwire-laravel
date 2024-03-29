@@ -2,6 +2,9 @@ name: Testing
 
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   unit-test:
     name: Unit testing
