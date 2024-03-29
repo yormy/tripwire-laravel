@@ -47,6 +47,16 @@ jobs:
       - name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
+          configuration: /phpstan.neon
           memory_limit: 2G
+
+  phpinsights:
+    name: PHP-Insights
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: PHP-Insights
+        uses: docker://tienvx/phpinsights-action
+
 # stan
 #insights
