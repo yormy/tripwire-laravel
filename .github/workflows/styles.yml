@@ -68,6 +68,11 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ runner.os }}-${{ hashFiles('composer.lock') }}
 
+      - name: Installing dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: 8.2
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
