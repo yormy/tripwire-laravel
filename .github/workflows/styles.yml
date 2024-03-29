@@ -21,10 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PHPStan Static Analysis
-        working-directory: ./src
         uses: php-actions/phpstan@v3
         with:
-          configuration: ../../phpstan.neon
+          configuration: phpstan.neon
           memory_limit: 2G
 
 #  phpinsights:
