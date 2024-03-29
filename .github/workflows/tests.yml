@@ -2,9 +2,6 @@ name: Testing
 
 on: [push]
 
-permissions:
-  contents: write
-
 jobs:
   unit-test:
     name: Unit testing
@@ -31,9 +28,13 @@ jobs:
           version: 9.6
           php_version: 8.2
           php_extensions: "json zip sodium pcntl bcmath"
-          args: "-coverage-clover clover.xml"
+          args: "-d date.timezone=Asia/Jakarta"
           memory_limit: 300M
           configuration: phpunit.xml
+          testsuite: unittest
 
-      - name: Run composer install
-        run: composer coverage:check
+      - name: Clover
+        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          clover-file: ./coverage/clover.xml
