@@ -82,6 +82,8 @@ class BlocksTest extends TestCase
     public function Blocks_ShowBlock(): void
     {
         $block = TripwireBlock::factory()->create();
+        usleep(100);
+
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
         $response->assertJsonDataItemHasElement('xid', $block->xid);  // @phpstan-ignore-line

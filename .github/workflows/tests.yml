@@ -39,3 +39,7 @@ jobs:
         with:
           percentage: "70"
           filename: "./coverage/clover.xml"
+
+# pint
+# stan
+#insights
