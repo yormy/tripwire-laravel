@@ -20,8 +20,14 @@ jobs:
   phpstan:
     runs-on: ubuntu-latest
     steps:
-    - name: Install dependencies
-      run: "./vendor/bin/phpstan analyse --memory-limit=2G"
+      - name: Installing dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: 8.2
+          php_extensions: "json zip sodium pcntl bcmath"
+
+      - name: stan
+        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
 #  phpinsights:
 #    name: PHP-Insights
