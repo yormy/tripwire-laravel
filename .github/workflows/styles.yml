@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=md --no-progress >> 'Static Analysis.md'
+          composer stan
 
 #  phpinsights:
 #    name: PHP-Insights
