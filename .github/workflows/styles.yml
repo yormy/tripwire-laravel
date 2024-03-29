@@ -36,6 +36,8 @@ jobs:
           php_extensions: "json zip sodium pcntl bcmath"
 
       - name: stan
+        with:
+          php_version: 8.2
         run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
 #  phpinsights:
