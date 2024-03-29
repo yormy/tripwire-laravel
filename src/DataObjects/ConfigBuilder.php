@@ -36,12 +36,12 @@ class ConfigBuilder implements Arrayable
     public DatetimeConfig $datetime;
 
     /**
-     * @var array<string> $notificationsMail
+     * @var array<string>
      */
     public array $notificationsMail;
 
     /**
-     * @var array<string> $notificationsSlack
+     * @var array<string>
      */
     public array $notificationsSlack;
 
@@ -68,7 +68,7 @@ class ConfigBuilder implements Arrayable
     public PunishConfig $punish;
 
     /**
-     * @var array<string> $wireGroups
+     * @var array<string>
      */
     public array $wireGroups;
 
@@ -162,7 +162,7 @@ class ConfigBuilder implements Arrayable
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public static function fromArray(array $data): self
     {
@@ -251,7 +251,7 @@ class ConfigBuilder implements Arrayable
     }
 
     /**
-     * @param array<string> $notificationMail
+     * @param  array<string>  $notificationMail
      */
     public function notificationMail(array $notificationMail): self
     {
@@ -261,7 +261,7 @@ class ConfigBuilder implements Arrayable
     }
 
     /**
-     * @param array<string> $notificationsSlack
+     * @param  array<string>  $notificationsSlack
      */
     public function notificationSlack(array $notificationsSlack): self
     {
@@ -351,7 +351,7 @@ class ConfigBuilder implements Arrayable
     }
 
     /**
-     * @param array<string> $ips
+     * @param  array<string>  $ips
      */
     public function whitelist(
         array $ips,

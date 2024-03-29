@@ -7,17 +7,17 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class InputIgnoreConfig
 {
     /**
-     * @var array<string> $inputs
+     * @var array<string>
      */
     public array $inputs;
 
     /**
-     * @var array<string> $cookies
+     * @var array<string>
      */
     public array $cookies;
 
     /**
-     * @var array<string> $header
+     * @var array<string>
      */
     public array $header;
 
@@ -27,9 +27,9 @@ class InputIgnoreConfig
     }
 
     /**
-     * @param array<string> $inputs
-     * @param array<string> $cookies
-     * @param array<string> $header
+     * @param  array<string>  $inputs
+     * @param  array<string>  $cookies
+     * @param  array<string>  $header
      */
     public static function make(
         array $inputs = [],
@@ -46,7 +46,7 @@ class InputIgnoreConfig
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public static function makeFromArray(?array $data): ?self
     {
@@ -72,7 +72,7 @@ class InputIgnoreConfig
     }
 
     /**
-     * @param array<string> $inputs
+     * @param  array<string>  $inputs
      */
     public function inputs(array $inputs): self
     {
@@ -82,7 +82,7 @@ class InputIgnoreConfig
     }
 
     /**
-     * @param array<string> $cookies
+     * @param  array<string>  $cookies
      */
     public function cookies(array $cookies): self
     {
@@ -92,7 +92,7 @@ class InputIgnoreConfig
     }
 
     /**
-     * @param array<string> $headers
+     * @param  array<string>  $headers
      */
     public function headers(array $headers): self
     {

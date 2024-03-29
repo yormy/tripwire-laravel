@@ -17,7 +17,7 @@ class Regex
     public const GT = '([>¾])|%3E|%BE';
 
     /**
-     * @param array<string> $signatures
+     * @param  array<string>  $signatures
      */
     public static function forbidden(array $signatures, string $delim = '#'): string
     {
@@ -25,7 +25,7 @@ class Regex
     }
 
     /**
-     * @param array<string> $signatures
+     * @param  array<string>  $signatures
      */
     public static function or(array $signatures): string
     {
@@ -40,8 +40,7 @@ class Regex
     }
 
     /**
-     * @param array<string> $signatures
-     *
+     * @param  array<string>  $signatures
      * @return array<string>
      */
     public static function injectFillers(array $signatures): array

@@ -21,7 +21,7 @@ class AddLogJob implements ShouldBeEncrypted, ShouldQueue
     use SerializesModels;
 
     /**
-     * @param array<string> $meta
+     * @param  array<string>  $meta
      */
     public function __construct(
         private LoggableEvent $event,

@@ -7,7 +7,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class WireGroupConfig
 {
     /**
-     * @var array<string> $wires
+     * @var array<string>
      */
     public array $wires;
 
@@ -17,7 +17,7 @@ class WireGroupConfig
     }
 
     /**
-     * @param array<string> $wires
+     * @param  array<string>  $wires
      */
     public static function make(array $wires): self
     {
@@ -29,8 +29,7 @@ class WireGroupConfig
     }
 
     /**
-     * @param array<string>|null $data
-     *
+     * @param  array<string>|null  $data
      * @return array<string>|null
      */
     public static function makeFromArray(?array $data): ?array

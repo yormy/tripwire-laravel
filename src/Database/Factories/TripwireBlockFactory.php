@@ -12,7 +12,7 @@ use Yormy\Xid\Services\XidService;
 class TripwireBlockFactory extends Factory
 {
     /**
-     * @var string $model
+     * @var string
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -41,14 +41,14 @@ class TripwireBlockFactory extends Factory
     }
 
     /**
-     * @param Authenticatable $user
+     * @param  Authenticatable  $user
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function forUser($user): Factory
     {
         /**
-         * @param array<string> $attributes
+         * @param  array<string>  $attributes
          *
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */
@@ -63,7 +63,7 @@ class TripwireBlockFactory extends Factory
     public function ignore(): Factory
     {
         /**
-         * @param array<string> $attributes
+         * @param  array<string>  $attributes
          *
          * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
          */

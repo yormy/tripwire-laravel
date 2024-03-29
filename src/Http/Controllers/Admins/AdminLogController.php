@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
  */
 class AdminLogController extends BaseLogController
 {
-    public function getUser(string | int $userId): mixed
+    public function getUser(string|int $userId): mixed
     {
         return UserResolver::getAdminByXid($userId);
     }

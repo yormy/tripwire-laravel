@@ -32,9 +32,9 @@ use Yormy\TripwireLaravel\Models\Traits\LogScope;
  * @property string $trigger_rule
  * @property string $browser_fingerprint
  * @property bool $ignore
-  *
  * @property-read \Yormy\TripwireLaravel\Models\TripwireBlock|null $block
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byBrowser(string $browserFingerprint)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byIp(string $ipAddress)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog byUserId(int $userId)
@@ -48,6 +48,7 @@ use Yormy\TripwireLaravel\Models\Traits\LogScope;
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog within(int $minutes)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireLog withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class TripwireLog extends BaseModel
@@ -58,7 +59,7 @@ class TripwireLog extends BaseModel
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      *
-     * @var array<int, string> $fillable
+     * @var array<int, string>
      */
     protected $fillable = [
         'ignore',
@@ -86,7 +87,7 @@ class TripwireLog extends BaseModel
     ];
 
     /**
-     * @param array<string> $attributes
+     * @param  array<string>  $attributes
      */
     public function __construct(array $attributes = [])
     {

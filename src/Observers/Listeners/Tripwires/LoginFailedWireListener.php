@@ -19,7 +19,7 @@ class LoginFailedWireListener extends WireBaseListener
         parent::__construct('loginfailed');
     }
 
-    public function handle(Failed | LoggableEvent $event): void
+    public function handle(Failed|LoggableEvent $event): void
     {
         $this->request = request();
 
@@ -28,15 +28,15 @@ class LoginFailedWireListener extends WireBaseListener
         }
 
         $this->isAttack($event);
-//        if ($isAttack) {
-//            //abort(406); // respond as attack, events cannot respond
-//        }
+        //        if ($isAttack) {
+        //            //abort(406); // respond as attack, events cannot respond
+        //        }
     }
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack(Event | Failed $event): bool
+    public function isAttack(Event|Failed $event): bool
     {
         $violations = ['login_failed'];
         $triggerEventData = new TriggerEventData(

@@ -19,7 +19,7 @@ class RouteModelBindingWireListener extends WireBaseListener
         parent::__construct('model404');
     }
 
-    public function isAttack(Event | Failed $event): bool
+    public function isAttack(Event|Failed $event): bool
     {
         $violations = [];
 

@@ -28,7 +28,7 @@ class UrlTester
     }
 
     /**
-     * @param array<string> $urlsConfig
+     * @param  array<string>  $urlsConfig
      */
     private static function isInclude(Request $request, array $urlsConfig): bool
     {
@@ -52,7 +52,7 @@ class UrlTester
     }
 
     /**
-     * @param array<string> $urlsConfig
+     * @param  array<string>  $urlsConfig
      */
     private static function isExcluded(Request $request, array $urlsConfig): bool
     {

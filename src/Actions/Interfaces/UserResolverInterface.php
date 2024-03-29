@@ -12,13 +12,13 @@ interface UserResolverInterface
 
     public static function getRandom(): ?Authenticatable;
 
-    public static function getMemberById(string | int $id): Authenticatable;
+    public static function getMemberById(string|int $id): Authenticatable;
 
-    public static function getAdminById(string | int $id): Authenticatable;
+    public static function getAdminById(string|int $id): Authenticatable;
 
-    public static function getMemberByXid(string | int $id): Authenticatable;
+    public static function getMemberByXid(string|int $id): Authenticatable;
 
-    public static function getAdminByXid(string | int $id): Authenticatable;
+    public static function getAdminByXid(string|int $id): Authenticatable;
 
-    public static function getMemberOnXId(string | int $xid): ?Authenticatable;
+    public static function getMemberOnXId(string|int $xid): ?Authenticatable;
 }

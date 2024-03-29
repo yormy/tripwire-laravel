@@ -10,14 +10,13 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 use Yormy\Xid\Models\Traits\Xid;
 
 /**
- * 
- *
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel query()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class BaseModel extends Model
@@ -28,14 +27,14 @@ class BaseModel extends Model
 
     // Cachables
     /**
-     * @var int $cacheFor
+     * @var int
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     public $cacheFor = 4 * 60 * 60; // cache time, in seconds
 
     /**
-     * @var bool $flushCacheOnUpdate
+     * @var bool
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */

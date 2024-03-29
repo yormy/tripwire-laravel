@@ -13,7 +13,7 @@ use Yormy\Xid\Services\XidService;
 class TripwireLogFactory extends Factory
 {
     /**
-     * @var string $model
+     * @var string
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -84,7 +84,7 @@ class TripwireLogFactory extends Factory
     }
 
     /**
-     * @param Authenticatable $user
+     * @param  Authenticatable  $user
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
@@ -95,6 +95,7 @@ class TripwireLogFactory extends Factory
          */
         return $this->state(function (array $attributes) use ($user) {
             $foreignUserId = config('tripwire.user_fields.foreign_key');
+
             return [
                 'user_id' => $user->$foreignUserId,
                 'user_type' => $user::class,

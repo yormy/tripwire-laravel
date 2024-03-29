@@ -10,8 +10,8 @@ use Yormy\TripwireLaravel\Models\TripwireLog;
 final class LogDataResponse extends LogData
 {
     /**
-     * @param array<string> $status
-     * @param array<string> $method
+     * @param  array<string>  $status
+     * @param  array<string>  $method
      */
     public function __construct(
         public string $xid,
@@ -49,7 +49,7 @@ final class LogDataResponse extends LogData
     {
         $constuctorData = self::constructorData($model);
 
-        return new static(...$constuctorData);
+        return new self(...$constuctorData);
     }
 
     /**

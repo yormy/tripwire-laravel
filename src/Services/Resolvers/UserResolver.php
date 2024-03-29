@@ -22,27 +22,27 @@ class UserResolver implements UserResolverInterface
         return Member::first();
     }
 
-    public static function getMemberById(string | int $id): Authenticatable
+    public static function getMemberById(string|int $id): Authenticatable
     {
         return Member::where('id', $id)->firstOrFail();
     }
 
-    public static function getAdminById(string | int $id): Authenticatable
+    public static function getAdminById(string|int $id): Authenticatable
     {
         return Admin::where('id', $id)->firstOrFail();
     }
 
-    public static function getMemberByXid(string | int $id): Authenticatable
+    public static function getMemberByXid(string|int $id): Authenticatable
     {
         return Member::where('xid', $id)->firstOrFail();
     }
 
-    public static function getAdminByXid(string | int $id): Authenticatable
+    public static function getAdminByXid(string|int $id): Authenticatable
     {
         return Admin::where('xid', $id)->firstOrFail();
     }
 
-    public static function getMemberOnXId(string | int $xid): ?Authenticatable
+    public static function getMemberOnXId(string|int $xid): ?Authenticatable
     {
         return Member::where('xid', $xid)->first();
     }

@@ -2,7 +2,6 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Middleware\Wires;
 
-use Yormy\TripwireLaravel\Http\Middleware\Wires\BaseWire;
 use Yormy\TripwireLaravel\Http\Middleware\Wires\Custom;
 
 class CustomTest extends BaseWireTester

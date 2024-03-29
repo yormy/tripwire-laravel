@@ -12,12 +12,13 @@ class Text extends BaseWire
     public const NAME = 'text';
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      */
-    public function matchResults(string $pattern, string $input, array | null &$violations): false|int
+    public function matchResults(string $pattern, string $input, ?array &$violations): false|int
     {
         if (str_contains($input, $pattern)) {
             $violations[] = $pattern;
+
             return 1;
         }
 

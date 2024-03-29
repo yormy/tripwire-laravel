@@ -8,12 +8,12 @@ use Yormy\TripwireLaravel\Tests\DataObjects\Tripwire;
 trait TripwireTestTrait
 {
     /**
-     * @var array<string> $accepts
+     * @var array<string>
      */
     protected static array $accepts = [];
 
     /**
-     * @var array<string> $violations
+     * @var array<string>
      */
     protected static array $violations = [];
 
@@ -118,5 +118,4 @@ trait TripwireTestTrait
     {
         return [];
     }
-
 }

@@ -24,6 +24,7 @@ abstract class BaseWire
     protected Request $request;
 
     protected string $middleware;
+
     protected string|int $user_id;
 
     public function __construct(Request $request)
@@ -68,7 +69,7 @@ abstract class BaseWire
     }
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      */
     public function isAttack(array $patterns): bool
     {
@@ -103,11 +104,11 @@ abstract class BaseWire
     }
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      *
      * @psalm-return 0|1|false
      */
-    public function matchResults(string $pattern, string $input, array | null &$violations): false|int
+    public function matchResults(string $pattern, string $input, ?array &$violations): false|int
     {
         return preg_match($pattern, $input, $violations);
     }
@@ -126,7 +127,7 @@ abstract class BaseWire
     }
 
     /**
-     * @param array<string> $filters
+     * @param  array<string>  $filters
      */
     protected function isFilterAttack(string $value, array $filters): bool
     {
@@ -150,9 +151,8 @@ abstract class BaseWire
     }
 
     /**
-     * @param array<string> $original
-     * @param array<string> $toRemove
-     *
+     * @param  array<string>  $original
+     * @param  array<string>  $toRemove
      * @return array<string>
      */
     private function removeItems(array $original, array $toRemove): array
@@ -228,7 +228,7 @@ abstract class BaseWire
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     private function convertValuesToString(array $data, string &$string): void
     {

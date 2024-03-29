@@ -9,7 +9,7 @@ class HoneypotsConfig
     public int $attackScore;
 
     /**
-     * @var array<string> $mustBeMissingOrFalse
+     * @var array<string>
      */
     public array $mustBeMissingOrFalse;
 
@@ -19,7 +19,7 @@ class HoneypotsConfig
     }
 
     /**
-     * @param array<string> $mustBeMissingOrFalse
+     * @param  array<string>  $mustBeMissingOrFalse
      */
     public static function make(int $attackScore, array $mustBeMissingOrFalse): self
     {
@@ -31,7 +31,7 @@ class HoneypotsConfig
     }
 
     /**
-     * @param array<string|int|array>|null $data
+     * @param  array<string|int|array>|null  $data
      */
     public static function makeFromArray(?array $data): ?self
     {

@@ -9,12 +9,12 @@ abstract class OnlyExceptConfig
     public const MODEL = '';
 
     /**
-     * @var array<string> $only
+     * @var array<string>
      */
     public array $only;
 
     /**
-     * @var array<string> $except
+     * @var array<string>
      */
     public array $except;
 
@@ -24,8 +24,8 @@ abstract class OnlyExceptConfig
     }
 
     /**
-     * @param array<string> $only
-     * @param array<string> $except
+     * @param  array<string>  $only
+     * @param  array<string>  $except
      */
     public static function make(
         array $only = [],
@@ -61,7 +61,7 @@ abstract class OnlyExceptConfig
     }
 
     /**
-     * @param array<string> $only
+     * @param  array<string>  $only
      */
     public function only(array $only): static
     {
@@ -71,7 +71,7 @@ abstract class OnlyExceptConfig
     }
 
     /**
-     * @param array<string> $except
+     * @param  array<string>  $except
      */
     public function except(array $except): static
     {

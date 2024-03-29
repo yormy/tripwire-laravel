@@ -28,7 +28,7 @@ class ResponseDeterminer
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public function respondWithJson(array $data = []): View|JsonResponse
     {
@@ -50,7 +50,7 @@ class ResponseDeterminer
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public function respondWithHtml(array $data = []): View|RedirectResponse
     {
@@ -99,7 +99,7 @@ class ResponseDeterminer
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public function asJsonRedirect(array $data): ?JsonResponse
     {
@@ -115,7 +115,7 @@ class ResponseDeterminer
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public function asView(array $data): ?View
     {
@@ -127,7 +127,7 @@ class ResponseDeterminer
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */

@@ -13,7 +13,7 @@ class Bot extends BaseWire
     public const NAME = 'bot';
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */

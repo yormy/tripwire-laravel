@@ -14,7 +14,7 @@ class Geo extends BaseWire
     public const NAME = 'geo';
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */

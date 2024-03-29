@@ -17,7 +17,7 @@ trait LogScope
     }
 
     /**
-     * @param array<string> $codes
+     * @param  array<string>  $codes
      */
     public function scopeTypes(Builder $query, array $codes): Builder
     {

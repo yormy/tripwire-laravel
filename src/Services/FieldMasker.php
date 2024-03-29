@@ -7,8 +7,7 @@ namespace Yormy\TripwireLaravel\Services;
 class FieldMasker
 {
     /**
-     * @param array<array|string> $inputs
-     *
+     * @param  array<array|string>  $inputs
      * @return array<array|string>
      */
     public static function run(array $inputs): array
@@ -18,7 +17,7 @@ class FieldMasker
                 return self::run($input);
             }
 
-            if (in_array($key, (array)config('tripwire.log.remove', []))) {
+            if (in_array($key, (array) config('tripwire.log.remove', []))) {
                 $inputs[$key] = '****';
             }
         }

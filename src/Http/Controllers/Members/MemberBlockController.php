@@ -14,7 +14,7 @@ use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
  */
 class MemberBlockController extends BaseBlockController
 {
-    public function getUser(string | int $userId): mixed
+    public function getUser(string|int $userId): mixed
     {
         return UserResolver::getMemberByXid($userId);
     }

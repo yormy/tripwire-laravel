@@ -1,4 +1,5 @@
 <?php
+
 // config/insights.php
 
 use NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh;
@@ -23,7 +24,6 @@ return [
         DisallowEmptySniff::class,
         NoSilencedErrorsSniff::class,
 
-
         SuperfluousInterfaceNamingSniff::class,
         SuperfluousExceptionNamingSniff::class,
         ForbiddenNormalClasses::class,
@@ -36,7 +36,7 @@ return [
     'config' => [
         \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
             'lineLimit' => 160,
-            'absoluteLineLimit' => 160
+            'absoluteLineLimit' => 160,
         ],
-    ]
+    ],
 ];

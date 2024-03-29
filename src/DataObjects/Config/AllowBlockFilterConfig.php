@@ -7,12 +7,12 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class AllowBlockFilterConfig
 {
     /**
-     * @var array<string> $allow
+     * @var array<string>
      */
     public array $allow;
 
     /**
-     * @var array<string> $block
+     * @var array<string>
      */
     public array $block;
 
@@ -22,8 +22,8 @@ class AllowBlockFilterConfig
     }
 
     /**
-     * @param array<string> $allow
-     * @param array<string> $block
+     * @param  array<string>  $allow
+     * @param  array<string>  $block
      */
     public static function make(
         array $allow = [],
@@ -38,7 +38,7 @@ class AllowBlockFilterConfig
     }
 
     /**
-     * @param array<string>| null $data
+     * @param  array<string>| null  $data
      */
     public static function makeFromArray(?array $data): ?static
     {
@@ -60,7 +60,7 @@ class AllowBlockFilterConfig
     }
 
     /**
-     * @param array<string> $allow
+     * @param  array<string>  $allow
      */
     public function allow(array $allow): static
     {
@@ -70,7 +70,7 @@ class AllowBlockFilterConfig
     }
 
     /**
-     * @param array<string> $block
+     * @param  array<string>  $block
      */
     public function block(array $block): static
     {

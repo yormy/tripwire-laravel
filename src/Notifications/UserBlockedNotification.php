@@ -17,7 +17,7 @@ class UserBlockedNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * @var array<array<string>> $notifications
+     * @var array<array<string>>
      */
     public array $notifications;
 

@@ -12,7 +12,7 @@ class RequestSize extends BaseWire
     public const NAME = 'request_size';
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
@@ -48,8 +48,8 @@ class RequestSize extends BaseWire
     }
 
     /**
-     * @param array<string> $inputs
-     * @param array<string> $violations
+     * @param  array<string>  $inputs
+     * @param  array<string>  $violations
      */
     private function check(array $inputs, array &$violations): void
     {

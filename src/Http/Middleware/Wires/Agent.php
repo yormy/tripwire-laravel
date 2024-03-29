@@ -13,7 +13,7 @@ class Agent extends BaseWire
     public const NAME = 'agent';
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
@@ -90,7 +90,7 @@ class Agent extends BaseWire
     }
 
     /**
-     * @param array<string> $devices
+     * @param  array<string>  $devices
      */
     private function isDeviceBlocked(array $devices): ?string
     {

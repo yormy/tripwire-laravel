@@ -36,5 +36,5 @@ abstract class BaseLogController extends controller
             ->successResponse();
     }
 
-    abstract public function getUser(string | int $userId): mixed;
+    abstract public function getUser(string|int $userId): mixed;
 }

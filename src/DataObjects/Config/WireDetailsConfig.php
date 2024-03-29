@@ -11,7 +11,7 @@ class WireDetailsConfig
     public ?bool $trainingMode;
 
     /**
-     * @var array<string>|null $methods
+     * @var array<string>|null
      */
     public ?array $methods;
 
@@ -22,17 +22,17 @@ class WireDetailsConfig
     public ?InputsFilterConfig $inputs;
 
     /**
-     * @var array<string>|null $tripwires
+     * @var array<string>|null
      */
     public ?array $tripwires;
 
     /**
-     * @var array<string>|null $filters
+     * @var array<string>|null
      */
     public ?array $filters;
 
     /**
-     * @var array<string>|null $config
+     * @var array<string>|null
      */
     public ?array $config;
 
@@ -43,7 +43,7 @@ class WireDetailsConfig
     public ?BlockResponseConfig $rejectResponse;
 
     /**
-     * @var array<string> $whitelistedTokens
+     * @var array<string>
      */
     public array $whitelistedTokens = [];
 
@@ -53,9 +53,9 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $methods
-     * @param array<string> $tripwires
-     * @param array<string> $config
+     * @param  array<string>  $methods
+     * @param  array<string>  $tripwires
+     * @param  array<string>  $config
      */
     public static function make(
         bool $enabled = true,
@@ -170,7 +170,7 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $methods
+     * @param  array<string>  $methods
      */
     public function methods(array $methods): self
     {
@@ -196,7 +196,7 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $whitelistedTokens
+     * @param  array<string>  $whitelistedTokens
      */
     public function whitelistedTokens(array $whitelistedTokens): self
     {
@@ -220,7 +220,7 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $tripWires
+     * @param  array<string>  $tripWires
      */
     public function tripwires(array $tripWires): self
     {
@@ -237,7 +237,7 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $config
+     * @param  array<string>  $config
      */
     public function config(array $config): self
     {
@@ -311,9 +311,8 @@ class WireDetailsConfig
     }
 
     /**
-     * @param array<string> $values
-     * @param array<string> $allowedValues
-     *
+     * @param  array<string>  $values
+     * @param  array<string>  $allowedValues
      * @return array<string, array<string>|bool|int|null>
      */
     private function getArrayErrors(array $values, array $allowedValues): array

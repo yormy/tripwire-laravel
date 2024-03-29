@@ -13,7 +13,7 @@ class LoggingConfig
     public int $maxRefererSize;
 
     /**
-     * @var array<string> $remove
+     * @var array<string>
      */
     public array $remove;
 
@@ -23,7 +23,7 @@ class LoggingConfig
     }
 
     /**
-     * @param array<string> $remove
+     * @param  array<string>  $remove
      */
     public static function make(
         int $maxRequestSize = 190,
@@ -79,7 +79,7 @@ class LoggingConfig
     }
 
     /**
-     * @param array<string> $remove
+     * @param  array<string>  $remove
      */
     public function remove(array $remove): self
     {

@@ -11,7 +11,7 @@ use Yormy\TripwireLaravel\Models\TripwireBlock;
 final class BlockDataResponse extends BlockData
 {
     /**
-     * @param array<string> $status
+     * @param  array<string>  $status
      */
     public function __construct(
         public string $xid,
@@ -40,7 +40,7 @@ final class BlockDataResponse extends BlockData
     {
         $constuctorData = self::constructorData($model);
 
-        return new static(...$constuctorData);
+        return new self(...$constuctorData);
     }
 
     /**

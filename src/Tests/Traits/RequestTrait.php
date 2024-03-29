@@ -5,10 +5,10 @@ namespace Yormy\TripwireLaravel\Tests\Traits;
 trait RequestTrait
 {
     /**
-     * @param array<string> $server
-     * @param array<string> $parameters
-     * @param array<string> $cookies
-     * @param array<string> $files
+     * @param  array<string>  $server
+     * @param  array<string>  $parameters
+     * @param  array<string>  $cookies
+     * @param  array<string>  $files
      */
     public function createRequest(
         string $method,

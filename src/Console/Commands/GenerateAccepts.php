@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Storage;
 class GenerateAccepts extends Command
 {
     /**
-     * @var string $signature
+     * @var string
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $signature = 'generate:accepts';
 
     /**
-     * @var string $description
+     * @var string
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */

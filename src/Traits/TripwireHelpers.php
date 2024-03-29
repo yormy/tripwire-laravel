@@ -37,6 +37,7 @@ trait TripwireHelpers
 
         return false;
     }
+
     abstract protected function attackFound(TriggerEventData $triggerEventData): void;
 
     protected function getAttackScore(): int

@@ -32,7 +32,7 @@ class ConfigBuilderWires implements Arrayable
     }
 
     /**
-     * @param array<string> $data
+     * @param  array<string>  $data
      */
     public static function fromArray(array $data): self
     {

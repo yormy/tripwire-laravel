@@ -19,7 +19,7 @@ class ThrottleHitWireListener extends WireBaseListener
         parent::__construct('throttle');
     }
 
-    public function handle(Failed | LoggableEvent $event): void
+    public function handle(Failed|LoggableEvent $event): void
     {
         $this->request = request();
 
@@ -28,15 +28,15 @@ class ThrottleHitWireListener extends WireBaseListener
         }
 
         $this->isAttack($event);
-//        if ($isAttack) {
-//            //abort(406); // respond as attack, events cannot respond
-//        }
+        //        if ($isAttack) {
+        //            //abort(406); // respond as attack, events cannot respond
+        //        }
     }
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */
-    public function isAttack(Event | Failed $event): bool
+    public function isAttack(Event|Failed $event): bool
     {
         $violations = ['throttle_hit'];
         $triggerEventData = new TriggerEventData(

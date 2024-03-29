@@ -9,7 +9,7 @@ class JsonResponseConfig
     public int $code;
 
     /**
-     * @var array<string>|null $json
+     * @var array<string>|null
      */
     public ?array $json;
 
@@ -85,7 +85,7 @@ class JsonResponseConfig
     }
 
     /**
-     * @param array<string> $json
+     * @param  array<string>  $json
      */
     public function json(array $json): self
     {

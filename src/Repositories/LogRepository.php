@@ -43,7 +43,7 @@ class LogRepository
     }
 
     /**
-     * @param array<string> $meta
+     * @param  array<string>  $meta
      */
     public function add(LoggableEventInterface $event, array $meta): Model
     {
@@ -89,7 +89,7 @@ class LogRepository
     }
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      */
     public function queryViolationsByIp(int $withinMinutes, string $ipAddress, array $violations = []): Builder
     {
@@ -98,7 +98,7 @@ class LogRepository
     }
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      */
     public function queryViolationsByUser(int $withinMinutes, int $userId, ?string $userType, array $violations = []): Builder
     {
@@ -108,7 +108,7 @@ class LogRepository
     }
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      */
     public function queryViolationsByBrowser(
         int $withinMinutes,
@@ -131,7 +131,7 @@ class LogRepository
     }
 
     /**
-     * @param array<string> $violations
+     * @param  array<string>  $violations
      */
     private function queryScoreViolations(int $withinMinutes, array $violations = []): Builder
     {

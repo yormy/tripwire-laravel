@@ -10,7 +10,7 @@ use Yormy\TripwireLaravel\Observers\TripwireSubscriber;
 class EventServiceProvider extends ServiceProvider
 {
     /**
-     * @var array<string> $subscribe
+     * @var array<string>
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */

@@ -1,4 +1,5 @@
 <?php
+
 namespace Yormy\TripwireLaravel\Tests\Feature\Management\System;
 
 use Illuminate\Testing\TestResponse;

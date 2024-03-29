@@ -25,10 +25,10 @@ use Yormy\TripwireLaravel\Models\Traits\BlockScope;
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $deleted_at
  * @property CarbonImmutable $blocked_until
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Yormy\TripwireLaravel\Models\TripwireLog> $logs
  * @property-read int|null $logs_count
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock byBrowser(string $browserFingerprint)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock byIp(string $ipAddress)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock byUserId(int $userId)
@@ -42,6 +42,7 @@ use Yormy\TripwireLaravel\Models\Traits\BlockScope;
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock withinDays(int $days)
  * @method static \Illuminate\Database\Eloquent\Builder|TripwireBlock withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class TripwireBlock extends BaseModel
@@ -52,7 +53,7 @@ class TripwireBlock extends BaseModel
     /**
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      *
-     * @var array<int, string> $fillable
+     * @var array<int, string>
      */
     protected $fillable = [
         'ignore',
@@ -77,7 +78,7 @@ class TripwireBlock extends BaseModel
     ];
 
     /**
-     * @param array<string> $attributes
+     * @param  array<string>  $attributes
      */
     public function __construct(array $attributes = [])
     {

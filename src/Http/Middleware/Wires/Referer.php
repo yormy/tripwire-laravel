@@ -13,7 +13,7 @@ class Referer extends BaseWire
     public const NAME = 'referer';
 
     /**
-     * @param array<string> $patterns
+     * @param  array<string>  $patterns
      *
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      */

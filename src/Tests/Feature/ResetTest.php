@@ -119,7 +119,8 @@ class ResetTest extends TestCase
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     * @param array<string> $data
+     *
+     * @param  array<string>  $data
      */
     private function setDefaultConfig(array $data = []): void
     {

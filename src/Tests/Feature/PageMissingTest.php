@@ -156,20 +156,21 @@ class PageMissingTest extends TestCase
 
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     * @param array<string> $data
+     *
+     * @param  array<string>  $data
      */
     private function setDefaultConfig(array $data = []): void
     {
         config(['tripwire.punish.score' => 21]);
     }
 
-//    /**
-//     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-//     * @param array<string> $data
-//     */
-//    private function setWireConfig(array $data = []): void
-//    {
-//        config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
-//        config(['tripwire.punish.score' => 21]);
-//    }
+    //    /**
+    //     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+    //     * @param array<string> $data
+    //     */
+    //    private function setWireConfig(array $data = []): void
+    //    {
+    //        config(['tripwire.reject_response.html' => ['code' => self::HTTP_TRIPWIRE_CODE]]);
+    //        config(['tripwire.punish.score' => 21]);
+    //    }
 }

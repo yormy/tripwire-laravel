@@ -24,7 +24,7 @@ abstract class WireBaseListener
         $this->config = new WireConfig($tripwire);
     }
 
-    public function handle(Failed | LoggableEvent $event): void
+    public function handle(Failed|LoggableEvent $event): void
     {
         $this->request = $event->getRequest();
         if ($this->skip($this->request)) {
@@ -32,10 +32,10 @@ abstract class WireBaseListener
         }
 
         $this->isAttack($event);
-//        if ($isAttack) {
-//            //abort(406); // respond as attack, events cannot respond
-//        }
+        //        if ($isAttack) {
+        //            //abort(406); // respond as attack, events cannot respond
+        //        }
     }
 
-    abstract public function isAttack(Event | Failed $event): bool;
+    abstract public function isAttack(Event|Failed $event): bool;
 }

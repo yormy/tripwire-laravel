@@ -7,7 +7,7 @@ namespace Yormy\TripwireLaravel\DataObjects\Config;
 class WhitelistConfig
 {
     /**
-     * @var array<string> $ips
+     * @var array<string>
      */
     public array $ips;
 
@@ -17,7 +17,7 @@ class WhitelistConfig
     }
 
     /**
-     * @param array<string> $ips
+     * @param  array<string>  $ips
      */
     public static function make(array $ips): self
     {

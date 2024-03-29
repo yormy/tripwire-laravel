@@ -141,9 +141,9 @@ class TripwireServiceProvider extends ServiceProvider
 
     private function registerMiddlewareGroups(Router $router): void
     {
-        $groups = (array)config('tripwire.wire_groups', []);
+        $groups = (array) config('tripwire.wire_groups', []);
         foreach ($groups as $name => $items) {
-            $items = (array)$items;
+            $items = (array) $items;
             $router->middlewareGroup("tripwire.{$name}", $items);
         }
     }
