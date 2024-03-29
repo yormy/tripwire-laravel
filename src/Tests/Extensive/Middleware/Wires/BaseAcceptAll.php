@@ -47,10 +47,6 @@ class BaseAcceptAll extends TestCase
     // @phpstan-ignore-next-line
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        if (isset(static::$acceptsDataFile)) {
-            static::$accepts = file(static::$acceptsDataFile);
-        }
-
         if (isset(static::$violationsDataFile)) {
             static::$violations = file(static::$violationsDataFile);
         }
@@ -92,6 +88,10 @@ class BaseAcceptAll extends TestCase
      */
     public static function accepts(): array
     {
+        if (isset(static::$acceptsDataFile)) {
+            static::$accepts = file(static::$acceptsDataFile);
+        }
+
         $providerArray = [];
         foreach (static::$accepts as $accept) {
             $providerArray[$accept] = [$accept];
