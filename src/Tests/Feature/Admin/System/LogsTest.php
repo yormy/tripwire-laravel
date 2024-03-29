@@ -20,6 +20,8 @@ class LogsTest extends TestCase
         $count = $response->getDataCount(); // @phpstan-ignore-line
 
         $data = TripwireLog::factory()->create();
+        usleep(100);
+
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
         $countAfter = $response->getDataCount(); // @phpstan-ignore-line
