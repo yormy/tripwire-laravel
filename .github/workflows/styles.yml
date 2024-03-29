@@ -23,7 +23,7 @@ jobs:
       - name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3
         with:
-          args: "-c phpstan.neon"
+          args: "-c ./../phpstan.neon2"
           memory_limit: 2G
 
 #  phpinsights:
