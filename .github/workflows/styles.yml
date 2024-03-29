@@ -49,12 +49,8 @@ jobs:
           path: .
           key: cached-setup
 
-#      - name: stan
-#        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
-
-#      - name: insights
-#        run: "sudo ./vendor/bin/testbench insights -v --min-quality=90 --min-complexity=70 --min-architecture=50 --min-style=80"
-
+      - name: stan
+        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
   insights:
     runs-on: ubuntu-latest
@@ -72,6 +68,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: 8.2
+          php_extensions: "zip"
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
