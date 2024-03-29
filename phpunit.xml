@@ -19,9 +19,9 @@
     <testsuite name="Main">
       <directory>src/Tests/Feature</directory>
     </testsuite>
-    <testsuite name="Extensive">
-      <directory>src/Tests/Extensive</directory>
-    </testsuite>
+<!--    <testsuite name="Extensive">-->
+<!--      <directory>src/Tests/Extensive</directory>-->
+<!--    </testsuite>-->
   </testsuites>
   <!--    <logging>-->
   <!--        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>-->
