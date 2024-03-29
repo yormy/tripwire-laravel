@@ -19,15 +19,10 @@ jobs:
 
   phpstan:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../22
     steps:
-      - name: PHPStan Static Analysis
-        uses: php-actions/phpstan@v3
-        with:
-          configuration: phpstan.neon
-          memory_limit: 2G
+      - name: PHPStan Analysis
+        run: |
+          ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=md --no-progress >> 'Static Analysis.md'
 
 #  phpinsights:
 #    name: PHP-Insights
