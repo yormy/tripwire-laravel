@@ -1,0 +1,54 @@
+name: Testing
+
+on: [push]
+
+jobs:
+#  phplint:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Get changed files
+#        id: changed-files
+#        uses: tj-actions/changed-files@v39
+#
+#      - name: Run Laravel Pint
+#        uses: sergotail/laravel-pint-action@v2
+#        with:
+#          onlyFiles: ${{ steps.changed-files.outputs.all_changed_files }}
+#          testMode: true
+#          verboseMode: true
+#          configPath: ./pint.json
+#          preset: laravel
+#          onlyDirty: false
+#          annotate: true
+#          pintVersion: 1.8.0
+#          annotateVersion: 1.8.5
+#          useComposer: true
+
+  phplint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: "laravel-pint"
+        uses: aglipanci/laravel-pint-action@2.0.0
+        with:
+          preset: laravel
+          verboseMode: true
+          testMode: true
+          configPath: "vendor/my-company/coding-style/pint.json"
+          pintVersion: 1.8.0
+          onlyDirty: true
+
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          configuration: ./phpstan.neon
+          memory_limit: 256M
+# pint
+# stan
+#insights
