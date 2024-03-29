@@ -8,7 +8,6 @@ class FieldMasker
 {
     /**
      * @param  array<array|string>  $inputs
-     *
      * @return array<array|string>
      */
     public static function run(array $inputs): array

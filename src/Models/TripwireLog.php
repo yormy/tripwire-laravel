@@ -32,7 +32,6 @@ use Yormy\TripwireLaravel\Models\Traits\LogScope;
  * @property string $trigger_rule
  * @property string $browser_fingerprint
  * @property bool $ignore
- *
  * @property-read \Yormy\TripwireLaravel\Models\TripwireBlock|null $block
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
  *

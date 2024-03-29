@@ -41,7 +41,6 @@ class Regex
 
     /**
      * @param  array<string>  $signatures
-     *
      * @return array<string>
      */
     public static function injectFillers(array $signatures): array

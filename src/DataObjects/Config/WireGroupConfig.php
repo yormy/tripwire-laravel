@@ -30,7 +30,6 @@ class WireGroupConfig
 
     /**
      * @param  array<string>|null  $data
-     *
      * @return array<string>|null
      */
     public static function makeFromArray(?array $data): ?array

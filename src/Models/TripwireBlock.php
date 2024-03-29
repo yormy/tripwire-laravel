@@ -25,7 +25,6 @@ use Yormy\TripwireLaravel\Models\Traits\BlockScope;
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $deleted_at
  * @property CarbonImmutable $blocked_until
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Yormy\TripwireLaravel\Models\TripwireLog> $logs
  * @property-read int|null $logs_count
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $user
