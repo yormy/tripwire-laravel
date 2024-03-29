@@ -21,9 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      uses: php-actions/composer@v6
-      with:
-        command: stan
+      run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
 #  phpinsights:
 #    name: PHP-Insights
