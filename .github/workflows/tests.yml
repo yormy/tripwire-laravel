@@ -31,7 +31,6 @@ jobs:
           args: "-d date.timezone=Asia/Jakarta"
           memory_limit: 300M
           configuration: phpunit.xml
-          testsuite: unittest
           coverage_clover: "./coverage/clover.xml"
 
       - name: Clover
