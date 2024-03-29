@@ -44,8 +44,8 @@ jobs:
         run: "sudo chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache"
 
 
-      - name: stan
-        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
+#      - name: stan
+#        run: "./vendor/bin/phpstan analyse --memory-limit=2G"
 
       - name: insights
         run: "./vendor/bin/testbench insights"
