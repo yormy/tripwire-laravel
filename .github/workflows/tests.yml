@@ -25,7 +25,7 @@ jobs:
       - name: Running unit test
         uses: php-actions/phpunit@v3
         with:
-          version: 9.6
+          version: 10.5.13
           php_version: 8.2
           php_extensions: "json zip sodium pcntl bcmath xdebug pcov"
           args: "-d date.timezone=Asia/Jakarta"
