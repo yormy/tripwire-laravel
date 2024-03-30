@@ -9,12 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yormy\TripwireLaravel\Actions\Interfaces\UserResolverInterface;
-use Yormy\TripwireLaravel\Tests\Setup\Models\Admin;
-use Yormy\TripwireLaravel\Tests\Setup\Models\Member;
 
 class UserResolver implements UserResolverInterface
 {
-
     public static function getId(Request $request): ?string
     {
         return self::get($request)?->id;
@@ -34,9 +31,6 @@ class UserResolver implements UserResolverInterface
         return $request->user();
     }
 
-
-
-
     public static function getCurrent(): ?Authenticatable
     {
         return Auth::user();
@@ -45,49 +39,55 @@ class UserResolver implements UserResolverInterface
     public static function getRandom(): ?Authenticatable
     {
         $member = self::getMemberClass();
+
         return $member->first();
     }
 
     public static function getMemberById(string|int $id): Authenticatable
     {
         $member = self::getMemberClass();
+
         return $member->where('id', $id)->firstOrFail();
     }
 
     public static function getAdminById(string|int $id): Authenticatable
     {
         $admin = self::getAdminClass();
+
         return $admin->where('id', $id)->firstOrFail();
     }
 
     public static function getMemberByXid(string|int $id): Authenticatable
     {
         $member = self::getMemberClass();
+
         return $member->where('xid', $id)->firstOrFail();
     }
 
     public static function getAdminByXid(string|int $id): Authenticatable
     {
         $admin = self::getAdminClass();
+
         return $admin->where('xid', $id)->firstOrFail();
     }
 
     public static function getMemberOnXId(string|int $xid): ?Authenticatable
     {
         $member = self::getMemberClass();
+
         return $member->where('xid', $xid)->first();
     }
 
     private static function getMemberClass(): Model
     {
-        $class = config('tripwire.models.member');;
+        $class = config('tripwire.models.member');
 
         return new $class;
     }
 
     private static function getAdminClass(): Model
     {
-        $class = config('tripwire.models.admin');;
+        $class = config('tripwire.models.admin');
 
         return new $class;
     }

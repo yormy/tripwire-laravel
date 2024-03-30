@@ -7,8 +7,6 @@ namespace Yormy\TripwireLaravel\Database\Seeders;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Seeder;
 use Yormy\TripwireLaravel\Models\TripwireLog;
-use Yormy\TripwireLaravel\Tests\Setup\Models\Admin;
-use Yormy\TripwireLaravel\Tests\Setup\Models\Member;
 
 class TripwireLogSeeder extends Seeder
 {
