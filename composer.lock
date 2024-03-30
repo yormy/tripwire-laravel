@@ -14097,12 +14097,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yormy/dev-tools-laravel.git",
-                "reference": "b8bb0ada059144948ed0496769c75b7af585d45b"
+                "reference": "a708cc58206a1dfea76f4d86969099a63e8fa001"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yormy/dev-tools-laravel/zipball/b8bb0ada059144948ed0496769c75b7af585d45b",
-                "reference": "b8bb0ada059144948ed0496769c75b7af585d45b",
+                "url": "https://api.github.com/repos/yormy/dev-tools-laravel/zipball/a708cc58206a1dfea76f4d86969099a63e8fa001",
+                "reference": "a708cc58206a1dfea76f4d86969099a63e8fa001",
                 "shasum": ""
             },
             "require": {
@@ -14113,6 +14113,7 @@
                 "laravel/pint": "^1.10",
                 "nunomaduro/phpinsights": "^2.11",
                 "orchestra/testbench": "^8.21",
+                "php": "^8.1|^8.2",
                 "phpmd/phpmd": "^2.13",
                 "phpstan/phpstan": "^1.10.52",
                 "phpunit/phpunit": "^9|^10",
@@ -14151,7 +14152,7 @@
                 "issues": "https://github.com/yormy/dev-tools-laravel/issues",
                 "source": "https://github.com/yormy/dev-tools-laravel/tree/master"
             },
-            "time": "2024-03-30T07:43:30+00:00"
+            "time": "2024-03-30T07:50:16+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
