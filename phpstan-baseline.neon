@@ -26,12 +26,17 @@ parameters:
 			path: src/DataObjects/Block/BlockData.php
 
 		-
+			message: "#^Access to offset string on an unknown class Eloquent\\.$#"
+			count: 1
+			path: src/DataObjects/Block/BlockDataResponse.php
+
+		-
 			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:constructorData\\(\\) should return array\\<string\\> but returns array\\<int\\|string, array\\<array\\|string\\>\\|bool\\|Carbon\\\\CarbonImmutable\\|int\\|string\\|null\\>\\.$#"
 			count: 1
 			path: src/DataObjects/Block/BlockDataResponse.php
 
 		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:getUserField\\(\\) should return string\\|null but returns mixed\\.$#"
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Block\\\\BlockDataResponse\\:\\:decorateWithStatus\\(\\) should return array\\<string, array\\<string, array\\|string\\>\\> but returns array\\<string, array\\<string, array\\|string\\|null\\>\\>\\.$#"
 			count: 1
 			path: src/DataObjects/Block/BlockDataResponse.php
 
@@ -371,6 +376,11 @@ parameters:
 			path: src/DataObjects/Log/LogData.php
 
 		-
+			message: "#^Access to offset string on an unknown class Eloquent\\.$#"
+			count: 1
+			path: src/DataObjects/Log/LogDataResponse.php
+
+		-
 			message: "#^Cannot access property \\$xid on Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock\\|null\\.$#"
 			count: 1
 			path: src/DataObjects/Log/LogDataResponse.php
@@ -386,12 +396,7 @@ parameters:
 			path: src/DataObjects/Log/LogDataResponse.php
 
 		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:decorateWithStatus\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, \\(array\\|string\\)\\>\\>\\.$#"
-			count: 1
-			path: src/DataObjects/Log/LogDataResponse.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:getUserField\\(\\) should return string\\|null but returns mixed\\.$#"
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Log\\\\LogDataResponse\\:\\:decorateWithStatus\\(\\) should return array\\<string\\> but returns array\\<string, array\\<string, array\\|string\\|null\\>\\>\\.$#"
 			count: 1
 			path: src/DataObjects/Log/LogDataResponse.php
 
@@ -436,6 +441,11 @@ parameters:
 			path: src/Database/Factories/TripwireBlockFactory.php
 
 		-
+			message: "#^Access to an undefined property Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock\\:\\:\\$id\\.$#"
+			count: 1
+			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
 			message: "#^Access to constant class on an unknown class Illuminate\\\\Auth\\\\Authenticatable\\.$#"
 			count: 1
 			path: src/Database/Factories/TripwireLogFactory.php
@@ -454,6 +464,31 @@ parameters:
 			message: "#^Parameter \\$user of method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireLogFactory\\:\\:forUser\\(\\) has invalid type Illuminate\\\\Auth\\\\Authenticatable\\.$#"
 			count: 1
 			path: src/Database/Factories/TripwireLogFactory.php
+
+		-
+			message: "#^Parameter \\#1 \\$block of method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireLogFactory\\:\\:forBlock\\(\\) expects Yormy\\\\TripwireLaravel\\\\Models\\\\TripwireBlock, Illuminate\\\\Database\\\\Eloquent\\\\Collection\\<int, Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Model given\\.$#"
+			count: 1
+			path: src/Database/Seeders/TripwireBlockSeeder.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method Yormy\\\\TripwireLaravel\\\\Database\\\\Factories\\\\TripwireBlockFactory\\:\\:forUser\\(\\) expects Illuminate\\\\Auth\\\\Authenticatable, Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable given\\.$#"
+			count: 1
+			path: src/Database/Seeders/TripwireBlockSeeder.php
+
+		-
+			message: "#^Cannot call static method factory\\(\\) on mixed\\.$#"
+			count: 4
+			path: src/Database/Seeders/TripwireLogSeeder.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Exceptions\\\\RequestChecksumFailedException\\:\\:renderJson\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\|Illuminate\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Exceptions/RequestChecksumFailedException.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Exceptions\\\\TripwireFailedException\\:\\:renderJson\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\|Illuminate\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: src/Exceptions/TripwireFailedException.php
 
 		-
 			message: "#^Parameter \\#2 \\$status of function response expects int, mixed given\\.$#"
@@ -626,9 +661,24 @@ parameters:
 			path: src/Http/Middleware/ChecksumValidateWire.php
 
 		-
+			message: "#^Parameter \\#1 \\$request of static method Yormy\\\\TripwireLaravel\\\\Services\\\\BlockIfNeeded\\:\\:run\\(\\) expects Illuminate\\\\Http\\\\Request\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/ChecksumValidateWire.php
+
+		-
 			message: "#^Parameter \\#1 \\$config of class Yormy\\\\TripwireLaravel\\\\Services\\\\ResponseDeterminer constructor expects Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig, Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\HtmlResponseConfig\\|Yormy\\\\TripwireLaravel\\\\DataObjects\\\\Config\\\\JsonResponseConfig\\|null given\\.$#"
 			count: 1
 			path: src/Http/Middleware/Honeypot.php
+
+		-
+			message: "#^Parameter \\#1 \\$request of static method Yormy\\\\TripwireLaravel\\\\Services\\\\BlockIfNeeded\\:\\:run\\(\\) expects Illuminate\\\\Http\\\\Request\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Honeypot.php
+
+		-
+			message: "#^Cannot call method get\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Http/Middleware/ValidateSignature.php
 
 		-
 			message: "#^Cannot cast array\\|string\\|null to string\\.$#"
@@ -667,6 +717,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$data of method Yormy\\\\TripwireLaravel\\\\Http\\\\Middleware\\\\Wires\\\\BaseWire\\:\\:convertValuesToString\\(\\) expects array\\<string\\>, array\\<int, array\\<string\\>\\|string\\> given\\.$#"
+			count: 1
+			path: src/Http/Middleware/Wires/BaseWire.php
+
+		-
+			message: "#^Parameter \\#1 \\$request of static method Yormy\\\\TripwireLaravel\\\\Services\\\\BlockIfNeeded\\:\\:run\\(\\) expects Illuminate\\\\Http\\\\Request\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Http/Middleware/Wires/BaseWire.php
 
@@ -711,14 +766,49 @@ parameters:
 			path: src/Mailables/UserBlockedMailable.php
 
 		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/BaseModel.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/TripwireBlock.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/TripwireLog.php
+
+		-
+			message: "#^Cannot call method getHttpHost\\(\\) on mixed\\.$#"
+			count: 2
+			path: src/Notifications/UserBlockedNotification.php
+
+		-
+			message: "#^Parameter \\#1 \\$content of method Illuminate\\\\Notifications\\\\Messages\\\\SlackMessage\\:\\:content\\(\\) expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Notifications/UserBlockedNotification.php
+
+		-
+			message: "#^Parameter \\#1 \\$subject of method Illuminate\\\\Mail\\\\Mailable\\:\\:subject\\(\\) expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Notifications/UserBlockedNotification.php
+
+		-
+			message: "#^Parameter \\$msg of class Yormy\\\\TripwireLaravel\\\\Mailables\\\\UserBlockedMailable constructor expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Notifications/UserBlockedNotification.php
+
+		-
+			message: "#^Parameter \\$title of class Yormy\\\\TripwireLaravel\\\\Mailables\\\\UserBlockedMailable constructor expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Notifications/UserBlockedNotification.php
+
+		-
 			message: "#^Method Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent\\:\\:getRequest\\(\\) should return GuzzleHttp\\\\Psr7\\\\Request\\|null but returns Illuminate\\\\Http\\\\Request\\|null\\.$#"
 			count: 1
 			path: src/Observers/Events/Failed/LoggableEvent.php
-
-		-
-			message: "#^Parameter \\$event of job class Yormy\\\\TripwireLaravel\\\\Jobs\\\\AddLogJob constructor expects Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent in Yormy\\\\TripwireLaravel\\\\Jobs\\\\AddLogJob\\:\\:dispatch\\(\\), Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
-			count: 1
-			path: src/Observers/Listeners/LogEvent.php
 
 		-
 			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\LoginFailedWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
@@ -726,7 +816,17 @@ parameters:
 			path: src/Observers/Listeners/Tripwires/LoginFailedWireListener.php
 
 		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:\\$request \\(Illuminate\\\\Http\\\\Request\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/LoginFailedWireListener.php
+
+		-
 			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\ThrottleHitWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/ThrottleHitWireListener.php
+
+		-
+			message: "#^Property Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:\\$request \\(Illuminate\\\\Http\\\\Request\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Observers/Listeners/Tripwires/ThrottleHitWireListener.php
 
@@ -741,9 +841,19 @@ parameters:
 			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
 
 		-
+			message: "#^Parameter \\#1 \\$request of static method Yormy\\\\TripwireLaravel\\\\Services\\\\BlockIfNeeded\\:\\:run\\(\\) expects Illuminate\\\\Http\\\\Request\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
+
+		-
 			message: "#^Property Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\WireBaseListener\\:\\:\\$request \\(Illuminate\\\\Http\\\\Request\\) does not accept GuzzleHttp\\\\Psr7\\\\Request\\|null\\.$#"
 			count: 1
 			path: src/Observers/Listeners/Tripwires/WireBaseListener.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Repositories\\\\BlockRepository\\:\\:getAll\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Collection but returns array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\.$#"
+			count: 1
+			path: src/Repositories/BlockRepository.php
 
 		-
 			message: "#^Method Yormy\\\\TripwireLaravel\\\\Repositories\\\\BlockRepository\\:\\:isAnyBlockedUntil\\(\\) should return Carbon\\\\Carbon\\|null but returns Carbon\\\\CarbonImmutable\\|null\\.$#"
@@ -751,9 +861,24 @@ parameters:
 			path: src/Repositories/BlockRepository.php
 
 		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Repositories\\\\LogRepository\\:\\:getAll\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Collection but returns array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\.$#"
+			count: 1
+			path: src/Repositories/LogRepository.php
+
+		-
 			message: "#^Parameter \\#1 \\$request of method Yormy\\\\TripwireLaravel\\\\Services\\\\ExceptionInspector\\:\\:skip\\(\\) expects Illuminate\\\\Http\\\\Request, Illuminate\\\\Http\\\\Request\\|null given\\.$#"
 			count: 1
 			path: src/Services/ExceptionInspector.php
+
+		-
+			message: "#^Parameter \\#1 \\$request of static method Yormy\\\\TripwireLaravel\\\\Services\\\\BlockIfNeeded\\:\\:run\\(\\) expects Illuminate\\\\Http\\\\Request\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Services/ExceptionInspector.php
+
+		-
+			message: "#^Cannot call method ip\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Services/IpAddress.php
 
 		-
 			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\IpLookup\\\\BaseLookup\\:\\:getResponse\\(\\) should return stdClass but returns mixed\\.$#"
@@ -761,46 +886,31 @@ parameters:
 			path: src/Services/IpLookup/BaseLookup.php
 
 		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getAdminById\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Admin\\.$#"
+			message: "#^Parameter \\#1 \\$inputs of static method Yormy\\\\TripwireLaravel\\\\Services\\\\FieldMasker\\:\\:run\\(\\) expects array\\<array\\|string\\>, array\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Services/Resolvers/UserResolver.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getAdminByXid\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Admin\\.$#"
-			count: 1
-			path: src/Services/Resolvers/UserResolver.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberById\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\.$#"
-			count: 1
-			path: src/Services/Resolvers/UserResolver.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberByXid\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\.$#"
-			count: 1
-			path: src/Services/Resolvers/UserResolver.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberOnXId\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\|null but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\|null\\.$#"
-			count: 1
-			path: src/Services/Resolvers/UserResolver.php
-
-		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getRandom\\(\\) should return Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\|null but returns Yormy\\\\TripwireLaravel\\\\Tests\\\\Setup\\\\Models\\\\Member\\|null\\.$#"
-			count: 1
-			path: src/Services/Resolvers/UserResolver.php
+			path: src/Services/LogRequestService.php
 
 		-
 			message: "#^Cannot access property \\$id on mixed\\.$#"
 			count: 1
-			path: src/Services/User.php
+			path: src/Services/Resolvers/UserResolver.php
 
 		-
-			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\User\\:\\:getType\\(\\) should return string\\|null but returns class\\-string\\|false\\.$#"
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getAdminClass\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Model but returns object\\.$#"
 			count: 1
-			path: src/Services/User.php
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getMemberClass\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Model but returns object\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
+
+		-
+			message: "#^Method Yormy\\\\TripwireLaravel\\\\Services\\\\Resolvers\\\\UserResolver\\:\\:getType\\(\\) should return string\\|null but returns class\\-string\\|false\\.$#"
+			count: 1
+			path: src/Services/Resolvers/UserResolver.php
 
 		-
 			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
 			count: 1
-			path: src/Services/User.php
+			path: src/Services/Resolvers/UserResolver.php
