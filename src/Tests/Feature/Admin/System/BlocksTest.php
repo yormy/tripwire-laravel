@@ -1,6 +1,6 @@
 <?php
 
-namespace Yormy\TripwireLaravel\Tests\Feature\Management\System;
+namespace Yormy\TripwireLaravel\Tests\Feature\Admin\System;
 
 use Illuminate\Testing\TestResponse;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
