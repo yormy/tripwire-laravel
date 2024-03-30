@@ -14,7 +14,10 @@ use Yormy\TripwireLaravel\Models\TripwireBlock;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Services\IpAddress;
 use Yormy\TripwireLaravel\Services\RequestSource;
+use Yormy\TripwireLaravel\Services\Resolvers\UserResolver;
 use Yormy\TripwireLaravel\Services\User;
+use Yormy\TripwireLaravel\Tests\Setup\Models\Admin;
+use Yormy\TripwireLaravel\Tests\Setup\Models\Member;
 
 $res = ConfigBuilder::make()
 
@@ -102,7 +105,9 @@ $res = ConfigBuilder::make()
     */
     ->models(
         TripwireLog::class,
-        TripwireBlock::class
+        TripwireBlock::class,
+        Member::class,
+        Admin::class,
     )
 
     ->browserFingerprint('session_id')
@@ -114,7 +119,7 @@ $res = ConfigBuilder::make()
     */
     ->services(
         RequestSource::class,
-        User::class,
+        UserResolver::class,
         IpAddress::class
     )
 

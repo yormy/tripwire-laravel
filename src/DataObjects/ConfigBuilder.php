@@ -285,10 +285,14 @@ class ConfigBuilder implements Arrayable
     public function models(
         string $logModel,
         string $blockModel,
+        string $memberModel,
+        string $adminModel,
     ): self {
         $this->models = ModelsConfig::make(
             $logModel,
-            $blockModel
+            $blockModel,
+            $memberModel,
+            $adminModel,
         );
 
         return $this;

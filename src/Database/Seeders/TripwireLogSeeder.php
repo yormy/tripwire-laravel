@@ -22,16 +22,19 @@ class TripwireLogSeeder extends Seeder
      */
     public function run(?Authenticatable $user = null): void
     {
-        $member = Member::create();
+        $memberClass = config('tripwire.models.member');
+        $adminClass = config('tripwire.models.admin');
+
+        $member = $memberClass::factory()->create();
         TripwireLog::factory(10)->forUser($member)->create();
 
-        $member = Member::create();
+        $member = $memberClass::factory()->create();
         TripwireLog::factory(10)->forUser($member)->create();
 
-        $admin = Admin::create();
+        $admin = $adminClass::factory()->create();
         TripwireLog::factory(10)->forUser($admin)->create();
 
-        $admin = Admin::create();
+        $admin = $adminClass::factory()->create();
         TripwireLog::factory(10)->forUser($admin)->create();
     }
 }

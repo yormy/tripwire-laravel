@@ -10,6 +10,10 @@ class ModelsConfig
 
     public string $block;
 
+    public string $member;
+
+    public string $admin;
+
     private function __construct()
     {
         // disable default constructor
@@ -18,11 +22,15 @@ class ModelsConfig
     public static function make(
         string $log,
         string $block,
+        string $member,
+        string $admin,
     ): self {
         $object = new ModelsConfig();
 
         $object->log = $log;
         $object->block = $block;
+        $object->member = $member;
+        $object->admin = $admin;
 
         return $object;
     }
@@ -37,6 +45,8 @@ class ModelsConfig
 
         $object->log = $data['log'];
         $object->block = $data['block'];
+        $object->member = $data['member'];
+        $object->admin = $data['admin'];
 
         return $object;
     }
@@ -49,6 +59,8 @@ class ModelsConfig
         return [
             'log' => $this->log,
             'block' => $this->block,
+            'member' => $this->member,
+            'admin' => $this->admin,
         ];
     }
 }

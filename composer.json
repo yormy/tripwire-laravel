@@ -39,9 +39,6 @@
         "yormy/core-tools-laravel": "dev-master"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^3.0",
-        "nunomaduro/larastan": "^2.9",
-        "nunomaduro/phpinsights": "^2.11",
         "yormy/dev-tools-laravel": "dev-master"
     },
 
