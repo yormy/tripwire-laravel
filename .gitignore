@@ -6,7 +6,6 @@
 build
 vendor
 
-psalm-report.txt
 docs/.vitepress/cache
 node_modules
 clover.xml

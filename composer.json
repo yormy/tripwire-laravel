@@ -55,26 +55,24 @@
     "scripts": {
         "---------- STYLE ---------- ": "",
         "pint": "vendor/bin/pint",
+
+        "---------- IDE-HELPERS ---------- ": "",
+        "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
+
         "---------- ANALYSIS ---------- ": "",
         "insights": "./vendor/bin/testbench insights",
         "insights:fix": "./vendor/bin/testbench insights --fix",
         "stan": "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G",
         "stan:baseline": "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G --generate-baseline",
-        "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
         "coverage:check" : "composer coverage:clover && php coverage-checker.php clover.xml 50",
         "coverage:report" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
         "coverage:text" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-text ",
         "coverage:clover" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-clover clover.xml",
 
         "---------- FIXES ---------- ": "",
-
         "cs-fixer" : "phpcbf",
         "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
         "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",
-        "phpstan": "vendor/bin/phpstan analyze src --error-format=raw --level=8",
-        "psalm": "vendor/bin/psalm --no-diff --no-cache --report-show-info=false --report=psalm-report.txt",
-        "psalm-debug": "vendor/bin/psalm --no-cache --debug --debug-by-line",
-
 
         "---------- TESTS ---------- ": "",
         "test:all": "vendor/bin/phpunit",

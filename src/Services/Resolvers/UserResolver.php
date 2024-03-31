@@ -12,7 +12,7 @@ use Yormy\TripwireLaravel\Actions\Interfaces\UserResolverInterface;
 
 class UserResolver implements UserResolverInterface
 {
-    public static function getId(Request $request): ?string
+    public static function getId(Request $request): int | string | null
     {
         return self::get($request)?->id;
     }
@@ -24,11 +24,6 @@ class UserResolver implements UserResolverInterface
         }
 
         return get_class(self::get($request));
-    }
-
-    private static function get(Request $request): mixed
-    {
-        return $request->user();
     }
 
     public static function getCurrent(): ?Authenticatable
@@ -78,17 +73,22 @@ class UserResolver implements UserResolverInterface
         return $member->where('xid', $xid)->first();
     }
 
+    private static function get(Request $request): mixed
+    {
+        return $request->user();
+    }
+
     private static function getMemberClass(): Model
     {
         $class = config('tripwire.models.member');
 
-        return new $class;
+        return new $class();
     }
 
     private static function getAdminClass(): Model
     {
         $class = config('tripwire.models.admin');
 
-        return new $class;
+        return new $class();
     }
 }
