@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Yormy\TripwireLaravel\DataObjects\TriggerEventData;
 use Yormy\TripwireLaravel\Observers\Events\Failed\LoggableEvent;
 use Yormy\TripwireLaravel\Observers\Events\Failed\ThrottleHitTrippedEvent;
+use Yormy\TripwireLaravel\Observers\Events\Tripwires\ThrottleHitEvent;
 
 class ThrottleHitWireListener extends WireBaseListener
 {
@@ -19,7 +20,7 @@ class ThrottleHitWireListener extends WireBaseListener
         parent::__construct('throttle');
     }
 
-    public function handle(Failed|LoggableEvent $event): void
+    public function handle(Failed | LoggableEvent| ThrottleHitEvent $event): void
     {
         $this->request = request();
 
