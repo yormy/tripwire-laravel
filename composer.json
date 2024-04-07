@@ -30,10 +30,16 @@
             "url": "../<package_name>"
         }
     ],
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url": "https://github.com/yormy/laravel-eloquent-query-cache.git"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^9|^10",
+        "laravel/framework": "^11",
         "laravel/slack-notification-channel": "^3.2",
         "spatie/laravel-data": "^4.4",
         "yormy/core-tools-laravel": "dev-master"
@@ -53,50 +59,40 @@
         }
     },
     "scripts": {
-        "---------- STYLE ---------- ": "",
-        "pint": "vendor/bin/pint",
-
-        "---------- IDE-HELPERS ---------- ": "",
-        "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
-
-        "---------- ANALYSIS ---------- ": "",
-        "insights": "./vendor/bin/testbench insights",
-        "insights:fix": "./vendor/bin/testbench insights --fix",
-        "stan": "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G",
-        "stan:baseline": "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G --generate-baseline",
-        "coverage:check" : "composer coverage:clover && php coverage-checker.php clover.xml 50",
-        "coverage:report" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
-        "coverage:text" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-text ",
-        "coverage:clover" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-clover clover.xml",
-
-        "---------- FIXES ---------- ": "",
-        "cs-fixer" : "phpcbf",
-        "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
-        "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",
-
-        "---------- TESTS ---------- ": "",
-        "test:all": "vendor/bin/phpunit",
-        "t": "vendor/bin/phpunit --colors=always --testdox --group testnow",
-        "t:all": "vendor/bin/phpunit",
-        "t:x": "vendor/bin/phpunit --colors=always --testdox --group xxx",
-        "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
-        "t:wires": "vendor/bin/phpunit --colors=always --testdox --testsuite FeatureWires",
-
-        "t:main": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",
-
-        "t:ext": "vendor/bin/phpunit --colors=always --testdox --testsuite Extensive",
-
-        "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "post-autoload-dump": [
-            "@php ./vendor/bin/testbench package:discover --ansi"
-        ],
-        "post-install-cmd": [
-            "composer outdated"
-        ],
-        "post-update-cmd": [
-            "composer outdated"
-        ]
+        "scripts": {
+            "---------- STYLE ---------- ": "",
+            "pint": "vendor/bin/pint",
+            "cs-fixer" : "phpcbf",
+            "md": "vendor/bin/phpmd . html cleancode --reportfile report.html",
+            "phpcs": "phpcs --standard=PSR2 -s --exclude=Generic.Files.LineLength --standard=./phpcs.xml --report-file=phpcs-report.txt",
+            "---------- FIX ---------- ": "",
+            "insights:fix": "./vendor/bin/testbench insights --fix",
+            "ide-helpers": "./vendor/bin/testbench clear-compiled && ./vendor/bin/testbench ide-helper:generate && ./vendor/bin/testbench ide-helper:models --write && ./vendor/bin/testbench ide-helper:meta",
+            "---------- ANALYSIS ---------- ": "",
+            "insights": "./vendor/bin/testbench insights",
+            "stan": "./vendor/bin/phpstan analyse -c phpstan.conf.neon --memory-limit=2G",
+            "stan:baseline": "./vendor/bin/phpstan  analyse -c phpstan.conf.neon --memory-limit=2G --generate-baseline",
+            "coverage:check" : "composer coverage:clover && php coverage-checker.php clover.xml 50",
+            "coverage:report" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-html ./meta/coverage ",
+            "coverage:text" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-text ",
+            "coverage:clover" : "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --coverage-clover clover.xml",
+            "---------- TEST ---------- ": "",
+            "test": "vendor/bin/phpunit tests/Features tests/Unit --colors=always --testdox",
+            "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
+            "test:feature": "vendor/bin/paratest --colors=always --testdox --testsuite Feature",
+            "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
+            "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+            "---------- POST ---------- ": "",
+            "post-autoload-dump": [
+                "@php ./vendor/bin/testbench package:discover --ansi"
+            ],
+            "post-install-cmd": [
+                "composer outdated"
+            ],
+            "post-update-cmd": [
+                "composer outdated"
+            ]
+        }
     },
     "extra": {
         "laravel": {
