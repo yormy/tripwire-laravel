@@ -12,7 +12,7 @@ use Yormy\TripwireLaravel\Actions\Interfaces\UserResolverInterface;
 
 class UserResolver implements UserResolverInterface
 {
-    public static function getId(Request $request): int | string | null
+    public static function getId(Request $request): int|string|null
     {
         return self::get($request)?->id;
     }

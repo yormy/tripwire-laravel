@@ -821,7 +821,7 @@ parameters:
 			path: src/Observers/Listeners/Tripwires/LoginFailedWireListener.php
 
 		-
-			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\ThrottleHitWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent given\\.$#"
+			message: "#^Parameter \\#1 \\$event of method Yormy\\\\TripwireLaravel\\\\Observers\\\\Listeners\\\\Tripwires\\\\ThrottleHitWireListener\\:\\:isAttack\\(\\) expects Illuminate\\\\Auth\\\\Events\\\\Failed\\|Illuminate\\\\Support\\\\Facades\\\\Event\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Tripwires\\\\ThrottleHitEvent, Illuminate\\\\Auth\\\\Events\\\\Failed\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Failed\\\\LoggableEvent\\|Yormy\\\\TripwireLaravel\\\\Observers\\\\Events\\\\Tripwires\\\\ThrottleHitEvent given\\.$#"
 			count: 1
 			path: src/Observers/Listeners/Tripwires/ThrottleHitWireListener.php
 
