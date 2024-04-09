@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Admin\System;
 
+use Illuminate\Support\Facades\Cache;
 use Yormy\TripwireLaravel\Models\TripwireLog;
 use Yormy\TripwireLaravel\Tests\TestCase;
 
@@ -20,7 +21,7 @@ class LogsTest extends TestCase
         $count = $response->getDataCount(); // @phpstan-ignore-line
 
         $data = TripwireLog::factory()->create();
-        usleep(100);
+        Cache::flush();
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();

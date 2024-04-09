@@ -2,6 +2,7 @@
 
 namespace Yormy\TripwireLaravel\Tests\Feature\Admin\System;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Testing\TestResponse;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
 use Yormy\TripwireLaravel\Models\TripwireBlock;
@@ -83,7 +84,7 @@ class BlocksTest extends TestCase
     public function Blocks_ShowBlock(): void
     {
         $block = TripwireBlock::factory()->create();
-        usleep(100);
+        Cache::flush();
 
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
@@ -100,7 +101,7 @@ class BlocksTest extends TestCase
     {
         $block = TripwireBlock::factory()->create();
         $log = TripwireLog::factory()->create(['tripwire_block_id' => $block->id]);
-        usleep(100); // need to wait a little, sometime the created record is not yet available
+        Cache::flush();
 
         $response = $this->json('GET', route(static::ROUTE_SHOW_BLOCK_LOGS, ['block_xid' => $block->xid]));
         $response->assertSuccessful();
@@ -140,7 +141,7 @@ class BlocksTest extends TestCase
     public function Blocks_Unblock(): void
     {
         $block = TripwireBlock::factory()->create();
-        usleep(100); // need to wait a little, sometime the created record is not yet available
+        Cache::flush();
 
         $response = $this->json('PATCH', route(static::ROUTE_SHOW_BLOCK_UNBLOCK, ['block_xid' => $block->xid]));
 
