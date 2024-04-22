@@ -122,6 +122,7 @@ final class LogDataResponse extends LogData
     protected static function getBlockXid(TripwireLog $model): ?string
     {
         if ($model->relationLoaded('block') && $model->tripwire_block_id) {
+            $model->loadMissing('user');
             if ($model->user) {
                 return $model->block->xid;
             }
