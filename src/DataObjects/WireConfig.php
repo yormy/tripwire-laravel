@@ -145,6 +145,10 @@ class WireConfig
 
     public function skipMethod(Request $request): bool
     {
+        if ($request->method() === 'OPTIONS') {
+            return true;
+        }
+
         if (! $this->methods()) {
             return true;
         }

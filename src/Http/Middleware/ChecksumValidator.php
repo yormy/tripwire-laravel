@@ -15,6 +15,7 @@ class ChecksumValidator
     public function handle(Request $request, Closure $next): mixed
     {
         $validate = new ChecksumCalculate();
+
         $request = $validate->calculate($request);
 
         $validate = new ChecksumValidateWire();
