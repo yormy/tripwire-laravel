@@ -67,6 +67,8 @@ class TripwireBlock extends BaseModel
         'manually_blocked',
         'persistent_block',
         'internal_comments',
+        'response_json',
+        'response_html'
     ];
 
     /**

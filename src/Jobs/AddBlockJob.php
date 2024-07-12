@@ -55,7 +55,7 @@ class AddBlockJob implements ShouldBeEncrypted, ShouldQueue
                 userId: $sum->userId,
                 userType: $sum->userType,
                 browserFingerprint: $sum->browserFingerprint,
-                responseJson : 'todo',
+                responseJson : json_encode(['todo']),
                 responseHtml : 'todo',
                 ignore: $this->trainingMode
             );
