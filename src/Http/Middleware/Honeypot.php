@@ -68,8 +68,6 @@ class Honeypot
             return $respond->respondWithHtml();
         }
 
-        $this->cleanup($request, $this->config);
-
         return $next($request);
     }
 
