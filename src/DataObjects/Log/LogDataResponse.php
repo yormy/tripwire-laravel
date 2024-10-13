@@ -170,13 +170,13 @@ final class LogDataResponse extends LogData
         $nature = [];
         $method = $model->method;
         if ($method === 'DELETE') {
-            $nature = 'DANGER';
+            $nature = 'danger';
         }
         if ($method === 'GET') {
-            $nature = 'SUCCESS';
+            $nature = 'success';
         }
         if ($method === 'POST' || $method === 'PATCH' || $method === 'PUT') {
-            $nature = 'WARNING';
+            $nature = 'warning';
         }
 
         $status = [
